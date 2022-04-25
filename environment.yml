@@ -1,0 +1,12 @@
+name: crome-web
+
+channels:
+  - default
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - pygraphviz
+  - spot
+  - pre-commit
+  - matplotlib
