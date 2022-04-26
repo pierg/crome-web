@@ -10,6 +10,9 @@ Icon
 
 .ide
 
+node_modules
+.idea
+
 # Thumbnails
 ._*
 

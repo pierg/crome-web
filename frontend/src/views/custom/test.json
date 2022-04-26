@@ -1,0 +1,189 @@
+{
+	"filetype": "environment",
+  	"session_id": "default",
+  	"project_id": "simple",
+  	"simulation" : [
+  		{
+  			"t" : 0,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 1,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r4"
+  		},
+  		{
+  			"t" : 2,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 3,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r4"
+  		},
+  		{
+  			"t" : 4,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 5,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r4, greet"
+  		},
+  		{
+  			"t" : 6,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r3"
+  		},
+  		{
+  			"t" : 7,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r4"
+  		},
+  		{
+  			"t" : 8,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 9,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r4, greet"
+  		},
+  		{
+  			"t" : 10,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 11,
+  			"context" : "day & !(night)",
+  			"controller" : "TRANS_r3-r5",
+  			"inputs" : "",
+  			"outputs" : "r5"
+  		},
+  		{
+  			"t" : 12,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "",
+  			"outputs" : "r1, register"
+  		},
+  		{
+  			"t" : 13,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "",
+  			"outputs" : "r2"
+  		},
+  		{
+  			"t" : 14,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "",
+  			"outputs" : "r1"
+  		},
+  		{
+  			"t" : 15,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "",
+  			"outputs" : "r2"
+  		},
+  		{
+  			"t" : 16,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "",
+  			"outputs" : "r1"
+  		},
+  		{
+  			"t" : 17,
+  			"context" : "day & !(night)",
+  			"controller" : "SCENARIO_0",
+  			"inputs" : "person",
+  			"outputs" : "r2, greet"
+  		},
+  		{
+  			"t" : 18,
+  			"context" : "night & !(day)",
+  			"controller" : "TRANS_r2-r3",
+  			"inputs" : "",
+  			"outputs" : "r5"
+  		},
+  		{
+  			"t" : 19,
+  			"context" : "night & !(day)",
+  			"controller" : "TRANS_r2-r3",
+  			"inputs" : "",
+  			"outputs" : "r3"
+  		},
+  		{
+  			"t" : 20,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r4, greet"
+  		},
+  		{
+  			"t" : 21,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		},
+  		{
+  			"t" : 22,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r4"
+  		},
+  		{
+  			"t" : 23,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "",
+  			"outputs" : "r3"
+  		},
+  		{
+  			"t" : 24,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r4, greet"
+  		},
+  		{
+  			"t" : 25,
+  			"context" : "night & !(day)",
+  			"controller" : "SCENARIO_1",
+  			"inputs" : "person",
+  			"outputs" : "r3, greet"
+  		}
+  	]
+}
