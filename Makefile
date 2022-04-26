@@ -1,29 +1,24 @@
-SHELL:=/usr/bin/env bash
+build:
+	docker-compose build
 
-.PHONY: lint
+up: build
+	docker-compose up
+
+down: build
+	docker-compose down
+
+backend_bash: build
+	docker-compose run --rm backend /bin/bash
+
+frontend_bash: build
+	docker-compose run --rm frontend /bin/bash
+
+test: build
+	docker-compose run backend python -m pytest ./tests
+	docker-compose run frontend yarn test --watchAll=false
+
 lint:
-	poetry run doc8 -q docs
-	poetry run black crome_web tests/**/*.py
-	poetry run pyupgrade
-	poetry run pycln crome_web tests/**/*.py --all
-	poetry run autoflake .
-	poetry run isort .
-	poetry run autopep8 --in-place -r crome_web tests/**/*.py
-	poetry run docformatter --in-place -r crome_web tests/**/*.py
-	poetry run yapf -ir .
-# 	poetry run mypy crome_web tests/**/*.py
-# 	poetry run bandit -r crome_web
-	poetry run flake8 crome_web
-
-.PHONY: unit
-unit:
-	poetry run pytest
-
-.PHONY: package
-package:
-	poetry check
-	poetry run pip check
-	poetry run safety check --full-report
-
-.PHONY: test
-test: lint package unit
+	docker-compose run backend isort --recursive .
+	docker-compose run backend black .
+	docker-compose run backend flake8 . --statistics
+	docker-compose run frontend yarn format

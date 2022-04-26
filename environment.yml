@@ -1,4 +1,4 @@
-name: crome-web
+name: crome-cgg
 
 channels:
   - default
@@ -10,3 +10,15 @@ dependencies:
   - spot
   - pre-commit
   - matplotlib
+  - poetry
+  - python-igraph
+  - gcc
+  - aenum
+  - treelib
+  - docker-py
+  - dill
+  - flask
+  - pip
+  - pip:
+    - pyeda
+    - bloom-filter

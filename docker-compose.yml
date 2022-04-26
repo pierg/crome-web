@@ -22,6 +22,18 @@ services:
       - 80:80
     restart: unless-stopped
 
+  frontend:
+    image: pmallozzi/crome:latest
+    restart: always
+    container_name: backend
+    volumes:
+      - ./frontend/build:/home/crome/web/frontend/build
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    command: -b
+
   backend:
     image: pmallozzi/crome:latest
     restart: always

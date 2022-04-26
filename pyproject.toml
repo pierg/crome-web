@@ -30,6 +30,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+crome-cgg = {path = "../crome-cgg", develop = true}
 crome-logic = {path = "../crome-logic", develop = true}
 crome-contracts = {path = "../crome-contracts", develop = true}
 crome-synthesis = {path = "../crome-synthesis", develop = true}
