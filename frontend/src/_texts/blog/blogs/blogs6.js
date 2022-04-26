@@ -1,0 +1,77 @@
+const textProps = {
+  heading3: {
+    color: "indigo",
+    subtitle: "daytime",
+    title: "8 days out of 7",
+    description:
+      "Sleep is a luxury sometimes, but then you see who is just flow, and who is a rock. When the darkness of the night wants you, a lot of faces laugh at you, waiting for you to fail.",
+    alignment: "center",
+  },
+  cards: [
+    {
+      image: require("assets/img/sections/athena.jpg").default,
+      subtitle: "Stellar Partnership",
+      title: "Climate Change in Beautiful Bali",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/thomas.jpg").default,
+      subtitle: "Digital Currency",
+      title: "Saving the World Starts With You",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/twk-tt.jpg").default,
+      subtitle: "A Robot is Your Co-Worker",
+      title: "Microcips and Software of the World",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/odin.jpg").default,
+      subtitle: "Blockchain Explained",
+      title: "Applications Companies",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/kit-suman.jpg").default,
+      subtitle: "Sales Leads",
+      title: "Best Places to Setup a Company",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/damian.jpg").default,
+      subtitle: "AI at the Edge",
+      title: "Research for the Images in Summer",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/victor-garcia.jpg").default,
+      subtitle: "Features",
+      title: "Fifty Three Files for Paper",
+      link: { href: "#pablo" },
+      size: "lg",
+      rounded: false,
+    },
+    {
+      image: require("assets/img/sections/dane.jpg").default,
+      subtitle: "News",
+      title: "Focus on Your Employees",
+      size: "lg",
+      link: { href: "#pablo" },
+      rounded: false,
+    },
+  ],
+};
+export default textProps;

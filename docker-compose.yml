@@ -1,0 +1,35 @@
+version: "3"
+services:
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=crometool.duckdns.org
+      - SUBDOMAINS=www,
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN=40ec2401-1546-484c-a2cd-26691ecc0ebb
+      - EMAIL=piergiuseppe.mallozzi@gmail.com
+    volumes:
+      - ./frontend/build:/config/www
+      - ./frontend/nginx_config:/config/nginx/site-confs
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+  backend:
+    image: pmallozzi/crome:latest
+    restart: always
+    container_name: backend
+    volumes:
+      - ./frontend/build:/home/crome/web/frontend/build
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    command: -b
