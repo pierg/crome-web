@@ -1,15 +1,16 @@
-import CardProjectTeam from "components/Cards/Misc/CardProjectTeam.js";
-import passProps from "_texts/misc/cards/cardprojectteam.js";
+import "_texts/misc/cards/cardprojectteam.js"
+import "components/Cards/Misc/CardProjectTeam.js"
+import CardProjectTeam
+import passProps
+
 const dependencies = [
   {
     name: "Dropdown Button",
-    link:
-      "/components/misc/components/dropdowns#misc-id-misc-id-components-dropdownbutton",
+    link: "/components/misc/components/dropdowns#misc-id-misc-id-components-dropdownbutton",
   },
   {
     name: "Images Overlap",
-    link:
-      "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
+    link: "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
   },
 ];
 const props = `CardProjectTeam.defaultProps = {
@@ -46,7 +47,8 @@ const description = "";
 const preview = `import React from "react";
 
 // sections
-import CardProjectTeam from "@notus-pro/react/CardProjectTeam";
+import "@notus-pro/react/CardProjectTeam"
+import CardProjectTeam
 
 const props = ${JSON.stringify(passProps)};
 

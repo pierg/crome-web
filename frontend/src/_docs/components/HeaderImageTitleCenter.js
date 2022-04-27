@@ -1,7 +1,9 @@
-import React from "react";
-
-import Frameworks from "_docs/components/Frameworks1.js";
-import Button from "components/Elements/Button.js";
+import "_docs/components/Frameworks1.js"
+import "components/Elements/Button.js"
+import "react"
+import Button
+import Frameworks
+import React
 
 const frameworks = [
   {
@@ -63,9 +65,9 @@ export default function Index() {
               </p>
             </div>
             <p className="text-xl font-normal leading-normal mt-0 mb-6 text-blueGray-600">
-              Completly new product built using our past experience in web
-              templates. Take the examples and components we made for you and
-              start playing with them.
+              Completly new product built using our past experience in web templates.
+              Take the examples and components we made for you and start playing with
+              them.
             </p>
             <Button
               color="dark"

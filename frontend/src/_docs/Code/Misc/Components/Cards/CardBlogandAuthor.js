@@ -1,5 +1,8 @@
-import CardBlogandAuthor from "components/Cards/Misc/CardBlogandAuthor.js";
-import passProps from "_texts/misc/cards/cardblogandauthor.js";
+import "_texts/misc/cards/cardblogandauthor.js"
+import "components/Cards/Misc/CardBlogandAuthor.js"
+import CardBlogandAuthor
+import passProps
+
 const props = `CardBlogandAuthor.defaultProps = {
   user: {},
   link: {},
@@ -25,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardBlogandAuthor from "@notus-pro/react/CardBlogandAuthor";
+import "@notus-pro/react/CardBlogandAuthor"
+import CardBlogandAuthor
 
 const props = ${JSON.stringify(passProps)};
 

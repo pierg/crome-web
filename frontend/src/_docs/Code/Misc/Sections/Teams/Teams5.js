@@ -1,10 +1,12 @@
-import Teams5 from "components/Sections/Misc/Teams/Teams5.js";
-import passProps from "_texts/misc/teams/teams5.js";
+import "_texts/misc/teams/teams5.js"
+import "components/Sections/Misc/Teams/Teams5.js"
+import passProps
+import Teams5
+
 const dependencies = [
   {
     name: "Heading2Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "CardProfileFullDetails",
@@ -27,7 +29,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Teams5 from "@notus-pro/react/Teams5";
+import "@notus-pro/react/Teams5"
+import Teams5
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import CardBlogandAuthor from "../../../../components/Cards/Misc/CardBlogandAuthor.js";
+import "../../../../components/Cards/Misc/CardBlogandAuthor.js"
+import "../../../../components/Headings/Heading2.js"
+import CardBlogandAuthor
+import Heading2
 
 export default function Blogs8({ heading2, cards }) {
   return (

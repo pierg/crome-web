@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import InfoAreaIconTitleListColor from "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js";
-import CardInfoFullColor from "../../../../components/Cards/Presentation/CardInfoFullColor.js";
+import "../../../../components/Cards/Presentation/CardInfoFullColor.js"
+import "../../../../components/Headings/Heading2.js"
+import "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js"
+import CardInfoFullColor
+import Heading2
+import InfoAreaIconTitleListColor
 
 export default function Features1({ heading2, infoArea, cards }) {
   return (

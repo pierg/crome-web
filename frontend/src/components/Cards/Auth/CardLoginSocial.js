@@ -1,10 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
+
 // components
-import Button from "../../../components/Elements/Button.js";
-import Input from "../../../components/Elements/Input.js";
-import Checkbox from "../../../components/Elements/Checkbox.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Elements/Checkbox.js"
+import "../../../components/Elements/Input.js"
+import Button
+import Checkbox
+import Input
 
 export default function CardLoginSocial({
   title,

@@ -1,5 +1,8 @@
-import CardInvoice from "components/Cards/ECommerce/CardInvoice.js";
-import passProps from "_texts/e-commerce/cards/cardinvoice.js";
+import "_texts/e-commerce/cards/cardinvoice.js"
+import "components/Cards/ECommerce/CardInvoice.js"
+import CardInvoice
+import passProps
+
 const props = `CardInvoice.defaultProps = {
   invoice: {},
   billing: {},
@@ -56,7 +59,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardInvoice from "@notus-pro/react/CardInvoice";
+import "@notus-pro/react/CardInvoice"
+import CardInvoice
 
 const props = ${JSON.stringify(passProps)}
 

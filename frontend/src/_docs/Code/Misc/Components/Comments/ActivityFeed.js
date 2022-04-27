@@ -1,5 +1,8 @@
-import ActivityFeed from "components/Content/ActivityFeed.js";
-import passProps from "_texts/misc/content/activityfeed.js";
+import "_texts/misc/content/activityfeed.js"
+import "components/Content/ActivityFeed.js"
+import ActivityFeed
+import passProps
+
 const props = `ActivityFeed.defaultProps = {
   button: {},
   likes: { children: "0" },
@@ -77,7 +80,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import ActivityFeed from "@notus-pro/react/ActivityFeed";
+import "@notus-pro/react/ActivityFeed"
+import ActivityFeed
 
 const props = ${JSON.stringify(passProps)}
 

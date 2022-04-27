@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 // components
-import Badge from "../../../components/Elements/Badge.js";
+import "../../../components/Elements/Badge.js"
+import Badge
 
 export default function CardProductPlain({ type, image, title, price, badge, link }) {
   const types = {

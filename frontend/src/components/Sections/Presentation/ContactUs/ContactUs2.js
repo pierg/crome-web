@@ -1,11 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import "classnames"
+import "prop-types"
+import "react"
+import classnames
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import InfoAreaIcon from "../../../../components/InfoAreas/Presentation/InfoAreaIcon.js";
-import Button from "../../../../components/Elements/Button.js";
+import "../../../../components/Elements/Button.js"
+import "../../../../components/Headings/Heading2.js"
+import "../../../../components/InfoAreas/Presentation/InfoAreaIcon.js"
+import Button
+import Heading2
+import InfoAreaIcon
 
 export default function ContactUs2({ image, heading2, button, infoAreas }) {
   return (

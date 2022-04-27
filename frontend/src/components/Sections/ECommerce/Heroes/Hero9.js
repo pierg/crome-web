@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
-import CardProductText from "../../../../components/Cards/ECommerce/CardProductText.js";
+import "../../../../components/Cards/ECommerce/CardProductText.js"
+import "../../../../components/Headings/Heading3Badge.js"
+import CardProductText
+import Heading3Badge
 
 export default function Hero9({ heading3badge, cards }) {
   return (

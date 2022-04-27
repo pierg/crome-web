@@ -1,15 +1,16 @@
-import ContactUs1 from "components/Sections/Presentation/ContactUs/ContactUs1.js";
-import passProps from "_texts/presentation/contactus/contactus1.js";
+import "_texts/presentation/contactus/contactus1.js"
+import "components/Sections/Presentation/ContactUs/ContactUs1.js"
+import ContactUs1
+import passProps
+
 const dependencies = [
   {
     name: "CardContactUsTitle",
-    link:
-      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardcontactustitle",
+    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardcontactustitle",
   },
   {
     name: "Heading3Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
   },
 ];
 const props = `ContactUs1.defaultProps = {
@@ -26,10 +27,12 @@ ContactUs1.propTypes = {
 };`;
 const description = "";
 const preview = `
-import React from "react";
+import "react"
+import React
 
 // @notus-pro/react
-import ContactUs1 from "@notus-pro/react/ContactUs1";
+import "@notus-pro/react/ContactUs1"
+import ContactUs1
 
 const props = ${JSON.stringify(passProps)};
 

@@ -1,4 +1,5 @@
-import mediaplayerblockquote from "_texts/misc/mediaplayers/mediaplayerblockquote.js";
+import "_texts/misc/mediaplayers/mediaplayerblockquote.js"
+import mediaplayerblockquote
 
 const textProps = {
   heading2: {

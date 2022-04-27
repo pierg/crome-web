@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-
-import Alert from "components/Elements/Alert.js";
+import "components/Elements/Alert.js"
+import "react"
+import "react-syntax-highlighter"
+import "react-syntax-highlighter/dist/cjs/styles/hljs"
+import Alert
+import React
+import { Prism as SyntaxHighlighter }
+import { shadesOfPurple }
 
 const singleInstall = `npm i -E @notus-pro/react@1.0.0
 npm i -E @fortawesome/fontawesome-free@5.15.3
@@ -60,9 +63,8 @@ export default function QuickStart() {
           You will have to wait a few minutes for the purchase to go trough
         </li>
         <li className="py-1">
-          After the payment has gone through (you will know this when you
-          recieve an email from us), you can now install Notus PRO React as
-          follows.
+          After the payment has gone through (you will know this when you recieve an
+          email from us), you can now install Notus PRO React as follows.
           <SyntaxHighlighter
             language="jsx"
             style={shadesOfPurple}
@@ -90,8 +92,8 @@ export default function QuickStart() {
           </SyntaxHighlighter>
         </li>
         <li className="py-1">
-          Be sure to use the exact same versions in your project, otherwise,
-          errors, warnings and bugs might develop.
+          Be sure to use the exact same versions in your project, otherwise, errors,
+          warnings and bugs might develop.
         </li>
         <li className="py-1">
           Next, you need to add the Tailwind CSS styles:
@@ -176,8 +178,8 @@ export default function QuickStart() {
             <code className="text-sm font-mono bg-blueGray-200 text-blueGray-800">
               yarn
             </code>
-            , and at some point you have any issues, please try again (all of
-            the above) using{" "}
+            , and at some point you have any issues, please try again (all of the above)
+            using{" "}
             <code className="text-sm font-mono bg-blueGray-200 text-blueGray-800">
               npm
             </code>

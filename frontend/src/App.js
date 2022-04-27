@@ -1,11 +1,11 @@
-import './App.css';
-import ReactDOM from "react-dom";
-import React from "react";
+import "./App.css"
+import "react"
+import "react-dom"
+import React
+import ReactDOM
 
 function App() {
-  return (
-      <></>
-  );
+  return <></>;
 }
 
 const rootElement = document.getElementById("root");

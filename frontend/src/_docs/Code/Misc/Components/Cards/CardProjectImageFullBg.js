@@ -1,5 +1,8 @@
-import CardProjectImageFullBg from "components/Cards/Misc/CardProjectImageFullBg.js";
-import passProps from "_texts/misc/cards/cardprojectimagefullbg.js";
+import "_texts/misc/cards/cardprojectimagefullbg.js"
+import "components/Cards/Misc/CardProjectImageFullBg.js"
+import CardProjectImageFullBg
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -36,7 +39,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardProjectImageFullBg from "@notus-pro/react/CardProjectImageFullBg";
+import "@notus-pro/react/CardProjectImageFullBg"
+import CardProjectImageFullBg
 
 const props = "<<props-here>>";
 

@@ -1,9 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // components
-import NavbarLinks from "../../../components/Navbars/NavbarLinks.js";
-import PreFooterLarge from "../../../components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "../../../components/Footers/Landing/FooterSmall.js";
+import "../../../components/Footers/Landing/FooterSmall.js"
+import "../../../components/Navbars/NavbarLinks.js"
+import "../../../components/PreFooters/PreFooterLarge.js"
+import FooterSmall
+import NavbarLinks
+import PreFooterLarge
 
 export default function Auth3({ children, footer, navbar, prefooter, color }) {
   const bgColor = {

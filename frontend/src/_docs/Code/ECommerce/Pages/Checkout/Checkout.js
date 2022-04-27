@@ -1,21 +1,35 @@
-import Checkout from "views/e-commerce/Checkout.js";
-import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
-import headerimagetitlesmallcentercheckout from "_texts/e-commerce/headers/headerimagetitlesmallcentercheckout.js";
-import cardproductscheckout from "_texts/e-commerce/cards/cardproductscheckout.js";
-import cardbilling from "_texts/e-commerce/cards/cardbilling.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
+import "_texts/e-commerce/cards/cardbilling.js"
+import "_texts/e-commerce/cards/cardproductscheckout.js"
+import "_texts/e-commerce/headers/headerimagetitlesmallcentercheckout.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/navbars/navbarlinkslanding1.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import "views/e-commerce/Checkout.js"
+import cardbilling
+import cardproductscheckout
+import Checkout
+import footersmall
+import headerimagetitlesmallcentercheckout
+import navbarlinkslanding1
+import prefooterlarge
+
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import NavbarLinks from "@notus-pro/react/NavbarLinks";
-import HeaderImageTitleSmallCenter from "@notus-pro/react/HeaderImageTitleSmallCenter";
-import CardProductsCheckout from "@notus-pro/react/CardProductsCheckout";
-import CardBilling from "@notus-pro/react/CardBilling";
-import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
-import FooterSmall from "@notus-pro/react/FooterSmall";
+import "@notus-pro/react/CardBilling"
+import "@notus-pro/react/CardProductsCheckout"
+import "@notus-pro/react/FooterSmall"
+import "@notus-pro/react/HeaderImageTitleSmallCenter"
+import "@notus-pro/react/NavbarLinks"
+import "@notus-pro/react/PreFooterLarge"
+import CardBilling
+import CardProductsCheckout
+import FooterSmall
+import HeaderImageTitleSmallCenter
+import NavbarLinks
+import PreFooterLarge
 
 // texts as props
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};

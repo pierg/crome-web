@@ -1,15 +1,16 @@
-import Hero9 from "components/Sections/ECommerce/Heroes/Hero9.js";
-import passProps from "_texts/e-commerce/heroes/hero9.js";
+import "_texts/e-commerce/heroes/hero9.js"
+import "components/Sections/ECommerce/Heroes/Hero9.js"
+import Hero9
+import passProps
+
 const dependencies = [
   {
     name: "Heading3Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
   },
   {
     name: "CardProductText",
-    link:
-      "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardproducttext",
+    link: "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardproducttext",
   },
 ];
 const props = `Hero9.defaultProps = {
@@ -27,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero9 from "@notus-pro/react/Hero9";
+import "@notus-pro/react/Hero9"
+import Hero9
 
 // texts as props
 const product1 = ${JSON.stringify(passProps)}

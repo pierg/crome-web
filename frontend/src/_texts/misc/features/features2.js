@@ -1,4 +1,5 @@
-import cardinfoiconleft from "_texts/misc/cards/cardinfoiconleft.js";
+import "_texts/misc/cards/cardinfoiconleft.js"
+import cardinfoiconleft
 
 const textProps = {
   image: require("assets/img/illustrations/p31.svg").default,

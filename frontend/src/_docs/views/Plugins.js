@@ -1,30 +1,29 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-
-import Alert from "components/Elements/Alert.js";
+import "components/Elements/Alert.js"
+import "react"
+import "react-syntax-highlighter"
+import "react-syntax-highlighter/dist/cjs/styles/hljs"
+import Alert
+import React
+import { Prism as SyntaxHighlighter }
+import { shadesOfPurple }
 
 export default function Plugins() {
   return (
     <>
       <h3 className="text-2xl font-medium mb-2 mt-10">Google Maps</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Our Map components uses the Google Maps API and it comes with a custom
-        interface that matches the theme’s colors. Keep reading our Maps
-        examples and learn how to use this plugin.
+        Our Map components uses the Google Maps API and it comes with a custom interface
+        that matches the theme’s colors. Keep reading our Maps examples and learn how to
+        use this plugin.
       </p>
       <h4 className="text-xl font-medium mb-2 mt-10">Usage</h4>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        In order to use this plugin on your page you will need to include the
-        following script inside your{" "}
-        <code className="text-sm font-mono bg-blueGray-200">
-          public/index.html
-        </code>{" "}
+        In order to use this plugin on your page you will need to include the following
+        script inside your{" "}
+        <code className="text-sm font-mono bg-blueGray-200">public/index.html</code>{" "}
         page, right before the end of the{" "}
-        <code className="text-sm font-mono bg-blueGray-200">{`</head>`}</code>{" "}
-        tag:
+        <code className="text-sm font-mono bg-blueGray-200">{`</head>`}</code> tag:
       </p>
       <SyntaxHighlighter
         language="jsx"
@@ -48,11 +47,8 @@ export default function Plugins() {
         >
           Google Maps
         </a>
-        . After you’ve got your api key, you will need to replace in the above
-        script, the{" "}
-        <code className="text-sm font-mono bg-blueGray-200">
-          YOUR_API_KEY_HERE
-        </code>{" "}
+        . After you’ve got your api key, you will need to replace in the above script,
+        the <code className="text-sm font-mono bg-blueGray-200">YOUR_API_KEY_HERE</code>{" "}
         with that key.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
@@ -82,9 +78,8 @@ export default function Plugins() {
         {`npm i -E @popperjs/core@2.5.4`}
       </SyntaxHighlighter>
       <p className="leading-extra-relaxed font-light text-base my-5">
-        We've used this plugin for multiple components as for making dynamic
-        render of menus and info boxes (tooltips). These components are as
-        follow:
+        We've used this plugin for multiple components as for making dynamic render of
+        menus and info boxes (tooltips). These components are as follow:
       </p>
       <ul className="my-3 list-disc pl-8">
         <li className="py-1">
@@ -114,8 +109,8 @@ export default function Plugins() {
         </li>
       </ul>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        So, if you will use any of the above components, be sure to keep
-        popperjs inside your project as well.
+        So, if you will use any of the above components, be sure to keep popperjs inside
+        your project as well.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
         Read more about popperjs on their own website:{" "}
@@ -154,8 +149,8 @@ export default function Plugins() {
         </li>
       </ul>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        So, if you will use any of the above components, be sure to keep
-        chart.js inside your project as well.
+        So, if you will use any of the above components, be sure to keep chart.js inside
+        your project as well.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
         Read more about ChartJS on their own website:{" "}
@@ -169,10 +164,10 @@ export default function Plugins() {
         </a>
       </p>
       <Alert color="lightBlue">
-        NOTICE: We will not offer support for any of the above plugins. We only
-        made the code that wrapps them - i.e., we only made the layout for them.
-        If you wish to customize any of the above plugins, or if you have any
-        issues with them, please refer to their own communities.
+        NOTICE: We will not offer support for any of the above plugins. We only made the
+        code that wrapps them - i.e., we only made the layout for them. If you wish to
+        customize any of the above plugins, or if you have any issues with them, please
+        refer to their own communities.
       </Alert>
     </>
   );

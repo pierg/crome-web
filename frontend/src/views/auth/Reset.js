@@ -1,16 +1,27 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // components
-import NavbarLinks from "components/Navbars/NavbarLinks.js";
-import CardResetPassword from "components/Cards/Auth/CardResetPassword.js";
-import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import "components/Cards/Auth/CardResetPassword.js"
+import "components/Footers/Landing/FooterSmall.js"
+import "components/Navbars/NavbarLinks.js"
+import "components/PreFooters/PreFooterLarge.js"
+import CardResetPassword
+import FooterSmall
+import NavbarLinks
+import PreFooterLarge
+
 // texts
-import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
-import cardresetpassword from "_texts/auth/cards/cardresetpassword.js";
-import prefooterlargereset from "_texts/auth/prefooters/prefooterlargereset.js";
-import footersmallreset from "_texts/auth/footers/footersmallreset.js";
+import "_texts/auth/cards/cardresetpassword.js"
+import "_texts/auth/footers/footersmallreset.js"
+import "_texts/auth/prefooters/prefooterlargereset.js"
+import "_texts/presentation/navbars/navbarlinkslanding1.js"
+import cardresetpassword
+import footersmallreset
+import navbarlinkslanding1
+import prefooterlargereset
 
 export default function Reset() {
   const location = useLocation();
@@ -25,9 +36,7 @@ export default function Reset() {
           className="absolute w-full h-full bg-cover bg-50"
           style={{
             backgroundImage:
-              "url('" +
-              require("assets/img/illustrations/reset.svg").default +
-              "')",
+              "url('" + require("assets/img/illustrations/reset.svg").default + "')",
           }}
         ></div>
         <div className="container mx-auto px-4">

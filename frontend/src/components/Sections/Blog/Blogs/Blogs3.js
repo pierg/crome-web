@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
-import CardBlogImageHorizontal from "../../../../components/Cards/Blog/CardBlogImageHorizontal.js";
+import "../../../../components/Cards/Blog/CardBlogImageHorizontal.js"
+import "../../../../components/Headings/Heading3Badge.js"
+import CardBlogImageHorizontal
+import Heading3Badge
 
 export default function Blogs3({ heading3badge, cards }) {
   return (

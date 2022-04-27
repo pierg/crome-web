@@ -1,5 +1,7 @@
-import CardContactUsIcons from "components/Cards/Presentation/CardContactUsIcons.js";
-import passProps from "_texts/presentation/cards/cardcontactusicons.js";
+import "_texts/presentation/cards/cardcontactusicons.js"
+import "components/Cards/Presentation/CardContactUsIcons.js"
+import CardContactUsIcons
+import passProps
 
 const props = `CardContactUsIcons.defaultProps = {
   inputs: [],
@@ -38,7 +40,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardContactUsIcons from "@notus-pro/react/CardContactUsIcons";
+import "@notus-pro/react/CardContactUsIcons"
+import CardContactUsIcons
 
 const props = ${JSON.stringify(passProps)}
 

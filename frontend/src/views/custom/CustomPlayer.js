@@ -1,21 +1,37 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-import goalmodelinginfo from "_texts/custom/goalmodelinginfo.js";
-import worldmodelinginfo from "_texts/custom/worldmodelinginfo.js";
-import synthesisinfo from "_texts/custom/synthesisinfo.js";
+import "_texts/custom/goalmodelinginfo.js"
+import "_texts/custom/synthesisinfo.js"
+import "_texts/custom/worldmodelinginfo.js"
+import "classnames"
+import "prop-types"
+import "react"
+import classnames
+import goalmodelinginfo
+import PropTypes
+import React
+import synthesisinfo
+import worldmodelinginfo
 
 // components
-import GoalModeling from "./GoalModeling";
-import CustomHeader from "../../components/Crome/CustomHeader";
-import customheadercards from "../../_texts/custom/customheadercards";
-import CustomFooter from "../../components/Custom/CustomFooter";
-import customfooter from "../../_texts/custom/customfooter";
-import WorldModeling from "./WorldModeling";
-import Analysis from "./Analysis";
-import Synthesis from "./Synthesis";
-import CustomNavButton from "../../components/Custom/CustomNavButton";
-import { UncontrolledTooltip } from "reactstrap";
+import "../../_texts/custom/customfooter"
+import "../../_texts/custom/customheadercards"
+import "../../components/Crome/CustomHeader"
+import "../../components/Custom/CustomFooter"
+import "../../components/Custom/CustomNavButton"
+import "./Analysis"
+import "./GoalModeling"
+import "./Synthesis"
+import "./WorldModeling"
+import "reactstrap"
+import Analysis
+import CustomFooter
+import customfooter
+import CustomHeader
+import customheadercards
+import CustomNavButton
+import GoalModeling
+import Synthesis
+import WorldModeling
+import { UncontrolledTooltip }
 
 export default function CustomPlayer({
   world,

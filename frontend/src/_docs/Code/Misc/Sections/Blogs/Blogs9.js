@@ -1,10 +1,12 @@
-import Blogs9 from "components/Sections/Misc/Blogs/Blogs9.js";
-import passProps from "_texts/misc/blogs/blogs9.js";
+import "_texts/misc/blogs/blogs9.js"
+import "components/Sections/Misc/Blogs/Blogs9.js"
+import Blogs9
+import passProps
+
 const dependencies = [
   {
     name: "Heading3Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
   },
   {
     name: "Button",
@@ -44,7 +46,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Blogs9 from "@notus-pro/react/Blogs9";
+import "@notus-pro/react/Blogs9"
+import Blogs9
 
 const props = ${JSON.stringify(passProps)};
 

@@ -1,4 +1,5 @@
-import Skew from "./Skew.js";
+import "./Skew.js"
+import Skew
 
 const componentsArray = [Skew];
 export default componentsArray;

@@ -1,4 +1,5 @@
-import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import navbarlinkslanding2
 
 const textProps = {
   ...navbarlinkslanding2,

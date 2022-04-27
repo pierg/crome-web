@@ -1,6 +1,7 @@
 const textProps = {
   colors: [
-      [ // Actions colors
+    [
+      // Actions colors
       "#F8844F",
       "#F8F484",
       "#488F4F",
@@ -33,8 +34,9 @@ const textProps = {
       "#FF0044",
       "#44FF00",
       "#FF4400",
-      ],
-      [ // Sensors colors
+    ],
+    [
+      // Sensors colors
       "#0088FF",
       "#66FFB2",
       "#8800FF",
@@ -67,8 +69,9 @@ const textProps = {
       "#FFFF00",
       "#00FFFF",
       "#FF8800",
-      ],
-      [ // Context colors
+    ],
+    [
+      // Context colors
       "#8FF484",
       "#FF00FF",
       "#FFFF00",
@@ -101,7 +104,7 @@ const textProps = {
       "#886633",
       "#0000FF",
       "#FF0000",
-      ],
-  ]
+    ],
+  ],
 };
 export default textProps;

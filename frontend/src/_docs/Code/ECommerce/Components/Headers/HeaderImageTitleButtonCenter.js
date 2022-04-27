@@ -1,5 +1,8 @@
-import HeaderImageTitleButtonCenter from "components/Headers/ECommerce/HeaderImageTitleButtonCenter.js";
-import passProps from "_texts/e-commerce/headers/headerimagetitlebuttoncenter.js";
+import "_texts/e-commerce/headers/headerimagetitlebuttoncenter.js"
+import "components/Headers/ECommerce/HeaderImageTitleButtonCenter.js"
+import HeaderImageTitleButtonCenter
+import passProps
+
 const dependencies = [
   {
     name: "Skew",
@@ -38,7 +41,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderImageTitleButtonCenter from "@notus-pro/react/HeaderImageTitleButtonCenter";
+import "@notus-pro/react/HeaderImageTitleButtonCenter"
+import HeaderImageTitleButtonCenter
 
 const props = "<<props-here>>";
 

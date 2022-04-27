@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Button from "../../../components/Elements/Button.js";
-import Input from "../../../components/Elements/Input.js";
-import Select from "../../../components/Elements/Select.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Elements/Input.js"
+import "../../../components/Elements/Select.js"
+import Button
+import Input
+import Select
 
 export default function CardSettingsLarge({ title, button, forms }) {
   const widths = {

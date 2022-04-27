@@ -1,4 +1,6 @@
-import CardBody from "components/Cards/CardBody.js";
+import "components/Cards/CardBody.js"
+import CardBody
+
 const passProps = {
   children: "This is the CardBody tag.",
 };
@@ -12,7 +14,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardBody from "@notus-pro/react/CardBody";
+import "@notus-pro/react/CardBody"
+import CardBody
 
 const props = ${JSON.stringify(passProps)};
 

@@ -1,28 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
-import io from 'socket.io-client'
+import io
 
-const SocketContext = React.createContext()
+import "react"
+import "socket.io-client"
+import React
+import useEffect
+import useState }
+import { useContext
+
+const SocketContext = React.createContext();
 
 export function useSocket() {
-    return useContext(SocketContext)
+  return useContext(SocketContext);
 }
 
 export function SocketProvider({ id, children }) {
-    useEffect(() => {
-        console.log("Connecting merged")
-        const newSocket = io({ query: { id } }
-        )
-        setSocket(newSocket)
+  useEffect(() => {
+    console.log("Connecting merged");
+    const newSocket = io({ query: { id } });
+    setSocket(newSocket);
 
-        return () => newSocket.close()
-    }, [id])
+    return () => newSocket.close();
+  }, [id]);
 
+  const [socket, setSocket] = useState();
 
-    const [socket, setSocket] = useState()
-
-    return (
-        <SocketContext.Provider value={socket}>
-            {children}
-        </SocketContext.Provider>
-    )
+  return <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>;
 }

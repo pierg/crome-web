@@ -1,6 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 export default function CardSocialMedia({
   icon,
@@ -37,8 +40,7 @@ export default function CardSocialMedia({
       "text-white bg-linkedin-regular border-linkedin-regular active:bg-linkedin-active active:border-linkedin-active",
     light:
       "text-blueGray-800 bg-blueGray-200 border-blueGray-200 active:bg-blueGray-300 active:border-blueGray-300",
-    dark:
-      "text-white bg-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900",
+    dark: "text-white bg-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900",
     blueGray:
       "text-white bg-blueGray-500 border-blueGray-500 active:bg-blueGray-600 active:border-blueGray-600",
     red: "text-white bg-red-500 border-red-500 active:bg-red-600 active:border-red-600",
@@ -48,16 +50,14 @@ export default function CardSocialMedia({
       "text-white bg-amber-500 border-amber-500 active:bg-amber-600 active:border-amber-600",
     emerald:
       "text-white bg-emerald-500 border-emerald-500 active:bg-emerald-600 active:border-emerald-600",
-    teal:
-      "text-white bg-teal-500 border-teal-500 active:bg-teal-600 active:border-teal-600",
+    teal: "text-white bg-teal-500 border-teal-500 active:bg-teal-600 active:border-teal-600",
     lightBlue:
       "text-white bg-lightBlue-500 border-lightBlue-500 active:bg-lightBlue-600 active:border-lightBlue-600",
     indigo:
       "text-white bg-indigo-500 border-indigo-500 active:bg-indigo-600 active:border-indigo-600",
     purple:
       "text-white bg-purple-500 border-purple-500 active:bg-purple-600 active:border-purple-600",
-    pink:
-      "text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600",
+    pink: "text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600",
     "facebook-outline":
       "text-facebook-regular border-facebook-regular active:bg-facebook-active active:border-facebook-active active:text-white",
     "twitter-outline":

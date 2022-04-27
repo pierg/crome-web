@@ -1,9 +1,13 @@
-import React from "react";
-
-import Card from "components/Cards/Card.js";
-import CardHeader from "components/Cards/CardHeader.js";
-import CardBody from "components/Cards/CardBody.js";
-import CardFooter from "components/Cards/CardFooter.js";
+import "components/Cards/Card.js"
+import "components/Cards/CardBody.js"
+import "components/Cards/CardFooter.js"
+import "components/Cards/CardHeader.js"
+import "react"
+import Card
+import CardBody
+import CardFooter
+import CardHeader
+import React
 
 function CardExample() {
   return (
@@ -24,10 +28,14 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Card from "@notus-pro/react/Card";
-import CardHeader from "@notus-pro/react/CardHeader";
-import CardBody from "@notus-pro/react/CardBody";
-import CardFooter from "@notus-pro/react/CardFooter";
+import "@notus-pro/react/Card"
+import "@notus-pro/react/CardBody"
+import "@notus-pro/react/CardFooter"
+import "@notus-pro/react/CardHeader"
+import Card
+import CardBody
+import CardFooter
+import CardHeader
 
 export default function Example() {
   return (

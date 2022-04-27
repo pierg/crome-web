@@ -1,5 +1,8 @@
-import InfoAreaIconTitleLink from "components/InfoAreas/Presentation/InfoAreaIconTitleLink.js";
-import passProps from "_texts/presentation/infoarea/infoareaicontitlelink.js";
+import "_texts/presentation/infoarea/infoareaicontitlelink.js"
+import "components/InfoAreas/Presentation/InfoAreaIconTitleLink.js"
+import InfoAreaIconTitleLink
+import passProps
+
 const props = `InfoAreaIconTitleLink.defaultProps = {
   iconColor: "blueGray",
   description: [],
@@ -42,7 +45,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import InfoAreaIconTitleLink from "@notus-pro/react/InfoAreaIconTitleLink";
+import "@notus-pro/react/InfoAreaIconTitleLink"
+import InfoAreaIconTitleLink
 
 const props = "<<props-here>>";
 

@@ -1,6 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Chart, registerables } from "chart.js";
+import "chart.js"
+import "prop-types"
+import "react"
+import PropTypes
+import React
+import registerables }
+import { Chart
 
 Chart.register(...registerables);
 

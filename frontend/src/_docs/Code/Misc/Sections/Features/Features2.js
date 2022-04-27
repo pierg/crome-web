@@ -1,15 +1,16 @@
-import Features2 from "components/Sections/Misc/Features/Features2.js";
-import passProps from "_texts/misc/features/features2.js";
+import "_texts/misc/features/features2.js"
+import "components/Sections/Misc/Features/Features2.js"
+import Features2
+import passProps
+
 const dependencies = [
   {
     name: "Heading2Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "CardInfoIconLeft",
-    link:
-      "/components/misc/components/cards#misc-id-misc-id-components-cardinfoiconleft",
+    link: "/components/misc/components/cards#misc-id-misc-id-components-cardinfoiconleft",
   },
 ];
 const props = `Features2.defaultProps = {
@@ -28,7 +29,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Features2 from "@notus-pro/react/Features2";
+import "@notus-pro/react/Features2"
+import Features2
 
 const props = "<<props-here>>";
 

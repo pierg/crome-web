@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
-import CardContactUsIcons from "../../../../components/Cards/Presentation/CardContactUsIcons.js";
-import Map from "../../../../components/Maps/Map.js";
+import "../../../../components/Cards/Presentation/CardContactUsIcons.js"
+import "../../../../components/Headings/Heading2Badge.js"
+import "../../../../components/Maps/Map.js"
+import CardContactUsIcons
+import Heading2Badge
+import Map
 
 export default function ContactUs3({ heading2badge, card, map, skew }) {
   return (

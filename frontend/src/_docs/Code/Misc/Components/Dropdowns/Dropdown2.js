@@ -1,5 +1,8 @@
-import DropdownUser from "components/Dropdowns/DropdownUser.js";
-import passProps from "_texts/misc/dropdowns/dropdownuser.js";
+import "_texts/misc/dropdowns/dropdownuser.js"
+import "components/Dropdowns/DropdownUser.js"
+import DropdownUser
+import passProps
+
 const props = `DropdownUser.defaultProps = {
   items: [],
 };
@@ -25,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import DropdownUser from "@notus-pro/react/DropdownUser";
+import "@notus-pro/react/DropdownUser"
+import DropdownUser
 
 const props = ${JSON.stringify(passProps)}
 

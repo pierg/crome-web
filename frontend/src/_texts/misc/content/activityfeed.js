@@ -1,6 +1,9 @@
-import imagesoverlap from "_texts/misc/images/imagesoverlap.js";
-import writeComment from "_texts/misc/content/writecomment.js";
-import comment from "_texts/misc/content/comment.js";
+import "_texts/misc/content/comment.js"
+import "_texts/misc/content/writecomment.js"
+import "_texts/misc/images/imagesoverlap.js"
+import comment
+import imagesoverlap
+import writeComment
 
 const textProps = {
   title: "What people say...",

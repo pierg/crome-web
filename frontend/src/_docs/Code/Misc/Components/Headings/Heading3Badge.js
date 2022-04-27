@@ -1,5 +1,8 @@
-import Heading3Badge from "components/Headings/Heading3Badge.js";
-import passProps from "_texts/misc/headings/heading3badge.js";
+import "_texts/misc/headings/heading3badge.js"
+import "components/Headings/Heading3Badge.js"
+import Heading3Badge
+import passProps
+
 const props = `Heading3Badge.defaultProps = {
   color: "blueGray",
   alignment: "left",
@@ -23,7 +26,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderLeftTitleRightImage from "@notus-pro/react/Heading3Badge";
+import "@notus-pro/react/Heading3Badge"
+import HeaderLeftTitleRightImage
 
 const props = ${JSON.stringify(passProps)};
 

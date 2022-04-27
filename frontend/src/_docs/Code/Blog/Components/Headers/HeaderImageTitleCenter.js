@@ -1,5 +1,8 @@
-import HeaderBlogPostDark from "components/Headers/Blog/HeaderBlogPostDark.js";
-import passProps from "_texts/blog/headers/headerblogpostdark.js";
+import "_texts/blog/headers/headerblogpostdark.js"
+import "components/Headers/Blog/HeaderBlogPostDark.js"
+import HeaderBlogPostDark
+import passProps
+
 const props = `HeaderBlogPostDark.defaultProps = {
   color: "blueGray",
 };
@@ -31,7 +34,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderBlogPostDark from "@notus-pro/react/HeaderBlogPostDark";
+import "@notus-pro/react/HeaderBlogPostDark"
+import HeaderBlogPostDark
 
 const props = "<<props-here>>";
 

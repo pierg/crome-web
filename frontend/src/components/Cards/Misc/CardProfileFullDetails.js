@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Button from "../../../components/Elements/Button.js";
-import ImagesOverlap from "../../../components/Images/ImagesOverlap.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Images/ImagesOverlap.js"
+import Button
+import ImagesOverlap
 
 export default function CardProfileFullDetails({
   image,

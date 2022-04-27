@@ -1,12 +1,21 @@
-import CardInfoIcon from "./CardInfoIcon.js";
-import CardBlogImage from "./CardBlogImage.js";
-import CardContactUsTitle from "./CardContactUsTitle.js";
-import CardInfoImage from "./CardInfoImage.js";
-import CardInfoFullColor from "./CardInfoFullColor.js";
-import CardBlogFullBg from "./CardBlogFullBg.js";
-import CardPricing from "./CardPricing.js";
-import CardBlogFullBgAuthor from "./CardBlogFullBgAuthor.js";
-import CardContactUsIcons from "./CardContactUsIcons.js";
+import "./CardBlogFullBg.js"
+import "./CardBlogFullBgAuthor.js"
+import "./CardBlogImage.js"
+import "./CardContactUsIcons.js"
+import "./CardContactUsTitle.js"
+import "./CardInfoFullColor.js"
+import "./CardInfoIcon.js"
+import "./CardInfoImage.js"
+import "./CardPricing.js"
+import CardBlogFullBg
+import CardBlogFullBgAuthor
+import CardBlogImage
+import CardContactUsIcons
+import CardContactUsTitle
+import CardInfoFullColor
+import CardInfoIcon
+import CardInfoImage
+import CardPricing
 
 const componentsArray = [
   CardInfoIcon,

@@ -1,5 +1,8 @@
-import InfoAreaWhiteTitle from "components/InfoAreas/Presentation/InfoAreaWhiteTitle.js";
-import passProps from "_texts/presentation/infoarea/infoareawhitetitle.js";
+import "_texts/presentation/infoarea/infoareawhitetitle.js"
+import "components/InfoAreas/Presentation/InfoAreaWhiteTitle.js"
+import InfoAreaWhiteTitle
+import passProps
+
 const props = `InfoAreaWhiteTitle.defaultProps = {
   type: "light",
 };
@@ -18,7 +21,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import InfoAreaWhiteTitle from "@notus-pro/react/InfoAreaWhiteTitle";
+import "@notus-pro/react/InfoAreaWhiteTitle"
+import InfoAreaWhiteTitle
 
 const props = ${JSON.stringify(passProps)}
 

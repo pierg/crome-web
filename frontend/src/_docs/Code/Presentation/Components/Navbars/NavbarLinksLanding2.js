@@ -1,5 +1,8 @@
-import NavbarLinksLanding2 from "components/Navbars/NavbarLinks.js";
-import passProps from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import "components/Navbars/NavbarLinks.js"
+import NavbarLinksLanding2
+import passProps
+
 const props = `NavbarLinks.defaultProps = {
   leftLinks: [],
   rightLinks: [],
@@ -62,7 +65,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import "@notus-pro/react/NavbarLinks"
+import NavbarLinks
 
 const props = "<<props-here>>";
 

@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import DropdownButton from "../../../components/Dropdowns/DropdownButton.js";
-import Progress from "../../../components/Elements/Progress.js";
-import ImagesOverlap from "../../../components/Images/ImagesOverlap.js";
+import "../../../components/Dropdowns/DropdownButton.js"
+import "../../../components/Elements/Progress.js"
+import "../../../components/Images/ImagesOverlap.js"
+import DropdownButton
+import ImagesOverlap
+import Progress
 
 export default function CardFullTable({ title, head, body, color, children }) {
   const cardColors = {

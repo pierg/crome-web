@@ -1,5 +1,8 @@
-import CardInfoIcon from "components/Cards/Presentation/CardInfoIcon.js";
-import passProps from "_texts/presentation/cards/cardinfoicon.js";
+import "_texts/presentation/cards/cardinfoicon.js"
+import "components/Cards/Presentation/CardInfoIcon.js"
+import CardInfoIcon
+import passProps
+
 const props = `CardInfoIcon.defaultProps = {
   iconColor: "lightBlue",
   gradient: true,
@@ -31,7 +34,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardInfoIcon from "@notus-pro/react/CardInfoIcon";
+import "@notus-pro/react/CardInfoIcon"
+import CardInfoIcon
 
 const props = "<<props-here>>";
 

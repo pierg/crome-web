@@ -1,5 +1,7 @@
-import HeaderImageTitleCenter from "components/Headers/Presentation/HeaderImageTitleCenter.js";
-import passProps from "_texts/presentation/headers/headerimagetitlecenter.js";
+import "_texts/presentation/headers/headerimagetitlecenter.js"
+import "components/Headers/Presentation/HeaderImageTitleCenter.js"
+import HeaderImageTitleCenter
+import passProps
 
 const props = `HeaderImageTitleCenter.defaultProps = {
   skewColor: "blueGray",
@@ -26,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderImageTitleCenter from "@notus-pro/react/HeaderImageTitleCenter";
+import "@notus-pro/react/HeaderImageTitleCenter"
+import HeaderImageTitleCenter
 
 const props = ${JSON.stringify(passProps)}
 

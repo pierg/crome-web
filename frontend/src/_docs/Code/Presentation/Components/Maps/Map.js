@@ -1,5 +1,8 @@
-import Map from "components/Maps/Map.js";
-import passProps from "_texts/presentation/maps/map.js";
+import "_texts/presentation/maps/map.js"
+import "components/Maps/Map.js"
+import Map
+import passProps
+
 const props = `Map.defaultProps = {
   options: {},
   latitude: "40.748817",
@@ -18,7 +21,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Map from "@notus-pro/react/Map";
+import "@notus-pro/react/Map"
+import Map
 
 const props = ${JSON.stringify(passProps)}
 

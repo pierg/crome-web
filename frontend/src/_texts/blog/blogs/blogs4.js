@@ -1,5 +1,7 @@
-import mediaplayer from "_texts/blog/mediaplayers/mediaplayerimageonly.js";
-import imagepost from "_texts/misc/images/imagepost.js";
+import "_texts/blog/mediaplayers/mediaplayerimageonly.js"
+import "_texts/misc/images/imagepost.js"
+import imagepost
+import mediaplayer
 
 const textProps = {
   items: [

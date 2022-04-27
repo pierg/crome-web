@@ -1,4 +1,5 @@
-import Checkout from "./Checkout.js";
+import "./Checkout.js"
+import Checkout
 
 const componentsArray = [Checkout];
 export default componentsArray;

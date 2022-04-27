@@ -1,4 +1,5 @@
-import card from "_texts/blog/cards/cardblogillustration.js";
+import "_texts/blog/cards/cardblogillustration.js"
+import card
 
 const textProps = {
   heading2badge: {

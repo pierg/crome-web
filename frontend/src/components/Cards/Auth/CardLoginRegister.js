@@ -1,8 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // components
-import Input from "../../../components/Elements/Input.js";
-import Button from "../../../components/Elements/Button.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Elements/Input.js"
+import Button
+import Input
 
 export default function CardLoginRegister({
   leftCard,
@@ -16,9 +21,8 @@ export default function CardLoginRegister({
   const [panelTransform, setPanelTransform] = React.useState("");
   const [panelInnerTransform, setPanelInnerTransform] = React.useState("");
   const [panelLeftTransform, setPanelLeftTransform] = React.useState("");
-  const [panelRightTransform, setPanelRightTransform] = React.useState(
-    "-translate-x-1/5"
-  );
+  const [panelRightTransform, setPanelRightTransform] =
+    React.useState("-translate-x-1/5");
   const animation = () => {
     if (!animating) {
       setAntimating(true);

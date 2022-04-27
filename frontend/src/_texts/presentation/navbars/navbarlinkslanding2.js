@@ -1,4 +1,5 @@
-import dropdownnavbar from "_texts/misc/dropdowns/dropdownnavbar.js";
+import "_texts/misc/dropdowns/dropdownnavbar.js"
+import dropdownnavbar
 
 const textProps = {
   color: "dark",

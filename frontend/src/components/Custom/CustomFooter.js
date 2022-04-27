@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 export default function CustomFooter({ copyright, links }) {
   return (

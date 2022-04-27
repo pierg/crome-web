@@ -1,4 +1,5 @@
-import mediaplayerteaminfo from "_texts/e-commerce/mediaplayers/mediaplayerteaminfo.js";
+import "_texts/e-commerce/mediaplayers/mediaplayerteaminfo.js"
+import mediaplayerteaminfo
 
 const textProps = {
   heading3badge: {

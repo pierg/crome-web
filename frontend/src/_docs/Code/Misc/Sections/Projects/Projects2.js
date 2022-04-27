@@ -1,15 +1,16 @@
-import Projects2 from "components/Sections/Misc/Projects/Projects2.js";
-import passProps from "_texts/misc/projects/projects2.js";
+import "_texts/misc/projects/projects2.js"
+import "components/Sections/Misc/Projects/Projects2.js"
+import passProps
+import Projects2
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "CardProjectTeam",
-    link:
-      "/components/misc/components/cards#misc-id-misc-id-components-cardprojectteam",
+    link: "/components/misc/components/cards#misc-id-misc-id-components-cardprojectteam",
   },
   {
     name: "Pagination",
@@ -35,7 +36,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Projects2 from "@notus-pro/react/Projects2";
+import "@notus-pro/react/Projects2"
+import Projects2
 
 const props = ${JSON.stringify(passProps)}
 

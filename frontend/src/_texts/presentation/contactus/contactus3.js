@@ -1,5 +1,7 @@
-import card from "_texts/presentation/cards/cardcontactusicons.js";
-import map from "_texts/presentation/maps/map.js";
+import "_texts/presentation/cards/cardcontactusicons.js"
+import "_texts/presentation/maps/map.js"
+import card
+import map
 
 const textProps = {
   heading2badge: {

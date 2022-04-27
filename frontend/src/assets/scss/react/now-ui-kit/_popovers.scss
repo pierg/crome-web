@@ -1,11 +1,11 @@
-.popover{
+.popover {
   .arrow:before {
     border-color: transparent !important;
   }
 }
 
-.popover-primary{
-  .popover{
+.popover-primary {
+  .popover {
     @include popover-color($primary-color, $white-color);
     .arrow:after {
       border-left-color: $primary-color;
@@ -13,8 +13,8 @@
   }
 }
 
-.popover-info{
-  .popover{
+.popover-info {
+  .popover {
     @include popover-color($info-color, $white-color);
     .arrow:after {
       border-left-color: $info-color;
@@ -22,8 +22,8 @@
   }
 }
 
-.popover-warning{
-  .popover{
+.popover-warning {
+  .popover {
     @include popover-color($warning-color, $white-color);
     .arrow:after {
       border-left-color: $warning-color;
@@ -31,8 +31,8 @@
   }
 }
 
-.popover-danger{
-  .popover{
+.popover-danger {
+  .popover {
     @include popover-color($danger-color, $white-color);
     .arrow:after {
       border-left-color: $danger-color;
@@ -40,8 +40,8 @@
   }
 }
 
-.popover-success{
-  .popover{
+.popover-success {
+  .popover {
     @include popover-color($success-color, $white-color);
     .arrow:after {
       border-left-color: $success-color;

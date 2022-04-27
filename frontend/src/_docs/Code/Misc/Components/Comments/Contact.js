@@ -1,5 +1,8 @@
-import Contact from "components/Content/Contact.js";
-import passProps from "_texts/misc/content/contact.js";
+import "_texts/misc/content/contact.js"
+import "components/Content/Contact.js"
+import Contact
+import passProps
+
 const props = `Contact.defaultProps = {};
 Contact.propTypes = {
   image: PropTypes.string,
@@ -33,7 +36,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Contact from "@notus-pro/react/Contact";
+import "@notus-pro/react/Contact"
+import Contact
 
 const props = "<<props-here>>";
 

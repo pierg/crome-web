@@ -1,5 +1,8 @@
-import CardProductPrice from "components/Cards/ECommerce/CardProductPrice.js";
-import passProps from "_texts/e-commerce/cards/cardproductprice.js";
+import "_texts/e-commerce/cards/cardproductprice.js"
+import "components/Cards/ECommerce/CardProductPrice.js"
+import CardProductPrice
+import passProps
+
 const props = `CardProductPrice.defaultProps = {
   button: {},
 };
@@ -18,7 +21,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardProductPrice from "@notus-pro/react/CardProductPrice";
+import "@notus-pro/react/CardProductPrice"
+import CardProductPrice
 
 const props = ${JSON.stringify(passProps)}
 

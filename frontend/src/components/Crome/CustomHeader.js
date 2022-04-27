@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import CustomCardMini from "../Custom/CustomCardMini";
+import "../Custom/CustomCardMini"
+import CustomCardMini
 
 export default function CustomHeader({ cards, color, states }) {
   const bgColors = {

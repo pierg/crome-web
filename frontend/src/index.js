@@ -1,59 +1,100 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
-// styles from Now UI template
-import "assets/styles/bootstrap.min.css";
-import "assets/scss/now-ui-kit.css";
+import "react"
+import "react-dom"
+import "react-router-dom"
+import React
+import ReactDOM
+import Redirect }
+import Route
+import Switch
+import { HashRouter
 
-import "assets/demo/demo.css";
-import "assets/demo/react-demo.css";
-import "assets/demo/nucleo-icons-page-styles.css";
+// styles from Now UI template
+import "assets/demo/demo.css"
+import "assets/demo/nucleo-icons-page-styles.css"
+import "assets/demo/react-demo.css"
+import "assets/scss/now-ui-kit.css"
+import "assets/styles/bootstrap.min.css"
 
 // styles from Notus template
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "assets/styles/tailwind.min.css";
-import "assets/styles/docs.css";
+import "@fortawesome/fontawesome-free/css/all.min.css"
+import "assets/styles/docs.css"
+import "assets/styles/tailwind.min.css"
 
 // Docs Routes - START - you can delete these when you no longer need our docs
-import Components from "_docs/layouts/Components.js";
-import Documentation from "_docs/layouts/Documentation.js";
+import "_docs/layouts/Components.js"
+import "_docs/layouts/Documentation.js"
+import Components
+import Documentation
+
 // Docs Routes -  STOP
 // Product Pages - START
 // // admin
-import Dashboard from "views/admin/Dashboard.js";
-import Maps from "views/admin/Maps.js";
-import Settings2 from "views/admin/Settings2.js";
-import Tables from "views/admin/Tables.js";
-// // auth
-import Login1 from "views/auth/Login1.js";
-import Login2 from "views/auth/Login2.js";
-import Register1 from "views/auth/Register1.js";
-import Register2 from "views/auth/Register2.js";
-import Reset from "views/auth/Reset.js";
-// // blog
-import BlogPost from "views/blog/BlogPost.js";
-import BlogPosts from "views/blog/BlogPosts.js";
-// // e-commerce
-import Chat from "views/e-commerce/Chat.js";
-import Checkout from "views/e-commerce/Checkout.js";
-import ECommerce from "views/e-commerce/ECommerce.js";
-import Invoice from "views/e-commerce/Invoice.js";
-import Pricing from "views/e-commerce/Pricing.js";
-import Product from "views/e-commerce/Product.js";
-import Profile1 from "views/e-commerce/Profile1.js";
-import Settings1 from "views/e-commerce/Settings1.js";
-// // error
-import Error404 from "views/error/Error404.js";
-import Error500 from "views/error/Error500.js";
-// // presentation
-import Landing1 from "views/presentation/Landing1.js";
-import Landing2 from "views/presentation/Landing2.js";
-import AboutUs from "views/presentation/AboutUs.js";
-import ContactUs from "views/presentation/ContactUs.js";
-// // custom
-import CustomDashboard from "./views/custom/CustomDashboard";
-// Product Pages - STOP
+import "views/admin/Dashboard.js"
+import "views/admin/Maps.js"
+import "views/admin/Settings2.js"
+import "views/admin/Tables.js"
+import Dashboard
+import Maps
+import Settings2
+import Tables
 
+// // auth
+import "views/auth/Login1.js"
+import "views/auth/Login2.js"
+import "views/auth/Register1.js"
+import "views/auth/Register2.js"
+import "views/auth/Reset.js"
+import Login1
+import Login2
+import Register1
+import Register2
+import Reset
+
+// // blog
+import "views/blog/BlogPost.js"
+import "views/blog/BlogPosts.js"
+import BlogPost
+import BlogPosts
+
+// // e-commerce
+import "views/e-commerce/Chat.js"
+import "views/e-commerce/Checkout.js"
+import "views/e-commerce/ECommerce.js"
+import "views/e-commerce/Invoice.js"
+import "views/e-commerce/Pricing.js"
+import "views/e-commerce/Product.js"
+import "views/e-commerce/Profile1.js"
+import "views/e-commerce/Settings1.js"
+import Chat
+import Checkout
+import ECommerce
+import Invoice
+import Pricing
+import Product
+import Profile1
+import Settings1
+
+// // error
+import "views/error/Error404.js"
+import "views/error/Error500.js"
+import Error404
+import Error500
+
+// // presentation
+import "views/presentation/AboutUs.js"
+import "views/presentation/ContactUs.js"
+import "views/presentation/Landing1.js"
+import "views/presentation/Landing2.js"
+import AboutUs
+import ContactUs
+import Landing1
+import Landing2
+
+// // custom
+import "./views/custom/CustomDashboard"
+import CustomDashboard
+
+// Product Pages - STOP
 
 ReactDOM.render(
   <HashRouter>
@@ -96,7 +137,11 @@ ReactDOM.render(
       <Route path="/documentation" component={Documentation} />
       {/* Docs Routes - STOP */}
       {/* Custom Routes added */}
-      <Route exact path="/:id" render={(props) => ( <CustomDashboard page={props.match.params.id}/>)} />
+      <Route
+        exact
+        path="/:id"
+        render={(props) => <CustomDashboard page={props.match.params.id} />}
+      />
 
       <Redirect from="*" to="/index" />
     </Switch>

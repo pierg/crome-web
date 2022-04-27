@@ -1,5 +1,8 @@
-import CardPricingLogo from "components/Cards/Misc/CardPricingLogo.js";
-import passProps from "_texts/misc/cards/cardpricinglogo.js";
+import "_texts/misc/cards/cardpricinglogo.js"
+import "components/Cards/Misc/CardPricingLogo.js"
+import CardPricingLogo
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -35,7 +38,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardPricingLogo from "@notus-pro/react/CardPricingLogo";
+import "@notus-pro/react/CardPricingLogo"
+import CardPricingLogo
 
 const props = ${JSON.stringify(passProps)};
 

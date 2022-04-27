@@ -1,5 +1,8 @@
-import MediaPlayerTeamInfo from "components/MediaPlayers/MediaPlayerTeamInfo.js";
-import passProps from "_texts/e-commerce/mediaplayers/mediaplayerteaminfo.js";
+import "_texts/e-commerce/mediaplayers/mediaplayerteaminfo.js"
+import "components/MediaPlayers/MediaPlayerTeamInfo.js"
+import MediaPlayerTeamInfo
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -46,7 +49,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import MediaPlayerTeamInfo from "@notus-pro/react/MediaPlayerTeamInfo";
+import "@notus-pro/react/MediaPlayerTeamInfo"
+import MediaPlayerTeamInfo
 
 const props = ${JSON.stringify(passProps)}
 

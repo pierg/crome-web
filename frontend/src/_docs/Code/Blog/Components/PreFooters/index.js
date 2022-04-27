@@ -1,4 +1,5 @@
-import PreFooterSmall from "./PreFooterSmall.js";
+import "./PreFooterSmall.js"
+import PreFooterSmall
 
 const componentsArray = [PreFooterSmall];
 export default componentsArray;

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3 from "../../../../components/Headings/Heading3.js";
-import InfoAreaIconTitleList from "../../../../components/InfoAreas/Misc/InfoAreaIconTitleList.js";
+import "../../../../components/Headings/Heading3.js"
+import "../../../../components/InfoAreas/Misc/InfoAreaIconTitleList.js"
+import Heading3
+import InfoAreaIconTitleList
 
 export default function Features3({ heading3, infoAreas }) {
   return (

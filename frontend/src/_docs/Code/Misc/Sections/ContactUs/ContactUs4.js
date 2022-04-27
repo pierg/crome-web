@@ -1,10 +1,12 @@
-import ContactUs4 from "components/Sections/Misc/ContactUs/ContactUs4.js";
-import passProps from "_texts/misc/contactus/contactus4.js";
+import "_texts/misc/contactus/contactus4.js"
+import "components/Sections/Misc/ContactUs/ContactUs4.js"
+import ContactUs4
+import passProps
+
 const dependencies = [
   {
     name: "Heading2Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "InfoAreaIconTitle",
@@ -34,7 +36,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import ContactUs4 from "@notus-pro/react/ContactUs4";
+import "@notus-pro/react/ContactUs4"
+import ContactUs4
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3Badge from "../../components/Headings/Heading3Badge.js";
-import CardInfoIconLeft from "../../components/Cards/Misc/CardInfoIconLeft.js";
+import "../../components/Cards/Misc/CardInfoIconLeft.js"
+import "../../components/Headings/Heading3Badge.js"
+import CardInfoIconLeft
+import Heading3Badge
 
 export default function Features4({ heading3badge, imageKit, imageDashboard, cards }) {
   return (

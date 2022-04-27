@@ -1,4 +1,5 @@
-import Alerts1 from "./Alerts1.js";
+import "./Alerts1.js"
+import Alerts1
 
 const componentsArray = [Alerts1];
 export default componentsArray;

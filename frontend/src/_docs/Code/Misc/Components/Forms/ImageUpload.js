@@ -1,5 +1,8 @@
-import ImageUpload from "components/Elements/ImageUpload.js";
-import passProps from "_texts/misc/forms/imageupload.js";
+import "_texts/misc/forms/imageupload.js"
+import "components/Elements/ImageUpload.js"
+import ImageUpload
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -36,7 +39,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import ImageUpload from "@notus-pro/react/ImageUpload";
+import "@notus-pro/react/ImageUpload"
+import ImageUpload
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,4 +1,5 @@
-import cardblogimagehorizontal from "_texts/blog/cards/cardblogimagehorizontal.js";
+import "_texts/blog/cards/cardblogimagehorizontal.js"
+import cardblogimagehorizontal
 
 const textProps = {
   heading3badge: {

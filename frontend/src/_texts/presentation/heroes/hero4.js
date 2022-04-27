@@ -1,5 +1,7 @@
-import leftCardProps from "_texts/presentation/cards/cardinfoimage.js";
-import rightCardInfoIconProps from "_texts/presentation/cards/cardinfofullcolor.js";
+import "_texts/presentation/cards/cardinfofullcolor.js"
+import "_texts/presentation/cards/cardinfoimage.js"
+import leftCardProps
+import rightCardInfoIconProps
 
 const textProps = {
   heading2badge: {

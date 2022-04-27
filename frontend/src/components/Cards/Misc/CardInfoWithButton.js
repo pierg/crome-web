@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Button from "../../../components/Elements/Button.js";
+import "../../../components/Elements/Button.js"
+import Button
 
 export default function CardInfoWithButton({
   icon,

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
-import CardProfileFullDetails from "../../../../components/Cards/Misc/CardProfileFullDetails.js";
+import "../../../../components/Cards/Misc/CardProfileFullDetails.js"
+import "../../../../components/Headings/Heading2Badge.js"
+import CardProfileFullDetails
+import Heading2Badge
 
 export default function Teams5({ heading2badge, card }) {
   return (

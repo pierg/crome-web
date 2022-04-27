@@ -1,5 +1,8 @@
-import Pagination from "components/Pagination/Pagination.js";
-import passProps from "_texts/misc/pagination/pagination.js";
+import "_texts/misc/pagination/pagination.js"
+import "components/Pagination/Pagination.js"
+import Pagination
+import passProps
+
 const props = `Pagination.defaultProps = {
   size: "regular",
   color: "blueGray",
@@ -35,7 +38,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Pagination from "@notus-pro/react/Pagination";
+import "@notus-pro/react/Pagination"
+import Pagination
 
 const props = "<<props-here>>";
 

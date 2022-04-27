@@ -1,5 +1,7 @@
-import infoareaicontitle from "_texts/misc/infoareas/infoareaicontitle.js";
-import mediaplayerimageonly from "_texts/blog/mediaplayers/mediaplayerimageonly.js";
+import "_texts/blog/mediaplayers/mediaplayerimageonly.js"
+import "_texts/misc/infoareas/infoareaicontitle.js"
+import infoareaicontitle
+import mediaplayerimageonly
 
 const textProps = {
   image: require("assets/img/p2.png").default,

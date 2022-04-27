@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Skew from "../../../components/Skews/Skew.js";
+import "../../../components/Skews/Skew.js"
+import Skew
 
 export default function HeaderImageTitleCenter({
   bgImage,

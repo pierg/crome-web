@@ -1,4 +1,5 @@
-import infoArea1 from "_texts/presentation/infoarea/infoareawhitetitle.js";
+import "_texts/presentation/infoarea/infoareawhitetitle.js"
+import infoArea1
 
 const textProps = {
   heading3: {

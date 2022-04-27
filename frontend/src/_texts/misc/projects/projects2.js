@@ -1,5 +1,7 @@
-import cardprojectteam from "_texts/misc/cards/cardprojectteam.js";
-import pagination from "_texts/misc/pagination/pagination.js";
+import "_texts/misc/cards/cardprojectteam.js"
+import "_texts/misc/pagination/pagination.js"
+import cardprojectteam
+import pagination
 
 const textProps = {
   heading2: {
@@ -45,8 +47,7 @@ const textProps = {
     {
       ...cardprojectteam,
       icon: { icon: "fas fa-bus", text: "E-87", color: "blueGray" },
-      description:
-        "Here you can add your description and bellow add your members.",
+      description: "Here you can add your description and bellow add your members.",
       title: "Unassigned",
       image: require("assets/img/brand/unass.jpg").default,
       imagesOverlap: {

@@ -1,5 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 const Input = React.forwardRef(
   ({ border, size, leftIcon, rightIcon, type, ...rest }, ref) => {

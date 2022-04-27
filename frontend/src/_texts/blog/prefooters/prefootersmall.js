@@ -1,4 +1,5 @@
-import card from "_texts/blog/cards/cardsocialmedia.js";
+import "_texts/blog/cards/cardsocialmedia.js"
+import card
 
 const textProps = {
   cards: [

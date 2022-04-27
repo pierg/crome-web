@@ -1,5 +1,8 @@
-import FooterAdmin from "components/Footers/Admin/FooterAdmin.js";
-import passProps from "_texts/admin/footers/footeradmin.js";
+import "_texts/admin/footers/footeradmin.js"
+import "components/Footers/Admin/FooterAdmin.js"
+import FooterAdmin
+import passProps
+
 const props = `FooterAdmin.defaultProps = {
   copyright: {},
   links: [],
@@ -22,7 +25,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import FooterAdmin from "@notus-pro/react/FooterAdmin";
+import "@notus-pro/react/FooterAdmin"
+import FooterAdmin
 
 const props = ${JSON.stringify(passProps)}
 

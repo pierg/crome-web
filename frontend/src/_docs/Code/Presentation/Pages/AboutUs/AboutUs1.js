@@ -1,35 +1,54 @@
-import AboutUs from "views/presentation/AboutUs.js";
-import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
-import headernewsletterillustration from "_texts/presentation/headers/headernewsletterillustration.js";
-import hero5 from "_texts/presentation/heroes/hero5.js";
-import blogs1 from "_texts/presentation/blogs/blogs1.js";
-import blogs2 from "_texts/presentation/blogs/blogs2.js";
-import pricing1 from "_texts/presentation/pricing/pricing1.js";
-import teams2 from "_texts/presentation/teams/teams2.js";
+import "_texts/presentation/blogs/blogs1.js"
+import "_texts/presentation/blogs/blogs2.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/headers/headernewsletterillustration.js"
+import "_texts/presentation/heroes/hero5.js"
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import "_texts/presentation/pricing/pricing1.js"
+import "_texts/presentation/teams/teams2.js"
+import "views/presentation/AboutUs.js"
+import AboutUs
+import blogs1
+import blogs2
+import footersmall
+import headernewsletterillustration
+import hero5
+import navbarlinkslanding2
+import prefooterlarge
+import pricing1
+import teams2
+
 const props = `// no props for this, as this is an view component`;
 const description =
   " (Note: This component has a fixed navbar, but due to the sheer complexity of the documentation layout, it only stays on top.)";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero5 from "@notus-pro/react/Hero5";
-import Blogs1 from "@notus-pro/react/Blogs1";
-import Blogs2 from "@notus-pro/react/Blogs2";
-import Pricing1 from "@notus-pro/react/Pricing1";
-import Teams2 from "@notus-pro/react/Teams2";
-import NavbarLinks from "@notus-pro/react/NavbarLinks";
-import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
-import FooterSmall from "@notus-pro/react/FooterSmall";
-import HeaderNewsletterIllustration from "@notus-pro/react/HeaderNewsletterIllustration";
+import "@notus-pro/react/Blogs1"
+import "@notus-pro/react/Blogs2"
+import "@notus-pro/react/FooterSmall"
+import "@notus-pro/react/HeaderNewsletterIllustration"
+import "@notus-pro/react/Hero5"
+import "@notus-pro/react/NavbarLinks"
+import "@notus-pro/react/PreFooterLarge"
+import "@notus-pro/react/Pricing1"
+import "@notus-pro/react/Teams2"
+import Blogs1
+import Blogs2
+import FooterSmall
+import HeaderNewsletterIllustration
+import Hero5
+import NavbarLinks
+import PreFooterLarge
+import Pricing1
+import Teams2
+
 // texts as props
 const navbarlinkslanding2 = ${JSON.stringify(navbarlinkslanding2)};
 const prefooterlarge = ${JSON.stringify(prefooterlarge)};
 const footersmall = ${JSON.stringify(footersmall)};
-const headernewsletterillustration = ${JSON.stringify(
-  headernewsletterillustration
-)};
+const headernewsletterillustration = ${JSON.stringify(headernewsletterillustration)};
 const hero5 = ${JSON.stringify(hero5)};
 const blogs1 = ${JSON.stringify(blogs1)};
 const blogs2 = ${JSON.stringify(blogs2)};

@@ -1,6 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import "classnames"
+import "prop-types"
+import "react"
+import classnames
+import PropTypes
+import React
 
 const AccordionItem = ({ title, color, description, defaultOpened, setOpen }) => {
   const [collapseOpen, setCollapseOpen] = React.useState(defaultOpened);

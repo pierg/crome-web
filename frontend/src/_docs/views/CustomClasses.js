@@ -1,28 +1,53 @@
-import React from "react";
-import Animation from "_docs/views/CustomClasses/Animation.js";
-import BackgroundColor from "_docs/views/CustomClasses/BackgroundColor.js";
-import BackgroundPosition from "_docs/views/CustomClasses/BackgroundPosition.js";
-import BackgroundSize from "_docs/views/CustomClasses/BackgroundSize.js";
-import BorderColor from "_docs/views/CustomClasses/BorderColor.js";
-import BorderRadius from "_docs/views/CustomClasses/BorderRadius.js";
-import FontSize from "_docs/views/CustomClasses/FontSize.js";
-import Height from "_docs/views/CustomClasses/Height.js";
-import Inset from "_docs/views/CustomClasses/Inset.js";
-import Keyframes from "_docs/views/CustomClasses/Keyframes.js";
-import LetterSpacing from "_docs/views/CustomClasses/LetterSpacing.js";
-import LineHeight from "_docs/views/CustomClasses/LineHeight.js";
-import MaxHeight from "_docs/views/CustomClasses/MaxHeight.js";
-import MaxWidth from "_docs/views/CustomClasses/MaxWidth.js";
-import MinHeight from "_docs/views/CustomClasses/MinHeight.js";
-import MinWidth from "_docs/views/CustomClasses/MinWidth.js";
-import Opacity from "_docs/views/CustomClasses/Opacity.js";
-import Plugins from "_docs/views/CustomClasses/Plugins.js";
-import Screens from "_docs/views/CustomClasses/Screens.js";
-import Spacing from "_docs/views/CustomClasses/Spacing.js";
-import TextColor from "_docs/views/CustomClasses/TextColor.js";
-import Translate from "_docs/views/CustomClasses/Translate.js";
-import Width from "_docs/views/CustomClasses/Width.js";
-import ZIndex from "_docs/views/CustomClasses/ZIndex.js";
+import "_docs/views/CustomClasses/Animation.js"
+import "_docs/views/CustomClasses/BackgroundColor.js"
+import "_docs/views/CustomClasses/BackgroundPosition.js"
+import "_docs/views/CustomClasses/BackgroundSize.js"
+import "_docs/views/CustomClasses/BorderColor.js"
+import "_docs/views/CustomClasses/BorderRadius.js"
+import "_docs/views/CustomClasses/FontSize.js"
+import "_docs/views/CustomClasses/Height.js"
+import "_docs/views/CustomClasses/Inset.js"
+import "_docs/views/CustomClasses/Keyframes.js"
+import "_docs/views/CustomClasses/LetterSpacing.js"
+import "_docs/views/CustomClasses/LineHeight.js"
+import "_docs/views/CustomClasses/MaxHeight.js"
+import "_docs/views/CustomClasses/MaxWidth.js"
+import "_docs/views/CustomClasses/MinHeight.js"
+import "_docs/views/CustomClasses/MinWidth.js"
+import "_docs/views/CustomClasses/Opacity.js"
+import "_docs/views/CustomClasses/Plugins.js"
+import "_docs/views/CustomClasses/Screens.js"
+import "_docs/views/CustomClasses/Spacing.js"
+import "_docs/views/CustomClasses/TextColor.js"
+import "_docs/views/CustomClasses/Translate.js"
+import "_docs/views/CustomClasses/Width.js"
+import "_docs/views/CustomClasses/ZIndex.js"
+import "react"
+import Animation
+import BackgroundColor
+import BackgroundPosition
+import BackgroundSize
+import BorderColor
+import BorderRadius
+import FontSize
+import Height
+import Inset
+import Keyframes
+import LetterSpacing
+import LineHeight
+import MaxHeight
+import MaxWidth
+import MinHeight
+import MinWidth
+import Opacity
+import Plugins
+import React
+import Screens
+import Spacing
+import TextColor
+import Translate
+import Width
+import ZIndex
 
 export default function CustomClasses() {
   return (

@@ -1,5 +1,8 @@
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
-import passProps from "_texts/presentation/footers/footersmall.js";
+import "_texts/presentation/footers/footersmall.js"
+import "components/Footers/Landing/FooterSmall.js"
+import FooterSmall
+import passProps
+
 const props = `FooterSmall.defaultProps = {
   copyright: {},
   links: [],
@@ -19,7 +22,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import FooterSmall from "@notus-pro/react/FooterSmall";
+import "@notus-pro/react/FooterSmall"
+import FooterSmall
 
 const props = ${JSON.stringify(passProps)}
 

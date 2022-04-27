@@ -1,8 +1,14 @@
-import Admin2 from "components/Layouts/Admin/Admin2.js";
-import sidebar from "_texts/admin/sidebar/sidebar.js";
-import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
-import headeruser from "_texts/admin/headers/headeruser.js";
-import footeradmin from "_texts/admin/footers/footeradmin.js";
+import "_texts/admin/footers/footeradmin.js"
+import "_texts/admin/headers/headeruser.js"
+import "_texts/admin/navbars/navbarsearchusersettings2.js"
+import "_texts/admin/sidebar/sidebar.js"
+import "components/Layouts/Admin/Admin2.js"
+import Admin2
+import footeradmin
+import headeruser
+import navbarsearchusersettings2
+import sidebar
+
 const passProps = {
   sidebar: sidebar,
   navbar: navbarsearchusersettings2,
@@ -20,8 +26,7 @@ const dependencies = [
   },
   {
     name: "HeaderUser",
-    link:
-      "/components/admin/components/headers#admin-id-admin-id-components-headeruser",
+    link: "/components/admin/components/headers#admin-id-admin-id-components-headeruser",
   },
   {
     name: "FooterAdmin",
@@ -49,7 +54,8 @@ const description = "";
 const preview = `import React from "react"
 
 // @notus-pro/react
-import Admin2 from "@notus-pro/react/Admin2.js";
+import "@notus-pro/react/Admin2.js"
+import Admin2
 
 // props
 const sidebar = ${JSON.stringify(sidebar)};

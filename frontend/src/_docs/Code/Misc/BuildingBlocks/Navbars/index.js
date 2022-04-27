@@ -1,12 +1,21 @@
-import Navbar from "./Navbar.js";
-import NavbarBrand from "./NavbarBrand.js";
-import NavbarButton from "./NavbarButton.js";
-import NavbarCollapse from "./NavbarCollapse.js";
-import NavbarContainer from "./NavbarContainer.js";
-import NavbarList from "./NavbarList.js";
-import NavbarListItem from "./NavbarListItem.js";
-import NavbarListLink from "./NavbarListLink.js";
-import NavbarExample from "./NavbarExample.js";
+import "./Navbar.js"
+import "./NavbarBrand.js"
+import "./NavbarButton.js"
+import "./NavbarCollapse.js"
+import "./NavbarContainer.js"
+import "./NavbarExample.js"
+import "./NavbarList.js"
+import "./NavbarListItem.js"
+import "./NavbarListLink.js"
+import Navbar
+import NavbarBrand
+import NavbarButton
+import NavbarCollapse
+import NavbarContainer
+import NavbarExample
+import NavbarList
+import NavbarListItem
+import NavbarListLink
 
 const componentsArray = [
   Navbar,

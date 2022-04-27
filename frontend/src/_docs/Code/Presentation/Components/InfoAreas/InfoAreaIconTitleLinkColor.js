@@ -1,5 +1,8 @@
-import InfoAreaIconTitleLinkColor from "components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js";
-import passProps from "_texts/presentation/infoarea/infoareaicontitlelinkcolor.js";
+import "_texts/presentation/infoarea/infoareaicontitlelinkcolor.js"
+import "components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js"
+import InfoAreaIconTitleLinkColor
+import passProps
+
 const props = `InfoAreaIconTitleLinkColor.defaultProps = {
   color: "blueGray",
   link: {},
@@ -32,7 +35,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import InfoAreaIconTitleLinkColor from "@notus-pro/react/InfoAreaIconTitleLinkColor";
+import "@notus-pro/react/InfoAreaIconTitleLinkColor"
+import InfoAreaIconTitleLinkColor
 
 const props = "<<props-here>>";
 

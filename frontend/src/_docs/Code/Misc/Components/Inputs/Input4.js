@@ -1,4 +1,6 @@
-import Input from "components/Elements/Input.js";
+import "components/Elements/Input.js"
+import Input
+
 const passProps = {
   placeholder: "Simple bordered input",
   size: "sm",
@@ -25,7 +27,8 @@ const description = "Small bordered input. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Input from "@notus-pro/react/Input";
+import "@notus-pro/react/Input"
+import Input
 
 const props = ${JSON.stringify(passProps)}
 

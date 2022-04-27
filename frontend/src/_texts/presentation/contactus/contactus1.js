@@ -1,4 +1,5 @@
-import card from "_texts/presentation/cards/cardcontactustitle.js";
+import "_texts/presentation/cards/cardcontactustitle.js"
+import card
 
 const textProps = {
   heading3badge: {

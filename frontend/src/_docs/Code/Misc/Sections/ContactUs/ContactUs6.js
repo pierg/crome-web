@@ -1,10 +1,12 @@
-import ContactUs6 from "components/Sections/Misc/ContactUs/ContactUs6.js";
-import passProps from "_texts/misc/contactus/contactus6.js";
+import "_texts/misc/contactus/contactus6.js"
+import "components/Sections/Misc/ContactUs/ContactUs6.js"
+import ContactUs6
+import passProps
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "CardContactUsHorizontal",
@@ -32,7 +34,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import ContactUs6 from "@notus-pro/react/ContactUs6";
+import "@notus-pro/react/ContactUs6"
+import ContactUs6
 
 const props = ${JSON.stringify(passProps)}
 

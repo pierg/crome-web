@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
 

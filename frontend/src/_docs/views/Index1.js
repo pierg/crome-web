@@ -1,8 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { createPopper } from "@popperjs/core";
+import "@popperjs/core"
+import "assets/img/logo.png"
+import "react"
+import "react-router-dom"
+import logo
+import React
+import { createPopper }
+import { Link }
 
-import logo from "assets/img/logo.png";
 // import leftImage from "assets/img/index-left.png";
 
 export default function Index() {
@@ -52,9 +56,9 @@ export default function Index() {
               </h4>
             </div>
             <h6 className="text-xl font-normal leading-normal mt-0 mb-6 text-blueGray-200">
-              Completly new product built using our past experience in web
-              templates. Take the examples and components we made for you and
-              start playing with them.
+              Completly new product built using our past experience in web templates.
+              Take the examples and components we made for you and start playing with
+              them.
             </h6>
             <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-600 bg-blueGray-200 uppercase last:mr-0 mr-1">
               premium
@@ -107,11 +111,7 @@ export default function Index() {
                 className="shadow-md rounded-full max-w-full w-12 p-2 bg-white mr-2"
                 src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/angular.jpg"
                 onMouseEnter={() =>
-                  openTooltip(
-                    angularBtnRef,
-                    angularTooltipRef,
-                    setAngularTooltipShow
-                  )
+                  openTooltip(angularBtnRef, angularTooltipRef, setAngularTooltipShow)
                 }
                 onMouseLeave={() => closeTooltip(setAngularTooltipShow)}
                 ref={angularBtnRef}
@@ -153,11 +153,7 @@ export default function Index() {
                 className="shadow-md rounded-full max-w-full w-12 p-2 bg-white mr-2"
                 src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/nextjs.jpg"
                 onMouseEnter={() =>
-                  openTooltip(
-                    nextjsBtnRef,
-                    nextjsTooltipRef,
-                    setNextjsTooltipShow
-                  )
+                  openTooltip(nextjsBtnRef, nextjsTooltipRef, setNextjsTooltipShow)
                 }
                 onMouseLeave={() => closeTooltip(setNextjsTooltipShow)}
                 ref={nextjsBtnRef}
@@ -199,11 +195,7 @@ export default function Index() {
                 className="shadow-md rounded-full max-w-full w-12 p-2 bg-white mr-2"
                 src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/svelte.jpg"
                 onMouseEnter={() =>
-                  openTooltip(
-                    svelteBtnRef,
-                    svelteTooltipRef,
-                    setSvelteTooltipShow
-                  )
+                  openTooltip(svelteBtnRef, svelteTooltipRef, setSvelteTooltipShow)
                 }
                 onMouseLeave={() => closeTooltip(setSvelteTooltipShow)}
                 ref={svelteBtnRef}

@@ -2,21 +2,17 @@
   "filetype": "environment",
   "session_id": "default",
   "project_id": "simple",
-   "size": {
-      "width": "10",
-      "height": "10"
-   },
+  "size": {
+    "width": "10",
+    "height": "10"
+  },
   "actions": [
     {
-      "mutex_group": [
-        0
-      ],
+      "mutex_group": [0],
       "name": "a"
     },
     {
-      "mutex_group": [
-        0
-      ],
+      "mutex_group": [0],
       "name": "b"
     }
   ],

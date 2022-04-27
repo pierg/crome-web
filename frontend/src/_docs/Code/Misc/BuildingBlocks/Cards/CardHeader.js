@@ -1,4 +1,6 @@
-import CardHeader from "components/Cards/CardHeader.js";
+import "components/Cards/CardHeader.js"
+import CardHeader
+
 const passProps = {
   children: "This is the CardHeader tag.",
 };
@@ -15,7 +17,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardHeader from "@notus-pro/react/CardHeader";
+import "@notus-pro/react/CardHeader"
+import CardHeader
 
 const props = ${JSON.stringify(passProps)};
 

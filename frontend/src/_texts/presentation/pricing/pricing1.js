@@ -1,4 +1,5 @@
-import cardinfoiconProps from "_texts/presentation/cards/cardpricing.js";
+import "_texts/presentation/cards/cardpricing.js"
+import cardinfoiconProps
 
 const textProps = {
   title: "Choose a plan for your next project",

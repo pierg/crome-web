@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-
-import Alert from "components/Elements/Alert.js";
+import "components/Elements/Alert.js"
+import "react"
+import "react-syntax-highlighter"
+import "react-syntax-highlighter/dist/cjs/styles/hljs"
+import Alert
+import React
+import { Prism as SyntaxHighlighter }
+import { shadesOfPurple }
 
 const importExample = `import "@fortawesome/fontawesome-free/css/all.min.css";`;
 
@@ -26,8 +28,8 @@ export default function Icons() {
     <>
       <h3 className="text-2xl font-medium mb-2 mt-10">Font Awesome 5</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        This product comes with Font Awesome which means 3000+ more vector icons
-        made for you to use.
+        This product comes with Font Awesome which means 3000+ more vector icons made
+        for you to use.
       </p>
       <h3 className="text-2xl font-medium mb-2 mt-10">Intallation</h3>
       <SyntaxHighlighter
@@ -43,10 +45,9 @@ export default function Icons() {
       </SyntaxHighlighter>
       <h3 className="text-2xl font-medium mb-2 mt-10">Usage</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        In order to use these icons on your project you will need to import them
-        inside your mounting point, in our case it is the{" "}
-        <code className="text-sm font-mono bg-blueGray-200">src/index.js</code>{" "}
-        file:
+        In order to use these icons on your project you will need to import them inside
+        your mounting point, in our case it is the{" "}
+        <code className="text-sm font-mono bg-blueGray-200">src/index.js</code> file:
       </p>
       <SyntaxHighlighter
         language="jsx"
@@ -61,18 +62,29 @@ export default function Icons() {
       </SyntaxHighlighter>
       <div className="w-full mt-5">
         <Alert color="orange">
-          NOTE: there are some components, such as the navbar, or the dropdowns
-          that make use of the <b>fontawesome</b> icons, so you will need to
-          keep the above import and install inside your project as well if you
-          do not want to have issues with our components.
+          NOTE: there are some components, such as the navbar, or the dropdowns that
+          make use of the <b>fontawesome</b> icons, so you will need to keep the above
+          import and
+          import do
+          import have
+          import if
+          import inside
+          import install
+          import not
+          import project as well
+          import to
+          import want
+          import you
+          import your
+          issues with our components.
         </Alert>
       </div>
       <h3 className="text-2xl font-medium mb-2 mt-10">Initialization</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Start placing icons in your React components. We recommend using a
-        consistent HTML element, like{" "}
-        <code className="text-sm font-mono bg-blueGray-200">&lt;i&gt;</code>.
-        Find the right icon and learn how to reference it in your markup.
+        Start placing icons in your React components. We recommend using a consistent
+        HTML element, like{" "}
+        <code className="text-sm font-mono bg-blueGray-200">&lt;i&gt;</code>. Find the
+        right icon and learn how to reference it in your markup.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
         You need to know two bits of information to reference an icon:
@@ -80,19 +92,14 @@ export default function Icons() {
       <ol className="my-3 list-decimal pl-8">
         <li className="py-1">
           its name, prefixed with{" "}
-          <code className="text-sm font-mono bg-blueGray-200">
-            fa{`{type}`} fa-
-          </code>{" "}
+          <code className="text-sm font-mono bg-blueGray-200">fa{`{type}`} fa-</code>{" "}
           and
         </li>
-        <li className="py-1">
-          the style you want to use’s corresponding prefix.
-        </li>
+        <li className="py-1">the style you want to use’s corresponding prefix.</li>
       </ol>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        NOTE:{" "}
-        <code className="text-sm font-mono bg-blueGray-200">{`{type}`}</code>{" "}
-        can be one of <strong>s</strong> (
+        NOTE: <code className="text-sm font-mono bg-blueGray-200">{`{type}`}</code> can
+        be one of <strong>s</strong> (
         <code className="text-sm font-mono bg-blueGray-200">solid</code>),{" "}
         <strong>r</strong> (
         <code className="text-sm font-mono bg-blueGray-200">regular</code>),{" "}

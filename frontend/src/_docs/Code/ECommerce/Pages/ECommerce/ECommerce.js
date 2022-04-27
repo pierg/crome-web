@@ -1,32 +1,49 @@
-import ECommerce from "views/e-commerce/ECommerce.js";
-import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
-import headerimagetitlebuttoncenter from "_texts/e-commerce/headers/headerimagetitlebuttoncenter.js";
-import hero9 from "_texts/e-commerce/heroes/hero9.js";
-import pricing3ecommerce1 from "_texts/e-commerce/pricing/pricing3ecommerce1.js";
-import blogs7 from "_texts/e-commerce/blogs/blogs7.js";
-import pricing3ecommerce2 from "_texts/e-commerce/pricing/pricing3ecommerce2.js";
-import testimonials2 from "_texts/e-commerce/sections/testimonials2.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
+import "_texts/e-commerce/blogs/blogs7.js"
+import "_texts/e-commerce/headers/headerimagetitlebuttoncenter.js"
+import "_texts/e-commerce/heroes/hero9.js"
+import "_texts/e-commerce/pricing/pricing3ecommerce1.js"
+import "_texts/e-commerce/pricing/pricing3ecommerce2.js"
+import "_texts/e-commerce/sections/testimonials2.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/navbars/navbarlinkslanding1.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import "views/e-commerce/ECommerce.js"
+import blogs7
+import ECommerce
+import footersmall
+import headerimagetitlebuttoncenter
+import hero9
+import navbarlinkslanding1
+import prefooterlarge
+import pricing3ecommerce1
+import pricing3ecommerce2
+import testimonials2
+
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero9 from "@notus-pro/react/Hero9";
-import Pricing3 from "@notus-pro/react/Pricing3";
-import Blogs7 from "@notus-pro/react/Blogs7";
-import Testimonials2 from "@notus-pro/react/Testimonials2";
-import NavbarLinks from "@notus-pro/react/NavbarLinks";
-import HeaderImageTitleButtonCenter from "@notus-pro/react/HeaderImageTitleButtonCenter";
-import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
-import FooterSmall from "@notus-pro/react/FooterSmall";
+import "@notus-pro/react/Blogs7"
+import "@notus-pro/react/FooterSmall"
+import "@notus-pro/react/HeaderImageTitleButtonCenter"
+import "@notus-pro/react/Hero9"
+import "@notus-pro/react/NavbarLinks"
+import "@notus-pro/react/PreFooterLarge"
+import "@notus-pro/react/Pricing3"
+import "@notus-pro/react/Testimonials2"
+import Blogs7
+import FooterSmall
+import HeaderImageTitleButtonCenter
+import Hero9
+import NavbarLinks
+import PreFooterLarge
+import Pricing3
+import Testimonials2
 
 // texts as props
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};
-const headerimagetitlebuttoncenter = ${JSON.stringify(
-  headerimagetitlebuttoncenter
-)};
+const headerimagetitlebuttoncenter = ${JSON.stringify(headerimagetitlebuttoncenter)};
 const hero9 = ${JSON.stringify(hero9)};
 const pricing3ecommerce1 = ${JSON.stringify(pricing3ecommerce1)};
 const blogs7 = ${JSON.stringify(blogs7)};

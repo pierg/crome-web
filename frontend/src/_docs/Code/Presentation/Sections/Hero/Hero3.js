@@ -1,10 +1,12 @@
-import Hero3 from "components/Sections/Presentation/Heroes/Hero3.js";
-import passProps from "_texts/presentation/heroes/hero3.js";
+import "_texts/presentation/heroes/hero3.js"
+import "components/Sections/Presentation/Heroes/Hero3.js"
+import Hero3
+import passProps
+
 const dependencies = [
   {
     name: "InfoAreaWhiteTitle",
-    link:
-      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareawhitetitle",
+    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareawhitetitle",
   },
   {
     name: "Skew",
@@ -12,8 +14,7 @@ const dependencies = [
   },
   {
     name: "Heading3",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
 ];
 const props = `Hero3.defaultProps = {
@@ -32,7 +33,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero3 from "@notus-pro/react/Hero3";
+import "@notus-pro/react/Hero3"
+import Hero3
 
 const props = ${JSON.stringify(passProps)};
 

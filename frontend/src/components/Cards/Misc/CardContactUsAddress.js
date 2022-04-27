@@ -1,11 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Button from "../../../components/Elements/Button.js";
-import Input from "../../../components/Elements/Input.js";
-import Select from "../../../components/Elements/Select.js";
-import InfoAreaIcon from "../../../components/InfoAreas/Presentation/InfoAreaIcon.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Elements/Input.js"
+import "../../../components/Elements/Select.js"
+import "../../../components/InfoAreas/Presentation/InfoAreaIcon.js"
+import Button
+import InfoAreaIcon
+import Input
+import Select
 
 export default function CardContactUsAddress({ title, button, components }) {
   const width = {

@@ -1,5 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 export default function Error1({ image, color, error, description, title }) {
   const colors = {

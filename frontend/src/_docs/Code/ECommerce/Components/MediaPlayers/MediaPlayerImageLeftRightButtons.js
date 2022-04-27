@@ -1,5 +1,8 @@
-import MediaPlayerImageLeftRightButtons from "components/MediaPlayers/MediaPlayerImageLeftRightButtons.js";
-import passProps from "_texts/e-commerce/mediaplayers/mediaplayerimageleftrightbuttons.js";
+import "_texts/e-commerce/mediaplayers/mediaplayerimageleftrightbuttons.js"
+import "components/MediaPlayers/MediaPlayerImageLeftRightButtons.js"
+import MediaPlayerImageLeftRightButtons
+import passProps
+
 const props = `MediaPlayerImageLeftRightButtons.defaultProps = {
   defaultOpened: 0,
   items: [],
@@ -19,7 +22,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import MediaPlayerImageLeftRightButtons from "@notus-pro/react/MediaPlayerImageLeftRightButtons";
+import "@notus-pro/react/MediaPlayerImageLeftRightButtons"
+import MediaPlayerImageLeftRightButtons
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,6 +1,7 @@
-import React from "react";
-
-import firstInfoArea from "_texts/presentation/infoarea/infoareaicon.js";
+import "_texts/presentation/infoarea/infoareaicon.js"
+import "react"
+import firstInfoArea
+import React
 
 const textProps = {
   image: require("assets/img/illustrations/bg_contactus3.svg").default,

@@ -1,25 +1,31 @@
-import React, {useEffect, useCallback} from 'react'
-import {useSocket} from "../../../contexts/SocketProvider";
+import "../../../contexts/SocketProvider"
+import "react"
+import React
+import useCallback }
+import { useEffect
+import { useSocket }
 
 function GetCGG(props) {
+  const socket = useSocket();
 
-    const socket = useSocket()
-    
-    const cggCallback = useCallback((received_answer) => {
-        props.setGoalsTrigger()
-    }, [props])
-    
-    useEffect(() => {
-        if (socket == null || !props.trigger) return
+  const cggCallback = useCallback(
+    (received_answer) => {
+      props.setGoalsTrigger();
+    },
+    [props]
+  );
 
-        socket.emit('process-goals', {session: props.session, project: props.project})
+  useEffect(() => {
+    if (socket == null || !props.trigger) return;
 
-        socket.on('receive-cgg', cggCallback)
+    socket.emit("process-goals", { session: props.session, project: props.project });
 
-        return () => socket.off('receive-cgg')
-    }, [socket, props.trigger, props.session, props.project, cggCallback])
+    socket.on("receive-cgg", cggCallback);
 
-    return (<></>);
+    return () => socket.off("receive-cgg");
+  }, [socket, props.trigger, props.session, props.project, cggCallback]);
+
+  return <></>;
 }
 
 export default GetCGG;

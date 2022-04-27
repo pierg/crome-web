@@ -3,8 +3,8 @@ const textProps = {
   description: "Description of the Goal",
   context: [],
   contract: {
-      assumptions: [],
-      guarantees: []
-  }
+    assumptions: [],
+    guarantees: [],
+  },
 };
 export default textProps;

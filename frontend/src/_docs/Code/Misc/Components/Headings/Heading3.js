@@ -1,5 +1,8 @@
-import Heading3 from "components/Headings/Heading3.js";
-import passProps from "_texts/misc/headings/heading3.js";
+import "_texts/misc/headings/heading3.js"
+import "components/Headings/Heading3.js"
+import Heading3
+import passProps
+
 const props = `Heading3.defaultProps = {
   color: "blueGray",
   alignment: "left",
@@ -36,7 +39,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderLeftTitleRightImage from "@notus-pro/react/Heading3";
+import "@notus-pro/react/Heading3"
+import HeaderLeftTitleRightImage
 
 const props = ${JSON.stringify(passProps)};
 

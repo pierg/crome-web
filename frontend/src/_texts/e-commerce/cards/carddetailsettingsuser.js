@@ -1,5 +1,7 @@
-import imageupload from "_texts/misc/forms/imageupload.js";
-import progress from "_texts/misc/content/progress.js";
+import "_texts/misc/content/progress.js"
+import "_texts/misc/forms/imageupload.js"
+import imageupload
+import progress
 
 const textProps = {
   imageUpload: { ...imageupload },
@@ -273,8 +275,7 @@ const textProps = {
               checkbox: {},
             },
             {
-              text:
-                "Find My Device, make sure your device can be found if it gets lost",
+              text: "Find My Device, make sure your device can be found if it gets lost",
               checkbox: {
                 defaultChecked: true,
               },

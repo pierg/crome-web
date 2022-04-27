@@ -1,20 +1,34 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // sections
 // components
-import NavbarLinks from "components/Navbars/NavbarLinks.js";
-import HeaderImageTitleSmallCenter from "components/Headers/Auth/HeaderImageTitleSmallCenter.js";
-import CardInvoice from "components/Cards/ECommerce/CardInvoice.js";
-import Button from "components/Elements/Button.js";
-import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import "components/Cards/ECommerce/CardInvoice.js"
+import "components/Elements/Button.js"
+import "components/Footers/Landing/FooterSmall.js"
+import "components/Headers/Auth/HeaderImageTitleSmallCenter.js"
+import "components/Navbars/NavbarLinks.js"
+import "components/PreFooters/PreFooterLarge.js"
+import Button
+import CardInvoice
+import FooterSmall
+import HeaderImageTitleSmallCenter
+import NavbarLinks
+import PreFooterLarge
+
 // texts as props
-import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
-import headerimagetitlesmallcenterinvoice from "_texts/e-commerce/headers/headerimagetitlesmallcenterinvoice.js";
-import cardinvoice from "_texts/e-commerce/cards/cardinvoice.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
+import "_texts/e-commerce/cards/cardinvoice.js"
+import "_texts/e-commerce/headers/headerimagetitlesmallcenterinvoice.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/navbars/navbarlinkslanding1.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import cardinvoice
+import footersmall
+import headerimagetitlesmallcenterinvoice
+import navbarlinkslanding1
+import prefooterlarge
 
 export default function Invoice() {
   const location = useLocation();

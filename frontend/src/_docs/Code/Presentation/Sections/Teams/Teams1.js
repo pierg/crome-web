@@ -1,15 +1,16 @@
-import Teams1 from "components/Sections/Presentation/Teams/Teams1.js";
-import passProps from "_texts/presentation/teams/teams1.js";
+import "_texts/presentation/teams/teams1.js"
+import "components/Sections/Presentation/Teams/Teams1.js"
+import passProps
+import Teams1
+
 const dependencies = [
   {
     name: "InfoAreaUser",
-    link:
-      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareauser",
+    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareauser",
   },
   {
     name: "Heading3",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
 ];
 const props = `Teams1.defaultProps = {
@@ -28,7 +29,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Teams1 from "@notus-pro/react/Teams1";
+import "@notus-pro/react/Teams1"
+import Teams1
 
 const props = ${JSON.stringify(passProps)};
 

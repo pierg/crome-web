@@ -1,4 +1,5 @@
-import cardpricinglogo from "_texts/misc/cards/cardpricinglogo.js";
+import "_texts/misc/cards/cardpricinglogo.js"
+import cardpricinglogo
 
 const textProps = {
   heading3: {

@@ -1,5 +1,8 @@
-import CardTableDetails from "components/Cards/ECommerce/CardTableDetails.js";
-import passProps from "_texts/e-commerce/cards/cardtabledetails.js";
+import "_texts/e-commerce/cards/cardtabledetails.js"
+import "components/Cards/ECommerce/CardTableDetails.js"
+import CardTableDetails
+import passProps
+
 const props = `CardTableDetails.defaultProps = {
   table: [],
   link: {},
@@ -23,7 +26,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardTableDetails from "@notus-pro/react/CardTableDetails";
+import "@notus-pro/react/CardTableDetails"
+import CardTableDetails
 
 const props = ${JSON.stringify(passProps)}
 

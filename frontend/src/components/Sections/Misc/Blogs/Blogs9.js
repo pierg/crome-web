@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 // components
-import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
-import Button from "../../../../components/Elements/Button.js";
+import "../../../../components/Elements/Button.js"
+import "../../../../components/Headings/Heading3Badge.js"
+import Button
+import Heading3Badge
 
 export default function Blogs9({
   heading3badge,

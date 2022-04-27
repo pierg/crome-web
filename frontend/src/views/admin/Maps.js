@@ -1,19 +1,33 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // components
-import Sidebar from "components/Sidebar/Sidebar.js";
-import NavbarSearchUser from "components/Navbars/NavbarSearchUser.js";
-import HeaderStatCards from "components/Headers/Admin/HeaderStatCards.js";
-import Card from "components/Cards/Card.js";
-import Map from "components/Maps/Map.js";
-import FooterAdmin from "components/Footers/Admin/FooterAdmin.js";
+import "components/Cards/Card.js"
+import "components/Footers/Admin/FooterAdmin.js"
+import "components/Headers/Admin/HeaderStatCards.js"
+import "components/Maps/Map.js"
+import "components/Navbars/NavbarSearchUser.js"
+import "components/Sidebar/Sidebar.js"
+import Card
+import FooterAdmin
+import HeaderStatCards
+import Map
+import NavbarSearchUser
+import Sidebar
+
 // texts as props
-import sidebar from "_texts/admin/sidebar/sidebar.js";
-import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
-import headerstatcards from "_texts/admin/headers/headerstatcards.js";
-import map from "_texts/presentation/maps/map.js";
-import footeradmin from "_texts/admin/footers/footeradmin.js";
+import "_texts/admin/footers/footeradmin.js"
+import "_texts/admin/headers/headerstatcards.js"
+import "_texts/admin/navbars/navbarsearchusersettings2.js"
+import "_texts/admin/sidebar/sidebar.js"
+import "_texts/presentation/maps/map.js"
+import footeradmin
+import headerstatcards
+import map
+import navbarsearchusersettings2
+import sidebar
 
 export default function Maps() {
   const location = useLocation();

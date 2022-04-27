@@ -1,10 +1,12 @@
-import Hero8 from "components/Sections/ECommerce/Heroes/Hero8.js";
-import passProps from "_texts/e-commerce/sections/hero8.js";
+import "_texts/e-commerce/sections/hero8.js"
+import "components/Sections/ECommerce/Heroes/Hero8.js"
+import Hero8
+import passProps
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "Skew",
@@ -12,8 +14,7 @@ const dependencies = [
   },
   {
     name: "CardProductPrice",
-    link:
-      "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardproductprice",
+    link: "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardproductprice",
   },
 ];
 const props = `Hero8.defaultProps = {
@@ -34,7 +35,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero8 from "@notus-pro/react/Hero8";
+import "@notus-pro/react/Hero8"
+import Hero8
 
 // texts as props
 const product1 = ${JSON.stringify(passProps)}

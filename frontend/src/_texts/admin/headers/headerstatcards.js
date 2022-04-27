@@ -1,4 +1,5 @@
-import cardstatsmini from "_texts/admin/cards/cardstatsmini.js";
+import "_texts/admin/cards/cardstatsmini.js"
+import cardstatsmini
 
 const textProps = {
   color: "lightBlue",

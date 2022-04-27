@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3 from "../../../../components/Headings/Heading3.js";
-import CardProjectImageFullBg from "../../../../components/Cards/Misc/CardProjectImageFullBg.js";
+import "../../../../components/Cards/Misc/CardProjectImageFullBg.js"
+import "../../../../components/Headings/Heading3.js"
+import CardProjectImageFullBg
+import Heading3
 
 export default function Projects3({ heading3, cards }) {
   return (

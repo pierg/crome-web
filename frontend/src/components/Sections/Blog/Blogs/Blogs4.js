@@ -1,8 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // components
-import MediaPlayerImageOnly from "../../../../components/MediaPlayers/MediaPlayerImageOnly.js";
-import ImagePost from "../../../../components/Images/ImagePost.js";
+import "../../../../components/Images/ImagePost.js"
+import "../../../../components/MediaPlayers/MediaPlayerImageOnly.js"
+import ImagePost
+import MediaPlayerImageOnly
 
 export default function Blogs4({ items }) {
   return (

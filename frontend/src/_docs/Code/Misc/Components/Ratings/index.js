@@ -1,4 +1,5 @@
-import Ratings from "./Ratings.js";
+import "./Ratings.js"
+import Ratings
 
 const componentsArray = [Ratings];
 export default componentsArray;

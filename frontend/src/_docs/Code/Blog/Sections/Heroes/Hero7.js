@@ -1,5 +1,8 @@
-import Hero7 from "components/Sections/Blog/Heroes/Hero7.js";
-import passProps from "_texts/blog/heroes/hero7.js";
+import "_texts/blog/heroes/hero7.js"
+import "components/Sections/Blog/Heroes/Hero7.js"
+import Hero7
+import passProps
+
 const dependencies = [
   {
     name: "PreFooterSmall",
@@ -7,8 +10,7 @@ const dependencies = [
   },
   {
     name: "Heading3",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
 ];
 const props = `Hero7.defaultProps = {
@@ -26,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero7 from "@notus-pro/react/Hero7";
+import "@notus-pro/react/Hero7"
+import Hero7
 
 const props = ${JSON.stringify(passProps)}
 

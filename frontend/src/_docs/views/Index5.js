@@ -1,12 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-import logo from "assets/img/logo.png";
-import leftImage from "assets/img/index-left.png";
-
-import Frameworks from "_docs/components/Frameworks.js";
-import Badge from "components/Elements/Badge.js";
-import Button from "components/Elements/Button.js";
+import "_docs/components/Frameworks.js"
+import "assets/img/index-left.png"
+import "assets/img/logo.png"
+import "components/Elements/Badge.js"
+import "components/Elements/Button.js"
+import "react"
+import "react-router-dom"
+import Badge
+import Button
+import Frameworks
+import leftImage
+import logo
+import React
+import { Link }
 
 const frameworks = [
   {
@@ -89,9 +94,9 @@ export default function Index() {
               </p>
             </div>
             <p className="text-xl font-normal leading-normal mt-0 mb-6 text-blueGray-600">
-              Completly new product built using our past experience in web
-              templates. Take the examples and components we made for you and
-              start playing with them.
+              Completly new product built using our past experience in web templates.
+              Take the examples and components we made for you and start playing with
+              them.
             </p>
             <Button
               color="dark"
@@ -120,8 +125,7 @@ export default function Index() {
             {frameworks.map((prop, key) => (
               <div
                 className={
-                  prop.color +
-                  " w-full md:w-1/3 p-4 flex items-center justify-center"
+                  prop.color + " w-full md:w-1/3 p-4 flex items-center justify-center"
                 }
               >
                 <div class={"text-center p-8"}>

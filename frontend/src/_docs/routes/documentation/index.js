@@ -1,12 +1,21 @@
-import Overview from "_docs/views/Overview.js";
-import License from "_docs/views/License.js";
-import Installation from "_docs/views/Installation.js";
-import WhatIsReact from "_docs/views/WhatIsReact.js";
-import WhatIsTailwindCSS from "_docs/views/WhatIsTailwindCSS.js";
-import Icons from "_docs/views/Icons.js";
-import CustomClasses from "_docs/views/CustomClasses.js";
-import Plugins from "_docs/views/Plugins.js";
-import TypeScriptSupport from "_docs/views/TypeScriptSupport.js";
+import "_docs/views/CustomClasses.js"
+import "_docs/views/Icons.js"
+import "_docs/views/Installation.js"
+import "_docs/views/License.js"
+import "_docs/views/Overview.js"
+import "_docs/views/Plugins.js"
+import "_docs/views/TypeScriptSupport.js"
+import "_docs/views/WhatIsReact.js"
+import "_docs/views/WhatIsTailwindCSS.js"
+import CustomClasses
+import Icons
+import Installation
+import License
+import Overview
+import Plugins
+import TypeScriptSupport
+import WhatIsReact
+import WhatIsTailwindCSS
 
 const routesArray = [
   {
@@ -63,8 +72,7 @@ const routesArray = [
     component: WhatIsTailwindCSS,
     name: "What Is Tailwind CSS",
     route: "/what-is-tailwind-css",
-    description:
-      "A utility-first CSS framework for rapidly building custom designs.",
+    description: "A utility-first CSS framework for rapidly building custom designs.",
   },
 ];
 

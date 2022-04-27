@@ -1,4 +1,5 @@
-import infoareaicontitlelistcolor from "_texts/presentation/infoarea/infoareaicontitlelistcolor.js";
+import "_texts/presentation/infoarea/infoareaicontitlelistcolor.js"
+import infoareaicontitlelistcolor
 
 const textProps = {
   heading2: {

@@ -1,11 +1,18 @@
 /* eslint-disable react/jsx-no-target-blank*/
-import React from "react";
-import { Link, Switch, Route, Redirect, useLocation } from "react-router-dom";
-
-import NavbarComponents from "_docs/components/NavbarComponents2.js";
-import Footer from "_docs/components/Footer.js";
-
-import routes from "_docs/routes/documentation/index.js";
+import "_docs/components/Footer.js"
+import "_docs/components/NavbarComponents2.js"
+import "_docs/routes/documentation/index.js"
+import "react"
+import "react-router-dom"
+import Footer
+import NavbarComponents
+import React
+import Redirect
+import Route
+import routes
+import Switch
+import useLocation }
+import { Link
 
 export default function Documentation() {
   const location = useLocation();
@@ -58,9 +65,7 @@ export default function Documentation() {
                     exact
                     render={() => (
                       <>
-                        <h2 className="text-3xl font-medium mb-2">
-                          {prop.name}
-                        </h2>
+                        <h2 className="text-3xl font-medium mb-2">{prop.name}</h2>
                         <p className="text-xl leading-extra-relaxed">
                           {prop.description}
                         </p>

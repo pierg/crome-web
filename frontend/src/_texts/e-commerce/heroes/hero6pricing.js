@@ -1,4 +1,5 @@
-import hero6 from "_texts/blog/heroes/hero6.js";
+import "_texts/blog/heroes/hero6.js"
+import hero6
 
 const textProps = {
   ...hero6,

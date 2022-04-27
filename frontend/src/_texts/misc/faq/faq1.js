@@ -1,4 +1,5 @@
-import accordion from "_texts/misc/accordions/accordion.js";
+import "_texts/misc/accordions/accordion.js"
+import accordion
 
 const textProps = {
   heading2: {

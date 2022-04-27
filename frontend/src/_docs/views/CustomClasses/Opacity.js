@@ -1,6 +1,7 @@
-import React from "react";
-
-import CustomClassesList from "_docs/components/CustomClassesList.js";
+import "_docs/components/CustomClassesList.js"
+import "react"
+import CustomClassesList
+import React
 
 export default function Opacity() {
   return (

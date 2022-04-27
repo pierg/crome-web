@@ -1,5 +1,8 @@
-import PreFooterSmall from "components/PreFooters/PreFooterSmall.js";
-import passProps from "_texts/blog/prefooters/prefootersmall.js";
+import "_texts/blog/prefooters/prefootersmall.js"
+import "components/PreFooters/PreFooterSmall.js"
+import passProps
+import PreFooterSmall
+
 const props = `PreFooterSmall.defaultProps = {
   cards: [],
 };
@@ -12,7 +15,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import PreFooterSmall from "@notus-pro/react/PreFooterSmall";
+import "@notus-pro/react/PreFooterSmall"
+import PreFooterSmall
 
 const props = ${JSON.stringify(passProps)}
 

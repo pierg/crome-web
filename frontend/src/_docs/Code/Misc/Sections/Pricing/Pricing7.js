@@ -1,10 +1,12 @@
-import Pricing7 from "components/Sections/Misc/Pricing/Pricing7.js";
-import passProps from "_texts/misc/pricing/pricing7.js";
+import "_texts/misc/pricing/pricing7.js"
+import "components/Sections/Misc/Pricing/Pricing7.js"
+import passProps
+import Pricing7
+
 const dependencies = [
   {
     name: "Heading3Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
   },
   {
     name: "Button",
@@ -61,7 +63,8 @@ const description = "";
 const preview = `import React from "react";
 
 // sections
-import Pricing7 from "@notus-pro/react/Pricing7";
+import "@notus-pro/react/Pricing7"
+import Pricing7
 
 const props = ${JSON.stringify(passProps)};
 

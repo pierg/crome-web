@@ -2,7 +2,6 @@
 
 Web Interface for the Contract-Based Goal Graph package.
 
-
 ## Installation
 
 We use
@@ -35,11 +34,10 @@ poetry install
 [Strix](https://strix.model.in.tum.de) must be installed on the system. Alternatively, a
 [docker](https://www.docker.com) must be installed and running.
 
-
 ### Other Dependencies
 
-Clone crome-logic, crome-contracts, crome-cgg and crome-synthesis from git
-in the same folder where crome-web is located
+Clone crome-logic, crome-contracts, crome-cgg and crome-synthesis from git in the same
+folder where crome-web is located
 
 ```bash
 git clone https://github.com/pierg/crome-logic.git
@@ -63,7 +61,6 @@ Append it to PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:../crome-logic/:../crome-contracts/:../crome-cgg/:../crome-synthesis/
 ```
 
-
 ## Docker
 
 You can directly run the project by running the docker image on any platform
@@ -79,7 +76,6 @@ To build the image you can run the following command
 ## Usage
 
 Check the `examples` folder
-
 
 ## One magic command
 

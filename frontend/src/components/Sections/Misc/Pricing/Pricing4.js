@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import Button from "../../../../components/Elements/Button.js";
-import CardPricingDetails from "../../../../components/Cards/Misc/CardPricingDetails.js";
+import "../../../../components/Cards/Misc/CardPricingDetails.js"
+import "../../../../components/Elements/Button.js"
+import "../../../../components/Headings/Heading2.js"
+import Button
+import CardPricingDetails
+import Heading2
 
 export default function Pricing4({ heading2, buttons, cards }) {
   return (

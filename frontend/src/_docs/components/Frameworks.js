@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-import PropTypes from "prop-types";
-import { createPopper } from "@popperjs/core";
+import "@popperjs/core"
+import "prop-types"
+import "react"
+import PropTypes
+import React
+import { createPopper }
 
 export default function Frameworks({ image, text, link }) {
   const [tooltipShow, setTooltipShow] = React.useState(false);

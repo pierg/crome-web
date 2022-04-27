@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
-import Button from "../../../../components/Elements/Button.js";
+import "../../../../components/Elements/Button.js"
+import "../../../../components/Headings/Heading3Badge.js"
+import Button
+import Heading3Badge
 
 export default function Pricing7({ heading3badge, table }) {
   const colors = {

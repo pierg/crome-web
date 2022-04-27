@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2Badge from "../../components/Headings/Heading2Badge.js";
-import InfoAreaIconTitleListColor from "../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js";
+import "../../components/Headings/Heading2Badge.js"
+import "../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js"
+import Heading2Badge
+import InfoAreaIconTitleListColor
 
 export default function Hero2({ heading2badge, imageDevices, infoArea }) {
   return (

@@ -1,10 +1,12 @@
-import Pricing4 from "components/Sections/Misc/Pricing/Pricing4.js";
-import passProps from "_texts/misc/pricing/pricing4.js";
+import "_texts/misc/pricing/pricing4.js"
+import "components/Sections/Misc/Pricing/Pricing4.js"
+import passProps
+import Pricing4
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "Button",
@@ -12,8 +14,7 @@ const dependencies = [
   },
   {
     name: "CardPricingDetails",
-    link:
-      "/components/misc/components/cards#misc-id-misc-id-components-cardpricingdetails",
+    link: "/components/misc/components/cards#misc-id-misc-id-components-cardpricingdetails",
   },
 ];
 const props = `Pricing4.defaultProps = {
@@ -33,7 +34,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Pricing4 from "@notus-pro/react/Pricing4";
+import "@notus-pro/react/Pricing4"
+import Pricing4
 
 const props = ${JSON.stringify(passProps)};
 

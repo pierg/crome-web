@@ -1,5 +1,8 @@
-import CardBlogIllustration from "components/Cards/Blog/CardBlogIllustration.js";
-import passProps from "_texts/blog/cards/cardblogillustration.js";
+import "_texts/blog/cards/cardblogillustration.js"
+import "components/Cards/Blog/CardBlogIllustration.js"
+import CardBlogIllustration
+import passProps
+
 const props = `CardBlogImageHorizontal.defaultProps = {
   link: {},
 };
@@ -19,7 +22,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardBlogIllustration from "@notus-pro/react/CardBlogIllustration";
+import "@notus-pro/react/CardBlogIllustration"
+import CardBlogIllustration
 
 const props = ${JSON.stringify(passProps)}
 

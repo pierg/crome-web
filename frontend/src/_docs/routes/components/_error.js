@@ -1,5 +1,7 @@
-import Sections from "_docs/Code/Error/Sections/index.js";
-import Pages from "_docs/Code/Error/Pages/index.js";
+import "_docs/Code/Error/Pages/index.js"
+import "_docs/Code/Error/Sections/index.js"
+import Pages
+import Sections
 
 const routesObject = {
   id: "error-id",

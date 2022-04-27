@@ -1,4 +1,6 @@
-import NavbarBrand from "components/Navbars/NavbarBrand.js";
+import "components/Navbars/NavbarBrand.js"
+import NavbarBrand
+
 const passProps = {
   type: "dark",
   children: "Creative Tim",
@@ -25,7 +27,8 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import NavbarBrand from "@notus-pro/react/NavbarBrand";
+import "@notus-pro/react/NavbarBrand"
+import NavbarBrand
 
 const props = ${JSON.stringify(passProps)};
 

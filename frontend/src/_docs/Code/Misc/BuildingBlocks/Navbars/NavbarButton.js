@@ -1,4 +1,6 @@
-import NavbarButton from "components/Navbars/NavbarButton.js";
+import "components/Navbars/NavbarButton.js"
+import NavbarButton
+
 const passProps = {
   breakpoint: "xl",
   children: "Open",
@@ -22,7 +24,8 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import NavbarButton from "@notus-pro/react/NavbarButton";
+import "@notus-pro/react/NavbarButton"
+import NavbarButton
 
 const props = ${JSON.stringify(passProps)};
 

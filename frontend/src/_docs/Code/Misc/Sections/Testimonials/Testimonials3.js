@@ -1,10 +1,12 @@
-import Testimonials3 from "components/Sections/Misc/Testimonials/Testimonials3.js";
-import passProps from "_texts/misc/testimonials/testimonials3.js";
+import "_texts/misc/testimonials/testimonials3.js"
+import "components/Sections/Misc/Testimonials/Testimonials3.js"
+import passProps
+import Testimonials3
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "MediaPlayerBlockQuote",
@@ -26,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Testimonials3 from "@notus-pro/react/Testimonials3";
+import "@notus-pro/react/Testimonials3"
+import Testimonials3
 
 const props = ${JSON.stringify(passProps)}
 

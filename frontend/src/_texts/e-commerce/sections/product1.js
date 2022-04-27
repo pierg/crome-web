@@ -1,9 +1,14 @@
-import React from "react";
+import select
 
-import mediaplayer from "_texts/e-commerce/mediaplayers/mediaplayerimageleftrightbuttons.js";
-import incrementer from "_texts/misc/forms/incrementer.js";
-import select from "_texts/misc/forms/select.js";
-import ratings from "_texts/misc/content/ratings.js";
+import "_texts/e-commerce/mediaplayers/mediaplayerimageleftrightbuttons.js"
+import "_texts/misc/content/ratings.js"
+import "_texts/misc/forms/incrementer.js"
+import "_texts/misc/forms/select.js"
+import "react"
+import incrementer
+import mediaplayer
+import ratings
+import React
 
 const textProps = {
   heading2: {

@@ -1,10 +1,12 @@
-import FAQ1 from "components/Sections/Misc/FAQ/FAQ1.js";
-import passProps from "_texts/misc/faq/faq1.js";
+import "_texts/misc/faq/faq1.js"
+import "components/Sections/Misc/FAQ/FAQ1.js"
+import FAQ1
+import passProps
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "Accordion",
@@ -25,7 +27,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import FAQ1 from "@notus-pro/react/FAQ1";
+import "@notus-pro/react/FAQ1"
+import FAQ1
 
 const props = ${JSON.stringify(passProps)}
 

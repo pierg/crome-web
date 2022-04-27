@@ -1,15 +1,16 @@
-import Teams3 from "components/Sections/Blog/Teams/Teams3.js";
-import passProps from "_texts/blog/teams/teams3.js";
+import "_texts/blog/teams/teams3.js"
+import "components/Sections/Blog/Teams/Teams3.js"
+import passProps
+import Teams3
+
 const dependencies = [
   {
     name: "CardProfileFull",
-    link:
-      "/components/blog/components/cards#blog-id-blogs-id-components-cardprofilefull",
+    link: "/components/blog/components/cards#blog-id-blogs-id-components-cardprofilefull",
   },
   {
     name: "Heading3Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3badge",
   },
 ];
 const props = `Teams3.defaultProps = {
@@ -27,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Teams3 from "@notus-pro/react/Teams3";
+import "@notus-pro/react/Teams3"
+import Teams3
 
 const props = ${JSON.stringify(passProps)}
 

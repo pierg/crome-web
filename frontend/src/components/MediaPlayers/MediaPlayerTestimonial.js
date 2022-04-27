@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import "classnames"
+import "prop-types"
+import "react"
+import classnames
+import PropTypes
+import React
 
 // components
-import Button from "../../components/Elements/Button.js";
+import "../../components/Elements/Button.js"
+import Button
 
 export default function MediaPlayerTestimonial({ items, defaultOpened }) {
   const [open, setOpen] = React.useState(defaultOpened);

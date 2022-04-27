@@ -1,5 +1,8 @@
-import Hero6 from "components/Sections/Blog/Heroes/Hero6.js";
-import passProps from "_texts/blog/heroes/hero6.js";
+import "_texts/blog/heroes/hero6.js"
+import "components/Sections/Blog/Heroes/Hero6.js"
+import Hero6
+import passProps
+
 const dependencies = [
   {
     name: "Input",
@@ -11,8 +14,7 @@ const dependencies = [
   },
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
 ];
 const props = `Hero6.defaultProps = {
@@ -33,7 +35,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero6 from "@notus-pro/react/Hero6";
+import "@notus-pro/react/Hero6"
+import Hero6
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Button from "../../../components/Elements/Button.js";
-import Skew from "../../../components/Skews/Skew.js";
+import "../../../components/Elements/Button.js"
+import "../../../components/Skews/Skew.js"
+import Button
+import Skew
 
 export default function HeaderImageTitleButtonCenter({
   image,

@@ -1,7 +1,11 @@
-import CardLoginSocial from "./CardLoginSocial";
-import CardRegister from "./CardRegister";
-import CardResetPassword from "./CardResetPassword";
-import CardLoginRegister from "./CardLoginRegister";
+import "./CardLoginRegister"
+import "./CardLoginSocial"
+import "./CardRegister"
+import "./CardResetPassword"
+import CardLoginRegister
+import CardLoginSocial
+import CardRegister
+import CardResetPassword
 
 const componentsArray = [
   CardLoginSocial,

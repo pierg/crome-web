@@ -1,10 +1,15 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
+
 // components
-import Skew from "../../../components/Skews/Skew.js";
+import "../../../components/Skews/Skew.js"
+import Skew
 
 export default function FooterLarge({ title, description, links, socials, copyright }) {
   return (

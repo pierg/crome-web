@@ -1,5 +1,8 @@
-import Sidebar from "components/Sidebar/Sidebar.js";
-import passProps from "_texts/admin/sidebar/sidebar.js";
+import "_texts/admin/sidebar/sidebar.js"
+import "components/Sidebar/Sidebar.js"
+import passProps
+import Sidebar
+
 const props = `Sidebar.defaultProps = {
   items: [],
   activeColor: "pink",
@@ -55,7 +58,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Sidebar from "@notus-pro/react/Sidebar";
+import "@notus-pro/react/Sidebar"
+import Sidebar
 
 const props = "<<props-here>>";
 
@@ -75,8 +79,7 @@ const docsObjects = {
   preview,
   passProps: { ...passProps, items: passProps.items.splice(0, 10) },
   codeSnippetProps: {
-    wrapperClasses:
-      "w-full text-left ct-docs-disable-sidebar-fixed overflow-x-hidden",
+    wrapperClasses: "w-full text-left ct-docs-disable-sidebar-fixed overflow-x-hidden",
     colorSwitchePropToChange: "activeColor",
     colorsSwitcher: [
       "red",

@@ -1,5 +1,8 @@
-import DropdownNavbar from "components/Dropdowns/DropdownNavbar.js";
-import passProps from "_texts/misc/dropdowns/dropdownnavbar.js";
+import "_texts/misc/dropdowns/dropdownnavbar.js"
+import "components/Dropdowns/DropdownNavbar.js"
+import DropdownNavbar
+import passProps
+
 const props = `DropdownNavbar.defaultProps = {
   items: [],
 };
@@ -38,7 +41,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import DropdownNavbar from "@notus-pro/react/DropdownNavbar";
+import "@notus-pro/react/DropdownNavbar"
+import DropdownNavbar
 
 const props = ${JSON.stringify({ ...passProps, navColor: "light" })}
 

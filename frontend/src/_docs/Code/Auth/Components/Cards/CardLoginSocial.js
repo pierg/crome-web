@@ -1,5 +1,8 @@
-import CardLoginSocial from "components/Cards/Auth/CardLoginSocial.js";
-import passProps from "_texts/auth/cards/cardloginsocial.js";
+import "_texts/auth/cards/cardloginsocial.js"
+import "components/Cards/Auth/CardLoginSocial.js"
+import CardLoginSocial
+import passProps
+
 const props = `CardLoginSocial.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
@@ -52,7 +55,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardLoginSocial from "@notus-pro/react/CardLoginSocial";
+import "@notus-pro/react/CardLoginSocial"
+import CardLoginSocial
 
 const props = ${JSON.stringify(passProps)}
 

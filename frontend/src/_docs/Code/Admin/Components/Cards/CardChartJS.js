@@ -1,5 +1,8 @@
-import CardChartJS from "components/Cards/Admin/CardChartJS.js";
-import passProps from "_texts/admin/cards/cardchartjsdashboard1.js";
+import "_texts/admin/cards/cardchartjsdashboard1.js"
+import "components/Cards/Admin/CardChartJS.js"
+import CardChartJS
+import passProps
+
 const props = `CardChartJS.defaultProps = {
   chart: {},
   color: "white",
@@ -40,7 +43,8 @@ const newProps = {
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardChartJS from "@notus-pro/react/CardChartJS";
+import "@notus-pro/react/CardChartJS"
+import CardChartJS
 
 const props = ${JSON.stringify(newProps)}
 

@@ -1,12 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 // components
-import Button from "../../components/Elements/Button.js";
-import ImagesOverlap from "../../components/Images/ImagesOverlap.js";
-import WriteComment from "../../components/Content/WriteComment.js";
-import Comment from "../../components/Content/Comment.js";
+import "../../components/Content/Comment.js"
+import "../../components/Content/WriteComment.js"
+import "../../components/Elements/Button.js"
+import "../../components/Images/ImagesOverlap.js"
+import Button
+import Comment
+import ImagesOverlap
+import WriteComment
 
 export default function ActivityFeed({
   title,

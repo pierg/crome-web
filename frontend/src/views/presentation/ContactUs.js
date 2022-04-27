@@ -1,19 +1,33 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // sections
-import ContactUs2 from "components/Sections/Presentation/ContactUs/ContactUs2.js";
-import ContactUs3 from "components/Sections/Presentation/ContactUs/ContactUs3.js";
+import "components/Sections/Presentation/ContactUs/ContactUs2.js"
+import "components/Sections/Presentation/ContactUs/ContactUs3.js"
+import ContactUs2
+import ContactUs3
+
 // components
-import NavbarLinks from "components/Navbars/NavbarLinks.js";
-import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import "components/Footers/Landing/FooterSmall.js"
+import "components/Navbars/NavbarLinks.js"
+import "components/PreFooters/PreFooterLarge.js"
+import FooterSmall
+import NavbarLinks
+import PreFooterLarge
+
 // texts for components as props
-import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
-import contactus2 from "_texts/presentation/contactus/contactus2.js";
-import contactus3 from "_texts/presentation/contactus/contactus3.js";
+import "_texts/presentation/contactus/contactus2.js"
+import "_texts/presentation/contactus/contactus3.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import contactus2
+import contactus3
+import footersmall
+import navbarlinkslanding2
+import prefooterlarge
 
 export default function ContactUs() {
   const location = useLocation();

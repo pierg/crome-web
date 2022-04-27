@@ -1,4 +1,5 @@
-import cardblogfullbgauthor from "_texts/presentation/cards/cardblogfullbgauthor.js";
+import "_texts/presentation/cards/cardblogfullbgauthor.js"
+import cardblogfullbgauthor
 
 const textProps = {
   heading2badge: {

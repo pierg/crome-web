@@ -1,34 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 export default function Pagination({ color, links, size }) {
   const colors = {
     light:
       "bg-transparent border-blueGray-200 text-blueGray-200 hover:border-blueGray-400 hover:text-blueGray-400",
-    dark:
-      "bg-transparent border-blueGray-800 text-blueGray-800 hover:border-blueGray-700 hover:text-blueGray-700",
+    dark: "bg-transparent border-blueGray-800 text-blueGray-800 hover:border-blueGray-700 hover:text-blueGray-700",
     blueGray:
       "bg-transparent border-blueGray-500 text-blueGray-500 hover:border-blueGray-700 hover:text-blueGray-700",
-    red:
-      "bg-transparent border-red-500 text-red-500 hover:border-red-700 hover:text-red-700",
+    red: "bg-transparent border-red-500 text-red-500 hover:border-red-700 hover:text-red-700",
     orange:
       "bg-transparent border-orange-500 text-orange-500 hover:border-orange-700 hover:text-orange-700",
     amber:
       "bg-transparent border-amber-500 text-amber-500 hover:border-amber-700 hover:text-amber-700",
     emerald:
       "bg-transparent border-emerald-500 text-emerald-500 hover:border-emerald-700 hover:text-emerald-700",
-    teal:
-      "bg-transparent border-teal-500 text-teal-500 hover:border-teal-700 hover:text-teal-700",
+    teal: "bg-transparent border-teal-500 text-teal-500 hover:border-teal-700 hover:text-teal-700",
     lightBlue:
       "bg-transparent border-lightBlue-500 text-lightBlue-500 hover:border-lightBlue-700 hover:text-lightBlue-700",
     indigo:
       "bg-transparent border-indigo-500 text-indigo-500 hover:border-indigo-700 hover:text-indigo-700",
     purple:
       "bg-transparent border-purple-500 text-purple-500 hover:border-purple-700 hover:text-purple-700",
-    pink:
-      "bg-transparent border-pink-500 text-pink-500 hover:border-pink-700 hover:text-pink-700",
+    pink: "bg-transparent border-pink-500 text-pink-500 hover:border-pink-700 hover:text-pink-700",
     "light-active":
       "bg-blueGray-200 border-blueGray-200 text-blueGray-800 hover:border-blueGray-400 hover:text-blueGray-800 hover:bg-blueGray-400",
     "dark-active":

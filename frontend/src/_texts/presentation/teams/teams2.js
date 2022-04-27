@@ -1,4 +1,5 @@
-import mediaplayer from "_texts/presentation/mediaplayers/mediaplayerteaminfosocial.js";
+import "_texts/presentation/mediaplayers/mediaplayerteaminfosocial.js"
+import mediaplayer
 
 const textProps = {
   heading2badge: {

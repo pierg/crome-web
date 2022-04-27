@@ -1,5 +1,8 @@
-import Auth3 from "components/Layouts/Auth/Auth3.js";
-import passProps from "_texts/auth/layouts/auth3.js";
+import "_texts/auth/layouts/auth3.js"
+import "components/Layouts/Auth/Auth3.js"
+import Auth3
+import passProps
+
 const props = `Auth3.defaultProps = {
   children: undefined,
   color: "purple-indigo",
@@ -32,7 +35,9 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Auth3 from "@notus-pro/react/Auth3";
+import "@notus-pro/react/Auth3"
+import Auth3
+
 // texts as props
 const auth3 = "<<props-here>>";
 

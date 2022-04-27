@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3 from "../../../../components/Headings/Heading3.js";
-import InfoAreaUser from "../../../../components/InfoAreas/Presentation/InfoAreaUser.js";
+import "../../../../components/Headings/Heading3.js"
+import "../../../../components/InfoAreas/Presentation/InfoAreaUser.js"
+import Heading3
+import InfoAreaUser
 
 export default function Teams1({ heading3, infoAreas }) {
   return (

@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import ImagesOverlap from "../../../components/Images/ImagesOverlap.js";
+import "../../../components/Images/ImagesOverlap.js"
+import ImagesOverlap
 
 export default function CardProjectTeam({
   image,

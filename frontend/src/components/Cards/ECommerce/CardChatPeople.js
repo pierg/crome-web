@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Input from "../../../components/Elements/Input.js";
-import Contact from "../../../components/Content/Contact.js";
+import "../../../components/Content/Contact.js"
+import "../../../components/Elements/Input.js"
+import Contact
+import Input
 
 export default function CardChatPeople({ input, contacts }) {
   return (

@@ -1,8 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // components
-import NavbarLinks from "../../../components/Navbars/NavbarLinks.js";
-import FooterAuth from "../../../components/Footers/Auth/FooterAuth.js";
+import "../../../components/Footers/Auth/FooterAuth.js"
+import "../../../components/Navbars/NavbarLinks.js"
+import FooterAuth
+import NavbarLinks
 
 export default function Auth1({ children, footer, navbar, image }) {
   return (

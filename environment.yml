@@ -18,7 +18,8 @@ dependencies:
   - docker-py
   - dill
   - flask
+  - flask-socketio
   - pip
   - pip:
-    - pyeda
-    - bloom-filter
+      - pyeda
+      - bloom-filter

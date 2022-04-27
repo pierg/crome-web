@@ -1,5 +1,8 @@
-import CardSettingsLarge from "components/Cards/Admin/CardSettingsLarge.js";
-import passProps from "_texts/admin/cards/cardsettingslarge.js";
+import "_texts/admin/cards/cardsettingslarge.js"
+import "components/Cards/Admin/CardSettingsLarge.js"
+import CardSettingsLarge
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -61,7 +64,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardSettingsLarge from "@notus-pro/react/CardSettingsLarge";
+import "@notus-pro/react/CardSettingsLarge"
+import CardSettingsLarge
 
 const props = ${JSON.stringify(passProps)}
 

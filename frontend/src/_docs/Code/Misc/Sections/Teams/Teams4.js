@@ -1,10 +1,12 @@
-import Teams4 from "components/Sections/Misc/Teams/Teams4.js";
-import passProps from "_texts/misc/teams/teams4.js";
+import "_texts/misc/teams/teams4.js"
+import "components/Sections/Misc/Teams/Teams4.js"
+import passProps
+import Teams4
+
 const dependencies = [
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "CardProfileSkills",
@@ -27,7 +29,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Teams4 from "@notus-pro/react/Teams4";
+import "@notus-pro/react/Teams4"
+import Teams4
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,5 +1,8 @@
-import Select from "components/Elements/Select.js";
-import passPropsInitial from "_texts/misc/forms/select.js";
+import "_texts/misc/forms/select.js"
+import "components/Elements/Select.js"
+import passPropsInitial
+import Select
+
 const passProps = {
   ...passPropsInitial,
   size: "lg",
@@ -50,7 +53,8 @@ const description = "This is a large Select. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Select from "@notus-pro/react/Select";
+import "@notus-pro/react/Select"
+import Select
 
 const props = ${JSON.stringify(passProps)}
 

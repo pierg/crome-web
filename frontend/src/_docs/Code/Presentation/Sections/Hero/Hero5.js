@@ -1,15 +1,16 @@
-import Hero5 from "components/Sections/Presentation/Heroes/Hero5.js";
-import passProps from "_texts/presentation/heroes/hero5.js";
+import "_texts/presentation/heroes/hero5.js"
+import "components/Sections/Presentation/Heroes/Hero5.js"
+import Hero5
+import passProps
+
 const dependencies = [
   {
     name: "InfoAreaIconTitleLinkColor",
-    link:
-      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelinkcolor",
+    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelinkcolor",
   },
   {
     name: "Heading2Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
 ];
 const props = `Hero5.defaultProps = {
@@ -27,7 +28,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Hero5 from "@notus-pro/react/Hero5";
+import "@notus-pro/react/Hero5"
+import Hero5
 
 const props = ${JSON.stringify(passProps)};
 

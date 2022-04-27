@@ -1,5 +1,7 @@
-import CardPricing from "components/Cards/Presentation/CardPricing.js";
-import passProps from "_texts/presentation/cards/cardpricing.js";
+import "_texts/presentation/cards/cardpricing.js"
+import "components/Cards/Presentation/CardPricing.js"
+import CardPricing
+import passProps
 
 const props = `CardPricing.defaultProps = {
   list: [],
@@ -24,7 +26,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardPricing from "@notus-pro/react/CardPricing";
+import "@notus-pro/react/CardPricing"
+import CardPricing
 
 const props = ${JSON.stringify(passProps)}
 

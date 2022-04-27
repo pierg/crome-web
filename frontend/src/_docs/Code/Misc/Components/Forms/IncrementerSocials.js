@@ -1,5 +1,8 @@
-import Incrementer from "components/Elements/Incrementer.js";
-import passProps from "_texts/misc/forms/incrementer.js";
+import "_texts/misc/forms/incrementer.js"
+import "components/Elements/Incrementer.js"
+import Incrementer
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -76,7 +79,8 @@ const description = "With social colors. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Incrementer from "@notus-pro/react/Incrementer";
+import "@notus-pro/react/Incrementer"
+import Incrementer
 
 const props = "<<props-here>>";
 

@@ -1,23 +1,41 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // sections
-import Product1 from "components/Sections/ECommerce/Product/Product1.js";
-import Testimonials1 from "components/Sections/ECommerce/Testimonials/Testimonials1.js";
-import Hero8 from "components/Sections/ECommerce/Heroes/Hero8.js";
+import "components/Sections/ECommerce/Heroes/Hero8.js"
+import "components/Sections/ECommerce/Product/Product1.js"
+import "components/Sections/ECommerce/Testimonials/Testimonials1.js"
+import Hero8
+import Product1
+import Testimonials1
+
 // components
-import NavbarLinks from "components/Navbars/NavbarLinks.js";
-import HeaderImageTitleLeft from "components/Headers/ECommerce/HeaderImageTitleLeft.js";
-import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import "components/Footers/Landing/FooterSmall.js"
+import "components/Headers/ECommerce/HeaderImageTitleLeft.js"
+import "components/Navbars/NavbarLinks.js"
+import "components/PreFooters/PreFooterLarge.js"
+import FooterSmall
+import HeaderImageTitleLeft
+import NavbarLinks
+import PreFooterLarge
+
 // texts as props
-import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
-import headerimagetitleleft from "_texts/e-commerce/headers/headerimagetitleleft.js";
-import product1 from "_texts/e-commerce/sections/product1.js";
-import testimonials1 from "_texts/e-commerce/sections/testimonials1.js";
-import hero8 from "_texts/e-commerce/sections/hero8.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
+import "_texts/e-commerce/headers/headerimagetitleleft.js"
+import "_texts/e-commerce/sections/hero8.js"
+import "_texts/e-commerce/sections/product1.js"
+import "_texts/e-commerce/sections/testimonials1.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import footersmall
+import headerimagetitleleft
+import hero8
+import navbarlinkslanding2
+import prefooterlarge
+import product1
+import testimonials1
 
 export default function Product() {
   const location = useLocation();

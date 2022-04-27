@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import CardStatsMini from "../../../components/Cards/Admin/CardStatsMini.js";
+import "../../../components/Cards/Admin/CardStatsMini.js"
+import CardStatsMini
 
 export default function HeaderStatCards({ cards, color }) {
   const bgColors = {

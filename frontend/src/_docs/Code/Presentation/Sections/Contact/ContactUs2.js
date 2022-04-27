@@ -1,5 +1,8 @@
-import ContactUs2 from "components/Sections/Presentation/ContactUs/ContactUs2.js";
-import passProps from "_texts/presentation/contactus/contactus2.js";
+import "_texts/presentation/contactus/contactus2.js"
+import "components/Sections/Presentation/ContactUs/ContactUs2.js"
+import ContactUs2
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -7,13 +10,11 @@ const dependencies = [
   },
   {
     name: "InfoAreaIcon",
-    link:
-      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicon",
+    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicon",
   },
   {
     name: "Heading2",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
 ];
 const props = `ContactUs2.defaultProps = {
@@ -40,7 +41,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import ContactUs2 from "@notus-pro/react/ContactUs2";
+import "@notus-pro/react/ContactUs2"
+import ContactUs2
 
 const props = ${JSON.stringify(passProps)}
 

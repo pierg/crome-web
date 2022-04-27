@@ -1,5 +1,7 @@
-import BlogPost from "./BlogPost.js";
-import BlogPosts from "./BlogPosts.js";
+import "./BlogPost.js"
+import "./BlogPosts.js"
+import BlogPost
+import BlogPosts
 
 const componentsArray = [BlogPost, BlogPosts];
 export default componentsArray;

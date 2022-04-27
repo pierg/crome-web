@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import Badge from "../../components/Elements/Badge.js";
+import "../../components/Elements/Badge.js"
+import "prop-types"
+import "react"
+import Badge
+import PropTypes
+import React
 
 export default function Progress({ value, text, color }) {
   let progress = {

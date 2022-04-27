@@ -1,5 +1,8 @@
-import Auth1 from "components/Layouts/Auth/Auth1.js";
-import passProps from "_texts/auth/layouts/auth1.js";
+import "_texts/auth/layouts/auth1.js"
+import "components/Layouts/Auth/Auth1.js"
+import Auth1
+import passProps
+
 const props = `Auth1.defaultProps = {
   children: undefined,
 };
@@ -20,7 +23,9 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Auth1 from "@notus-pro/react/Auth1";
+import "@notus-pro/react/Auth1"
+import Auth1
+
 // texts as props
 const auth1 = ${JSON.stringify(passProps)}
 

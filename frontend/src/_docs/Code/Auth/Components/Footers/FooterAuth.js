@@ -1,5 +1,8 @@
-import FooterAuth from "components/Footers/Auth/FooterAuth.js";
-import passProps from "_texts/auth/footers/footerauth.js";
+import "_texts/auth/footers/footerauth.js"
+import "components/Footers/Auth/FooterAuth.js"
+import FooterAuth
+import passProps
+
 const props = `FooterAuth.defaultProps = {
   copyright: {},
   links: [],
@@ -18,7 +21,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import FooterAuth from "@notus-pro/react/FooterAuth";
+import "@notus-pro/react/FooterAuth"
+import FooterAuth
 
 const props = ${JSON.stringify(passProps)}
 

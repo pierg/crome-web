@@ -11,9 +11,10 @@ from time import strftime
 from flask import Flask, request
 from flask_socketio import SocketIO, emit
 
-from core.cgg import Node
-from tools.persistence import Persistence
-from web.backend.operations.modelling import Modelling
+from backend.tools.persistence import load_goals
+from crome_cgg.cgg import Cgg
+from operations.modelling import Modelling
+
 
 backend_folder = Path(__file__).parent.absolute()
 front_end_folder = Path(__file__).parents[1].absolute() / "frontend"
@@ -313,15 +314,17 @@ def process_goals(data):
     project_folder = os.path.join(
         storage_folder, f"sessions/{session}/{data['project']}"
     )
-    set_of_goals = Persistence.load_goals(project_folder)
+    set_of_goals = load_goals(project_folder)
     if session == "default" and not os.path.exists(
         os.path.join(project_folder, "goals.dat")
     ):
         build_simple_project()
-    from core.goal import GoalException
+
+    from crome_cgg.goal.exceptions import GoalException
 
     try:
-        cgg = Node.build_cgg_old(set_of_goals)
+        cgg = Cgg(set_of_goals)
+        # TODO: Reimplement json export
         cgg.export_to_json(os.path.join(project_folder, "goals"))
         emit(
             "send-notification",

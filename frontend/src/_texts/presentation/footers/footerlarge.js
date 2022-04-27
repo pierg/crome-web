@@ -1,11 +1,8 @@
 const textProps = {
   title: "Let's keep in touch!",
-  description:
-    "Find us on any of these platforms, we respond 1-2 business days.",
+  description: "Find us on any of these platforms, we respond 1-2 business days.",
   copyright:
-    "Copyright © " +
-    new Date().getFullYear() +
-    " Notus PRO React by Creative Tim.",
+    "Copyright © " + new Date().getFullYear() + " Notus PRO React by Creative Tim.",
   socials: [
     {
       icon: "twitter",

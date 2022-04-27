@@ -1,5 +1,8 @@
-import CardDashboardProfile from "components/Cards/Admin/CardDashboardProfile.js";
-import passProps from "_texts/admin/cards/carddashboardprofile.js";
+import "_texts/admin/cards/carddashboardprofile.js"
+import "components/Cards/Admin/CardDashboardProfile.js"
+import CardDashboardProfile
+import passProps
+
 const props = `CardDashboardProfile.defaultProps = {
   stats: [],
   achievements: [],
@@ -39,7 +42,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardDashboardProfile from "@notus-pro/react/CardDashboardProfile";
+import "@notus-pro/react/CardDashboardProfile"
+import CardDashboardProfile
 
 const props = ${JSON.stringify(passProps)}
 

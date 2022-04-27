@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createPopper } from "@popperjs/core";
+import "@popperjs/core"
+import "prop-types"
+import "react"
+import PropTypes
+import React
+import { createPopper }
 
 // components
-import Input from "../../components/Elements/Input.js";
+import "../../components/Elements/Input.js"
+import Input
 
 export default function Select({
   border,

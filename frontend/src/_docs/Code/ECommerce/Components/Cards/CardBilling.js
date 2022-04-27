@@ -1,5 +1,8 @@
-import CardBilling from "components/Cards/ECommerce/CardBilling.js";
-import passProps from "_texts/e-commerce/cards/cardbilling.js";
+import "_texts/e-commerce/cards/cardbilling.js"
+import "components/Cards/ECommerce/CardBilling.js"
+import CardBilling
+import passProps
+
 const dependencies = [
   {
     name: "Input",
@@ -91,7 +94,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardBilling from "@notus-pro/react/CardBilling";
+import "@notus-pro/react/CardBilling"
+import CardBilling
 
 const props = "<<props-here>>";
 

@@ -1,5 +1,8 @@
-import CardStatsMini from "components/Cards/Admin/CardStatsMini.js";
-import passProps from "_texts/admin/cards/cardstatsmini.js";
+import "_texts/admin/cards/cardstatsmini.js"
+import "components/Cards/Admin/CardStatsMini.js"
+import CardStatsMini
+import passProps
+
 const props = `CardStatsMini.defaultProps = {
   statArrow: "up",
 };
@@ -23,7 +26,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardStatsMini from "@notus-pro/react/CardStatsMini";
+import "@notus-pro/react/CardStatsMini"
+import CardStatsMini
 
 const props = ${JSON.stringify(passProps)}
 

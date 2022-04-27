@@ -1,5 +1,8 @@
-import HeaderImageTitleLeft from "components/Headers/ECommerce/HeaderImageTitleLeft.js";
-import passProps from "_texts/e-commerce/headers/headerimagetitleleft.js";
+import "_texts/e-commerce/headers/headerimagetitleleft.js"
+import "components/Headers/ECommerce/HeaderImageTitleLeft.js"
+import HeaderImageTitleLeft
+import passProps
+
 const props = `HeaderImageTitleLeft.defaultProps = {
   skewColor: "white",
 };
@@ -15,7 +18,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderImageTitleLeft from "@notus-pro/react/HeaderImageTitleLeft";
+import "@notus-pro/react/HeaderImageTitleLeft"
+import HeaderImageTitleLeft
 
 const props = ${JSON.stringify(passProps)}
 

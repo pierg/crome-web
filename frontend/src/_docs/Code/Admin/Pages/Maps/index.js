@@ -1,4 +1,5 @@
-import Maps from "./Maps";
+import "./Maps"
+import Maps
 
 const componentsArray = [Maps];
 export default componentsArray;

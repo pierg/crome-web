@@ -1,4 +1,5 @@
-import dropdownbutton from "_texts/misc/dropdowns/dropdownbutton.js";
+import "_texts/misc/dropdowns/dropdownbutton.js"
+import dropdownbutton
 
 const textProps = {
   title: "Card Tables",

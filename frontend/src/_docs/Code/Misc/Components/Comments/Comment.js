@@ -1,5 +1,8 @@
-import Comment from "components/Content/Comment.js";
-import passProps from "_texts/misc/content/comment.js";
+import "_texts/misc/content/comment.js"
+import "components/Content/Comment.js"
+import Comment
+import passProps
+
 const props = `Comment.defaultProps = {
   likes: { children: "0" },
   shares: { children: "0" },
@@ -26,7 +29,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Comment from "@notus-pro/react/Comment";
+import "@notus-pro/react/Comment"
+import Comment
 
 const props = ${JSON.stringify(passProps)}
 

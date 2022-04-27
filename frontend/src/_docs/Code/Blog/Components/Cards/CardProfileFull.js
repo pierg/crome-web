@@ -1,5 +1,8 @@
-import CardProfileFull from "components/Cards/Blog/CardProfileFull.js";
-import passProps from "_texts/blog/cards/cardprofilefull.js";
+import "_texts/blog/cards/cardprofilefull.js"
+import "components/Cards/Blog/CardProfileFull.js"
+import CardProfileFull
+import passProps
+
 const props = `CardProfileFull.defaultProps = {
   list: [],
   dropdown: {},
@@ -34,7 +37,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardProfileFull from "@notus-pro/react/CardProfileFull";
+import "@notus-pro/react/CardProfileFull"
+import CardProfileFull
 
 const props = ${JSON.stringify(passProps)}
 

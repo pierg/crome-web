@@ -1,28 +1,50 @@
 /*eslint-disable*/
-import React from "react";
-import { useLocation } from "react-router-dom";
+import "react"
+import "react-router-dom"
+import React
+import { useLocation }
 
 // sections
-import Hero5 from "components/Sections/Presentation/Heroes/Hero5.js";
-import Blogs1 from "components/Sections/Presentation/Blogs/Blogs1.js";
-import Blogs2 from "components/Sections/Presentation/Blogs/Blogs2.js";
-import Pricing1 from "components/Sections/Presentation/Pricing/Pricing1.js";
-import Teams2 from "components/Sections/Presentation/Teams/Teams2.js";
+import "components/Sections/Presentation/Blogs/Blogs1.js"
+import "components/Sections/Presentation/Blogs/Blogs2.js"
+import "components/Sections/Presentation/Heroes/Hero5.js"
+import "components/Sections/Presentation/Pricing/Pricing1.js"
+import "components/Sections/Presentation/Teams/Teams2.js"
+import Blogs1
+import Blogs2
+import Hero5
+import Pricing1
+import Teams2
+
 // components
-import NavbarLinks from "components/Navbars/NavbarLinks.js";
-import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
-import FooterSmall from "components/Footers/Landing/FooterSmall.js";
-import HeaderNewsletterIllustration from "components/Headers/Presentation/HeaderNewsletterIllustration.js";
+import "components/Footers/Landing/FooterSmall.js"
+import "components/Headers/Presentation/HeaderNewsletterIllustration.js"
+import "components/Navbars/NavbarLinks.js"
+import "components/PreFooters/PreFooterLarge.js"
+import FooterSmall
+import HeaderNewsletterIllustration
+import NavbarLinks
+import PreFooterLarge
+
 // texts for components as props
-import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
-import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
-import footersmall from "_texts/presentation/footers/footersmall.js";
-import headernewsletterillustration from "_texts/presentation/headers/headernewsletterillustration.js";
-import hero5 from "_texts/presentation/heroes/hero5.js";
-import blogs1 from "_texts/presentation/blogs/blogs1.js";
-import blogs2 from "_texts/presentation/blogs/blogs2.js";
-import pricing1 from "_texts/presentation/pricing/pricing1.js";
-import teams2 from "_texts/presentation/teams/teams2.js";
+import "_texts/presentation/blogs/blogs1.js"
+import "_texts/presentation/blogs/blogs2.js"
+import "_texts/presentation/footers/footersmall.js"
+import "_texts/presentation/headers/headernewsletterillustration.js"
+import "_texts/presentation/heroes/hero5.js"
+import "_texts/presentation/navbars/navbarlinkslanding2.js"
+import "_texts/presentation/prefooters/prefooterlarge.js"
+import "_texts/presentation/pricing/pricing1.js"
+import "_texts/presentation/teams/teams2.js"
+import blogs1
+import blogs2
+import footersmall
+import headernewsletterillustration
+import hero5
+import navbarlinkslanding2
+import prefooterlarge
+import pricing1
+import teams2
 
 export default function AboutUs() {
   const location = useLocation();

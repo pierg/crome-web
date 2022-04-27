@@ -1,13 +1,21 @@
-import React from "react";
-
-import Navbar from "components/Navbars/Navbar.js";
-import NavbarContainer from "components/Navbars/NavbarContainer.js";
-import NavbarBrand from "components/Navbars/NavbarBrand.js";
-import NavbarButton from "components/Navbars/NavbarButton.js";
-import NavbarCollapse from "components/Navbars/NavbarCollapse.js";
-import NavbarList from "components/Navbars/NavbarList.js";
-import NavbarListItem from "components/Navbars/NavbarListItem.js";
-import NavbarListLink from "components/Navbars/NavbarListLink.js";
+import "components/Navbars/Navbar.js"
+import "components/Navbars/NavbarBrand.js"
+import "components/Navbars/NavbarButton.js"
+import "components/Navbars/NavbarCollapse.js"
+import "components/Navbars/NavbarContainer.js"
+import "components/Navbars/NavbarList.js"
+import "components/Navbars/NavbarListItem.js"
+import "components/Navbars/NavbarListLink.js"
+import "react"
+import Navbar
+import NavbarBrand
+import NavbarButton
+import NavbarCollapse
+import NavbarContainer
+import NavbarList
+import NavbarListItem
+import NavbarListLink
+import React
 
 function NavbarExample() {
   return (
@@ -51,14 +59,22 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Navbar from "@notus-pro/react/Navbar";
-import NavbarContainer from "@notus-pro/react/NavbarContainer";
-import NavbarBrand from "@notus-pro/react/NavbarBrand";
-import NavbarButton from "@notus-pro/react/NavbarButton";
-import NavbarCollapse from "@notus-pro/react/NavbarCollapse";
-import NavbarList from "@notus-pro/react/NavbarList";
-import NavbarListItem from "@notus-pro/react/NavbarListItem";
-import NavbarListLink from "@notus-pro/react/NavbarListLink";
+import "@notus-pro/react/Navbar"
+import "@notus-pro/react/NavbarBrand"
+import "@notus-pro/react/NavbarButton"
+import "@notus-pro/react/NavbarCollapse"
+import "@notus-pro/react/NavbarContainer"
+import "@notus-pro/react/NavbarList"
+import "@notus-pro/react/NavbarListItem"
+import "@notus-pro/react/NavbarListLink"
+import Navbar
+import NavbarBrand
+import NavbarButton
+import NavbarCollapse
+import NavbarContainer
+import NavbarList
+import NavbarListItem
+import NavbarListLink
 
 export default function NavbarExample() {
   return (

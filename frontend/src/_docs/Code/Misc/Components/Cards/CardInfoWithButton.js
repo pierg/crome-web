@@ -1,5 +1,8 @@
-import CardInfoWithButton from "components/Cards/Misc/CardInfoWithButton.js";
-import passProps from "_texts/misc/cards/cardinfowithbutton.js";
+import "_texts/misc/cards/cardinfowithbutton.js"
+import "components/Cards/Misc/CardInfoWithButton.js"
+import CardInfoWithButton
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -38,7 +41,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardInfoWithButton from "@notus-pro/react/CardInfoWithButton";
+import "@notus-pro/react/CardInfoWithButton"
+import CardInfoWithButton
 
 const props = ${JSON.stringify(passProps)};
 

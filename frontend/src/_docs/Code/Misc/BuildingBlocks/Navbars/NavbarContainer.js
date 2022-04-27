@@ -1,4 +1,6 @@
-import NavbarContainer from "components/Navbars/NavbarContainer.js";
+import "components/Navbars/NavbarContainer.js"
+import NavbarContainer
+
 const passProps = {
   children: "Creative Tim",
   breakpoint: "md",
@@ -17,7 +19,8 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import NavbarContainer from "@notus-pro/react/NavbarContainer";
+import "@notus-pro/react/NavbarContainer"
+import NavbarContainer
 
 const props = ${JSON.stringify(passProps)};
 

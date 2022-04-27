@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-
-import Button from "../../components/Elements/Button.js";
+import "../../components/Elements/Button.js"
+import "classnames"
+import "prop-types"
+import "react"
+import Button
+import classnames
+import PropTypes
+import React
 
 export default function MediaPlayerImageOnly({ items, defaultOpened, size }) {
   const [open, setOpen] = React.useState(defaultOpened);

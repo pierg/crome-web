@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 // components
-import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
-import Button from "../../../../components/Elements/Button.js";
+import "../../../../components/Elements/Button.js"
+import "../../../../components/Headings/Heading2Badge.js"
+import Button
+import Heading2Badge
 
 export default function Pricing8({ heading2badge, table, color }) {
   const linkColors = {

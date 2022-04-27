@@ -1,12 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import prettier from "prettier";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import "prettier"
+import "prop-types"
+import "react"
+import "react-router-dom"
+import "react-syntax-highlighter"
+import "react-syntax-highlighter/dist/cjs/styles/hljs"
+import prettier
+import PropTypes
+import React
+import { Link }
+import { Prism as SyntaxHighlighter }
+import { shadesOfPurple }
 
 // components
-import Badge from "components/Elements/Badge.js";
+import "components/Elements/Badge.js"
+import Badge
 
 const babel = require("prettier/parser-babel");
 

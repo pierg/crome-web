@@ -1,7 +1,10 @@
 /*eslint-disable*/
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import "react-router-dom"
+import PropTypes
+import React
+import { Link }
 
 // components
 

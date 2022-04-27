@@ -1,5 +1,8 @@
-import CardProductText from "components/Cards/ECommerce/CardProductText.js";
-import passProps from "_texts/e-commerce/cards/cardproducttext.js";
+import "_texts/e-commerce/cards/cardproducttext.js"
+import "components/Cards/ECommerce/CardProductText.js"
+import CardProductText
+import passProps
+
 const props = `CardProductText.defaultProps = {
   link: {},
   color: "blueGray",
@@ -33,7 +36,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardProductText from "@notus-pro/react/CardProductText";
+import "@notus-pro/react/CardProductText"
+import CardProductText
 
 const props = "<<props-here>>";
 

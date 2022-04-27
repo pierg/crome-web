@@ -1,15 +1,27 @@
-import Button1 from "./Button1.js";
-import Button2 from "./Button2.js";
-import Button3 from "./Button3.js";
-import Button4 from "./Button4.js";
-import Button5 from "./Button5.js";
-import Button6 from "./Button6.js";
-import Button7 from "./Button7.js";
-import Button8 from "./Button8.js";
-import Button9 from "./Button9.js";
-import Button10 from "./Button10.js";
-import Button11 from "./Button11.js";
-import Button12 from "./Button12.js";
+import "./Button1.js"
+import "./Button2.js"
+import "./Button3.js"
+import "./Button4.js"
+import "./Button5.js"
+import "./Button6.js"
+import "./Button7.js"
+import "./Button8.js"
+import "./Button9.js"
+import "./Button10.js"
+import "./Button11.js"
+import "./Button12.js"
+import Button1
+import Button2
+import Button3
+import Button4
+import Button5
+import Button6
+import Button7
+import Button8
+import Button9
+import Button10
+import Button11
+import Button12
 
 const componentsArray = [
   Button1,

@@ -1,5 +1,8 @@
-import HeaderLeftTitleRightImage from "components/Headers/Misc/HeaderLeftTitleRightImage.js";
-import passProps from "_texts/misc/headers/headerlefttitlerightimage.js";
+import "_texts/misc/headers/headerlefttitlerightimage.js"
+import "components/Headers/Misc/HeaderLeftTitleRightImage.js"
+import HeaderLeftTitleRightImage
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -22,7 +25,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderLeftTitleRightImage from "@notus-pro/react/HeaderLeftTitleRightImage";
+import "@notus-pro/react/HeaderLeftTitleRightImage"
+import HeaderLeftTitleRightImage
 
 const props = ${JSON.stringify(passProps)};
 

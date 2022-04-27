@@ -1,5 +1,8 @@
-import HeaderUser from "components/Headers/Admin/HeaderUser.js";
-import passProps from "_texts/admin/headers/headeruser.js";
+import "_texts/admin/headers/headeruser.js"
+import "components/Headers/Admin/HeaderUser.js"
+import HeaderUser
+import passProps
+
 const dependencies = [
   {
     name: "Button",
@@ -38,7 +41,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import HeaderUser from "@notus-pro/react/HeaderUser";
+import "@notus-pro/react/HeaderUser"
+import HeaderUser
 
 const props = "<<props-here>>";
 

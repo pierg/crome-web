@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import MediaPlayerBlockQuote from "../../../../components/MediaPlayers/MediaPlayerBlockQuote.js";
+import "../../../../components/Headings/Heading2.js"
+import "../../../../components/MediaPlayers/MediaPlayerBlockQuote.js"
+import Heading2
+import MediaPlayerBlockQuote
 
 export default function Testimonials3({ heading2, mediaplayer }) {
   return (

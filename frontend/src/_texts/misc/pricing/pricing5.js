@@ -1,4 +1,5 @@
-import cardpricinglist from "_texts/misc/cards/cardpricinglist.js";
+import "_texts/misc/cards/cardpricinglist.js"
+import cardpricinglist
 
 const textProps = {
   heading2badge: {

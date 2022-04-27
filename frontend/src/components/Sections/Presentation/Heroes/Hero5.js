@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // sections
 
 // components
-import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
-import InfoAreaIconTitleLinkColor from "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js";
+import "../../../../components/Headings/Heading2Badge.js"
+import "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js"
+import Heading2Badge
+import InfoAreaIconTitleLinkColor
 
 export default function Hero5({ heading2badge, infoAreas }) {
   return (

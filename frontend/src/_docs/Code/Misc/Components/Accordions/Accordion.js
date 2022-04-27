@@ -1,5 +1,8 @@
-import Accordion from "components/Accordions/Accordion.js";
-import passProps from "_texts/misc/accordions/accordion.js";
+import "_texts/misc/accordions/accordion.js"
+import "components/Accordions/Accordion.js"
+import Accordion
+import passProps
+
 const props = `Accordion.defaultProps = {
   items: [],
   defaultOpened: -1,
@@ -44,7 +47,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Accordion from "@notus-pro/react/Accordion";
+import "@notus-pro/react/Accordion"
+import Accordion
 
 const props = "<<props-here>>";
 

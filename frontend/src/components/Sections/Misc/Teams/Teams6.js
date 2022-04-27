@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3 from "../../../../components/Headings/Heading3.js";
-import CardProfileActions from "../../../../components/Cards/Misc/CardProfileActions.js";
-import CardProfileReviews from "../../../../components/Cards/Misc/CardProfileReviews.js";
+import "../../../../components/Cards/Misc/CardProfileActions.js"
+import "../../../../components/Cards/Misc/CardProfileReviews.js"
+import "../../../../components/Headings/Heading3.js"
+import CardProfileActions
+import CardProfileReviews
+import Heading3
 
 export default function Teams6({ heading3, cards }) {
   return (

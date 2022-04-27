@@ -1,4 +1,5 @@
-import React from "react";
+import "react"
+import React
 
 const textProps = {
   image: require("assets/img/ecommerce-2.jpg").default,

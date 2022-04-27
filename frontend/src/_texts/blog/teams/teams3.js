@@ -1,5 +1,7 @@
-import card from "_texts/blog/cards/cardprofilefull.js";
-import dropdownbutton from "_texts/misc/dropdowns/dropdownbutton.js";
+import "_texts/blog/cards/cardprofilefull.js"
+import "_texts/misc/dropdowns/dropdownbutton.js"
+import card
+import dropdownbutton
 
 const textProps = {
   heading3badge: {

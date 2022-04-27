@@ -1,4 +1,6 @@
-import Skew from "components/Skews/Skew.js";
+import "components/Skews/Skew.js"
+import Skew
+
 const passProps = { color: "dark" };
 const props = `Skew.defaultProps = {
   color: "white",
@@ -10,7 +12,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Skew from "@notus-pro/react/Skew";
+import "@notus-pro/react/Skew"
+import Skew
 
 export default function Example() {
   return (

@@ -1,8 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CustomSelect from "./CustomSelect";
-import ContractEditArguments from "./ContractEditArguments.js";
+import "./ContractEditArguments.js"
+import "./CustomSelect"
+import "prop-types"
+import "react"
+import ContractEditArguments
+import CustomSelect
+import PropTypes
+import React
 import {
+
   Button,
   Card,
   CardBody,
@@ -12,8 +17,10 @@ import {
   Table,
   UncontrolledDropdown,
 } from "reactstrap";
-import searchPatterns from "hooks/searchPatterns.js";
-import LTLTextArea from "./LTLTextArea";
+import "./LTLTextArea"
+import "hooks/searchPatterns.js"
+import LTLTextArea
+import searchPatterns
 
 function NamesOf(obj) {
   let list = [];

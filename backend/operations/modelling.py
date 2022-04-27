@@ -2,12 +2,13 @@ import json
 import os
 from pathlib import Path
 
-from core.cgg import Node
-from core.contract import Contract
-from core.specification.__legacy.formula import Formula
-from core.typeset import Typeset
-from core.world import World
-from tools.persistence import Persistence
+from backend.tools.persistence import dump_world, load_goals, load_world, dump_goals
+from crome_cgg.goal import Goal
+from crome_cgg.world import World
+from crome_contracts.contract import Contract
+from crome_logic.patterns.robotic_movement import Patrolling
+from crome_logic.specification.temporal import LTL
+from crome_logic.typeset import Typeset
 
 
 class Modelling:
@@ -53,24 +54,22 @@ class Modelling:
         #  mutex_group has to be an array, that's why there is a [0] on each mutex
         #  todo : change mutex to be arrays
 
-        Persistence.dump_world(w, project_folder)
+        dump_world(w, project_folder)
 
     @staticmethod
     def add_goal_updated(project_folder):
         """Load existing list of goals objects and world."""
-        set_of_goals = Persistence.load_goals(project_folder)
-        w = Persistence.load_world(project_folder)
+        set_of_goals = load_goals(project_folder)
+        w = load_world(project_folder)
 
         """Create a new goal"""
 
         """Assumptions (if inserted by the designer"""
-        a1 = Formula(
-            Atom(formula=("G(F(r1 & r2))", Typeset({w["r1"], w["r1"]}))),
-        )
-        a2 = Patrolling([w["r1"], w["r2"]])
-
+        a1 = LTL(formula="G(F(r1 & r2))", typeset=Typeset({w["r1"], w["r1"]}))
+        a2 = LTL(formula=Patrolling(locations=[w["r1"], w["r2"]]), typeset=Typeset({w["r1"], w["r2"]}))
+        # TODO: Fix the rest like above
         """Guarantees"""
-        g1 = Formula(
+        g1 = LTL(
             Atom(formula=("G(F(r3 & r4))", Typeset({w["r3"], w["r4"]}))),
         )
         g2 = StrictOrderedPatrolling([w["r1"], w["r2"]])
@@ -96,13 +95,13 @@ class Modelling:
 
         set_of_goals.add(new_goal)
 
-        Persistence.dump_goals(set_of_goals, project_folder)
+        dump_goals(set_of_goals, project_folder)
 
     @staticmethod
     def add_goal(project_folder, goal_file, goal_id):
-        set_of_goals = Persistence.load_goals(project_folder)
+        set_of_goals = load_goals(project_folder)
 
-        w = Persistence.load_world(project_folder)
+        w = load_world(project_folder)
 
         goal_path = Path(os.path.join(project_folder, f"goals/{goal_file}"))
 
@@ -148,7 +147,7 @@ class Modelling:
                                 for value in array:
                                     values.add(w[value])
                             contract_lists[i].append(
-                                Formula(
+                                LTL(
                                     Atom(
                                         formula=(
                                             contract_element["ltl_value"],
@@ -186,7 +185,8 @@ class Modelling:
                 guarantees=lists_with_and_operators[1],
             )
 
-            new_goal = Node(
+            # TODO Fix goal ID and name, do we need both?
+            new_goal = Goal(
                 name=json_obj["name"],
                 description=json_obj["description"],
                 id=goal_id,
@@ -197,4 +197,4 @@ class Modelling:
 
             set_of_goals.add(new_goal)
 
-            Persistence.dump_goals(set_of_goals, project_folder)
+            dump_goals(set_of_goals, project_folder)

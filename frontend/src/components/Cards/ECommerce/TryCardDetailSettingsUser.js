@@ -1,5 +1,7 @@
-import React from "react";
-import CardDetailSettingsUser from "./CardDetailSettingsUser";
+import "./CardDetailSettingsUser"
+import "react"
+import CardDetailSettingsUser
+import React
 
 // @notus-pro/react
 // import CardDetailSettingsUser from "@notus-pro/react/CardDetailSettingsUser"
@@ -231,8 +233,7 @@ const props = {
             },
             { text: "Check which devices accessed your account", checkbox: {} },
             {
-              text:
-                "Find My Device, make sure your device can be found if it gets lost",
+              text: "Find My Device, make sure your device can be found if it gets lost",
               checkbox: { defaultChecked: true },
             },
             {

@@ -1,11 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading3 from "../../../../components/Headings/Heading3.js";
-import CardInfoIcon from "../../../../components/Cards/Presentation/CardInfoIcon.js";
-import InfoAreaIconTitleLink from "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLink.js";
-import CardBlogImage from "../../../../components/Cards/Presentation/CardBlogImage.js";
+import "../../../../components/Cards/Presentation/CardBlogImage.js"
+import "../../../../components/Cards/Presentation/CardInfoIcon.js"
+import "../../../../components/Headings/Heading3.js"
+import "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLink.js"
+import CardBlogImage
+import CardInfoIcon
+import Heading3
+import InfoAreaIconTitleLink
 
 export default function Hero1({ heading3, infoCards, infoArea, skewCard }) {
   return (

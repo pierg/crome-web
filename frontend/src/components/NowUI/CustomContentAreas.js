@@ -1,7 +1,9 @@
-import React from "react";
+import "react"
+import React
 
 // reactstrap components
 import {
+
   Button,
   ButtonGroup,
   Card,
@@ -400,18 +402,12 @@ function ContentAreas() {
                               <div className="img-container">
                                 <img
                                   alt="..."
-                                  src={
-                                    require("assets/img/saint-laurent.jpg")
-                                      .default
-                                  }
+                                  src={require("assets/img/saint-laurent.jpg").default}
                                 ></img>
                               </div>
                             </td>
                             <td className="td-name">
-                              <a
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
+                              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                 Suede Biker Jacket
                               </a>
                               <br></br>
@@ -461,17 +457,12 @@ function ContentAreas() {
                               <div className="img-container">
                                 <img
                                   alt="..."
-                                  src={
-                                    require("assets/img/balmain.jpg").default
-                                  }
+                                  src={require("assets/img/balmain.jpg").default}
                                 ></img>
                               </div>
                             </td>
                             <td className="td-name">
-                              <a
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
+                              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                 Jersey T-Shirt
                               </a>
                               <br></br>
@@ -526,10 +517,7 @@ function ContentAreas() {
                               </div>
                             </td>
                             <td className="td-name">
-                              <a
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
+                              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                 Slim-Fit Swim Short
                               </a>
                               <br></br>
@@ -582,11 +570,7 @@ function ContentAreas() {
                               2,346
                             </td>
                             <td className="text-right" colSpan="3">
-                              <Button
-                                className="btn-round"
-                                color="info"
-                                type="button"
-                              >
+                              <Button className="btn-round" color="info" type="button">
                                 Complete Purchase{" "}
                                 <i className="now-ui-icons arrows-1_minimal-right"></i>
                               </Button>
@@ -634,15 +618,14 @@ function ContentAreas() {
                         </Media>
                         <p>
                           Chance too good. God level bars. I'm so proud of
-                          @LifeOfDesiigner #1 song in the country. Panda! Don't
-                          be scared of the truth because we need to restart the
-                          human foundation in truth I stand with the most
-                          humility. We are so blessed!
+                          @LifeOfDesiigner #1 song in the country. Panda! Don't be
+                          scared of the truth because we need to restart the human
+                          foundation in truth I stand with the most humility. We are so
+                          blessed!
                         </p>
                         <p>
-                          All praises and blessings to the families of people
-                          who never gave up on dreams. Don't forget, You're
-                          Awesome!
+                          All praises and blessings to the families of people who never
+                          gave up on dreams. Don't forget, You're Awesome!
                         </p>
                         <div className="media-footer">
                           <Button
@@ -654,10 +637,7 @@ function ContentAreas() {
                           >
                             <i className="now-ui-icons ui-1_send"></i> Reply
                           </Button>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="tooltip942449042"
-                          >
+                          <UncontrolledTooltip delay={0} target="tooltip942449042">
                             Reply to Comment
                           </UncontrolledTooltip>
                           <Button
@@ -666,8 +646,7 @@ function ContentAreas() {
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
-                            <i className="now-ui-icons ui-2_favourite-28"></i>{" "}
-                            243
+                            <i className="now-ui-icons ui-2_favourite-28"></i> 243
                           </Button>
                         </div>
                         <Media className="media-post">
@@ -722,13 +701,12 @@ function ContentAreas() {
                       </a>
                       <Media body>
                         <Media heading tag="h5">
-                          John Camber{" "}
-                          <small className="text-muted">· Yesterday</small>
+                          John Camber <small className="text-muted">· Yesterday</small>
                         </Media>
                         <p>
-                          Hello guys, nice to have you on the platform! There
-                          will be a lot of great stuff coming soon. We will keep
-                          you posted for the latest news.
+                          Hello guys, nice to have you on the platform! There will be a
+                          lot of great stuff coming soon. We will keep you posted for
+                          the latest news.
                         </p>
                         <p>Don't forget, You're Awesome!</p>
                         <div className="media-footer">
@@ -741,10 +719,7 @@ function ContentAreas() {
                           >
                             <i className="now-ui-icons ui-1_send"></i> Reply
                           </Button>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="tooltip289520285"
-                          >
+                          <UncontrolledTooltip delay={0} target="tooltip289520285">
                             Reply to Comment
                           </UncontrolledTooltip>
                           <Button
@@ -753,8 +728,7 @@ function ContentAreas() {
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
-                            <i className="now-ui-icons ui-2_favourite-28"></i>{" "}
-                            25
+                            <i className="now-ui-icons ui-2_favourite-28"></i> 25
                           </Button>
                         </div>
                         <Media>
@@ -778,9 +752,9 @@ function ContentAreas() {
                               <small className="text-muted">· 2 Days Ago</small>
                             </Media>
                             <p>
-                              Hello guys, nice to have you on the platform!
-                              There will be a lot of great stuff coming soon. We
-                              will keep you posted for the latest news.
+                              Hello guys, nice to have you on the platform! There will
+                              be a lot of great stuff coming soon. We will keep you
+                              posted for the latest news.
                             </p>
                             <p>Don't forget, You're Awesome!</p>
                             <div className="media-footer">
@@ -793,10 +767,7 @@ function ContentAreas() {
                               >
                                 <i className="now-ui-icons ui-1_send"></i> Reply
                               </Button>
-                              <UncontrolledTooltip
-                                delay={0}
-                                target="tooltip994177304"
-                              >
+                              <UncontrolledTooltip delay={0} target="tooltip994177304">
                                 Reply to Comment
                               </UncontrolledTooltip>
                               <Button
@@ -805,8 +776,7 @@ function ContentAreas() {
                                 href="#pablo"
                                 onClick={(e) => e.preventDefault()}
                               >
-                                <i className="now-ui-icons ui-2_favourite-28"></i>{" "}
-                                243
+                                <i className="now-ui-icons ui-2_favourite-28"></i> 243
                               </Button>
                             </div>
                           </Media>
@@ -834,9 +804,9 @@ function ContentAreas() {
                           <small className="text-muted">· 2 Days Ago</small>
                         </Media>
                         <p>
-                          Hello guys, nice to have you on the platform! There
-                          will be a lot of great stuff coming soon. We will keep
-                          you posted for the latest news.
+                          Hello guys, nice to have you on the platform! There will be a
+                          lot of great stuff coming soon. We will keep you posted for
+                          the latest news.
                         </p>
                         <p>Don't forget, You're Awesome!</p>
                         <div className="media-footer">
@@ -849,10 +819,7 @@ function ContentAreas() {
                           >
                             <i className="now-ui-icons ui-1_send"></i> Reply
                           </Button>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="tooltip449823762"
-                          >
+                          <UncontrolledTooltip delay={0} target="tooltip449823762">
                             Reply to Comment
                           </UncontrolledTooltip>
                           <Button
@@ -861,8 +828,7 @@ function ContentAreas() {
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
-                            <i className="now-ui-icons ui-2_favourite-28"></i>{" "}
-                            243
+                            <i className="now-ui-icons ui-2_favourite-28"></i> 243
                           </Button>
                         </div>
                       </Media>
@@ -986,18 +952,12 @@ function ContentAreas() {
                         <Row>
                           <Col md="6">
                             <FormGroup>
-                              <Input
-                                placeholder="Your Name"
-                                type="text"
-                              ></Input>
+                              <Input placeholder="Your Name" type="text"></Input>
                             </FormGroup>
                           </Col>
                           <Col md="6">
                             <FormGroup>
-                              <Input
-                                placeholder="Your email"
-                                type="email"
-                              ></Input>
+                              <Input placeholder="Your email" type="email"></Input>
                             </FormGroup>
                           </Col>
                         </Row>
@@ -1008,16 +968,10 @@ function ContentAreas() {
                         ></Input>
                         <div className="media-footer">
                           <h6 className="text-muted">Sign in with</h6>
-                          <Button
-                            className="btn-icon btn-round"
-                            color="twitter"
-                          >
+                          <Button className="btn-icon btn-round" color="twitter">
                             <i className="fab fa-twitter"></i>
                           </Button>
-                          <Button
-                            className="btn-icon btn-round"
-                            color="facebook"
-                          >
+                          <Button className="btn-icon btn-round" color="facebook">
                             <i className="fab fa-facebook-square"></i>
                           </Button>
                           <Button className="btn-icon btn-round" color="google">

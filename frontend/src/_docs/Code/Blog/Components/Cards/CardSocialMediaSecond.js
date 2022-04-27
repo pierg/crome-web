@@ -1,5 +1,8 @@
-import CardSocialMedia from "components/Cards/Blog/CardSocialMedia.js";
-import passProps from "_texts/blog/cards/cardsocialmedia.js";
+import "_texts/blog/cards/cardsocialmedia.js"
+import "components/Cards/Blog/CardSocialMedia.js"
+import CardSocialMedia
+import passProps
+
 const props = `CardSocialMedia.defaultProps = {
   color: "blueGray",
   outline: false
@@ -48,7 +51,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardSocialMedia from "@notus-pro/react/CardSocialMedia";
+import "@notus-pro/react/CardSocialMedia"
+import CardSocialMedia
 
 const props = "<<props-here>>";
 

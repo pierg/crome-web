@@ -1,10 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
+
 // components
-import Sidebar from "../../../components/Sidebar/Sidebar.js";
-import NavbarSearchUser from "../../../components/Navbars/NavbarSearchUser.js";
-import HeaderStatCards from "../../../components/Headers/Admin/HeaderStatCards.js";
-import FooterAdmin from "../../../components/Footers/Admin/FooterAdmin.js";
+import "../../../components/Footers/Admin/FooterAdmin.js"
+import "../../../components/Headers/Admin/HeaderStatCards.js"
+import "../../../components/Navbars/NavbarSearchUser.js"
+import "../../../components/Sidebar/Sidebar.js"
+import FooterAdmin
+import HeaderStatCards
+import NavbarSearchUser
+import Sidebar
 
 export default function Admin1({ sidebar, navbar, header, footer, children }) {
   return (

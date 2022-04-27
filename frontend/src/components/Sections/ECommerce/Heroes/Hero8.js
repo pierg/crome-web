@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import CardProductPrice from "../../../../components/Cards/ECommerce/CardProductPrice.js";
+import "../../../../components/Cards/ECommerce/CardProductPrice.js"
+import "../../../../components/Headings/Heading2.js"
+import CardProductPrice
+import Heading2
 
 export default function Hero8({ heading2, skew, cards }) {
   return (

@@ -1,5 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 export default function CardFooter({ border, children }) {
   const cardFooterClasses = (border && " border-t border-blueGray-300") || "";

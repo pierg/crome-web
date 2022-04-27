@@ -37,9 +37,9 @@
   vertical-align: middle;
   max-width: 360px;
 
-  &.img-circle{
-      border-radius: 50%;
-      max-width: 100px;
+  &.img-circle {
+    border-radius: 50%;
+    max-width: 100px;
   }
 }
 .fileinput .thumbnail > img {
@@ -108,8 +108,8 @@
 .input-group-text:not(:first-child) {
   border-left: 0;
 }
-.thumbnail{
-    border: 0 none;
-    border-radius: 0;
-    padding: 0;
+.thumbnail {
+  border: 0 none;
+  border-radius: 0;
+  padding: 0;
 }

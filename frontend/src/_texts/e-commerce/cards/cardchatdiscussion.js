@@ -1,4 +1,5 @@
-import message from "_texts/misc/content/message.js";
+import "_texts/misc/content/message.js"
+import message
 
 const textProps = {
   image: require("assets/img/faces/christian.jpg").default,
@@ -36,9 +37,7 @@ const textProps = {
       },
     },
     {
-      content: [
-        "At the end of the day... the native dev apps is where users are",
-      ],
+      content: ["At the end of the day... the native dev apps is where users are"],
       time: {
         icon: "fas fa-check",
         text: "4:47am",

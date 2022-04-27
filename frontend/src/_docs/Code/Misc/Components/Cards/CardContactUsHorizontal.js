@@ -1,5 +1,8 @@
-import CardContactUsHorizontal from "components/Cards/Misc/CardContactUsHorizontal.js";
-import passProps from "_texts/misc/cards/cardcontactushorizontal.js";
+import "_texts/misc/cards/cardcontactushorizontal.js"
+import "components/Cards/Misc/CardContactUsHorizontal.js"
+import CardContactUsHorizontal
+import passProps
+
 const dependencies = [
   {
     name: "Input",
@@ -93,7 +96,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardContactUsHorizontal from "@notus-pro/react/CardContactUsHorizontal";
+import "@notus-pro/react/CardContactUsHorizontal"
+import CardContactUsHorizontal
 
 const props = "<<props-here>>";
 

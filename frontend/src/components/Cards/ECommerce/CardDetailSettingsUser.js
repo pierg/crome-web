@@ -1,16 +1,27 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import "classnames"
+import "prop-types"
+import "react"
+import classnames
+import PropTypes
+import React
 
 // components
-import ImageUpload from "../../../components/Elements/ImageUpload.js";
-import Progress from "../../../components/Elements/Progress.js";
-import Input from "../../../components/Elements/Input.js";
-import Select from "../../../components/Elements/Select.js";
-import Checkbox from "../../../components/Elements/Checkbox.js";
-import Radio from "../../../components/Elements/Radio.js";
-import Alert from "../../../components/Elements/Alert.js";
-import Button from "../../../components/Elements/Button.js";
+import "../../../components/Elements/Alert.js"
+import "../../../components/Elements/Button.js"
+import "../../../components/Elements/Checkbox.js"
+import "../../../components/Elements/ImageUpload.js"
+import "../../../components/Elements/Input.js"
+import "../../../components/Elements/Progress.js"
+import "../../../components/Elements/Radio.js"
+import "../../../components/Elements/Select.js"
+import Alert
+import Button
+import Checkbox
+import ImageUpload
+import Input
+import Progress
+import Radio
+import Select
 
 export default function CardDetailSettingsUser({
   imageUpload,

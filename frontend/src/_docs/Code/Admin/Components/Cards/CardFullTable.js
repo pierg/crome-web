@@ -1,20 +1,20 @@
-import CardFullTable from "components/Cards/Admin/CardFullTable.js";
-import passProps from "_texts/admin/cards/cardfulltable.js";
+import "_texts/admin/cards/cardfulltable.js"
+import "components/Cards/Admin/CardFullTable.js"
+import CardFullTable
+import passProps
+
 const dependencies = [
   {
     name: "Images Overlap",
-    link:
-      "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
+    link: "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
   },
   {
     name: "Progress",
-    link:
-      "/components/misc/components/forms#misc-id-misc-id-components-progress",
+    link: "/components/misc/components/forms#misc-id-misc-id-components-progress",
   },
   {
     name: "Dropdown Button",
-    link:
-      "/components/misc/components/dropdowns#misc-id-misc-id-components-dropdownbutton",
+    link: "/components/misc/components/dropdowns#misc-id-misc-id-components-dropdownbutton",
   },
 ];
 const props = `CardFullTable.defaultProps = {
@@ -118,7 +118,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import CardFullTable from "@notus-pro/react/CardFullTable";
+import "@notus-pro/react/CardFullTable"
+import CardFullTable
 
 const props = "<<props-here>>";
 

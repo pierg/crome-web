@@ -1,10 +1,12 @@
-import Pricing5 from "components/Sections/Misc/Pricing/Pricing5.js";
-import passProps from "_texts/misc/pricing/pricing5.js";
+import "_texts/misc/pricing/pricing5.js"
+import "components/Sections/Misc/Pricing/Pricing5.js"
+import passProps
+import Pricing5
+
 const dependencies = [
   {
     name: "Heading2Badge",
-    link:
-      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "Button",
@@ -12,8 +14,7 @@ const dependencies = [
   },
   {
     name: "CardPricingList",
-    link:
-      "/components/misc/components/cards#misc-id-misc-id-components-cardpricinglist",
+    link: "/components/misc/components/cards#misc-id-misc-id-components-cardpricinglist",
   },
 ];
 const props = `Pricing5.defaultProps = {
@@ -33,7 +34,8 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import Pricing5 from "@notus-pro/react/Pricing5";
+import "@notus-pro/react/Pricing5"
+import Pricing5
 
 const props = ${JSON.stringify(passProps)};
 

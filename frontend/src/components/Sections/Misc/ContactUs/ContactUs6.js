@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import "prop-types"
+import "react"
+import PropTypes
+import React
 
 // components
-import Heading2 from "../../../../components/Headings/Heading2.js";
-import CardContactUsHorizontal from "../../../../components/Cards/Misc/CardContactUsHorizontal.js";
+import "../../../../components/Cards/Misc/CardContactUsHorizontal.js"
+import "../../../../components/Headings/Heading2.js"
+import CardContactUsHorizontal
+import Heading2
 
 export default function ContactUs6({ heading2, map, card, latitude, longitude }) {
   const mapRef = React.useRef(null);

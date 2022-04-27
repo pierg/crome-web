@@ -54,12 +54,7 @@ const textProps = {
         line: "Pricing",
       },
       ["Plan cost", "Free", "99$/month", "299$/month"],
-      [
-        "Plan cost",
-        "3%",
-        "5%",
-        { link: { href: "#pablo", children: "Contact us" } },
-      ],
+      ["Plan cost", "3%", "5%", { link: { href: "#pablo", children: "Contact us" } }],
       [
         "Payment processing",
         "5.5% + 5c",
