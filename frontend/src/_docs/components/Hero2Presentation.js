@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Headings/Heading2Badge.js"
-import "../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js"
-import Heading2Badge
-import InfoAreaIconTitleListColor
+import Heading2Badge from "../../components/Headings/Heading2Badge.js";
+import InfoAreaIconTitleListColor from "../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js";
 
 export default function Hero2({ heading2badge, imageDevices, infoArea }) {
   return (
@@ -19,7 +15,11 @@ export default function Hero2({ heading2badge, imageDevices, infoArea }) {
           </div>
           <div className="items-center flex flex-wrap mt-20">
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4 relative">
-              <img alt="..." className="max-w-full rounded-lg" src={imageDevices} />
+              <img
+                alt="..."
+                className="max-w-full rounded-lg"
+                src={imageDevices}
+              />
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
               <div className="md:pr-12">

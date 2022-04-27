@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Headings/Heading3.js"
-import "../../../../components/PreFooters/PreFooterSmall.js"
-import Heading3
-import PreFooterSmall
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import PreFooterSmall from "../../../../components/PreFooters/PreFooterSmall.js";
 
 export default function Hero7({ heading3, prefooter }) {
   return (

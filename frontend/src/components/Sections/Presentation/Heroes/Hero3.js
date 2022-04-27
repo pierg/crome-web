@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Headings/Heading3.js"
-import "../../../../components/InfoAreas/Presentation/InfoAreaWhiteTitle.js"
-import "../../../../components/Skews/Skew.js"
-import Heading3
-import InfoAreaWhiteTitle
-import Skew
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import Skew from "../../../../components/Skews/Skew.js";
+import InfoAreaWhiteTitle from "../../../../components/InfoAreas/Presentation/InfoAreaWhiteTitle.js";
 
 export default function Hero3({ heading3, infoAreas }) {
   return (

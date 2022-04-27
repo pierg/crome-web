@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Heading3({
   subtitle,
@@ -38,9 +36,15 @@ export default function Heading3({
   return (
     <>
       <div className={"mb-12 flex flex-wrap -mx-4 " + alignmentsRow[alignment]}>
-        <div className={"px-4 relative w-full lg:w-8/12 " + alignmentsText[alignment]}>
+        <div
+          className={
+            "px-4 relative w-full lg:w-8/12 " + alignmentsText[alignment]
+          }
+        >
           {subtitle && (
-            <h6 className={"mb-2 font-bold uppercase " + colors[color]}>{subtitle}</h6>
+            <h6 className={"mb-2 font-bold uppercase " + colors[color]}>
+              {subtitle}
+            </h6>
           )}
           {title && (
             <h3

@@ -1,8 +1,5 @@
-import "_texts/misc/cards/cardpricinglist.js"
-import "components/Cards/Misc/CardPricingList.js"
-import CardPricingList
-import passProps
-
+import CardPricingList from "components/Cards/Misc/CardPricingList.js";
+import passProps from "_texts/misc/cards/cardpricinglist.js";
 const dependencies = [
   {
     name: "Button",
@@ -42,8 +39,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardPricingList"
-import CardPricingList
+import CardPricingList from "@notus-pro/react/CardPricingList";
 
 const props = "<<props-here>>";
 

@@ -1,8 +1,5 @@
-import "_texts/presentation/cards/cardblogfullbg.js"
-import "components/Cards/Presentation/CardBlogFullBg.js"
-import CardBlogFullBg
-import passProps
-
+import CardBlogFullBg from "components/Cards/Presentation/CardBlogFullBg.js";
+import passProps from "_texts/presentation/cards/cardblogfullbg.js";
 const props = `CardBlogFullBg.defaultProps = {
   innerLink: false,
   rounded: true,
@@ -26,8 +23,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardBlogFullBg"
-import CardBlogFullBg
+import CardBlogFullBg from "@notus-pro/react/CardBlogFullBg";
 
 const props = ${JSON.stringify(passProps)}
 

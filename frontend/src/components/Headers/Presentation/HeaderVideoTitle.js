@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Skews/Skew.js"
-import Button
-import Skew
+import Button from "../../../components/Elements/Button.js";
+import Skew from "../../../components/Skews/Skew.js";
 
 export default function HeaderVideoTitle({
   video,
@@ -37,7 +33,9 @@ export default function HeaderVideoTitle({
               <h1 className="text-4xl font-semibold leading-tight text-white">
                 {title}
               </h1>
-              <h4 className="mt-2 text-lg text-white opacity-75 mb-8">{subtitle}</h4>
+              <h4 className="mt-2 text-lg text-white opacity-75 mb-8">
+                {subtitle}
+              </h4>
               <Button color={buttonColor} size="lg">
                 <i className={buttonIcon + " mr-2"}></i>
                 {buttonText}

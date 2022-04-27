@@ -1,12 +1,10 @@
-import "_texts/presentation/heroes/hero2.js"
-import "components/Sections/Presentation/Heroes/Hero2.js"
-import Hero2
-import passProps
-
+import Hero2 from "components/Sections/Presentation/Heroes/Hero2.js";
+import passProps from "_texts/presentation/heroes/hero2.js";
 const dependencies = [
   {
     name: "InfoAreaIconTitleListColor",
-    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelistcolor",
+    link:
+      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelistcolor",
   },
   {
     name: "Skew",
@@ -14,7 +12,8 @@ const dependencies = [
   },
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
 ];
 const props = `Hero2.defaultProps = {
@@ -34,8 +33,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Hero2"
-import Hero2
+import Hero2 from "@notus-pro/react/Hero2";
 
 const props = ${JSON.stringify(passProps)};
 

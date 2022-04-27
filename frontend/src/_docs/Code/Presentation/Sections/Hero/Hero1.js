@@ -1,24 +1,25 @@
-import "_texts/presentation/heroes/hero1.js"
-import "components/Sections/Presentation/Heroes/Hero1.js"
-import Hero1
-import passProps
-
+import Hero1 from "components/Sections/Presentation/Heroes/Hero1.js";
+import passProps from "_texts/presentation/heroes/hero1.js";
 const dependencies = [
   {
     name: "InfoAreaIconTitleLink",
-    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelink",
+    link:
+      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelink",
   },
   {
     name: "CardInfoIcon",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfoicon",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfoicon",
   },
   {
     name: "CardBlogImage",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogimage",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogimage",
   },
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
 ];
 const props = `Hero1.defaultProps = {
@@ -47,8 +48,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Hero1"
-import Hero1
+import Hero1 from "@notus-pro/react/Hero1";
 
 const props = ${JSON.stringify(passProps)}
 

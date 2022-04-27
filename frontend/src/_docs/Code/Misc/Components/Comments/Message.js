@@ -1,8 +1,5 @@
-import "_texts/misc/content/message.js"
-import "components/Content/Message.js"
-import Message
-import passProps
-
+import Message from "components/Content/Message.js";
+import passProps from "_texts/misc/content/message.js";
 const props = `Contact.defaultProps = {
   content: [],
   color: "blueGray",
@@ -50,8 +47,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Message"
-import Message
+import Message from "@notus-pro/react/Message";
 
 const props = "<<props-here>>";
 

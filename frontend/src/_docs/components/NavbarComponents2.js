@@ -1,13 +1,10 @@
-import "_docs/components/DropdownHoverCSSNavbar.js"
-import "_docs/components/DropdownNavbar.js"
-import "_docs/routes/components/index.js"
-import "react"
-import "react-router-dom"
-import DropdownHoverNavbar
-import DropdownNavbar
-import React
-import routes
-import { Link }
+import React from "react";
+import { Link } from "react-router-dom";
+
+import DropdownNavbar from "_docs/components/DropdownNavbar.js";
+import DropdownHoverNavbar from "_docs/components/DropdownHoverCSSNavbar.js";
+
+import routes from "_docs/routes/components/index.js";
 
 export default function NavbarComponents() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -32,11 +29,7 @@ export default function NavbarComponents() {
           </div>
           <div
             className={
-              "lg:flex flex-grow items-center " +
-              {
-                /*bg-white*/
-              } +
-              "lg:bg-transparent lg:shadow-none" +
+              "lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none" +
               (navbarOpen ? " block rounded lg:shadow-lg" : " hidden")
             }
           >

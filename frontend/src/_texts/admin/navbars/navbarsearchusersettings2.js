@@ -1,5 +1,4 @@
-import "_texts/misc/dropdowns/dropdownuser.js"
-import dropdownuser
+import dropdownuser from "_texts/misc/dropdowns/dropdownuser.js";
 
 const textProps = {
   brand: {

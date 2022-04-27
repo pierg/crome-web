@@ -1,8 +1,5 @@
-import "_texts/misc/content/ratings.js"
-import "components/Content/Ratings.js"
-import passProps
-import Ratings
-
+import Ratings from "components/Content/Ratings.js";
+import passProps from "_texts/misc/content/ratings.js";
 const props = `Ratings.defaultProps = {
   rating: 0,
 };
@@ -16,8 +13,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Ratings"
-import Ratings
+import Ratings from "@notus-pro/react/Ratings";
 
 const props = ${JSON.stringify(passProps)}
 

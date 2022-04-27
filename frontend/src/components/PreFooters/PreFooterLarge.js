@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Elements/Button.js"
-import Button
+import Button from "../../components/Elements/Button.js";
 
 export default function PreFooterLarge({ title, subtitle, socials, type }) {
   let subtitleClass = "leading-normal mt-1 mb-2";
@@ -25,7 +22,9 @@ export default function PreFooterLarge({ title, subtitle, socials, type }) {
           <div className="justify-between items-center flex flex-wrap -mx-4">
             <div className="px-4 relative w-full lg:w-6/12">
               <h3 className="text-xl font-bold leading-normal mt-0">{title}</h3>
-              <h4 className={subtitleClass + " " + subtitleTypes[type]}>{subtitle}</h4>
+              <h4 className={subtitleClass + " " + subtitleTypes[type]}>
+                {subtitle}
+              </h4>
             </div>
 
             <div className="text-right pr-6 px-4 relative w-full lg:w-6/12">

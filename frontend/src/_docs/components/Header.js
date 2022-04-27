@@ -1,13 +1,10 @@
-import "_docs/components/Frameworks.js"
-import "assets/img/logo.png"
-import "components/Elements/Badge.js"
-import "components/Elements/Button.js"
-import "react"
-import Badge
-import Button
-import Frameworks
-import logo
-import React
+import React from "react";
+
+import logo from "assets/img/logo.png";
+
+import Frameworks from "_docs/components/Frameworks.js";
+import Badge from "components/Elements/Badge.js";
+import Button from "components/Elements/Button.js";
 
 const frameworks = [
   {
@@ -81,9 +78,9 @@ export default function Header() {
                 </h4>
               </div>
               <h6 className="text-xl font-normal leading-normal mt-0 mb-6 text-blueGray-200">
-                Completly new product built using our past experience in web templates.
-                Take the examples and components we made for you and start playing with
-                them.
+                Completly new product built using our past experience in web
+                templates. Take the examples and components we made for you and
+                start playing with them.
               </h6>
               {badges.map((prop, key) => (
                 <div key={key} className="my-1 mr-1 inline-block">

@@ -1,7 +1,5 @@
-import "./InfoAreaIconTitle.js"
-import "./InfoAreaIconTitleList.js"
-import InfoAreaIconTitle
-import InfoAreaIconTitleList
+import InfoAreaIconTitle from "./InfoAreaIconTitle.js";
+import InfoAreaIconTitleList from "./InfoAreaIconTitleList.js";
 
 const componentsArray = [InfoAreaIconTitle, InfoAreaIconTitleList];
 export default componentsArray;

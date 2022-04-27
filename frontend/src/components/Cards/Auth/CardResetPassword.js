@@ -1,15 +1,16 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Input.js"
-import Button
-import Input
+import Input from "../../../components/Elements/Input.js";
+import Button from "../../../components/Elements/Button.js";
 
-export default function CardResetPassword({ image, title, subtitle, input, button }) {
+export default function CardResetPassword({
+  image,
+  title,
+  subtitle,
+  input,
+  button,
+}) {
   return (
     <>
       <div className="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg">

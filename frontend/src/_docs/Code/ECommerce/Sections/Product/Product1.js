@@ -1,20 +1,20 @@
-import "_texts/e-commerce/sections/product1.js"
-import "components/Sections/ECommerce/Product/Product1.js"
-import passProps
-import Product1
-
+import Product1 from "components/Sections/ECommerce/Product/Product1.js";
+import passProps from "_texts/e-commerce/sections/product1.js";
 const dependencies = [
   {
     name: "Heading2",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "MediaPlayerImageLeftRightButtons",
-    link: "/components/e-commerce/components/media-players#e-commerce-id-e-commerce-id-components-mediaplayerimageleftrightbuttons",
+    link:
+      "/components/e-commerce/components/media-players#e-commerce-id-e-commerce-id-components-mediaplayerimageleftrightbuttons",
   },
   {
     name: "Incrementer",
-    link: "/components/misc/components/forms#misc-id-misc-id-components-incrementer",
+    link:
+      "/components/misc/components/forms#misc-id-misc-id-components-incrementer",
   },
   {
     name: "Button",
@@ -75,8 +75,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Product1"
-import Product1
+import Product1 from "@notus-pro/react/Product1";
 
 // texts as props
 const product1 = ${JSON.stringify(passProps)}

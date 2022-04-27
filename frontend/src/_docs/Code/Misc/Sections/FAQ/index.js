@@ -1,5 +1,4 @@
-import "./FAQ1.js"
-import FAQ1
+import FAQ1 from "./FAQ1.js";
 
 const componentsArray = [FAQ1];
 export default componentsArray;

@@ -1,7 +1,6 @@
-import "_docs/components/CustomClassesList.js"
-import "react"
-import CustomClassesList
-import React
+import React from "react";
+
+import CustomClassesList from "_docs/components/CustomClassesList.js";
 
 const properties = `-webkit-animation: indexImage 20s linear infinite;
         animation: indexImage 20s linear infinite;`;

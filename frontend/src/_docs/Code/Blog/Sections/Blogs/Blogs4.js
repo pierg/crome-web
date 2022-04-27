@@ -1,8 +1,5 @@
-import "_texts/blog/blogs/blogs4.js"
-import "components/Sections/Blog/Blogs/Blogs4.js"
-import Blogs4
-import passProps
-
+import Blogs4 from "components/Sections/Blog/Blogs/Blogs4.js";
+import passProps from "_texts/blog/blogs/blogs4.js";
 const props = `Blogs4.defaultProps = {
   items: [],
 };
@@ -41,8 +38,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Blogs4"
-import Blogs4
+import Blogs4 from "@notus-pro/react/Blogs4";
 
 const props = ${JSON.stringify(passProps)}
 

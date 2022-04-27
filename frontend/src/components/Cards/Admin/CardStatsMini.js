@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function CardStatsMini({
   statSubtitle,

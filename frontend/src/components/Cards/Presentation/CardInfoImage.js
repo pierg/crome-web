@@ -1,8 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
 
 export default function CardInfoImage({ title, description, image, color }) {
@@ -38,7 +35,11 @@ export default function CardInfoImage({ title, description, image, color }) {
           bgColor[color]
         }
       >
-        <img className="w-full flex-shrink-0 rounded-t-lg" src={image} alt="..." />
+        <img
+          className="w-full flex-shrink-0 rounded-t-lg"
+          src={image}
+          alt="..."
+        />
 
         <blockquote className="p-6 relative mb-4">
           <svg

@@ -1,11 +1,9 @@
-import "_docs/components/DropdownNavbar.js"
-import "_docs/routes/components/index.js"
-import "react"
-import "react-router-dom"
-import DropdownNavbar
-import React
-import routes
-import { Link }
+import React from "react";
+import { Link } from "react-router-dom";
+
+import DropdownNavbar from "_docs/components/DropdownNavbar.js";
+
+import routes from "_docs/routes/components/index.js";
 
 export default function NavbarComponents() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);

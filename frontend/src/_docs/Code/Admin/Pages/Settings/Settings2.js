@@ -1,35 +1,21 @@
-import "_texts/admin/cards/carddashboardprofile.js"
-import "_texts/admin/cards/cardsettingslarge.js"
-import "_texts/admin/footers/footeradmin.js"
-import "_texts/admin/headers/headerstatcards.js"
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "_texts/admin/sidebar/sidebar.js"
-import "views/admin/Settings2.js"
-import carddashboardprofile
-import cardsettingslarge
-import footeradmin
-import headerstatcards
-import navbarsearchusersettings2
-import Settings2
-import sidebar
-
+import Settings2 from "views/admin/Settings2.js";
+import sidebar from "_texts/admin/sidebar/sidebar.js";
+import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
+import headerstatcards from "_texts/admin/headers/headerstatcards.js";
+import cardsettingslarge from "_texts/admin/cards/cardsettingslarge.js";
+import carddashboardprofile from "_texts/admin/cards/carddashboardprofile.js";
+import footeradmin from "_texts/admin/footers/footeradmin.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardDashboardProfile"
-import "@notus-pro/react/CardSettingsLarge"
-import "@notus-pro/react/FooterAdmin.js"
-import "@notus-pro/react/HeaderStatCards"
-import "@notus-pro/react/NavbarSearchUser"
-import "@notus-pro/react/Sidebar"
-import CardDashboardProfile
-import CardSettingsLarge
-import FooterAdmin
-import HeaderStatCards
-import NavbarSearchUser
-import Sidebar
+import Sidebar from "@notus-pro/react/Sidebar";
+import NavbarSearchUser from "@notus-pro/react/NavbarSearchUser";
+import HeaderStatCards from "@notus-pro/react/HeaderStatCards";
+import CardSettingsLarge from "@notus-pro/react/CardSettingsLarge";
+import CardDashboardProfile from "@notus-pro/react/CardDashboardProfile";
+import FooterAdmin from "@notus-pro/react/FooterAdmin.js";
 
 // texts as props
 const sidebar = ${JSON.stringify(sidebar)};

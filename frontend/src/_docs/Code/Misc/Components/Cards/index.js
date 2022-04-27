@@ -1,31 +1,17 @@
-import "./CardBlogandAuthor.js"
-import "./CardContactUsAddress.js"
-import "./CardContactUsHorizontal.js"
-import "./CardInfoIconLeft.js"
-import "./CardInfoWithButton.js"
-import "./CardPricingDetails.js"
-import "./CardPricingList.js"
-import "./CardPricingLogo.js"
-import "./CardProfileActions.js"
-import "./CardProfileFullDetails.js"
-import "./CardProfileReviews.js"
-import "./CardProfileSkills.js"
-import "./CardProjectImageFullBg.js"
-import "./CardProjectTeam.js"
-import CardBlogandAuthor
-import CardContactUsAddress
-import CardContactUsHorizontal
-import CardInfoIconLeft
-import CardInfoWithButton
-import CardPricingDetails
-import CardPricingList
-import CardPricingLogo
-import CardProfileActions
-import CardProfileFullDetails
-import CardProfileReviews
-import CardProfileSkills
-import CardProjectImageFullBg
-import CardProjectTeam
+import CardInfoIconLeft from "./CardInfoIconLeft.js";
+import CardInfoWithButton from "./CardInfoWithButton.js";
+import CardBlogandAuthor from "./CardBlogandAuthor.js";
+import CardProfileSkills from "./CardProfileSkills.js";
+import CardProfileFullDetails from "./CardProfileFullDetails.js";
+import CardProfileActions from "./CardProfileActions.js";
+import CardProfileReviews from "./CardProfileReviews.js";
+import CardProjectTeam from "./CardProjectTeam.js";
+import CardProjectImageFullBg from "./CardProjectImageFullBg.js";
+import CardPricingDetails from "./CardPricingDetails.js";
+import CardPricingList from "./CardPricingList.js";
+import CardPricingLogo from "./CardPricingLogo.js";
+import CardContactUsAddress from "./CardContactUsAddress.js";
+import CardContactUsHorizontal from "./CardContactUsHorizontal.js";
 
 const componentsArray = [
   CardInfoIconLeft,

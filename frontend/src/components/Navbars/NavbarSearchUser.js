@@ -1,17 +1,11 @@
-import "classnames"
-import "prop-types"
-import "react"
-import "react-router-dom"
-import classnames
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import classnames from "classnames";
 
 // components
-import "../../components/Dropdowns/DropdownUser.js"
-import "../../components/Elements/Input.js"
-import DropdownUser
-import Input
+import DropdownUser from "../../components/Dropdowns/DropdownUser.js";
+import Input from "../../components/Elements/Input.js";
 
 export default function NavbarSearchUser({ brand, input, dropdown }) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);

@@ -1,17 +1,10 @@
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
-
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Checkbox.js"
-import "../../../components/Elements/Input.js"
-import Button
-import Checkbox
-import Input
+import Button from "../../../components/Elements/Button.js";
+import Input from "../../../components/Elements/Input.js";
+import Checkbox from "../../../components/Elements/Checkbox.js";
 
 export default function CardLoginSocial({
   title,
@@ -149,8 +142,8 @@ CardLoginSocial.propTypes = {
       // It is represetnted by the props you
       // can pass to our Input component element
       // NOTE: if you wish to generate a textarea, you will need to pass
-      // // // inside this object >> crometypes: "textarea"
-      // // // full example >> input: { crometypes: "textarea" }
+      // // // inside this object >> type: "textarea"
+      // // // full example >> input: { type: "textarea" }
       input: PropTypes.object,
     })
   ),

@@ -1,9 +1,6 @@
-import "classnames"
-import "prop-types"
-import "react"
-import classnames
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 export default function Navbar({ children, breakpoint, className, ...rest }) {
   const breakpoints = {

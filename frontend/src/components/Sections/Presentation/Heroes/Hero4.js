@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Presentation/CardInfoFullColor.js"
-import "../../../../components/Cards/Presentation/CardInfoImage.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import CardInfoFullColor
-import CardInfoImage
-import Heading2Badge
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import CardInfoImage from "../../../../components/Cards/Presentation/CardInfoImage.js";
+import CardInfoFullColor from "../../../../components/Cards/Presentation/CardInfoFullColor.js";
 
 export default function Hero4({
   heading2badge,

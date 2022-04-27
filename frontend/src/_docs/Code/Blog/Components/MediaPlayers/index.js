@@ -1,5 +1,4 @@
-import "./MediaPlayerImageOnly.js"
-import MediaPlayerImageOnly
+import MediaPlayerImageOnly from "./MediaPlayerImageOnly.js";
 
 const componentsArray = [MediaPlayerImageOnly];
 export default componentsArray;

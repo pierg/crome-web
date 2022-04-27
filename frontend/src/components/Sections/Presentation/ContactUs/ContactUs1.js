@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Presentation/CardContactUsTitle.js"
-import "../../../../components/Headings/Heading3Badge.js"
-import CardContactUsTitle
-import Heading3Badge
+import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
+import CardContactUsTitle from "../../../../components/Cards/Presentation/CardContactUsTitle.js";
 
 export default function ContactUs1({ heading3badge, card }) {
   return (

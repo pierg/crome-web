@@ -1,7 +1,5 @@
-import "_texts/presentation/cards/cardblogfullbgauthor.js"
-import "components/Cards/Presentation/CardBlogFullBgAuthor.js"
-import CardBlogFullBgAuthor
-import passProps
+import CardBlogFullBgAuthor from "components/Cards/Presentation/CardBlogFullBgAuthor.js";
+import passProps from "_texts/presentation/cards/cardblogfullbgauthor.js";
 
 const props = `CardBlogFullBgAuthor.defaultProps = {
   button: {},
@@ -29,8 +27,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardBlogFullBgAuthor"
-import CardBlogFullBgAuthor
+import CardBlogFullBgAuthor from "@notus-pro/react/CardBlogFullBgAuthor";
 
 const props = ${JSON.stringify(passProps)}
 

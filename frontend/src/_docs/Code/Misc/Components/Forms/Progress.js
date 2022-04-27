@@ -1,8 +1,5 @@
-import "_texts/misc/content/progress.js"
-import "components/Elements/Progress.js"
-import passProps
-import Progress
-
+import Progress from "components/Elements/Progress.js";
+import passProps from "_texts/misc/content/progress.js";
 const props = `Progress.defaultProps = {
   color: "blueGray",
   value: 0,
@@ -28,8 +25,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Progress"
-import Progress
+import Progress from "@notus-pro/react/Progress";
 
 const props = "<<props-here>>";
 

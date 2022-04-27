@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardProjectTeam.js"
-import "../../../../components/Headings/Heading2.js"
-import "../../../../components/Pagination/Pagination.js"
-import CardProjectTeam
-import Heading2
-import Pagination
+import Heading2 from "../../../../components/Headings/Heading2.js";
+import CardProjectTeam from "../../../../components/Cards/Misc/CardProjectTeam.js";
+import Pagination from "../../../../components/Pagination/Pagination.js";
 
 export default function Projects2({
   heading2,

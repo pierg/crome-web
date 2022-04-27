@@ -1,13 +1,8 @@
-import "./CardBlogIllustration"
-import "./CardBlogImageHorizontal"
-import "./CardProfileFull"
-import "./CardSocialMedia"
-import "./CardSocialMediaSecond"
-import CardBlogIllustration
-import CardBlogImageHorizontal
-import CardProfileFull
-import CardSocialMedia
-import CardSocialMediaSecond
+import CardBlogImageHorizontal from "./CardBlogImageHorizontal";
+import CardBlogIllustration from "./CardBlogIllustration";
+import CardProfileFull from "./CardProfileFull";
+import CardSocialMedia from "./CardSocialMedia";
+import CardSocialMediaSecond from "./CardSocialMediaSecond";
 
 const componentsArray = [
   CardBlogImageHorizontal,

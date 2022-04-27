@@ -1,21 +1,12 @@
-import "_docs/views/CustomClasses.js"
-import "_docs/views/Icons.js"
-import "_docs/views/Installation.js"
-import "_docs/views/License.js"
-import "_docs/views/Overview.js"
-import "_docs/views/Plugins.js"
-import "_docs/views/TypeScriptSupport.js"
-import "_docs/views/WhatIsReact.js"
-import "_docs/views/WhatIsTailwindCSS.js"
-import CustomClasses
-import Icons
-import Installation
-import License
-import Overview
-import Plugins
-import TypeScriptSupport
-import WhatIsReact
-import WhatIsTailwindCSS
+import Overview from "_docs/views/Overview.js";
+import License from "_docs/views/License.js";
+import QuickStart from "_docs/views/QuickStart.js";
+import WhatIsReact from "_docs/views/WhatIsReact.js";
+import WhatIsTailwindCSS from "_docs/views/WhatIsTailwindCSS.js";
+import Icons from "_docs/views/Icons.js";
+import CustomClasses from "_docs/views/CustomClasses.js";
+import Plugins from "_docs/views/Plugins.js";
+import TypeScriptSupport from "_docs/views/TypeScriptSupport.js";
 
 const routesArray = [
   {
@@ -25,18 +16,18 @@ const routesArray = [
     description: "Premium Tailwind CSS UI Kit and Admin.",
   },
   {
+    component: QuickStart,
+    name: "Quick Start",
+    route: "/quick-start",
+    description:
+      "To start using this product you will need to install and import some files in your current project.",
+  },
+  {
     component: License,
     name: "License",
     route: "/license",
     description:
       "Learn more about the licenses Creative Tim offers and purchase the one that covers the needs of your project.",
-  },
-  {
-    component: Installation,
-    name: "Installation",
-    route: "/installation",
-    description:
-      "To start using this product you will need to install and import some files in your current project.",
   },
   {
     component: CustomClasses,
@@ -72,7 +63,8 @@ const routesArray = [
     component: WhatIsTailwindCSS,
     name: "What Is Tailwind CSS",
     route: "/what-is-tailwind-css",
-    description: "A utility-first CSS framework for rapidly building custom designs.",
+    description:
+      "A utility-first CSS framework for rapidly building custom designs.",
   },
 ];
 

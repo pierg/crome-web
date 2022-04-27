@@ -1,12 +1,10 @@
-import "_texts/misc/contactus/contactus5.js"
-import "components/Sections/Misc/ContactUs/ContactUs5.js"
-import ContactUs5
-import passProps
-
+import ContactUs5 from "components/Sections/Misc/ContactUs/ContactUs5.js";
+import passProps from "_texts/misc/contactus/contactus5.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "CardContactUsAddress",
@@ -34,8 +32,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/ContactUs5"
-import ContactUs5
+import ContactUs5 from "@notus-pro/react/ContactUs5";
 
 const props = ${JSON.stringify(passProps)}
 

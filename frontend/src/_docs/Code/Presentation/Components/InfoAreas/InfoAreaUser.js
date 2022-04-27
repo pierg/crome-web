@@ -1,8 +1,5 @@
-import "_texts/presentation/infoarea/infoareauser.js"
-import "components/InfoAreas/Presentation/InfoAreaUser.js"
-import InfoAreaUser
-import passProps
-
+import InfoAreaUser from "components/InfoAreas/Presentation/InfoAreaUser.js";
+import passProps from "_texts/presentation/infoarea/infoareauser.js";
 const props = `InfoAreaUser.defaultProps = {
   socialLinks: []
 };
@@ -25,8 +22,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/InfoAreaUser"
-import InfoAreaUser
+import InfoAreaUser from "@notus-pro/react/InfoAreaUser";
 
 const props = ${JSON.stringify(passProps)}
 

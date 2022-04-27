@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading2.js"
-import "../../../../components/MediaPlayers/MediaPlayerTestimonial.js"
-import Button
-import Heading2
-import MediaPlayerTestimonial
+import Heading2 from "../../../../components/Headings/Heading2.js";
+import Button from "../../../../components/Elements/Button.js";
+import MediaPlayerTestimonial from "../../../../components/MediaPlayers/MediaPlayerTestimonial.js";
 
 export default function Testimonials1({ heading2, button, mediaplayer }) {
   return (

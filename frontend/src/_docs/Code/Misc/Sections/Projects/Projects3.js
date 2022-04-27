@@ -1,16 +1,15 @@
-import "_texts/misc/projects/projects3.js"
-import "components/Sections/Misc/Projects/Projects3.js"
-import passProps
-import Projects3
-
+import Projects3 from "components/Sections/Misc/Projects/Projects3.js";
+import passProps from "_texts/misc/projects/projects3.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "CardProjectImageFullBg",
-    link: "/components/misc/components/cards#misc-id-misc-id-components-cardprojectimagefullbg",
+    link:
+      "/components/misc/components/cards#misc-id-misc-id-components-cardprojectimagefullbg",
   },
 ];
 const props = `Projects3.defaultProps = {
@@ -28,8 +27,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Projects3"
-import Projects3
+import Projects3 from "@notus-pro/react/Projects3";
 
 const props = ${JSON.stringify(passProps)}
 

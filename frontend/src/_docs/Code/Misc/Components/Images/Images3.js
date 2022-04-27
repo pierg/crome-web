@@ -1,8 +1,5 @@
-import "_texts/misc/images/imagepost.js"
-import "components/Images/ImagePost.js"
-import ImagePost
-import passProps
-
+import ImagePost from "components/Images/ImagePost.js";
+import passProps from "_texts/misc/images/imagepost.js";
 const props = `ImagePost.defaultProps = {
   size: "regular",
 };
@@ -17,8 +14,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/ImagePost"
-import ImagePost
+import ImagePost from "@notus-pro/react/ImagePost";
 
 const props = ${JSON.stringify(passProps)}
 

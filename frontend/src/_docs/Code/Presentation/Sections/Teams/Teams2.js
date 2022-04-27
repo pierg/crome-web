@@ -1,8 +1,5 @@
-import "_texts/presentation/teams/teams2.js"
-import "components/Sections/Presentation/Teams/Teams2.js"
-import passProps
-import Teams2
-
+import Teams2 from "components/Sections/Presentation/Teams/Teams2.js";
+import passProps from "_texts/presentation/teams/teams2.js";
 const dependencies = [
   {
     name: "MediaPlayerTeamInfoSocial",
@@ -10,7 +7,8 @@ const dependencies = [
   },
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
 ];
 const props = `Teams2.defaultProps = {
@@ -30,8 +28,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Teams2"
-import Teams2
+import Teams2 from "@notus-pro/react/Teams2";
 
 const props = ${JSON.stringify(passProps)}
 

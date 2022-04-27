@@ -1,8 +1,5 @@
-import "_texts/misc/images/imagesoverlap.js"
-import "components/Images/ImagesOverlap.js"
-import ImagesOverlap
-import passProps
-
+import ImagesOverlap from "components/Images/ImagesOverlap.js";
+import passProps from "_texts/misc/images/imagesoverlap.js";
 const props = `ImagesOverlap.defaultProps = {
   images: [],
   size: "regular",
@@ -17,8 +14,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/ImagesOverlap"
-import ImagesOverlap
+import ImagesOverlap from "@notus-pro/react/ImagesOverlap";
 
 const props = ${JSON.stringify(passProps)}
 

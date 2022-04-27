@@ -1,20 +1,20 @@
-import "_texts/misc/features/features1.js"
-import "components/Sections/Misc/Features/Features1.js"
-import Features1
-import passProps
-
+import Features1 from "components/Sections/Misc/Features/Features1.js";
+import passProps from "_texts/misc/features/features1.js";
 const dependencies = [
   {
     name: "Heading2",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "InfoAreaIconTitleListColor",
-    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelistcolor",
+    link:
+      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicontitlelistcolor",
   },
   {
     name: "CardInfoFullColor",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfofullcolor",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfofullcolor",
   },
 ];
 const props = `Features1.defaultProps = {
@@ -34,8 +34,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Features1"
-import Features1
+import Features1 from "@notus-pro/react/Features1";
 
 const props = ${JSON.stringify(passProps)};
 

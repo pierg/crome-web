@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Elements/Badge.js"
-import Badge
+import Badge from "../../components/Elements/Badge.js";
 
 export default function Heading3Badge({
   badge,
@@ -28,7 +25,11 @@ export default function Heading3Badge({
   return (
     <>
       <div className={"mb-12 flex flex-wrap -mx-4 " + alignmentsRow[alignment]}>
-        <div className={"px-4 relative w-full lg:w-8/12 " + alignmentsText[alignment]}>
+        <div
+          className={
+            "px-4 relative w-full lg:w-8/12 " + alignmentsText[alignment]
+          }
+        >
           {badge && <Badge {...badge} />}
           {title && (
             <h3

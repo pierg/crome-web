@@ -1,5 +1,4 @@
-import "./Dashboard"
-import Dashboard
+import Dashboard from "./Dashboard";
 
 const componentsArray = [Dashboard];
 export default componentsArray;

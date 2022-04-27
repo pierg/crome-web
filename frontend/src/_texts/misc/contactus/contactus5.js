@@ -1,7 +1,5 @@
-import "_texts/misc/cards/cardcontactusaddress.js"
-import "_texts/presentation/maps/map.js"
-import cardcontactusaddress
-import map
+import cardcontactusaddress from "_texts/misc/cards/cardcontactusaddress.js";
+import map from "_texts/presentation/maps/map.js";
 
 const textProps = {
   heading3: {

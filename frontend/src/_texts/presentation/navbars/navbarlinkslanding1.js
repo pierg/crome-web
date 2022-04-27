@@ -1,7 +1,5 @@
-import "_texts/misc/dropdowns/dropdownnavbar.js"
-import "react"
-import dropdownnavbar
-import React
+import React from "react";
+import dropdownnavbar from "_texts/misc/dropdowns/dropdownnavbar.js";
 
 const textProps = {
   color: "transparent",

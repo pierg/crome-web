@@ -1,11 +1,7 @@
-import "classnames"
-import "react"
-import "react-syntax-highlighter"
-import "react-syntax-highlighter/dist/cjs/styles/hljs"
-import classnames
-import React
-import { Prism as SyntaxHighlighter }
-import { shadesOfPurple }
+import React from "react";
+import classnames from "classnames";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function CustomClassesList({ title, items, content }) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -63,7 +59,7 @@ export default function CustomClassesList({ title, items, content }) {
                   "text-sm mr-2 float-right fas fa-chevron-down duration-300 transition-all ease-in-out transform",
                   { "rotate-180": rotate }
                 )}
-              />
+              ></i>
             </h3>
           </a>
         </div>

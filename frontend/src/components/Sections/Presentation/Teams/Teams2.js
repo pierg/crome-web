@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Headings/Heading2Badge.js"
-import "../../../../components/MediaPlayers/MediaPlayerTeamInfoSocial.js"
-import Heading2Badge
-import MediaPlayerTeamInfoSocial
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import MediaPlayerTeamInfoSocial from "../../../../components/MediaPlayers/MediaPlayerTeamInfoSocial.js";
 
 export default function Teams2({ heading2badge, mediaplayer }) {
   return (

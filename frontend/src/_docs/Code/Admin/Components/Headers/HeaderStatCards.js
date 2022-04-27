@@ -1,12 +1,10 @@
-import "_texts/admin/headers/headerstatcards.js"
-import "components/Headers/Admin/HeaderStatCards.js"
-import HeaderStatCards
-import passProps
-
+import HeaderStatCards from "components/Headers/Admin/HeaderStatCards.js";
+import passProps from "_texts/admin/headers/headerstatcards.js";
 const dependencies = [
   {
     name: "CardStatsMini",
-    link: "/components/admin/components/cards#admin-id-admin-id-components-cardstatsmini",
+    link:
+      "/components/admin/components/cards#admin-id-admin-id-components-cardstatsmini",
   },
 ];
 const props = `HeaderStatCards.defaultProps = {
@@ -37,8 +35,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderStatCards"
-import HeaderStatCards
+import HeaderStatCards from "@notus-pro/react/HeaderStatCards";
 
 const props = "<<props-here>>";
 

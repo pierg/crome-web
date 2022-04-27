@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Skews/Skew.js"
-import Button
-import Skew
+import Button from "../../../components/Elements/Button.js";
+import Skew from "../../../components/Skews/Skew.js";
 
 export default function HeaderImageTitleButtonCenter({
   image,
@@ -30,8 +26,12 @@ export default function HeaderImageTitleButtonCenter({
         <div className="relative h-full text-center text-white container mx-auto px-4 z-2 mb-24">
           <div className="justify-center flex flex-wrap -mx-4">
             <div className="px-12 px-4 relative w-full md:w-8/12">
-              <h1 className="text-5xl font-bold leading-tight mt-0 mb-2">{title}</h1>
-              <p className="text-xl leading-relaxed opacity-75 mt-1 mb-4">{text}</p>
+              <h1 className="text-5xl font-bold leading-tight mt-0 mb-2">
+                {title}
+              </h1>
+              <p className="text-xl leading-relaxed opacity-75 mt-1 mb-4">
+                {text}
+              </p>
               <Button color={color}>
                 <i className={icon + " mr-1"}></i> Start shopping
               </Button>

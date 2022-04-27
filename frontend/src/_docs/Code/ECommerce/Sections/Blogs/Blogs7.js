@@ -1,12 +1,10 @@
-import "_texts/e-commerce/blogs/blogs7.js"
-import "components/Sections/ECommerce/Blogs/Blogs7.js"
-import Blogs7
-import passProps
-
+import Blogs7 from "components/Sections/ECommerce/Blogs/Blogs7.js";
+import passProps from "_texts/e-commerce/blogs/blogs7.js";
 const dependencies = [
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "Button",
@@ -14,7 +12,8 @@ const dependencies = [
   },
   {
     name: "CardBlogFullBg",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogfullbg",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogfullbg",
   },
 ];
 const props = `Blogs7.defaultProps = {
@@ -39,9 +38,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Blogs7"
-import Blogs7
-
+import Blogs7 from "@notus-pro/react/Blogs7";
 // texts as props
 const pricing2 = ${JSON.stringify(passProps)}
 

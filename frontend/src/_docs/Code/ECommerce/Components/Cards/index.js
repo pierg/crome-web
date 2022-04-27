@@ -1,35 +1,19 @@
-import "./CardBilling.js"
-import "./CardChatDiscussion.js"
-import "./CardChatPeople.js"
-import "./CardDetailSettingsUserExample1.js"
-import "./CardDetailSettingsUserExample2.js"
-import "./CardDetailSettingsUserExample3.js"
-import "./CardDetailSettingsUserExample4.js"
-import "./CardInfoIconBg.js"
-import "./CardInvoice.js"
-import "./CardPricingList.js"
-import "./CardProductPlain.js"
-import "./CardProductPrice.js"
-import "./CardProductsCheckout.js"
-import "./CardProductText.js"
-import "./CardProfileFullPage.js"
-import "./CardTableDetails.js"
-import CardBilling
-import CardChatDiscussion
-import CardChatPeople
-import CardDetailSettingsUserExample1
-import CardDetailSettingsUserExample2
-import CardDetailSettingsUserExample3
-import CardDetailSettingsUserExample4
-import CardInfoIconBg
-import CardInvoice
-import CardPricingList
-import CardProductPlain
-import CardProductPrice
-import CardProductsCheckout
-import CardProductText
-import CardProfileFullPage
-import CardTableDetails
+import CardProfileFullPage from "./CardProfileFullPage.js";
+import CardProductPrice from "./CardProductPrice.js";
+import CardPricingList from "./CardPricingList.js";
+import CardTableDetails from "./CardTableDetails.js";
+import CardInfoIconBg from "./CardInfoIconBg.js";
+import CardInvoice from "./CardInvoice.js";
+import CardProductText from "./CardProductText.js";
+import CardProductPlain from "./CardProductPlain.js";
+import CardProductsCheckout from "./CardProductsCheckout.js";
+import CardBilling from "./CardBilling.js";
+import CardDetailSettingsUserExample1 from "./CardDetailSettingsUserExample1.js";
+import CardDetailSettingsUserExample2 from "./CardDetailSettingsUserExample2.js";
+import CardDetailSettingsUserExample3 from "./CardDetailSettingsUserExample3.js";
+import CardDetailSettingsUserExample4 from "./CardDetailSettingsUserExample4.js";
+import CardChatPeople from "./CardChatPeople.js";
+import CardChatDiscussion from "./CardChatDiscussion.js";
 
 const componentsArray = [
   CardProfileFullPage,

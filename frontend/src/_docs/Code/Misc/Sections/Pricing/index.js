@@ -1,13 +1,8 @@
-import "./Pricing4.js"
-import "./Pricing5.js"
-import "./Pricing6.js"
-import "./Pricing7.js"
-import "./Pricing8.js"
-import Pricing4
-import Pricing5
-import Pricing6
-import Pricing7
-import Pricing8
+import Pricing4 from "./Pricing4.js";
+import Pricing5 from "./Pricing5.js";
+import Pricing6 from "./Pricing6.js";
+import Pricing7 from "./Pricing7.js";
+import Pricing8 from "./Pricing8.js";
 
 const componentsArray = [Pricing4, Pricing5, Pricing6, Pricing7, Pricing8];
 export default componentsArray;

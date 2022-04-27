@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Cards/Blog/CardSocialMedia.js"
-import CardSocialMedia
+import CardSocialMedia from "../../components/Cards/Blog/CardSocialMedia.js";
 
 export default function PreFooterSmall({ cards }) {
   return (

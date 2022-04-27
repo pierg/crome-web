@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Headings/Heading2Badge.js"
-import "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js"
-import "../../../../components/Skews/Skew.js"
-import Heading2Badge
-import InfoAreaIconTitleListColor
-import Skew
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import Skew from "../../../../components/Skews/Skew.js";
+import InfoAreaIconTitleListColor from "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js";
 
 export default function Hero2({ heading2badge, image, infoArea }) {
   return (
@@ -20,7 +15,11 @@ export default function Hero2({ heading2badge, image, infoArea }) {
           <Heading2Badge {...heading2badge} />
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img alt="..." className="max-w-full rounded-lg shadow-lg" src={image} />
+              <img
+                alt="..."
+                className="max-w-full rounded-lg shadow-lg"
+                src={image}
+              />
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
               <div className="md:pr-12">

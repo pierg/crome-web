@@ -1,8 +1,5 @@
-import "_texts/presentation/cards/cardinfofullcolor.js"
-import "components/Cards/Presentation/CardInfoFullColor.js"
-import CardInfoFullColor
-import passProps
-
+import CardInfoFullColor from "components/Cards/Presentation/CardInfoFullColor.js";
+import passProps from "_texts/presentation/cards/cardinfofullcolor.js";
 const props = `CardInfoFullColor.defaultProps = {
   gradient: true,
   color: "blueGray",
@@ -35,8 +32,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardInfoFullColor"
-import CardInfoFullColor
+import CardInfoFullColor from "@notus-pro/react/CardInfoFullColor";
 
 const props = "<<props-here>>";
 

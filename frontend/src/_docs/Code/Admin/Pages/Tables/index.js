@@ -1,5 +1,4 @@
-import "./Tables"
-import Tables
+import Tables from "./Tables";
 
 const componentsArray = [Tables];
 export default componentsArray;

@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Blog/CardProfileFull.js"
-import "../../../../components/Headings/Heading3Badge.js"
-import CardProfileFull
-import Heading3Badge
+import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
+import CardProfileFull from "../../../../components/Cards/Blog/CardProfileFull.js";
 
 export default function Teams3({ heading3badge, cards }) {
   return (
@@ -16,7 +12,10 @@ export default function Teams3({ heading3badge, cards }) {
         {heading3badge && <Heading3Badge {...heading3badge} />}
         <div className="flex flex-wrap -mx-4">
           {cards.map((prop, key) => (
-            <div key={key} className="px-4 relative w-full lg:w-4/12 w-full md:w-6/12">
+            <div
+              key={key}
+              className="px-4 relative w-full lg:w-4/12 w-full md:w-6/12"
+            >
               <CardProfileFull {...prop} />
             </div>
           ))}

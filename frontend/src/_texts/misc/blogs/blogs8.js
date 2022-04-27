@@ -1,5 +1,4 @@
-import "_texts/misc/cards/cardblogandauthor.js"
-import cardblogandauthor
+import cardblogandauthor from "_texts/misc/cards/cardblogandauthor.js";
 
 const textProps = {
   heading2: {

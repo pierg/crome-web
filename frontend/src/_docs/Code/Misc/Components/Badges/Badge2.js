@@ -1,6 +1,4 @@
-import "components/Elements/Badge.js"
-import Badge
-
+import Badge from "components/Elements/Badge.js";
 const passProps = {
   children: "badge",
   color: "pink",
@@ -33,8 +31,7 @@ const description = "Rounded Badge & Colors. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Badge"
-import Badge
+import Badge from "@notus-pro/react/Badge";
 
 const props = "<<props-here>>";
 

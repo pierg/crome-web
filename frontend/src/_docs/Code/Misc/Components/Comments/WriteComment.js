@@ -1,8 +1,5 @@
-import "_texts/misc/content/writecomment.js"
-import "components/Content/WriteComment.js"
-import passProps
-import WriteComment
-
+import WriteComment from "components/Content/WriteComment.js";
+import passProps from "_texts/misc/content/writecomment.js";
 const props = `WriteComment.defaultProps = {
   input: {},
 };
@@ -20,8 +17,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/WriteComment"
-import WriteComment
+import WriteComment from "@notus-pro/react/WriteComment";
 
 const props = ${JSON.stringify(passProps)}
 

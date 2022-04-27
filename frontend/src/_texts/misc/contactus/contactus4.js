@@ -12,12 +12,20 @@ const textProps = {
     {
       icon: "fas fa-map-marker-alt",
       title: "Find us at the office",
-      description: ["Bld Mihail Kogalniceanu, nr. 8,", "7652 Bucharest,", "Romania"],
+      description: [
+        "Bld Mihail Kogalniceanu, nr. 8,",
+        "7652 Bucharest,",
+        "Romania",
+      ],
     },
     {
       icon: "fas fa-mobile",
       title: "Give us a ring",
-      description: ["Michael Jordan", "+40 762 321 762", "Mon - Fri, 8:00-22:00"],
+      description: [
+        "Michael Jordan",
+        "+40 762 321 762",
+        "Mon - Fri, 8:00-22:00",
+      ],
     },
   ],
   card: {

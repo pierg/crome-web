@@ -1,8 +1,5 @@
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "components/Navbars/NavbarSearchUser.js"
-import NavbarSearchUser
-import passProps
-
+import NavbarSearchUser from "components/Navbars/NavbarSearchUser.js";
+import passProps from "_texts/admin/navbars/navbarsearchusersettings2.js";
 const props = `NavbarSearchUser.defaultProps = {
   brand: {},
   input: {},
@@ -25,8 +22,7 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/NavbarSearchUser"
-import NavbarSearchUser
+import NavbarSearchUser from "@notus-pro/react/NavbarSearchUser";
 
 const props = ${JSON.stringify(passProps)}
 

@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Images/ImageTooltip.js"
-import ImageTooltip
+import ImageTooltip from "../../components/Images/ImageTooltip.js";
 
 export default function ImagesOverlap({ images, text, size }) {
   const newSize = {

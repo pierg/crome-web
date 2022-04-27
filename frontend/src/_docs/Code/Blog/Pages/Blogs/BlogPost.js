@@ -1,39 +1,23 @@
-import "_texts/blog/blogs/blogs3.js"
-import "_texts/blog/blogs/blogs4.js"
-import "_texts/blog/headers/headerblogpostdark.js"
-import "_texts/misc/content/activityfeed.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "views/blog/BlogPost.js"
-import activityfeed
-import BlogPost
-import blogs3
-import blogs4
-import footersmall
-import headerblogpostdark
-import navbarlinkslanding2
-import prefooterlarge
-
+import BlogPost from "views/blog/BlogPost.js";
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
+import headerblogpostdark from "_texts/blog/headers/headerblogpostdark.js";
+import blogs3 from "_texts/blog/blogs/blogs3.js";
+import blogs4 from "_texts/blog/blogs/blogs4.js";
+import activityfeed from "_texts/misc/content/activityfeed.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/ActivityFeed"
-import "@notus-pro/react/Blogs3.js"
-import "@notus-pro/react/Blogs4.js"
-import "@notus-pro/react/FooterSmall.js"
-import "@notus-pro/react/HeaderBlogPostDark.js"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import ActivityFeed
-import Blogs3
-import Blogs4
-import FooterSmall
-import HeaderBlogPostDark
-import NavbarLinks
-import PreFooterLarge
+import Blogs3 from "@notus-pro/react/Blogs3.js";
+import Blogs4 from "@notus-pro/react/Blogs4.js";
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall.js";
+import HeaderBlogPostDark from "@notus-pro/react/HeaderBlogPostDark.js";
+import ActivityFeed from "@notus-pro/react/ActivityFeed";
 
 // texts as props
 const navbarlinkslanding2 = ${JSON.stringify(navbarlinkslanding2)};

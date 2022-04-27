@@ -1,6 +1,4 @@
-import "components/Elements/Button.js"
-import Button
-
+import Button from "components/Elements/Button.js";
 const passProps = {
   children: "button",
   color: "linkedin",
@@ -46,13 +44,13 @@ Button.propTypes = {
     "pink",
   ]),
 };`;
-const description = "Social colors, large size and outline for the Button component. ";
+const description =
+  "Social colors, large size and outline for the Button component. ";
 
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Button"
-import Button
+import Button from "@notus-pro/react/Button";
 
 const props = "<<props-here>>";
 

@@ -1,11 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
-
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // components
 
 export default function CardBlogFullBg({
@@ -24,8 +20,12 @@ export default function CardBlogFullBg({
   };
   let body = (
     <div className="absolute text-left p-6 bottom-0">
-      <h6 className="text-xl leading-normal mb-0 text-white opacity-75">{subtitle}</h6>
-      <h5 className="text-2xl font-bold leading-tight mt-0 mb-2 text-white">{title}</h5>
+      <h6 className="text-xl leading-normal mb-0 text-white opacity-75">
+        {subtitle}
+      </h6>
+      <h5 className="text-2xl font-bold leading-tight mt-0 mb-2 text-white">
+        {title}
+      </h5>
     </div>
   );
   return (
@@ -53,7 +53,11 @@ export default function CardBlogFullBg({
             (rounded ? " rounded-lg" : "")
           }
         ></div>
-        {link && link.to ? <Link {...link}>{body}</Link> : <a {...link}>{body}</a>}
+        {link && link.to ? (
+          <Link {...link}>{body}</Link>
+        ) : (
+          <a {...link}>{body}</a>
+        )}
       </div>
     </>
   );

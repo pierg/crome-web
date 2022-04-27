@@ -1,8 +1,5 @@
-import "_texts/misc/cards/cardprofileskills.js"
-import "components/Cards/Misc/CardProfileSkills.js"
-import CardProfileSkills
-import passProps
-
+import CardProfileSkills from "components/Cards/Misc/CardProfileSkills.js";
+import passProps from "_texts/misc/cards/cardprofileskills.js";
 const props = `CardProfileSkills.defaultProps = {
   list: [],
   dropdown: {},
@@ -38,8 +35,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardProfileSkills"
-import CardProfileSkills
+import CardProfileSkills from "@notus-pro/react/CardProfileSkills";
 
 const props = ${JSON.stringify(passProps)};
 

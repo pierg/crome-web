@@ -1,8 +1,5 @@
-import "_texts/e-commerce/headers/headerimage.js"
-import "components/Headers/ECommerce/HeaderImage.js"
-import HeaderImage
-import passProps
-
+import HeaderImage from "components/Headers/ECommerce/HeaderImage.js";
+import passProps from "_texts/e-commerce/headers/headerimage.js";
 const props = `HeaderImage.defaultProps = {
   skew: {},
 };
@@ -17,8 +14,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderImage"
-import HeaderImage
+import HeaderImage from "@notus-pro/react/HeaderImage";
 
 const props = ${JSON.stringify(passProps)}
 

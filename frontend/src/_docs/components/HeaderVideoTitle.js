@@ -1,5 +1,4 @@
-import "react"
-import React
+import React from "react";
 
 // import Frameworks from "_docs/components/Frameworks2.js";
 //

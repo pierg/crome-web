@@ -1,32 +1,19 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // sections
 // components
-import "components/Cards/ECommerce/CardDetailSettingsUser.js"
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Headers/Auth/HeaderImageTitleSmallCenter.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import CardDetailSettingsUser
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import HeaderImageTitleSmallCenter from "components/Headers/Auth/HeaderImageTitleSmallCenter.js";
+import CardDetailSettingsUser from "components/Cards/ECommerce/CardDetailSettingsUser.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
 // texts as props
-import "_texts/e-commerce/cards/carddetailsettingsuser.js"
-import "_texts/e-commerce/headers/headerimagetitlesmallcentersettings.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import carddetailsettingsuser
-import footersmall
-import headerimagetitlesmallcentersettings
-import navbarlinkslanding1
-import prefooterlarge
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import headerimagetitlesmallcentersettings from "_texts/e-commerce/headers/headerimagetitlesmallcentersettings.js";
+import carddetailsettingsuser from "_texts/e-commerce/cards/carddetailsettingsuser.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 export default function Settings() {
   const location = useLocation();

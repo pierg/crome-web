@@ -1,49 +1,27 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // sections
-import "components/Sections/Blog/Heroes/Hero6.js"
-import "components/Sections/ECommerce/Pricing/Pricing2.js"
-import "components/Sections/ECommerce/Projects/Projects1.js"
-import "components/Sections/Presentation/ContactUs/ContactUs2.js"
-import "components/Sections/Presentation/Heroes/Hero5.js"
-import ContactUs2
-import Hero5
-import Hero6
-import Pricing2
-import Projects1
-
+import Pricing2 from "components/Sections/ECommerce/Pricing/Pricing2.js";
+import Hero5 from "components/Sections/Presentation/Heroes/Hero5.js";
+import ContactUs2 from "components/Sections/Presentation/ContactUs/ContactUs2.js";
+import Projects1 from "components/Sections/ECommerce/Projects/Projects1.js";
+import Hero6 from "components/Sections/Blog/Heroes/Hero6.js";
 // components
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Headers/ECommerce/HeaderBlogPost.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import FooterSmall
-import HeaderBlogPost
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import HeaderBlogPost from "components/Headers/ECommerce/HeaderBlogPost.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
 // texts as props
-import "_texts/e-commerce/headers/headerblogpost.js"
-import "_texts/e-commerce/heroes/hero6pricing.js"
-import "_texts/e-commerce/navbars/navbarlinkspricing.js"
-import "_texts/e-commerce/pricing/pricing2.js"
-import "_texts/e-commerce/projects/projects1.js"
-import "_texts/presentation/contactus/contactus2.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/heroes/hero5.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import contactus2
-import footersmall
-import headerblogpost
-import hero5
-import hero6pricing
-import navbarlinkspricing
-import prefooterlarge
-import pricing2
-import projects1
+import navbarlinkspricing from "_texts/e-commerce/navbars/navbarlinkspricing.js";
+import headerblogpost from "_texts/e-commerce/headers/headerblogpost.js";
+import hero5 from "_texts/presentation/heroes/hero5.js";
+import pricing2 from "_texts/e-commerce/pricing/pricing2.js";
+import contactus2 from "_texts/presentation/contactus/contactus2.js";
+import projects1 from "_texts/e-commerce/projects/projects1.js";
+import hero6pricing from "_texts/e-commerce/heroes/hero6pricing.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 export default function Pricing() {
   const location = useLocation();

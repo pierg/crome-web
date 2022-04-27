@@ -1,5 +1,4 @@
-import "_texts/e-commerce/mediaplayers/mediaplayertestimonial.js"
-import mediaplayertestimonial
+import mediaplayertestimonial from "_texts/e-commerce/mediaplayers/mediaplayertestimonial.js";
 
 const textProps = {
   heading2: {

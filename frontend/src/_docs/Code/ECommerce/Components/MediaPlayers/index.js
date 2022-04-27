@@ -1,9 +1,6 @@
-import "./MediaPlayerImageLeftRightButtons.js"
-import "./MediaPlayerTeamInfo.js"
-import "./MediaPlayerTestimonial.js"
-import MediaPlayerImageLeftRightButtons
-import MediaPlayerTeamInfo
-import MediaPlayerTestimonial
+import MediaPlayerImageLeftRightButtons from "./MediaPlayerImageLeftRightButtons.js";
+import MediaPlayerTestimonial from "./MediaPlayerTestimonial.js";
+import MediaPlayerTeamInfo from "./MediaPlayerTeamInfo.js";
 
 const componentsArray = [
   MediaPlayerImageLeftRightButtons,

@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import Button
+import Button from "../../../components/Elements/Button.js";
 
 export default function CardInfoWithButton({
   icon,
@@ -54,8 +51,12 @@ export default function CardInfoWithButton({
           >
             <i className={icon + " text-xl"}></i>
           </div>
-          <h6 className={textColor[color] + " text-xl font-bold mt-0 mb-0"}>{title}</h6>
-          <p className="mt-2 mb-4 leading-relaxed text-blueGray-500">{description}</p>
+          <h6 className={textColor[color] + " text-xl font-bold mt-0 mb-0"}>
+            {title}
+          </h6>
+          <p className="mt-2 mb-4 leading-relaxed text-blueGray-500">
+            {description}
+          </p>
           <Button {...button} />
         </div>
       </div>

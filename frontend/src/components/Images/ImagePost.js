@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function ImagePost({ src, size }) {
   let imgClasses = {
@@ -11,7 +9,11 @@ export default function ImagePost({ src, size }) {
   };
   return (
     <>
-      <img src={src} alt="..." className={"rounded-lg shadow-lg " + imgClasses[size]} />
+      <img
+        src={src}
+        alt="..."
+        className={"rounded-lg shadow-lg " + imgClasses[size]}
+      />
     </>
   );
 }

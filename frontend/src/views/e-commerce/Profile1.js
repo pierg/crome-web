@@ -1,27 +1,16 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // components
-import "components/Cards/ECommerce/CardProfileFullPage.js"
-import "components/Footers/Landing/FooterLarge.js"
-import "components/Headers/ECommerce/HeaderImage.js"
-import "components/Navbars/NavbarLinks.js"
-import CardProfileFullPage
-import FooterLarge
-import HeaderImage
-import NavbarLinks
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import HeaderImage from "components/Headers/ECommerce/HeaderImage.js";
+import CardProfileFullPage from "components/Cards/ECommerce/CardProfileFullPage.js";
+import FooterLarge from "components/Footers/Landing/FooterLarge.js";
 // texts as props
-import "_texts/e-commerce/cards/cardprofilefullpage.js"
-import "_texts/e-commerce/headers/headerimage.js"
-import "_texts/presentation/footers/footerlarge.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import cardprofilefullpage
-import footerlarge
-import headerimage
-import navbarlinkslanding1
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import headerimage from "_texts/e-commerce/headers/headerimage.js";
+import cardprofilefullpage from "_texts/e-commerce/cards/cardprofilefullpage.js";
+import footerlarge from "_texts/presentation/footers/footerlarge.js";
 
 export default function Profile1() {
   const location = useLocation();

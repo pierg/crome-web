@@ -1,15 +1,18 @@
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // components
-import "../../../components/Elements/Badge.js"
-import Badge
+import Badge from "../../../components/Elements/Badge.js";
 
-export default function CardProductPlain({ type, image, title, price, badge, link }) {
+export default function CardProductPlain({
+  type,
+  image,
+  title,
+  price,
+  badge,
+  link,
+}) {
   const types = {
     border: "bg-white shadow-lg rounded",
     borderless: "bg-transparent",
@@ -17,7 +20,9 @@ export default function CardProductPlain({ type, image, title, price, badge, lin
   return (
     <>
       <div
-        className={"relative flex flex-col min-w-0 break-words w-full " + types[type]}
+        className={
+          "relative flex flex-col min-w-0 break-words w-full " + types[type]
+        }
       >
         <div>
           <div className="h-8 text-center">{badge && <Badge {...badge} />}</div>
@@ -40,7 +45,9 @@ export default function CardProductPlain({ type, image, title, price, badge, lin
               <span className="text-blueGray-700 text-lg line-through mr-2">
                 {price.old}
               </span>
-              <span className="text-red-500 font-semibold text-lg">{price.new}</span>
+              <span className="text-red-500 font-semibold text-lg">
+                {price.new}
+              </span>
             </>
           ) : (
             <span className="text-blueGray-700 text-lg">{price}</span>

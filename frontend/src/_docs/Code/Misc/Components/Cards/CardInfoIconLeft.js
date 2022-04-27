@@ -1,8 +1,5 @@
-import "_texts/misc/cards/cardinfoiconleft.js"
-import "components/Cards/Misc/CardInfoIconLeft.js"
-import CardInfoIconLeft
-import passProps
-
+import CardInfoIconLeft from "components/Cards/Misc/CardInfoIconLeft.js";
+import passProps from "_texts/misc/cards/cardinfoiconleft.js";
 const props = `CardInfoIconLeft.defaultProps = {
   color: "blueGray",
   link: {},
@@ -43,8 +40,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardInfoIconLeft"
-import CardInfoIconLeft
+import CardInfoIconLeft from "@notus-pro/react/CardInfoIconLeft";
 
 const props = ${JSON.stringify(passProps)};
 

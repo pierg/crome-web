@@ -1,5 +1,4 @@
-import "_texts/misc/content/contact.js"
-import contact
+import contact from "_texts/misc/content/contact.js";
 
 const textProps = {
   input: {

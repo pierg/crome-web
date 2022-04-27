@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/InfoAreas/Misc/InfoAreaIconTitle.js"
-import "../../../components/MediaPlayers/MediaPlayerImageOnly.js"
-import InfoAreaIconTitle
-import MediaPlayerImageOnly
+import InfoAreaIconTitle from "../../../components/InfoAreas/Misc/InfoAreaIconTitle.js";
+import MediaPlayerImageOnly from "../../../components/MediaPlayers/MediaPlayerImageOnly.js";
 
 export default function HeaderLeftTitleRightImagePlayer({
   color,

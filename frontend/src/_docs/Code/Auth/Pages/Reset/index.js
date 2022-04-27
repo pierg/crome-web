@@ -1,5 +1,4 @@
-import "./Reset"
-import Reset
+import Reset from "./Reset";
 
 const componentsArray = [Reset];
 export default componentsArray;

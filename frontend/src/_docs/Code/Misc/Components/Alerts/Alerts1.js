@@ -1,6 +1,4 @@
-import "components/Elements/Alert.js"
-import Alert
-
+import Alert from "components/Elements/Alert.js";
 const passProps = {
   children: "Alert text here",
   color: "pink",
@@ -30,8 +28,7 @@ const description = "Colors for the Alert component. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Alert"
-import Alert
+import Alert from "@notus-pro/react/Alert";
 
 const props = "<<props-here>>";
 

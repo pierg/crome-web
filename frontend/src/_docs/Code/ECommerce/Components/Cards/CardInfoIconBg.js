@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/cardinfoiconbg.js"
-import "components/Cards/ECommerce/CardInfoIconBg.js"
-import CardInfoIconBg
-import passProps
-
+import CardInfoIconBg from "components/Cards/ECommerce/CardInfoIconBg.js";
+import passProps from "_texts/e-commerce/cards/cardinfoiconbg.js";
 const props = `CardInfoIconBg.defaultProps = {
   button: {},
   color: "blueGray",
@@ -35,8 +32,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardInfoIconBg"
-import CardInfoIconBg
+import CardInfoIconBg from "@notus-pro/react/CardInfoIconBg";
 
 const props = "<<props-here>>";
 

@@ -1,20 +1,20 @@
-import "_texts/presentation/heroes/hero4.js"
-import "components/Sections/Presentation/Heroes/Hero4.js"
-import Hero4
-import passProps
-
+import Hero4 from "components/Sections/Presentation/Heroes/Hero4.js";
+import passProps from "_texts/presentation/heroes/hero4.js";
 const dependencies = [
   {
     name: "CardInfoFullColor",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfofullcolor",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfofullcolor",
   },
   {
     name: "CardInfoImage",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfoimage",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardinfoimage",
   },
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
 ];
 const props = `Hero4.defaultProps = {
@@ -43,8 +43,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Hero4"
-import Hero4
+import Hero4 from "@notus-pro/react/Hero4";
 
 const props = ${JSON.stringify(passProps)};
 

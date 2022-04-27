@@ -1,15 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import "@popperjs/core"
-import "classnames"
-import "prop-types"
-import "react"
-import "react-router-dom"
-import classnames
-import PropTypes
-import React
-import { createPopper }
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { createPopper } from "@popperjs/core";
+import classnames from "classnames";
 
 const DropdownCollapseNavbar = ({ text, items, navColor }) => {
   // dropdown props

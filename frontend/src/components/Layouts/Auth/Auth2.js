@@ -1,17 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Footers/Landing/FooterSmall.js"
-import "../../../components/Headers/Auth/HeaderImageTitleSmallCenter.js"
-import "../../../components/Navbars/NavbarLinks.js"
-import "../../../components/PreFooters/PreFooterLarge.js"
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
+import NavbarLinks from "../../../components/Navbars/NavbarLinks.js";
+import HeaderImageTitleSmallCenter from "../../../components/Headers/Auth/HeaderImageTitleSmallCenter.js";
+import PreFooterLarge from "../../../components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "../../../components/Footers/Landing/FooterSmall.js";
 
 export default function Auth2({ children, footer, navbar, header, prefooter }) {
   return (
@@ -29,8 +22,8 @@ export default function Auth2({ children, footer, navbar, header, prefooter }) {
               </h1>
               <p>
                 You can add one of the width utility classes to make it a little
-                smaller, and also, you can add one of the negative margin utility
-                classes to make it render where the skew starts
+                smaller, and also, you can add one of the negative margin
+                utility classes to make it render where the skew starts
               </p>
             </div>
           )}

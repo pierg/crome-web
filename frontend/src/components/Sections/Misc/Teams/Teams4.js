@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardProfileSkills.js"
-import "../../../../components/Headings/Heading2.js"
-import CardProfileSkills
-import Heading2
+import Heading2 from "../../../../components/Headings/Heading2.js";
+import CardProfileSkills from "../../../../components/Cards/Misc/CardProfileSkills.js";
 
 export default function Teams4({ heading2, cards }) {
   return (

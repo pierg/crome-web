@@ -1,12 +1,10 @@
-import "_texts/misc/teams/teams6.js"
-import "components/Sections/Misc/Teams/Teams6.js"
-import passProps
-import Teams6
-
+import Teams6 from "components/Sections/Misc/Teams/Teams6.js";
+import passProps from "_texts/misc/teams/teams6.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "CardProfileActions",
@@ -44,8 +42,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Teams6"
-import Teams6
+import Teams6 from "@notus-pro/react/Teams6";
 
 const props = ${JSON.stringify(passProps)}
 

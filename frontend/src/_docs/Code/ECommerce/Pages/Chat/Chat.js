@@ -1,35 +1,21 @@
-import "_texts/e-commerce/cards/cardchatdiscussion.js"
-import "_texts/e-commerce/cards/cardchatpeople.js"
-import "_texts/e-commerce/headers/headerimagetitlesmallcenterchat.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "views/e-commerce/Chat.js"
-import cardchatdiscussion
-import cardchatpeople
-import Chat
-import footersmall
-import headerimagetitlesmallcenterchat
-import navbarlinkslanding2
-import prefooterlarge
-
+import Chat from "views/e-commerce/Chat.js";
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import headerimagetitlesmallcenterchat from "_texts/e-commerce/headers/headerimagetitlesmallcenterchat.js";
+import cardchatpeople from "_texts/e-commerce/cards/cardchatpeople.js";
+import cardchatdiscussion from "_texts/e-commerce/cards/cardchatdiscussion.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardChatDiscussion"
-import "@notus-pro/react/CardChatPeople"
-import "@notus-pro/react/FooterSmall"
-import "@notus-pro/react/HeaderImageTitleSmallCenter"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import CardChatDiscussion
-import CardChatPeople
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import HeaderImageTitleSmallCenter from "@notus-pro/react/HeaderImageTitleSmallCenter";
+import CardChatPeople from "@notus-pro/react/CardChatPeople";
+import CardChatDiscussion from "@notus-pro/react/CardChatDiscussion";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall";
 
 // texts as props
 const navbarlinkslanding2 = ${JSON.stringify(navbarlinkslanding2)};

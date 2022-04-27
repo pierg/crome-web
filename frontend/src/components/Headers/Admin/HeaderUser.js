@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import Button
+import Button from "../../../components/Elements/Button.js";
 
 export default function HeaderUser({
   image,
@@ -32,7 +29,8 @@ export default function HeaderUser({
     "amber-gradient": "bg-gradient-to-r from-amber-800 to-amber-900",
     "emerald-gradient": "bg-gradient-to-r from-emerald-800 to-emerald-900",
     "teal-gradient": "bg-gradient-to-r from-teal-800 to-teal-900",
-    "lightBlue-gradient": "bg-gradient-to-r from-lightBlue-800 to-lightBlue-900",
+    "lightBlue-gradient":
+      "bg-gradient-to-r from-lightBlue-800 to-lightBlue-900",
     "indigo-gradient": "bg-gradient-to-r from-indigo-800 to-indigo-900",
     "purple-gradient": "bg-gradient-to-r from-purple-800 to-purple-900",
     "pink-gradient": "bg-gradient-to-r from-pink-800 to-pink-900",
@@ -53,7 +51,9 @@ export default function HeaderUser({
         <div className="md:px-8 px-4 items-center flex w-full mx-auto">
           <div className="flex flex-wrap -mx-4">
             <div className="relative w-full px-4 md:w-10/12 lg:w-7/12">
-              <h1 className="font-semibold leading-6 text-5xl mb-4 mt-0">{title}</h1>
+              <h1 className="font-semibold leading-6 text-5xl mb-4 mt-0">
+                {title}
+              </h1>
               <p className="mt-0 mb-12">{description}</p>
               <Button {...button} />
             </div>

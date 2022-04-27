@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
 
@@ -27,11 +25,17 @@ export default function CardProfileSkills({
   return (
     <>
       <div className="shadow-lg rounded-lg relative flex flex-col min-w-0 break-words bg-white w-full mb-6">
-        <img className="w-full flex-shrink-0 rounded-lg" src={image} alt="..." />
+        <img
+          className="w-full flex-shrink-0 rounded-lg"
+          src={image}
+          alt="..."
+        />
 
         <div className="absolute w-full p-4 bottom-0">
           <div className="bg-white rounded p-6 w-full">
-            <h3 className="text-2xl font-bold leading-tight mt-0 mb-1">{title}</h3>
+            <h3 className="text-2xl font-bold leading-tight mt-0 mb-1">
+              {title}
+            </h3>
             <p className="text-lg font-normal leading-normal mb-4 text-blueGray-400">
               {description}
             </p>

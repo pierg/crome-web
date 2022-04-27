@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function CardInfoIconLeft({
   icon,
@@ -132,7 +129,10 @@ export default function CardInfoIconLeft({
             />
           )}
           {link && link.to === undefined && (
-            <a {...link} className={textColor[color + (inverted ? "-inverted" : "")]} />
+            <a
+              {...link}
+              className={textColor[color + (inverted ? "-inverted" : "")]}
+            />
           )}
         </div>
       </div>

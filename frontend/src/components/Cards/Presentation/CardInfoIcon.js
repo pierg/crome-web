@@ -1,8 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
 
 export default function CardInfoIcon({
@@ -26,15 +23,19 @@ export default function CardInfoIcon({
     "blueGray-gradient":
       "bg-gradient-to-b from-blueGray-400 to-blueGray-600 bg-blueGray-400",
     "red-gradient": "bg-gradient-to-b from-red-400 to-red-600 bg-red-400",
-    "orange-gradient": "bg-gradient-to-b from-orange-400 to-orange-600 bg-orange-400",
-    "amber-gradient": "bg-gradient-to-b from-amber-400 to-amber-600 bg-amber-400",
+    "orange-gradient":
+      "bg-gradient-to-b from-orange-400 to-orange-600 bg-orange-400",
+    "amber-gradient":
+      "bg-gradient-to-b from-amber-400 to-amber-600 bg-amber-400",
     "emerald-gradient":
       "bg-gradient-to-b from-emerald-400 to-emerald-600 bg-emerald-400",
     "teal-gradient": "bg-gradient-to-b from-teal-400 to-teal-600 bg-teal-400",
     "lightBlue-gradient":
       "bg-gradient-to-b from-lightBlue-400 to-lightBlue-600 bg-lightBlue-400",
-    "indigo-gradient": "bg-gradient-to-b from-indigo-400 to-indigo-600 bg-indigo-400",
-    "purple-gradient": "bg-gradient-to-b from-purple-400 to-purple-600 bg-purple-400",
+    "indigo-gradient":
+      "bg-gradient-to-b from-indigo-400 to-indigo-600 bg-indigo-400",
+    "purple-gradient":
+      "bg-gradient-to-b from-purple-400 to-purple-600 bg-purple-400",
     "pink-gradient": "bg-gradient-to-b from-pink-400 to-pink-600 bg-pink-400",
   };
   const gradientText = gradient ? "-gradient" : "";

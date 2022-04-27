@@ -1,12 +1,10 @@
-import "_texts/misc/cards/cardprofilefulldetails.js"
-import "components/Cards/Misc/CardProfileFullDetails.js"
-import CardProfileFullDetails
-import passProps
-
+import CardProfileFullDetails from "components/Cards/Misc/CardProfileFullDetails.js";
+import passProps from "_texts/misc/cards/cardprofilefulldetails.js";
 const dependencies = [
   {
     name: "Images Overlap",
-    link: "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
+    link:
+      "/components/misc/components/images#misc-id-misc-id-components-imagesoverlap",
   },
   {
     name: "Button",
@@ -46,8 +44,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardProfileFullDetails"
-import CardProfileFullDetails
+import CardProfileFullDetails from "@notus-pro/react/CardProfileFullDetails";
 
 const props = ${JSON.stringify(passProps)};
 

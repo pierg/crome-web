@@ -1,6 +1,4 @@
-import "components/Navbars/NavbarCollapse.js"
-import NavbarCollapse
-
+import NavbarCollapse from "components/Navbars/NavbarCollapse.js";
 const passProps = {
   children: "Creative Tim",
   breakpoint: "md",
@@ -22,8 +20,7 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/NavbarCollapse"
-import NavbarCollapse
+import NavbarCollapse from "@notus-pro/react/NavbarCollapse";
 
 const props = ${JSON.stringify(passProps)};
 

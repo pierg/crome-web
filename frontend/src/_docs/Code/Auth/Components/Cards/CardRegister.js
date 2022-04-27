@@ -1,8 +1,5 @@
-import "_texts/auth/cards/cardregister.js"
-import "components/Cards/Auth/CardRegister.js"
-import CardRegister
-import passProps
-
+import CardRegister from "components/Cards/Auth/CardRegister.js";
+import passProps from "_texts/auth/cards/cardregister.js";
 const props = `CardRegister.defaultProps = {
   inputs: [],
   button: {}
@@ -56,8 +53,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardRegister"
-import CardRegister
+import CardRegister from "@notus-pro/react/CardRegister";
 
 const props = ${JSON.stringify(passProps)}
 

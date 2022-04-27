@@ -1,14 +1,10 @@
 /*eslint-disable*/
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Presentation/CardPricing.js"
-import "../../../../components/Elements/Button.js"
-import Button
-import CardPricing
+import CardPricing from "../../../../components/Cards/Presentation/CardPricing.js";
+import Button from "../../../../components/Elements/Button.js";
 
 export default function Pricing1({
   title,

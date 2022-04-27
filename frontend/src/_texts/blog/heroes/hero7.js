@@ -1,5 +1,4 @@
-import "_texts/blog/prefooters/prefootersmall.js"
-import prefooter
+import prefooter from "_texts/blog/prefooters/prefootersmall.js";
 
 const textProps = {
   heading3: {

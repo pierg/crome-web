@@ -1,9 +1,13 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
-export default function CardProfileFull({ image, title, description, list, dropdown }) {
+export default function CardProfileFull({
+  image,
+  title,
+  description,
+  list,
+  dropdown,
+}) {
   let colorClass = {
     blueGray: "text-blueGray-500 bg-blueGray-200",
     red: "text-red-500 bg-red-200",
@@ -20,7 +24,11 @@ export default function CardProfileFull({ image, title, description, list, dropd
     <>
       <div className="shadow-lg rounded-lg relative flex flex-col min-w-0 break-words bg-white w-full mb-6">
         <div className="relative">
-          <img alt="..." className="w-full flex-shrink-0 rounded-t-lg" src={image} />
+          <img
+            alt="..."
+            className="w-full flex-shrink-0 rounded-t-lg"
+            src={image}
+          />
           <svg
             preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg"

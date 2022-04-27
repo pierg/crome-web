@@ -1,7 +1,8 @@
-import "./HeaderLeftTitleRightImage.js"
-import "./HeaderLeftTitleRightImagePlayer.js"
-import HeaderLeftTitleRightImage
-import HeaderLeftTitleRightImagePlayer
+import HeaderLeftTitleRightImage from "./HeaderLeftTitleRightImage.js";
+import HeaderLeftTitleRightImagePlayer from "./HeaderLeftTitleRightImagePlayer.js";
 
-const componentsArray = [HeaderLeftTitleRightImage, HeaderLeftTitleRightImagePlayer];
+const componentsArray = [
+  HeaderLeftTitleRightImage,
+  HeaderLeftTitleRightImagePlayer,
+];
 export default componentsArray;

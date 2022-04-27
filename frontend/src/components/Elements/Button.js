@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 const Button = React.forwardRef(
   ({ outline, size, color, children, fullWidth, ...rest }, ref) => {
@@ -67,14 +65,16 @@ const Button = React.forwardRef(
         "text-blueGray-800 bg-blueGray-200 border-blueGray-200 active:bg-blueGray-300 active:border-blueGray-300",
       "light-outline":
         "text-blueGray-200 border-blueGray-200 active:bg-blueGray-300 active:border-blueGray-300 active:text-blueGray-800",
-      dark: "text-white bg-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900",
+      dark:
+        "text-white bg-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900",
       "dark-outline":
         "text-blueGray-800 border-blueGray-800 active:bg-blueGray-900 active:border-blueGray-900 active:text-white",
       blueGray:
         "text-white bg-blueGray-500 border-blueGray-500 active:bg-blueGray-600 active:border-blueGray-600",
       "blueGray-outline":
         "text-blueGray-500 border-blueGray-500 active:bg-blueGray-600 active:border-blueGray-600 active:text-white",
-      red: "text-white bg-red-500 border-red-500 active:bg-red-600 active:border-red-600",
+      red:
+        "text-white bg-red-500 border-red-500 active:bg-red-600 active:border-red-600",
       "red-outline":
         "text-red-500 border-red-500 active:bg-red-600 active:border-red-600 active:text-white",
       orange:
@@ -89,7 +89,8 @@ const Button = React.forwardRef(
         "text-white bg-emerald-500 border-emerald-500 active:bg-emerald-600 active:border-emerald-600",
       "emerald-outline":
         "text-emerald-500 border-emerald-500 active:bg-emerald-600 active:border-emerald-600 active:text-white",
-      teal: "text-white bg-teal-500 border-teal-500 active:bg-teal-600 active:border-teal-600",
+      teal:
+        "text-white bg-teal-500 border-teal-500 active:bg-teal-600 active:border-teal-600",
       "teal-outline":
         "text-teal-500 border-teal-500 active:bg-teal-600 active:border-teal-600 active:text-white",
       lightBlue:
@@ -104,7 +105,8 @@ const Button = React.forwardRef(
         "text-white bg-purple-500 border-purple-500 active:bg-purple-600 active:border-purple-600",
       "purple-outline":
         "text-purple-500 border-purple-500 active:bg-purple-600 active:border-purple-600 active:text-white",
-      pink: "text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600",
+      pink:
+        "text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600",
       "pink-outline":
         "text-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600 active:text-white",
     };

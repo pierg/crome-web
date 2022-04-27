@@ -1,9 +1,6 @@
-import "./HeaderImageTitleCenter.js"
-import "./HeaderNewsletterIllustration.js"
-import "./HeaderVideoTitle.js"
-import HeaderImageTitleCenter
-import HeaderNewsletterIllustration
-import HeaderVideoTitle
+import HeaderImageTitleCenter from "./HeaderImageTitleCenter.js";
+import HeaderVideoTitle from "./HeaderVideoTitle.js";
+import HeaderNewsletterIllustration from "./HeaderNewsletterIllustration.js";
 
 const componentsArray = [
   HeaderImageTitleCenter,

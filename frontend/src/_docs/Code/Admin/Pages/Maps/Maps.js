@@ -1,33 +1,20 @@
-import "_texts/admin/footers/footeradmin.js"
-import "_texts/admin/headers/headerstatcards.js"
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "_texts/admin/sidebar/sidebar.js"
-import "_texts/presentation/maps/map.js"
-import "views/admin/Maps.js"
-import footeradmin
-import headerstatcards
-import map
-import Maps
-import navbarsearchusersettings2
-import sidebar
-
+import Maps from "views/admin/Maps.js";
+import sidebar from "_texts/admin/sidebar/sidebar.js";
+import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
+import headerstatcards from "_texts/admin/headers/headerstatcards.js";
+import map from "_texts/presentation/maps/map.js";
+import footeradmin from "_texts/admin/footers/footeradmin.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Card"
-import "@notus-pro/react/FooterAdmin"
-import "@notus-pro/react/HeaderStatCards"
-import "@notus-pro/react/Map"
-import "@notus-pro/react/NavbarSearchUser"
-import "@notus-pro/react/Sidebar"
-import Card
-import FooterAdmin
-import HeaderStatCards
-import Map
-import NavbarSearchUser
-import Sidebar
+import Sidebar from "@notus-pro/react/Sidebar";
+import NavbarSearchUser from "@notus-pro/react/NavbarSearchUser";
+import HeaderStatCards from "@notus-pro/react/HeaderStatCards";
+import Card from "@notus-pro/react/Card";
+import Map from "@notus-pro/react/Map";
+import FooterAdmin from "@notus-pro/react/FooterAdmin";
 
 // texts as props
 const sidebar = ${JSON.stringify(sidebar)};

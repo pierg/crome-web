@@ -1,5 +1,4 @@
-import "./Pagination.js"
-import Pagination
+import Pagination from "./Pagination.js";
 
 const componentsArray = [Pagination];
 export default componentsArray;

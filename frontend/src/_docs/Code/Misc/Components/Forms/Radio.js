@@ -1,6 +1,4 @@
-import "components/Elements/Radio.js"
-import Radio
-
+import Radio from "components/Elements/Radio.js";
 const passProps = {
   label: "My new radio",
   name: "docs-radio-1",
@@ -16,8 +14,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Radio"
-import Radio
+import Radio from "@notus-pro/react/Radio";
 
 const props = ${JSON.stringify(passProps)}
 

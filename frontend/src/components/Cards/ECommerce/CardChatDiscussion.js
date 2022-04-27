@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Content/Message.js"
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Input.js"
-import Button
-import Input
-import Message
+import Input from "../../../components/Elements/Input.js";
+import Button from "../../../components/Elements/Button.js";
+import Message from "../../../components/Content/Message.js";
 
 export default function CardChatDiscussion({
   image,
@@ -25,7 +20,11 @@ export default function CardChatDiscussion({
         <div className="bg-blueGray-800 inline-block rounded-t-lg px-5 py-3">
           <div className="py-4 flex flex-row justify-between">
             <div className="flex items-center">
-              <img src={image} className="rounded-full mr-4 max-w-64-px" alt="..." />
+              <img
+                src={image}
+                className="rounded-full mr-4 max-w-64-px"
+                alt="..."
+              />
               <div className="text-left flex-1">
                 <div className="justify-between items-center">
                   <h5 className="text-2xl text-white font-semibold leading-tight">

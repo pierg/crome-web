@@ -1,23 +1,14 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // sections
-import "components/Sections/Error/Error1.js"
-import Error1
-
+import Error1 from "components/Sections/Error/Error1.js";
 // components
-import "components/Navbars/NavbarLinks.js"
-import NavbarLinks
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
 // texts for sections as props
-import "_texts/error/error1error404.js"
-import error1error404
-
+import error1error404 from "_texts/error/error1error404.js";
 // texts for components as props
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import navbarlinkslanding2
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
 
 export default function Error404() {
   const location = useLocation();

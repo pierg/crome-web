@@ -1,8 +1,5 @@
-import "_texts/presentation/cards/cardcontactustitle.js"
-import "components/Cards/Presentation/CardContactUsTitle.js"
-import CardContactUsTitle
-import passProps
-
+import CardContactUsTitle from "components/Cards/Presentation/CardContactUsTitle.js";
+import passProps from "_texts/presentation/cards/cardcontactustitle.js";
 const props = `CardContactUsTitle.defaultProps = {
   inputs: [],
 };
@@ -34,8 +31,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardContactUsTitle"
-import CardContactUsTitle
+import CardContactUsTitle from "@notus-pro/react/CardContactUsTitle";
 
 const props = ${JSON.stringify(passProps)}
 

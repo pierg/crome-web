@@ -1,8 +1,5 @@
-import "_texts/e-commerce/mediaplayers/mediaplayertestimonial.js"
-import "components/MediaPlayers/MediaPlayerTestimonial.js"
-import MediaPlayerTestimonial
-import passProps
-
+import MediaPlayerTestimonial from "components/MediaPlayers/MediaPlayerTestimonial.js";
+import passProps from "_texts/e-commerce/mediaplayers/mediaplayertestimonial.js";
 const props = `MediaPlayerTestimonial.defaultProps = {
   defaultOpened: 0,
   items: [],
@@ -28,8 +25,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/MediaPlayerTestimonial"
-import MediaPlayerTestimonial
+import MediaPlayerTestimonial from "@notus-pro/react/MediaPlayerTestimonial";
 
 const props = ${JSON.stringify(passProps)}
 

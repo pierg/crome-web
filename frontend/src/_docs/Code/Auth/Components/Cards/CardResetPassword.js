@@ -1,8 +1,5 @@
-import "_texts/auth/cards/cardresetpassword.js"
-import "components/Cards/Auth/CardResetPassword.js"
-import CardResetPassword
-import passProps
-
+import CardResetPassword from "components/Cards/Auth/CardResetPassword.js";
+import passProps from "_texts/auth/cards/cardresetpassword.js";
 const props = `CardResetPassword.defaultProps = {
   input: {},
   button: {}
@@ -24,8 +21,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardResetPassword"
-import CardResetPassword
+import CardResetPassword from "@notus-pro/react/CardResetPassword";
 
 const props = ${JSON.stringify(passProps)}
 

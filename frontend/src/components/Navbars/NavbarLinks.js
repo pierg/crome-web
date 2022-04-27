@@ -1,16 +1,11 @@
 /*eslint-disable*/
-import "classnames"
-import "prop-types"
-import "react"
-import "react-router-dom"
-import classnames
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import classnames from "classnames";
 
 // components
-import "../../components/Dropdowns/DropdownNavbar.js"
-import DropdownNavbar
+import DropdownNavbar from "../../components/Dropdowns/DropdownNavbar.js";
 
 export default function NavbarLinks({
   leftLinks,
@@ -48,18 +43,18 @@ export default function NavbarLinks({
   };
   let brand = (
     <>
-      <img src={logoImage} className="rounded-full mr-2" style={{ width: "30px" }} />
+      <img
+        src={logoImage}
+        className="rounded-full mr-2"
+        style={{ width: "30px" }}
+      />
       <span>{logoText}</span>
     </>
   );
   const navBg = {
     dark: "bg-blueGray-800 shadow-md",
     light: "bg-blueGray-200 shadow-md",
-    transparent:
-      "lg:bg-transparent " +
-      {
-        /*bg-white"*/
-      },
+    transparent: "lg:bg-transparent bg-white",
     white: "bg-white shadow-md",
     black: "bg-black shadow-md",
     blueGray: "bg-blueGray-500 shadow-md",
@@ -229,7 +224,9 @@ export default function NavbarLinks({
                           linkColors[color]
                         }
                       ></i>
-                      <span className="lg:hidden lg:ml-0 ml-2">{prop.text}</span>
+                      <span className="lg:hidden lg:ml-0 ml-2">
+                        {prop.text}
+                      </span>
                     </a>
                   </li>
                 );
@@ -286,7 +283,13 @@ NavbarLinks.propTypes = {
   socials: PropTypes.arrayOf(
     // this will generate an anchor with target blank to the given link
     PropTypes.shape({
-      icon: PropTypes.oneOf(["facebook", "twitter", "instagram", "dribbble", "github"]),
+      icon: PropTypes.oneOf([
+        "facebook",
+        "twitter",
+        "instagram",
+        "dribbble",
+        "github",
+      ]),
       link: PropTypes.string,
       // this will be visible only on mobile devices
       text: PropTypes.string,

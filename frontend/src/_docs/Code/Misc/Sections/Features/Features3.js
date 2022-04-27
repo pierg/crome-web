@@ -1,16 +1,15 @@
-import "_texts/misc/features/features3.js"
-import "components/Sections/Misc/Features/Features3.js"
-import Features3
-import passProps
-
+import Features3 from "components/Sections/Misc/Features/Features3.js";
+import passProps from "_texts/misc/features/features3.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "InfoAreaIconTitleList",
-    link: "/components/misc/components/info-areas#misc-id-misc-id-components-infoareaicontitlelist",
+    link:
+      "/components/misc/components/info-areas#misc-id-misc-id-components-infoareaicontitlelist",
   },
 ];
 const props = `Features3.defaultProps = {
@@ -27,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Features3"
-import Features3
+import Features3 from "@notus-pro/react/Features3";
 
 const props = ${JSON.stringify(passProps)};
 

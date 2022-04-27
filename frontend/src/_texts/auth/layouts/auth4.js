@@ -1,9 +1,6 @@
-import "_texts/auth/footers/footersmallreset.js"
-import "_texts/auth/prefooters/prefooterlargereset.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import footersmallreset
-import navbarlinkslanding1
-import prefooterlargereset
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import prefooterlargereset from "_texts/auth/prefooters/prefooterlargereset.js";
+import footersmallreset from "_texts/auth/footers/footersmallreset.js";
 
 const textProps = {
   image: require("assets/img/illustrations/register_bg.png").default,

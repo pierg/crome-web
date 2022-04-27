@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
 
@@ -42,7 +40,9 @@ export default function InfoAreaIconTitleList({
           >
             <i className={icon}></i>
           </div>
-          <h4 className="text-2xl font-semibold leading-tight mt-0 mb-2">{title}</h4>
+          <h4 className="text-2xl font-semibold leading-tight mt-0 mb-2">
+            {title}
+          </h4>
           {newDescription.map((prop, key) => {
             return (
               <p className="mb-4 text-blueGray-500" key={key}>
@@ -54,7 +54,9 @@ export default function InfoAreaIconTitleList({
             {list.map((prop, key) => (
               <li key={key} className="py-2">
                 <div className="flex items-center">
-                  <i className={"mr-2 text-sm text-blueGray-500 " + prop.icon}></i>
+                  <i
+                    className={"mr-2 text-sm text-blueGray-500 " + prop.icon}
+                  ></i>
                   <p className="mb-0">{prop.text}</p>
                 </div>
               </li>

@@ -1,11 +1,16 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
 
-export default function Header9({ image, title, subtitle, description, icon, color }) {
+export default function Header9({
+  image,
+  title,
+  subtitle,
+  description,
+  icon,
+  color,
+}) {
   return (
     <>
       <div className="p-0 flex items-center overflow-hidden relative min-h-screen-75">
@@ -49,37 +54,49 @@ export default function Header9({ image, title, subtitle, description, icon, col
       <div className="bg-blueGray-50">
         <div className="container mx-auto px-4 z-3 -mt-64 pt-20 relative w-8/12">
           <div className="justify-center flex flex-wrap -mx-4">
-            <div class="bg-white rounded-xl shadow-lg py-8">
-              <div class="flex flex-wrap">
-                <div class="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12 border-r">
-                  <div class="text-center py-2">
-                    <h4 class="text-5xl font-extrabold leading-tight mt-0 mb-0">
+            <div className="bg-white rounded-xl shadow-lg py-8">
+              <div className="flex flex-wrap">
+                <div className="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12 border-r">
+                  <div className="text-center py-2">
+                    <h4 className="text-5xl font-extrabold leading-tight mt-0 mb-0">
                       300+
                     </h4>
-                    <h5 class="text-xl font-semibold mt-2 mb-1">Elements</h5>
-                    <p class="text-blueGray-500 text-md">
-                      From buttons, to inputs, navbars, alerts or cards, you are covered
+                    <h5 className="text-xl font-semibold mt-2 mb-1">
+                      Elements
+                    </h5>
+                    <p className="text-blueGray-500 text-md">
+                      From buttons, to inputs, navbars, alerts or cards, you are
+                      covered
                     </p>
                   </div>
                 </div>
 
-                <div class="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12 border-r">
-                  <div class="text-center py-2">
-                    <h4 class="text-5xl font-extrabold leading-tight mt-0 mb-0">74+</h4>
-                    <h5 class="text-xl font-semibold mt-2 mb-1">Design Blocks</h5>
-                    <p class="text-blueGray-500 text-md">
-                      Mix the sections, change the colors and unleash your creativity
+                <div className="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12 border-r">
+                  <div className="text-center py-2">
+                    <h4 className="text-5xl font-extrabold leading-tight mt-0 mb-0">
+                      74+
+                    </h4>
+                    <h5 className="text-xl font-semibold mt-2 mb-1">
+                      Design Blocks
+                    </h5>
+                    <p className="text-blueGray-500 text-md">
+                      Mix the sections, change the colors and unleash your
+                      creativity
                     </p>
                   </div>
                 </div>
 
-                <div class="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12">
-                  <div class="text-center py-2">
-                    <h4 class="text-5xl font-extrabold leading-tight mt-0 mb-0">30+</h4>
-                    <h5 class="text-xl font-semibold mt-2 mb-1">Coded Pages</h5>
-                    <p class="text-blueGray-500 text-md">
-                      Save 3-4 weeks of work when you use our pre-made pages for your
-                      website
+                <div className="px-6 relative w-full lg:w-4/12 w-full md:w-6/12 w-6/12">
+                  <div className="text-center py-2">
+                    <h4 className="text-5xl font-extrabold leading-tight mt-0 mb-0">
+                      30+
+                    </h4>
+                    <h5 className="text-xl font-semibold mt-2 mb-1">
+                      Coded Pages
+                    </h5>
+                    <p className="text-blueGray-500 text-md">
+                      Save 3-4 weeks of work when you use our pre-made pages for
+                      your website
                     </p>
                   </div>
                 </div>

@@ -1,13 +1,9 @@
-import "@popperjs/core"
-import "prop-types"
-import "react"
-import PropTypes
-import React
-import { createPopper }
+import React from "react";
+import PropTypes from "prop-types";
+import { createPopper } from "@popperjs/core";
 
 // components
-import "../../components/Elements/Input.js"
-import Input
+import Input from "../../components/Elements/Input.js";
 
 export default function Select({
   border,
@@ -25,7 +21,9 @@ export default function Select({
   const [menuClasses, setMenuClasses] = React.useState("");
   const [menuShow, setMenuShow] = React.useState(false);
   const [animating, setAntimating] = React.useState(false);
-  const [transformOrigin, setTransformOrigin] = React.useState("origin-top-right");
+  const [transformOrigin, setTransformOrigin] = React.useState(
+    "origin-top-right"
+  );
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const origins = {

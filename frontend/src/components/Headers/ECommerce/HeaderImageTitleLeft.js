@@ -1,13 +1,15 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Skews/Skew.js"
-import Skew
+import Skew from "../../../components/Skews/Skew.js";
 
-export default function HeaderImageTitleLeft({ title, subtitle, image, skewColor }) {
+export default function HeaderImageTitleLeft({
+  title,
+  subtitle,
+  image,
+  skewColor,
+}) {
   return (
     <>
       <section className="flex relative items-center p-0 min-h-screen-60 max-h-440-px">
@@ -22,7 +24,9 @@ export default function HeaderImageTitleLeft({ title, subtitle, image, skewColor
           <div className="justify-start flex flex-wrap -mx-4">
             <div className="px-12 px-4 relative w-full md:w-8/12">
               <h1 className="text-4xl font-bold leading-tight mt-0">{title}</h1>
-              <p className="text-xl mt-1 leading-relaxed opacity-75">{subtitle}</p>
+              <p className="text-xl mt-1 leading-relaxed opacity-75">
+                {subtitle}
+              </p>
             </div>
           </div>
         </div>

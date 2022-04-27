@@ -1,15 +1,9 @@
-import "./InfoAreaIcon.js"
-import "./InfoAreaIconTitleLink.js"
-import "./InfoAreaIconTitleLinkColor.js"
-import "./InfoAreaIconTitleListColor.js"
-import "./InfoAreaUser.js"
-import "./InfoAreaWhiteTitle.js"
-import InfoAreaIcon
-import InfoAreaIconTitleLink
-import InfoAreaIconTitleLinkColor
-import InfoAreaIconTitleListColor
-import InfoAreaUser
-import InfoAreaWhiteTitle
+import InfoAreaIconTitleLink from "./InfoAreaIconTitleLink.js";
+import InfoAreaIconTitleListColor from "./InfoAreaIconTitleListColor.js";
+import InfoAreaUser from "./InfoAreaUser.js";
+import InfoAreaWhiteTitle from "./InfoAreaWhiteTitle.js";
+import InfoAreaIconTitleLinkColor from "./InfoAreaIconTitleLinkColor.js";
+import InfoAreaIcon from "./InfoAreaIcon.js";
 
 const componentsArray = [
   InfoAreaIconTitleLink,

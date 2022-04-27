@@ -1,8 +1,5 @@
-import "_texts/presentation/mediaplayers/mediaplayerteaminfosocial.js"
-import "components/MediaPlayers/MediaPlayerTeamInfoSocial.js"
-import MediaPlayerTeamInfoSocial
-import passProps
-
+import MediaPlayerTeamInfoSocial from "components/MediaPlayers/MediaPlayerTeamInfoSocial.js";
+import passProps from "_texts/presentation/mediaplayers/mediaplayerteaminfosocial.js";
 const props = `MediaPlayerTeamInfoSocial.defaultProps = {
   items: [],
 };
@@ -53,8 +50,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/MediaPlayerTeamInfoSocial"
-import MediaPlayerTeamInfoSocial
+import MediaPlayerTeamInfoSocial from "@notus-pro/react/MediaPlayerTeamInfoSocial";
 
 const props = ${JSON.stringify(passProps)}
 

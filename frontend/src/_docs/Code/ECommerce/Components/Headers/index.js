@@ -1,11 +1,7 @@
-import "./HeaderBlogPost.js"
-import "./HeaderImage.js"
-import "./HeaderImageTitleButtonCenter.js"
-import "./HeaderImageTitleLeft.js"
-import HeaderBlogPost
-import HeaderImage
-import HeaderImageTitleButtonCenter
-import HeaderImageTitleLeft
+import HeaderImage from "./HeaderImage.js";
+import HeaderImageTitleLeft from "./HeaderImageTitleLeft.js";
+import HeaderBlogPost from "./HeaderBlogPost.js";
+import HeaderImageTitleButtonCenter from "./HeaderImageTitleButtonCenter.js";
 
 const componentsArray = [
   HeaderImage,

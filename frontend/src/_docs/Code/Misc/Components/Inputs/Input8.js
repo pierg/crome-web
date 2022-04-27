@@ -1,6 +1,4 @@
-import "components/Elements/Input.js"
-import Input
-
+import Input from "components/Elements/Input.js";
 const passProps = {
   placeholder: "Large left icon bordered input",
   leftIcon: "fas fa-heart",
@@ -28,8 +26,7 @@ const description = "Large left icon bordered input. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Input"
-import Input
+import Input from "@notus-pro/react/Input";
 
 const props = ${JSON.stringify(passProps)}
 

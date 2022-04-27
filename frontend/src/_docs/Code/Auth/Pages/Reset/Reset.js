@@ -1,28 +1,17 @@
-import "_texts/auth/cards/cardresetpassword.js"
-import "_texts/auth/footers/footersmallreset.js"
-import "_texts/auth/prefooters/prefooterlargereset.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "views/auth/Reset.js"
-import cardresetpassword
-import footersmallreset
-import navbarlinkslanding1
-import prefooterlargereset
-import Reset
-
+import Reset from "views/auth/Reset.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import cardresetpassword from "_texts/auth/cards/cardresetpassword.js";
+import prefooterlargereset from "_texts/auth/prefooters/prefooterlargereset.js";
+import footersmallreset from "_texts/auth/footers/footersmallreset.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardResetPassword"
-import "@notus-pro/react/FooterSmall"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import CardResetPassword
-import FooterSmall
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import CardResetPassword from "@notus-pro/react/CardResetPassword";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall";
 // texts as props
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};
 const cardresetpassword = ${JSON.stringify(cardresetpassword)};

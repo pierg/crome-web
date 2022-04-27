@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/cardchatpeople.js"
-import "components/Cards/ECommerce/CardChatPeople.js"
-import CardChatPeople
-import passProps
-
+import CardChatPeople from "components/Cards/ECommerce/CardChatPeople.js";
+import passProps from "_texts/e-commerce/cards/cardchatpeople.js";
 const dependencies = [
   {
     name: "Input",
@@ -10,7 +7,8 @@ const dependencies = [
   },
   {
     name: "Contact",
-    link: "/components/misc/components/comments#misc-id-misc-id-components-contact",
+    link:
+      "/components/misc/components/comments#misc-id-misc-id-components-contact",
   },
 ];
 const props = `CardChatPeople.defaultProps = {
@@ -28,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardChatPeople"
-import CardChatPeople
+import CardChatPeople from "@notus-pro/react/CardChatPeople";
 
 const props = ${JSON.stringify(passProps)}
 

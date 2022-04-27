@@ -1,8 +1,5 @@
-import "_texts/error/error1error404.js"
-import "components/Sections/Error/Error1.js"
-import Error1
-import passProps
-
+import Error1 from "components/Sections/Error/Error1.js";
+import passProps from "_texts/error/error1error404.js";
 const props = `Error1.defaulProps = {
   color: "dark",
 };
@@ -34,8 +31,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Error1"
-import Error1
+import Error1 from "@notus-pro/react/Error1";
 
 const props = "<<props-here>>";
 

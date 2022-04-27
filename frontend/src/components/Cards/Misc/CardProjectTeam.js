@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Images/ImagesOverlap.js"
-import ImagesOverlap
+import ImagesOverlap from "../../../components/Images/ImagesOverlap.js";
 
 export default function CardProjectTeam({
   image,
@@ -44,7 +41,9 @@ export default function CardProjectTeam({
             <img src={image} alt="..." className="mx-auto" />
           </div>
 
-          <h4 className="text-2xl font-bold leading-tight mt-0 mb-2">{title}</h4>
+          <h4 className="text-2xl font-bold leading-tight mt-0 mb-2">
+            {title}
+          </h4>
           <p className="text-blueGray-500 px-8">{description}</p>
           <div className="flex justify-center mt-8 mb-2 text-blueGray-400">
             <ImagesOverlap {...imagesOverlap} />

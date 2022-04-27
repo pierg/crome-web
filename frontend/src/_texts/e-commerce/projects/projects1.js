@@ -1,5 +1,4 @@
-import "_texts/e-commerce/cards/cardinfoiconbg.js"
-import cardinfoiconbg
+import cardinfoiconbg from "_texts/e-commerce/cards/cardinfoiconbg.js";
 
 const textProps = {
   heading2: {

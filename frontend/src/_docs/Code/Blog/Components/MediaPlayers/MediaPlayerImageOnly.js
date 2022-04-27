@@ -1,8 +1,5 @@
-import "_texts/blog/mediaplayers/mediaplayerimageonly.js"
-import "components/MediaPlayers/MediaPlayerImageOnly.js"
-import MediaPlayerImageOnly
-import passProps
-
+import MediaPlayerImageOnly from "components/MediaPlayers/MediaPlayerImageOnly.js";
+import passProps from "_texts/blog/mediaplayers/mediaplayerimageonly.js";
 const props = `MediaPlayerImageOnly.defaultProps = {
   defaultOpened: 0,
   items: [],
@@ -24,8 +21,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/MediaPlayerImageOnly"
-import MediaPlayerImageOnly
+import MediaPlayerImageOnly from "@notus-pro/react/MediaPlayerImageOnly";
 
 const props = ${JSON.stringify(passProps)}
 

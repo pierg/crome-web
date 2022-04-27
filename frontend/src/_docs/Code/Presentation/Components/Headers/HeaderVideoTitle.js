@@ -1,8 +1,5 @@
-import "_texts/presentation/headers/headervideotitle.js"
-import "components/Headers/Presentation/HeaderVideoTitle.js"
-import HeaderVideoTitle
-import passProps
-
+import HeaderVideoTitle from "components/Headers/Presentation/HeaderVideoTitle.js";
+import passProps from "_texts/presentation/headers/headervideotitle.js";
 const dependencies = [
   {
     name: "Button",
@@ -44,8 +41,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderVideoTitle"
-import HeaderVideoTitle
+import HeaderVideoTitle from "@notus-pro/react/HeaderVideoTitle";
 
 const props = "<<props-here>>";
 

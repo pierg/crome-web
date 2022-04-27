@@ -1,31 +1,18 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // components
-import "components/Cards/Admin/CardFullTable.js"
-import "components/Footers/Admin/FooterAdmin.js"
-import "components/Headers/Admin/HeaderStatCards.js"
-import "components/Navbars/NavbarSearchUser.js"
-import "components/Sidebar/Sidebar.js"
-import CardFullTable
-import FooterAdmin
-import HeaderStatCards
-import NavbarSearchUser
-import Sidebar
-
+import Sidebar from "components/Sidebar/Sidebar.js";
+import NavbarSearchUser from "components/Navbars/NavbarSearchUser.js";
+import HeaderStatCards from "components/Headers/Admin/HeaderStatCards.js";
+import CardFullTable from "components/Cards/Admin/CardFullTable.js";
+import FooterAdmin from "components/Footers/Admin/FooterAdmin.js";
 // texts as props
-import "_texts/admin/cards/cardfulltable.js"
-import "_texts/admin/footers/footeradmin.js"
-import "_texts/admin/headers/headerstatcards.js"
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "_texts/admin/sidebar/sidebar.js"
-import cardfulltable
-import footeradmin
-import headerstatcards
-import navbarsearchusersettings2
-import sidebar
+import sidebar from "_texts/admin/sidebar/sidebar.js";
+import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
+import headerstatcards from "_texts/admin/headers/headerstatcards.js";
+import cardfulltable from "_texts/admin/cards/cardfulltable.js";
+import footeradmin from "_texts/admin/footers/footeradmin.js";
 
 export default function Tables() {
   const location = useLocation();

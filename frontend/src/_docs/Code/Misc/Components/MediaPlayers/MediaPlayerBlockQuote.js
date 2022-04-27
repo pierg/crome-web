@@ -1,8 +1,5 @@
-import "_texts/misc/mediaplayers/mediaplayerblockquote.js"
-import "components/MediaPlayers/MediaPlayerBlockQuote.js"
-import MediaPlayerBlockQuote
-import passProps
-
+import MediaPlayerBlockQuote from "components/MediaPlayers/MediaPlayerBlockQuote.js";
+import passProps from "_texts/misc/mediaplayers/mediaplayerblockquote.js";
 const props = `MediaPlayerBlockQuote.defaultProps = {
   defaultOpened: 0,
   items: [],
@@ -44,8 +41,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/MediaPlayerBlockQuote"
-import MediaPlayerBlockQuote
+import MediaPlayerBlockQuote from "@notus-pro/react/MediaPlayerBlockQuote";
 
 const props = ${JSON.stringify(passProps)};
 

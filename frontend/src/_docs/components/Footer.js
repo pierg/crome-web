@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import "react"
-import React
+import React from "react";
 
 export default function Footer() {
   return (
@@ -9,9 +8,12 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap">
             <div className="w-full md:w-6/12 px-4">
-              <h4 className="text-xl leading-normal font-bold">Let's keep in touch!</h4>
+              <h4 className="text-xl leading-normal font-bold">
+                Let's keep in touch!
+              </h4>
               <h5 className="leading-normal mt-1 mb-2 text-blueGray-500">
-                Find us on any of these platforms, we respond within 1-2 business days.
+                Find us on any of these platforms, we respond within 1-2
+                business days.
               </h5>
               <div className="mt-6">
                 <a href="https://www.twitter.com/creativetim" target="_blank">
@@ -23,7 +25,10 @@ export default function Footer() {
                 <a href="https://www.dribbble.com/creativetim" target="_blank">
                   <i className="fab fa-dribbble bg-white text-dribbble-regular shadow-lg font-lg p-3 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-block text-center"></i>
                 </a>
-                <a href="https://www.github.com/creativetimofficial" target="_blank">
+                <a
+                  href="https://www.github.com/creativetimofficial"
+                  target="_blank"
+                >
                   <i className="fab fa-github bg-white text-github-regular shadow-lg font-lg p-3 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-block text-center"></i>
                 </a>
               </div>

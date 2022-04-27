@@ -1,51 +1,29 @@
-import "_texts/blog/blogs/blogs3.js"
-import "_texts/blog/blogs/blogs5.js"
-import "_texts/blog/blogs/blogs6.js"
-import "_texts/blog/headers/headerimagetitlebuttons.js"
-import "_texts/blog/heroes/hero6.js"
-import "_texts/blog/heroes/hero7.js"
-import "_texts/blog/teams/teams3.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "views/blog/BlogPosts.js"
-import BlogPosts
-import blogs3
-import blogs5
-import blogs6
-import footersmall
-import headerimagetitlebuttons
-import hero6
-import hero7
-import navbarlinkslanding2
-import prefooterlarge
-import teams3
-
+import BlogPosts from "views/blog/BlogPosts.js";
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
+import headerimagetitlebuttons from "_texts/blog/headers/headerimagetitlebuttons.js";
+import blogs5 from "_texts/blog/blogs/blogs5.js";
+import blogs3 from "_texts/blog/blogs/blogs3.js";
+import blogs6 from "_texts/blog/blogs/blogs6.js";
+import teams3 from "_texts/blog/teams/teams3.js";
+import hero7 from "_texts/blog/heroes/hero7.js";
+import hero6 from "_texts/blog/heroes/hero6.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Blogs/Blogs3"
-import "@notus-pro/react/Blogs/Blogs5"
-import "@notus-pro/react/Blogs/Blogs6"
-import "@notus-pro/react/FooterSmall"
-import "@notus-pro/react/HeaderImageTitleButtons"
-import "@notus-pro/react/Heroes/Hero6"
-import "@notus-pro/react/Heroes/Hero7"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import "@notus-pro/react/Teams/Teams3"
-import Blogs3
-import Blogs5
-import Blogs6
-import FooterSmall
-import HeaderImageTitleButtons
-import Hero6
-import Hero7
-import NavbarLinks
-import PreFooterLarge
-import Teams3
+import Blogs5 from "@notus-pro/react/Blogs/Blogs5";
+import Blogs3 from "@notus-pro/react/Blogs/Blogs3";
+import Blogs6 from "@notus-pro/react/Blogs/Blogs6";
+import Teams3 from "@notus-pro/react/Teams/Teams3";
+import Hero7 from "@notus-pro/react/Heroes/Hero7";
+import Hero6 from "@notus-pro/react/Heroes/Hero6";
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall";
+import HeaderImageTitleButtons from "@notus-pro/react/HeaderImageTitleButtons";
 
 // texts as props
 const navbarlinkslanding2 = ${JSON.stringify(navbarlinkslanding2)};

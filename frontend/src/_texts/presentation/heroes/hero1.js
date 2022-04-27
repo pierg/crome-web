@@ -1,9 +1,6 @@
-import "_texts/presentation/cards/cardblogimage.js"
-import "_texts/presentation/cards/cardinfoicon.js"
-import "_texts/presentation/infoarea/infoareaicontitlelink.js"
-import infoArea
-import infoCards1
-import skewCard
+import infoCards1 from "_texts/presentation/cards/cardinfoicon.js";
+import infoArea from "_texts/presentation/infoarea/infoareaicontitlelink.js";
+import skewCard from "_texts/presentation/cards/cardblogimage.js";
 
 const textProps = {
   heading3: {

@@ -1,7 +1,5 @@
-import "_texts/misc/content/progress.js"
-import "_texts/misc/forms/imageupload.js"
-import imageupload
-import progress
+import imageupload from "_texts/misc/forms/imageupload.js";
+import progress from "_texts/misc/content/progress.js";
 
 const textProps = {
   imageUpload: { ...imageupload },
@@ -275,19 +273,21 @@ const textProps = {
               checkbox: {},
             },
             {
-              text: "Find My Device, make sure your device can be found if it gets lost",
+              text:
+                "Find My Device, make sure your device can be found if it gets lost",
               checkbox: {
                 defaultChecked: true,
               },
             },
             {
-              text: "Lock your device with a PIN, patterns, or password",
+              text: "Lock your device with a PIN, pattern, or password",
               checkbox: {
                 defaultChecked: true,
               },
             },
             {
-              text: "Manage what apps have access to app-usage data on your device",
+              text:
+                "Manage what apps have access to app-usage data on your device",
               checkbox: {},
             },
           ],

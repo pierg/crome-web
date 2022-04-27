@@ -1,36 +1,21 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // sections
 // components
-import "components/Cards/ECommerce/CardChatDiscussion.js"
-import "components/Cards/ECommerce/CardChatPeople.js"
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Headers/Auth/HeaderImageTitleSmallCenter.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import CardChatDiscussion
-import CardChatPeople
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import HeaderImageTitleSmallCenter from "components/Headers/Auth/HeaderImageTitleSmallCenter.js";
+import CardChatPeople from "components/Cards/ECommerce/CardChatPeople.js";
+import CardChatDiscussion from "components/Cards/ECommerce/CardChatDiscussion.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
 // texts  as props
-import "_texts/e-commerce/cards/cardchatdiscussion.js"
-import "_texts/e-commerce/cards/cardchatpeople.js"
-import "_texts/e-commerce/headers/headerimagetitlesmallcenterchat.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import cardchatdiscussion
-import cardchatpeople
-import footersmall
-import headerimagetitlesmallcenterchat
-import navbarlinkslanding2
-import prefooterlarge
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import headerimagetitlesmallcenterchat from "_texts/e-commerce/headers/headerimagetitlesmallcenterchat.js";
+import cardchatpeople from "_texts/e-commerce/cards/cardchatpeople.js";
+import cardchatdiscussion from "_texts/e-commerce/cards/cardchatdiscussion.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 export default function Chat() {
   const location = useLocation();

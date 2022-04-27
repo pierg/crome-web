@@ -1,5 +1,4 @@
-import "_texts/presentation/footers/footersmall.js"
-import footersmall
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 const textProps = {
   ...footersmall,

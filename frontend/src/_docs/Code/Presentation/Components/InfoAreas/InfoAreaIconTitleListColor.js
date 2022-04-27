@@ -1,8 +1,5 @@
-import "_texts/presentation/infoarea/infoareaicontitlelistcolor.js"
-import "components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js"
-import InfoAreaIconTitleListColor
-import passProps
-
+import InfoAreaIconTitleListColor from "components/InfoAreas/Presentation/InfoAreaIconTitleListColor.js";
+import passProps from "_texts/presentation/infoarea/infoareaicontitlelistcolor.js";
 const props = `InfoAreaIconTitleListColor.defaultProps = {
   iconColor: "blueGray",
   description: [],
@@ -45,8 +42,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/InfoAreaIconTitleListColor"
-import InfoAreaIconTitleListColor
+import InfoAreaIconTitleListColor from "@notus-pro/react/InfoAreaIconTitleListColor";
 
 const props = "<<props-here>>";
 

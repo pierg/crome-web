@@ -1,8 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
 
 export default function CardContactUsTitle({
@@ -17,10 +14,13 @@ export default function CardContactUsTitle({
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
         <div className="flex-auto p-5 lg:p-10">
           <h4 className="text-2xl font-semibold">{title}</h4>
-          <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">{description}</p>
+          <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
+            {description}
+          </p>
           <div className="mt-8">
             {inputs.map((prop, key) => {
-              let textarea = prop.inputProps && prop.inputProps.type === "textarea";
+              let textarea =
+                prop.inputProps && prop.inputProps.type === "textarea";
               let inputProps = prop.inputProps ? prop.inputProps : {};
               let labelProps = prop.labelProps ? prop.labelProps : {};
               return (
@@ -80,8 +80,8 @@ CardContactUsTitle.propTypes = {
       labelText: PropTypes.string,
       labelProps: PropTypes.object,
       // NOTE: if you wish to generate a textarea, you will need to pass
-      // // // inside this object >> crometypes: "textarea"
-      // // // full example >> inputProps: { crometypes: "textarea" }
+      // // // inside this object >> type: "textarea"
+      // // // full example >> inputProps: { type: "textarea" }
       inputProps: PropTypes.object,
     })
   ),

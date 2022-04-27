@@ -1,13 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Input.js"
-import Button
-import Input
+import Input from "../../../components/Elements/Input.js";
+import Button from "../../../components/Elements/Button.js";
 
 export default function CardLoginRegister({
   leftCard,
@@ -17,12 +12,15 @@ export default function CardLoginRegister({
 }) {
   const [animating, setAntimating] = React.useState(false);
   const [leftCardTransform, setLeftCardTransform] = React.useState("");
-  const [rightCardTransform, setRightCardTransform] = React.useState("z-1 opacity-0");
+  const [rightCardTransform, setRightCardTransform] = React.useState(
+    "z-1 opacity-0"
+  );
   const [panelTransform, setPanelTransform] = React.useState("");
   const [panelInnerTransform, setPanelInnerTransform] = React.useState("");
   const [panelLeftTransform, setPanelLeftTransform] = React.useState("");
-  const [panelRightTransform, setPanelRightTransform] =
-    React.useState("-translate-x-1/5");
+  const [panelRightTransform, setPanelRightTransform] = React.useState(
+    "-translate-x-1/5"
+  );
   const animation = () => {
     if (!animating) {
       setAntimating(true);
@@ -83,7 +81,9 @@ export default function CardLoginRegister({
                 </Button>
               ))}
             </div>
-            <span className="text-blueGray-500 mt-6 mb-3">{leftCard.subtitle}</span>
+            <span className="text-blueGray-500 mt-6 mb-3">
+              {leftCard.subtitle}
+            </span>
             {leftCard.inputs.map((prop, key) => (
               <Input key={key} {...prop} />
             ))}
@@ -110,7 +110,9 @@ export default function CardLoginRegister({
                 </Button>
               ))}
             </div>
-            <span className="text-blueGray-500 mt-6 mb-3">{rightCard.subtitle}</span>
+            <span className="text-blueGray-500 mt-6 mb-3">
+              {rightCard.subtitle}
+            </span>
             {rightCard.inputs.map((prop, key) => (
               <Input key={key} {...prop} />
             ))}
@@ -141,7 +143,9 @@ export default function CardLoginRegister({
                 panelLeftTransform
               }
             >
-              <h3 className="text-2xp mb-2 font-bold">{detailsPanel.leftTitle}</h3>
+              <h3 className="text-2xp mb-2 font-bold">
+                {detailsPanel.leftTitle}
+              </h3>
               <p className="mb-6">{detailsPanel.leftDescription}</p>
               <Button {...detailsPanel.leftButton} onClick={animation} />
             </div>
@@ -153,7 +157,9 @@ export default function CardLoginRegister({
                 panelRightTransform
               }
             >
-              <h3 className="text-2xp mb-2 font-bold">{detailsPanel.rightTitle}</h3>
+              <h3 className="text-2xp mb-2 font-bold">
+                {detailsPanel.rightTitle}
+              </h3>
               <p className="mb-6">{detailsPanel.rightDescription}</p>
               <Button {...detailsPanel.rightButton} onClick={animation} />
             </div>

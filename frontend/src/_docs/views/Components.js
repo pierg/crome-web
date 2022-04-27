@@ -1,21 +1,16 @@
-import "_docs/components/Header9Presentation.js"
-import "_docs/components/Hero2Presentation.js"
-import "_docs/components/Pricing4Presentation.js"
-import "_docs/routes/components/index.js"
-import "_texts/e-commerce/headers/header9presentation.js"
-import "_texts/misc/pricing/pricing4presentation.js"
-import "_texts/presentation/heroes/hero2presentation.js"
-import "react"
-import "react-router-dom"
-import componnetsArrayJson
-import Header9
-import header9
-import Hero2Presentation
-import hero2presentation
-import Pricing4Presentation
-import pricing4presentation
-import React
-import { Link }
+import React from "react";
+import { Link } from "react-router-dom";
+
+import Header9 from "_docs/components/Header9Presentation.js";
+
+import Hero2Presentation from "_docs/components/Hero2Presentation.js";
+import Pricing4Presentation from "_docs/components/Pricing4Presentation.js";
+
+import header9 from "_texts/e-commerce/headers/header9presentation.js";
+
+import hero2presentation from "_texts/presentation/heroes/hero2presentation.js";
+import pricing4presentation from "_texts/misc/pricing/pricing4presentation.js";
+import componnetsArrayJson from "_docs/routes/components/index.js";
 
 export default function Components() {
   return (
@@ -48,9 +43,13 @@ export default function Components() {
                             id={sectionProp.id}
                             className="text-lg font-normal text-blueGray-600 mb-2 sticky top-0"
                           >
-                            <span className="mr-2 opacity-75">{prop.title}</span>
+                            <span className="mr-2 opacity-75">
+                              {prop.title}
+                            </span>
                             <i className="fas fa-angle-right mr-2 opacity-75"></i>
-                            <span class="font-semibold">{sectionProp.title}</span>
+                            <span className="font-semibold">
+                              {sectionProp.title}
+                            </span>
                           </h2>
                         </div>
                         <div className="w-full px-4 md:w-3/4">
@@ -73,7 +72,9 @@ export default function Components() {
                                       </h2>
                                       <p className=" ml-2 text-base font-normal leading-tight mt-0 mb-8 text-blueGray-500">
                                         {componentProp.components.length}
-                                        {parseInt(componentProp.components.length) === 1
+                                        {parseInt(
+                                          componentProp.components.length
+                                        ) === 1
                                           ? " component/example"
                                           : " components/examples"}
                                       </p>
@@ -102,11 +103,14 @@ export default function Components() {
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-file-alt text-xl"></i>
                 </div>
-                <h3 className="text-3xl font-semibold">Complex Documentation</h3>
+                <h3 className="text-3xl font-semibold">
+                  Complex Documentation
+                </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  Notus PRO React comes a lot of fully coded examples that help you get
-                  started faster. You can adjust the colors and also the programming
-                  language. You can change the text and images and you're good to go.
+                  Notus PRO React comes a lot of fully coded examples that help
+                  you get started faster. You can adjust the colors and also the
+                  programming language. You can change the text and images and
+                  you're good to go.
                 </p>
                 <ul className="list-none mt-6">
                   <li className="py-2">

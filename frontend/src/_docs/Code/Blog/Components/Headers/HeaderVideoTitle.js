@@ -1,8 +1,5 @@
-import "_texts/blog/headers/headerimagetitlebuttons.js"
-import "components/Headers/Blog/HeaderImageTitleButtons.js"
-import HeaderImageTitleButtons
-import passProps
-
+import HeaderImageTitleButtons from "components/Headers/Blog/HeaderImageTitleButtons.js";
+import passProps from "_texts/blog/headers/headerimagetitlebuttons.js";
 const props = `HeaderImageTitleButtons.defaultProps = {
   socials: [],
 };
@@ -29,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderImageTitleButtons"
-import HeaderImageTitleButtons
+import HeaderImageTitleButtons from "@notus-pro/react/HeaderImageTitleButtons";
 
 const props = ${JSON.stringify(passProps)}
 

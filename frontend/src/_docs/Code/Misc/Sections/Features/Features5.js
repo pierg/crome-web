@@ -1,16 +1,15 @@
-import "_texts/misc/features/features5.js"
-import "components/Sections/Misc/Features/Features5.js"
-import Features5
-import passProps
-
+import Features5 from "components/Sections/Misc/Features/Features5.js";
+import passProps from "_texts/misc/features/features5.js";
 const dependencies = [
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "CardInfoWithButton",
-    link: "/components/misc/components/cards#misc-id-misc-id-components-cardinfowithbutton",
+    link:
+      "/components/misc/components/cards#misc-id-misc-id-components-cardinfowithbutton",
   },
 ];
 const props = `Features5.defaultProps = {
@@ -27,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Features5"
-import Features5
+import Features5 from "@notus-pro/react/Features5";
 
 const props = ${JSON.stringify(passProps)};
 

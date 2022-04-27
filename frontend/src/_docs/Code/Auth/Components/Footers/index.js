@@ -1,5 +1,4 @@
-import "./FooterAuth"
-import FooterAuth
+import FooterAuth from "./FooterAuth";
 
 const componentsArray = [FooterAuth];
 export default componentsArray;

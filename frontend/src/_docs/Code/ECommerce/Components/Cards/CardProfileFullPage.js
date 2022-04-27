@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/cardprofilefullpage.js"
-import "components/Cards/ECommerce/CardProfileFullPage.js"
-import CardProfileFullPage
-import passProps
-
+import CardProfileFullPage from "components/Cards/ECommerce/CardProfileFullPage.js";
+import passProps from "_texts/e-commerce/cards/cardprofilefullpage.js";
 const props = `CardProfileFullPage.defaultProps = {
   stats: [],
   buttons: [],
@@ -46,8 +43,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardProfileFullPage"
-import CardProfileFullPage
+import CardProfileFullPage from "@notus-pro/react/CardProfileFullPage";
 
 const props = ${JSON.stringify(passProps)}
 

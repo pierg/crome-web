@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // components
 
@@ -44,15 +41,19 @@ export default function CardPricingDetails({
     "blueGray-gradient":
       "bg-gradient-to-tl from-blueGray-700 to-blueGray-500 bg-blueGray-500",
     "red-gradient": "bg-gradient-to-tl from-red-700 to-red-500 bg-red-500",
-    "orange-gradient": "bg-gradient-to-tl from-orange-700 to-orange-500 bg-orange-500",
-    "amber-gradient": "bg-gradient-to-tl from-amber-700 to-amber-500 bg-amber-500",
+    "orange-gradient":
+      "bg-gradient-to-tl from-orange-700 to-orange-500 bg-orange-500",
+    "amber-gradient":
+      "bg-gradient-to-tl from-amber-700 to-amber-500 bg-amber-500",
     "emerald-gradient":
       "bg-gradient-to-tl from-emerald-700 to-emerald-500 bg-emerald-500",
     "teal-gradient": "bg-gradient-to-tl from-teal-700 to-teal-500 bg-teal-500",
     "lightBlue-gradient":
       "bg-gradient-to-tl from-lightBlue-700 to-lightBlue-500 bg-lightBlue-500",
-    "indigo-gradient": "bg-gradient-to-tl from-indigo-700 to-indigo-500 bg-indigo-500",
-    "purple-gradient": "bg-gradient-to-tl from-purple-700 to-purple-500 bg-purple-500",
+    "indigo-gradient":
+      "bg-gradient-to-tl from-indigo-700 to-indigo-500 bg-indigo-500",
+    "purple-gradient":
+      "bg-gradient-to-tl from-purple-700 to-purple-500 bg-purple-500",
     "pink-gradient": "bg-gradient-to-tl from-pink-700 to-pink-500 bg-pink-500",
   };
   return (

@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
-import "react"
-import "react-syntax-highlighter"
-import "react-syntax-highlighter/dist/cjs/styles/hljs"
-import React
-import { Prism as SyntaxHighlighter }
-import { shadesOfPurple }
+import React from "react";
+
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const example = `import React from "react";
 
@@ -52,43 +50,49 @@ export default function WhatIsTailwindCSS() {
     <>
       <h3 className="text-2xl font-medium mb-2 mt-10">Intro</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Tailwind CSS is a highly customizable, low-level CSS framework that gives you
-        all of the building blocks you need to build bespoke designs without any
-        annoying opinionated styles you have to fight to override.
+        Tailwind CSS is a highly customizable, low-level CSS framework that
+        gives you all of the building blocks you need to build bespoke designs
+        without any annoying opinionated styles you have to fight to override.
       </p>
-      <h3 className="text-2xl font-medium mb-2 mt-10">Responsive to the core</h3>
+      <h3 className="text-2xl font-medium mb-2 mt-10">
+        Responsive to the core
+      </h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Every Tailwind utility also comes with responsive variants, making it extremely
-        easy to build responsive interfaces without resorting to custom CSS.
+        Every Tailwind utility also comes with responsive variants, making it
+        extremely easy to build responsive interfaces without resorting to
+        custom CSS.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Tailwind uses an intuitive {`{screen}`}: prefix that makes it easy to notice
-        responsive classes in your markup while keeping the original class name
-        recognizable and intact.
+        Tailwind uses an intuitive {`{screen}`}: prefix that makes it easy to
+        notice responsive classes in your markup while keeping the original
+        class name recognizable and intact.
       </p>
       <h3 className="text-2xl font-medium mb-2 mt-10">Component-friendly</h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        While you can do a lot with just utility classes, as a project grows it can be
-        useful to codify common patterns into higher level abstractions.
+        While you can do a lot with just utility classes, as a project grows it
+        can be useful to codify common patterns into higher level abstractions.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Tailwind provides tools for extracting component classes from repeated utility
-        patterns, making it easy to update multiple instances of a component from one
-        place.
+        Tailwind provides tools for extracting component classes from repeated
+        utility patterns, making it easy to update multiple instances of a
+        component from one place.
       </p>
-      <h3 className="text-2xl font-medium mb-2 mt-10">Designed to be customized</h3>
+      <h3 className="text-2xl font-medium mb-2 mt-10">
+        Designed to be customized
+      </h3>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        If it makes sense to be customizable, Tailwind lets you customize it. This
-        includes colors, border sizes, font weights, spacing utilities, breakpoints,
-        shadows, and tons more.
-      </p>
-      <p className="leading-extra-relaxed font-light text-base mb-5">
-        Tailwind is written in PostCSS and configured in JavaScript, which means you
-        have the full power of a real programming language at your fingertips.
+        If it makes sense to be customizable, Tailwind lets you customize it.
+        This includes colors, border sizes, font weights, spacing utilities,
+        breakpoints, shadows, and tons more.
       </p>
       <p className="leading-extra-relaxed font-light text-base mb-5">
-        Tailwind is more than a CSS framework, it’s an engine for creating design
-        systems.
+        Tailwind is written in PostCSS and configured in JavaScript, which means
+        you have the full power of a real programming language at your
+        fingertips.
+      </p>
+      <p className="leading-extra-relaxed font-light text-base mb-5">
+        Tailwind is more than a CSS framework, it’s an engine for creating
+        design systems.
       </p>
       <h3 className="text-2xl font-medium mb-2 mt-10">
         A simple Tailwind CSS Component

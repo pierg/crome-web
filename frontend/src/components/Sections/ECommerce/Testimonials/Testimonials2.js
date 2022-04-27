@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Headings/Heading3Badge.js"
-import "../../../../components/MediaPlayers/MediaPlayerTeamInfo.js"
-import Heading3Badge
-import MediaPlayerTeamInfo
+import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
+import MediaPlayerTeamInfo from "../../../../components/MediaPlayers/MediaPlayerTeamInfo.js";
 
 export default function Testimonials2({ heading3badge, skew, mediaplayer }) {
   return (

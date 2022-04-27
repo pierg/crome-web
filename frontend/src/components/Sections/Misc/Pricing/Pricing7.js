@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading3Badge.js"
-import Button
-import Heading3Badge
+import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
+import Button from "../../../../components/Elements/Button.js";
 
 export default function Pricing7({ heading3badge, table }) {
   const colors = {
@@ -48,8 +44,13 @@ export default function Pricing7({ heading3badge, table }) {
                               </h5>
                             </th>
                           )) || (
-                            <th key={key} className="text-center py-4 p-3 border-0">
-                              <p className="text-blueGray-500 mb-0">{prop.subtitle}</p>
+                            <th
+                              key={key}
+                              className="text-center py-4 p-3 border-0"
+                            >
+                              <p className="text-blueGray-500 mb-0">
+                                {prop.subtitle}
+                              </p>
                               <h4 className="text-3xl leading-tight mt-0 mb-6">
                                 {prop.title}
                               </h4>
@@ -68,8 +69,9 @@ export default function Pricing7({ heading3badge, table }) {
                               <td
                                 key={colKey}
                                 className={
-                                  (colKey !== 0 ? "text-center " : "px-3 text-left ") +
-                                  "py-4"
+                                  (colKey !== 0
+                                    ? "text-center "
+                                    : "px-3 text-left ") + "py-4"
                                 }
                               >
                                 {colProp}
@@ -78,7 +80,9 @@ export default function Pricing7({ heading3badge, table }) {
                               <td key={colKey} className="text-center py-4">
                                 <i
                                   className={
-                                    colors[colProp.color] + " text-lg " + colProp.icon
+                                    colors[colProp.color] +
+                                    " text-lg " +
+                                    colProp.icon
                                   }
                                 ></i>
                               </td>

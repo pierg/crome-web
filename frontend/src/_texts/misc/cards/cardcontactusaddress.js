@@ -12,7 +12,11 @@ const textProps = {
         icon: "fas fa-phone",
         color: "lightBlue",
         title: "Give us a ring",
-        description: ["Alice Grace", "+40 762 321 762", "Mon - Fri, 8:00-17:00"],
+        description: [
+          "Alice Grace",
+          "+40 762 321 762",
+          "Mon - Fri, 8:00-17:00",
+        ],
       },
     },
     {

@@ -1,7 +1,6 @@
-import "_texts/e-commerce/cards/cardproductprice.js"
-import "react"
-import cardproductprice
-import React
+import React from "react";
+
+import cardproductprice from "_texts/e-commerce/cards/cardproductprice.js";
 
 const textProps = {
   skew: {

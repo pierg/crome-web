@@ -1,28 +1,17 @@
-import "_texts/auth/cards/cardloginsocialregister1.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "views/auth/Register1.js"
-import cardloginsocialregister1
-import footersmall
-import navbarlinkslanding1
-import prefooterlarge
-import Register1
-
+import Register1 from "views/auth/Register1.js";
+import cardloginsocialregister1 from "_texts/auth/cards/cardloginsocialregister1.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardLoginSocial"
-import "@notus-pro/react/FooterSmall"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import CardLoginSocial
-import FooterSmall
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import CardLoginSocial from "@notus-pro/react/CardLoginSocial";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall";
 // texts as props
 const cardloginsocialregister1 = ${JSON.stringify(cardloginsocialregister1)};
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};

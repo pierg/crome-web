@@ -1,8 +1,5 @@
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "components/PreFooters/PreFooterLarge.js"
-import passProps
-import PreFooterLarge
-
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import passProps from "_texts/presentation/prefooters/prefooterlarge.js";
 const props = `PreFooterLarge.defaultProps = {
   socials: [],
   type: "light"
@@ -23,8 +20,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/PreFooterLarge"
-import PreFooterLarge
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
 
 const props = ${JSON.stringify(passProps)}
 

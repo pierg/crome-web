@@ -1,16 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // components
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import Button
-import Heading2Badge
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import Button from "../../../../components/Elements/Button.js";
 
 export default function Pricing8({ heading2badge, table, color }) {
   const linkColors = {
@@ -52,7 +47,11 @@ export default function Pricing8({ heading2badge, table, color }) {
                         (prop, key) =>
                           (prop.image && (
                             <th key={key} className="align-bottom p-3 border-t">
-                              <img alt="..." src={prop.image} className="w-170-px" />
+                              <img
+                                alt="..."
+                                src={prop.image}
+                                className="w-170-px"
+                              />
                             </th>
                           )) ||
                           (prop.title && prop.button && prop.link && (
@@ -69,13 +68,17 @@ export default function Pricing8({ heading2badge, table, color }) {
                               {prop.link.to && (
                                 <Link
                                   {...prop.link}
-                                  className={linkColors[color] + " font-normal text-sm"}
+                                  className={
+                                    linkColors[color] + " font-normal text-sm"
+                                  }
                                 />
                               )}
                               {prop.link.to === undefined && (
                                 <a
                                   {...prop.link}
-                                  className={linkColors[color] + " font-normal text-sm"}
+                                  className={
+                                    linkColors[color] + " font-normal text-sm"
+                                  }
                                 />
                               )}
                             </th>
@@ -86,7 +89,10 @@ export default function Pricing8({ heading2badge, table, color }) {
                   <tbody className="text-blueGray-500">
                     {table.body.map((prop, key) =>
                       prop && prop.line ? (
-                        <tr key={key} className={bgColors[color] + " text-white px-4"}>
+                        <tr
+                          key={key}
+                          className={bgColors[color] + " text-white px-4"}
+                        >
                           <td
                             className="py-2 px-3 font-bold"
                             colSpan={table.head.length}
@@ -104,14 +110,18 @@ export default function Pricing8({ heading2badge, table, color }) {
                                   className={
                                     (colKey !== 0
                                       ? "text-center "
-                                      : "px-3 text-left ") + "py-4 border-t text-sm"
+                                      : "px-3 text-left ") +
+                                    "py-4 border-t text-sm"
                                   }
                                 >
                                   {colProp}
                                 </td>
                               )) ||
                               (colProp.icon && colProp.color && (
-                                <td key={colKey} className="text-center py-4 border-t">
+                                <td
+                                  key={colKey}
+                                  className="text-center py-4 border-t"
+                                >
                                   <i
                                     className={
                                       linkColors[colProp.color] +
@@ -127,7 +137,8 @@ export default function Pricing8({ heading2badge, table, color }) {
                                   className={
                                     (colKey !== 0
                                       ? "text-center "
-                                      : "px-3 text-left ") + "py-4 border-t text-sm"
+                                      : "px-3 text-left ") +
+                                    "py-4 border-t text-sm"
                                   }
                                 >
                                   <Link
@@ -145,7 +156,10 @@ export default function Pricing8({ heading2badge, table, color }) {
                                       : "px-3 text-left ") + "py-4 border-t"
                                   }
                                 >
-                                  <a {...colProp.link} className={linkColors[color]} />
+                                  <a
+                                    {...colProp.link}
+                                    className={linkColors[color]}
+                                  />
                                 </td>
                               ))
                           )}

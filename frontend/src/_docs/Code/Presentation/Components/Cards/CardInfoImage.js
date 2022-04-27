@@ -1,8 +1,5 @@
-import "_texts/presentation/cards/cardinfoimage.js"
-import "components/Cards/Presentation/CardInfoImage.js"
-import CardInfoImage
-import passProps
-
+import CardInfoImage from "components/Cards/Presentation/CardInfoImage.js";
+import passProps from "_texts/presentation/cards/cardinfoimage.js";
 const props = `CardInfoImage.defaultProps = {
   color: "blueGray",
 };
@@ -29,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardInfoImage"
-import CardInfoImage
+import CardInfoImage from "@notus-pro/react/CardInfoImage";
 
 const props = "<<props-here>>";
 

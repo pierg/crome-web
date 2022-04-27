@@ -1,13 +1,8 @@
-import "./CardChartJS"
-import "./CardDashboardProfile"
-import "./CardFullTable"
-import "./CardSettingsLarge"
-import "./CardStatsMini"
-import CardChartJS
-import CardDashboardProfile
-import CardFullTable
-import CardSettingsLarge
-import CardStatsMini
+import CardStatsMini from "./CardStatsMini";
+import CardSettingsLarge from "./CardSettingsLarge";
+import CardDashboardProfile from "./CardDashboardProfile";
+import CardFullTable from "./CardFullTable";
+import CardChartJS from "./CardChartJS";
 
 const componentsArray = [
   CardStatsMini,

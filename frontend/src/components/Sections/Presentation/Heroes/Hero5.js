@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // sections
 
 // components
-import "../../../../components/Headings/Heading2Badge.js"
-import "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js"
-import Heading2Badge
-import InfoAreaIconTitleLinkColor
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import InfoAreaIconTitleLinkColor from "../../../../components/InfoAreas/Presentation/InfoAreaIconTitleLinkColor.js";
 
 export default function Hero5({ heading2badge, infoAreas }) {
   return (
@@ -19,7 +14,10 @@ export default function Hero5({ heading2badge, infoAreas }) {
         <div className="items-center flex flex-wrap -mx-4">
           {infoAreas.map((prop, key) => {
             return (
-              <div className="text-left px-4 relative w-full lg:w-4/12" key={key}>
+              <div
+                className="text-left px-4 relative w-full lg:w-4/12"
+                key={key}
+              >
                 <InfoAreaIconTitleLinkColor {...prop} />
               </div>
             );

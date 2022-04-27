@@ -1,16 +1,15 @@
-import "_texts/e-commerce/projects/projects1.js"
-import "components/Sections/ECommerce/Projects/Projects1.js"
-import passProps
-import Projects1
-
+import Projects1 from "components/Sections/ECommerce/Projects/Projects1.js";
+import passProps from "_texts/e-commerce/projects/projects1.js";
 const dependencies = [
   {
     name: "Heading2",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "CardInfoIconBg",
-    link: "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardinfoiconbg",
+    link:
+      "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardinfoiconbg",
   },
 ];
 const props = `Projects1.defaultProps = {
@@ -28,8 +27,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Projects1"
-import Projects1
+import Projects1 from "@notus-pro/react/Projects1";
 
 // texts as props
 const projects1 = ${JSON.stringify(passProps)}

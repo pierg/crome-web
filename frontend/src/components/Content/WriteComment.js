@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Elements/Input.js"
-import Input
+import Input from "../../components/Elements/Input.js";
 
 export default function WriteComment({ image, input }) {
   return (
@@ -30,7 +27,7 @@ WriteComment.propTypes = {
   // It is represetnted by the props you
   // can pass to our Input component element
   // NOTE: if you wish to generate a textarea, you will need to pass
-  // // // inside this object >> crometypes: "textarea"
-  // // // full example >> input: { crometypes: "textarea" }
+  // // // inside this object >> type: "textarea"
+  // // // full example >> input: { type: "textarea" }
   input: PropTypes.object,
 };

@@ -1,28 +1,17 @@
-import "_texts/e-commerce/cards/cardprofilefullpage.js"
-import "_texts/e-commerce/headers/headerimage.js"
-import "_texts/presentation/footers/footerlarge.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "views/e-commerce/Profile1.js"
-import cardprofilefullpage
-import footerlarge
-import headerimage
-import navbarlinkslanding1
-import Profile1
-
+import Profile1 from "views/e-commerce/Profile1.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import headerimage from "_texts/e-commerce/headers/headerimage.js";
+import cardprofilefullpage from "_texts/e-commerce/cards/cardprofilefullpage.js";
+import footerlarge from "_texts/presentation/footers/footerlarge.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardProfileFullPage"
-import "@notus-pro/react/FooterLarge"
-import "@notus-pro/react/HeaderImage"
-import "@notus-pro/react/NavbarLinks"
-import CardProfileFullPage
-import FooterLarge
-import HeaderImage
-import NavbarLinks
-
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import HeaderImage from "@notus-pro/react/HeaderImage";
+import CardProfileFullPage from "@notus-pro/react/CardProfileFullPage";
+import FooterLarge from "@notus-pro/react/FooterLarge";
 // texts as props
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};
 const headerimage = ${JSON.stringify(headerimage)};

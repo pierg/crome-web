@@ -1,5 +1,4 @@
-import "_texts/misc/dropdowns/dropdownbutton.js"
-import dropdownbutton
+import dropdownbutton from "_texts/misc/dropdowns/dropdownbutton.js";
 
 const textProps = {
   image: require("assets/img/faces/team-6.jpg").default,

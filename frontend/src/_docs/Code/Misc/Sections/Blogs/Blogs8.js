@@ -1,16 +1,15 @@
-import "_texts/misc/blogs/blogs8.js"
-import "components/Sections/Misc/Blogs/Blogs8.js"
-import Blogs8
-import passProps
-
+import Blogs8 from "components/Sections/Misc/Blogs/Blogs8.js";
+import passProps from "_texts/misc/blogs/blogs8.js";
 const dependencies = [
   {
     name: "Heading2",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "CardBlogandAuthor",
-    link: "/components/misc/components/cards#misc-id-misc-id-components-cardblogandauthor",
+    link:
+      "/components/misc/components/cards#misc-id-misc-id-components-cardblogandauthor",
   },
 ];
 const props = `Blogs8.defaultProps = {
@@ -27,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Blogs8"
-import Blogs8
+import Blogs8 from "@notus-pro/react/Blogs8";
 
 const props = ${JSON.stringify(passProps)};
 

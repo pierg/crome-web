@@ -1,8 +1,5 @@
-import "_texts/e-commerce/headers/headerblogpost.js"
-import "components/Headers/ECommerce/HeaderBlogPost.js"
-import HeaderBlogPost
-import passProps
-
+import HeaderBlogPost from "components/Headers/ECommerce/HeaderBlogPost.js";
+import passProps from "_texts/e-commerce/headers/headerblogpost.js";
 const dependencies = [
   {
     name: "Skew",
@@ -41,8 +38,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderBlogPost"
-import HeaderBlogPost
+import HeaderBlogPost from "@notus-pro/react/HeaderBlogPost";
 
 const props = "<<props-here>>";
 

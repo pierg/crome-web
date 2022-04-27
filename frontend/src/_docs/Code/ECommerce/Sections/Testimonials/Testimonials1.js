@@ -1,16 +1,15 @@
-import "_texts/e-commerce/sections/testimonials1.js"
-import "components/Sections/ECommerce/Testimonials/Testimonials1.js"
-import passProps
-import Testimonials1
-
+import Testimonials1 from "components/Sections/ECommerce/Testimonials/Testimonials1.js";
+import passProps from "_texts/e-commerce/sections/testimonials1.js";
 const dependencies = [
   {
     name: "Heading2",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2",
   },
   {
     name: "MediaPlayerTestimonial",
-    link: "/components/e-commerce/components/media-players#e-commerce-id-e-commerce-id-components-mediaplayertestimonial",
+    link:
+      "/components/e-commerce/components/media-players#e-commerce-id-e-commerce-id-components-mediaplayertestimonial",
   },
   {
     name: "Button",
@@ -34,9 +33,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Testimonials1"
-import Testimonials1
-
+import Testimonials1 from "@notus-pro/react/Testimonials1";
 // texts as props
 const testimonials1 = ${JSON.stringify(passProps)}
 

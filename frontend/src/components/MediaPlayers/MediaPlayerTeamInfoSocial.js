@@ -1,11 +1,8 @@
-import "../../components/Elements/Button.js"
-import "classnames"
-import "prop-types"
-import "react"
-import Button
-import classnames
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+
+import Button from "../../components/Elements/Button.js";
 
 export default function MediaPlayerTeamInfoSocial({ items }) {
   const [open, setOpen] = React.useState(0);
@@ -58,7 +55,9 @@ export default function MediaPlayerTeamInfoSocial({ items }) {
                     </div>
                     <div className="pt-12 px-4 relative w-full md:w-5/12 mr-auto flex align-center items-center">
                       <div className="p-4 pt-6 md:p-0">
-                        <h2 className="text-2xl font-bold mt-0 mb-2">{prop.title}</h2>
+                        <h2 className="text-2xl font-bold mt-0 mb-2">
+                          {prop.title}
+                        </h2>
                         <p className="mt-3 text-lg leading-relaxed text-blueGray-500">
                           {prop.description}
                         </p>
@@ -115,7 +114,9 @@ export default function MediaPlayerTeamInfoSocial({ items }) {
           href="#pablo"
           className="absolute z-1 top-0 bottom-0 flex items-center justify-center w-1/6 text-white text-center opacity-50 hover:opacity-100 transition-opacity duration-150 ease-linear left-0"
           style={{ left: "90%", width: "5%" }}
-          onClick={(e) => toggleNew(e, open - 1 < 0 ? items.length - 1 : open - 1)}
+          onClick={(e) =>
+            toggleNew(e, open - 1 < 0 ? items.length - 1 : open - 1)
+          }
         >
           <i className="text-lightBlue-500 fas fa-chevron-left" />
           <span className="sr-only">Previous</span>
@@ -124,7 +125,9 @@ export default function MediaPlayerTeamInfoSocial({ items }) {
           href="#pablo"
           className="absolute z-1 top-0 bottom-0 flex items-center justify-center w-1/6 text-white text-center opacity-50 hover:opacity-100 transition-opacity duration-150 ease-linear right-0"
           style={{ width: "5%" }}
-          onClick={(e) => toggleNew(e, open + 1 > items.length - 1 ? 0 : open + 1)}
+          onClick={(e) =>
+            toggleNew(e, open + 1 > items.length - 1 ? 0 : open + 1)
+          }
         >
           <i className="text-lightBlue-500 fas fa-chevron-right" />
           <span className="sr-only">Next</span>

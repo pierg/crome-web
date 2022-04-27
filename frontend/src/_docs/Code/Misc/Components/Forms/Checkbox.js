@@ -1,6 +1,4 @@
-import "components/Elements/Checkbox.js"
-import Checkbox
-
+import Checkbox from "components/Elements/Checkbox.js";
 const passProps = {
   label: "My new check",
 };
@@ -15,8 +13,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Checkbox"
-import Checkbox
+import Checkbox from "@notus-pro/react/Checkbox";
 
 const props = ${JSON.stringify(passProps)}
 

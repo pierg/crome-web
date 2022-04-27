@@ -1,9 +1,6 @@
-import "@popperjs/core"
-import "prop-types"
-import "react"
-import PropTypes
-import React
-import { createPopper }
+import React from "react";
+import PropTypes from "prop-types";
+import { createPopper } from "@popperjs/core";
 
 export default function ImageTooltip({ image, text }) {
   const [tooltipShow, setTooltipShow] = React.useState(false);

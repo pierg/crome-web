@@ -1,15 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Checkbox.js"
-import "../../../components/Elements/Input.js"
-import Button
-import Checkbox
-import Input
+import Button from "../../../components/Elements/Button.js";
+import Input from "../../../components/Elements/Input.js";
+import Checkbox from "../../../components/Elements/Checkbox.js";
 
 export default function CardRegister({
   title,
@@ -30,7 +24,12 @@ export default function CardRegister({
           </div>
           <div className="text-center">
             {socials.map((prop, key) => (
-              <Button {...prop.button} key={key} color={prop.icon} fullWidth={false}>
+              <Button
+                {...prop.button}
+                key={key}
+                color={prop.icon}
+                fullWidth={false}
+              >
                 <i className={"mr-1 fab fa-" + prop.icon}></i> {prop.icon}
               </Button>
             ))}
@@ -107,8 +106,8 @@ CardRegister.propTypes = {
       // It is represetnted by the props you
       // can pass to our Input component element
       // NOTE: if you wish to generate a textarea, you will need to pass
-      // // // inside this object >> crometypes: "textarea"
-      // // // full example >> input: { crometypes: "textarea" }
+      // // // inside this object >> type: "textarea"
+      // // // full example >> input: { type: "textarea" }
       input: PropTypes.object,
     })
   ),

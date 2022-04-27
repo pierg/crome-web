@@ -1,5 +1,4 @@
-import "_texts/misc/cards/cardprofileskills.js"
-import cardprofileskills
+import cardprofileskills from "_texts/misc/cards/cardprofileskills.js";
 
 const textProps = {
   heading2: {

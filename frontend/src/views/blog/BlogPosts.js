@@ -1,53 +1,29 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // sections
-import "components/Sections/Blog/Blogs/Blogs3.js"
-import "components/Sections/Blog/Blogs/Blogs5.js"
-import "components/Sections/Blog/Blogs/Blogs6.js"
-import "components/Sections/Blog/Heroes/Hero6.js"
-import "components/Sections/Blog/Heroes/Hero7.js"
-import "components/Sections/Blog/Teams/Teams3.js"
-import Blogs3
-import Blogs5
-import Blogs6
-import Hero6
-import Hero7
-import Teams3
-
+import Blogs5 from "components/Sections/Blog/Blogs/Blogs5.js";
+import Blogs3 from "components/Sections/Blog/Blogs/Blogs3.js";
+import Blogs6 from "components/Sections/Blog/Blogs/Blogs6.js";
+import Teams3 from "components/Sections/Blog/Teams/Teams3.js";
+import Hero7 from "components/Sections/Blog/Heroes/Hero7.js";
+import Hero6 from "components/Sections/Blog/Heroes/Hero6.js";
 // components
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Headers/Blog/HeaderImageTitleButtons.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import FooterSmall
-import HeaderImageTitleButtons
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import HeaderImageTitleButtons from "components/Headers/Blog/HeaderImageTitleButtons.js";
 // texts for components as props
-import "_texts/blog/blogs/blogs3.js"
-import "_texts/blog/blogs/blogs5.js"
-import "_texts/blog/blogs/blogs6.js"
-import "_texts/blog/headers/headerimagetitlebuttons.js"
-import "_texts/blog/heroes/hero6.js"
-import "_texts/blog/heroes/hero7.js"
-import "_texts/blog/teams/teams3.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding2.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import blogs3
-import blogs5
-import blogs6
-import footersmall
-import headerimagetitlebuttons
-import hero6
-import hero7
-import navbarlinkslanding2
-import prefooterlarge
-import teams3
+import navbarlinkslanding2 from "_texts/presentation/navbars/navbarlinkslanding2.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
+import headerimagetitlebuttons from "_texts/blog/headers/headerimagetitlebuttons.js";
+import blogs5 from "_texts/blog/blogs/blogs5.js";
+import blogs3 from "_texts/blog/blogs/blogs3.js";
+import blogs6 from "_texts/blog/blogs/blogs6.js";
+import teams3 from "_texts/blog/teams/teams3.js";
+import hero7 from "_texts/blog/heroes/hero7.js";
+import hero6 from "_texts/blog/heroes/hero6.js";
 
 export default function BlogPosts() {
   const location = useLocation();

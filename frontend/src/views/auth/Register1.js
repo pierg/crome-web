@@ -1,27 +1,16 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // components
-import "components/Cards/Auth/CardLoginSocial.js"
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import CardLoginSocial
-import FooterSmall
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import CardLoginSocial from "components/Cards/Auth/CardLoginSocial.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
 // texts
-import "_texts/auth/cards/cardloginsocialregister1.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import cardloginsocialregister1
-import footersmall
-import navbarlinkslanding1
-import prefooterlarge
+import cardloginsocialregister1 from "_texts/auth/cards/cardloginsocialregister1.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 export default function Register1() {
   const location = useLocation();

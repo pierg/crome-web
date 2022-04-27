@@ -1,13 +1,8 @@
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
-
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // components
-import "../../../components/Elements/Button.js"
-import Button
+import Button from "../../../components/Elements/Button.js";
 
 export default function CardBlogFullBgAuthor({
   bgImage,
@@ -42,14 +37,18 @@ export default function CardBlogFullBgAuthor({
           className="absolute rounded-lg w-full h-full bg-50-center bg-cover transition-all duration-1000 ease-in-out group-hover:transform group-hover:scale-110"
           style={{
             backgroundImage:
-              "url(" + require("assets/img/sections/unsplashs.jpg").default + ")",
+              "url(" +
+              require("assets/img/sections/unsplashs.jpg").default +
+              ")",
             backfaceVisibility: "hidden",
           }}
         />
         <div className="absolute rounded-lg w-full h-full bg-black opacity-50"></div>
         <div className="p-10 flex h-full items-end z-1">
           <div>
-            <h1 className="text-4xl font-semibold mt-0 mb-2 text-white">{title}</h1>
+            <h1 className="text-4xl font-semibold mt-0 mb-2 text-white">
+              {title}
+            </h1>
             <p className="text-white opacity-75 text-lg">{description}</p>
             <div className="py-4 mb-3 flex items-start">
               {user.to ? (

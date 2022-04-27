@@ -1,22 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "@popperjs/core"
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { createPopper }
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { createPopper } from "@popperjs/core";
 
 // components
-import "../../components/Elements/Button.js"
-import Button
+import Button from "../../components/Elements/Button.js";
 
 export default function DropdownButton({ text, icon, items, button }) {
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const [menuClasses, setMenuClasses] = React.useState("");
   const [animating, setAntimating] = React.useState(false);
-  const [transformOrigin, setTransformOrigin] = React.useState("origin-top-right");
+  const [transformOrigin, setTransformOrigin] = React.useState(
+    "origin-top-right"
+  );
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const origins = {

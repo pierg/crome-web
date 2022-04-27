@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Error1({ image, color, error, description, title }) {
   const colors = {
@@ -18,7 +16,8 @@ export default function Error1({ image, color, error, description, title }) {
     purple: "text-purple-500",
     pink: "text-pink-500",
   };
-  const className = "font-bold text-10 sm:text-12 tracking-875 " + colors[color];
+  const className =
+    "font-bold text-10 sm:text-12 tracking-875 " + colors[color];
   return (
     <>
       <div className="h-screen overflow-hidden">

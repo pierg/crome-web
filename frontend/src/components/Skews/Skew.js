@@ -1,8 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
 export default function Skew({ color }) {
   let textColor = "text-blueGray-100";

@@ -1,5 +1,4 @@
-import "_texts/misc/cards/cardprojectimagefullbg.js"
-import cardprojectimagefullbg
+import cardprojectimagefullbg from "_texts/misc/cards/cardprojectimagefullbg.js";
 
 const textProps = {
   heading3: {

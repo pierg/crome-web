@@ -1,5 +1,4 @@
-import "_texts/misc/infoareas/infoareaicontitlelist.js"
-import infoareaicontitlelist
+import infoareaicontitlelist from "_texts/misc/infoareas/infoareaicontitlelist.js";
 
 const textProps = {
   heading3: {
@@ -16,7 +15,8 @@ const textProps = {
       icon: "fas fa-money-bill-wave",
       color: "lightBlue",
       title: "Best prices",
-      description: "If you're taught you can’t do anything, you won’t do anything.",
+      description:
+        "If you're taught you can’t do anything, you won’t do anything.",
       list: [
         {
           icon: "fas fa-check",

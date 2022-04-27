@@ -1,9 +1,6 @@
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function CardProductText({
   image,
@@ -33,7 +30,9 @@ export default function CardProductText({
           <img alt="..." src={image} className="w-full" />
         </div>
         <div className="px-6 pb-6 flex-auto">
-          <h6 className={iconColor[color] + " font-bold uppercase text-sm mb-2"}>
+          <h6
+            className={iconColor[color] + " font-bold uppercase text-sm mb-2"}
+          >
             <i className={icon + " mr-1 opacity-75"}></i> {text}
           </h6>
           <h4 className="text-2xl font-semibold leading-tight mt-0 mb-2 my-4">

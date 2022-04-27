@@ -1,8 +1,5 @@
-import "_texts/presentation/headers/headernewsletterillustration.js"
-import "components/Headers/Presentation/HeaderNewsletterIllustration.js"
-import HeaderNewsletterIllustration
-import passProps
-
+import HeaderNewsletterIllustration from "components/Headers/Presentation/HeaderNewsletterIllustration.js";
+import passProps from "_texts/presentation/headers/headernewsletterillustration.js";
 const props = `HeaderNewsletterIllustration.defaultProps = {
   button: {},
   input: {},
@@ -25,8 +22,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderNewsletterIllustration"
-import HeaderNewsletterIllustration
+import HeaderNewsletterIllustration from "@notus-pro/react/HeaderNewsletterIllustration";
 
 const props = ${JSON.stringify(passProps)}
 

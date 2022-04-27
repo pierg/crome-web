@@ -1,5 +1,4 @@
-import "_texts/presentation/infoarea/infoareauser.js"
-import infoArea1
+import infoArea1 from "_texts/presentation/infoarea/infoareauser.js";
 
 const textProps = {
   heading3: {

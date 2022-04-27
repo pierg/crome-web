@@ -1,5 +1,4 @@
-import "_texts/presentation/infoarea/infoareaicontitlelinkcolor.js"
-import infoArea1
+import infoArea1 from "_texts/presentation/infoarea/infoareaicontitlelinkcolor.js";
 
 const textProps = {
   heading2badge: {

@@ -1,7 +1,5 @@
-import "./FooterLarge.js"
-import "./FooterSmall.js"
-import FooterLarge
-import FooterSmall
+import FooterLarge from "./FooterLarge.js";
+import FooterSmall from "./FooterSmall.js";
 
 const componentsArray = [FooterLarge, FooterSmall];
 export default componentsArray;

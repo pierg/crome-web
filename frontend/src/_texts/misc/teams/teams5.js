@@ -1,5 +1,4 @@
-import "_texts/misc/cards/cardprofilefulldetails.js"
-import cardprofilefulldetails
+import cardprofilefulldetails from "_texts/misc/cards/cardprofilefulldetails.js";
 
 const textProps = {
   heading2badge: {

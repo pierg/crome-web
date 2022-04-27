@@ -1,7 +1,5 @@
-import "_texts/misc/cards/cardprofileactions.js"
-import "_texts/misc/cards/cardprofilereviews.js"
-import cardprofileactions
-import cardprofilereviews
+import cardprofileactions from "_texts/misc/cards/cardprofileactions.js";
+import cardprofilereviews from "_texts/misc/cards/cardprofilereviews.js";
 
 const textProps = {
   heading3: {

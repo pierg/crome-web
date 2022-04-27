@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import Button
+import Button from "../../../components/Elements/Button.js";
 
 export default function CardProjectImageFullBg({
   image,
@@ -57,7 +54,9 @@ export default function CardProjectImageFullBg({
           <h3 className="text-3xl font-bold mt-0 mb-2 text-white leading-tight">
             {title}
           </h3>
-          <h6 className="text-white opacity-75 text-xl mt-0 mb-4">{description}</h6>
+          <h6 className="text-white opacity-75 text-xl mt-0 mb-4">
+            {description}
+          </h6>
           <Button {...button} />
         </div>
       </div>

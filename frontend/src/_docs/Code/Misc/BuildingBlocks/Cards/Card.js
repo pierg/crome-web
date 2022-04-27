@@ -1,6 +1,4 @@
-import "components/Cards/Card.js"
-import Card
-
+import Card from "components/Cards/Card.js";
 const passProps = {
   children:
     "This is the Card tag. It only adds some nice styles for the inner content, such as shadows, rounded corners etc.",
@@ -15,8 +13,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Card"
-import Card
+import Card from "@notus-pro/react/Card";
 
 const props = ${JSON.stringify(passProps)};
 

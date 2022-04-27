@@ -1,11 +1,8 @@
-import "../../components/Elements/Button.js"
-import "classnames"
-import "prop-types"
-import "react"
-import Button
-import classnames
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+
+import Button from "../../components/Elements/Button.js";
 
 export default function MediaPlayerImageOnly({ items, defaultOpened, size }) {
   const [open, setOpen] = React.useState(defaultOpened);
@@ -52,7 +49,9 @@ export default function MediaPlayerImageOnly({ items, defaultOpened, size }) {
               <img
                 alt="..."
                 src={prop}
-                className={"h-auto mx-auto rounded-lg shadow-xl " + imgClasses[size]}
+                className={
+                  "h-auto mx-auto rounded-lg shadow-xl " + imgClasses[size]
+                }
               />
             </div>
           );
@@ -61,13 +60,17 @@ export default function MediaPlayerImageOnly({ items, defaultOpened, size }) {
       <div className="flex justify-center mt-6">
         <Button
           color="white"
-          onClick={(e) => toggleNew(e, open - 1 < 0 ? items.length - 1 : open - 1)}
+          onClick={(e) =>
+            toggleNew(e, open - 1 < 0 ? items.length - 1 : open - 1)
+          }
         >
           <i className="fas fa-chevron-left"></i>
         </Button>
         <Button
           color="white"
-          onClick={(e) => toggleNew(e, open + 1 > items.length - 1 ? 0 : open + 1)}
+          onClick={(e) =>
+            toggleNew(e, open + 1 > items.length - 1 ? 0 : open + 1)
+          }
         >
           <i className="fas fa-chevron-right"></i>
         </Button>

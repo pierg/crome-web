@@ -1,21 +1,12 @@
-import "./Checkbox.js"
-import "./ImageUpload.js"
-import "./Incrementer.js"
-import "./IncrementerSocials.js"
-import "./Progress.js"
-import "./Radio.js"
-import "./Select1.js"
-import "./Select2.js"
-import "./Select3.js"
-import Checkbox
-import ImageUpload
-import Incrementer
-import IncrementerSocials
-import Progress
-import Radio
-import Select1
-import Select2
-import Select3
+import Checkbox from "./Checkbox.js";
+import ImageUpload from "./ImageUpload.js";
+import Incrementer from "./Incrementer.js";
+import IncrementerSocials from "./IncrementerSocials.js";
+import Progress from "./Progress.js";
+import Radio from "./Radio.js";
+import Select1 from "./Select1.js";
+import Select2 from "./Select2.js";
+import Select3 from "./Select3.js";
 
 const componentsArray = [
   Checkbox,

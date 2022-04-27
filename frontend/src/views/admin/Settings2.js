@@ -1,35 +1,20 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // components
-import "components/Cards/Admin/CardDashboardProfile.js"
-import "components/Cards/Admin/CardSettingsLarge.js"
-import "components/Footers/Admin/FooterAdmin.js"
-import "components/Headers/Admin/HeaderStatCards.js"
-import "components/Navbars/NavbarSearchUser.js"
-import "components/Sidebar/Sidebar.js"
-import CardDashboardProfile
-import CardSettingsLarge
-import FooterAdmin
-import HeaderStatCards
-import NavbarSearchUser
-import Sidebar
-
+import Sidebar from "components/Sidebar/Sidebar.js";
+import NavbarSearchUser from "components/Navbars/NavbarSearchUser.js";
+import HeaderStatCards from "components/Headers/Admin/HeaderStatCards.js";
+import CardSettingsLarge from "components/Cards/Admin/CardSettingsLarge.js";
+import CardDashboardProfile from "components/Cards/Admin/CardDashboardProfile.js";
+import FooterAdmin from "components/Footers/Admin/FooterAdmin.js";
 // texts as props
-import "_texts/admin/cards/carddashboardprofile.js"
-import "_texts/admin/cards/cardsettingslarge.js"
-import "_texts/admin/footers/footeradmin.js"
-import "_texts/admin/headers/headerstatcards.js"
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "_texts/admin/sidebar/sidebar.js"
-import carddashboardprofile
-import cardsettingslarge
-import footeradmin
-import headerstatcards
-import navbarsearchusersettings2
-import sidebar
+import sidebar from "_texts/admin/sidebar/sidebar.js";
+import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
+import headerstatcards from "_texts/admin/headers/headerstatcards.js";
+import cardsettingslarge from "_texts/admin/cards/cardsettingslarge.js";
+import carddashboardprofile from "_texts/admin/cards/carddashboardprofile.js";
+import footeradmin from "_texts/admin/footers/footeradmin.js";
 
 export default function Settings2() {
   const location = useLocation();

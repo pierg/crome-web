@@ -1,9 +1,6 @@
-import "classnames"
-import "prop-types"
-import "react"
-import classnames
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 const NavbarCollapse = React.forwardRef(
   ({ children, breakpoint, className, ...rest }, ref) => {

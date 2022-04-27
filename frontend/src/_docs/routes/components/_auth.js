@@ -1,21 +1,13 @@
 // pages
-import "_docs/Code/Auth/Pages/Layouts/index.js"
-import "_docs/Code/Auth/Pages/Login/index.js"
-import "_docs/Code/Auth/Pages/Register/index.js"
-import "_docs/Code/Auth/Pages/Reset/index.js"
-import Layouts
-import Login
-import Register
-import Reset
-
+import Layouts from "_docs/Code/Auth/Pages/Layouts/index.js";
+import Login from "_docs/Code/Auth/Pages/Login/index.js";
+import Register from "_docs/Code/Auth/Pages/Register/index.js";
+import Reset from "_docs/Code/Auth/Pages/Reset/index.js";
 // sections
 // components
-import "_docs/Code/Auth/Components/Cards/index.js"
-import "_docs/Code/Auth/Components/Footers/index.js"
-import "_docs/Code/Auth/Components/Headers/index.js"
-import Cards
-import Footers
-import Headers
+import Cards from "_docs/Code/Auth/Components/Cards/index.js";
+import Footers from "_docs/Code/Auth/Components/Footers/index.js";
+import Headers from "_docs/Code/Auth/Components/Headers/index.js";
 
 const routesObject = {
   id: "authentication-id",
@@ -29,25 +21,22 @@ const routesObject = {
       components: [
         {
           link: "/components/auth/components/cards",
-          image:
-            require("assets/img/components/authentication/components/authentication-components-cards.jpg")
-              .default,
+          image: require("assets/img/components/authentication/components/authentication-components-cards.jpg")
+            .default,
           title: "Cards",
           components: Cards,
         },
         {
           link: "/components/auth/components/footers",
-          image:
-            require("assets/img/components/authentication/components/authentication-components-footers.jpg")
-              .default,
+          image: require("assets/img/components/authentication/components/authentication-components-footers.jpg")
+            .default,
           title: "Footers",
           components: Footers,
         },
         {
           link: "/components/auth/components/headers",
-          image:
-            require("assets/img/components/authentication/components/authentication-components-headers.jpg")
-              .default,
+          image: require("assets/img/components/authentication/components/authentication-components-headers.jpg")
+            .default,
           title: "Headers",
           components: Headers,
         },
@@ -59,33 +48,29 @@ const routesObject = {
       components: [
         {
           link: "/components/auth/pages/layouts",
-          image:
-            require("assets/img/components/authentication/pages/authentication-pages-layouts.jpg")
-              .default,
+          image: require("assets/img/components/authentication/pages/authentication-pages-layouts.jpg")
+            .default,
           title: "Layouts",
           components: Layouts,
         },
         {
           link: "/components/auth/pages/login",
-          image:
-            require("assets/img/components/authentication/pages/authentication-pages-login.jpg")
-              .default,
+          image: require("assets/img/components/authentication/pages/authentication-pages-login.jpg")
+            .default,
           title: "Login",
           components: Login,
         },
         {
           link: "/components/auth/pages/register",
-          image:
-            require("assets/img/components/authentication/pages/authentication-pages-register.jpg")
-              .default,
+          image: require("assets/img/components/authentication/pages/authentication-pages-register.jpg")
+            .default,
           title: "Register",
           components: Register,
         },
         {
           link: "/components/auth/pages/reset",
-          image:
-            require("assets/img/components/authentication/pages/authentication-pages-reset.jpg")
-              .default,
+          image: require("assets/img/components/authentication/pages/authentication-pages-reset.jpg")
+            .default,
           title: "Reset",
           components: Reset,
         },

@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Elements/Badge.js"
-import Badge
+import Badge from "../../components/Elements/Badge.js";
 
 export default function Heading2Badge({
   badge,

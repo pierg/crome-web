@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
 
@@ -22,7 +20,9 @@ export default function InfoAreaUser({ image, name, jobTitle, socialLinks }) {
       />
       <div className="pt-6 text-center">
         <h5 className="text-xl font-bold">{name}</h5>
-        <p className="mt-1 text-sm text-blueGray-400 uppercase font-bold">{jobTitle}</p>
+        <p className="mt-1 text-sm text-blueGray-400 uppercase font-bold">
+          {jobTitle}
+        </p>
         <div className="mt-6">
           {socialLinks.map((prop, key) => {
             return (

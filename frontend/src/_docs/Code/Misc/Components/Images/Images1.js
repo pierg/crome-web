@@ -1,8 +1,5 @@
-import "_texts/misc/images/imagetooltip.js"
-import "components/Images/ImageTooltip.js"
-import ImageTooltip
-import passProps
-
+import ImageTooltip from "components/Images/ImageTooltip.js";
+import passProps from "_texts/misc/images/imagetooltip.js";
 const props = `ImageTooltip.defaultProps = {};
 ImageTooltip.propTypes = {
   image: PropTypes.string,
@@ -13,8 +10,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/ImageTooltip"
-import ImageTooltip
+import ImageTooltip from "@notus-pro/react/ImageTooltip";
 
 const props = ${JSON.stringify(passProps)}
 

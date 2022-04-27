@@ -1,8 +1,5 @@
-import "_texts/misc/cards/cardpricingdetails.js"
-import "components/Cards/Misc/CardPricingDetails.js"
-import CardPricingDetails
-import passProps
-
+import CardPricingDetails from "components/Cards/Misc/CardPricingDetails.js";
+import passProps from "_texts/misc/cards/cardpricingdetails.js";
 const props = `CardPricingDetails.defaultProps = {
   link: {},
   footer: {},
@@ -57,8 +54,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardPricingDetails"
-import CardPricingDetails
+import CardPricingDetails from "@notus-pro/react/CardPricingDetails";
 
 const props = "<<props-here>>";
 

@@ -1,31 +1,18 @@
-import "react"
-import "react-router-dom"
-import React
-import { useLocation }
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 // components
-import "components/Cards/Auth/CardRegister.js"
-import "components/Footers/Landing/FooterSmall.js"
-import "components/Headers/Auth/HeaderImageTitleSmallCenter.js"
-import "components/Navbars/NavbarLinks.js"
-import "components/PreFooters/PreFooterLarge.js"
-import CardRegister
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "components/Navbars/NavbarLinks.js";
+import HeaderImageTitleSmallCenter from "components/Headers/Auth/HeaderImageTitleSmallCenter.js";
+import PreFooterLarge from "components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "components/Footers/Landing/FooterSmall.js";
+import CardRegister from "components/Cards/Auth/CardRegister.js";
 // texts as props
-import "_texts/auth/cards/cardregister.js"
-import "_texts/auth/headers/headerimagetitlesmallcenter.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import cardregister
-import footersmall
-import headerimagetitlesmallcenter
-import navbarlinkslanding1
-import prefooterlarge
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import headerimagetitlesmallcenter from "_texts/auth/headers/headerimagetitlesmallcenter.js";
+import cardregister from "_texts/auth/cards/cardregister.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 
 export default function Login2() {
   const location = useLocation();

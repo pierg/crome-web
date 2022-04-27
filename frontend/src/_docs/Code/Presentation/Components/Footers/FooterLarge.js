@@ -1,8 +1,5 @@
-import "_texts/presentation/footers/footerlarge.js"
-import "components/Footers/Landing/FooterLarge.js"
-import FooterLarge
-import passProps
-
+import FooterLarge from "components/Footers/Landing/FooterLarge.js";
+import passProps from "_texts/presentation/footers/footerlarge.js";
 const props = `FooterLarge.defaultProps = {
   links: [],
   socials: [],
@@ -38,8 +35,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/FooterLarge"
-import FooterLarge
+import FooterLarge from "@notus-pro/react/FooterLarge";
 
 const props = ${JSON.stringify(passProps)}
 

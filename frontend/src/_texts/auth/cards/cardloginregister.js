@@ -2,7 +2,8 @@ const textProps = {
   color: "dark",
   detailsPanel: {
     leftTitle: "Join Us!",
-    leftDescription: "To keep connected with us please login with your personal info",
+    leftDescription:
+      "To keep connected with us please login with your personal info",
     leftButton: {
       children: "Sign up",
       color: "light",

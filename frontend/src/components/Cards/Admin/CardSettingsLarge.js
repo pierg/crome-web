@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Input.js"
-import "../../../components/Elements/Select.js"
-import Button
-import Input
-import Select
+import Button from "../../../components/Elements/Button.js";
+import Input from "../../../components/Elements/Input.js";
+import Select from "../../../components/Elements/Select.js";
 
 export default function CardSettingsLarge({ title, button, forms }) {
   const widths = {
@@ -93,7 +88,9 @@ const selectsShape = PropTypes.shape({
   select: PropTypes.object,
 });
 
-const inputsTypes = PropTypes.arrayOf(PropTypes.oneOfType([inputsShape, selectsShape]));
+const inputsTypes = PropTypes.arrayOf(
+  PropTypes.oneOfType([inputsShape, selectsShape])
+);
 
 CardSettingsLarge.defaultProps = {
   button: {},

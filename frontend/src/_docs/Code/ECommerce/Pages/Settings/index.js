@@ -1,5 +1,4 @@
-import "./Settings1.js"
-import Settings1
+import Settings1 from "./Settings1.js";
 
 const componentsArray = [Settings1];
 export default componentsArray;

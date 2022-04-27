@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/cardproductscheckout.js"
-import "components/Cards/ECommerce/CardProductsCheckout.js"
-import CardProductsCheckout
-import passProps
-
+import CardProductsCheckout from "components/Cards/ECommerce/CardProductsCheckout.js";
+import passProps from "_texts/e-commerce/cards/cardproductscheckout.js";
 const dependencies = [
   {
     name: "Input",
@@ -48,8 +45,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardProductsCheckout"
-import CardProductsCheckout
+import CardProductsCheckout from "@notus-pro/react/CardProductsCheckout";
 
 const props = ${JSON.stringify(passProps)}
 

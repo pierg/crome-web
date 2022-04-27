@@ -1,9 +1,7 @@
-import "../../components/Elements/Badge.js"
-import "prop-types"
-import "react"
-import Badge
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
+
+import Badge from "../../components/Elements/Badge.js";
 
 export default function Progress({ value, text, color }) {
   let progress = {
@@ -53,13 +51,21 @@ export default function Progress({ value, text, color }) {
               </Badge>
             </div>
             <div className="text-right">
-              <span className={"text-xs font-semibold inline-block " + percent[color]}>
+              <span
+                className={
+                  "text-xs font-semibold inline-block " + percent[color]
+                }
+              >
                 {value}%
               </span>
             </div>
           </div>
         )}
-        <div className={"overflow-hidden h-2 text-xs flex rounded " + wrapper[color]}>
+        <div
+          className={
+            "overflow-hidden h-2 text-xs flex rounded " + wrapper[color]
+          }
+        >
           <div
             style={{ width: value.toString() + "%" }}
             className={

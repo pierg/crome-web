@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardContactUsAddress.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import "../../../../components/InfoAreas/Misc/InfoAreaIconTitle.js"
-import CardContactUsAddress
-import Heading2Badge
-import InfoAreaIconTitle
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import CardContactUsAddress from "../../../../components/Cards/Misc/CardContactUsAddress.js";
+import InfoAreaIconTitle from "../../../../components/InfoAreas/Misc/InfoAreaIconTitle.js";
 
 export default function ContactUs4({ heading2badge, image, infoareas, card }) {
   return (

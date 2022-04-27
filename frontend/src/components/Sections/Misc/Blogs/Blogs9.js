@@ -1,16 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // components
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading3Badge.js"
-import Button
-import Heading3Badge
+import Heading3Badge from "../../../../components/Headings/Heading3Badge.js";
+import Button from "../../../../components/Elements/Button.js";
 
 export default function Blogs9({
   heading3badge,
@@ -43,7 +38,9 @@ export default function Blogs9({
                   />
                   <div className="flex-1">
                     <div className="justify-between items-center">
-                      <h6 className="text-lg font-bold leading-tight">{user.name}</h6>
+                      <h6 className="text-lg font-bold leading-tight">
+                        {user.name}
+                      </h6>
                       <p className="text-blueGray-500 text-sm">{user.date}</p>
                     </div>
                   </div>
@@ -54,7 +51,11 @@ export default function Blogs9({
                   ))}
                 </div>
               </div>
-              <img alt="..." src={image} className="w-full rounded-lg shadow-lg" />
+              <img
+                alt="..."
+                src={image}
+                className="w-full rounded-lg shadow-lg"
+              />
               {newDescription.map((prop, key) => (
                 <p key={key} className="text-blueGray-500 pt-6 leading-relaxed">
                   {prop}

@@ -1,17 +1,12 @@
-import "_docs/components/Frameworks.js"
-import "assets/img/index-left.png"
-import "assets/img/logo.png"
-import "components/Elements/Badge.js"
-import "components/Elements/Button.js"
-import "react"
-import "react-router-dom"
-import Badge
-import Button
-import Frameworks
-import leftImage
-import logo
-import React
-import { Link }
+import React from "react";
+import { Link } from "react-router-dom";
+
+import logo from "assets/img/logo.png";
+import leftImage from "assets/img/index-left.png";
+
+import Frameworks from "_docs/components/Frameworks.js";
+import Badge from "components/Elements/Badge.js";
+import Button from "components/Elements/Button.js";
 
 const frameworks = [
   {
@@ -84,9 +79,9 @@ export default function Index() {
               </h4>
             </div>
             <h6 className="text-xl font-normal leading-normal mt-0 mb-6 text-blueGray-200">
-              Completly new product built using our past experience in web templates.
-              Take the examples and components we made for you and start playing with
-              them.
+              Completly new product built using our past experience in web
+              templates. Take the examples and components we made for you and
+              start playing with them.
             </h6>
             {badges.map((prop, key) => (
               <div key={key} className="my-1 mr-1 inline-block">
@@ -122,7 +117,11 @@ export default function Index() {
             </div>
           </div>
           <div className="hidden w-full h-full lg:w-7/12 lg:block">
-            <img className="w-full animate-index-image" src={leftImage} alt="..." />
+            <img
+              className="w-full animate-index-image"
+              src={leftImage}
+              alt="..."
+            />
           </div>
         </div>
       </div>

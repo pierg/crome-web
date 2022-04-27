@@ -1,11 +1,7 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Skews/Skew.js"
-import Skew
+import Skew from "../../../components/Skews/Skew.js";
 
 export default function HeaderImage({ image, skew }) {
   return (

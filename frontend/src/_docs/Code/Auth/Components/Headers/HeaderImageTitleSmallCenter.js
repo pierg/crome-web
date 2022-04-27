@@ -1,8 +1,5 @@
-import "_texts/auth/headers/headerimagetitlesmallcenter.js"
-import "components/Headers/Auth/HeaderImageTitleSmallCenter.js"
-import HeaderImageTitleSmallCenter
-import passProps
-
+import HeaderImageTitleSmallCenter from "components/Headers/Auth/HeaderImageTitleSmallCenter.js";
+import passProps from "_texts/auth/headers/headerimagetitlesmallcenter.js";
 const props = `HeaderImageTitleSmallCenter.defaultProps = {
   skewColor: "white",
 };
@@ -17,8 +14,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderImageTitleSmallCenter"
-import HeaderImageTitleSmallCenter
+import HeaderImageTitleSmallCenter from "@notus-pro/react/HeaderImageTitleSmallCenter";
 
 const props = ${JSON.stringify(passProps)}
 

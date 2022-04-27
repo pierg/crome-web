@@ -1,5 +1,4 @@
-import "_texts/e-commerce/cards/cardproducttext.js"
-import cardproducttext
+import cardproducttext from "_texts/e-commerce/cards/cardproducttext.js";
 
 const textProps = {
   heading3badge: {

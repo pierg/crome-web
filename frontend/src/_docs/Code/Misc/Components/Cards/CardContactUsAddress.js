@@ -1,8 +1,5 @@
-import "_texts/misc/cards/cardcontactusaddress.js"
-import "components/Cards/Misc/CardContactUsAddress.js"
-import CardContactUsAddress
-import passProps
-
+import CardContactUsAddress from "components/Cards/Misc/CardContactUsAddress.js";
+import passProps from "_texts/misc/cards/cardcontactusaddress.js";
 const dependencies = [
   {
     name: "Input",
@@ -14,7 +11,8 @@ const dependencies = [
   },
   {
     name: "InfoAreaIcon",
-    link: "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicon",
+    link:
+      "/components/presentation/components/info-areas#presentation-id-presentation-id-components-infoareaicon",
   },
   {
     name: "Button",
@@ -75,8 +73,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardContactUsAddress"
-import CardContactUsAddress
+import CardContactUsAddress from "@notus-pro/react/CardContactUsAddress";
 
 const props = ${JSON.stringify(passProps)};
 

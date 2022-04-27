@@ -1,8 +1,5 @@
-import "_texts/misc/headers/headerlefttitlerightimageplayer.js"
-import "components/Headers/Misc/HeaderLeftTitleRightImagePlayer.js"
-import HeaderLeftTitleRightImagePlayer
-import passProps
-
+import HeaderLeftTitleRightImagePlayer from "components/Headers/Misc/HeaderLeftTitleRightImagePlayer.js";
+import passProps from "_texts/misc/headers/headerlefttitlerightimageplayer.js";
 const dependencies = [
   {
     name: "MediaPlayerImageOnly",
@@ -10,7 +7,8 @@ const dependencies = [
   },
   {
     name: "InfoAreaIconTitle",
-    link: "/components/misc/components/info-areas#misc-id-misc-id-components-infoareaicontitle",
+    link:
+      "/components/misc/components/info-areas#misc-id-misc-id-components-infoareaicontitle",
   },
 ];
 const props = `HeaderLeftTitleRightImagePlayer.defaultProps = {
@@ -43,8 +41,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/HeaderLeftTitleRightImagePlayer"
-import HeaderLeftTitleRightImagePlayer
+import HeaderLeftTitleRightImagePlayer from "@notus-pro/react/HeaderLeftTitleRightImagePlayer";
 
 const props = "<<props-here>>";
 

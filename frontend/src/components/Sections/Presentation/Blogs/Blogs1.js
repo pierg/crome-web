@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // sections
 
 // components
-import "../../../../components/Cards/Presentation/CardBlogFullBg.js"
-import "../../../../components/Headings/Heading3.js"
-import CardBlogFullBg
-import Heading3
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import CardBlogFullBg from "../../../../components/Cards/Presentation/CardBlogFullBg.js";
 
 export default function Blogs1({ heading3, cards }) {
   return (

@@ -1,20 +1,20 @@
-import "_texts/e-commerce/pricing/pricing2.js"
-import "components/Sections/ECommerce/Pricing/Pricing2.js"
-import passProps
-import Pricing2
-
+import Pricing2 from "components/Sections/ECommerce/Pricing/Pricing2.js";
+import passProps from "_texts/e-commerce/pricing/pricing2.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "CardPricingList",
-    link: "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardpricinglist",
+    link:
+      "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardpricinglist",
   },
   {
     name: "CardTableDetails",
-    link: "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardtabledetails",
+    link:
+      "/components/e-commerce/components/cards#e-commerce-id-e-commerce-id-components-cardtabledetails",
   },
 ];
 const props = `Pricing2.defaultProps = {
@@ -35,8 +35,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Pricing2"
-import Pricing2
+import Pricing2 from "@notus-pro/react/Pricing2";
 
 // texts as props
 const pricing2 = ${JSON.stringify(passProps)}

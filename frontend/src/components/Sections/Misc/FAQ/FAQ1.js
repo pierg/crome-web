@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Accordions/Accordion.js"
-import "../../../../components/Headings/Heading2.js"
-import Accordion
-import Heading2
+import Heading2 from "../../../../components/Headings/Heading2.js";
+import Accordion from "../../../../components/Accordions/Accordion.js";
 
 export default function FAQ1({ heading2, accordion }) {
   return (

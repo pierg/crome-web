@@ -1,16 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Dropdowns/DropdownButton.js"
-import "../../../components/Elements/Progress.js"
-import "../../../components/Images/ImagesOverlap.js"
-import DropdownButton
-import ImagesOverlap
-import Progress
+import DropdownButton from "../../../components/Dropdowns/DropdownButton.js";
+import Progress from "../../../components/Elements/Progress.js";
+import ImagesOverlap from "../../../components/Images/ImagesOverlap.js";
 
 export default function CardFullTable({ title, head, body, color, children }) {
   const cardColors = {
@@ -93,7 +88,9 @@ export default function CardFullTable({ title, head, body, color, children }) {
         <div className="px-6 py-4 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={"font-bold text-lg " + titleColors[color]}>{title}</h3>
+              <h3 className={"font-bold text-lg " + titleColors[color]}>
+                {title}
+              </h3>
             </div>
           </div>
         </div>
@@ -136,7 +133,9 @@ export default function CardFullTable({ title, head, body, color, children }) {
                         >
                           <div className="flex items-center">
                             <span
-                              className={"ml-3 font-bold " + +imageTextColors[color]}
+                              className={
+                                "ml-3 font-bold " + +imageTextColors[color]
+                              }
                             >
                               {colProp.bold}
                             </span>
@@ -194,7 +193,8 @@ export default function CardFullTable({ title, head, body, color, children }) {
                           <div className="flex items-center">
                             <i
                               className={
-                                "fas fa-circle mr-2 " + iconColors[colProp.color]
+                                "fas fa-circle mr-2 " +
+                                iconColors[colProp.color]
                               }
                             ></i>
                             {colProp.text}
@@ -214,7 +214,9 @@ export default function CardFullTable({ title, head, body, color, children }) {
                               alt="..."
                             ></img>{" "}
                             <span
-                              className={"ml-3 font-bold " + +imageTextColors[color]}
+                              className={
+                                "ml-3 font-bold " + +imageTextColors[color]
+                              }
                             >
                               {colProp.text}
                             </span>

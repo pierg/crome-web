@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-no-target-blank*/
-import "components/Elements/Alert.js"
-import "react"
-import Alert
-import React
+import React from "react";
+
+import Alert from "components/Elements/Alert.js";
 
 export default function TypeScriptSupport() {
   return (
     <>
       <Alert color="red">
-        At the moment Creative Tim <b className="underline">does not</b> commercialize
-        React & TypeScript products.
+        At the moment Creative Tim <b className="underline">does not</b>{" "}
+        commercialize React & TypeScript products.
         <br />
-        So, Notus PRO React <b className="underline">does not</b> support TypeScript.
+        So, Notus PRO React <b className="underline">does not</b> support
+        TypeScript.
         <br />
         Notus PRO React only comes as Babel/JSX.
       </Alert>

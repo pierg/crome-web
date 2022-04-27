@@ -1,6 +1,4 @@
-import "components/Navbars/Navbar.js"
-import Navbar
-
+import Navbar from "components/Navbars/Navbar.js";
 const passProps = {
   color: "pink",
   className: "text-white",
@@ -36,8 +34,7 @@ const description =
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Navbar"
-import Navbar
+import Navbar from "@notus-pro/react/Navbar";
 
 const props = "<<props-here>>";
 

@@ -1,8 +1,5 @@
-import "_texts/misc/infoareas/infoareaicontitle.js"
-import "components/InfoAreas/Misc/InfoAreaIconTitle.js"
-import InfoAreaIconTitle
-import passProps
-
+import InfoAreaIconTitle from "components/InfoAreas/Misc/InfoAreaIconTitle.js";
+import passProps from "_texts/misc/infoareas/infoareaicontitle.js";
 const props = `InfoAreaIconTitle.defaultProps = {
   description: [],
 };
@@ -20,8 +17,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/InfoAreaIconTitle"
-import InfoAreaIconTitle
+import InfoAreaIconTitle from "@notus-pro/react/InfoAreaIconTitle";
 
 const props = ${JSON.stringify(passProps)};
 

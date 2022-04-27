@@ -1,16 +1,15 @@
-import "_texts/misc/pricing/pricing6.js"
-import "components/Sections/Misc/Pricing/Pricing6.js"
-import passProps
-import Pricing6
-
+import Pricing6 from "components/Sections/Misc/Pricing/Pricing6.js";
+import passProps from "_texts/misc/pricing/pricing6.js";
 const dependencies = [
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
   {
     name: "CardPricingLogo",
-    link: "/components/misc/components/cards#misc-id-misc-id-components-cardpricinglogo",
+    link:
+      "/components/misc/components/cards#misc-id-misc-id-components-cardpricinglogo",
   },
 ];
 const props = `Pricing6.defaultProps = {
@@ -27,8 +26,7 @@ const description = "";
 const preview = `import React from "react";
 
 // sections
-import "@notus-pro/react/Pricing6"
-import Pricing6
+import Pricing6 from "@notus-pro/react/Pricing6";
 
 const props = ${JSON.stringify(passProps)};
 

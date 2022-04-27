@@ -1,15 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
-
+import React from "react";
+import PropTypes from "prop-types";
 // components
-import "../../../components/Footers/Landing/FooterSmall.js"
-import "../../../components/Navbars/NavbarLinks.js"
-import "../../../components/PreFooters/PreFooterLarge.js"
-import FooterSmall
-import NavbarLinks
-import PreFooterLarge
+import NavbarLinks from "../../../components/Navbars/NavbarLinks.js";
+import PreFooterLarge from "../../../components/PreFooters/PreFooterLarge.js";
+import FooterSmall from "../../../components/Footers/Landing/FooterSmall.js";
 
 export default function Auth4({ children, footer, navbar, prefooter, image }) {
   return (

@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/cardchatdiscussion.js"
-import "components/Cards/ECommerce/CardChatDiscussion.js"
-import CardChatDiscussion
-import passProps
-
+import CardChatDiscussion from "components/Cards/ECommerce/CardChatDiscussion.js";
+import passProps from "_texts/e-commerce/cards/cardchatdiscussion.js";
 const dependencies = [
   {
     name: "Button",
@@ -14,7 +11,8 @@ const dependencies = [
   },
   {
     name: "Message",
-    link: "/components/misc/components/comments#misc-id-misc-id-components-message",
+    link:
+      "/components/misc/components/comments#misc-id-misc-id-components-message",
   },
 ];
 const props = `CardChatDiscussion.defaultProps = {
@@ -49,8 +47,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardChatDiscussion"
-import CardChatDiscussion
+import CardChatDiscussion from "@notus-pro/react/CardChatDiscussion";
 
 const props = ${JSON.stringify(passProps)}
 

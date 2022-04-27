@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardPricingLogo.js"
-import "../../../../components/Headings/Heading3.js"
-import CardPricingLogo
-import Heading3
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import CardPricingLogo from "../../../../components/Cards/Misc/CardPricingLogo.js";
 
 export default function Pricing6({ heading3, cards }) {
   return (

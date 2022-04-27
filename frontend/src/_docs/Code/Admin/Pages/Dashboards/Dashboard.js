@@ -1,40 +1,23 @@
-import "_texts/admin/cards/cardchartjsdashboard1.js"
-import "_texts/admin/cards/cardchartjsdashboard2.js"
-import "_texts/admin/cards/cardfulltabledashboard1.js"
-import "_texts/admin/cards/cardfulltabledashboard2.js"
-import "_texts/admin/footers/footeradmin.js"
-import "_texts/admin/headers/headerstatcards.js"
-import "_texts/admin/navbars/navbarsearchusersettings2.js"
-import "_texts/admin/sidebar/sidebar.js"
-import "views/admin/Dashboard.js"
-import cardchartjsdashboard1
-import cardchartjsdashboard2
-import cardfulltabledashboard1
-import cardfulltabledashboard2
-import Dashboard
-import footeradmin
-import headerstatcards
-import navbarsearchusersettings2
-import sidebar
-
+import Dashboard from "views/admin/Dashboard.js";
+import sidebar from "_texts/admin/sidebar/sidebar.js";
+import navbarsearchusersettings2 from "_texts/admin/navbars/navbarsearchusersettings2.js";
+import headerstatcards from "_texts/admin/headers/headerstatcards.js";
+import cardchartjsdashboard1 from "_texts/admin/cards/cardchartjsdashboard1.js";
+import cardchartjsdashboard2 from "_texts/admin/cards/cardchartjsdashboard2.js";
+import cardfulltabledashboard1 from "_texts/admin/cards/cardfulltabledashboard1.js";
+import cardfulltabledashboard2 from "_texts/admin/cards/cardfulltabledashboard2.js";
+import footeradmin from "_texts/admin/footers/footeradmin.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardChartJS"
-import "@notus-pro/react/CardFullTable"
-import "@notus-pro/react/FooterAdmin"
-import "@notus-pro/react/HeaderStatCards"
-import "@notus-pro/react/NavbarSearchUser"
-import "@notus-pro/react/Sidebar"
-import CardChartJS
-import CardFullTable
-import FooterAdmin
-import HeaderStatCards
-import NavbarSearchUser
-import Sidebar
-
+import Sidebar from "@notus-pro/react/Sidebar";
+import NavbarSearchUser from "@notus-pro/react/NavbarSearchUser";
+import HeaderStatCards from "@notus-pro/react/HeaderStatCards";
+import CardChartJS from "@notus-pro/react/CardChartJS";
+import CardFullTable from "@notus-pro/react/CardFullTable";
+import FooterAdmin from "@notus-pro/react/FooterAdmin";
 // props
 const sidebar = ${JSON.stringify(sidebar)};
 const navbarsearchusersettings2 = ${JSON.stringify(navbarsearchusersettings2)};

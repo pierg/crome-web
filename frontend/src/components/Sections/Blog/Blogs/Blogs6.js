@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Presentation/CardBlogFullBg.js"
-import "../../../../components/Headings/Heading3.js"
-import CardBlogFullBg
-import Heading3
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import CardBlogFullBg from "../../../../components/Cards/Presentation/CardBlogFullBg.js";
 
 export default function Blogs6({ heading3, cards }) {
   return (
@@ -17,7 +13,10 @@ export default function Blogs6({ heading3, cards }) {
           <div className="mb-12">{heading3 && <Heading3 {...heading3} />}</div>
           <div className="items-center flex flex-wrap -mx-4">
             {cards.map((prop, key) => (
-              <div key={key} className="p-0 pl-0 pr-0 px-4 relative w-full lg:w-3/12">
+              <div
+                key={key}
+                className="p-0 pl-0 pr-0 px-4 relative w-full lg:w-3/12"
+              >
                 <CardBlogFullBg {...prop} />
               </div>
             ))}

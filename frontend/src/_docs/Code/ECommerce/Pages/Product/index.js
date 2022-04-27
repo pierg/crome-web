@@ -1,5 +1,4 @@
-import "./Product.js"
-import Product
+import Product from "./Product.js";
 
 const componentsArray = [Product];
 export default componentsArray;

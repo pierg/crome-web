@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../components/Elements/Button.js"
-import Button
+import Button from "../../components/Elements/Button.js";
 
 export default function ImageUpload({
   placeholder,

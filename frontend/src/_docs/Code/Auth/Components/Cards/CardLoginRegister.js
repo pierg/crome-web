@@ -1,8 +1,5 @@
-import "_texts/auth/cards/cardloginregister.js"
-import "components/Cards/Auth/CardLoginRegister.js"
-import CardLoginRegister
-import passProps
-
+import CardLoginRegister from "components/Cards/Auth/CardLoginRegister.js";
+import passProps from "_texts/auth/cards/cardloginregister.js";
 const dependencies = [
   {
     name: "Button",
@@ -71,8 +68,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardLoginRegister"
-import CardLoginRegister
+import CardLoginRegister from "@notus-pro/react/CardLoginRegister";
 
 const props = "<<props-here>>";
 

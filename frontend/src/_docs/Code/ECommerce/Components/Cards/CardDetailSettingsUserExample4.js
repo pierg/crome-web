@@ -1,8 +1,5 @@
-import "_texts/e-commerce/cards/carddetailsettingsuser.js"
-import "components/Cards/ECommerce/CardDetailSettingsUser.js"
-import CardDetailSettingsUser
-import passProps4
-
+import CardDetailSettingsUser from "components/Cards/ECommerce/CardDetailSettingsUser.js";
+import passProps4 from "_texts/e-commerce/cards/carddetailsettingsuser.js";
 const passProps = {
   ...passProps4,
   defaultOpened: 3,
@@ -18,7 +15,8 @@ const dependencies = [
   },
   {
     name: "Checkbox",
-    link: "/components/misc/components/forms#misc-id-misc-id-components-checkbox",
+    link:
+      "/components/misc/components/forms#misc-id-misc-id-components-checkbox",
   },
   {
     name: "Radio",
@@ -26,11 +24,13 @@ const dependencies = [
   },
   {
     name: "Image Upload",
-    link: "/components/misc/components/forms#misc-id-misc-id-components-imageupload",
+    link:
+      "/components/misc/components/forms#misc-id-misc-id-components-imageupload",
   },
   {
     name: "Progress",
-    link: "/components/misc/components/forms#misc-id-misc-id-components-progress",
+    link:
+      "/components/misc/components/forms#misc-id-misc-id-components-progress",
   },
   {
     name: "Button",
@@ -172,8 +172,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardDetailSettingsUser"
-import CardDetailSettingsUser
+import CardDetailSettingsUser from "@notus-pro/react/CardDetailSettingsUser";
 
 const props = "<<props-here>>";
 

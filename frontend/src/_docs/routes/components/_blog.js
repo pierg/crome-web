@@ -1,24 +1,14 @@
 // pages
-import "_docs/Code/Blog/Pages/Blogs/index.js"
-import BlogPages
-
+import BlogPages from "_docs/Code/Blog/Pages/Blogs/index.js";
 // sections
-import "_docs/Code/Blog/Sections/Blogs/index.js"
-import "_docs/Code/Blog/Sections/Heroes/index.js"
-import "_docs/Code/Blog/Sections/Teams/index.js"
-import Blogs
-import Heroes
-import Teams
-
+import Blogs from "_docs/Code/Blog/Sections/Blogs/index.js";
+import Heroes from "_docs/Code/Blog/Sections/Heroes/index.js";
+import Teams from "_docs/Code/Blog/Sections/Teams/index.js";
 // components
-import "_docs/Code/Blog/Components/Cards/index.js"
-import "_docs/Code/Blog/Components/Headers/index.js"
-import "_docs/Code/Blog/Components/MediaPlayers/index.js"
-import "_docs/Code/Blog/Components/PreFooters/index.js"
-import Cards
-import Headers
-import MediaPlayers
-import PreFooters
+import Cards from "_docs/Code/Blog/Components/Cards/index.js";
+import Headers from "_docs/Code/Blog/Components/Headers/index.js";
+import MediaPlayers from "_docs/Code/Blog/Components/MediaPlayers/index.js";
+import PreFooters from "_docs/Code/Blog/Components/PreFooters/index.js";
 
 const routesObject = {
   id: "blog-id",
@@ -32,33 +22,29 @@ const routesObject = {
       components: [
         {
           link: "/components/blog/components/cards",
-          image:
-            require("assets/img/components/blog/components/blog-components-cards.jpg")
-              .default,
+          image: require("assets/img/components/blog/components/blog-components-cards.jpg")
+            .default,
           title: "Cards",
           components: Cards,
         },
         {
           link: "/components/blog/components/headers",
-          image:
-            require("assets/img/components/blog/components/blog-components-headers.jpg")
-              .default,
+          image: require("assets/img/components/blog/components/blog-components-headers.jpg")
+            .default,
           title: "Headers",
           components: Headers,
         },
         {
           link: "/components/blog/components/media-players",
-          image:
-            require("assets/img/components/blog/components/blog-components-mediaplayers.jpg")
-              .default,
+          image: require("assets/img/components/blog/components/blog-components-mediaplayers.jpg")
+            .default,
           title: "Media Players",
           components: MediaPlayers,
         },
         {
           link: "/components/blog/components/pre-footers",
-          image:
-            require("assets/img/components/blog/components/blog-components-prefooters.jpg")
-              .default,
+          image: require("assets/img/components/blog/components/blog-components-prefooters.jpg")
+            .default,
           title: "PreFooters",
           components: PreFooters,
         },
@@ -97,7 +83,8 @@ const routesObject = {
       components: [
         {
           link: "/components/blog/pages/blogs",
-          image: require("assets/img/components/blog/blog-pages-blogs.jpg").default,
+          image: require("assets/img/components/blog/blog-pages-blogs.jpg")
+            .default,
           title: "Blogs",
           components: BlogPages,
         },

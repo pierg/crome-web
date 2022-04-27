@@ -1,10 +1,7 @@
 /*eslint-disable*/
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // components
 
@@ -23,7 +20,10 @@ export default function FooterAuth({ copyright, links }) {
                     className="text-blueGray-100 font-semibold ml-1"
                   />
                 ) : (
-                  <a {...copyright} className="text-blueGray-100 font-semibold ml-1" />
+                  <a
+                    {...copyright}
+                    className="text-blueGray-100 font-semibold ml-1"
+                  />
                 )}
                 . All rights reserved.
               </div>

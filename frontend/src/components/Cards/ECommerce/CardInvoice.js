@@ -1,7 +1,5 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function CardInvoice({
   image,
@@ -31,7 +29,9 @@ export default function CardInvoice({
                   className="w-full mb-2"
                   style={{ maxWidth: "150px" }}
                 />
-                <h6 className="block capitalize text-blueGray-700 mt-6">{address}</h6>
+                <h6 className="block capitalize text-blueGray-700 mt-6">
+                  {address}
+                </h6>
                 <h6 className="text-blueGray-700">{phone}</h6>
               </div>
             </div>
@@ -99,7 +99,9 @@ export default function CardInvoice({
             <tfoot>
               <tr className="mt-4">
                 <th className="border-b-0 p-3 border-t">
-                  <p className="text-lg font-semibold pt-2">{totalCount.text}</p>
+                  <p className="text-lg font-semibold pt-2">
+                    {totalCount.text}
+                  </p>
                 </th>
 
                 <th

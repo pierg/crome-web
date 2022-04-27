@@ -1,10 +1,6 @@
-import "prop-types"
-import "react"
-import "react-router-dom"
-import PropTypes
-import React
-import { Link }
-
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // components
 
 export default function CardBlogandAuthor({
@@ -31,15 +27,22 @@ export default function CardBlogandAuthor({
       <div className="mb-12 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-lg">
         {link && link.to && <Link {...link}>{linkContent}</Link>}
         {link && link.to === undefined && <a {...link}>{linkContent}</a>}
-        <p className="mt-3 leading-relaxed text-blueGray-500 ml-1">{description}</p>
+        <p className="mt-3 leading-relaxed text-blueGray-500 ml-1">
+          {description}
+        </p>
         <div className="mt-6 flex items-center">
-          <img alt="..." src={user.image} className="rounded-full mr-3 max-w-40-px" />
+          <img
+            alt="..."
+            src={user.image}
+            className="rounded-full mr-3 max-w-40-px"
+          />
           <div className="flex-1">
             <div className="justify-between items-center">
               <h6 className="font-bold mt-0 mb-0">
                 {user.name}
                 <small className="text-sm text-blueGray-500 float-right">
-                  <i className={icon + " opacity-75 text-red-500 mr-1"}></i> {text}
+                  <i className={icon + " opacity-75 text-red-500 mr-1"}></i>{" "}
+                  {text}
                 </small>
               </h6>
             </div>

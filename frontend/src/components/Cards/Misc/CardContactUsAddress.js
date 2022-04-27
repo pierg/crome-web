@@ -1,17 +1,11 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import "../../../components/Elements/Input.js"
-import "../../../components/Elements/Select.js"
-import "../../../components/InfoAreas/Presentation/InfoAreaIcon.js"
-import Button
-import InfoAreaIcon
-import Input
-import Select
+import Button from "../../../components/Elements/Button.js";
+import Input from "../../../components/Elements/Input.js";
+import Select from "../../../components/Elements/Select.js";
+import InfoAreaIcon from "../../../components/InfoAreas/Presentation/InfoAreaIcon.js";
 
 export default function CardContactUsAddress({ title, button, components }) {
   const width = {
@@ -150,8 +144,8 @@ const inputsTypes = PropTypes.shape({
   // It is represetnted by the props you
   // can pass to our Input component element
   // NOTE: if you wish to generate a textarea, you will need to pass
-  // // // inside this object >> crometypes: "textarea"
-  // // // full example >> input: { crometypes: "textarea" }
+  // // // inside this object >> type: "textarea"
+  // // // full example >> input: { type: "textarea" }
   input: PropTypes.object,
 });
 

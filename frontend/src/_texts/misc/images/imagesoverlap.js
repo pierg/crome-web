@@ -1,5 +1,4 @@
-import "_texts/misc/images/imagetooltip.js"
-import images1
+import images1 from "_texts/misc/images/imagetooltip.js";
 
 const textProps = {
   text: "and 30+ more",

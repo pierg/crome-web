@@ -1,8 +1,5 @@
-import "_texts/misc/forms/select.js"
-import "components/Elements/Select.js"
-import passProps
-import Select
-
+import Select from "components/Elements/Select.js";
+import passProps from "_texts/misc/forms/select.js";
 const dependencies = [
   {
     name: "Input",
@@ -49,8 +46,7 @@ const description = "This is a regular Select. ";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Select"
-import Select
+import Select from "@notus-pro/react/Select";
 
 const props = ${JSON.stringify(passProps)}
 

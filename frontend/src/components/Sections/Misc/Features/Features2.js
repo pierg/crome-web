@@ -1,13 +1,9 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardInfoIconLeft.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import CardInfoIconLeft
-import Heading2Badge
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import CardInfoIconLeft from "../../../../components/Cards/Misc/CardInfoIconLeft.js";
 
 export default function Features2({ heading2badge, image, cards }) {
   return (

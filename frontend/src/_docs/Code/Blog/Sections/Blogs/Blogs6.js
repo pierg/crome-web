@@ -1,16 +1,15 @@
-import "_texts/blog/blogs/blogs6.js"
-import "components/Sections/Blog/Blogs/Blogs6.js"
-import Blogs6
-import passProps
-
+import Blogs6 from "components/Sections/Blog/Blogs/Blogs6.js";
+import passProps from "_texts/blog/blogs/blogs6.js";
 const dependencies = [
   {
     name: "CardBlogFullBg",
-    link: "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogfullbg",
+    link:
+      "/components/presentation/components/cards#presentation-id-presentation-id-components-cardblogfullbg",
   },
   {
     name: "Heading3",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading3",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading3",
   },
 ];
 const props = `Blogs6.defaultProps = {
@@ -32,8 +31,7 @@ const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Blogs6"
-import Blogs6
+import Blogs6 from "@notus-pro/react/Blogs6";
 
 const props = ${JSON.stringify(passProps)}
 

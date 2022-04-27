@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Misc/CardPricingList.js"
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import Button
-import CardPricingList
-import Heading2Badge
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import Button from "../../../../components/Elements/Button.js";
+import CardPricingList from "../../../../components/Cards/Misc/CardPricingList.js";
 
 export default function Pricing5({
   heading2,

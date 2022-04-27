@@ -1,11 +1,7 @@
-import "classnames"
-import "prop-types"
-import "react"
-import "react-router-dom"
-import classnames
-import PropTypes
-import React
-import { Link }
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 export default function NavbarListLink({
   children,

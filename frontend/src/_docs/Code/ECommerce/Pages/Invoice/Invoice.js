@@ -1,34 +1,20 @@
-import "_texts/e-commerce/cards/cardinvoice.js"
-import "_texts/e-commerce/headers/headerimagetitlesmallcenterinvoice.js"
-import "_texts/presentation/footers/footersmall.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import "views/e-commerce/Invoice.js"
-import cardinvoice
-import footersmall
-import headerimagetitlesmallcenterinvoice
-import Invoice
-import navbarlinkslanding1
-import prefooterlarge
-
+import Invoice from "views/e-commerce/Invoice.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import headerimagetitlesmallcenterinvoice from "_texts/e-commerce/headers/headerimagetitlesmallcenterinvoice.js";
+import cardinvoice from "_texts/e-commerce/cards/cardinvoice.js";
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
+import footersmall from "_texts/presentation/footers/footersmall.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/Button"
-import "@notus-pro/react/CardInvoice"
-import "@notus-pro/react/FooterSmall"
-import "@notus-pro/react/HeaderImageTitleSmallCenter"
-import "@notus-pro/react/NavbarLinks"
-import "@notus-pro/react/PreFooterLarge"
-import Button
-import CardInvoice
-import FooterSmall
-import HeaderImageTitleSmallCenter
-import NavbarLinks
-import PreFooterLarge
-
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import HeaderImageTitleSmallCenter from "@notus-pro/react/HeaderImageTitleSmallCenter";
+import CardInvoice from "@notus-pro/react/CardInvoice";
+import Button from "@notus-pro/react/Button";
+import PreFooterLarge from "@notus-pro/react/PreFooterLarge";
+import FooterSmall from "@notus-pro/react/FooterSmall";
 // texts as props
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};
 const headerimagetitlesmallcenterinvoice = ${JSON.stringify(

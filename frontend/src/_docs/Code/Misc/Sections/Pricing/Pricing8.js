@@ -1,12 +1,10 @@
-import "_texts/misc/pricing/pricing8.js"
-import "components/Sections/Misc/Pricing/Pricing8.js"
-import passProps
-import Pricing8
-
+import Pricing8 from "components/Sections/Misc/Pricing/Pricing8.js";
+import passProps from "_texts/misc/pricing/pricing8.js";
 const dependencies = [
   {
     name: "Heading2Badge",
-    link: "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
+    link:
+      "/components/misc/components/headings#misc-id-misc-id-components-heading2badge",
   },
   {
     name: "Button",

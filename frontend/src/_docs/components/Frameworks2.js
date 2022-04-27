@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
-import "@popperjs/core"
-import "prop-types"
-import "react"
-import PropTypes
-import React
-import { createPopper }
+import React from "react";
+import PropTypes from "prop-types";
+import { createPopper } from "@popperjs/core";
 
 const colors = {
   angular: "bg-red-600",
@@ -54,7 +51,9 @@ export default function Frameworks({ image, text, link, color }) {
             (link === "#pablo" && "opacity-50")
           }
           src={image}
-          onMouseEnter={() => openTooltip(angularBtnRef, tooltipRef, setTooltipShow)}
+          onMouseEnter={() =>
+            openTooltip(angularBtnRef, tooltipRef, setTooltipShow)
+          }
           onMouseLeave={() => closeTooltip(setTooltipShow)}
           ref={angularBtnRef}
         />

@@ -1,5 +1,4 @@
-import "./MediaPlayerBlockQuote.js"
-import MediaPlayerBlockQuote
+import MediaPlayerBlockQuote from "./MediaPlayerBlockQuote.js";
 
 const componentsArray = [MediaPlayerBlockQuote];
 export default componentsArray;

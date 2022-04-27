@@ -1,11 +1,8 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../components/Elements/Button.js"
-import Button
+import Button from "../../../components/Elements/Button.js";
 
 export default function CardProfileReviews({
   headImage,
@@ -33,7 +30,9 @@ export default function CardProfileReviews({
 
         <div className="px-4 py-5 flex-auto">
           <div className="text-center mt-12">
-            <h3 className="text-2xl font-bold leading-tight mt-0 mb-1">{title}</h3>
+            <h3 className="text-2xl font-bold leading-tight mt-0 mb-1">
+              {title}
+            </h3>
             <p className="text-blueGray-400 text-lg">{description}</p>
           </div>
           <div className="py-4 flex justify-center">

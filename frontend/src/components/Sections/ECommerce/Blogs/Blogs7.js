@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/Presentation/CardBlogFullBg.js"
-import "../../../../components/Elements/Button.js"
-import "../../../../components/Headings/Heading2Badge.js"
-import Button
-import CardBlogFullBg
-import Heading2Badge
+import Heading2Badge from "../../../../components/Headings/Heading2Badge.js";
+import CardBlogFullBg from "../../../../components/Cards/Presentation/CardBlogFullBg.js";
+import Button from "../../../../components/Elements/Button.js";
 
 export default function Blogs7({ heading2badge, cards, button }) {
   const widths = {
@@ -36,7 +31,7 @@ export default function Blogs7({ heading2badge, cards, button }) {
             </div>
           ))}
         </div>
-        <div class="text-center">
+        <div className="text-center">
           <Button {...button} />
         </div>
       </div>

@@ -1,24 +1,15 @@
-import "_texts/auth/cards/cardloginsocial.js"
-import "_texts/auth/footers/footerauth.js"
-import "_texts/presentation/navbars/navbarlinkslanding1.js"
-import "views/auth/Login1.js"
-import cardloginsocial
-import footerauth
-import Login1
-import navbarlinkslanding1
-
+import Login1 from "views/auth/Login1.js";
+import cardloginsocial from "_texts/auth/cards/cardloginsocial.js";
+import navbarlinkslanding1 from "_texts/presentation/navbars/navbarlinkslanding1.js";
+import footerauth from "_texts/auth/footers/footerauth.js";
 const props = `// no props for this, as this is an view component`;
 const description = "";
 const preview = `import React from "react";
 
 // @notus-pro/react
-import "@notus-pro/react/CardLoginSocial"
-import "@notus-pro/react/FooterAuth"
-import "@notus-pro/react/NavbarLinks"
-import CardLoginSocial
-import FooterAuth
-import NavbarLinks
-
+import NavbarLinks from "@notus-pro/react/NavbarLinks";
+import CardLoginSocial from "@notus-pro/react/CardLoginSocial";
+import FooterAuth from "@notus-pro/react/FooterAuth";
 // texts as props
 const cardloginsocial = ${JSON.stringify(cardloginsocial)};
 const navbarlinkslanding1 = ${JSON.stringify(navbarlinkslanding1)};

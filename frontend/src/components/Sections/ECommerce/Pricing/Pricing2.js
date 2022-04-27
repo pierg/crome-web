@@ -1,15 +1,10 @@
-import "prop-types"
-import "react"
-import PropTypes
-import React
+import React from "react";
+import PropTypes from "prop-types";
 
 // components
-import "../../../../components/Cards/ECommerce/CardPricingList.js"
-import "../../../../components/Cards/ECommerce/CardTableDetails.js"
-import "../../../../components/Headings/Heading3.js"
-import CardPricingList
-import CardTableDetails
-import Heading3
+import Heading3 from "../../../../components/Headings/Heading3.js";
+import CardPricingList from "../../../../components/Cards/ECommerce/CardPricingList.js";
+import CardTableDetails from "../../../../components/Cards/ECommerce/CardTableDetails.js";
 
 export default function Pricing2({ heading3, leftCard, rightCard }) {
   return (

@@ -1,7 +1,5 @@
-import "_texts/e-commerce/cards/cardpricinglist.js"
-import "_texts/e-commerce/cards/cardtabledetails.js"
-import cardpricinglist
-import cardtabledetails
+import cardpricinglist from "_texts/e-commerce/cards/cardpricinglist.js";
+import cardtabledetails from "_texts/e-commerce/cards/cardtabledetails.js";
 
 const textProps = {
   heading3: {

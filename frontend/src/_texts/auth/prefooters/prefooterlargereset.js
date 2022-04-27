@@ -1,5 +1,4 @@
-import "_texts/presentation/prefooters/prefooterlarge.js"
-import prefooterlarge
+import prefooterlarge from "_texts/presentation/prefooters/prefooterlarge.js";
 
 const textProps = {
   ...prefooterlarge,
