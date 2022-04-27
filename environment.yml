@@ -19,7 +19,6 @@ dependencies:
   - dill
   - flask
   - flask-socketio
-  - yarn
   - pip
   - pip:
       - pyeda
