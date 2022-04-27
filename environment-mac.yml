@@ -12,7 +12,6 @@ dependencies:
   - matplotlib
   - poetry
   - python-igraph
-  - gcc
   - aenum
   - treelib
   - docker-py

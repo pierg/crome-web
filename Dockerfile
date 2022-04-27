@@ -25,7 +25,7 @@ RUN git clone https://github.com/pierg/crome-contracts.git --branch main --singl
 RUN git clone https://github.com/pierg/crome-logic.git --branch main --single-branch
 RUN git clone https://github.com/pierg/crome-synthesis.git --branch main --single-branch
 
-WORKDIR /home/crome-cgg
+WORKDIR /home/crome-web
 
 # Copy /venv from the previous stage:
 COPY --from=build /venv ./venv
