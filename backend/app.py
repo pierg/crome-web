@@ -38,7 +38,7 @@ app = Flask(__name__)
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-users = {}
+users: dict[str, str] = {}
 
 """
 HOW TO SEND A NOTIFICATION :
@@ -96,7 +96,7 @@ def get_projects(data):
                         ) as png_file:
                             read_png_file = base64.b64encode(png_file.read())
                             default_project.append(
-                                {"title": "image", "content": read_png_file}
+                                {"title": "image", "content": str(read_png_file)}
                             )
 
                 list_of_projects.append(default_project)
@@ -208,8 +208,8 @@ def get_goals(data):
             files_paths.append(Path(os.path.join(dirpath, file)))
 
         list_of_goals = []
-        for file in files_paths:
-            with open(file) as json_file:
+        for path in files_paths:
+            with open(path) as json_file:
                 json_obj = json.load(json_file)
                 json_str = json.dumps(json_obj)
                 list_of_goals.append(json_str)
@@ -228,8 +228,8 @@ def add_goal(data):
     )
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
-        greatest_id = -1 if len(filenames) == 0 else max(filenames)[0:4]
-        greatest_id = int(greatest_id) + 1
+        greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
+        greatest_id += 1
         data["goal"]["id"] = (
             data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
         )
@@ -422,7 +422,7 @@ def get_current_time():
     return {"time": time.time()}
 
 
-def copy_simple(session_id):
+def copy_simple(session_id: str) -> str:
     number_of_copies = 1
     while os.path.isdir(
         os.path.join(storage_folder, f"sessions/{session_id}/simple_{number_of_copies}")
@@ -454,7 +454,7 @@ def copy_simple(session_id):
     return project_id
 
 
-def build_simple_project():
+def build_simple_project() -> None:
     project_dir = os.path.join(storage_folder, f"sessions/default/simple")
     Modelling.create_environment(project_dir)
     Modelling.add_goal(project_dir, "0000.json", "default-simple-0000")

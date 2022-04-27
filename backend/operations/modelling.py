@@ -6,7 +6,7 @@ from backend.tools.persistence import dump_world, load_goals, load_world, dump_g
 from crome_cgg.goal import Goal
 from crome_cgg.world import World
 from crome_contracts.contract import Contract
-from crome_logic.patterns.robotic_movement import Patrolling
+from crome_logic.patterns.robotic_movement import Patrolling, StrictOrderedPatrolling
 from crome_logic.specification.temporal import LTL
 from crome_logic.typeset import Typeset
 
@@ -70,9 +70,9 @@ class Modelling:
         # TODO: Fix the rest like above
         """Guarantees"""
         g1 = LTL(
-            Atom(formula=("G(F(r3 & r4))", Typeset({w["r3"], w["r4"]}))),
+            formula="G(F(r3 & r4))", typeset=Typeset({w["r3"], w["r4"]}),
         )
-        g2 = StrictOrderedPatrolling([w["r1"], w["r2"]])
+        g2 = LTL(formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]), typeset=Typeset({w["r1"], w["r2"]}))
         # g3 = InstantaneousReaction() // need to import every patterns method ?
 
         """Context"""
@@ -85,10 +85,10 @@ class Modelling:
 
         """Instanciate the goal"""
 
-        new_goal = Node(
+        new_goal = Goal(
             name="Day patrolling",
             description="description",
-            specification=contract,
+            contract=contract,
             context=context,
             world=w,
         )
@@ -108,7 +108,7 @@ class Modelling:
         with open(goal_path) as json_file:
             json_obj = json.load(json_file)
             contract_names = ["assumptions", "guarantees"]
-            contract_lists = [[], []]
+            contract_lists = [[], []]  # type: list[list[LTL]]
             for i in range(len(contract_lists)):
                 for contract_element in json_obj["contract"][contract_names[i]]:
                     if "patterns" in contract_element:
@@ -148,12 +148,8 @@ class Modelling:
                                     values.add(w[value])
                             contract_lists[i].append(
                                 LTL(
-                                    Atom(
-                                        formula=(
-                                            contract_element["ltl_value"],
-                                            Typeset(values),
-                                        ),
-                                    ),
+                                    formula=contract_element["ltl_value"],
+                                    typeset=Typeset(values),
                                 ),
                             )
                             # TODO FIX FOR PIER
@@ -169,16 +165,13 @@ class Modelling:
             elif len(json_obj["context"]) > 1:
                 context = w[json_obj["context"]]
 
-            lists_with_and_operators = []
+            lists_with_and_operators: list[LTL] = []
             for i in range(len(contract_lists)):
-                lists_with_and_operators.append(None)
-                for j in range(len(contract_lists[i])):
-                    if j == 0:
-                        lists_with_and_operators[i] = contract_lists[i][0]
-                    else:
-                        lists_with_and_operators[i] = (
+                lists_with_and_operators.append(contract_lists[i][0])
+                for j in range(1, len(contract_lists[i])):
+                    lists_with_and_operators[i] = (
                             lists_with_and_operators[i] & contract_lists[i][j]
-                        )
+                    )
 
             contract = Contract(
                 assumptions=lists_with_and_operators[0],
@@ -187,10 +180,8 @@ class Modelling:
 
             # TODO Fix goal ID and name, do we need both?
             new_goal = Goal(
-                name=json_obj["name"],
                 description=json_obj["description"],
                 id=goal_id,
-                specification=contract,
                 context=context,
                 world=w,
             )
