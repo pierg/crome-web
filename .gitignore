@@ -8,10 +8,6 @@
 # Icon must end with two \r
 Icon
 
-.ide
-
-node_modules
-.idea
 
 # Thumbnails
 ._*
