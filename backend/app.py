@@ -11,33 +11,26 @@ from time import strftime
 from flask import Flask, request
 from flask_socketio import SocketIO, emit
 
+from backend.shared.paths import build_path, storage_path, session_path
 from backend.tools.persistence import load_goals
 from crome_cgg.cgg import Cgg
 from operations.modelling import Modelling
 
+import argparse
 
-backend_folder = Path(__file__).parent.absolute()
-front_end_folder = Path(__file__).parents[1].absolute() / "frontend"
-build_folder = front_end_folder / "build"
-storage_folder = Path(__file__).parents[2].absolute() / "storage"
-if backend_folder.exists():
-    print(backend_folder)
-if build_folder.exists():
-    print(build_folder)
-if storage_folder.exists():
-    print(storage_folder)
+parser = argparse.ArgumentParser(description='Launching Flask Backend')
+parser.add_argument('development_mode', default=True, type=bool, help='indicate if development mode')
+args = parser.parse_args()
 
-# if build_folder.exists():
-#     print("serving math as well")
-#     app = Flask(__name__, static_folder=str(build_folder), static_url_path='/')
-# else:
-#     app = Flask(__name__)
-
-
-app = Flask(__name__)
+if args.development_mode:
+    app = Flask(__name__)
+else:
+    print("Serving the web pages from the build folder")
+    app = Flask(__name__, static_folder=str(build_path), static_url_path='/')
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+"""TODO: add documentation of 'users' here"""
 users: dict[str, str] = {}
 
 """
@@ -67,14 +60,22 @@ def connected():
 def get_projects(data):
     list_of_projects = []  # array that will be sent containing all projects #
 
-    list_of_sessions = [f"sessions/default", f"sessions/{data['session']}"]
+    # TODO: add type hints to every variable declaration and function as below
+    list_of_sessions: list[str] = [f"sessions/default", f"sessions/{data['session']}"]
 
-    for sessions in list_of_sessions:
-        session_folder = Path(os.path.join(storage_folder, sessions))
+    for session in list_of_sessions:
+        
+        # session_folder = Path(os.path.join(storage_path, session))
+
+        # TODO: change paths from above to as below 
+        session_folder = session_path(session)
+        
         if os.path.isdir(session_folder):  # if there is a folder for this session #
             dir_path, dir_names, filenames = next(walk(session_folder))
             for subdir in dir_names:
-                project_folder = Path(os.path.join(dir_path, subdir))
+                # project_folder = Path(os.path.join(dir_path, subdir))
+                # TODO: change paths from above to as below 
+                project_folder = dir_path / subdir
                 project_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
@@ -92,7 +93,7 @@ def get_projects(data):
                             )
                     if os.path.splitext(file)[1] == ".png":
                         with open(
-                            Path(os.path.join(project_path, file)), "rb"
+                                Path(os.path.join(project_path, file)), "rb"
                         ) as png_file:
                             read_png_file = base64.b64encode(png_file.read())
                             default_project.append(
@@ -108,16 +109,16 @@ def get_projects(data):
 def save_project(data):
     print("SAVE PROJECT : " + str(data["session"]))
     session_id = data["world"]["info"]["session_id"]
-    session_dir = os.path.join(storage_folder, f"sessions/{session_id}")
+    session_dir = os.path.join(storage_path, f"sessions/{session_id}")
     if not os.path.isdir(session_dir):
         os.mkdir(session_dir)
     is_simple = data["world"]["info"]["project_id"] == "simple"
     if is_simple:
         number_of_copies = 1
         while os.path.isdir(
-            os.path.join(
-                storage_folder, f"sessions/{session_id}/simple_{number_of_copies}"
-            )
+                os.path.join(
+                    storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
+                )
         ):
             number_of_copies += 1
         data["world"]["environment"]["project_id"] = f"simple_{number_of_copies}"
@@ -129,7 +130,7 @@ def save_project(data):
     if not os.path.isdir(goals_dir):
         if is_simple:
             shutil.copytree(
-                os.path.join(storage_folder, "sessions/default/simple/goals"), goals_dir
+                os.path.join(storage_path, "sessions/default/simple/goals"), goals_dir
             )
         else:
             os.mkdir(goals_dir)
@@ -159,7 +160,7 @@ def save_image(data):
 
     current_project_image = Path(
         os.path.join(
-            storage_folder,
+            storage_path,
             f"sessions/{data['session']}/{data['project']}/environment.png",
         )
     )
@@ -171,7 +172,7 @@ def save_image(data):
 @socketio.on("delete-project")
 def delete_project(data):
     current_session_folder = Path(
-        os.path.join(storage_folder, f"sessions/{data['session']}")
+        os.path.join(storage_path, f"sessions/{data['session']}")
     )
     dir_path, dir_names, filenames = next(walk(current_session_folder))
     i = 1
@@ -196,7 +197,7 @@ def delete_project(data):
 def get_goals(data):
     goals_folder = Path(
         os.path.join(
-            storage_folder, f"sessions/{data['session']}/{data['project']}/goals"
+            storage_path, f"sessions/{data['session']}/{data['project']}/goals"
         )
     )
 
@@ -224,14 +225,14 @@ def add_goal(data):
     if is_simple:
         project_id = copy_simple(data["session"])
     goals_dir = os.path.join(
-        storage_folder, f"sessions/{data['session']}/{project_id}/goals"
+        storage_path, f"sessions/{data['session']}/{project_id}/goals"
     )
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
         greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
         greatest_id += 1
         data["goal"]["id"] = (
-            data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
+                data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
         )
         filename = str(greatest_id).zfill(4) + ".json"
         data["goal"]["filename"] = filename
@@ -252,7 +253,7 @@ def add_goal(data):
         room=users[data["session"]],
     )
     Modelling.add_goal(
-        os.path.join(storage_folder, f"sessions/{data['session']}/{project_id}"),
+        os.path.join(storage_path, f"sessions/{data['session']}/{project_id}"),
         data["goal"]["filename"],
         data["goal"]["id"],
     )
@@ -265,7 +266,7 @@ def delete_goal(data):
     if is_simple:
         project_id = copy_simple(data["session"])
     current_goals_folder = Path(
-        os.path.join(storage_folder, f"sessions/{data['session']}/{project_id}/goals")
+        os.path.join(storage_path, f"sessions/{data['session']}/{project_id}/goals")
     )
     dir_path, dir_names, filenames = next(walk(current_goals_folder))
     i = 0
@@ -292,7 +293,7 @@ def get_patterns():
     print(f'ID {request.args.get("id")}')
 
     robotic_patterns_file = Path(
-        os.path.join(storage_folder, "crome/patterns/robotic.json")
+        os.path.join(storage_path, "crome/patterns/robotic.json")
     )
     with open(robotic_patterns_file) as json_file:
         robotic_patterns = json.load(json_file)
@@ -312,11 +313,11 @@ def process_goals(data):
     )
     session = "default" if data["project"] == "simple" else data["session"]
     project_folder = os.path.join(
-        storage_folder, f"sessions/{session}/{data['project']}"
+        storage_path, f"sessions/{session}/{data['project']}"
     )
     set_of_goals = load_goals(project_folder)
     if session == "default" and not os.path.exists(
-        os.path.join(project_folder, "goals.dat")
+            os.path.join(project_folder, "goals.dat")
     ):
         build_simple_project()
 
@@ -352,7 +353,7 @@ def process_goals(data):
 
 @socketio.on("process-cgg")
 def process_cgg(data):
-    cgg_file_path = Path(os.path.join(storage_folder, "crome/cgg.json"))
+    cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
     emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=users[data["session"]])
@@ -396,7 +397,7 @@ def extension(data):
 @socketio.on("session-existing")
 def check_if_session_exist(session_id):
     print("check if following session exists : " + str(session_id))
-    sessions_folder = Path(os.path.join(storage_folder, "sessions"))
+    sessions_folder = Path(os.path.join(storage_path, "sessions"))
     dir_path, dir_names, filenames = next(walk(sessions_folder))
     found = False
     for dir_name in dir_names:
@@ -425,18 +426,18 @@ def get_current_time():
 def copy_simple(session_id: str) -> str:
     number_of_copies = 1
     while os.path.isdir(
-        os.path.join(storage_folder, f"sessions/{session_id}/simple_{number_of_copies}")
+            os.path.join(storage_path, f"sessions/{session_id}/simple_{number_of_copies}")
     ):
         number_of_copies += 1
     project_id = f"simple_{number_of_copies}"
     shutil.copytree(
-        os.path.join(storage_folder, "sessions/default/simple"),
-        os.path.join(storage_folder, f"sessions/{session_id}/{project_id}"),
+        os.path.join(storage_path, "sessions/default/simple"),
+        os.path.join(storage_path, f"sessions/{session_id}/{project_id}"),
     )
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
-            os.path.join(storage_folder, f"sessions/{session_id}/{project_id}/{i}.json")
+                os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json")
         ) as file:
             json_data = json.load(file)
         if i == "info":
@@ -444,10 +445,10 @@ def copy_simple(session_id: str) -> str:
         json_data["project_id"] = project_id
         json_data["session_id"] = session_id
         with open(
-            os.path.join(
-                storage_folder, f"sessions/{session_id}/{project_id}/{i}.json"
-            ),
-            "w",
+                os.path.join(
+                    storage_path, f"sessions/{session_id}/{project_id}/{i}.json"
+                ),
+                "w",
         ) as file:
             json_formatted = json.dumps(json_data, indent=4, sort_keys=True)
             file.write(json_formatted)
@@ -455,7 +456,7 @@ def copy_simple(session_id: str) -> str:
 
 
 def build_simple_project() -> None:
-    project_dir = os.path.join(storage_folder, f"sessions/default/simple")
+    project_dir = os.path.join(storage_path, f"sessions/default/simple")
     Modelling.create_environment(project_dir)
     Modelling.add_goal(project_dir, "0000.json", "default-simple-0000")
     Modelling.add_goal(project_dir, "0001.json", "default-simple-0001")

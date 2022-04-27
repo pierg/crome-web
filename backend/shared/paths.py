@@ -1,8 +1,17 @@
 from __future__ import annotations
 
 import os
+from collections import Callable
 from pathlib import Path
 
-output_folder: Path = Path(os.path.join(os.path.dirname(__file__), "..", "output"))
+output_path: Path = Path(os.path.dirname(__file__)).parent / "output"
 
-persistence_path: Path = output_folder / "persistence"
+build_path: Path = Path(os.path.dirname(__file__)).parent.parent / "frontend" / "build"
+
+storage_path: Path = output_path / "storage"
+
+# Usage: session_path(_SESSION_ID_)
+session_path: Callable[str, Path] = lambda s: storage_path / f"s_{s}"
+
+# Usage: project_path(_SESSION_ID_, _PROJECT_ID_)
+project_path: Callable[tuple[str, str], Path] = lambda s, p: storage_path / f"s_{s}" / f"p_{p}"
