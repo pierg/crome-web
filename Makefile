@@ -22,7 +22,7 @@ flake:
 
 .PHONY: mypy
 mypy:
-	poetry run mypy .
+	poetry run mypy backend
 
 .PHONY: unit
 unit:
