@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+// styles from Now UI template
+import "assets/styles/bootstrap.min.css";
+import "assets/scss/now-ui-kit.css";
 
+import "assets/demo/demo.css";
+import "assets/demo/react-demo.css";
+import "assets/demo/nucleo-icons-page-styles.css";
+
+// styles from Notus template
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.min.css";
 import "assets/styles/docs.css";
@@ -43,6 +51,8 @@ import Landing1 from "views/presentation/Landing1.js";
 import Landing2 from "views/presentation/Landing2.js";
 import AboutUs from "views/presentation/AboutUs.js";
 import ContactUs from "views/presentation/ContactUs.js";
+// // custom
+import CustomDashboard from "./views/custom/CustomDashboard";
 // Product Pages - STOP
 
 ReactDOM.render(
@@ -360,7 +370,10 @@ ReactDOM.render(
       <Route path="/components" component={Components} />
       <Route path="/documentation" component={Documentation} />
       {/* Docs Routes - STOP */}
-      <Redirect from="*" to="/components" />
+      {/* Custom Routes added */}
+      <Route exact path="/:id" render={(props) => ( <CustomDashboard page={props.match.params.id}/>)} />
+
+      <Redirect from="*" to="/index" />
     </Switch>
   </HashRouter>,
   document.getElementById("root")
