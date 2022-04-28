@@ -72,13 +72,13 @@ def get_projects(data) -> None:
             for subdir in dir_names:
 
                 project_folder: str | bytes = dir_path / subdir
-                project_path, project_directories, project_files = next(
+                folder_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
                 default_project: list[dict[str, str]] = []
                 for file in project_files:
                     if os.path.splitext(file)[1] == ".json":
-                        with open(Path(os.path.join(project_path, file))) as json_file:
+                        with open(Path(os.path.join(folder_path, file))) as json_file:
                             json_obj = json.load(json_file)
                             json_str = json.dumps(json_obj)
                             default_project.append(
@@ -89,7 +89,7 @@ def get_projects(data) -> None:
                             )
                     if os.path.splitext(file)[1] == ".png":
                         with open(
-                                Path(os.path.join(project_path, file)), "rb"
+                                Path(os.path.join(folder_path, file)), "rb"
                         ) as png_file:
                             read_png_file = base64.b64encode(png_file.read())
                             default_project.append(
@@ -197,9 +197,9 @@ def get_goals(data) -> None:
     """Retrieving files"""
     if os.path.isdir(goals_folder):
         files_paths = []
-        dirpath, dirnames, filenames = next(walk(goals_folder))
+        dir_path, dir_names, filenames = next(walk(goals_folder))
         for file in filenames:
-            files_paths.append(Path(os.path.join(dirpath, file)))
+            files_paths.append(Path(os.path.join(dir_path, file)))
 
         list_of_goals = []
         for path in files_paths:
