@@ -8,10 +8,10 @@ from os import walk
 from pathlib import Path
 from time import strftime
 
-from flask import Flask, request
+from flask import Flask, request, Response
 from flask_socketio import SocketIO, emit
 
-from backend.shared.paths import build_path, storage_path, session_path
+from backend.shared.paths import build_path, storage_path, session_path, goals_path, project_path
 from backend.tools.persistence import load_goals
 from crome_cgg.cgg import Cgg
 from operations.modelling import Modelling
@@ -30,8 +30,10 @@ else:
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-"""TODO: add documentation of 'users' here"""
 users: dict[str, str] = {}
+"""
+String dictionary associating the id of the request to talk to the user with the session id given by the frontend. 
+"""
 
 """
 HOW TO SEND A NOTIFICATION :
@@ -44,42 +46,36 @@ crometypes : error = red,
 
 
 @socketio.on("connect")
-def connected():
+def connected() -> None:
     print("Connected")
-    print(request.args)
     print(f'ID {request.args.get("id")}')
     lock = threading.Lock()
     lock.acquire()
-    users[request.args.get("id")] = request.sid
+    users[str(request.args.get("id"))] = request.sid
     now = time.localtime(time.time())
     emit("send-message", strftime("%H:%M:%S", now) + " Connected", room=request.sid)
     lock.release()
 
 
 @socketio.on("get-projects")
-def get_projects(data):
-    list_of_projects = []  # array that will be sent containing all projects #
+def get_projects(data) -> None:
+    list_of_projects: list[list[dict[str, str]]] = []  # array that will be sent containing all projects #
 
     # TODO: add type hints to every variable declaration and function as below
     list_of_sessions: list[str] = [f"sessions/default", f"sessions/{data['session']}"]
 
     for session in list_of_sessions:
-        
-        # session_folder = Path(os.path.join(storage_path, session))
-
-        # TODO: change paths from above to as below 
         session_folder = session_path(session)
-        
+
         if os.path.isdir(session_folder):  # if there is a folder for this session #
             dir_path, dir_names, filenames = next(walk(session_folder))
             for subdir in dir_names:
-                # project_folder = Path(os.path.join(dir_path, subdir))
-                # TODO: change paths from above to as below 
+
                 project_folder = dir_path / subdir
                 project_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
-                default_project = []
+                default_project: list[dict[str, str]] = []
                 for file in project_files:
                     if os.path.splitext(file)[1] == ".json":
                         with open(Path(os.path.join(project_path, file))) as json_file:
@@ -106,10 +102,10 @@ def get_projects(data):
 
 
 @socketio.on("save-project")
-def save_project(data):
+def save_project(data) -> None:
     print("SAVE PROJECT : " + str(data["session"]))
     session_id = data["world"]["info"]["session_id"]
-    session_dir = os.path.join(storage_path, f"sessions/{session_id}")
+    session_dir = session_path(session_id)
     if not os.path.isdir(session_dir):
         os.mkdir(session_dir)
     is_simple = data["world"]["info"]["project_id"] == "simple"
@@ -123,10 +119,10 @@ def save_project(data):
             number_of_copies += 1
         data["world"]["environment"]["project_id"] = f"simple_{number_of_copies}"
         data["world"]["info"]["project_id"] = f"simple_{number_of_copies}"
-    project_dir = os.path.join(session_dir, f"{data['world']['info']['project_id']}")
+    project_dir = project_path(session_id, data['world']['info']['project_id'])
     if not os.path.isdir(project_dir):
         os.mkdir(project_dir)
-    goals_dir = os.path.join(project_dir, "goals")
+    goals_dir = goals_path(session_id, data['world']['info']['project_id'])
     if not os.path.isdir(goals_dir):
         if is_simple:
             shutil.copytree(
@@ -155,7 +151,7 @@ def save_project(data):
 
 
 @socketio.on("save-image")
-def save_image(data):
+def save_image(data) -> None:
     img_data = bytes(data["image"], "utf-8")
 
     current_project_image = Path(
@@ -170,12 +166,11 @@ def save_image(data):
 
 
 @socketio.on("delete-project")
-def delete_project(data):
-    current_session_folder = Path(
-        os.path.join(storage_path, f"sessions/{data['session']}")
-    )
+def delete_project(data) -> None:
+    current_session_folder = session_path(data['session'])
     dir_path, dir_names, filenames = next(walk(current_session_folder))
     i = 1
+
     for name in dir_names:
         if i == data["index"]:
             if len(dir_names) == 1:
@@ -184,6 +179,7 @@ def delete_project(data):
                 dir_to_delete = Path(os.path.join(current_session_folder, name))
                 shutil.rmtree(dir_to_delete)
         i += 1
+
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
     emit(
@@ -194,12 +190,9 @@ def delete_project(data):
 
 
 @socketio.on("get-goals")
-def get_goals(data):
-    goals_folder = Path(
-        os.path.join(
-            storage_path, f"sessions/{data['session']}/{data['project']}/goals"
-        )
-    )
+def get_goals(data) -> None:
+
+    goals_folder = goals_path(data['session'], data['project'])
 
     """Retrieving files"""
     if os.path.isdir(goals_folder):
@@ -219,14 +212,14 @@ def get_goals(data):
 
 
 @socketio.on("add-goal")
-def add_goal(data):
+def add_goal(data) -> None:
     project_id = data["projectId"]
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(data["session"])
-    goals_dir = os.path.join(
-        storage_path, f"sessions/{data['session']}/{project_id}/goals"
-    )
+
+    goals_dir = goals_path(data['session'], project_id)
+
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
         greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
@@ -260,14 +253,13 @@ def add_goal(data):
 
 
 @socketio.on("delete-goal")
-def delete_goal(data):
+def delete_goal(data) -> None:
     project_id = data["project"]
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(data["session"])
-    current_goals_folder = Path(
-        os.path.join(storage_path, f"sessions/{data['session']}/{project_id}/goals")
-    )
+
+    current_goals_folder = goals_path(data['session'], project_id)
     dir_path, dir_names, filenames = next(walk(current_goals_folder))
     i = 0
     for goal_file in filenames:
@@ -287,7 +279,7 @@ def delete_goal(data):
 
 
 @socketio.on("get-patterns")
-def get_patterns():
+def get_patterns() -> None:
     print("Get patterns")
     print(request.args)
     print(f'ID {request.args.get("id")}')
@@ -304,18 +296,18 @@ def get_patterns():
 
 
 @socketio.on("process-goals")
-def process_goals(data):
+def process_goals(data) -> None:
     now = time.localtime(time.time())
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + " The CGG is being built",
         room=users[data["session"]],
     )
+
     session = "default" if data["project"] == "simple" else data["session"]
-    project_folder = os.path.join(
-        storage_path, f"sessions/{session}/{data['project']}"
-    )
-    set_of_goals = load_goals(project_folder)
+    project_folder = project_path(session, data['project'])
+
+    set_of_goals = load_goals(str(project_folder))
     if session == "default" and not os.path.exists(
             os.path.join(project_folder, "goals.dat")
     ):
@@ -352,7 +344,7 @@ def process_goals(data):
 
 
 @socketio.on("process-cgg")
-def process_cgg(data):
+def process_cgg(data) -> None:
     cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
@@ -360,44 +352,44 @@ def process_cgg(data):
 
 
 @socketio.on("apply-conjunction")
-def conjunction(data):
+def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
     print(data)
     emit("operation-complete", True, room=users[data["session"]])
 
 
 @socketio.on("apply-composition")
-def composition(data):
+def composition(data) -> None:
     print("APPLY OPERATION : composition")
     print(data)
     emit("operation-complete", True, room=users[data["session"]])
 
 
 @socketio.on("apply-disjunction")
-def disjunction(data):
+def disjunction(data) -> None:
     print("APPLY OPERATION : disjunction")
     print(data)
     emit("operation-complete", True, room=users[data["session"]])
 
 
 @socketio.on("apply-refinement")
-def refinement(data):
+def refinement(data) -> None:
     print("APPLY OPERATION : refinement")
     print(data)
     emit("operation-complete", True, room=users[data["session"]])
 
 
 @socketio.on("apply-extension")
-def extension(data):
+def extension(data) -> None:
     print("APPLY OPERATION : extension")
     print(data)
     emit("operation-complete", True, room=users[data["session"]])
 
 
 @socketio.on("session-existing")
-def check_if_session_exist(session_id):
+def check_if_session_exist(session_id : str) -> None:
     print("check if following session exists : " + str(session_id))
-    sessions_folder = Path(os.path.join(storage_path, "sessions"))
+    sessions_folder = session_path("sessions")
     dir_path, dir_names, filenames = next(walk(sessions_folder))
     found = False
     for dir_name in dir_names:
@@ -407,19 +399,19 @@ def check_if_session_exist(session_id):
 
 
 @socketio.on("disconnect")
-def disconnected():
+def disconnected() -> None:
     print("Disconnected")
     print(request.args)
     print(f'ID {request.args.get("id")}')
 
 
 @app.route("/")
-def index():
+def index() -> Response:
     return app.send_static_file("index.html")
 
 
 @app.route("/time")
-def get_current_time():
+def get_current_time() -> dict[str, float]:
     return {"time": time.time()}
 
 

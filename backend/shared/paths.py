@@ -13,7 +13,10 @@ storage_path: Path = output_path / "storage"
 persistence_path: Path = output_path / "persistence"
 
 # Usage: session_path(_SESSION_ID_)
-session_path: Callable[str, Path] = lambda s: storage_path / f"s_{s}"
+session_path: Callable[[str], Path] = lambda s: storage_path / f"s_{s}"
 
 # Usage: project_path(_SESSION_ID_, _PROJECT_ID_)
-project_path: Callable[tuple[str, str], Path] = lambda s, p: storage_path / f"s_{s}" / f"p_{p}"
+project_path: Callable[[str, str], Path] = lambda s, p: storage_path / f"s_{s}" / f"p_{p}"
+
+# Usage: goals_path(_SESSION_ID_, _PROJECT_ID_)
+goals_path: Callable[[str, str], Path] = lambda s, p: storage_path / f"s_{s}" / f"p_{p}" / "goals"
