@@ -59,6 +59,11 @@ def connected() -> None:
 
 @socketio.on("get-projects")
 def get_projects(data) -> None:
+    """Pull projects.....
+        >>> data = {"session": "__SESSION__ID__"}
+        >>> get_projects(data)
+        [["project_a"], ["project_b"]]
+        """
     list_of_projects: list[list[dict[str, str]]] = []  # array that will be sent containing all projects #
 
     # TODO: add type hints to every variable declaration and function as below
@@ -99,6 +104,7 @@ def get_projects(data) -> None:
                 list_of_projects.append(default_project)
 
     emit("receive-projects", list_of_projects, room=request.sid)
+    return list_of_projects
 
 
 @socketio.on("save-project")
@@ -191,7 +197,6 @@ def delete_project(data) -> None:
 
 @socketio.on("get-goals")
 def get_goals(data) -> None:
-
     goals_folder = goals_path(data['session'], data['project'])
 
     """Retrieving files"""
