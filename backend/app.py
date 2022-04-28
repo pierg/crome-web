@@ -71,7 +71,7 @@ def get_projects(data) -> None:
             dir_path, dir_names, filenames = next(walk(session_folder))
             for subdir in dir_names:
 
-                project_folder = dir_path / subdir
+                project_folder: str | bytes = dir_path / subdir
                 project_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
@@ -104,7 +104,7 @@ def get_projects(data) -> None:
 @socketio.on("save-project")
 def save_project(data) -> None:
     print("SAVE PROJECT : " + str(data["session"]))
-    session_id = data["world"]["info"]["session_id"]
+    session_id: str = data["world"]["info"]["session_id"]
     session_dir = session_path(session_id)
     if not os.path.isdir(session_dir):
         os.mkdir(session_dir)
@@ -136,7 +136,7 @@ def save_project(data) -> None:
         json_formatted = json.dumps(data["world"][filename], indent=4, sort_keys=True)
         json_file.write(json_formatted)
         json_file.close()
-    name = data["world"]["info"]["name"]
+    name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id])
     emit(
@@ -239,7 +239,7 @@ def add_goal(data) -> None:
         emit("saving-complete", True, room=request.sid)
 
     now = time.localtime(time.time())
-    name = data["goal"]["name"]
+    name: str = data["goal"]["name"]
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
@@ -387,8 +387,8 @@ def extension(data) -> None:
 
 
 @socketio.on("session-existing")
-def check_if_session_exist(session_id : str) -> None:
-    print("check if following session exists : " + str(session_id))
+def check_if_session_exist(session_id: str) -> None:
+    print("check if following session exists : " + session_id)
     sessions_folder = session_path("sessions")
     dir_path, dir_names, filenames = next(walk(sessions_folder))
     found = False
