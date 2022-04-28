@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 
 from backend.tools.persistence import dump_world, load_goals, load_world, dump_goals
-from crome_cgg.goal import Goal
-from crome_cgg.world import World
+import crome_cgg.goal as crome_cgg_goal
+import crome_cgg.world as crome_cgg_world
 from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import Patrolling, StrictOrderedPatrolling
 from crome_logic.specification.temporal import LTL
@@ -18,7 +18,7 @@ class Modelling:
         with open(Path(os.path.join(project_folder, "environment.json"))) as json_file:
             json_obj = json.load(json_file)
 
-        w = World(project_name=json_obj["project_id"])
+        w = crome_cgg_world.World(project_name=json_obj["project_id"])
         for action in json_obj["actions"]:
             if "mutex_group" in action:
                 w.new_boolean_action(
@@ -85,7 +85,7 @@ class Modelling:
 
         """Instanciate the goal"""
 
-        new_goal = Goal(
+        new_goal = crome_cgg_goal.Goal(
             name="Day patrolling",
             description="description",
             contract=contract,
@@ -179,7 +179,7 @@ class Modelling:
             )
 
             # TODO Fix goal ID and name, do we need both?
-            new_goal = Goal(
+            new_goal = crome_cgg_goal.Goal(
                 description=json_obj["description"],
                 id=goal_id,
                 context=context,

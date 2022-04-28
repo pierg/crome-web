@@ -13,7 +13,7 @@ from flask_socketio import SocketIO, emit
 
 from backend.shared.paths import build_path, storage_path, session_path, goals_path, project_path
 from backend.tools.persistence import load_goals
-from crome_cgg.cgg import Cgg
+import crome_cgg.cgg as crome_cgg
 from operations.modelling import Modelling
 
 import argparse
@@ -321,7 +321,7 @@ def process_goals(data) -> None:
     from crome_cgg.goal.exceptions import GoalException
 
     try:
-        cgg = Cgg(set_of_goals)
+        cgg = crome_cgg.Cgg(set_of_goals)
         # TODO: Reimplement json export
         cgg.export_to_json(os.path.join(project_folder, "goals"))
         emit(
