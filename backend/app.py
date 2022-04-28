@@ -76,7 +76,7 @@ def get_projects(data) -> None:
             dir_path, dir_names, filenames = next(walk(session_folder))
             for subdir in dir_names:
 
-                project_folder: str | bytes = dir_path / subdir
+                project_folder: Path = dir_path / subdir
                 folder_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
