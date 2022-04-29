@@ -2,13 +2,12 @@
 import os
 
 import dill as dill
-
-from backend.shared.paths import persistence_path
-from crome_synthesis.controller import Controller
-
 from crome_cgg.cgg import Cgg
 from crome_cgg.goal import Goal
 from crome_cgg.world import World
+from crome_synthesis.controller import Controller
+
+from backend.shared.paths import persistence_path
 
 
 def _make_path(folder_name: str = ""):

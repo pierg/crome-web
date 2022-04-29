@@ -2,13 +2,14 @@ import json
 import os
 from pathlib import Path
 
-from backend.tools.persistence import dump_world, load_goals, load_world, dump_goals
 import crome_cgg.goal as crome_cgg_goal
 import crome_cgg.world as crome_cgg_world
 from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import Patrolling, StrictOrderedPatrolling
 from crome_logic.specification.temporal import LTL
 from crome_logic.typeset import Typeset
+
+from backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
 
 
 class Modelling:
@@ -66,13 +67,20 @@ class Modelling:
 
         """Assumptions (if inserted by the designer"""
         a1 = LTL(formula="G(F(r1 & r2))", typeset=Typeset({w["r1"], w["r1"]}))
-        a2 = LTL(formula=Patrolling(locations=[w["r1"], w["r2"]]), typeset=Typeset({w["r1"], w["r2"]}))
+        a2 = LTL(
+            formula=Patrolling(locations=[w["r1"], w["r2"]]),
+            typeset=Typeset({w["r1"], w["r2"]}),
+        )
         # TODO: Fix the rest like above
         """Guarantees"""
         g1 = LTL(
-            formula="G(F(r3 & r4))", typeset=Typeset({w["r3"], w["r4"]}),
+            formula="G(F(r3 & r4))",
+            typeset=Typeset({w["r3"], w["r4"]}),
         )
-        g2 = LTL(formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]), typeset=Typeset({w["r1"], w["r2"]}))
+        g2 = LTL(
+            formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]),
+            typeset=Typeset({w["r1"], w["r2"]}),
+        )
         # g3 = InstantaneousReaction() // need to import every patterns method ?
 
         """Context"""
@@ -170,7 +178,7 @@ class Modelling:
                 lists_with_and_operators.append(contract_lists[i][0])
                 for j in range(1, len(contract_lists[i])):
                     lists_with_and_operators[i] = (
-                            lists_with_and_operators[i] & contract_lists[i][j]
+                        lists_with_and_operators[i] & contract_lists[i][j]
                     )
 
             contract = Contract(

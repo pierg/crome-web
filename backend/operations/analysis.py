@@ -1,8 +1,9 @@
 from typing import Set
 
-from backend.tools.persistence import load_goals, dump_goals
 from crome_cgg.goal.operations.composition import g_composition
 from crome_cgg.goal.operations.conjunction import g_conjunction
+
+from backend.tools.persistence import dump_goals, load_goals
 
 
 class Analysis:
@@ -16,9 +17,7 @@ class Analysis:
             if goal.id in set_of_goals_id:
                 goals_to_compose.add(goal)
 
-        new_goal = g_composition(
-            goals_to_compose
-        )
+        new_goal = g_composition(goals_to_compose)
 
         set_of_goals.add(new_goal)
         dump_goals(set_of_goals, project_folder)
@@ -34,14 +33,11 @@ class Analysis:
             if goal.id in set_of_goals_id:
                 goals_to_compose.add(goal)
 
-        new_goal = g_conjunction(
-            goals_to_compose
-        )
+        new_goal = g_conjunction(goals_to_compose)
 
         set_of_goals.add(new_goal)
         dump_goals(set_of_goals, project_folder)
         """TODO Update the json as well"""
-
 
     @staticmethod
     def refinement(project_folder: str, abstract_goal_id: str, refined_goal_id: str):

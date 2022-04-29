@@ -1,3 +1,4 @@
+import argparse
 import base64
 import json
 import os
@@ -8,41 +9,46 @@ from os import walk
 from pathlib import Path
 from time import strftime
 
-from flask import Flask, request, Response
-from flask_socketio import SocketIO, emit
-
-from backend.shared.paths import build_path, storage_path, session_path, goals_path, project_path
-from backend.tools.persistence import load_goals
 import crome_cgg.cgg as crome_cgg
+from flask import Flask, Response, request
+from flask_socketio import SocketIO, emit
 from operations.modelling import Modelling
 
-import argparse
+from backend.shared.paths import (
+    build_path,
+    goals_path,
+    project_path,
+    session_path,
+    storage_path,
+)
+from backend.tools.persistence import load_goals
 
-parser = argparse.ArgumentParser(description='Launching Flask Backend')
-parser.add_argument('development_mode', default=True, type=bool, help='indicate if development mode')
+parser = argparse.ArgumentParser(description="Launching Flask Backend")
+parser.add_argument(
+    "development_mode", default=True, type=bool, help="indicate if development mode"
+)
 args = parser.parse_args()
 
 if args.development_mode:
     app = Flask(__name__)
 else:
     print("Serving the web pages from the build folder")
-    app = Flask(__name__, static_folder=str(build_path), static_url_path='/')
+    app = Flask(__name__, static_folder=str(build_path), static_url_path="/")
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 users: dict[str, str] = {}
-"""
-String dictionary associating the id of the request to talk to the user with the session id given by the frontend. 
-"""
 
-"""
-HOW TO SEND A NOTIFICATION :
-emit("send-notification", {"crometypes": "error", "content": "message appearing"}, room=users[data['session']])
-crometypes : error = red,
-        success = green,
-        warning = yellow,
-        info = blue
-"""
+
+# String dictionary associating the id of the request to talk to the user with the session id given by the frontend.
+
+
+# HOW TO SEND A NOTIFICATION :
+# emit("send-notification", {"crometypes": "error", "content": "message appearing"}, room=users[data['session']])
+# crometypes : error = red,
+#         success = green,
+#         warning = yellow,
+#         info = blue
 
 
 @socketio.on("connect")
@@ -58,13 +64,16 @@ def connected() -> None:
 
 
 @socketio.on("get-projects")
-def get_projects(data) -> None:
-    """Pull projects.....
-        >>> data = {"session": "__SESSION__ID__"}
-        >>> get_projects(data)
-        [["project_a"], ["project_b"]]
-        """
-    list_of_projects: list[list[dict[str, str]]] = []  # array that will be sent containing all projects #
+def get_projects(data) -> list[list[dict[str, str]]]:
+    """
+    Pull projects.....
+    >>> data = {"session": "__SESSION__ID__"}
+    >>> get_projects(data)
+    [["project_a"], ["project_b"]]
+    """
+    list_of_projects: list[
+        list[dict[str, str]]
+    ] = []  # array that will be sent containing all projects #
 
     # TODO: add type hints to every variable declaration and function as below
     list_of_sessions: list[str] = [f"sessions/default", f"sessions/{data['session']}"]
@@ -94,7 +103,7 @@ def get_projects(data) -> None:
                             )
                     if os.path.splitext(file)[1] == ".png":
                         with open(
-                                Path(os.path.join(folder_path, file)), "rb"
+                            Path(os.path.join(folder_path, file)), "rb"
                         ) as png_file:
                             read_png_file = base64.b64encode(png_file.read())
                             default_project.append(
@@ -118,17 +127,17 @@ def save_project(data) -> None:
     if is_simple:
         number_of_copies = 1
         while os.path.isdir(
-                os.path.join(
-                    storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
-                )
+            os.path.join(
+                storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
+            )
         ):
             number_of_copies += 1
         data["world"]["environment"]["project_id"] = f"simple_{number_of_copies}"
         data["world"]["info"]["project_id"] = f"simple_{number_of_copies}"
-    project_dir = project_path(session_id, data['world']['info']['project_id'])
+    project_dir = project_path(session_id, data["world"]["info"]["project_id"])
     if not os.path.isdir(project_dir):
         os.mkdir(project_dir)
-    goals_dir = goals_path(session_id, data['world']['info']['project_id'])
+    goals_dir = goals_path(session_id, data["world"]["info"]["project_id"])
     if not os.path.isdir(goals_dir):
         if is_simple:
             shutil.copytree(
@@ -173,7 +182,7 @@ def save_image(data) -> None:
 
 @socketio.on("delete-project")
 def delete_project(data) -> None:
-    current_session_folder = session_path(data['session'])
+    current_session_folder = session_path(data["session"])
     dir_path, dir_names, filenames = next(walk(current_session_folder))
     i = 1
 
@@ -197,7 +206,7 @@ def delete_project(data) -> None:
 
 @socketio.on("get-goals")
 def get_goals(data) -> None:
-    goals_folder = goals_path(data['session'], data['project'])
+    goals_folder = goals_path(data["session"], data["project"])
 
     """Retrieving files"""
     if os.path.isdir(goals_folder):
@@ -223,14 +232,14 @@ def add_goal(data) -> None:
     if is_simple:
         project_id = copy_simple(data["session"])
 
-    goals_dir = goals_path(data['session'], project_id)
+    goals_dir = goals_path(data["session"], project_id)
 
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
         greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
         greatest_id += 1
         data["goal"]["id"] = (
-                data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
+            data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
         )
         filename = str(greatest_id).zfill(4) + ".json"
         data["goal"]["filename"] = filename
@@ -264,7 +273,7 @@ def delete_goal(data) -> None:
     if is_simple:
         project_id = copy_simple(data["session"])
 
-    current_goals_folder = goals_path(data['session'], project_id)
+    current_goals_folder = goals_path(data["session"], project_id)
     dir_path, dir_names, filenames = next(walk(current_goals_folder))
     i = 0
     for goal_file in filenames:
@@ -310,11 +319,11 @@ def process_goals(data) -> None:
     )
 
     session = "default" if data["project"] == "simple" else data["session"]
-    project_folder = project_path(session, data['project'])
+    project_folder = project_path(session, data["project"])
 
     set_of_goals = load_goals(str(project_folder))
     if session == "default" and not os.path.exists(
-            os.path.join(project_folder, "goals.dat")
+        os.path.join(project_folder, "goals.dat")
     ):
         build_simple_project()
 
@@ -423,7 +432,7 @@ def get_current_time() -> dict[str, float]:
 def copy_simple(session_id: str) -> str:
     number_of_copies = 1
     while os.path.isdir(
-            os.path.join(storage_path, f"sessions/{session_id}/simple_{number_of_copies}")
+        os.path.join(storage_path, f"sessions/{session_id}/simple_{number_of_copies}")
     ):
         number_of_copies += 1
     project_id = f"simple_{number_of_copies}"
@@ -434,7 +443,7 @@ def copy_simple(session_id: str) -> str:
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
-                os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json")
+            os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json")
         ) as file:
             json_data = json.load(file)
         if i == "info":
@@ -442,10 +451,8 @@ def copy_simple(session_id: str) -> str:
         json_data["project_id"] = project_id
         json_data["session_id"] = session_id
         with open(
-                os.path.join(
-                    storage_path, f"sessions/{session_id}/{project_id}/{i}.json"
-                ),
-                "w",
+            os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json"),
+            "w",
         ) as file:
             json_formatted = json.dumps(json_data, indent=4, sort_keys=True)
             file.write(json_formatted)
