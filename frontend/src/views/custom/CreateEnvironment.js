@@ -924,7 +924,7 @@ export default class CreateEnvironment extends React.Component {
                 }
             }
         }
-        console.log("ICICICICI")
+
         this.setState({
             environmentToBeSaved: obj,
         }, () => this.setModalSaving(true))

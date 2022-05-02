@@ -65,12 +65,6 @@ def connected() -> None:
 
 @socketio.on("get-projects")
 def get_projects(data) -> list[list[dict[str, str]]]:
-    """
-    Pull projects.....
-    >>> data = {"session": "__SESSION__ID__"}
-    >>> get_projects(data)
-    [["project_a"], ["project_b"]]
-    """
     list_of_projects: list[
         list[dict[str, str]]
     ] = []  # array that will be sent containing all projects #
@@ -122,7 +116,7 @@ def save_project(data) -> None:
     session_id: str = data["world"]["info"]["session_id"]
     session_dir = session_path(session_id)
     if not os.path.isdir(session_dir):
-        os.mkdir(session_dir)
+        os.makedirs(session_dir)
     is_simple = data["world"]["info"]["project_id"] == "simple"
     if is_simple:
         number_of_copies = 1
@@ -172,7 +166,7 @@ def save_image(data) -> None:
     current_project_image = Path(
         os.path.join(
             storage_path,
-            f"sessions/{data['session']}/{data['project']}/environment.png",
+            f"s_{data['session']}/p_{data['project']}/environment.png",
         )
     )
 

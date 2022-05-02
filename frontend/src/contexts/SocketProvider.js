@@ -10,7 +10,8 @@ export function useSocket() {
 export function SocketProvider({ id, children }) {
     useEffect(() => {
         console.log("Connecting merged")
-        const newSocket = io({ query: { id } }
+        console.log(id)
+        const newSocket = io("http://127.0.0.1:5000",{ query: { id } }
         )
         setSocket(newSocket)
 
