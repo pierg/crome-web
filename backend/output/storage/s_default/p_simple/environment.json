@@ -1,0 +1,207 @@
+{
+    "actions": [
+        {
+            "name": "greet"
+        },
+        {
+            "name": "register"
+        }
+    ],
+    "context": [
+        {
+            "mutex_group": [
+                0
+            ],
+            "name": "day"
+        },
+        {
+            "mutex_group": [
+                0
+            ],
+            "name": "night"
+        }
+    ],
+    "filetype": "environment",
+    "grid": {
+        "locations": [
+            {
+                "color": "#0000FF",
+                "coordinates": [
+                    {
+                        "x": 1,
+                        "y": 1
+                    },
+                    {
+                        "x": 1,
+                        "y": 2
+                    },
+                    {
+                        "x": 2,
+                        "y": 1
+                    },
+                    {
+                        "x": 2,
+                        "y": 2
+                    }
+                ],
+                "id": "r1",
+                "adjacency": ["r2", "r5"]
+            },
+            {
+                "color": "#8FF484",
+                "coordinates": [
+                    {
+                        "x": 1,
+                        "y": 4
+                    },
+                    {
+                        "x": 1,
+                        "y": 5
+                    },
+                    {
+                        "x": 2,
+                        "y": 4
+                    },
+                    {
+                        "x": 2,
+                        "y": 5
+                    }
+                ],
+                "id": "r2",
+                "adjacency": ["r1", "r5"]
+            },
+            {
+                "color": "#FFFF00",
+                "coordinates": [
+                    {
+                        "x": 2,
+                        "y": 3
+                    },
+                    {
+                        "x": 3,
+                        "y": 3
+                    },
+                    {
+                        "x": 4,
+                        "y": 3
+                    }
+                ],
+                "id": "r3",
+                "adjacency": ["r4", "r5"]
+            },
+            {
+                "color": "#FF0000",
+                "coordinates": [
+                    {
+                        "x": 3,
+                        "y": 1
+                    },
+                    {
+                        "x": 3,
+                        "y": 2
+                    },
+                    {
+                        "x": 4,
+                        "y": 1
+                    },
+                    {
+                        "x": 4,
+                        "y": 2
+                    }
+                ],
+                "id": "r4",
+                "adjacency": ["r3", "r5"]
+            },
+            {
+                "color": "#FF00FF",
+                "coordinates": [
+                    {
+                        "x": 3,
+                        "y": 4
+                    },
+                    {
+                        "x": 3,
+                        "y": 5
+                    },
+                    {
+                        "x": 4,
+                        "y": 4
+                    },
+                    {
+                        "x": 4,
+                        "y": 5
+                    }
+                ],
+                "id": "r5",
+                "adjacency": ["r1", "r2", "r3", "r4"]
+            }
+        ],
+        "walls": {
+            "horizontal": [
+                {
+                    "left": {
+                        "x": 2,
+                        "y": 1
+                    },
+                    "right": {
+                        "x": 3,
+                        "y": 1
+                    }
+                },
+                {
+                    "left": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "right": {
+                        "x": 3,
+                        "y": 2
+                    }
+                },
+                {
+                    "left": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "right": {
+                        "x": 3,
+                        "y": 4
+                    }
+                },
+                {
+                    "left": {
+                        "x": 2,
+                        "y": 5
+                    },
+                    "right": {
+                        "x": 3,
+                        "y": 5
+                    }
+                }
+            ],
+            "vertical": [
+                {
+                    "down": {
+                        "x": 2,
+                        "y": 3
+                    },
+                    "up": {
+                        "x": 2,
+                        "y": 2
+                    }
+                }
+            ]
+        }
+    },
+    "project_id": "simple",
+    "sensors": [
+        {
+            "name": "person"
+        }
+    ],
+    "session_id": "default",
+    "size": {
+        "height": 10,
+        "width": 10
+    }
+}

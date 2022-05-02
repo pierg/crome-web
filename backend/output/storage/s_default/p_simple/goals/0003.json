@@ -1,0 +1,37 @@
+{
+    "context": [
+        "day"
+    ],
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "G(F(person))"
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "G(person -> register)",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "name": "trigger",
+                            "value": "person"
+                        },
+                        {
+                            "name": "reaction",
+                            "value": "register"
+                        }
+                    ],
+                    "name": "BoundDelay"
+                }
+            }
+        ]
+    },
+    "description": "During context day => if see a person, register in the next step, Only if see a person, register in the next step",
+    "filename": "0003.json",
+    "id": "default-simple-0003",
+    "name": "Register Person",
+    "parents": [
+        "4df2c"
+    ]
+}

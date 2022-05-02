@@ -177,7 +177,7 @@ def save_image(data) -> None:
 def delete_project(data) -> None:
     current_session_folder = session_path(data["session"])
     dir_path, dir_names, filenames = next(walk(current_session_folder))
-    i = 0
+    i = 1
 
     for name in dir_names:
         if i == data["index"]:

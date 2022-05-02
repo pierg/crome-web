@@ -1,0 +1,36 @@
+{
+    "context": [],
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "G(F(person))"
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "G(person -> greet)",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "name": "trigger",
+                            "value": "person"
+                        },
+                        {
+                            "name": "reaction",
+                            "value": "greet"
+                        }
+                    ],
+                    "name": "BoundReaction"
+                }
+            }
+        ]
+    },
+    "description": "Always => if see a person, greet in the same step, Only if see a person, greet immediately",
+    "filename": "0002.json",
+    "id": "default-simple-0002",
+    "name": "Greet Person",
+    "parents": [
+        "d20fb",
+        "4df2c"
+    ]
+}

@@ -118,27 +118,27 @@ class Modelling:
             contract_lists = [[], []]  # type: list[list[LTL]]
             for i in range(len(contract_lists)):
                 for contract_element in json_obj["contract"][contract_names[i]]:
-                    if "patterns" in contract_element:
-                        args = contract_element["patterns"]["arguments"]
+                    if "pattern" in contract_element:
+                        args = contract_element["pattern"]["arguments"]
                         if len(args) == 1:
                             if type(args[0]["value"]) == list:
                                 list_of_locations = []
                                 for location in args[0]["value"]:
                                     list_of_locations.append(w[location])
                                 contract_lists[i].append(
-                                    globals()[contract_element["patterns"]["name"]](
+                                    globals()[contract_element["pattern"]["name"]](
                                         list_of_locations,
                                     ),
                                 )
                             else:
                                 contract_lists[i].append(
-                                    globals()[contract_element["patterns"]["name"]](
-                                        [w[args[0]["value"]]],
+                                    globals()[contract_element["pattern"]["name"]](
+                                        name=[w[args[0]["value"]]],
                                     ),
                                 )
                         elif len(args) == 2:
                             contract_lists[i].append(
-                                globals()[contract_element["patterns"]["name"]](
+                                globals()[contract_element["pattern"]["name"]](
                                     w[args[0]["value"]],
                                     w[args[1]["value"]],
                                 ),
@@ -173,6 +173,7 @@ class Modelling:
                 context = w[json_obj["context"]]
 
             lists_with_and_operators: list[LTL] = []
+            print(contract_lists)
             for i in range(len(contract_lists)):
                 lists_with_and_operators.append(contract_lists[i][0])
                 for j in range(1, len(contract_lists[i])):

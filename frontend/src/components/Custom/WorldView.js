@@ -2,14 +2,9 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 function WorldView(props) {
-    function arrayBufferToBase64( buffer ) {
-        let binary = '';
-        let bytes = new Uint8Array( buffer );
-        let len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-            binary += String.fromCharCode( bytes[ i ] );
-        }
-        return binary;
+    function arrayBufferToImage( buffer ) {
+        buffer = buffer.slice(2,buffer.length-1)
+        return buffer;
     }
 
     return(
@@ -33,7 +28,7 @@ function WorldView(props) {
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1"/>
                             </div>
                             <div className="w-full">
-                                <img src={"data:image/png;base64," + arrayBufferToBase64(props.image)} alt={"World"} className="w-full"/>
+                                <img src={"data:image/png;base64," + arrayBufferToImage(props.image)} alt={"World"} className="w-full"/>
                             </div>
                         </div>
                         <div className="flex flex-col min-content">

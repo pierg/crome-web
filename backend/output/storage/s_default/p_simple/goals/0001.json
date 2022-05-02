@@ -1,0 +1,38 @@
+{
+    "context": [
+        "night"
+    ],
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "true"
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "GF(r3) & GF(r4)",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "format": "list",
+                            "name": "locations",
+                            "type": "location",
+                            "value": [
+                                "r3",
+                                "r4"
+                            ]
+                        }
+                    ],
+                    "name": "StrictOrderedPatrolling"
+                }
+            }
+        ]
+    },
+    "description": "During context night => start from r3, patrol r3, r4 in strict order, Strict Ordered Patrolling Location r3, r4",
+    "filename": "0001.json",
+    "id": "default-simple-0001",
+    "name": "Night Patrolling",
+    "parents": [
+        "d20fb"
+    ]
+}
