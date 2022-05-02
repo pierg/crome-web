@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Patrolling",
+    "description": "test_descriptionPatrollin",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "locations",
+        "format": "list",
+        "type": "location"
+      }
+    ]
+  },
+  {
+    "name": "OrderedPatrolling",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "locations",
+        "format": "list",
+        "type": "location"
+      }
+    ]
+  },
+  {
+    "name": "StrictOrderedPatrolling",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "locations",
+        "format": "list",
+        "type": "location"
+      }
+    ]
+  },
+  {
+    "name": "Visit",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "locations",
+        "format": "list",
+        "type": "location"
+      }
+    ]
+  },
+  {
+    "name": "InstantaneousReaction",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "trigger",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "reaction",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  },
+  {
+    "name": "BoundReaction",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "trigger",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "reaction",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  },
+  {
+    "name": "BoundDelay",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "trigger",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "reaction",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  },
+  {
+    "name": "PromptReaction",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "trigger",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "reaction",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  },
+  {
+    "name": "DelayedReaction",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "trigger",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "reaction",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  },
+  {
+    "name": "Wait",
+    "description": "test_description",
+    "ltl_example": "",
+    "arguments": [
+      {
+        "name": "do",
+        "format": "value",
+        "type": "any"
+      },
+      {
+        "name": "until",
+        "format": "value",
+        "type": "any"
+      }
+    ]
+  }
+]
