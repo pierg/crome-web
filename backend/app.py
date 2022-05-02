@@ -70,7 +70,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
     ] = []  # array that will be sent containing all projects #
 
     # TODO: add type hints to every variable declaration and function as below
-    list_of_sessions: list[str] = [f"sessions/default", f"sessions/{data['session']}"]
+    list_of_sessions: list[str] = [f"default", data['session']]
 
     for session in list_of_sessions:
         session_folder = session_path(session)
@@ -78,13 +78,13 @@ def get_projects(data) -> list[list[dict[str, str]]]:
         if os.path.isdir(session_folder):  # if there is a folder for this session #
             dir_path, dir_names, filenames = next(walk(session_folder))
             for subdir in dir_names:
-
-                project_folder: Path = dir_path / subdir
+                project_folder: Path = Path(os.path.join(dir_path, subdir))
                 folder_path, project_directories, project_files = next(
                     walk(project_folder)
                 )
                 default_project: list[dict[str, str]] = []
                 for file in project_files:
+                    print(file)
                     if os.path.splitext(file)[1] == ".json":
                         with open(Path(os.path.join(folder_path, file))) as json_file:
                             json_obj = json.load(json_file)
@@ -106,6 +106,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
 
                 list_of_projects.append(default_project)
 
+    print(list_of_projects)
     emit("receive-projects", list_of_projects, room=request.sid)
     return list_of_projects
 
