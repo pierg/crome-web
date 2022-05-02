@@ -70,7 +70,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
     ] = []  # array that will be sent containing all projects #
 
     # TODO: add type hints to every variable declaration and function as below
-    list_of_sessions: list[str] = [f"default", data['session']]
+    list_of_sessions: list[str] = [f"default", data["session"]]
 
     for session in list_of_sessions:
         session_folder = session_path(session)
@@ -253,7 +253,7 @@ def add_goal(data) -> None:
         room=users[data["session"]],
     )
     Modelling.add_goal(
-        os.path.join(storage_path, f"sessions/{data['session']}/{project_id}"),
+        project_path(data["session"], project_id),
         data["goal"]["filename"],
         data["goal"]["id"],
     )
@@ -431,12 +431,12 @@ def copy_simple(session_id: str) -> str:
     project_id = f"simple_{number_of_copies}"
     shutil.copytree(
         os.path.join(storage_path, "sessions/default/simple"),
-        os.path.join(storage_path, f"sessions/{session_id}/{project_id}"),
+        project_path(session_id, project_id),
     )
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
-            os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json")
+            os.path.join(project_path(session_id, project_id), f"{i}.json"),
         ) as file:
             json_data = json.load(file)
         if i == "info":
@@ -444,7 +444,7 @@ def copy_simple(session_id: str) -> str:
         json_data["project_id"] = project_id
         json_data["session_id"] = session_id
         with open(
-            os.path.join(storage_path, f"sessions/{session_id}/{project_id}/{i}.json"),
+            os.path.join(project_path(session_id, project_id), f"{i}.json"),
             "w",
         ) as file:
             json_formatted = json.dumps(json_data, indent=4, sort_keys=True)

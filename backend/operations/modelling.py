@@ -112,7 +112,6 @@ class Modelling:
         w = load_world(project_folder)
 
         goal_path = Path(os.path.join(project_folder, f"goals/{goal_file}"))
-
         with open(goal_path) as json_file:
             json_obj = json.load(json_file)
             contract_names = ["assumptions", "guarantees"]
