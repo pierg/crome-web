@@ -84,7 +84,6 @@ def get_projects(data) -> list[list[dict[str, str]]]:
                 )
                 default_project: list[dict[str, str]] = []
                 for file in project_files:
-                    print(file)
                     if os.path.splitext(file)[1] == ".json":
                         with open(Path(os.path.join(folder_path, file))) as json_file:
                             json_obj = json.load(json_file)
@@ -106,7 +105,6 @@ def get_projects(data) -> list[list[dict[str, str]]]:
 
                 list_of_projects.append(default_project)
 
-    print(list_of_projects)
     emit("receive-projects", list_of_projects, room=request.sid)
     return list_of_projects
 
@@ -179,7 +177,7 @@ def save_image(data) -> None:
 def delete_project(data) -> None:
     current_session_folder = session_path(data["session"])
     dir_path, dir_names, filenames = next(walk(current_session_folder))
-    i = 1
+    i = 0
 
     for name in dir_names:
         if i == data["index"]:
