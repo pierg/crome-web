@@ -5,8 +5,14 @@ from pathlib import Path
 import crome_cgg.goal as crome_cgg_goal
 import crome_cgg.world as crome_cgg_world
 from crome_contracts.contract import Contract
-from crome_logic.patterns.robotic_movement import Patrolling, StrictOrderedPatrolling
+from crome_logic.patterns.robotic_movement import *
+from crome_logic.patterns.robotic_triggers import *
 from crome_logic.specification.temporal import LTL
+from crome_logic.typeelement.robotic import (
+    BooleanAction,
+    BooleanLocation,
+    BooleanSensor,
+)
 from crome_logic.typeset import Typeset
 
 from backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
@@ -123,30 +129,44 @@ class Modelling:
                         if len(args) == 1:
                             if type(args[0]["value"]) == list:
                                 list_of_locations = []
+                                typeset_location = set()
                                 for location in args[0]["value"]:
                                     list_of_locations.append(w[location])
+                                    typeset_location.add(BooleanLocation(name=location))
                                 contract_lists[i].append(
                                     LTL(
-                                        formula=globals()[contract_element["pattern"]["name"]](
-                                            locations=list_of_locations,
-                                        )
+                                        formula=globals()[
+                                            contract_element["pattern"]["name"]
+                                        ](locations=list_of_locations),
+                                        typeset=Typeset(typeset_location),
                                     )
                                 )
                             else:
                                 contract_lists[i].append(
                                     LTL(
-                                        formula=globals()[contract_element["pattern"]["name"]](
-                                            locations=[w[args[0]["value"]]],
-                                        )
+                                        formula=globals()[
+                                            contract_element["pattern"]["name"]
+                                        ](locations=[w[args[0]["value"]]]),
+                                        typeset=Typeset(
+                                            {BooleanLocation(name=args[0]["value"])}
+                                        ),
                                     )
                                 )
                         elif len(args) == 2:
-                            contract_lists[i].append(
+                            contract_lists[i].append(  # TODO fix the error with nuXmv
                                 LTL(
-                                    formula=globals()[contract_element["pattern"]["name"]](
-                                        w[args[0]["value"]],
-                                        w[args[1]["value"]],
-                                    )
+                                    formula=globals()[
+                                        contract_element["pattern"]["name"]
+                                    ](
+                                        pre=w[args[0]["value"]],
+                                        post=w[args[1]["value"]],
+                                    ),
+                                    typeset=Typeset(
+                                        {
+                                            BooleanSensor(name=args[0]["value"]),
+                                            BooleanAction(name=args[0]["value"]),
+                                        }
+                                    ),
                                 )
                             )
                         else:
@@ -179,7 +199,6 @@ class Modelling:
                 context = w[json_obj["context"]]
 
             lists_with_and_operators: list[LTL] = []
-            print(contract_lists)
             for i in range(len(contract_lists)):
                 if not contract_lists[i]:
                     lists_with_and_operators.append(LTL("TRUE"))
@@ -201,7 +220,7 @@ class Modelling:
                 id=goal_id,
                 context=context,
                 world=w,
-                contract=contract
+                contract=contract,
             )
 
             if not set_of_goals:
