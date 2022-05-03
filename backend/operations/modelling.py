@@ -126,22 +126,28 @@ class Modelling:
                                 for location in args[0]["value"]:
                                     list_of_locations.append(w[location])
                                 contract_lists[i].append(
-                                    globals()[contract_element["pattern"]["name"]](
-                                        list_of_locations,
-                                    ),
+                                    LTL(
+                                        formula=globals()[contract_element["pattern"]["name"]](
+                                            locations=list_of_locations,
+                                        )
+                                    )
                                 )
                             else:
                                 contract_lists[i].append(
-                                    globals()[contract_element["pattern"]["name"]](
-                                        name=[w[args[0]["value"]]],
-                                    ),
+                                    LTL(
+                                        formula=globals()[contract_element["pattern"]["name"]](
+                                            locations=[w[args[0]["value"]]],
+                                        )
+                                    )
                                 )
                         elif len(args) == 2:
                             contract_lists[i].append(
-                                globals()[contract_element["pattern"]["name"]](
-                                    w[args[0]["value"]],
-                                    w[args[1]["value"]],
-                                ),
+                                LTL(
+                                    formula=globals()[contract_element["pattern"]["name"]](
+                                        w[args[0]["value"]],
+                                        w[args[1]["value"]],
+                                    )
+                                )
                             )
                         else:
                             raise Exception(
@@ -175,6 +181,9 @@ class Modelling:
             lists_with_and_operators: list[LTL] = []
             print(contract_lists)
             for i in range(len(contract_lists)):
+                if not contract_lists[i]:
+                    lists_with_and_operators.append(LTL("TRUE"))
+                    continue
                 lists_with_and_operators.append(contract_lists[i][0])
                 for j in range(1, len(contract_lists[i])):
                     lists_with_and_operators[i] = (
@@ -192,7 +201,11 @@ class Modelling:
                 id=goal_id,
                 context=context,
                 world=w,
+                contract=contract
             )
+
+            if not set_of_goals:
+                set_of_goals = set()
 
             set_of_goals.add(new_goal)
 
