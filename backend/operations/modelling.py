@@ -153,7 +153,7 @@ class Modelling:
                                     )
                                 )
                         elif len(args) == 2:
-                            contract_lists[i].append(  # TODO fix the error with nuXmv
+                            contract_lists[i].append(
                                 LTL(
                                     formula=globals()[
                                         contract_element["pattern"]["name"]
@@ -164,7 +164,7 @@ class Modelling:
                                     typeset=Typeset(
                                         {
                                             BooleanSensor(name=args[0]["value"]),
-                                            BooleanAction(name=args[0]["value"]),
+                                            BooleanAction(name=args[1]["value"]),
                                         }
                                     ),
                                 )
