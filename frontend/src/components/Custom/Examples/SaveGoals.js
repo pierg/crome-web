@@ -24,7 +24,6 @@ function SocketSaveGoals(props) {
             }
             else {
                 socket.on('saving-complete', props.toggleGetTrigger())
-                return () => socket.off('saving-complete')
             }
         }
         

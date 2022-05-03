@@ -101,7 +101,6 @@ export default class CreateEnvironment extends React.Component {
     }
 
     setModalSaving = (bool) => {
-        console.log(bool)
         if (!bool) {
             if (this.props.world === null) {
                 this.setState({
