@@ -243,7 +243,7 @@ def add_goal(data) -> None:
     if is_simple:
         emit("saving-simple", project_id, room=request.sid)
     else:
-        emit("saving-complete", True, room=request.sid)
+        emit("goal-saved", True, room=request.sid)
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]

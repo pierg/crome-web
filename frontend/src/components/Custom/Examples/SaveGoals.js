@@ -11,6 +11,10 @@ function SocketSaveGoals(props) {
         setId(project_id);
     }, [setId])
 
+    const triggerGoalSaved = useCallback(() => {
+        props.toggleGetTrigger()
+    }, [props])
+
     useEffect(() => {
         if (socket == null) return
         
@@ -19,11 +23,15 @@ function SocketSaveGoals(props) {
             props.toggleSaveTrigger(false)
             socket.emit('add-goal', {goal : props.goals[props.index], session : props.session, projectId : props.projectId})
 
+            //socket.on('goal-saved', props.toggleGetTrigger())
+
             if (props.projectId === "simple") {
                 socket.on('saving-simple', setIdFunction)
+                return () => socket.off('saving-simple')
             }
             else {
-                socket.on('saving-complete', props.toggleGetTrigger())
+                socket.on('goal-saved', triggerGoalSaved)
+                return () => socket.off('saving-complete')
             }
         }
         
