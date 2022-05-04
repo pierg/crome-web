@@ -15,6 +15,7 @@ function SocketSaveGoals(props) {
         props.toggleGetTrigger()
     }, [props])
 
+
     useEffect(() => {
         if (socket == null) return
         
@@ -35,7 +36,7 @@ function SocketSaveGoals(props) {
             }
         }
         
-    }, [socket, props, setIdFunction])
+    }, [socket, props, setIdFunction]) // eslint-disable-line react-hooks/exhaustive-deps
     
     useEffect(() => {
         props.switchWorld(id)
