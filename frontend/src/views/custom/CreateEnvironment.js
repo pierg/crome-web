@@ -963,25 +963,33 @@ export default class CreateEnvironment extends React.Component {
         this.componentsList = createenvironment.componentsList
 
         for (let i = 0; i < this.state.numChildren[0]; i += 1) {
-            this.componentsList[0].content[i]=(<Location key={i}
-                                    name={this.state.lists[0][i]}
-                                    onClick={() => this.deleteElement(0, i)}
-                                    color={this.state.colors[i]}
-                                    statIconName={"fas fa-square"}
-                                    deleteIconName={"now-ui-icons ui-1_simple-remove"}/>);
+            this.componentsList[0].content[i]=(
+                <Location
+                    key={i}
+                    name={this.state.lists[0][i]}
+                    onClick={() => this.deleteElement(0, i)}
+                    color={this.state.colors[i]}
+                    statIconName={"fas fa-square"}
+                    deleteIconName={"now-ui-icons ui-1_simple-remove"}
+                />
+            );
         }
         for (let k = 1; k < this.state.lists.length; k++) {
             for (let i = 0; i < this.state.numChildren[k]; i += 1) {
-                this.componentsList[k].content[i]=(<ListLine key={(k-1)*this.state.numChildren[k] + i}
-                    number={(k-1)*this.state.numChildren[k] + i}
-                    name={this.state.lists[k][i]}
-                    list={k-1}
-                    onEdit={() => this.editLine(k, i)}
-                    onDelete={() => this.deleteElement(k, i)}
-                    colors={this.getEveryIndexOf(this.state.lists[k][i], k)}
-                    statIconName={"far fa-circle"}
-                    editIconName={"fas fa-pen"}
-                    deleteIconName={"now-ui-icons ui-1_simple-remove"}/>);
+                this.componentsList[k].content[i]=(
+                    <ListLine
+                        key={(k-1)*this.state.numChildren[k] + i}
+                        number={(k-1)*this.state.numChildren[k] + i}
+                        name={this.state.lists[k][i]}
+                        list={k-1}
+                        onEdit={() => this.editLine(k, i)}
+                        onDelete={() => this.deleteElement(k, i)}
+                        colors={this.getEveryIndexOf(this.state.lists[k][i], k)}
+                        statIconName={"far fa-circle"}
+                        editIconName={"fas fa-pen"}
+                        deleteIconName={"now-ui-icons ui-1_simple-remove"}
+                    />
+                );
             }
         }
         return (
@@ -1064,7 +1072,14 @@ export default class CreateEnvironment extends React.Component {
                                                 </div>
                                             </div>
                                             {this.componentsList.map((prop, key) => (
-                                                <ListBlock key={key} displayAddButton={prop.displayAddButton === true} addLine={() => this.onAddLine(key)} content={prop.content} colspan={3} title={prop.title}/>
+                                                <ListBlock
+                                                    key={key}
+                                                    displayAddButton={prop.displayAddButton === true}
+                                                    addLine={() => this.onAddLine(key)}
+                                                    content={prop.content}
+                                                    colspan={3}
+                                                    title={prop.title}
+                                                />
                                             ))}
                                             <div className="m-4 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
                                                 <div className="flex flex-col pl-2 pt-3 pb-3">
@@ -1083,6 +1098,7 @@ export default class CreateEnvironment extends React.Component {
                 </div>
                 <Modal
                     isOpen={this.state.modalClassic}
+                    autoFocus={false}
                     toggle={() => this.setModalClassic(false)}
                     className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
                     <WorldEdit

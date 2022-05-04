@@ -42,8 +42,16 @@ function WorldEdit(props) {
                 <h4 className="title title-up">{props.info.title}</h4>
             </div>
             <div className="modal-body justify-content-center" onKeyPress={handleKeyEvent}>
-                <Input type="text" placeholder="Name *" autoComplete="off" name="name" value={element} onChange={changeParameter}/>
-                {props.list.length > 0 && (<h4 className="title title-up mb-3">{props.info.modal.mutex}</h4>)}
+                <Input
+                    type="text"
+                    placeholder="Name *"
+                    autoComplete="off"
+                    name="name"
+                    value={element}
+                    onChange={changeParameter}
+                    autoFocus={true}
+                />
+                {props.list.length > 1 && (<h4 className="title title-up mb-3">{props.info.modal.mutex}</h4>)}
                 <div className="flex flex-col mt-1">
                     {props.list.map((prop, key) => {
                         return (key !== props.number) && (<Checkbox key={key} label={prop} name="mutex" checked={mutexList.includes(props.list[key])} onChange={() => changeMutex(key)}/>)
