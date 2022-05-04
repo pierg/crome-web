@@ -131,8 +131,8 @@ class Modelling:
                                 list_of_locations = []
                                 typeset_location = set()
                                 for location in args[0]["value"]:
-                                    list_of_locations.append(w[location])
-                                    typeset_location.add(BooleanLocation(name=location))
+                                    list_of_locations.append(location)
+                                    typeset_location.add(w.typeset[location])
                                 contract_lists[i].append(
                                     LTL(
                                         formula=globals()[
@@ -148,7 +148,7 @@ class Modelling:
                                             contract_element["pattern"]["name"]
                                         ](locations=[w[args[0]["value"]]]),
                                         typeset=Typeset(
-                                            {BooleanLocation(name=args[0]["value"])}
+                                            {w.typeset[args[0]["value"]]}
                                         ),
                                     )
                                 )
@@ -163,8 +163,8 @@ class Modelling:
                                     ),
                                     typeset=Typeset(
                                         {
-                                            BooleanSensor(name=args[0]["value"]),
-                                            BooleanAction(name=args[1]["value"]),
+                                            w.typeset[args[0]["value"]],
+                                            w.typeset[args[1]["value"]],
                                         }
                                     ),
                                 )
@@ -178,7 +178,7 @@ class Modelling:
                             values = set()
                             for array in contract_element["world_values"]:
                                 for value in array:
-                                    values.add(w[value])
+                                    values.add(w.typeset[value])
                             contract_lists[i].append(
                                 LTL(
                                     formula=contract_element["ltl_value"],
