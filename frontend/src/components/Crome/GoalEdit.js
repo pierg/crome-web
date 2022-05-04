@@ -25,7 +25,7 @@ function GoalEdit(props) {
             case "subValue": contractTypeIndex.pattern.arguments[subKey] = {"value": makeListOf(value)}; break;
             default: break;
         }
-        
+
         props.edit(goal)
     }
 
@@ -64,8 +64,8 @@ function GoalEdit(props) {
                 <h4 className="title title-up">{props.info.title}</h4>
             </div>
             <div className="modal-body justify-content-center" onKeyPress={handleKeyEvent}>
-                <Input type="text" placeholder="Name" name="name" value={goal.name} onChange={changeParameter}/>
-                <Input type="textarea" placeholder="Description" name="description" value={goal.description} onChange={changeParameter}/>
+                <Input type="text" placeholder="Title of the Goal" name="name" value={goal.name} onChange={changeParameter}/>
+                <Input type="textarea" placeholder="Description of the Goal" name="description" value={goal.description} onChange={changeParameter}/>
                 <h4 className="font-bold title-up mb-2">{props.info.context.title}</h4>
                 {props.listOfWorldVariables[props.listOfWorldVariables.length - 1].map((prop, key) => (
                     <Checkbox key={key} label={prop} name="context" checked={goal.context.includes(prop)} onChange={(e) => changeParameter(e, false, 0, prop)}/>

@@ -1,6 +1,6 @@
 const textProps = {
-  name: "Title of the Goal",
-  description: "Description of the Goal",
+  name: "",
+  description: "",
   context: [],
   contract: {
       assumptions: [],
