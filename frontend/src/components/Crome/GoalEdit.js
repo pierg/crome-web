@@ -11,18 +11,21 @@ function GoalEdit(props) {
     const [goal] = React.useState(JSON.parse(JSON.stringify(props.goal)));
 
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
+
         const value = propValue || e.target.value
+
         const contractTypeIndex = contractType ? goal.contract[contractType][index] : false
         switch (e.target.name) {
             case "name": goal.name = value; break;
             case "description": goal.description = value; break;
             case "context": goal.context.includes(value) ? goal.context.splice(goal.context.indexOf(value), 1) : goal.context.push(value); break;
             case "ltl_value": contractTypeIndex.ltl_value = value; break;
-            case "contentName": contractTypeIndex.pattern.name = value; break;
-            case "type": if(value === "Pattern") { if (contractTypeIndex.pattern === undefined) {contractTypeIndex.pattern={name: "", arguments: []}; delete contractTypeIndex.world_values }} else { delete contractTypeIndex.pattern } break;
+            case "contentName": contractTypeIndex.pattern.name = value; contractTypeIndex.pattern.arguments = []; break;
+            case "type": if(value === "Pattern") { if (contractTypeIndex.pattern === undefined) {contractTypeIndex.pattern={name: "", arguments: []}; delete contractTypeIndex.world_values }} else { delete contractTypeIndex.pattern; } break;
             case "subValue": contractTypeIndex.pattern.arguments[subKey] = {"value": makeListOf(value)}; break;
             default: break;
         }
+        
         props.edit(goal)
     }
 
