@@ -5,7 +5,12 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "true"
+                "ltl_value": "true",
+                "world_values": [
+                    [],
+                    [],
+                    []
+                ]
             }
         ],
         "guarantees": [
@@ -14,9 +19,6 @@
                 "pattern": {
                     "arguments": [
                         {
-                            "format": "list",
-                            "name": "locations",
-                            "type": "location",
                             "value": [
                                 "r1",
                                 "r2"
@@ -30,9 +32,6 @@
     },
     "description": "During context day => start from r1, patrol r1, r2 in strict order, Strict Ordered Patrolling Location r1, r2",
     "filename": "0000.json",
-    "id": "default-simple-0000",
-    "name": "Day patrolling",
-    "parents": [
-        "4df2c"
-    ]
+    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0000",
+    "name": "Day patrolling"
 }

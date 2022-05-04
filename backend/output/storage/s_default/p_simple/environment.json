@@ -9,15 +9,9 @@
     ],
     "context": [
         {
-            "mutex_group": [
-                0
-            ],
             "name": "day"
         },
         {
-            "mutex_group": [
-                0
-            ],
             "name": "night"
         }
     ],
@@ -25,6 +19,10 @@
     "grid": {
         "locations": [
             {
+                "adjacency": [
+                    "r3",
+                    "r4"
+                ],
                 "color": "#0000FF",
                 "coordinates": [
                     {
@@ -44,10 +42,13 @@
                         "y": 2
                     }
                 ],
-                "id": "r1",
-                "adjacency": ["r2", "r5"]
+                "id": "r1"
             },
             {
+                "adjacency": [
+                    "r3",
+                    "r5"
+                ],
                 "color": "#8FF484",
                 "coordinates": [
                     {
@@ -67,10 +68,15 @@
                         "y": 5
                     }
                 ],
-                "id": "r2",
-                "adjacency": ["r1", "r5"]
+                "id": "r2"
             },
             {
+                "adjacency": [
+                    "r1",
+                    "r2",
+                    "r4",
+                    "r5"
+                ],
                 "color": "#FFFF00",
                 "coordinates": [
                     {
@@ -86,10 +92,13 @@
                         "y": 3
                     }
                 ],
-                "id": "r3",
-                "adjacency": ["r4", "r5"]
+                "id": "r3"
             },
             {
+                "adjacency": [
+                    "r1",
+                    "r3"
+                ],
                 "color": "#FF0000",
                 "coordinates": [
                     {
@@ -109,10 +118,13 @@
                         "y": 2
                     }
                 ],
-                "id": "r4",
-                "adjacency": ["r3", "r5"]
+                "id": "r4"
             },
             {
+                "adjacency": [
+                    "r2",
+                    "r3"
+                ],
                 "color": "#FF00FF",
                 "coordinates": [
                     {
@@ -132,8 +144,7 @@
                         "y": 5
                     }
                 ],
-                "id": "r5",
-                "adjacency": ["r1", "r2", "r3", "r4"]
+                "id": "r5"
             }
         ],
         "walls": {

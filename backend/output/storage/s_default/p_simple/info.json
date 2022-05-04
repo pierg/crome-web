@@ -1,6 +1,6 @@
 {
-  "session_id": "default",
-  "project_id": "simple",
-  "name": "Simple Gridworld",
-  "description": "Gridworld with 5 locations"
+    "description": "Gridworld with 5 locations",
+    "name": "Simple Gridworld",
+    "project_id": "simple",
+    "session_id": "default"
 }

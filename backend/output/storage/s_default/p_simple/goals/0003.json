@@ -5,7 +5,14 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "G(F(person))"
+                "ltl_value": "G(F(person))",
+                "world_values": [
+                    [],
+                    [],
+                    [
+                        "person"
+                    ]
+                ]
             }
         ],
         "guarantees": [
@@ -14,11 +21,9 @@
                 "pattern": {
                     "arguments": [
                         {
-                            "name": "trigger",
                             "value": "person"
                         },
                         {
-                            "name": "reaction",
                             "value": "register"
                         }
                     ],
@@ -29,9 +34,6 @@
     },
     "description": "During context day => if see a person, register in the next step, Only if see a person, register in the next step",
     "filename": "0003.json",
-    "id": "default-simple-0003",
-    "name": "Register Person",
-    "parents": [
-        "4df2c"
-    ]
+    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0003",
+    "name": "Register Person"
 }

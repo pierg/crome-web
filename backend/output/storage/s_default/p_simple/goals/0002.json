@@ -3,7 +3,14 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "G(F(person))"
+                "ltl_value": "G(F(person))",
+                "world_values": [
+                    [],
+                    [],
+                    [
+                        "person"
+                    ]
+                ]
             }
         ],
         "guarantees": [
@@ -12,11 +19,9 @@
                 "pattern": {
                     "arguments": [
                         {
-                            "name": "trigger",
                             "value": "person"
                         },
                         {
-                            "name": "reaction",
                             "value": "greet"
                         }
                     ],
@@ -27,10 +32,6 @@
     },
     "description": "Always => if see a person, greet in the same step, Only if see a person, greet immediately",
     "filename": "0002.json",
-    "id": "default-simple-0002",
-    "name": "Greet Person",
-    "parents": [
-        "d20fb",
-        "4df2c"
-    ]
+    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0002",
+    "name": "Greet Person"
 }

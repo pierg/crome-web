@@ -5,7 +5,12 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "true"
+                "ltl_value": "true",
+                "world_values": [
+                    [],
+                    [],
+                    []
+                ]
             }
         ],
         "guarantees": [
@@ -14,9 +19,6 @@
                 "pattern": {
                     "arguments": [
                         {
-                            "format": "list",
-                            "name": "locations",
-                            "type": "location",
                             "value": [
                                 "r3",
                                 "r4"
@@ -30,9 +32,6 @@
     },
     "description": "During context night => start from r3, patrol r3, r4 in strict order, Strict Ordered Patrolling Location r3, r4",
     "filename": "0001.json",
-    "id": "default-simple-0001",
-    "name": "Night Patrolling",
-    "parents": [
-        "d20fb"
-    ]
+    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0001",
+    "name": "Night Patrolling"
 }
