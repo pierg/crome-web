@@ -106,7 +106,7 @@ export default function ContractContentEditor({
                         />
                       )}
                     </td>
-                    <td className="grid w-full">
+                    <td>
                       {prop.pattern !== undefined && (
                         <ContractEditArguments
                           title={infos.details}

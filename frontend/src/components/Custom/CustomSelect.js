@@ -21,6 +21,19 @@ export default function CustomSelect({
   name,
   ...rest
 }) {
+  const sizes = {
+    sm: "px-2 py-2 text-sm ",
+    lg: "px-3 py-3 text-sm ",
+    regular: "px-3 py-2 text-sm ",
+  };
+  const borders = {
+    border: "border-blueGray-300",
+    borderless: "border-transparent shadow",
+  };
+  let inputClasses =
+    sizes[size] +
+    " w-full placeholder-blueGray-200 bg-white rounded-md outline-none border border-solid transition duration-200 ";
+  inputClasses = borders[border] + " " + inputClasses;
   const [menuClasses, setMenuClasses] = React.useState("");
   const [menuShow, setMenuShow] = React.useState(false);
   const [animating, setAntimating] = React.useState(false);
@@ -70,8 +83,8 @@ export default function CustomSelect({
   };
   return (
     <>
-      <div className="relative">
-        <Input
+      <div className="mb-2 mt-2 ml-2 pt-0 relative">
+        <input
           value={defaultValue}
           type="text"
           onChange={() => {}}
@@ -79,6 +92,7 @@ export default function CustomSelect({
           placeholder={placeholder}
           ref={btnDropdownRef}
           size={size}
+          className= {inputClasses}
         />
         <div
           ref={popoverDropdownRef}
