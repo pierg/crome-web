@@ -396,11 +396,12 @@ def extension(data) -> None:
 @socketio.on("session-existing")
 def check_if_session_exist(session_id: str) -> None:
     print("check if following session exists : " + session_id)
-    sessions_folder = session_path("sessions")
-    dir_path, dir_names, filenames = next(walk(sessions_folder))
+    dir_path, dir_names, filenames = next(walk(storage_path))
     found = False
+    sessions_folder = f"s_"+session_id
+    print(sessions_folder)
     for dir_name in dir_names:
-        if dir_name == session_id and dir_name != "default":
+        if dir_name == sessions_folder and dir_name != "default":
             found = True
     emit("receive-answer", found, room=request.sid)
 
