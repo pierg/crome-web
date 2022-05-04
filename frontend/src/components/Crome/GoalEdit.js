@@ -13,6 +13,8 @@ function GoalEdit(props) {
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
 
         const value = propValue || e.target.value
+        console.log("GOAL")
+        console.log(goal)
 
         const contractTypeIndex = contractType ? goal.contract[contractType][index] : false
         switch (e.target.name) {
@@ -94,6 +96,7 @@ function GoalEdit(props) {
                         contractType={prop.title}
                         listOfWorldVariables={props.listOfWorldVariables}
                         setLTLWorldValues={setLTLWorldValues}
+                        keyType={key}
                         {...contracteditorinfo}/></div>
                 ))}
             </div>

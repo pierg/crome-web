@@ -40,6 +40,8 @@ export default function ContractContentEditor({
   let callBackAction = (key) => {
     setOpen(key);
   };
+  console.log("items")
+  console.log(items)
   return (
     <>
       <div>
@@ -119,6 +121,7 @@ export default function ContractContentEditor({
                           number={key}
                           infos={infos}
                           defaultOpened={key === open}
+                          presentPattern={prop.pattern}
                         />
                       )}
                     </td>
