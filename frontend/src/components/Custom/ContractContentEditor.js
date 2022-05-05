@@ -40,8 +40,6 @@ export default function ContractContentEditor({
   let callBackAction = (key) => {
     setOpen(key);
   };
-  console.log("items")
-  console.log(items)
   return (
     <>
       <div>

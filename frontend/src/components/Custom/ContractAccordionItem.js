@@ -5,6 +5,7 @@ import makeStringOf from "hooks/listToStringConversion.js";
 import searchPatterns from "hooks/searchPatterns.js";
 import Switch from "react-bootstrap-switch";
 import Button from "../Elements/Button";
+import Checkbox from "../Elements/Checkbox";
 
 const ContractAccordionItem = ({
   contract,
@@ -93,6 +94,38 @@ const ContractAccordionItem = ({
     pink: "text-pink-500 hover:text-pink-700",
   };
 
+  const childrenTR = [];
+  for (let i = 0; i < contract.length; i += 1) {
+    childrenTR[i] = []
+    for (let j = 0; j < contract[i].content.length; j += 1) {
+      if(toggleLTL) {
+        if(contract[i].content[j].pattern === undefined) {
+          childrenTR[i].push(
+            <tr>
+              <td>
+                {contract[i].content[j].ltl_value}
+              </td>
+            </tr>
+          )
+        }
+      }
+      else {
+        if(contract[i].content[j].pattern !== undefined) {
+          childrenTR[i].push(
+            <tr>
+              <td>
+                <p>{contract[i].content[j].pattern.name}</p>
+                {searchPatterns(contract[i].content[j].pattern, patterns).map((arg, subKey) => (
+                  <p key={subKey}>{arg.name+" : "+makeStringOf(arg.value)}</p>
+                ))}
+              </td>
+            </tr>
+          )
+        }
+      }
+    }
+  }
+
   return (
       <>
         <div className="bg-transparent first:rounded-t px-4 py-3">
@@ -124,39 +157,22 @@ const ContractAccordionItem = ({
             }}
             ref={collapseRef}
         >
-          <div className="flex justify-end"><Switch offText="Pattern" onText="LTL" onChange={(e) => setToggleLTL(e.state.value)}/></div>
-
-
-
+          <div className="flex justify-end">
+            <Switch offText="Pattern" onText="LTL" onChange={(e) => setToggleLTL(e.state.value)}/>
+          </div>
           {contract.map((prop, key) => (
-
-
-              <div key={key} className="text-blueGray-500 px-4 flex-auto leading-relaxed">
-                <Table responsive>
-                  <thead>
+            <div key={key} className="text-blueGray-500 px-4 flex-auto leading-relaxed">
+              <Table responsive>
+                <thead>
                   <tr>
                     <th className={"title-up font-semibold-important"}>{prop.title}</th>
                   </tr>
-                  </thead>
-                  <tbody>
-                  {prop.content.map((prop, key) => (
-                      <tr key={key}>
-                        {(toggleLTL || prop.pattern === undefined) && (
-                            <td><p>{prop.ltl_value}</p></td>
-                        )}
-                        {!toggleLTL && prop.pattern !== undefined && (
-                            <td>
-                              <p>{prop.pattern.name}</p>
-                              {searchPatterns(prop.pattern, patterns).map((arg, subKey) => (
-                                  <p key={subKey}>{arg.name+" : "+makeStringOf(arg.value)}</p>
-                              ))}
-                            </td>
-                        )}
-                      </tr>
-                  ))}
-                  </tbody>
-                </Table>
-              </div>
+                </thead>
+                <tbody>
+                  {childrenTR[key]}
+                </tbody>
+              </Table>
+            </div>
           ))}
 
           {modal !== undefined && (<div className="flex justify-center"><Button onClick={() => modal(true)}>Show Details</Button></div>)}

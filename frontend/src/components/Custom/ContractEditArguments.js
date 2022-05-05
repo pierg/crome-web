@@ -26,15 +26,7 @@ const ContractEditArguments = ({
     sizes[size] +
     " w-full placeholder-blueGray-200 bg-white rounded-md outline-none border border-solid transition duration-200 ";
   inputClasses = borders[border] + " " + inputClasses;
-  console.log("CONTENT")
-  console.log(content)
-  console.log("PRESENT PATTERN")
-  console.log(presentPattern.arguments)
   let presentValue = []
-  console.log("arguments")
-  presentPattern.arguments.forEach(arg => (
-      console.log(arg)
-  ))
   for(let i=0; i<presentPattern.arguments.length; i++) {
     presentValue[i] = ""
     if(!Array.isArray(presentPattern.arguments[i].value)) {
@@ -51,12 +43,6 @@ const ContractEditArguments = ({
               <div className="mr-4 text-right whitespace-nowrap">
                 {prop.name[0].toUpperCase()+prop.name.slice(1)+" : "}
               </div>
-              {
-                console.log("prop "+key)
-              }
-              {
-                console.log(prop)
-              }
               <input
                 id={"tooltipValues"+number+key}
                 type="text"

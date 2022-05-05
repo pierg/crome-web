@@ -31,18 +31,23 @@ export default class GoalModeling extends React.Component {
     render() {
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
-            children.push(<GoalView key={i} number={i}
-                                    title={this.state.receivedGoals[i].name}
-                                    description={this.state.receivedGoals[i].description}
-                                    context={this.state.receivedGoals[i].context}
-                                    contract={this.state.receivedGoals[i].contract}
-                                    patterns={this.state.patterns}
-                                    statIconName={this.props.info.goalComponent.editIconName}
-                                    statSecondIconName={this.props.info.goalComponent.deleteIconName}
-                                    statIconColor={this.props.info.goalComponent.iconColor}
-                                    modify={this.setModalClassic}
-                                    delete={this.deleteGoal}
-            />);
+            children.push(
+                <GoalView
+                    key={i}
+                    number={i}
+                    title={this.state.receivedGoals[i].name}
+                    description={this.state.receivedGoals[i].description}
+                    contextChecked={this.state.receivedGoals[i].context}
+                    context={this.props.listOfWorldVariables[3]}
+                    contract={this.state.receivedGoals[i].contract}
+                    patterns={this.state.patterns}
+                    statIconName={this.props.info.goalComponent.editIconName}
+                    statSecondIconName={this.props.info.goalComponent.deleteIconName}
+                    statIconColor={this.props.info.goalComponent.iconColor}
+                    modify={this.setModalClassic}
+                    delete={this.deleteGoal}
+                />
+            );
         }
         return (
             <>

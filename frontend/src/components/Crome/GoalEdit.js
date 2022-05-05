@@ -8,13 +8,13 @@ import makeListOf from "hooks/stringToListConversion.js";
 
 function GoalEdit(props) {
 
+    console.log(props)
+
     const [goal] = React.useState(JSON.parse(JSON.stringify(props.goal)));
 
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
 
         const value = propValue || e.target.value
-        console.log("GOAL")
-        console.log(goal)
 
         const contractTypeIndex = contractType ? goal.contract[contractType][index] : false
         switch (e.target.name) {

@@ -23,13 +23,25 @@ function GoalView(props) {
     }, [props.contract]);
 
 
-    function parseContext(context) {
-        return context===undefined ? ["",""] : [context.includes("day") ? "checked" : "", context.includes("night") ? "checked" : ""]
+    function parseContext(context,contextChecked) {
+        return context===undefined ? "" : contextChecked.includes(context) ? "checked" : ""
     }
 
     let callBackAction = (bool) => {
       setOpen(bool);
     };
+
+    const children = [];
+    for (let i = 0; i < props.context.length; i += 1) {
+        children.push(
+            <Checkbox
+                className="mr-4"
+                label={props.context[i]}
+                readOnly
+                checked={parseContext(props.context[i],props.contextChecked)}
+            />
+        );
+    }
 
     return(
         <>
@@ -49,8 +61,7 @@ function GoalView(props) {
                                 </span>
                                 </div>
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <Checkbox className="mr-4" label="Day" readOnly checked={parseContext(props.context)[0]}/>
-                                    <Checkbox label="Night" readOnly checked={parseContext(props.context)[1]}/>
+                                    {children}
                                 </div>
                             </div>
                         </div>
