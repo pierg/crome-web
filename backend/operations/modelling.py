@@ -181,13 +181,14 @@ class Modelling:
                                     values.add(w.typeset[value])
                             contract_lists[i].append(
                                 LTL(
-                                    formula=contract_element["ltl_value"],
-                                    typeset=Typeset(values),
+                                    _init_formula=contract_element["ltl_value"],
+                                    _typeset=Typeset(values),
                                 ),
                             )
                             # TODO FIX FOR PIER
                             #  In case the designer enters a LTL (not a Pattern), I have the error saying that
                             #  Atom must have an attribute 'name' but I don't see how to add it here
+                            # PIER: Fixed, forget about the Atom, just provide a _init_formula and a _typeset (which includes Actions/Sensors/Context etc..)
 
             # TODO FIX
             #  context is an array?
