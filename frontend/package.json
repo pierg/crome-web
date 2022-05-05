@@ -7,6 +7,13 @@
   "homepage": "https://demos.creative-tim.com/notus-pro-react/",
   "main": "./index.js",
   "dependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-config-react-app": "7.0.1",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@popperjs/core": "2.9.2",
     "@tailwindcss/forms": "0.3.2",
