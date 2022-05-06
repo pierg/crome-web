@@ -17,19 +17,19 @@ const LTLTextArea = React.forwardRef(
     },
     ref
   ) => {
-    const sizes = {
-      sm: "px-2 py-2 text-sm ",
-      lg: "px-3 py-3 text-sm ",
-      regular: "px-3 py-2 text-sm ",
-    };
-    const borders = {
-      border: "border-blueGray-300",
-      borderless: "border-transparent shadow",
-    };
+  const sizes = {
+    sm: "px-2 py-2 text-sm ",
+    lg: "px-3 py-3 text-sm ",
+    regular: "px-3 py-2 text-sm ",
+  };
+  const borders = {
+    border: "border-blueGray-300",
+    borderless: "border-transparent shadow",
+  };
     let inputClasses =
-      sizes[size] +
-      " w-full placeholder-blueGray-200 bg-white rounded-md outline-none border border-solid transition duration-200 ";
-    inputClasses = borders[border] + " " + inputClasses;
+    sizes[size] +
+    " w-full placeholder-blueGray-200 bg-white rounded-md outline-none border border-solid transition duration-200 ";
+  inputClasses = borders[border] + " " + inputClasses;
     let leftAddon = null;
     let rightAddon = null;
     //let wrapperClasses = "mb-3 pt-0";
@@ -113,8 +113,16 @@ const LTLTextArea = React.forwardRef(
       <>
         <div className={wrapperClasses + " relative"} ref={ref}>
           {leftAddon}
-          {type && type === "textarea" ? (
-            <textarea {...rest} type={type} className={inputClasses} />
+          {!type && type !== "textarea" ? (
+              <>
+                <td>
+                  <input {...rest} type={type} className={inputClasses} value={value} onChange={changeContent} />
+                </td>
+                <td>
+                  <div className={"w-64 ml-12 center"} dangerouslySetInnerHTML={{ __html: "Formula : "+spanValue }}/>
+                </td>
+              </>
+
           ) : (
             <>
               <input
