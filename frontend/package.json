@@ -48,7 +48,26 @@
     "minify:tailwind": "node-sass src/assets/styles/tailwind.css src/assets/styles/tailwind.min.css --output-style compressed"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "plugin:react/recommended",
+      "react-app",
+      "airbnb"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {}
   },
   "browserslist": {
     "production": [
