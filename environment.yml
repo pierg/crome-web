@@ -1,0 +1,24 @@
+channels:
+- default
+- conda-forge
+dependencies:
+- aenum
+- dill
+- docker-py
+- flask
+- flask-socketio
+- matplotlib
+- pip
+- poetry
+- pre-commit
+- pydantic
+- pygraphviz
+- python-igraph
+- python=3.10
+- spot
+- tabulate
+- treelib
+- pip:
+  - bloom-filter
+  - pyeda
+name: crome-web
