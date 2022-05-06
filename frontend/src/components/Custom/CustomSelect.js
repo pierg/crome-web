@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
 
-// components
-import Input from "../../components/Elements/Input.js";
-
 export default function CustomSelect({
   border,
   size,

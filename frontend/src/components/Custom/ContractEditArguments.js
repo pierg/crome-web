@@ -1,7 +1,5 @@
 import React from "react";
 import {UncontrolledTooltip} from "reactstrap";
-import Input from "../Elements/Input";
-import makeStringOf from "hooks/listToStringConversion.js";
 import PropTypes from "prop-types";
 
 const ContractEditArguments = ({

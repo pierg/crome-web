@@ -5,7 +5,6 @@ import makeStringOf from "hooks/listToStringConversion.js";
 import searchPatterns from "hooks/searchPatterns.js";
 import Switch from "react-bootstrap-switch";
 import Button from "../Elements/Button";
-import Checkbox from "../Elements/Checkbox";
 
 const ContractAccordionItem = ({
   contract,
