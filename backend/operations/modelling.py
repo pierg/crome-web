@@ -8,11 +8,7 @@ from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import *
 from crome_logic.patterns.robotic_triggers import *
 from crome_logic.specification.temporal import LTL
-from crome_logic.typeelement.robotic import (
-    BooleanAction,
-    BooleanLocation,
-    BooleanSensor,
-)
+
 from crome_logic.typeset import Typeset
 
 from backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
@@ -72,20 +68,20 @@ class Modelling:
         """Create a new goal"""
 
         """Assumptions (if inserted by the designer"""
-        a1 = LTL(formula="G(F(r1 & r2))", typeset=Typeset({w["r1"], w["r1"]}))
+        a1 = LTL(_init_formula="G(F(r1 & r2))", _typeset=Typeset({w["r1"], w["r1"]}))
         a2 = LTL(
-            formula=Patrolling(locations=[w["r1"], w["r2"]]),
-            typeset=Typeset({w["r1"], w["r2"]}),
+            _init_formula=Patrolling(locations=[w["r1"], w["r2"]]).__str__(),
+            _typeset=Typeset({w["r1"], w["r2"]}),
         )
         # TODO: Fix the rest like above
         """Guarantees"""
         g1 = LTL(
-            formula="G(F(r3 & r4))",
-            typeset=Typeset({w["r3"], w["r4"]}),
+            _init_formula="G(F(r3 & r4))",
+            _typeset=Typeset({w["r3"], w["r4"]}),
         )
         g2 = LTL(
-            formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]),
-            typeset=Typeset({w["r1"], w["r2"]}),
+            _init_formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]).__str__(),
+            _typeset=Typeset({w["r1"], w["r2"]}),
         )
         # g3 = InstantaneousReaction() // need to import every patterns method ?
 
@@ -93,14 +89,14 @@ class Modelling:
         context = w["day"]
 
         contract = Contract(
-            assumptions=a1 & a2,
-            guarantees=g1 & g2,
+            _assumptions=a1 & a2,
+            _guarantees=g1 & g2,
         )
 
         """Instanciate the goal"""
 
         new_goal = crome_cgg_goal.Goal(
-            name="Day patrolling",
+            id="Day patrolling",
             description="description",
             contract=contract,
             context=context,
@@ -135,19 +131,19 @@ class Modelling:
                                     typeset_location.add(w.typeset[location])
                                 contract_lists[i].append(
                                     LTL(
-                                        formula=globals()[
+                                        _init_formula=globals()[
                                             contract_element["pattern"]["name"]
-                                        ](locations=list_of_locations),
-                                        typeset=Typeset(typeset_location),
+                                        ](locations=list_of_locations).__str__(),
+                                        _typeset=Typeset(typeset_location),
                                     )
                                 )
                             else:
                                 contract_lists[i].append(
                                     LTL(
-                                        formula=globals()[
+                                        _init_formula=globals()[
                                             contract_element["pattern"]["name"]
-                                        ](locations=[w[args[0]["value"]]]),
-                                        typeset=Typeset(
+                                        ](locations=[w[args[0]["value"]]]).__str__(),
+                                        _typeset=Typeset(
                                             {w.typeset[args[0]["value"]]}
                                         ),
                                     )
@@ -155,13 +151,13 @@ class Modelling:
                         elif len(args) == 2:
                             contract_lists[i].append(
                                 LTL(
-                                    formula=globals()[
+                                    _init_formula=globals()[
                                         contract_element["pattern"]["name"]
                                     ](
                                         pre=w[args[0]["value"]],
                                         post=w[args[1]["value"]],
-                                    ),
-                                    typeset=Typeset(
+                                    ).__str__(),
+                                    _typeset=Typeset(
                                         {
                                             w.typeset[args[0]["value"]],
                                             w.typeset[args[1]["value"]],
@@ -211,8 +207,8 @@ class Modelling:
                     )
 
             contract = Contract(
-                assumptions=lists_with_and_operators[0],
-                guarantees=lists_with_and_operators[1],
+                _assumptions=lists_with_and_operators[0],
+                _guarantees=lists_with_and_operators[1],
             )
 
             # TODO Fix goal ID and name, do we need both?
