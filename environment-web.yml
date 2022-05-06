@@ -1,0 +1,9 @@
+name: crome-web
+
+channels:
+  - default
+  - conda-forge
+
+dependencies:
+  - flask
+  - flask-socketio
