@@ -32,6 +32,6 @@
     },
     "description": "Always => if see a person, greet in the same step, Only if see a person, greet immediately",
     "filename": "0002.json",
-    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0002",
+    "id": "default",
     "name": "Greet Person"
 }

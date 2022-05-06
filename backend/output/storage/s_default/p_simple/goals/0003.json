@@ -34,6 +34,6 @@
     },
     "description": "During context day => if see a person, register in the next step, Only if see a person, register in the next step",
     "filename": "0003.json",
-    "id": "a4161a27-d73f-4c23-94c8-630ea1694fda-defaultgridworld_385704-0003",
+    "id": "default",
     "name": "Register Person"
 }

@@ -65,6 +65,7 @@ def connected() -> None:
 
 @socketio.on("get-projects")
 def get_projects(data) -> list[list[dict[str, str]]]:
+    print("Get projects")
     list_of_projects: list[
         list[dict[str, str]]
     ] = []  # array that will be sent containing all projects #
@@ -118,6 +119,7 @@ def save_project(data) -> None:
         os.makedirs(session_dir)
     is_simple = data["world"]["info"]["project_id"] == "simple"
     if is_simple:
+        print("Is simple !")
         number_of_copies = 1
         while os.path.isdir(
             os.path.join(
@@ -134,7 +136,7 @@ def save_project(data) -> None:
     if not os.path.isdir(goals_dir):
         if is_simple:
             shutil.copytree(
-                os.path.join(storage_path, "sessions/default/simple/goals"), goals_dir
+                goals_path("default", "simple"), goals_dir
             )
         else:
             os.mkdir(goals_dir)
@@ -424,16 +426,18 @@ def get_current_time() -> dict[str, float]:
 
 
 def copy_simple(session_id: str) -> str:
+    print("Copy simple is here !")
     number_of_copies = 1
     while os.path.isdir(
-        os.path.join(storage_path, f"sessions/{session_id}/simple_{number_of_copies}")
+        project_path(session_id, f"simple_{number_of_copies}")
     ):
         number_of_copies += 1
     project_id = f"simple_{number_of_copies}"
     shutil.copytree(
-        os.path.join(storage_path, "sessions/default/simple"),
+        project_path("default", "simple"),
         project_path(session_id, project_id),
     )
+    print("The copy is done !")
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
