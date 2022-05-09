@@ -51,7 +51,7 @@ function WorldEdit(props) {
                     onChange={changeParameter}
                     autoFocus={true}
                 />
-                {props.list.length > 1 && (<h4 className="title title-up mb-3">{props.info.modal.mutex}</h4>)}
+                {(props.list.length > 1 || props.number > 0) && (<h4 className="title title-up mb-3">{props.info.modal.mutex}</h4>)}
                 <div className="flex flex-col mt-1">
                     {props.list.map((prop, key) => {
                         return (key !== props.number) && (<Checkbox key={key} label={prop} name="mutex" checked={mutexList.includes(props.list[key])} onChange={() => changeMutex(key)}/>)

@@ -24,7 +24,15 @@ function LocationIdEdit(props) {
                 <h4 className="title title-up">{props.info.title}</h4>
             </div>
             <div className="modal-body justify-content-center" onKeyPress={handleKeyEvent}>
-                <Input type="text" placeholder="Name *" autoComplete="off" name="name" value={props.element} onChange={(e) => props.edit(e.target.value)}/>
+                <Input
+                    type="text"
+                    placeholder="Name *"
+                    autoComplete="off"
+                    name="name"
+                    value={props.element}
+                    onChange={(e) => props.edit(e.target.value)}
+                    autoFocus={true}
+                />
             </div>
             <ModalFooter>
                 <Button color={props.info.modal.cancelColor} onClick={props.close}>

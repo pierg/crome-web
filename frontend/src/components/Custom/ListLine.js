@@ -26,7 +26,7 @@ function ListLine(props) {
             </td>
             <td className="whitespace-nowrap w-1 pr-0">
                 <Button
-                    className="btn-icon mr-1"
+                    className="btn-icon mr-1 float-right"
                     color="info"
                     size="sm"
                     type="button"
@@ -34,8 +34,10 @@ function ListLine(props) {
                 >
                     <i className={props.editIconName}/>
                 </Button>
+            </td>
+            <td>
                 <Button
-                    className="btn-icon"
+                    className="btn-icon float-right"
                     color="danger"
                     size="sm"
                     type="button"

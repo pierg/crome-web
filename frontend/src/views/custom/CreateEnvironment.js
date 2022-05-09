@@ -123,7 +123,15 @@ export default class CreateEnvironment extends React.Component {
             this.setState({
                 currentIdInput: ""
             })
-            if (!saved) this.world.cancelFirstClick()
+            if (!saved) {
+                let nodesTmp = this.world.cancelFirstClick()
+                for(let i=0 ; i<this.map.length ; i++) {
+                    for(let j=0 ; j<this.map.length ; j++) {
+                        this.map[i][j][0] = nodesTmp[i*this.map.length+j].backgroundColor
+                    }
+                }
+                this.world.draw()
+            }
         }
         else {
             this.world.setSelectionInGray()
@@ -603,7 +611,8 @@ export default class CreateEnvironment extends React.Component {
         let world = new GridWorld(canvas, size, size, {
             padding: {top: 10, left: 10, right: 10, bottom: 60},
             resizeCanvas: true,
-            drawBorder: true});
+            drawBorder: true
+        });
 
         world.clearAttributeTable()
 
@@ -1021,12 +1030,14 @@ export default class CreateEnvironment extends React.Component {
                                                     </Link>
                                                 </div>
                                                 <div>
-                                                    <CustomDownload currentRef={this.state.myCanvas}
-                                                                    session={this.props.session}
-                                                                    setRef={this.setRef}
-                                                                    project={this.props.returnedProjectId}
-                                                                    resetProject={this.props.resetProject}
-                                                                    goToIndex={this.goToIndex}/>
+                                                    <CustomDownload
+                                                        currentRef={this.state.myCanvas}
+                                                        session={this.props.session}
+                                                        setRef={this.setRef}
+                                                        project={this.props.returnedProjectId}
+                                                        resetProject={this.props.resetProject}
+                                                        goToIndex={this.goToIndex}
+                                                    />
                                                 </div>
                                                 <UncontrolledPopover
                                                     placement={window.innerWidth > 991 ? "left" : "top"}
@@ -1040,7 +1051,9 @@ export default class CreateEnvironment extends React.Component {
                                                     </PopoverBody>
                                                 </UncontrolledPopover>
                                                 <div className="m-4 px-16 pt-2 pb-2 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
-                                                    <span className="font-semibold text-xs mb-1 text-center uppercase text-blueGray-700">{createenvironment.gridSize}</span>
+                                                    <span className="font-semibold text-xs mb-1 text-center uppercase text-blueGray-700">
+                                                        {createenvironment.gridSize}
+                                                    </span>
                                                     <div className="flex pl-2">
                                                         <Button color="red" onClick={() => this.modifyGridSize(-1)}><i className="text-xl fas fa-minus-square"/></Button>
                                                         <Button color="lightBlue" onClick={() => this.modifyGridSize(1)}><i className="text-xl fas fa-plus-square"/></Button>
@@ -1127,6 +1140,7 @@ export default class CreateEnvironment extends React.Component {
                 </Modal>
                 <Modal
                     isOpen={this.state.modalLocationId}
+                    autoFocus={false}
                     toggle={() => this.setModalLocationId(false)}
                     className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
                     <LocationIdEdit

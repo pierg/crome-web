@@ -10,9 +10,9 @@ function Location(props) {
             <td className="text-center">
                 {props.name}
             </td>
-            <td className="flex justify-end">
+            <td>
                 <Button
-                    className="btn-icon"
+                    className="btn-icon float-right"
                     color="danger"
                     size="sm"
                     type="button"

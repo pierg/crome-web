@@ -55,6 +55,10 @@ function GridWorld(canvas, width, height, options) {
   this.borderColor = options.borderColor || 'lightgrey';
   this.backgroundColor = options.backgroundColor || 'white';
 
+  this.nodeDown = undefined;
+  this.countUp = 0;
+  this.drag = false;
+
   if (options.resizeCanvas) {
     let cw = this.padding.left + this.padding.right,
         ch = this.padding.top + this.padding.bottom;
@@ -127,15 +131,95 @@ function GridWorld(canvas, width, height, options) {
     }
   }
 
-  canvas.addEventListener('click', function(evt) {
-    if (!self.onclick)
+  canvas.addEventListener('mousedown', function(evt) {
+    if (!self.onclick) {
       return;
+    }
 
     const node = p2n(evt.offsetX, evt.offsetY);
 
-    if (node) {
-      self.onclick(node);
+    self.drag = true
+
+    if(!self.nodeDown) {
+      if (node) {
+        self.nodeDown = node
+        self.onclick(node);
       }
+    }
+  });
+
+  canvas.addEventListener('mouseup', function(evt) {
+    if (!self.onclick) {
+      return;
+    }
+
+    const node = p2n(evt.offsetX, evt.offsetY);
+
+    self.drag = false
+
+    if(node) {
+      if(self.nodeDown !== node  ||  self.countUp === 1) {
+        self.nodeDown = undefined
+        for(let i=0 ; i<self.nodes.length ; i++) {
+          if(self.nodes[i].backgroundColor === "lightgray") {
+            self.nodes[i].backgroundColor = "white"
+          }
+        }
+        self.countUp = 0
+        self.onclick(node);
+      }
+      else {
+        self.countUp = 1
+      }
+    }
+  });
+
+  canvas.addEventListener('mousemove', function(evt) {
+    if(self.drag) {
+      const node = p2n(evt.offsetX, evt.offsetY);
+
+      for(let i=0 ; i<self.nodes.length ; i++) {
+        if(self.nodes[i].backgroundColor === "lightgray") {
+          self.nodes[i].backgroundColor = "white"
+        }
+      }
+
+      let minX = node.x
+      let maxX = node.x
+      let minY = node.y
+      let maxY = node.y
+      if(minX < self.nodeDown.x) {
+        maxX = self.nodeDown.x
+      }
+      else {
+        minX = self.nodeDown.x
+      }
+      if(minY < self.nodeDown.y) {
+        maxY = self.nodeDown.y
+      }
+      else {
+        minY = self.nodeDown.y
+      }
+      if(minX%2 !== 1) {
+        minX++;
+      }
+      if(maxX%2 !== 1) {
+        maxX--;
+      }
+      if(minY%2 !== 1) {
+        minY++;
+      }
+      if(maxY%2 !== 1) {
+        maxY--;
+      }
+
+      for(let i=minX ; i<=maxX ; i++) {
+        for(let j=minY ; j<=maxY ; j++) {
+          self.nodes[j*(self.width+1)+i].backgroundColor = "lightgray"
+        }
+      }
+      self.draw()
+    }
   });
 }
 
@@ -307,6 +391,15 @@ GridWorld.prototype = {
     this.setBackgroundColor(start[0],start[1], previousStartColor)
 
     this.reset()
+
+    console.log(this.nodes)
+    for(let i=0 ; i<this.nodes.length ; i++) {
+      if(this.nodes[i].backgroundColor === "lightgray") {
+        this.nodes[i].backgroundColor = "white"
+      }
+    }
+
+    return this.nodes
   },
 
   getLimits(push = true) {
