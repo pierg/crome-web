@@ -47,6 +47,7 @@ export default class CreateEnvironment extends React.Component {
         environmentToBeSaved: null,
         myCanvas : null,
         started : false,
+        locations : []
     }
 
     /* GENERAL FUNCTIONS */
@@ -354,6 +355,7 @@ export default class CreateEnvironment extends React.Component {
                 colors: tmpColors,
             })
             this.removeId(this.state.lists[listIndex][elementIndex])
+            this.state.locations = this.state.locations.filter(item => item[1] !== this.state.lists[listIndex][elementIndex])
         } else {
             this.deleteEveryMutexOccurrenceOf(this.state.lists[listIndex][elementIndex], listIndex)
         }
@@ -766,7 +768,6 @@ export default class CreateEnvironment extends React.Component {
 
         let limits = this.world.getLimits()
         let previousColorArray = this.world.getPreviousColorArray()
-
         const answer = this.world.askToColor(this.state.currentIdInput, limits.minX, limits.maxX, limits.maxY, limits.minY, previousColorArray, this.map, this.updateErrorMsg);
         this.world.updateMap(this.map);
         if (answer !== false) {
@@ -774,11 +775,44 @@ export default class CreateEnvironment extends React.Component {
             const id = answer[1];
             if (document.getElementById(id) === null || document.getElementById(id).innerHTML === "") {
                 this.onAddLocation(id, color)
+                const found = this.state.locations.some(item => item[1] === id)
+                if (!found) {
+                    this.removeCoveredLocations(limits)
+                    this.state.locations.push([limits, id])
+                }
+                else {
+                    this.replaceLocation(limits,id)
+                }
             }
         }
-
         this.setModalLocationId(false, true)
     }
+
+    replaceLocation(limits,id) {
+        for (const location of this.state.locations) {
+            if (id === location[1]) {
+                if (limits.minX < location[0].minX || limits.minY < location[0].minY) {
+                    location[0].minX = limits.minX
+                    location[0].minY = limits.minY
+                }
+
+                if (limits.maxX > location[0].maxX || limits.maxY > location[0].maxY) {
+                    location[0].maxX = limits.maxX
+                    location[0].maxY = limits.maxY
+                }
+            }
+        }
+    }
+
+    removeCoveredLocations(limits) {
+        for (const location of this.state.locations) {
+            if ((limits.minX <= location[0].minX && limits.minY <= location[0].minY ) && (limits.maxX >= location[0].maxX && limits.maxY >= location[0].maxY )) {
+                let index = this.state.locations.indexOf(location)
+                this.deleteElement(0,index)
+            }
+        }
+    }
+
 
     modifyGridSize(increment) {
 
