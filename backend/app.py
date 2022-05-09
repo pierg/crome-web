@@ -8,7 +8,7 @@ import time
 from os import walk
 from pathlib import Path
 from time import strftime
-
+from operations.analysis import Analysis
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
@@ -225,7 +225,6 @@ def get_goals(data) -> None:
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
-    print("add_goal")
     project_id = data["projectId"]
     is_simple = str(project_id) == "simple"
     if is_simple:
@@ -383,6 +382,12 @@ def process_cgg(data) -> None:
 def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
     print(data)
+
+    project_id = data["goals"][0].split("-")[-2]
+    print(project_id)
+
+    Analysis.conjunction(str(project_path(data["session"], project_id)), data["goals"])
+
     emit("operation-complete", True, room=users[data["session"]])
 
 
@@ -390,6 +395,12 @@ def conjunction(data) -> None:
 def composition(data) -> None:
     print("APPLY OPERATION : composition")
     print(data)
+
+    project_id = data["goals"][0].split("-")[-2]
+    print(project_id)
+
+    Analysis.composition(str(project_path(data["session"], project_id)), data["goals"])
+
     emit("operation-complete", True, room=users[data["session"]])
 
 
@@ -455,7 +466,7 @@ def copy_simple(session_id: str) -> str:
         project_path("default", "simple"),
         project_path(session_id, project_id),
     )
-    print("The copy is done !")
+
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
