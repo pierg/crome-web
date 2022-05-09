@@ -4,6 +4,7 @@ from pathlib import Path
 
 import crome_cgg.goal as crome_cgg_goal
 import crome_cgg.world as crome_cgg_world
+from crome_cgg.context import Context
 from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import *
 from crome_logic.patterns.robotic_triggers import *
@@ -189,7 +190,7 @@ class Modelling:
             # TODO FIX
             #  context is an array?
 
-            context = None
+            context = Context(_init_formula="TRUE")
             if len(json_obj["context"]) == 1:
                 context = w[json_obj["context"][0]]
             elif len(json_obj["context"]) > 1:
