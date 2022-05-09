@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/notus-pro-react/static/css/main.e5888b37.chunk.css",
+    "main.js": "/notus-pro-react/static/js/main.ed0d1a82.chunk.js",
+    "main.js.map": "/notus-pro-react/static/js/main.ed0d1a82.chunk.js.map",
+    "runtime-main.js": "/notus-pro-react/static/js/runtime-main.bdc816bc.js",
+    "runtime-main.js.map": "/notus-pro-react/static/js/runtime-main.bdc816bc.js.map",
+    "static/css/2.1d290b66.chunk.css": "/notus-pro-react/static/css/2.1d290b66.chunk.css",
+    "static/js/2.1b0b04fd.chunk.js": "/notus-pro-react/static/js/2.1b0b04fd.chunk.js",
+    "static/js/2.1b0b04fd.chunk.js.map": "/notus-pro-react/static/js/2.1b0b04fd.chunk.js.map",
+    "index.html": "/notus-pro-react/index.html",
+    "static/css/2.1d290b66.chunk.css.map": "/notus-pro-react/static/css/2.1d290b66.chunk.css.map",
+    "static/css/main.e5888b37.chunk.css.map": "/notus-pro-react/static/css/main.e5888b37.chunk.css.map",
+    "static/js/2.1b0b04fd.chunk.js.LICENSE.txt": "/notus-pro-react/static/js/2.1b0b04fd.chunk.js.LICENSE.txt",
+    "static/media/all.min.css": "/notus-pro-react/static/media/fa-solid-900.efbd5d20.eot",
+    "static/media/now-ui-kit.css": "/notus-pro-react/static/media/nucleo-outline.802141dd.woff2",
+    "static/media/robot1.39e2b3fc.png": "/notus-pro-react/static/media/robot1.39e2b3fc.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bdc816bc.js",
+    "static/css/2.1d290b66.chunk.css",
+    "static/js/2.1b0b04fd.chunk.js",
+    "static/css/main.e5888b37.chunk.css",
+    "static/js/main.ed0d1a82.chunk.js"
+  ]
+}
