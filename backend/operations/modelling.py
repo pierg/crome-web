@@ -211,7 +211,6 @@ class Modelling:
                 _guarantees=lists_with_and_operators[1],
             )
 
-            # TODO Fix goal ID and name, do we need both?
             new_goal = crome_cgg_goal.Goal(
                 description=json_obj["description"],
                 id=goal_id,
@@ -220,9 +219,14 @@ class Modelling:
                 contract=contract,
             )
 
+            # We have to remove the former goals if it is an update
             if not set_of_goals:
                 set_of_goals = set()
-
-            set_of_goals.add(new_goal)
+            else:
+                new_set_of_goals: set[crome_cgg_goal.Goal] = {new_goal}
+                for goal in set_of_goals:
+                    if goal.id != goal_id:
+                        new_set_of_goals.add(goal)
+                set_of_goals = new_set_of_goals
 
             dump_goals(set_of_goals, project_folder)

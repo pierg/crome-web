@@ -12,6 +12,8 @@ from time import strftime
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
+
+from crome_cgg.goal import Goal
 from operations.modelling import Modelling
 
 from backend.shared.paths import (
@@ -21,7 +23,7 @@ from backend.shared.paths import (
     session_path,
     storage_path,
 )
-from backend.tools.persistence import load_goals
+from backend.tools.persistence import load_goals, dump_goals
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
@@ -162,6 +164,7 @@ def save_project(data) -> None:
 
 @socketio.on("save-image")
 def save_image(data) -> None:
+    print("Save image call !")
     img_data = bytes(data["image"], "utf-8")
 
     current_project_image = Path(
@@ -222,6 +225,7 @@ def get_goals(data) -> None:
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
+    print("add_goal")
     project_id = data["projectId"]
     is_simple = str(project_id) == "simple"
     if is_simple:
@@ -274,10 +278,25 @@ def delete_goal(data) -> None:
     for goal_file in filenames:
         if i == data["index"]:
             goal_to_delete = Path(os.path.join(current_goals_folder, goal_file))
+            with open(goal_to_delete) as json_file:
+                json_content = json.load(json_file)
+                id_to_remove = json_content["id"]
             os.remove(goal_to_delete)
         i += 1
     if is_simple:
         emit("deleting-simple", project_id, room=request.sid)
+
+    # Now we remove the goal from the .dat file
+    project_folder: Path = project_path(data["session"], project_id)
+    set_of_goals: set[Goal] = load_goals(str(project_folder))
+
+    tmp: set[Goal] = set()
+
+    for goal in set_of_goals:
+        if goal.id != id_to_remove:
+            tmp.add(goal)
+
+    dump_goals(tmp, str(project_folder))
 
     now = time.localtime(time.time())
     emit(
@@ -316,7 +335,7 @@ def process_goals(data) -> None:
     session = "default" if data["project"] == "simple" else data["session"]
     project_folder = project_path(session, data["project"])
 
-    set_of_goals = load_goals(str(project_folder))
+    set_of_goals: set[Goal] = load_goals(str(project_folder))
     if session == "default" and not os.path.exists(
         os.path.join(project_folder, "goals.dat")
     ):
@@ -325,7 +344,7 @@ def process_goals(data) -> None:
     from crome_cgg.goal.exceptions import GoalException
 
     try:
-        cgg = crome_cgg.Cgg(set_of_goals)
+        cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         # TODO: Reimplement json export
         cgg.export_to_json(os.path.join(project_folder, "goals"))
         emit(
@@ -426,7 +445,6 @@ def get_current_time() -> dict[str, float]:
 
 
 def copy_simple(session_id: str) -> str:
-    print("Copy simple is here !")
     number_of_copies = 1
     while os.path.isdir(
         project_path(session_id, f"simple_{number_of_copies}")
@@ -458,7 +476,7 @@ def copy_simple(session_id: str) -> str:
 
 
 def build_simple_project() -> None:
-    project_dir = os.path.join(storage_path, f"sessions/default/simple")
+    project_dir = project_path("default", "simple")
     Modelling.create_environment(project_dir)
     Modelling.add_goal(project_dir, "0000.json", "default-simple-0000")
     Modelling.add_goal(project_dir, "0001.json", "default-simple-0001")
