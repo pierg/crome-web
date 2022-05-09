@@ -14,6 +14,11 @@ env-install:
 env-activate:
 	conda activate crome-web
 
+
+.PHONY: env-all
+env-all: env-create env-install env-activate
+
+
 .PHONY: lint
 lint:
 	poetry run doc8 -q docs

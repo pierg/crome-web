@@ -1,10 +1,10 @@
 FROM continuumio/miniconda3 AS build
 
 COPY environment.yml .
+RUN conda install -c conda-forge gcc
 RUN conda env create -f environment.yml
 
 # Use conda-pack to create a standalone enviornment in /venv:
-RUN conda install -c conda-forge gcc
 RUN conda install -c conda-forge conda-pack
 RUN conda-pack -n crome-web -o /tmp/env.tar && \
   mkdir /venv && cd /venv && tar xf /tmp/env.tar && \
