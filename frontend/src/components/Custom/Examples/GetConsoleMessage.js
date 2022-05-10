@@ -14,7 +14,7 @@ function SocketIoConsoleMessage(props) {
     }, [setMessage])
 
     const setNotificationFunction = useCallback((message_received) => {
-        toast[message_received["type"]](message_received["content"]);
+        toast[message_received["crometypes"]](message_received["content"]);
     }, [])
 
     useEffect(() => { // CONSOLE MESSAGE

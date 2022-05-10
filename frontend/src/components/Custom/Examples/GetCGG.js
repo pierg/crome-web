@@ -4,8 +4,13 @@ import {useSocket} from "../../../contexts/SocketProvider";
 function GetCGG(props) {
 
     const socket = useSocket()
+
+    const cggTriggerBack = useCallback(() => {
+        props.setTrigger(false)
+    }, [props])
     
-    const cggCallback = useCallback((received_answer) => {
+    const cggCallback = useCallback(() => {
+        console.log("CALL BACK CGG")
         props.setGoalsTrigger()
     }, [props])
     
@@ -14,7 +19,9 @@ function GetCGG(props) {
 
         socket.emit('process-goals', {session: props.session, project: props.project})
 
-        socket.on('receive-cgg', cggCallback)
+        socket.on('cgg-production', cggTriggerBack)
+
+        socket.on('cgg-saved', cggCallback)
 
         return () => socket.off('receive-cgg')
     }, [socket, props.trigger, props.session, props.project, cggCallback])

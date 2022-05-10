@@ -97,6 +97,7 @@ export default class Analysis extends React.Component {
     }
 
     setGoalsTrigger = () => {
+        console.log("CALL BACK CGG 2 ")
         this.setState({
             triggerCGG: false,
             cgg: true,
@@ -163,6 +164,7 @@ export default class Analysis extends React.Component {
         let edgesArray = []
 
         if (this.state.cgg) {
+            console.log("TEST CREATION GRAPH")
             // the cgg state is a boolean, true if the cgg has been built
             // if you don't see how to fill the graph, there is an example in storage/crome/cgg.json
             for (let i=0; i<that.props.goals.length; i++) {
@@ -252,7 +254,13 @@ export default class Analysis extends React.Component {
 
         return (
             <>
-                <GetCGG session={this.props.id} project={this.props.project} trigger={this.state.triggerCGG} setGoalsTrigger={this.setGoalsTrigger}/>
+                <GetCGG
+                    session={this.props.id}
+                    project={this.props.project}
+                    trigger={this.state.triggerCGG}
+                    setTrigger={this.setTriggerCGG}
+                    setGoalsTrigger={this.setGoalsTrigger}
+                />
                 <SocketBuildCGG
                     session={this.props.id}
                     operator={this.state.operator}

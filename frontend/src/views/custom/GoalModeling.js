@@ -70,7 +70,8 @@ export default class GoalModeling extends React.Component {
                         edit={this.editCurrentGoal}
                         save={this.saveCurrentGoal}
                         close={() => this.setModalClassic(false)}
-                        {...goaleditinfo}/>
+                        {...goaleditinfo}
+                    />
                 </Modal>
             </>
         );
@@ -191,7 +192,9 @@ const ParentComponent = props => (
                             statText="Add a Goal"
                             statIconName="fas fa-plus-square"
                             statIconColor="text-lightBlue-700"
-                        /></div></div>
+                        />
+                    </div>
+                </div>
                 <div className="flex flex-wrap justify-center">
                     {props.children}
                 </div>
