@@ -222,6 +222,7 @@ class Modelling:
 
             # We have to remove the former goals if it is an update
             if not set_of_goals:
+                print("Here ?")
                 set_of_goals = set()
                 set_of_goals.add(new_goal)
             else:
@@ -231,4 +232,5 @@ class Modelling:
                         new_set_of_goals.add(goal)
                 set_of_goals = new_set_of_goals
             print(f"the length of the set_of_goals is : {len(set_of_goals)}")
+            print(goal_id)
             dump_goals(set_of_goals, project_folder)
