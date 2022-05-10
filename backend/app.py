@@ -25,6 +25,8 @@ from backend.shared.paths import (
 )
 from backend.tools.persistence import load_goals, dump_goals
 
+print(build_path)
+
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
     "serve", default=False, type=bool, help="indicate if serving the pages"
@@ -331,22 +333,24 @@ def process_goals(data) -> None:
         strftime("%H:%M:%S", now) + " The CGG is being built",
         room=users[data["session"]],
     )
+    emit("cgg-production", True, room=users[data["session"]])
 
     session = "default" if data["project"] == "simple" else data["session"]
     project_folder = project_path(session, data["project"])
 
-    set_of_goals: set[Goal] = load_goals(str(project_folder))
     if session == "default" and not os.path.exists(
         os.path.join(project_folder, "goals.dat")
     ):
         build_simple_project()
+
+    set_of_goals: set[Goal] = load_goals(str(project_folder))
 
     from crome_cgg.goal.exceptions import GoalException
 
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         # TODO: Reimplement json export
-        cgg.export_to_json(os.path.join(project_folder, "goals"))
+        # cgg.export_to_json(os.path.join(project_folder, "goals"))
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
@@ -497,5 +501,7 @@ def build_simple_project() -> None:
 
 
 if __name__ == "__main__":
-    # app.run(host='localhost', debug=True, port=3000)
+    # app.run(host='localhost', debug=True, port=3000)*
+    print(build_path)
     socketio.run(app, host="0.0.0.0")
+

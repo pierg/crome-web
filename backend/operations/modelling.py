@@ -223,11 +223,12 @@ class Modelling:
             # We have to remove the former goals if it is an update
             if not set_of_goals:
                 set_of_goals = set()
+                set_of_goals.add(new_goal)
             else:
                 new_set_of_goals: set[crome_cgg_goal.Goal] = {new_goal}
                 for goal in set_of_goals:
                     if goal.id != goal_id:
                         new_set_of_goals.add(goal)
                 set_of_goals = new_set_of_goals
-
+            print(f"the length of the set_of_goals is : {len(set_of_goals)}")
             dump_goals(set_of_goals, project_folder)
