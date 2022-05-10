@@ -35,6 +35,7 @@ function GoalView(props) {
     for (let i = 0; i < props.context.length; i += 1) {
         children.push(
             <Checkbox
+                key={i}
                 className="mr-4"
                 label={props.context[i]}
                 readOnly

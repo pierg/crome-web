@@ -100,7 +100,7 @@ const ContractAccordionItem = ({
       if(toggleLTL) {
         if(contract[i].content[j].pattern === undefined) {
           childrenTR[i].push(
-            <tr>
+            <tr key={i}>
               <td>
                 {contract[i].content[j].ltl_value}
               </td>
@@ -111,7 +111,7 @@ const ContractAccordionItem = ({
       else {
         if(contract[i].content[j].pattern !== undefined) {
           childrenTR[i].push(
-            <tr>
+            <tr key={i}>
               <td>
                 <p>{contract[i].content[j].pattern.name}</p>
                 {searchPatterns(contract[i].content[j].pattern, patterns).map((arg, subKey) => (
