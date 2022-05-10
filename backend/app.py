@@ -27,15 +27,16 @@ from backend.tools.persistence import load_goals, dump_goals
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
-    "development_mode", default=True, type=bool, help="indicate if development mode"
+    "serve", default=False, type=bool, help="indicate if serving the pages"
 )
 args = parser.parse_args()
 
-if args.development_mode:
-    app = Flask(__name__)
-else:
+if args.serve:
     print("Serving the web pages from the build folder")
     app = Flask(__name__, static_folder=str(build_path), static_url_path="/")
+else:
+    print("Launching Backend")
+    app = Flask(__name__)
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
