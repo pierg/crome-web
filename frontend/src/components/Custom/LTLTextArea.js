@@ -115,12 +115,19 @@ const LTLTextArea = React.forwardRef(
           {leftAddon}
           {!type && type !== "textarea" ? (
               <>
-                <td>
-                  <input {...rest} type={type} className={inputClasses} value={value} onChange={changeContent} />
-                </td>
-                <td>
-                  <div className={"w-64 ml-12 center"} dangerouslySetInnerHTML={{ __html: "Formula : "+spanValue }}/>
-                </td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input {...rest} type={type} className={inputClasses} value={value} onChange={changeContent} />
+                      </td>
+                      <td>
+                        <div className={"w-64 ml-12 center"} dangerouslySetInnerHTML={{ __html: "Formula : "+spanValue }}/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
               </>
 
           ) : (
