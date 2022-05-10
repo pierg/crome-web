@@ -357,7 +357,7 @@ def process_goals(data) -> None:
             room=users[data["session"]],
         )
         time.sleep(3)
-        emit("receive-cgg", True, room=users[data["session"]])
+        emit("cgg-saved", True, room=users[data["session"]])
     except GoalException as e:
         # TODO fix this : the exception appears in build_cgg and can't be sent since the program fails
         emit(
