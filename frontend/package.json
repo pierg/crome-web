@@ -2,9 +2,7 @@
   "name": "@notus-pro/react",
   "version": "1.0.0",
   "description": "Notus PRO React - A premium React UI Kit and Admin for Tailwind CSS by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/ct-notus-pro-react",
   "license": "SEE LICENSE IN <https://www.creative-tim.com/product/notus-pro-react>",
-  "homepage": "https://demos.creative-tim.com/notus-pro-react/",
   "main": "./index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
