@@ -102,7 +102,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
                             )
                     if os.path.splitext(file)[1] == ".png":
                         with open(
-                            Path(os.path.join(folder_path, file)), "rb"
+                                Path(os.path.join(folder_path, file)), "rb"
                         ) as png_file:
                             read_png_file = base64.b64encode(png_file.read())
                             default_project.append(
@@ -127,9 +127,9 @@ def save_project(data) -> None:
         print("Is simple !")
         number_of_copies = 1
         while os.path.isdir(
-            os.path.join(
-                storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
-            )
+                os.path.join(
+                    storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
+                )
         ):
             number_of_copies += 1
         data["world"]["environment"]["project_id"] = f"simple_{number_of_copies}"
@@ -155,8 +155,8 @@ def save_project(data) -> None:
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id])
     emit(
-        "send-message",
-        strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
+        "send-notification",
+        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.'},
         room=users[session_id],
     )
 
@@ -199,8 +199,8 @@ def delete_project(data) -> None:
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
     emit(
-        "send-message",
-        strftime("%H:%M:%S", now) + " The project has been deleted.",
+        "send-notification",
+        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + " The project has been deleted."},
         room=users[data["session"]],
     )
 
@@ -234,13 +234,13 @@ def add_goal(data) -> None:
         project_id = copy_simple(data["session"])
 
     goals_dir = goals_path(data["session"], project_id)
-
+    print(data["goal"])
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
         greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
         greatest_id += 1
         data["goal"]["id"] = (
-            data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
+                data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
         )
         filename = str(greatest_id).zfill(4) + ".json"
         data["goal"]["filename"] = filename
@@ -255,16 +255,25 @@ def add_goal(data) -> None:
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]
-    emit(
-        "send-message",
-        strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
-        room=users[data["session"]],
-    )
-    Modelling.add_goal(
-        project_path(data["session"], project_id),
-        data["goal"]["filename"],
-        data["goal"]["id"],
-    )
+    try:
+        Modelling.add_goal(
+            project_path(data["session"], project_id),
+            data["goal"]["filename"],
+            data["goal"]["id"],
+        )
+        emit(
+            "send-notification",
+            {"crometypes": "success",
+             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.'},
+            room=users[data["session"]],
+        )
+    except:
+        emit(
+            "send-notification",
+            {"crometypes": "error",
+             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
+            room=users[data["session"]],
+        )
 
 
 @socketio.on("delete-goal")
@@ -302,8 +311,8 @@ def delete_goal(data) -> None:
 
     now = time.localtime(time.time())
     emit(
-        "send-message",
-        strftime("%H:%M:%S", now) + " The goal has been deleted.",
+        "send-notification",
+        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + " The goal has been deleted."},
         room=users[data["session"]],
     )
 
@@ -329,8 +338,8 @@ def get_patterns() -> None:
 def process_goals(data) -> None:
     now = time.localtime(time.time())
     emit(
-        "send-message",
-        strftime("%H:%M:%S", now) + " The CGG is being built",
+        "send-notification",
+        {"crometypes": "info", "content": strftime("%H:%M:%S", now) + " The CGG is being built"},
         room=users[data["session"]],
     )
     emit("cgg-production", True, room=users[data["session"]])
@@ -339,7 +348,7 @@ def process_goals(data) -> None:
     project_folder = project_path(session, data["project"])
 
     if session == "default" and not os.path.exists(
-        os.path.join(project_folder, "goals.dat")
+            os.path.join(project_folder, "goals.dat")
     ):
         build_simple_project()
 
@@ -435,7 +444,7 @@ def check_if_session_exist(session_id: str) -> None:
     print("check if following session exists : " + session_id)
     dir_path, dir_names, filenames = next(walk(storage_path))
     found = False
-    sessions_folder = f"s_"+session_id
+    sessions_folder = f"s_" + session_id
     print(sessions_folder)
     for dir_name in dir_names:
         if dir_name == sessions_folder and dir_name != "default":
@@ -463,7 +472,7 @@ def get_current_time() -> dict[str, float]:
 def copy_simple(session_id: str) -> str:
     number_of_copies = 1
     while os.path.isdir(
-        project_path(session_id, f"simple_{number_of_copies}")
+            project_path(session_id, f"simple_{number_of_copies}")
     ):
         number_of_copies += 1
     project_id = f"simple_{number_of_copies}"
@@ -475,7 +484,7 @@ def copy_simple(session_id: str) -> str:
     list_save = ["info", "environment"]
     for i in list_save:
         with open(
-            os.path.join(project_path(session_id, project_id), f"{i}.json"),
+                os.path.join(project_path(session_id, project_id), f"{i}.json"),
         ) as file:
             json_data = json.load(file)
         if i == "info":
@@ -483,8 +492,8 @@ def copy_simple(session_id: str) -> str:
         json_data["project_id"] = project_id
         json_data["session_id"] = session_id
         with open(
-            os.path.join(project_path(session_id, project_id), f"{i}.json"),
-            "w",
+                os.path.join(project_path(session_id, project_id), f"{i}.json"),
+                "w",
         ) as file:
             json_formatted = json.dumps(json_data, indent=4, sort_keys=True)
             file.write(json_formatted)
@@ -504,4 +513,3 @@ if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
     print(build_path)
     socketio.run(app, host="0.0.0.0")
-
