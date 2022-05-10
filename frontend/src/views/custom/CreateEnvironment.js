@@ -776,14 +776,15 @@ export default class CreateEnvironment extends React.Component {
             const id = answer[1];
             if (document.getElementById(id) === null || document.getElementById(id).innerHTML === "") {
                 this.onAddLocation(id, color)
-                const found = this.state.locations.some(item => item[1] === id)
-                if (!found) {
+                //const found = this.state.locations.some(item => item[1] === id)
+                //if (!found) {
                     this.removeCoveredLocations(limits, id)
                     this.state.locations.push([limits, id])
-                }
-                else {
-                    this.replaceLocation(limits,id)
-                }
+               // }
+                //else {
+                  //  console.log("yo")
+                    //this.replaceLocation(limits,id)
+                //}
             }
         }
         this.setModalLocationId(false, true)
@@ -813,6 +814,12 @@ export default class CreateEnvironment extends React.Component {
                 if ((limits.minX <= location[0].minX && limits.minY <= location[0].minY ) && (limits.maxX >= location[0].maxX && limits.maxY >= location[0].maxY )) {
                     let index = this.state.locations.indexOf(location)
                     this.deleteElement(0,index)
+                } else if ((limits.minX <= location[0].minX && limits.minY <= location[0].minY )) {
+                    console.log(limits)
+                    console.log(location[0])
+                } else if ((limits.maxX >= location[0].maxX && limits.maxY >= location[0].maxY )) {
+                    console.log(limits)
+                    console.log(location[0])
                 }
             }
         }
