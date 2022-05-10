@@ -94,24 +94,26 @@ const ContractAccordionItem = ({
   };
 
   const childrenTR = [];
+  let cpt = 0;
   for (let i = 0; i < contract.length; i += 1) {
     childrenTR[i] = []
     for (let j = 0; j < contract[i].content.length; j += 1) {
       if(toggleLTL) {
         if(contract[i].content[j].pattern === undefined) {
           childrenTR[i].push(
-            <tr key={i}>
+            <tr key={cpt}>
               <td>
                 {contract[i].content[j].ltl_value}
               </td>
             </tr>
           )
+          cpt++
         }
       }
       else {
         if(contract[i].content[j].pattern !== undefined) {
           childrenTR[i].push(
-            <tr key={i}>
+            <tr key={cpt}>
               <td>
                 <p>{contract[i].content[j].pattern.name}</p>
                 {searchPatterns(contract[i].content[j].pattern, patterns).map((arg, subKey) => (
@@ -120,6 +122,7 @@ const ContractAccordionItem = ({
               </td>
             </tr>
           )
+          cpt++
         }
       }
     }
