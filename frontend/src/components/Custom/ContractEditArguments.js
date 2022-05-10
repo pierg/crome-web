@@ -47,7 +47,7 @@ const ContractEditArguments = ({
                 autoComplete="off"
                 className= {inputClasses}
                 placeholder={prop.format === "list" ? infos.placeholders.listOfValues : infos.placeholders.singleValues}
-                value={presentValue[key]}
+                value={presentValue[key] || ''}
                 name="subValue"
                 onChange={(e) => changeParameter(e, key)}
               />
