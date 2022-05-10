@@ -778,7 +778,7 @@ export default class CreateEnvironment extends React.Component {
                 this.onAddLocation(id, color)
                 const found = this.state.locations.some(item => item[1] === id)
                 if (!found) {
-                    this.removeCoveredLocations(limits)
+                    this.removeCoveredLocations(limits, id)
                     this.state.locations.push([limits, id])
                 }
                 else {
@@ -801,15 +801,19 @@ export default class CreateEnvironment extends React.Component {
                     location[0].maxX = limits.maxX
                     location[0].maxY = limits.maxY
                 }
+                this.removeCoveredLocations(location[0], location[1])
             }
         }
+
     }
 
-    removeCoveredLocations(limits) {
+    removeCoveredLocations(limits, id) {
         for (const location of this.state.locations) {
-            if ((limits.minX <= location[0].minX && limits.minY <= location[0].minY ) && (limits.maxX >= location[0].maxX && limits.maxY >= location[0].maxY )) {
-                let index = this.state.locations.indexOf(location)
-                this.deleteElement(0,index)
+            if (id !== location[1]) {
+                if ((limits.minX <= location[0].minX && limits.minY <= location[0].minY ) && (limits.maxX >= location[0].maxX && limits.maxY >= location[0].maxY )) {
+                    let index = this.state.locations.indexOf(location)
+                    this.deleteElement(0,index)
+                }
             }
         }
     }
