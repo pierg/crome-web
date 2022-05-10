@@ -355,6 +355,7 @@ export default class CreateEnvironment extends React.Component {
                 colors: tmpColors,
             })
             this.removeId(this.state.lists[listIndex][elementIndex])
+            // eslint-disable-next-line
             this.state.locations = this.state.locations.filter(item => item[1] !== this.state.lists[listIndex][elementIndex])
         } else {
             this.deleteEveryMutexOccurrenceOf(this.state.lists[listIndex][elementIndex], listIndex)
