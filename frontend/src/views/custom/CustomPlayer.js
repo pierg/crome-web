@@ -162,6 +162,7 @@ export default function CustomPlayer({
                           analysis: (
                             <Analysis
                               id={id}
+                              key={project}
                               active={headerStates[2]}
                               project={project}
                               goals={goals}
