@@ -18,6 +18,7 @@ export default class Analysis extends React.Component {
         modalGoal: false,
         currentGoalIndex: 0,
         cgg: false,
+        cggTab: null,
         operator: null,
         selectedGoals: [],
         selectedLibrary: null,
@@ -42,19 +43,6 @@ export default class Analysis extends React.Component {
         if (mode === "auto") {
             this.setState({
                 triggerCGG: true
-            })
-        }
-    }
-
-    setCGG = (cgg) => {
-        if (cgg !== null) {
-            let parsedCGG = JSON.parse(cgg)
-            let nodes = []
-            let edges = []
-            this.recParseCGG(parsedCGG, nodes, edges)
-            let tmpCGG = {"nodes": nodes, "edges": edges}
-            this.setState({
-                cgg: tmpCGG
             })
         }
     }
@@ -96,34 +84,43 @@ export default class Analysis extends React.Component {
         })
     }
 
-    setGoalsTrigger = () => {
+    setGoalsTrigger = (contentJSON) => {
+        this.setState({
+            cggTab: contentJSON
+        })
         this.setState({
             triggerCGG: false,
             cgg: true,
         }, () => this.props.toggleGoalsTrigger())
     }
 
-    isExistingGoal = (id) => {
-        return id.split("-").length >= 2
+    addGoalAlreadyHere = (props,nodes) => {
+        for (let i=0; i<props.goals.length; i++) {
+            nodes.push({"id": props.goals[i].id, "label": props.goals[i].name})
+            nodes[nodes.length - 1].group = props.goals[i].hasOwnProperty("group") ? props.goals[i].group : "input"
+        }
     }
 
-    idIncludes = (nodes, id) => {
-        for (let i=0; i<nodes.length; i++) {
-            if (nodes[i].id === id) return true
-        }
-        return false
-    }
-
-    recParseCGG = (cgg, nodes, edges) => {
-        if (!this.idIncludes(nodes, cgg.id)) {
-            let group = this.isExistingGoal(cgg.id) ? "input" : "new"
-            nodes.push({"id": cgg.id, "group": group, "label": cgg.goal})
-        }
-        if (cgg.children !== undefined) {
-            for (let i=0; i<cgg.children.length; i++) {
-                edges.push({"from": cgg.children[i].id, "to": cgg.id, "arrows": {to: {type: cgginfo.symbols[cgg.link.toLowerCase()]}}})
-                this.recParseCGG(cgg.children[i], nodes, edges)
+    addCombinedGoal = (nodes) => {
+        let inter = 0
+        for(let i=0; i<this.state.cggTab['nodes'].length; i++) {
+            for(let j=0; j<nodes.length; j++) {
+                if(nodes[j]["id"] === this.state.cggTab['nodes'][i]['id']) {
+                    inter = 1
+                }
             }
+
+            if(inter === 0) {
+                nodes.push({"id": this.state.cggTab['nodes'][i]['id'], "label": "goal"+i})
+            }
+
+            inter = 0
+        }
+    }
+
+    addEdges = (edges) => {
+        for(let i=0; i<this.state.cggTab['edges'].length; i++) {
+            edges.push({"from": this.state.cggTab['edges'][i]["from"], "to": this.state.cggTab['edges'][i]["to"], "arrows": {to: {type: cgginfo.symbols[this.state.cggTab['edges'][i]["link"].toLowerCase()]}}})
         }
     }
 
@@ -165,16 +162,11 @@ export default class Analysis extends React.Component {
         if (this.state.cgg) {
             // the cgg state is a boolean, true if the cgg has been built
             // if you don't see how to fill the graph, there is an example in storage/crome/cgg.json
-            for (let i=0; i<that.props.goals.length; i++) {
-                nodesArray.push({"id": that.props.goals[i].id, "label": that.props.goals[i].name})
-                nodesArray[nodesArray.length - 1].group = that.props.goals[i].hasOwnProperty("group") ? that.props.goals[i].group : "input"
+            this.addGoalAlreadyHere(that.props,nodesArray)
 
-                if (that.props.goals[i].hasOwnProperty("link")) {
-                    for (let j=0; j<that.props.goals[i].children.length; j++) {
-                        edgesArray.push({"from": that.props.goals[i].children[j], "to": that.props.goals[i].id, "arrows": {to: {type: cgginfo.symbols[that.props.goals[i].link.toLowerCase()]}}})
-                    }
-                }
-            }
+            this.addCombinedGoal(nodesArray)
+
+            this.addEdges(edgesArray)
         }
 
 

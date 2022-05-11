@@ -1,5 +1,6 @@
 import React, {useEffect, useCallback} from 'react'
 import {useSocket} from "../../../contexts/SocketProvider";
+import {toast} from "react-toastify";
 
 function GetCGG(props) {
 
@@ -9,8 +10,8 @@ function GetCGG(props) {
         props.setTrigger(false)
     }, [props])
     
-    const cggCallback = useCallback(() => {
-        props.setGoalsTrigger()
+    const cggCallback = useCallback((message_received) => {
+        props.setGoalsTrigger(message_received)
     }, [props])
     
     useEffect(() => {

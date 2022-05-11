@@ -359,14 +359,14 @@ def process_goals(data) -> None:
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         # TODO: Reimplement json export
-        # cgg.export_to_json(os.path.join(project_folder, "goals"))
+        contentJSON = cgg.export_to_json(project_folder)
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
             room=users[data["session"]],
         )
         time.sleep(3)
-        emit("cgg-saved", True, room=users[data["session"]])
+        emit("cgg-saved", contentJSON, room=users[data["session"]])
     except GoalException as e:
         # TODO fix this : the exception appears in build_cgg and can't be sent since the program fails
         emit(
