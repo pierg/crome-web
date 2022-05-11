@@ -47,7 +47,7 @@ function WorldEdit(props) {
                     placeholder="Name *"
                     autoComplete="off"
                     name="name"
-                    value={element}
+                    value={element || ''}
                     onChange={changeParameter}
                     autoFocus={true}
                 />
