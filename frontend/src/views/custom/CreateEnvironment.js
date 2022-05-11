@@ -1007,6 +1007,10 @@ export default class CreateEnvironment extends React.Component {
         this.componentsList = createenvironment.componentsList
 
         for (let i = 0; i < this.state.numChildren[0]; i += 1) {
+            let answer = []
+            answer[1] = this.state.lists[0][i]
+            answer[0] = this.state.colors[i]
+            this.world.addLocation(answer)
             this.componentsList[0].content[i]=(
                 <Location
                     key={i}
