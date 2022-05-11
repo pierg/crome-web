@@ -357,6 +357,7 @@ export default class CreateEnvironment extends React.Component {
             this.removeId(this.state.lists[listIndex][elementIndex])
             // eslint-disable-next-line
             this.state.locations = this.state.locations.filter(item => item[1] !== this.state.lists[listIndex][elementIndex])
+            this.world.delLocation(this.state.lists[listIndex][elementIndex])
         } else {
             this.deleteEveryMutexOccurrenceOf(this.state.lists[listIndex][elementIndex], listIndex)
         }
@@ -771,6 +772,7 @@ export default class CreateEnvironment extends React.Component {
         let previousColorArray = this.world.getPreviousColorArray()
         const answer = this.world.askToColor(this.state.currentIdInput, limits.minX, limits.maxX, limits.maxY, limits.minY, previousColorArray, this.map, this.updateErrorMsg);
         this.world.updateMap(this.map);
+        this.world.addLocation(answer)
         if (answer !== false) {
             const color = answer[0];
             const id = answer[1];

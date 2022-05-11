@@ -59,6 +59,8 @@ function GridWorld(canvas, width, height, options) {
   this.countUp = 0;
   this.drag = false;
 
+  this.locations = new Map()
+
   if (options.resizeCanvas) {
     let cw = this.padding.left + this.padding.right,
         ch = this.padding.top + this.padding.bottom;
@@ -138,12 +140,13 @@ function GridWorld(canvas, width, height, options) {
 
     const node = p2n(evt.offsetX, evt.offsetY);
 
-    self.drag = true
-
-    if(!self.nodeDown) {
-      if (node) {
-        self.nodeDown = node
-        self.onclick(node);
+    if(!(node.y%2 === 0  &&  node.x%2 === 0)) {
+      self.drag = true
+      if(!self.nodeDown) {
+        if (node) {
+          self.nodeDown = node
+          self.onclick(node);
+        }
       }
     }
   });
@@ -158,31 +161,31 @@ function GridWorld(canvas, width, height, options) {
     self.drag = false
 
     if(node) {
-      if(self.nodeDown !== node  ||  self.countUp === 1) {
-        self.nodeDown = undefined
-        for(let i=0 ; i<self.nodes.length ; i++) {
-          if(self.nodes[i].backgroundColor === "lightgray") {
-            self.nodes[i].backgroundColor = "white"
-          }
-        }
-        self.countUp = 0
-        self.onclick(node);
+      if(node.y%2 === 0  &&  node.x%2 === 0  &&  self.countUp === 0) {
+        self.restoreColorNode()
       }
       else {
-        self.countUp = 1
+        if(self.nodeDown !== node  ||  self.countUp === 1) {
+          self.nodeDown = undefined
+
+          self.restoreColorNode()
+
+          self.countUp = 0
+          self.onclick(node);
+        }
+        else {
+            self.countUp = 1
+          }
       }
     }
+    self.draw()
   });
 
   canvas.addEventListener('mousemove', function(evt) {
     if(self.drag) {
       const node = p2n(evt.offsetX, evt.offsetY);
 
-      for(let i=0 ; i<self.nodes.length ; i++) {
-        if(self.nodes[i].backgroundColor === "lightgray") {
-          self.nodes[i].backgroundColor = "white"
-        }
-      }
+      self.restoreColorNode()
 
       let minX = node.x
       let maxX = node.x
@@ -200,24 +203,53 @@ function GridWorld(canvas, width, height, options) {
       else {
         minY = self.nodeDown.y
       }
-      if(minX%2 !== 1) {
-        minX++;
-      }
-      if(maxX%2 !== 1) {
-        maxX--;
-      }
-      if(minY%2 !== 1) {
-        minY++;
-      }
-      if(maxY%2 !== 1) {
-        maxY--;
-      }
 
-      for(let i=minX ; i<=maxX ; i++) {
-        for(let j=minY ; j<=maxY ; j++) {
-          self.nodes[j*(self.width+1)+i].backgroundColor = "lightgray"
+      if(self.nodeDown.x%2 === 0) { //vertical border
+        if(self.nodeDown.x === node.x) {
+          if(minY%2 !== 1) {
+            minY++;
+          }
+          if(maxY%2 !== 1) {
+            maxY--;
+          }
+          for(let i=minY ; i<=maxY ; i++) {
+            self.nodes[i*(self.width+1)+node.x].backgroundColor = "lightgray"
+          }
         }
       }
+      else if(self.nodeDown.y%2 === 0) { //horizontal border
+        if(self.nodeDown.y === node.y) {
+          if(minX%2 !== 1) {
+            minX++;
+          }
+          if(maxX%2 !== 1) {
+            maxX--;
+          }
+          for(let i=minX ; i<=maxX ; i++) {
+            self.nodes[node.y*(self.width+1)+i].backgroundColor = "lightgray"
+          }
+        }
+      }
+      else {
+        if(minX%2 !== 1) {
+          minX++;
+        }
+        if(maxX%2 !== 1) {
+          maxX--;
+        }
+        if(minY%2 !== 1) {
+          minY++;
+        }
+        if(maxY%2 !== 1) {
+          maxY--;
+        }
+        for(let i=minX ; i<=maxX ; i++) {
+          for(let j=minY ; j<=maxY ; j++) {
+            self.nodes[j*(self.width+1)+i].backgroundColor = "lightgray"
+          }
+        }
+      }
+
       self.draw()
     }
   });
@@ -392,12 +424,7 @@ GridWorld.prototype = {
 
     this.reset()
 
-    console.log(this.nodes)
-    for(let i=0 ; i<this.nodes.length ; i++) {
-      if(this.nodes[i].backgroundColor === "lightgray") {
-        this.nodes[i].backgroundColor = "white"
-      }
-    }
+    this.restoreColorNode()
 
     return this.nodes
   },
@@ -419,7 +446,7 @@ GridWorld.prototype = {
 
   getPreviousColorArray(push = true) {
     let previousColorArray = [];
-    let limits = this.getLimits(push)
+    let limits = this.getLimits()
     let start = this.getStart();
 
     for (let i = limits.minX; i < limits.maxX + 1; i += 1) {
@@ -732,6 +759,27 @@ GridWorld.prototype = {
       }
     }
   },
+
+  addLocation : function(location) {
+    this.locations.set(location[1],location[0])
+  },
+
+  delLocation : function(location) {
+    this.locations.delete(location)
+  },
+
+  restoreColorNode : function() {
+    for(let i=0 ; i<this.nodes.length ; i++) {
+      if(this.nodes[i].backgroundColor === "lightgray") {
+        if(this.nodes[i].id !== "") {
+          this.nodes[i].backgroundColor = this.locations.get(this.nodes[i].id)
+        }
+        else {
+          this.nodes[i].backgroundColor = "white"
+        }
+      }
+    }
+  }
 
 };
 

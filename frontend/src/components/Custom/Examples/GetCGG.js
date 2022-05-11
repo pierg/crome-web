@@ -10,7 +10,6 @@ function GetCGG(props) {
     }, [props])
     
     const cggCallback = useCallback(() => {
-        console.log("CALL BACK CGG")
         props.setGoalsTrigger()
     }, [props])
     
