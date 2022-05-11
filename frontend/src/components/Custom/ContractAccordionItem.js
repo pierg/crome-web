@@ -49,7 +49,7 @@ const ContractAccordionItem = ({
       setCollapseOpen(false);
     }, 310);
   };
-  const startAnitmation = (e) => {
+  const startAnimation = (e) => {
     e.preventDefault();
     if (!animation) {
       setAnimation(true);
@@ -131,7 +131,7 @@ const ContractAccordionItem = ({
   return (
       <>
         <div className="bg-transparent first:rounded-t px-4 py-3">
-          <a href="#openCollapse" onClick={startAnitmation}>
+          <a href="#openCollapse" onClick={startAnimation}>
             <h5
                 className={
                   colors[color] +
