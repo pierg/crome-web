@@ -373,6 +373,8 @@ def process_goals(data) -> None:
 
     from crome_cgg.goal.exceptions import GoalException
 
+    error_occurrence = True
+
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         # TODO: Reimplement json export
@@ -384,25 +386,28 @@ def process_goals(data) -> None:
         )
         time.sleep(3)
         emit("cgg-saved", json_content, room=users[data["session"]])
+
+        error_occurrence = False
     except GoalException as e:
-        # TODO fix this : the exception appears in build_cgg and can't be sent since the program fails
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
+            room=users[data["session"]],
+        )
+    except TypeError as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + " Goals don't exist or are not conform ",
+            room=users[data["session"]],
+        )
+
+    if error_occurrence:
         emit(
             "send-notification",
             {
                 "crometypes": "error",
                 "content": "CGG cannot be built, see console for more info",
             },
-            room=users[data["session"]],
-        )
-        emit(
-            "send-message",
-            strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
-            room=users[data["session"]],
-        )
-    except Exception as e:
-        emit(
-            "send-message",
-            strftime("%H:%M:%S", now) + " Error from CGG : " + str(e),
             room=users[data["session"]],
         )
 
