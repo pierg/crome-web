@@ -25,7 +25,6 @@ from backend.shared.paths import (
 )
 from backend.tools.persistence import load_goals, dump_goals
 
-print(build_path)
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
@@ -154,11 +153,8 @@ def save_project(data) -> None:
     name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id])
-    emit(
-        "send-notification",
-        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.'},
-        room=users[session_id],
-    )
+    send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
+                         session_id=session_id, crometype="success")
 
     print("creating environment test")
     Modelling.create_environment(project_dir)
@@ -198,11 +194,8 @@ def delete_project(data) -> None:
 
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
-    emit(
-        "send-notification",
-        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + " The project has been deleted."},
-        room=users[data["session"]],
-    )
+    send_message_to_user(content=strftime("%H:%M:%S", now) + " The project has been deleted.",
+                         session_id=data["session"], crometype="success")
 
 
 @socketio.on("get-goals")
@@ -255,28 +248,44 @@ def add_goal(data) -> None:
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]
+
+    error_occurrence = True
+
     try:
         Modelling.add_goal(
             project_path(data["session"], project_id),
             data["goal"]["filename"],
             data["goal"]["id"],
         )
+        send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
+                             session_id=data["session"], crometype="success")
+        error_occurrence = False
+    except KeyError as keyError:
         emit(
-            "send-notification",
-            {"crometypes": "success",
-             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.'},
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. Error with the entry of the '
+            f'LTL/Pattern \n KeyError : {keyError}',
             room=users[data["session"]],
         )
-    except:
+    except SyntaxError:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
+            f'for the LTL',
+            room=users[data["session"]]
+        )
+    except Exception as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. Error unknown : {e}',
+            room=users[data["session"]]
+        )
+
+    if error_occurrence:
         emit(
             "send-notification",
             {"crometypes": "error",
              "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
-            room=users[data["session"]],
-        )
-        emit(
-            "send-message",
-            strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.',
             room=users[data["session"]],
         )
 
@@ -306,20 +315,18 @@ def delete_goal(data) -> None:
     project_folder: Path = project_path(data["session"], project_id)
     set_of_goals: set[Goal] = load_goals(str(project_folder))
 
-    tmp: set[Goal] = set()
+    if set_of_goals is not None:
+        tmp: set[Goal] = set()
 
-    for goal in set_of_goals:
-        if goal.id != id_to_remove:
-            tmp.add(goal)
+        for goal in set_of_goals:
+            if goal.id != id_to_remove:
+                tmp.add(goal)
 
-    dump_goals(tmp, str(project_folder))
+        dump_goals(tmp, str(project_folder))
 
     now = time.localtime(time.time())
-    emit(
-        "send-notification",
-        {"crometypes": "success", "content": strftime("%H:%M:%S", now) + " The goal has been deleted."},
-        room=users[data["session"]],
-    )
+    send_message_to_user(content=strftime("%H:%M:%S", now) + " The goal has been deleted.",
+                         session_id=data["session"], crometype="success")
 
 
 @socketio.on("get-patterns")
@@ -347,6 +354,11 @@ def process_goals(data) -> None:
         {"crometypes": "info", "content": strftime("%H:%M:%S", now) + " The CGG is being built"},
         room=users[data["session"]],
     )
+    emit(
+        "send-message",
+        strftime("%H:%M:%S", now) + " The CGG is being built",
+        room=users[data["session"]],
+    )
     emit("cgg-production", True, room=users[data["session"]])
 
     session = "default" if data["project"] == "simple" else data["session"]
@@ -364,14 +376,14 @@ def process_goals(data) -> None:
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         # TODO: Reimplement json export
-        contentJSON = cgg.export_to_json(project_folder)
+        json_content = cgg.export_to_json(project_folder)
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
             room=users[data["session"]],
         )
         time.sleep(3)
-        emit("cgg-saved", contentJSON, room=users[data["session"]])
+        emit("cgg-saved", json_content, room=users[data["session"]])
     except GoalException as e:
         # TODO fix this : the exception appears in build_cgg and can't be sent since the program fails
         emit(
@@ -403,7 +415,6 @@ def conjunction(data) -> None:
     print(data)
 
     project_id = data["goals"][0].split("-")[-2]
-    print(project_id)
 
     Analysis.conjunction(str(project_path(data["session"], project_id)), data["goals"])
 
@@ -416,7 +427,6 @@ def composition(data) -> None:
     print(data)
 
     project_id = data["goals"][0].split("-")[-2]
-    print(project_id)
 
     Analysis.composition(str(project_path(data["session"], project_id)), data["goals"])
 
@@ -514,7 +524,19 @@ def build_simple_project() -> None:
     Modelling.add_goal(project_dir, "0003.json", "default-simple-0003")
 
 
+def send_message_to_user(content: str, session_id: str, crometype: str) -> None:
+    emit(
+        "send-notification",
+        {"crometypes": crometype, "content": content},
+        room=users[session_id]
+    )
+    emit(
+        "send-message",
+        content,
+        room=users[session_id]
+    )
+
+
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
-    print(build_path)
     socketio.run(app, host="0.0.0.0")
