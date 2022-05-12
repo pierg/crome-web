@@ -377,7 +377,6 @@ def process_goals(data) -> None:
 
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
-        # TODO: Reimplement json export
         json_content = cgg.export_to_json(project_folder)
         emit(
             "send-notification",
@@ -398,6 +397,12 @@ def process_goals(data) -> None:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + " Goals don't exist or are not conform ",
+            room=users[data["session"]],
+        )
+    except Exception as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + " Exception : " + str(e),
             room=users[data["session"]],
         )
 
