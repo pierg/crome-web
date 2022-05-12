@@ -399,6 +399,12 @@ def process_goals(data) -> None:
             strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
             room=users[data["session"]],
         )
+    except Exception as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + " Error from CGG : " + str(e),
+            room=users[data["session"]],
+        )
 
 
 @socketio.on("process-cgg")
