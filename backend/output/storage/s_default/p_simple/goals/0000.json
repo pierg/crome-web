@@ -15,7 +15,7 @@
         ],
         "guarantees": [
             {
-                "ltl_value": "GF(r1) & GF(r2)",
+                "ltl_value": "",
                 "pattern": {
                     "arguments": [
                         {
@@ -32,6 +32,6 @@
     },
     "description": "During context day => start from r1, patrol r1, r2 in strict order, Strict Ordered Patrolling Location r1, r2",
     "filename": "0000.json",
-    "id": "default",
+    "id": "default-simple-0000",
     "name": "Day patrolling"
 }

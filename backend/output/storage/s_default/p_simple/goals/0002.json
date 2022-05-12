@@ -15,7 +15,7 @@
         ],
         "guarantees": [
             {
-                "ltl_value": "G(person -> greet)",
+                "ltl_value": "",
                 "pattern": {
                     "arguments": [
                         {
@@ -32,6 +32,6 @@
     },
     "description": "Always => if see a person, greet in the same step, Only if see a person, greet immediately",
     "filename": "0002.json",
-    "id": "default",
+    "id": "default-simple-0002",
     "name": "Greet Person"
 }

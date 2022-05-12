@@ -17,7 +17,7 @@
         ],
         "guarantees": [
             {
-                "ltl_value": "G(person -> register)",
+                "ltl_value": "",
                 "pattern": {
                     "arguments": [
                         {
@@ -34,6 +34,6 @@
     },
     "description": "During context day => if see a person, register in the next step, Only if see a person, register in the next step",
     "filename": "0003.json",
-    "id": "default",
+    "id": "default-simple-0003",
     "name": "Register Person"
 }
