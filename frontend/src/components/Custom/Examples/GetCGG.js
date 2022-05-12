@@ -1,6 +1,5 @@
 import React, {useEffect, useCallback} from 'react'
 import {useSocket} from "../../../contexts/SocketProvider";
-import {toast} from "react-toastify";
 
 function GetCGG(props) {
 
@@ -24,7 +23,7 @@ function GetCGG(props) {
         socket.on('cgg-saved', cggCallback)
 
         return () => socket.off('receive-cgg')
-    }, [socket, props.trigger, props.session, props.project, cggCallback])
+    }, [socket, props.trigger, props.session, props.project, cggTriggerBack, cggCallback])
 
     return (<></>);
 }

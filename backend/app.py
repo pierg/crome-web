@@ -274,6 +274,11 @@ def add_goal(data) -> None:
              "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
             room=users[data["session"]],
         )
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.',
+            room=users[data["session"]],
+        )
 
 
 @socketio.on("delete-goal")
