@@ -8,6 +8,9 @@ import time
 from os import walk
 from pathlib import Path
 from time import strftime
+
+from docker.errors import DockerException
+
 from operations.analysis import Analysis
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
@@ -24,7 +27,6 @@ from backend.shared.paths import (
     storage_path,
 )
 from backend.tools.persistence import load_goals, dump_goals
-
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
@@ -63,7 +65,7 @@ def connected() -> None:
     lock.acquire()
     users[str(request.args.get("id"))] = request.sid
     now = time.localtime(time.time())
-    emit("send-message", strftime("%H:%M:%S", now) + " Connected", room=request.sid)
+    emit("send-message", strftime("%H:%M:%S", now) + f" Connected to session {request.args.get('id')}", room=request.sid)
     lock.release()
 
 
@@ -123,7 +125,6 @@ def save_project(data) -> None:
         os.makedirs(session_dir)
     is_simple = data["world"]["info"]["project_id"] == "simple"
     if is_simple:
-        print("Is simple !")
         number_of_copies = 1
         while os.path.isdir(
                 os.path.join(
@@ -264,14 +265,14 @@ def add_goal(data) -> None:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. Error with the entry of the '
-            f'LTL/Pattern \n KeyError : {keyError}',
+                                                               f'LTL/Pattern \n KeyError : {keyError}',
             room=users[data["session"]],
         )
     except SyntaxError:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
-            f'for the LTL',
+                                                               f'for the LTL',
             room=users[data["session"]]
         )
     except Exception as e:
@@ -329,6 +330,24 @@ def delete_goal(data) -> None:
                          session_id=data["session"], crometype="success")
 
 
+@socketio.on("check-goals")
+def check_goals(data) -> None:
+    session_id: str = data["session"]
+    project_id: str = data["project"]
+
+    emit_warning = False
+    set_of_goals = None
+    try:
+        set_of_goals = load_goals(str(project_path(session_id, project_id)))
+    except Exception:
+        emit_warning = True
+
+    if set_of_goals is None or set_of_goals == set() or emit_warning:
+        send_message_to_user(content="No goals found for the project, please try to recreate them.",
+                             session_id=session_id,
+                             crometype="warning")
+
+
 @socketio.on("get-patterns")
 def get_patterns() -> None:
     print("Get patterns")
@@ -369,13 +388,37 @@ def process_goals(data) -> None:
     ):
         build_simple_project()
 
-    set_of_goals: set[Goal] = load_goals(str(project_folder))
+    set_of_goals: set[Goal] | None = None
 
+    # Now we try to create the Cgg by capturing the possible errors and give them to the user
+    try:
+        set_of_goals = load_goals(str(project_folder))
+        if set_of_goals is None:
+            emit(
+                "send-message",
+                "No goals has been saved, please create them correctly",
+                room=users[data["session"]]
+            )
+    except DockerException:
+        emit(
+            "send-message",
+            "Error while retrieving the goals, Docker is not start. Please contact an Administrator",
+            room=users[data["session"]]
+        )
+    except Exception as e:
+        emit(
+            "send-message",
+            f"Error while retrieving the goals. Error : {e}",
+            room=users[data["session"]]
+        )
     from crome_cgg.goal.exceptions import GoalException
 
     error_occurrence = True
 
     try:
+        if set_of_goals is None:
+            raise UnboundLocalError("Can't get the goal of this project")
+
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         json_content = cgg.export_to_json(project_folder)
         emit(
@@ -393,12 +436,9 @@ def process_goals(data) -> None:
             strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
             room=users[data["session"]],
         )
-    except TypeError as e:
-        emit(
-            "send-message",
-            strftime("%H:%M:%S", now) + " Goals don't exist or are not conform ",
-            room=users[data["session"]],
-        )
+
+    except UnboundLocalError:
+        pass
     except Exception as e:
         emit(
             "send-message",
@@ -480,6 +520,8 @@ def check_if_session_exist(session_id: str) -> None:
     for dir_name in dir_names:
         if dir_name == sessions_folder and dir_name != "default":
             found = True
+    if session_id == "default":
+        found = False
     emit("receive-answer", found, room=request.sid)
 
 
@@ -488,6 +530,13 @@ def disconnected() -> None:
     print("Disconnected")
     print(request.args)
     print(f'ID {request.args.get("id")}')
+
+    now = time.localtime(time.time())
+    emit(
+        "send-message",
+        f"{strftime('%H:%M:%S', now)} Session {request.args.get('id')} disconnected",
+        room=users[request.args.get("id")]
+    )
 
 
 @app.route("/")
