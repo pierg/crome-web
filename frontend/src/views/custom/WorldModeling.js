@@ -173,7 +173,7 @@ export default class WorldModeling extends React.Component {
                 <Modal
                     isOpen={this.state.modalDeletionConfirmation}
                     toggle={() => this.setModalDeletionConfirmation(false)}
-                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                    className={"custom-modal-dialog sm:c-m-w-70"}>
                     <div className="modal-header justify-content-center">
                         <button
                             aria-hidden={true}
