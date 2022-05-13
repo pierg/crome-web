@@ -1060,11 +1060,11 @@ export default class CreateEnvironment extends React.Component {
                                     <div className="flex container px-4 justify-center">
                                         <div className="flex justify-center">
                                             <div className="w-full mt-4">
-                                                <div className="mx-12 my-3 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
-                                                    <div className="flex flex-col pl-2 pt-3 pb-3">
-                                                        <Button color="amber" className="buttonW" onClick={this.clearEnvironment}><i className="text-xl mr-2 fas fa-trash-alt"/>{createenvironment.buttons.clear}</Button>
+                                                <div className="mx-12 my-3 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg ">
+                                                    <div className="flex flex-col pl-1 pt-3 pb-3 inline-block">
+                                                        <Button color="amber" size={"regular2"} onClick={this.clearEnvironment}><i className="text-xl mr-2 fas fa-trash-alt"/>{createenvironment.buttons.clear}</Button>
                                                         <div className="mt-2"/>
-                                                        <Button color="emerald" onClick={this.saveInToJSON}><i className="text-xl mr-2 fas fa-check-square"/>{this.projectId === null ? createenvironment.buttons.save : createenvironment.buttons.update}</Button>
+                                                        <Button color="emerald" size={"regular2"} onClick={this.saveInToJSON}><i className="text-xl mr-2 fas fa-check-square"/>{this.projectId === null ? createenvironment.buttons.save : createenvironment.buttons.update}</Button>
                                                     </div>
                                                 </div>
                                             </div>
