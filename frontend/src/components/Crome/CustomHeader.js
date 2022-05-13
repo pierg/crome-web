@@ -22,12 +22,12 @@ export default function CustomHeader({ cards, color, states }) {
 
   return (
     <>
-      <div className={"relative pt-32 pb-32 " + bgColors[color]}>
-        <div className="px-4 md:px-6 mx-auto w-full">
+      <div className={"relative pt-20 pb-20 " + bgColors[color]}>
+        <div className="px-12 mx-8 ">
           <div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap justify-center">
               {cards.map((prop, key) => (
-                <div key={key} className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <div key={key} className="w-full lg:w-4/12 xl:w-2/12 px-3">
                   <CustomCardMini {...prop} state={states[key]} />
                 </div>
               ))}
