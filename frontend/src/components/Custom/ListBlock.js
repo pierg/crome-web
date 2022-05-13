@@ -19,7 +19,7 @@ function ListBlock(props) {
                     </tbody>
                 </Table>
 
-                {props.displayAddButton && (<div className="flex flex-col px-16 pb-2"><Button color="lightBlue" onClick={props.addLine}><i className="text-xl fas fa-plus-square"/></Button></div>)}
+                {props.displayAddButton && (<div className="flex flex-col m-auto pb-2"><Button color="lightBlue" onClick={props.addLine}><i className="text-xl fas fa-plus-square"/></Button></div>)}
             </div>
         </div>
     );
