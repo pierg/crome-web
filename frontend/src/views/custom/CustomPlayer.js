@@ -35,6 +35,7 @@ export default function CustomPlayer({
   const [changingPage, setChangingPage] = React.useState(false);
   const [listOfWorldVariables, setListOfWorldVariables] = React.useState(null);
   const [triggerGoals, setTriggerGoals] = React.useState(false);
+  const [triggerGoalsChecked, settriggerGoalsChecked] = React.useState(false);
 
   const [headerStates, setHeaderStates] = React.useState([true, false, false, false]);
 
@@ -47,11 +48,26 @@ export default function CustomPlayer({
     setTriggerGoals(!triggerGoals);
   }
 
+  function swapTriggerGoalsChecked(bool) {
+    settriggerGoalsChecked(bool);
+  }
+
   function settingGoals(goals) {
     setGoals(goals);
   }
 
   const toggleNew = (e, newOpen) => {
+    console.log("event :")
+    console.log(e)
+    console.log("open")
+    console.log(open)
+    console.log("newOpen")
+    console.log(newOpen)
+    //goal modeling to analysis
+    if(open === 1  && newOpen === 2) {
+      //check if there are goals
+      swapTriggerGoalsChecked(true)
+    }
     if (
       (newOpen !== 1 || project !== 0) &&
       (open !== 0 || newOpen !== 3) &&
@@ -104,6 +120,7 @@ export default function CustomPlayer({
             type={"continue"}
             noProject={project === 0}
           />
+
         </div>
         {project === 0 && (
           <UncontrolledTooltip delay={0} placement="bottom" target="continueArrow">
@@ -157,6 +174,8 @@ export default function CustomPlayer({
                               setProject={(project) =>
                                 addProjectFromGoalModeling(project)
                               }
+                              triggerGoalsChecked={triggerGoalsChecked}
+                              swapTriggerGoalsChecked={swapTriggerGoalsChecked}
                             />
                           ),
                           analysis: (

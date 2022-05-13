@@ -11,6 +11,7 @@ import defaultgoal from "_texts/custom/defaultgoal.js";
 import goaleditinfo from "_texts/custom/goaleditinfo.js";
 import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
+import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 
 
 
@@ -49,11 +50,38 @@ export default class GoalModeling extends React.Component {
                 />
             );
         }
+
+        console.log(this.props)
         return (
             <>
-                <SocketIoGaols projectId={this.props.project} session={this.props.id} updateGoals={this.getGoals} deleteIndex={this.state.deletionIndex} triggerGoals={this.props.triggerGetGoals} deleteTrigger={this.deleteTrigger} switchWorld={this.switchWorld}/>
-                <SocketIoPatterns patterns={this.getPatterns} />
-                <SocketSaveGoals projectId={this.props.project} session={this.props.id} index={this.state.currentGoalIndex} goals={this.state.editedGoals} triggerSave={this.state.saveTrigger} toggleSaveTrigger={this.toggleSaveTrigger} toggleGetTrigger={this.props.toggleGetTrigger} switchWorld={this.switchWorld}/>
+                <SocketCheckGoals
+                    projectId={this.props.project}
+                    session={this.props.id}
+                    triggerGoalsChecked={this.props.triggerGoalsChecked}
+                    swapTriggerGoalsChecked={this.props.swapTriggerGoalsChecked}
+                />
+                <SocketIoGaols
+                    projectId={this.props.project}
+                    session={this.props.id}
+                    updateGoals={this.getGoals}
+                    deleteIndex={this.state.deletionIndex}
+                    triggerGoals={this.props.triggerGetGoals}
+                    deleteTrigger={this.deleteTrigger}
+                    switchWorld={this.switchWorld}
+                />
+                <SocketIoPatterns
+                    patterns={this.getPatterns}
+                />
+                <SocketSaveGoals
+                    projectId={this.props.project}
+                    session={this.props.id}
+                    index={this.state.currentGoalIndex}
+                    goals={this.state.editedGoals}
+                    triggerSave={this.state.saveTrigger}
+                    toggleSaveTrigger={this.toggleSaveTrigger}
+                    toggleGetTrigger={this.props.toggleGetTrigger}
+                    switchWorld={this.switchWorld}
+                />
                 <ParentComponent addChild={this.onAddChild}>
                     {children}
                 </ParentComponent>

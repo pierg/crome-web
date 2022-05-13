@@ -31,7 +31,9 @@ export default function CustomNavButton({
                 {(type === "back") && (
                     <i className={customnavbutton.iconColor + " " + customnavbutton.iconNameBack + " mr-2"}/>
                 )}
-                <span className={(disabled ? "opacity-40 " : "hover:underline ") + "text-2xl"}>{type === "back" ? customnavbutton.backText : customnavbutton.continueText}</span>
+                <span className={(disabled ? "opacity-40 " : "hover:underline ") + "text-2xl"}>
+                    {type === "back" ? customnavbutton.backText : customnavbutton.continueText}
+                </span>
                 {(type === "continue") && (
                     <i className={customnavbutton.iconColor + " " + customnavbutton.iconNameContinue + " ml-2"}/>
                 )}
