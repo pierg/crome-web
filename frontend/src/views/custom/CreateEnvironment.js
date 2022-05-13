@@ -1129,7 +1129,7 @@ export default class CreateEnvironment extends React.Component {
                                                     displayAddButton={prop.displayAddButton === true}
                                                     addLine={() => this.onAddLine(key)}
                                                     content={prop.content}
-                                                    colspan={3}
+                                                    colspan={4}
                                                     title={prop.title}
                                                 />
                                             ))}
