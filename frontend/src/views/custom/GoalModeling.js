@@ -51,7 +51,6 @@ export default class GoalModeling extends React.Component {
             );
         }
 
-        console.log(this.props)
         return (
             <>
                 <SocketCheckGoals

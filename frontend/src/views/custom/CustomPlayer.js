@@ -57,12 +57,6 @@ export default function CustomPlayer({
   }
 
   const toggleNew = (e, newOpen) => {
-    console.log("event :")
-    console.log(e)
-    console.log("open")
-    console.log(open)
-    console.log("newOpen")
-    console.log(newOpen)
     //goal modeling to analysis
     if(open === 1  && newOpen === 2) {
       //check if there are goals
