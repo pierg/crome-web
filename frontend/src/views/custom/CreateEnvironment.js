@@ -1152,7 +1152,7 @@ export default class CreateEnvironment extends React.Component {
                     isOpen={this.state.modalClassic}
                     autoFocus={false}
                     toggle={() => this.setModalClassic(false)}
-                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                    className={"custom-modal-dialog"}>
                     <WorldEdit
                         element={this.state.editedLists[this.state.currentList][this.state.currentIndex]}
                         number={this.state.currentIndex}
@@ -1168,7 +1168,7 @@ export default class CreateEnvironment extends React.Component {
                 <Modal
                     isOpen={this.state.modalSaving}
                     toggle={() => this.setModalSaving(false)}
-                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                    className={"custom-modal-dialog"}>
                     <SavingEdit
                         element={this.state.savingInfos}
                         listOfNames={this.projectId === null ? this.props.worldNames : this.listOfNames}
@@ -1181,7 +1181,7 @@ export default class CreateEnvironment extends React.Component {
                     isOpen={this.state.modalLocationId}
                     autoFocus={false}
                     toggle={() => this.setModalLocationId(false)}
-                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                    className={"custom-modal-dialog"}>
                     <LocationIdEdit
                         element={this.state.currentIdInput}
                         edit={this.editCurrentIdInput}
