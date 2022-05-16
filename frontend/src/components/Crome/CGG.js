@@ -22,7 +22,7 @@ export default class CGG extends React.Component {
 
     render() {
         return(
-            <div className="bg-lightBlue-500 bg-opacity-25 w-50">
+            <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md">
                 {this.state.ready && (<Graph
 
                     graph={this.props.graph}
