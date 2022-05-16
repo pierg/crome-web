@@ -223,7 +223,7 @@ export default class Analysis extends React.Component {
                     }
                 }
             },
-            height: "1200px",
+            height: "800px",
             autoResize: true,
             /*"physics": { // PARAMETERS FOR THE CGG, see documentation for more info
                 "forceAtlas2Based": {
