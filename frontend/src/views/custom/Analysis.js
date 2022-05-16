@@ -125,6 +125,7 @@ export default class Analysis extends React.Component {
         }
     }
 
+
     render() {
 
         let that = this
@@ -243,6 +244,7 @@ export default class Analysis extends React.Component {
             }
         };
 
+
         return (
             <>
                 <GetCGG
@@ -301,7 +303,16 @@ export default class Analysis extends React.Component {
                                 {...goaleditinfo}/>
                         )}
                     </Modal></>)}
+                {!this.state.cgg && (<>
+                    <div className="flex flex-auto">
+                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md" style={{width : 750, height : 750}}>
+                        </div>
+                        <BuildCGG2
+                            goals={this.props.goals}
+                        />
+                    </div>
 
+                </>)}
             </>
         );
     }

@@ -4,18 +4,22 @@ import Button from "../Elements/Button";
 function BuildCGG2(props) {
 
     const goals = []
-    for (let i = 0; i < props.goals.length; i += 1) {
-        if (i===0)
-            goals.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
-        else
-            goals.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
+    if (props.goals != null) {
+        for (let i = 0; i < props.goals.length; i += 1) {
+            if (i === 0)
+                goals.push(<li key={i}
+                               className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
+            else
+                goals.push(<li key={i}
+                               className="border-b-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
+        }
     }
     const tmp_libraries = []
     for (let i = 0; i < 1000; i += 1) {
         if (i===0)
-            tmp_libraries.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">libraries_{i}</li>)
+            tmp_libraries.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">library_{i}</li>)
         else
-            tmp_libraries.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 ">libraries_{i}</li>)
+            tmp_libraries.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 ">library_{i}</li>)
     }
 
 
