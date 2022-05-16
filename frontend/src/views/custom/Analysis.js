@@ -10,6 +10,7 @@ import GetCGG from "../../components/Custom/Examples/GetCGG";
 import BuildCGG from "../../components/Custom/BuildCGG";
 import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
 import IndexCGG from "../../components/Custom/IndexCGG";
+import BuildCGG2 from "../../components/Custom/BuildCGG2";
 
 
 export default class Analysis extends React.Component {
@@ -274,12 +275,20 @@ export default class Analysis extends React.Component {
                     setLibrary={this.setLibrary}
                     applyOperator={this.applyOperator}/>
                 {this.state.cgg && (<>
-                    <CGG
-                        active={this.props.active}
-                        graph={graph}
-                        options={options}
-                        events={events}
-                    />
+                    <div className="flex flex-auto">
+                        <CGG
+                            active={this.props.active}
+                            graph={graph}
+                            options={options}
+                            events={events}
+                        />
+                        <BuildCGG2
+                            infos={cgginfo}
+                            cgg={this.state.cgg}
+                            goals={this.props.goals}
+                        />
+                    </div>
+
                     <Modal
                         isOpen={this.state.modalGoal}
                         toggle={() => this.setModalGoal(false)}
@@ -292,6 +301,7 @@ export default class Analysis extends React.Component {
                                 {...goaleditinfo}/>
                         )}
                     </Modal></>)}
+
             </>
         );
     }

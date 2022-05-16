@@ -2855,6 +2855,14 @@ select {
   border-left-width: 0px;
 }
 
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+
+.border-t-1 {
+  border-top-width: 1px;
+}
+
 .border-t-2 {
   border-top-width: 2px;
 }
@@ -3627,6 +3635,14 @@ select {
 
 .last\:mb-2:last-child {
   margin-bottom: 0.5rem;
+}
+
+.max-h-200-px {
+  max-height: 200px;
+}
+
+.max-h-350-px {
+  max-height: 350px;
 }
 
 .max-h-440-px {
