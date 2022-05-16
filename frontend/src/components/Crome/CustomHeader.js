@@ -22,7 +22,7 @@ export default function CustomHeader({ cards, color, states }) {
 
   return (
     <>
-      <div className={"relative pt-16 pb-20 " + bgColors[color]}>
+      <div className={"relative pt-8 pb-12 " + bgColors[color]}>
         <div className="px-12 mx-8 w-40">
           <div>
             <div className="flex flex-wrap justify-center ">
