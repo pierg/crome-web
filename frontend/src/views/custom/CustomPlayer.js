@@ -97,7 +97,7 @@ export default function CustomPlayer({
   return (
     <>
       <CustomHeader {...customheadercards} states={headerStates} />
-      <div className="flex justify-evenly relative top--30">
+      <div className="flex justify-evenly relative top--30 pt-4">
         <div>
           <CustomNavButton
             open={open}
