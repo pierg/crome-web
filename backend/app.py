@@ -63,9 +63,31 @@ def connected() -> None:
     print(f'ID {request.args.get("id")}')
     lock = threading.Lock()
     lock.acquire()
-    users[str(request.args.get("id"))] = request.sid
+    session_id = str(request.args.get("id"))
+    print(f"The session id we are looking for is {session_id}")
+    print(f"And the users are : {users}")
+    if session_id in users: # Check if this session is already open
+        print("The session already has a person.")
+        emit(
+            "is-connected",
+            False,
+            room=request.sid
+        )
+        return
+
+    users[session_id] = request.sid
+
     now = time.localtime(time.time())
-    emit("send-message", strftime("%H:%M:%S", now) + f" Connected to session {request.args.get('id')}", room=request.sid)
+    emit(
+        "send-message",
+        strftime("%H:%M:%S", now) + f" Connected to session {request.args.get('id')}",
+        room=request.sid
+    )
+    emit(
+        "is-connected",
+        True,
+        room=request.sid
+    )
     lock.release()
 
 
@@ -334,11 +356,14 @@ def delete_goal(data) -> None:
 def check_goals(data) -> None:
     session_id: str = data["session"]
     project_id: str = data["project"]
+    if project_id == "simple":
+        return
 
     emit_warning = False
     set_of_goals = None
     try:
         set_of_goals = load_goals(str(project_path(session_id, project_id)))
+        print(set_of_goals)
     except Exception:
         emit_warning = True
 
@@ -516,12 +541,15 @@ def check_if_session_exist(session_id: str) -> None:
     dir_path, dir_names, filenames = next(walk(storage_path))
     found = False
     sessions_folder = f"s_" + session_id
-    print(sessions_folder)
     for dir_name in dir_names:
         if dir_name == sessions_folder and dir_name != "default":
             found = True
     if session_id == "default":
         found = False
+
+    if found:
+        if session_id in users:
+            found = False
     emit("receive-answer", found, room=request.sid)
 
 
@@ -531,12 +559,14 @@ def disconnected() -> None:
     print(request.args)
     print(f'ID {request.args.get("id")}')
 
-    now = time.localtime(time.time())
-    emit(
-        "send-message",
-        f"{strftime('%H:%M:%S', now)} Session {request.args.get('id')} disconnected",
-        room=users[request.args.get("id")]
-    )
+    if str(request.args.get("id")) in users:
+        now = time.localtime(time.time())
+        emit(
+            "send-message",
+            f"{strftime('%H:%M:%S', now)} Session {request.args.get('id')} disconnected",
+            room=users[request.args.get("id")]
+        )
+        users.pop(request.args.get("id"))
 
 
 @app.route("/")

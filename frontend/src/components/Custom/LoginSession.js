@@ -14,7 +14,7 @@ export default function LoginSession({id, onIdSubmit}) {
     const [errorMsg, setErrorMsg] = useState("")
     
     const handleAnswer = useCallback((answer) => {
-        answer ? onIdSubmit(idRef.current.value) : setErrorMsg("This session doesn't exist or is empty")
+        answer ? onIdSubmit(idRef.current.value) : setErrorMsg("This session doesn't exist or it is being used.")
     }, [onIdSubmit])  // eslint-disable-line react-hooks/exhaustive-deps
     
     

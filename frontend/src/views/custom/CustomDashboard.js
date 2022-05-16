@@ -8,7 +8,7 @@ import CustomPlayer from "./CustomPlayer";
 // texts as props
 import customsidebar from "../../_texts/custom/customsidebar";
 import custommediaplayerteaminfo from "_texts/custom/customplayerinfo.js";
-import {SocketProvider} from "../../contexts/SocketProvider";
+import {SocketProvider, ConnectorProvider} from "../../contexts/SocketProvider";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import CreateEnvironment from "./CreateEnvironment";
 import Console from "../../components/Crome/Console";
@@ -51,6 +51,7 @@ export default function CustomDashboard(props) {
     }, [location]);
     return (
         <SocketProvider id={id}>
+            <ConnectorProvider setId={setId}/>
             <CustomSidebar {...customsidebar} currentRoute={"#" + location.pathname} id={id} setId={setId}/>
             <Console {...consoleinfo} customText={message}/>
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
