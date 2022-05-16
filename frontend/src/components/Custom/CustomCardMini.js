@@ -12,15 +12,15 @@ export default function CustomCardMini({
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xxl:mb-0 shadow-lg">
-        <div className="flex-auto p-4">
-          <div className="flex flex-wrap">
-            <div className="relative w-full pr-4 flex justify-center items-center max-w-full flex-grow flex-1">
-              <span className={"font-bold text-xl uppercase " + color}>
+      <div className="relative flex justify-center break-words bg-white rounded-lg mb-6 shadow-lg">
+        <div className="p-3 ">
+          <div className="flex flex-row ">
+            <div className="pr-4 flex justify-center items-center ">
+              <span className={"font-bold text-base uppercase " + color}>
                 {statTitle}
               </span>
             </div>
-            <div className="relative w-auto pl-4 flex-initial">
+            <div className="relative w-auto ">
               <div
                 className={
                   "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full " +
