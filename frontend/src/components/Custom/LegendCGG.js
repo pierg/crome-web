@@ -2,7 +2,7 @@ import React from 'react';
 
 function LegendCGG() {
     return(
-    <fieldset className="relative border w-64 p-2 mt-12 bg-white rounded shadow-md min-w-0 break-words">
+    <fieldset className="relative border w-64 ml-12 mt-5 p-2 bg-white rounded shadow-md min-w-0 break-words">
         <legend className=" pl-2 w-auto">CGG Legend</legend>
 
         <div className="flex items-center pl-4 py-1">
