@@ -85,12 +85,12 @@ def connected() -> None:
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + f" Connected to session {request.args.get('id')}",
-        room=request.sid
+        room=users[session_id][tab_id]
     )
     emit(
         "is-connected",
         True,
-        room=request.sid
+        room=users[session_id][tab_id]
     )
     lock.release()
 
@@ -143,7 +143,7 @@ def get_projects() -> list[list[dict[str, str]]]:
 
 @socketio.on("save-project")
 def save_project(data) -> None:
-    session_id: str = request.args.get("id")
+    session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
     print(f"SAVE PROJECT : {session_id}")
 
@@ -193,8 +193,8 @@ def save_project(data) -> None:
 def save_image(data) -> None:
     img_data = bytes(data["image"], "utf-8")
 
-    session_id = request.args.get("id")
-    project_id = data["project"]
+    session_id = str(request.args.get("id"))
+    project_id = str(data["project"])
 
     current_project_image = Path(
         os.path.join(
@@ -224,7 +224,7 @@ def delete_project(data) -> None:
                 shutil.rmtree(dir_to_delete)
         i += 1
 
-    emit("deletion-complete", True, room=request.sid)
+    emit("deletion-complete", True, room=users[session_id][tab_id])
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The project has been deleted.",
                          room_id=users[session_id][tab_id], crometype="success")
@@ -234,7 +234,7 @@ def delete_project(data) -> None:
 def get_goals(data) -> None:
     project_id = str(data["project"])
     session = "default" if project_id == "simple" else str(request.args.get("id"))
-    session_id = request.args.get("id")
+    session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
     goals_folder = goals_path(session, data["project"])
 
@@ -257,7 +257,7 @@ def get_goals(data) -> None:
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
-    project_id = data["projectId"]
+    project_id = str(data["project_id"])
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
     is_simple = str(project_id) == "simple"
@@ -330,9 +330,9 @@ def add_goal(data) -> None:
 
 @socketio.on("delete-goal")
 def delete_goal(data) -> None:
-    project_id = data["project"]
-    session_id = request.args.get("id")
-    tab_id = request.args.get('tabId')
+    project_id = str(data["project"])
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get('tabId'))
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(session_id)
@@ -371,9 +371,9 @@ def delete_goal(data) -> None:
 
 @socketio.on("check-goals")
 def check_goals(data) -> None:
-    session_id: str = request.args.get("id")
-    project_id: str = data["project"]
-    tab_id: str = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    project_id = str(data["project"])
+    tab_id = str(request.args.get("tabId"))
     if project_id == "simple":
         return
 
@@ -392,8 +392,8 @@ def check_goals(data) -> None:
 
 @socketio.on("get-patterns")
 def get_patterns() -> None:
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
@@ -408,8 +408,8 @@ def get_patterns() -> None:
 @socketio.on("process-goals")
 def process_goals(data) -> None:
     now = time.localtime(time.time())
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
 
     emit(
         "send-notification",
@@ -470,7 +470,7 @@ def process_goals(data) -> None:
             room=users[session_id][tab_id],
         )
         time.sleep(3)
-        emit("cgg-saved", json_content, room=request.sid)
+        emit("cgg-saved", json_content, room=users[session_id][tab_id])
 
         error_occurrence = False
     except GoalException as e:
@@ -502,8 +502,8 @@ def process_goals(data) -> None:
 
 @socketio.on("process-cgg")
 def process_cgg() -> None:
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
     cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
@@ -513,8 +513,8 @@ def process_cgg() -> None:
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
 
     project_id = data["goals"][0].split("-")[-2]
 
@@ -526,8 +526,8 @@ def conjunction(data) -> None:
 @socketio.on("apply-composition")
 def composition(data) -> None:
     print("APPLY OPERATION : composition")
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
 
     project_id = data["goals"][0].split("-")[-2]
 
@@ -539,8 +539,8 @@ def composition(data) -> None:
 @socketio.on("apply-disjunction")
 def disjunction(data) -> None:
     print("APPLY OPERATION : disjunction")
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
 
     emit("operation-complete", True, room=users[session_id][tab_id])
 
@@ -548,24 +548,24 @@ def disjunction(data) -> None:
 @socketio.on("apply-refinement")
 def refinement(data) -> None:
     print("APPLY OPERATION : refinement")
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
     emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-extension")
 def extension(data) -> None:
     print("APPLY OPERATION : extension")
-    session_id = request.args.get("id")
-    tab_id = request.args.get("tabId")
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
     emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("session-existing")
 def check_if_session_exist(data) -> None:
     session_id = str(data["session"])
-    tab_id = request.args.get("tabId")
-    cookie = request.args.get("cookie")
+    tab_id = str(request.args.get("tabId"))
+    cookie = str(request.args.get("cookie"))
     print("check if following session exists : " + session_id)
     dir_path, dir_names, filenames = next(walk(storage_path))
     found = False
@@ -580,7 +580,7 @@ def check_if_session_exist(data) -> None:
         if session_id in users and cookie != cookies[session_id]:
             found = False
     print(f"users : {users}")
-    emit("receive-answer", found, room=users[request.args.get("id")][tab_id])
+    emit("receive-answer", found, room=users[str(request.args.get("id"))][tab_id])
 
 
 @socketio.on("disconnect")
