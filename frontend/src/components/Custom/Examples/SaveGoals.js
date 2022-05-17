@@ -22,7 +22,7 @@ function SocketSaveGoals(props) {
         if (props.goals !== null && props.triggerSave) {
 
             props.toggleSaveTrigger(false)
-            socket.emit('add-goal', {goal : props.goals[props.index], projectId : props.projectId})
+            socket.emit('add-goal', {goal : props.goals[props.index], project_id : props.projectId})
 
             //socket.on('goal-saved', props.toggleGetTrigger())
 

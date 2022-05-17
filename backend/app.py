@@ -85,12 +85,12 @@ def connected() -> None:
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + f" Connected to session {request.args.get('id')}",
-        room=users[session_id][tab_id]
+        room=request.sid
     )
     emit(
         "is-connected",
         True,
-        room=users[session_id][tab_id]
+        room=request.sid
     )
     lock.release()
 
@@ -137,7 +137,7 @@ def get_projects() -> list[list[dict[str, str]]]:
 
                 list_of_projects.append(default_project)
 
-    emit("receive-projects", list_of_projects, room=users[session_id][tab_id])
+    emit("receive-projects", list_of_projects, room=request.sid)
     return list_of_projects
 
 
@@ -180,9 +180,9 @@ def save_project(data) -> None:
         json_file.close()
     name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
-    emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id][tab_id])
+    emit("project-saved", data["world"]["info"]["project_id"], room=request.sid)
     send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
-                         room_id=users[session_id][tab_id], crometype="success")
+                         room_id=request.sid, crometype="success")
 
     print("creating environment test")
     Modelling.create_environment(project_dir)
@@ -224,10 +224,10 @@ def delete_project(data) -> None:
                 shutil.rmtree(dir_to_delete)
         i += 1
 
-    emit("deletion-complete", True, room=users[session_id][tab_id])
+    emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The project has been deleted.",
-                         room_id=users[session_id][tab_id], crometype="success")
+                         room_id=request.sid, crometype="success")
 
 
 @socketio.on("get-goals")
@@ -252,7 +252,7 @@ def get_goals(data) -> None:
                 json_str = json.dumps(json_obj)
                 list_of_goals.append(json_str)
 
-        emit("receive-goals", list_of_goals, room=users[session_id][tab_id])
+        emit("receive-goals", list_of_goals, room=request.sid)
 
 
 @socketio.on("add-goal")
@@ -280,9 +280,9 @@ def add_goal(data) -> None:
     json_file.write(json_formatted)
     json_file.close()
     if is_simple:
-        emit("saving-simple", project_id, room=users[session_id][tab_id])
+        emit("saving-simple", project_id, room=request.sid)
     else:
-        emit("goal-saved", True, room=users[session_id][tab_id])
+        emit("goal-saved", True, room=request.sid)
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]
@@ -296,27 +296,27 @@ def add_goal(data) -> None:
             data["goal"]["id"],
         )
         send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
-                             room_id=users[session_id][tab_id], crometype="success")
+                             room_id=request.sid, crometype="success")
         error_occurrence = False
     except KeyError as keyError:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. Error with the entry of the '
                                                                f'LTL/Pattern \n KeyError : {keyError}',
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
     except SyntaxError:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
                                                                f'for the LTL',
-            room=users[session_id][tab_id]
+            room=request.sid
         )
     except Exception as e:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. Error unknown : {e}',
-            room=users[session_id][tab_id]
+            room=request.sid
         )
 
     if error_occurrence:
@@ -324,7 +324,7 @@ def add_goal(data) -> None:
             "send-notification",
             {"crometypes": "error",
              "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
 
 
@@ -349,7 +349,7 @@ def delete_goal(data) -> None:
             os.remove(goal_to_delete)
         i += 1
     if is_simple:
-        emit("deleting-simple", project_id, room=users[session_id][tab_id])
+        emit("deleting-simple", project_id, room=request.sid)
 
     # Now we remove the goal from the .dat file
     project_folder: Path = project_path(session_id, project_id)
@@ -366,7 +366,7 @@ def delete_goal(data) -> None:
 
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The goal has been deleted.",
-                         room_id=users[session_id][tab_id], crometype="success")
+                         room_id=request.sid, crometype="success")
 
 
 @socketio.on("check-goals")
@@ -386,7 +386,7 @@ def check_goals(data) -> None:
 
     if set_of_goals is None or set_of_goals == set() or emit_warning:
         send_message_to_user(content="No goals found for the project, please try to recreate them.",
-                             room_id=users[session_id][tab_id],
+                             room_id=request.sid,
                              crometype="warning")
 
 
@@ -401,7 +401,7 @@ def get_patterns() -> None:
         robotic_patterns = json.load(json_file)
 
     emit(
-        "receive-patterns", {"robotic": json.dumps(robotic_patterns)}, room=users[session_id][tab_id]
+        "receive-patterns", {"robotic": json.dumps(robotic_patterns)}, room=request.sid
     )
 
 
@@ -414,14 +414,14 @@ def process_goals(data) -> None:
     emit(
         "send-notification",
         {"crometypes": "info", "content": strftime("%H:%M:%S", now) + " The CGG is being built"},
-        room=users[session_id][tab_id],
+        room=request.sid,
     )
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + " The CGG is being built",
-        room=users[session_id][tab_id],
+        room=request.sid,
     )
-    emit("cgg-production", True, room=users[session_id][tab_id])
+    emit("cgg-production", True, room=request.sid)
 
     session = "default" if data["project"] == "simple" else session_id
     project_folder = project_path(session, data["project"])
@@ -440,19 +440,19 @@ def process_goals(data) -> None:
             emit(
                 "send-message",
                 "No goals has been saved, please create them correctly",
-                room=users[session_id][tab_id]
+                room=request.sid
             )
     except DockerException:
         emit(
             "send-message",
             "Error while retrieving the goals, Docker is not start. Please contact an Administrator",
-            room=users[session_id][tab_id]
+            room=request.sid
         )
     except Exception as e:
         emit(
             "send-message",
             f"Error while retrieving the goals. Error : {e}",
-            room=users[session_id][tab_id]
+            room=request.sid
         )
     from crome_cgg.goal.exceptions import GoalException
 
@@ -467,17 +467,17 @@ def process_goals(data) -> None:
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
         time.sleep(3)
-        emit("cgg-saved", json_content, room=users[session_id][tab_id])
+        emit("cgg-saved", json_content, room=request.sid)
 
         error_occurrence = False
     except GoalException as e:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
 
     except UnboundLocalError:
@@ -486,7 +486,7 @@ def process_goals(data) -> None:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + " Exception : " + str(e),
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
 
     if error_occurrence:
@@ -496,7 +496,7 @@ def process_goals(data) -> None:
                 "crometypes": "error",
                 "content": "CGG cannot be built, see console for more info",
             },
-            room=users[session_id][tab_id],
+            room=request.sid,
         )
 
 
@@ -507,7 +507,7 @@ def process_cgg() -> None:
     cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
-    emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=users[session_id][tab_id])
+    emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=request.sid)
 
 
 @socketio.on("apply-conjunction")
@@ -520,7 +520,7 @@ def conjunction(data) -> None:
 
     Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
 
-    emit("operation-complete", True, room=users[session_id][tab_id])
+    emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("apply-composition")
@@ -533,7 +533,7 @@ def composition(data) -> None:
 
     Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
 
-    emit("operation-complete", True, room=users[session_id][tab_id])
+    emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("apply-disjunction")
@@ -542,7 +542,7 @@ def disjunction(data) -> None:
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
 
-    emit("operation-complete", True, room=users[session_id][tab_id])
+    emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("apply-refinement")
@@ -550,7 +550,7 @@ def refinement(data) -> None:
     print("APPLY OPERATION : refinement")
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
-    emit("operation-complete", True, room=users[session_id][tab_id])
+    emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("apply-extension")
@@ -558,7 +558,7 @@ def extension(data) -> None:
     print("APPLY OPERATION : extension")
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
-    emit("operation-complete", True, room=users[session_id][tab_id])
+    emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("session-existing")
@@ -597,7 +597,7 @@ def disconnected() -> None:
         emit(
             "send-message",
             f"{strftime('%H:%M:%S', now)} Session {request.args.get('id')} disconnected",
-            room=users[session_id][tab_id]
+            room=request.sid
         )
         del users[session_id][tab_id]
 
