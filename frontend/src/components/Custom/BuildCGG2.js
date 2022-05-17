@@ -3,6 +3,15 @@ import Button from "../Elements/Button";
 
 function BuildCGG2(props) {
 
+    const [selectedRow, setSelectedRow] = React.useState(null)
+
+    function selectLibrary(id, selected) {
+        if (selected)
+            setSelectedRow(id)
+        else
+            setSelectedRow(null)
+    }
+
     const goals = []
     if (props.goals != null) {
         for (let i = 0; i < props.goals.length; i += 1) {
@@ -16,11 +25,19 @@ function BuildCGG2(props) {
     }
 
     const tmp_libraries = []
+    let libraryClass = ""
     for (let i = 0; i < 1000; i += 1) {
-        if (i===0)
-            tmp_libraries.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100">library_{i}</li>)
-        else
-            tmp_libraries.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100">library_{i}</li>)
+        let select = true
+        libraryClass = "border-b-1 text-blueGray-700 text-lg py-1 cursor-pointer"
+        if (i===0) libraryClass += " border-t-1"
+        if (i===selectedRow) {
+            libraryClass += " bg-blueGray-200 hover:bg-blueGray-300"
+            select = false
+            console.log(select)
+        } else
+            libraryClass += "  hover:bg-blueGray-100"
+
+        tmp_libraries.push(<li key={i} className={libraryClass} onClick={() => selectLibrary(i, {select})}>library_{i}</li>)
     }
 
 

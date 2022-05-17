@@ -9,7 +9,7 @@ import CGG from "../../components/Crome/CGG";
 import GetCGG from "../../components/Custom/Examples/GetCGG";
 import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
 import BuildCGG2 from "../../components/Custom/BuildCGG2";
-
+import ReactLoading from "react-loading";
 
 export default class Analysis extends React.Component {
 
@@ -23,7 +23,7 @@ export default class Analysis extends React.Component {
         selectedLibrary: null,
         library: null,
         triggerOperation: false,
-        triggerCGG: false
+        triggerCGG: false,
     }
 
     setModalGoal = (bool) => {
@@ -288,7 +288,8 @@ export default class Analysis extends React.Component {
                     </>)}
                 {!this.state.cgg && (<>
                     <div className="flex flex-auto mt-4">
-                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md" style={{width : 750, height : 750}}>
+                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md flex items-center justify-center" style={{width : 750, height : 750}}>
+                            {this.state.triggerCGG && (<ReactLoading type="spinningBubbles" color="#fff" />)}
                         </div>
                         <BuildCGG2
                             callCGG={this.callCGG}
