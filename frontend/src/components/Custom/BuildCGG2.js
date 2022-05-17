@@ -73,7 +73,6 @@ function BuildCGG2(props) {
                     </div>
                 </div>
             </div>
-            <LegendCGG/>
         </div>
 
     )
