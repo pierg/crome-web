@@ -10,7 +10,7 @@ function SocketCheckGoals(props) {
         if (socket == null) return
 
         if (props.triggerGoalsChecked) {
-            socket.emit('check-goals', {session : props.session, project : props.projectId})
+            socket.emit('check-goals', {project : props.projectId})
 
             props.swapTriggerGoalsChecked(false)
         }

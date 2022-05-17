@@ -1080,7 +1080,6 @@ export default class CreateEnvironment extends React.Component {
                                                 <div>
                                                     <CustomDownload
                                                         currentRef={this.state.myCanvas}
-                                                        session={this.props.session}
                                                         setRef={this.setRef}
                                                         project={this.props.returnedProjectId}
                                                         resetProject={this.props.resetProject}

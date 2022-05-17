@@ -28,7 +28,7 @@ export default function CustomDownload (props) {
     }, [props.project]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const download = (screenImage = {}) => {
-        socket.emit("save-image", {"image": screenImage.split(",")[1], "session": props.session, "project": props.project})
+        socket.emit("save-image", {"image": screenImage.split(",")[1], "project": props.project})
         props.resetProject()
         props.goToIndex()
     };

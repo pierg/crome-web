@@ -16,14 +16,14 @@ function GetCGG(props) {
     useEffect(() => {
         if (socket == null || !props.trigger) return
 
-        socket.emit('process-goals', {session: props.session, project: props.project})
+        socket.emit('process-goals', {project: props.project})
 
         socket.on('cgg-production', cggTriggerBack)
 
         socket.on('cgg-saved', cggCallback)
 
         return () => socket.off('receive-cgg')
-    }, [socket, props.trigger, props.session, props.project, cggTriggerBack, cggCallback])
+    }, [socket, props.trigger, props.project, cggTriggerBack, cggCallback])
 
     return (<></>);
 }

@@ -20,9 +20,8 @@ function SocketIoGaols(props) {
     
     useEffect(() => {
         if (socket == null || props.deleteIndex === null) return
-        
 
-        socket.emit('delete-goal', {index: props.deleteIndex, session: props.session, project: props.projectId})
+        socket.emit('delete-goal', {index: props.deleteIndex, project: props.projectId})
 
         props.deleteTrigger()
 
@@ -30,18 +29,17 @@ function SocketIoGaols(props) {
             socket.on('deleting-simple', setIdFunction)
         }
 
-    }, [socket, props.deleteIndex, props.deleteTrigger, props.session, props.projectId])  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [socket, props.deleteIndex, props.deleteTrigger, props.projectId])  // eslint-disable-line react-hooks/exhaustive-deps
 
 
     useEffect(() => {
         if (socket == null) return
-        let session = props.projectId === "simple" ? "default" : props.session;
-        socket.emit('get-goals', {session: session, project: props.projectId})
+        socket.emit('get-goals', {project: props.projectId})
 
         socket.on('receive-goals', setMessageFunction)
 
         return () => socket.off('receive-goals')
-    }, [socket, setMessageFunction, props.projectId, props.session, props.triggerGoals])
+    }, [socket, setMessageFunction, props.projectId, props.triggerGoals])
 
     useEffect(() => {
         props.updateGoals(message)

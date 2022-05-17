@@ -18,11 +18,11 @@ function SocketIoProjects(props) {
     useEffect(() => {
         if (socket == null) return
 
-        socket.emit('get-projects', {session: props.session})
+        socket.emit('get-projects')
         socket.on('receive-projects', setMessageFunction)
 
         return () => socket.off('receive-projects')
-    }, [socket, setMessageFunction, props.session, props.projectAdded, trigger])
+    }, [socket, setMessageFunction, props.projectAdded, trigger])
 
     useEffect(() => {
         props.worlds(message)
@@ -30,7 +30,7 @@ function SocketIoProjects(props) {
 
     useEffect(() => {
         if (props.deletionConfirmation) {
-            socket.emit('delete-project', {session: props.session, index: props.deletionIndex})
+            socket.emit('delete-project', {index: props.deletionIndex})
             props.deletionChanger(false)
 
             socket.on('deletion-complete', setTrigger(!trigger))

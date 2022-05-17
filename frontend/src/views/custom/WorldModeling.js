@@ -161,8 +161,7 @@ export default class WorldModeling extends React.Component {
 
         return (
             <>
-                <SocketIoProjects session={this.props.id}
-                                  worlds={this.getWorlds}
+                <SocketIoProjects worlds={this.getWorlds}
                                   deletionIndex={this.state.selectedWorldToDelete}
                                   deletionConfirmation={this.state.deletionConfirmation}
                                   deletionChanger={this.setDeletionConfirmation}

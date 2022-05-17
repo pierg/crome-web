@@ -261,7 +261,6 @@ export default class Analysis extends React.Component {
                     setGoalsTrigger={this.setGoalsTrigger}
                 />
                 <SocketBuildCGG
-                    session={this.props.id}
                     operator={this.state.operator}
                     goals={this.props.goals}
                     selectedGoals={this.state.selectedGoals}

@@ -55,7 +55,6 @@ export default class GoalModeling extends React.Component {
             <>
                 <SocketCheckGoals
                     projectId={this.props.project}
-                    session={this.props.id}
                     triggerGoalsChecked={this.props.triggerGoalsChecked}
                     swapTriggerGoalsChecked={this.props.swapTriggerGoalsChecked}
                 />
@@ -73,7 +72,6 @@ export default class GoalModeling extends React.Component {
                 />
                 <SocketSaveGoals
                     projectId={this.props.project}
-                    session={this.props.id}
                     index={this.state.currentGoalIndex}
                     goals={this.state.editedGoals}
                     triggerSave={this.state.saveTrigger}

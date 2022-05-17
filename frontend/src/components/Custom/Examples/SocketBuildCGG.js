@@ -23,11 +23,11 @@ function SocketBuildCGG(props) {
         }
         
         switch(props.operator.toLowerCase()) {
-            case "conjunction": socket.emit('apply-conjunction', {session: props.session, goals: props.selectedGoals }); break;
-            case "composition": socket.emit('apply-composition', {session: props.session, goals: props.selectedGoals }); break;
-            case "disjunction": socket.emit('apply-disjunction', {session: props.session, goals: props.selectedGoals }); break;
-            case "refinement": socket.emit('apply-refinement', {session: props.session, abstract: props.selectedGoals[0], refined: props.selectedGoals[1] }); break;
-            case "extension": socket.emit('apply-extension', {session: props.session, input: props.selectedGoals[0], library: props.library }); break;
+            case "conjunction": socket.emit('apply-conjunction', {goals: props.selectedGoals }); break;
+            case "composition": socket.emit('apply-composition', {goals: props.selectedGoals }); break;
+            case "disjunction": socket.emit('apply-disjunction', {goals: props.selectedGoals }); break;
+            case "refinement": socket.emit('apply-refinement', {abstract: props.selectedGoals[0], refined: props.selectedGoals[1] }); break;
+            case "extension": socket.emit('apply-extension', {input: props.selectedGoals[0], library: props.library }); break;
             default: return
         }
         
