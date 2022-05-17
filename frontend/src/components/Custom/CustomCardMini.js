@@ -12,7 +12,7 @@ export default function CustomCardMini({
 
   return (
     <>
-      <div className="relative flex justify-center break-words bg-white rounded-lg mb-6 shadow-lg">
+      <div className="relative flex justify-center break-words bg-white rounded-lg mb-6 shadow-lg text-center">
         <div className="p-3 ">
           <div className="flex flex-row ">
             <div className="pr-4 flex justify-center items-center ">
