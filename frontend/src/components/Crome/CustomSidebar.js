@@ -11,6 +11,7 @@ export default function CustomSidebar({
   currentRoute,
   id,
   setId,
+  cookie,
 }) {
   const [sidebarShow, setSidebarShow] = React.useState("-translate-x-full");
 
@@ -73,7 +74,7 @@ export default function CustomSidebar({
               </a>
             )}
             <div className="xxl:flex-col xxl:min-w-full flex flex-col list-none">
-              <LoginSession id={id} onIdSubmit={setId} />
+              <LoginSession id={id} onIdSubmit={setId} cookie={cookie}/>
             </div>
             <div className="xxl:flex-col xxl:min-w-full flex flex-col list-none">
               {items.map((prop, key) => {

@@ -6,7 +6,7 @@ import {CSSTransition, SwitchTransition} from "react-transition-group";
 import {useSocket} from "../../contexts/SocketProvider";
 import {UncontrolledTooltip} from "reactstrap";
 
-export default function LoginSession({id, onIdSubmit}) {
+export default function LoginSession({id, onIdSubmit, cookie}) {
     const idRef = useRef()
 
     const socket = useSocket()
@@ -22,7 +22,7 @@ export default function LoginSession({id, onIdSubmit}) {
     function handleSubmit(e) {
         e.preventDefault()
 
-        socket.emit("session-existing", idRef.current.value)
+        socket.emit("session-existing", {session: idRef.current.value, cookie: cookie})
         
         socket.on('receive-answer', handleAnswer)
 

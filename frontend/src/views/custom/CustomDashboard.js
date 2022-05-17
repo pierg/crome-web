@@ -20,6 +20,10 @@ import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironm
 export default function CustomDashboard(props) {
     const location = useLocation();
     const [id, setId] = useLocalStorage('id');
+    const [cookie, setCookie] = useLocalStorage('cookie')
+    const tabId = sessionStorage.tabID ?
+            sessionStorage.tabID :
+            sessionStorage.tabID = Math.random();
     let [message, setMessage] = React.useState("");
     let [world, setWorld] = React.useState(null);
     let [savedEnvironment, setSavedEnvironment] = React.useState(null);
@@ -50,9 +54,9 @@ export default function CustomDashboard(props) {
         window.scrollTo(0, 0);
     }, [location]);
     return (
-        <SocketProvider id={id}>
+        <SocketProvider id={id} cookie={cookie} tabId={tabId}>
             <ConnectorProvider setId={setId}/>
-            <CustomSidebar {...customsidebar} currentRoute={"#" + location.pathname} id={id} setId={setId}/>
+            <CustomSidebar {...customsidebar} currentRoute={"#" + location.pathname} id={id} setId={setId} cookie={cookie}/>
             <Console {...consoleinfo} customText={message}/>
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
             <SocketSaveEnvironment session={id} world={savedEnvironment} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>

@@ -8,16 +8,16 @@ export function useSocket() {
     return useContext(SocketContext)
 }
 
-export function SocketProvider({ id, children }) {
+export function SocketProvider({ id, cookie, tabId, children }) {
     useEffect(() => {
         console.log("Connecting merged")
         console.log(id)
-        const newSocket = io("http://127.0.0.1:5000",{ query: { id } }
+        const newSocket = io("http://127.0.0.1:5000",{ query: { id, cookie, tabId } }
         )
         setSocket(newSocket)
 
         return () => newSocket.close()
-    }, [id])
+    }, [id, cookie, tabId])
 
 
     const [socket, setSocket] = useState()
@@ -34,7 +34,6 @@ export function ConnectorProvider({setId}){
     const check_connected = useCallback((answer) => {
         if (!answer){
             setId(uuidV4())
-            console.log("Creating a new ID")
         }
     }, [setId])
     const socket = useSocket()

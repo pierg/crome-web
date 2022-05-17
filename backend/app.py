@@ -8,6 +8,7 @@ import time
 from os import walk
 from pathlib import Path
 from time import strftime
+from typing import Any
 
 from docker.errors import DockerException
 
@@ -28,6 +29,7 @@ from backend.shared.paths import (
 )
 from backend.tools.persistence import load_goals, dump_goals
 
+
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
     "serve", default=False, type=bool, help="indicate if serving the pages"
@@ -43,11 +45,11 @@ else:
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-users: dict[str, str] = {}
-
-
+users: dict[str, Any] = {}
 # String dictionary associating the id of the request to talk to the user with the session id given by the frontend.
 
+cookies: dict[str, str] = {}
+# String dictionary association the id of the session with that of the cookie that can open it.
 
 # HOW TO SEND A NOTIFICATION :
 # emit("send-notification", {"crometypes": "error", "content": "message appearing"}, room=users[data['session']])
@@ -64,19 +66,20 @@ def connected() -> None:
     lock = threading.Lock()
     lock.acquire()
     session_id = str(request.args.get("id"))
-    print(f"The session id we are looking for is {session_id}")
-    print(f"And the users are : {users}")
-    if session_id in users: # Check if this session is already open
-        print("The session already has a person.")
-        emit(
-            "is-connected",
-            False,
-            room=request.sid
-        )
-        return
-
-    users[session_id] = request.sid
-
+    cookie = str(request.args.get("cookie"))
+    tab_id = str(request.args.get("tabId"))
+    if session_id in users:  # Check if this session is already open
+        if cookie != cookies[session_id]:
+            emit(
+                "is-connected",
+                False,
+                room=request.sid
+            )
+            return
+    else:
+        users[session_id] = {}
+    users[session_id][tab_id] = request.sid
+    cookies[session_id] = cookie
     now = time.localtime(time.time())
     emit(
         "send-message",
@@ -93,13 +96,12 @@ def connected() -> None:
 
 @socketio.on("get-projects")
 def get_projects(data) -> list[list[dict[str, str]]]:
-    print("Get projects")
     list_of_projects: list[
         list[dict[str, str]]
     ] = []  # array that will be sent containing all projects #
-
-    # TODO: add type hints to every variable declaration and function as below
-    list_of_sessions: list[str] = [f"default", data["session"]]
+    session_id = str(data["session"])
+    tab_id = str(request.args.get("tabId"))
+    list_of_sessions: list[str] = [f"default", session_id]
 
     for session in list_of_sessions:
         session_folder = session_path(session)
@@ -134,7 +136,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
 
                 list_of_projects.append(default_project)
 
-    emit("receive-projects", list_of_projects, room=request.sid)
+    emit("receive-projects", list_of_projects, room=users[session_id][tab_id])
     return list_of_projects
 
 
@@ -142,6 +144,7 @@ def get_projects(data) -> list[list[dict[str, str]]]:
 def save_project(data) -> None:
     print("SAVE PROJECT : " + str(data["session"]))
     session_id: str = data["world"]["info"]["session_id"]
+    tab_id = str(request.args.get("tabId"))
     session_dir = session_path(session_id)
     if not os.path.isdir(session_dir):
         os.makedirs(session_dir)
@@ -175,9 +178,9 @@ def save_project(data) -> None:
         json_file.close()
     name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
-    emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id])
+    emit("project-saved", data["world"]["info"]["project_id"], room=users[session_id][tab_id])
     send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
-                         session_id=session_id, crometype="success")
+                         room_id=users[session_id][tab_id], crometype="success")
 
     print("creating environment test")
     Modelling.create_environment(project_dir)
@@ -186,7 +189,6 @@ def save_project(data) -> None:
 
 @socketio.on("save-image")
 def save_image(data) -> None:
-    print("Save image call !")
     img_data = bytes(data["image"], "utf-8")
 
     current_project_image = Path(
@@ -202,7 +204,9 @@ def save_image(data) -> None:
 
 @socketio.on("delete-project")
 def delete_project(data) -> None:
-    current_session_folder = session_path(data["session"])
+    session_id = str(data["session"])
+    tab_id = str(request.args.get("tabId"))
+    current_session_folder = session_path(session_id)
     dir_path, dir_names, filenames = next(walk(current_session_folder))
     i = 1
 
@@ -218,12 +222,15 @@ def delete_project(data) -> None:
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The project has been deleted.",
-                         session_id=data["session"], crometype="success")
+                         room_id=users[session_id][tab_id], crometype="success")
 
 
 @socketio.on("get-goals")
 def get_goals(data) -> None:
-    goals_folder = goals_path(data["session"], data["project"])
+
+    session_id = str(data["session"])
+    tab_id = str(request.args.get("tabId"))
+    goals_folder = goals_path(session_id, data["project"])
 
     """Retrieving files"""
     if os.path.isdir(goals_folder):
@@ -239,24 +246,26 @@ def get_goals(data) -> None:
                 json_str = json.dumps(json_obj)
                 list_of_goals.append(json_str)
 
-        emit("receive-goals", list_of_goals, room=request.sid)
+        emit("receive-goals", list_of_goals, room=users[session_id][tab_id])
 
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
     project_id = data["projectId"]
+    session_id = str(data["session"])
+    tab_id = str(request.args.get("tabId"))
     is_simple = str(project_id) == "simple"
     if is_simple:
-        project_id = copy_simple(data["session"])
+        project_id = copy_simple(session_id)
 
-    goals_dir = goals_path(data["session"], project_id)
+    goals_dir = goals_path(session_id, project_id)
     print(data["goal"])
     if "id" not in data["goal"]:
         dir_path, dir_names, filenames = next(walk(goals_dir))
         greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
         greatest_id += 1
         data["goal"]["id"] = (
-                data["session"] + "-" + project_id + "-" + str(greatest_id).zfill(4)
+                session_id + "-" + project_id + "-" + str(greatest_id).zfill(4)
         )
         filename = str(greatest_id).zfill(4) + ".json"
         data["goal"]["filename"] = filename
@@ -265,9 +274,9 @@ def add_goal(data) -> None:
     json_file.write(json_formatted)
     json_file.close()
     if is_simple:
-        emit("saving-simple", project_id, room=request.sid)
+        emit("saving-simple", project_id, room=users[session_id][tab_id])
     else:
-        emit("goal-saved", True, room=request.sid)
+        emit("goal-saved", True, room=users[session_id][tab_id])
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]
@@ -281,27 +290,27 @@ def add_goal(data) -> None:
             data["goal"]["id"],
         )
         send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
-                             session_id=data["session"], crometype="success")
+                             room_id=users[session_id][tab_id], crometype="success")
         error_occurrence = False
     except KeyError as keyError:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. Error with the entry of the '
                                                                f'LTL/Pattern \n KeyError : {keyError}',
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
     except SyntaxError:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
                                                                f'for the LTL',
-            room=users[data["session"]]
+            room=users[session_id][tab_id]
         )
     except Exception as e:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. Error unknown : {e}',
-            room=users[data["session"]]
+            room=users[session_id][tab_id]
         )
 
     if error_occurrence:
@@ -309,18 +318,20 @@ def add_goal(data) -> None:
             "send-notification",
             {"crometypes": "error",
              "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
 
 
 @socketio.on("delete-goal")
 def delete_goal(data) -> None:
     project_id = data["project"]
+    session_id = data["session"]
+    tab_id = request.args.get('tabId')
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(data["session"])
 
-    current_goals_folder = goals_path(data["session"], project_id)
+    current_goals_folder = goals_path(session_id, project_id)
     dir_path, dir_names, filenames = next(walk(current_goals_folder))
     i = 0
     for goal_file in filenames:
@@ -332,10 +343,10 @@ def delete_goal(data) -> None:
             os.remove(goal_to_delete)
         i += 1
     if is_simple:
-        emit("deleting-simple", project_id, room=request.sid)
+        emit("deleting-simple", project_id, room=users[session_id][tab_id])
 
     # Now we remove the goal from the .dat file
-    project_folder: Path = project_path(data["session"], project_id)
+    project_folder: Path = project_path(session_id, project_id)
     set_of_goals: set[Goal] = load_goals(str(project_folder))
 
     if set_of_goals is not None:
@@ -349,13 +360,14 @@ def delete_goal(data) -> None:
 
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The goal has been deleted.",
-                         session_id=data["session"], crometype="success")
+                         room_id=users[session_id][tab_id], crometype="success")
 
 
 @socketio.on("check-goals")
 def check_goals(data) -> None:
     session_id: str = data["session"]
     project_id: str = data["project"]
+    tab_id: str = request.args.get("tabId")
     if project_id == "simple":
         return
 
@@ -363,22 +375,19 @@ def check_goals(data) -> None:
     set_of_goals = None
     try:
         set_of_goals = load_goals(str(project_path(session_id, project_id)))
-        print(set_of_goals)
     except Exception:
         emit_warning = True
 
     if set_of_goals is None or set_of_goals == set() or emit_warning:
         send_message_to_user(content="No goals found for the project, please try to recreate them.",
-                             session_id=session_id,
+                             room_id=users[session_id][tab_id],
                              crometype="warning")
 
 
 @socketio.on("get-patterns")
 def get_patterns() -> None:
-    print("Get patterns")
-    print(request.args)
-    print(f'ID {request.args.get("id")}')
-
+    session_id = request.args.get("id")
+    tab_id = request.args.get("tabId")
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
@@ -386,26 +395,29 @@ def get_patterns() -> None:
         robotic_patterns = json.load(json_file)
 
     emit(
-        "receive-patterns", {"robotic": json.dumps(robotic_patterns)}, room=request.sid
+        "receive-patterns", {"robotic": json.dumps(robotic_patterns)}, room=users[session_id][tab_id]
     )
 
 
 @socketio.on("process-goals")
 def process_goals(data) -> None:
     now = time.localtime(time.time())
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
+
     emit(
         "send-notification",
         {"crometypes": "info", "content": strftime("%H:%M:%S", now) + " The CGG is being built"},
-        room=users[data["session"]],
+        room=users[session_id][tab_id],
     )
     emit(
         "send-message",
         strftime("%H:%M:%S", now) + " The CGG is being built",
-        room=users[data["session"]],
+        room=users[session_id][tab_id],
     )
-    emit("cgg-production", True, room=users[data["session"]])
+    emit("cgg-production", True, room=users[session_id][tab_id])
 
-    session = "default" if data["project"] == "simple" else data["session"]
+    session = "default" if data["project"] == "simple" else session_id
     project_folder = project_path(session, data["project"])
 
     if session == "default" and not os.path.exists(
@@ -422,19 +434,19 @@ def process_goals(data) -> None:
             emit(
                 "send-message",
                 "No goals has been saved, please create them correctly",
-                room=users[data["session"]]
+                room=users[session_id][tab_id]
             )
     except DockerException:
         emit(
             "send-message",
             "Error while retrieving the goals, Docker is not start. Please contact an Administrator",
-            room=users[data["session"]]
+            room=users[session_id][tab_id]
         )
     except Exception as e:
         emit(
             "send-message",
             f"Error while retrieving the goals. Error : {e}",
-            room=users[data["session"]]
+            room=users[session_id][tab_id]
         )
     from crome_cgg.goal.exceptions import GoalException
 
@@ -449,17 +461,17 @@ def process_goals(data) -> None:
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
         time.sleep(3)
-        emit("cgg-saved", json_content, room=users[data["session"]])
+        emit("cgg-saved", json_content, room=request.sid)
 
         error_occurrence = False
     except GoalException as e:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + " Cannot build CGG : " + str(e),
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
 
     except UnboundLocalError:
@@ -468,7 +480,7 @@ def process_goals(data) -> None:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + " Exception : " + str(e),
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
 
     if error_occurrence:
@@ -478,65 +490,76 @@ def process_goals(data) -> None:
                 "crometypes": "error",
                 "content": "CGG cannot be built, see console for more info",
             },
-            room=users[data["session"]],
+            room=users[session_id][tab_id],
         )
 
 
 @socketio.on("process-cgg")
 def process_cgg(data) -> None:
+    session_id = request.args.get("id")
+    tab_id = request.args.get("tabId")
     cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
-    emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=users[data["session"]])
+    emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
-    print(data)
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
 
     project_id = data["goals"][0].split("-")[-2]
 
-    Analysis.conjunction(str(project_path(data["session"], project_id)), data["goals"])
+    Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
 
-    emit("operation-complete", True, room=users[data["session"]])
+    emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-composition")
 def composition(data) -> None:
     print("APPLY OPERATION : composition")
-    print(data)
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
 
     project_id = data["goals"][0].split("-")[-2]
 
     Analysis.composition(str(project_path(data["session"], project_id)), data["goals"])
 
-    emit("operation-complete", True, room=users[data["session"]])
+    emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-disjunction")
 def disjunction(data) -> None:
     print("APPLY OPERATION : disjunction")
-    print(data)
-    emit("operation-complete", True, room=users[data["session"]])
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
+
+    emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-refinement")
 def refinement(data) -> None:
     print("APPLY OPERATION : refinement")
-    print(data)
-    emit("operation-complete", True, room=users[data["session"]])
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
+    emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("apply-extension")
 def extension(data) -> None:
     print("APPLY OPERATION : extension")
-    print(data)
-    emit("operation-complete", True, room=users[data["session"]])
+    session_id = data["session"]
+    tab_id = request.args.get("tabId")
+    emit("operation-complete", True, room=users[session_id][tab_id])
 
 
 @socketio.on("session-existing")
-def check_if_session_exist(session_id: str) -> None:
+def check_if_session_exist(data) -> None:
+    session_id = str(data["session"])
+    tab_id = request.args.get("tabId")
+    cookie = str(data["cookie"])
     print("check if following session exists : " + session_id)
     dir_path, dir_names, filenames = next(walk(storage_path))
     found = False
@@ -548,9 +571,10 @@ def check_if_session_exist(session_id: str) -> None:
         found = False
 
     if found:
-        if session_id in users:
+        if session_id in users and cookie != cookies[session_id]:
             found = False
-    emit("receive-answer", found, room=request.sid)
+
+    emit("receive-answer", found, room=users[session_id][tab_id])
 
 
 @socketio.on("disconnect")
@@ -559,14 +583,17 @@ def disconnected() -> None:
     print(request.args)
     print(f'ID {request.args.get("id")}')
 
-    if str(request.args.get("id")) in users:
+    session_id = str(request.args.get("id"))
+    tab_id = str(request.args.get("tabId"))
+
+    if session_id in users and users[session_id] != {}:
         now = time.localtime(time.time())
         emit(
             "send-message",
             f"{strftime('%H:%M:%S', now)} Session {request.args.get('id')} disconnected",
-            room=users[request.args.get("id")]
+            room=users[session_id][tab_id]
         )
-        users.pop(request.args.get("id"))
+        del users[session_id][tab_id]
 
 
 @app.route("/")
@@ -619,16 +646,16 @@ def build_simple_project() -> None:
     Modelling.add_goal(project_dir, "0003.json", "default-simple-0003")
 
 
-def send_message_to_user(content: str, session_id: str, crometype: str) -> None:
+def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
     emit(
         "send-notification",
         {"crometypes": crometype, "content": content},
-        room=users[session_id]
+        room=room_id
     )
     emit(
         "send-message",
         content,
-        room=users[session_id]
+        room=room_id
     )
 
 
