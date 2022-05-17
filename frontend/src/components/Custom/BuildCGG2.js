@@ -8,42 +8,21 @@ function BuildCGG2(props) {
         for (let i = 0; i < props.goals.length; i += 1) {
             if (i === 0)
                 goals.push(<li key={i}
-                               className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
+                               className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer" onClick={() => props.clickOnGoal2(i)}>{props.goals[i].name}</li>)
             else
                 goals.push(<li key={i}
-                               className="border-b-1 text-blueGray-700 text-lg py-1 ">{props.goals[i].name}</li>)
+                               className="border-b-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer" onClick={() => props.clickOnGoal2(i)}>{props.goals[i].name}</li>)
         }
     }
+
     const tmp_libraries = []
     for (let i = 0; i < 1000; i += 1) {
         if (i===0)
-            tmp_libraries.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 ">library_{i}</li>)
+            tmp_libraries.push(<li key={i} className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100">library_{i}</li>)
         else
-            tmp_libraries.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 ">library_{i}</li>)
+            tmp_libraries.push(<li key={i} className="border-b-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100">library_{i}</li>)
     }
 
-
-    /*return (
-        <>
-            <div className={"lg:w-6/12 xl:w-5/12 ml-12 px-3 max-h-350-px relative flex flex-col min-h-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out"}>
-                <div className="flex-auto p-4 pr-0">
-                    <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                        <span className="font-bold text-xl uppercase text-blueGray-700">Input Goals</span>
-                    </div>
-                </div>
-                <div className="overflow-auto max-h-200-px px-5">
-                    <ul>
-                        {goals}
-                    </ul>
-                </div>
-                <div className="w-full flex absolute bottom-0 justify-center py-4 pr-4">
-                    <Button>Build CGG</Button>
-                </div>
-            </div>
-
-        </>
-
-    );*/
 
     return (
         <div className="w-full lg:w-5/12 xl:w-6/12 flex-col">
@@ -57,7 +36,7 @@ function BuildCGG2(props) {
                         </ul>
                     </div>
                     <div className="flex flex-col m-auto py-2 uppercase">
-                        <Button>Build CGG</Button>
+                        <Button onClick={() => props.callCGG("auto")}>Build CGG</Button>
                     </div>
                 </div>
             </div>

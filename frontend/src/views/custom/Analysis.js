@@ -7,9 +7,7 @@ import {Modal} from "reactstrap";
 import GoalModalView from "../../components/Custom/GoalModalView";
 import CGG from "../../components/Crome/CGG";
 import GetCGG from "../../components/Custom/Examples/GetCGG";
-import BuildCGG from "../../components/Custom/BuildCGG";
 import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
-import IndexCGG from "../../components/Custom/IndexCGG";
 import BuildCGG2 from "../../components/Custom/BuildCGG2";
 
 
@@ -119,6 +117,12 @@ export default class Analysis extends React.Component {
         }
     }
 
+    clickOnGoal2 = (id) => {
+        console.log("wsh")
+        this.setModalGoal(true)
+        this.setCurrentGoalIndex(id)
+    }
+
     addEdges = (edges) => {
         for(let i=0; i<this.state.cggTab['edges'].length; i++) {
             edges.push({"from": this.state.cggTab['edges'][i]["from"], "to": this.state.cggTab['edges'][i]["to"], "arrows": {to: {type: cgginfo.symbols[this.state.cggTab['edges'][i]["link"].toLowerCase()]}}})
@@ -131,14 +135,14 @@ export default class Analysis extends React.Component {
         let that = this
 
 
-        function findGoalById(id) {
+        /*function findGoalById(id) {
             if (that.props.goals !== null) {
                 for (let i = 0; i < that.props.goals.length; i++) {
                     if (that.props.goals[i].id === id) return that.props.goals[i]
                 }
             }
             return {name: "error"}
-        }
+        }*/
 
         function findGoalIndexById(id) {
             if (that.props.goals !== null) {
@@ -149,6 +153,8 @@ export default class Analysis extends React.Component {
                 }
             }
         }
+
+
 
         function clickOnGoal(id) {
             const result = findGoalIndexById(id[0])
@@ -263,21 +269,9 @@ export default class Analysis extends React.Component {
                     trigger={this.state.triggerOperation}
                     setTrigger={this.setTriggerOperation}
                 />
-                {!this.state.cgg && (<IndexCGG callCGG={this.callCGG}/>)}
-                <BuildCGG
-                    infos={cgginfo}
-                    cgg={this.state.cgg}
-                    goals={this.props.goals}
-                    findGoalById={findGoalById}
-                    selectedOperator={this.state.operator}
-                    setOperator={this.setOperator}
-                    selectedGoals={this.state.selectedGoals}
-                    updateSelectedGoals={this.setSelectedGoals}
-                    selectedLibrary={this.state.selectedLibrary}
-                    setLibrary={this.setLibrary}
-                    applyOperator={this.applyOperator}/>
+
                 {this.state.cgg && (<>
-                    <div className="flex flex-auto">
+                    <div className="flex flex-auto mt-4">
                         <CGG
                             active={this.props.active}
                             graph={graph}
@@ -285,34 +279,37 @@ export default class Analysis extends React.Component {
                             events={events}
                         />
                         <BuildCGG2
-                            infos={cgginfo}
-                            cgg={this.state.cgg}
+                            callCGG={this.callCGG}
+                            clickOnGoal2={this.clickOnGoal2}
                             goals={this.props.goals}
                         />
                     </div>
 
-                    <Modal
-                        isOpen={this.state.modalGoal}
-                        toggle={() => this.setModalGoal(false)}
-                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                        {this.props.goals !== null && this.props.goals[this.state.currentGoalIndex] !== undefined && (
-                            <GoalModalView
-                                goal={this.props.goals[this.state.currentGoalIndex]}
-                                close={() => this.setModalGoal(false)}
-                                patterns={this.props.patterns}
-                                {...goaleditinfo}/>
-                        )}
-                    </Modal></>)}
+                    </>)}
                 {!this.state.cgg && (<>
-                    <div className="flex flex-auto">
+                    <div className="flex flex-auto mt-4">
                         <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md" style={{width : 750, height : 750}}>
                         </div>
                         <BuildCGG2
+                            callCGG={this.callCGG}
+                            clickOnGoal2={this.clickOnGoal2}
                             goals={this.props.goals}
                         />
                     </div>
 
                 </>)}
+                <Modal
+                    isOpen={this.state.modalGoal}
+                    toggle={() => this.setModalGoal(false)}
+                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                    {this.props.goals !== null && this.props.goals[this.state.currentGoalIndex] !== undefined && (
+                        <GoalModalView
+                            goal={this.props.goals[this.state.currentGoalIndex]}
+                            close={() => this.setModalGoal(false)}
+                            patterns={this.props.patterns}
+                            {...goaleditinfo}/>
+                    )}
+                </Modal>
             </>
         );
     }
