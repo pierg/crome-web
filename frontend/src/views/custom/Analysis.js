@@ -11,11 +11,14 @@ import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
 import BuildCGG2 from "../../components/Custom/BuildCGG2";
 import ReactLoading from "react-loading";
 import LegendCGG from "../../components/Custom/LegendCGG";
+import NodeModalView from "../../components/Custom/NodeModalView";
 
 export default class Analysis extends React.Component {
 
     state = {
         modalGoal: false,
+        modalNode : false,
+        nodeDescription : "",
         currentGoalIndex: 0,
         cgg: false,
         cggTab: null,
@@ -33,9 +36,21 @@ export default class Analysis extends React.Component {
         })
     }
 
+    setModalNode = (bool) => {
+        this.setState({
+            modalNode : bool
+        })
+    }
+
     setCurrentGoalIndex = (id) => {
         this.setState({
             currentGoalIndex: id
+        })
+    }
+
+    setNodeDescription = (str) => {
+        this.setState({
+            nodeDescription: str
         })
     }
 
@@ -130,38 +145,60 @@ export default class Analysis extends React.Component {
         }
     }
 
+    getGeneratedGoals = (id) => {
+        let goals = id.split("/\\")
+        let str = ""
+        if (goals.length===2) {
+            str+="a conjunction link between "
+            str+=this.getGeneratedGoals(goals[0])
+            str+=" and "
+            str+=this.getGeneratedGoals(goals[1])
+        } else {
+            goals = id.split("**")
+            if (goals.length===2) {
+                str+="a composition link between "
+                str+=this.getGeneratedGoals(goals[0])
+                str+=" and "
+                str+=this.getGeneratedGoals(goals[1])
+            } else {
+                goals = id.split("||")
+                if (goals.length===2) {
+                    str+="a refinement link between "
+                    str+=this.getGeneratedGoals(goals[0])
+                    str+=" and "
+                    str+=this.getGeneratedGoals(goals[1])
+                } else {
+                    str += "<strong>"+this.findGoalIndexById(id).goal.name+"</strong>"
+                }
+            }
+        }
+        return str
+    }
+
+    findGoalIndexById = (id) => {
+        if (this.props.goals !== null) {
+            for (let i = 0; i < this.props.goals.length; i++) {
+                if (this.props.goals[i].id === id) {
+                    return {"index": i, "goal": this.props.goals[i]}
+                }
+            }
+        }
+    }
+
 
     render() {
 
         let that = this
-
-
-        /*function findGoalById(id) {
-            if (that.props.goals !== null) {
-                for (let i = 0; i < that.props.goals.length; i++) {
-                    if (that.props.goals[i].id === id) return that.props.goals[i]
-                }
-            }
-            return {name: "error"}
-        }*/
-
-        function findGoalIndexById(id) {
-            if (that.props.goals !== null) {
-                for (let i = 0; i < that.props.goals.length; i++) {
-                    if (that.props.goals[i].id === id) {
-                        return {"index": i, "goal": that.props.goals[i]}
-                    }
-                }
-            }
-        }
-
-
-
+        
         function clickOnGoal(id) {
-            const result = findGoalIndexById(id[0])
+            const result = that.findGoalIndexById(id[0])
+            console.log(result)
             if (result !== undefined && !result.goal.hasOwnProperty("group")) {
                 that.setModalGoal(true)
                 that.setCurrentGoalIndex(result.index)
+            } else {
+                that.setNodeDescription(that.getGeneratedGoals(id[0]))
+                that.setModalNode(true)
             }
         }
 
@@ -187,7 +224,14 @@ export default class Analysis extends React.Component {
 
         const options = {
             layout: {
-                hierarchical: false
+                improvedLayout: true,
+                hierarchical: {
+                    enabled : true,
+                    sortMethod: 'directed',
+                    direction: 'DU',
+                    shakeTowards: 'roots'
+                }
+
             },
             edges: {
                 color: "#000000",
@@ -247,6 +291,7 @@ export default class Analysis extends React.Component {
 
         const events = {
             doubleClick: function (event) {
+                console.log(event)
                 if (event.nodes.length !== 0) clickOnGoal(event.nodes)
             }
         };
@@ -285,7 +330,17 @@ export default class Analysis extends React.Component {
                         />
                         <LegendCGG/>
                     </div>
-
+                    <Modal
+                        isOpen={this.state.modalNode}
+                        toggle={() => this.setModalNode(false)}
+                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                        {this.props.goals !== null && this.state.nodeDescription && (<>
+                            <NodeModalView
+                                node={this.state.nodeDescription}
+                                close={() => this.setModalNode(false)}
+                                {...goaleditinfo}/>
+                        </>)}
+                    </Modal>
                     </>)}
                 {!this.state.cgg && (<>
                     <div className="flex flex-auto mt-4">
