@@ -52,7 +52,7 @@ const textProps = {
         },
         buildYourEnvironment:{
             text: "Build your environment",
-            color: "blue",
+            color: "facebook",
             icon: "fas fa-long-arrow-alt-right"
         }
     },
