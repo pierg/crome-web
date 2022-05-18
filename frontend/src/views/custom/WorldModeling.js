@@ -6,6 +6,8 @@ import WorldView from "../../components/Custom/WorldView";
 import {Link} from "react-router-dom";
 import SocketIoProjects from "../../components/Custom/Examples/GetProjects";
 import {Button, Modal, ModalFooter} from "reactstrap";
+import ElementsButton from "../../components/Elements/Button";
+import createenvironment from "../../_texts/custom/createenvironment";
 
 export default class WorldModeling extends React.Component {
 
@@ -202,14 +204,20 @@ export default class WorldModeling extends React.Component {
 }
 
 const ParentComponent = props => (
-    <section className="mt-5 mt-xl-2 pt-2 relative">
-        <div className="px-4 md:px-10 mx-auto w-full">
-            <div>
+    <section className="relative">
+
+                <div className="flex px-6 justify-end">
+                    <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
+                <ElementsButton color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
+                    {createenvironment.buttons.buildYourEnvironment.text}
+                  <i className={createenvironment.buttons.buildYourEnvironment.icon+" ml-2"}/>
+                </ElementsButton>
+            </Link>
+                </div>
                 <div className="flex flex-wrap justify-center">
                     {props.children}
                 </div>
-            </div>
-        </div>
+
     </section>
 );
 
