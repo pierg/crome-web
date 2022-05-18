@@ -44,7 +44,7 @@ export default function ContractContentEditor({
     <>
       <div>
         <Card className="card-plain">
-          <CardBody className="overflow-x-initial">
+          <CardBody>
             <Table responsive>
               <thead>
                 <tr>
