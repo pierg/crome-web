@@ -1,7 +1,6 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../../assets/styles/tailwind.css";
 import React from "react";
-import AddButton from "../../components/Custom/AddButton";
 import WorldView from "../../components/Custom/WorldView";
 import {Link} from "react-router-dom";
 import SocketIoProjects from "../../components/Custom/Examples/GetProjects";

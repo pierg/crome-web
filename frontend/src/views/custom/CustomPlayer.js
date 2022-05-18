@@ -16,9 +16,6 @@ import Analysis from "./Analysis";
 import Synthesis from "./Synthesis";
 import CustomNavButton from "../../components/Custom/CustomNavButton";
 import { UncontrolledTooltip } from "reactstrap";
-import {Link} from "react-router-dom";
-import Button from "../../components/Elements/Button";
-import createenvironment from "../../_texts/custom/createenvironment";
 
 export default function CustomPlayer({
   world,
