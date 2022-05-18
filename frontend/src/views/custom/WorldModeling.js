@@ -205,15 +205,6 @@ const ParentComponent = props => (
     <section className="mt-5 mt-xl-2 pt-2 relative">
         <div className="px-4 md:px-10 mx-auto w-full">
             <div>
-                <div className="flex justify-center">
-                    <div className="w-full lg:w-6/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out">
-                        <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}><AddButton
-                            statText="Build your Environment"
-                            statIconName="fas fa-plus-square"
-                            statIconColor="text-lightBlue-700"
-                        /></Link>
-                    </div>
-                </div>
                 <div className="flex flex-wrap justify-center">
                     {props.children}
                 </div>

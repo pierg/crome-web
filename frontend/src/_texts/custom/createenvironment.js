@@ -57,6 +57,11 @@ const textProps = {
             text: "Back to Crome",
             color: "white",
             icon: "fas fa-long-arrow-alt-left"
+        },
+        buildYourEnvironment:{
+            text: "Build your environment",
+            color: "blue",
+            icon: "fas fa-long-arrow-alt-right"
         }
     },
     modal: {

@@ -16,6 +16,9 @@ import Analysis from "./Analysis";
 import Synthesis from "./Synthesis";
 import CustomNavButton from "../../components/Custom/CustomNavButton";
 import { UncontrolledTooltip } from "reactstrap";
+import {Link} from "react-router-dom";
+import Button from "../../components/Elements/Button";
+import createenvironment from "../../_texts/custom/createenvironment";
 
 export default function CustomPlayer({
   world,
@@ -123,7 +126,18 @@ export default function CustomPlayer({
         )}
       </div>
       <div className="px-4 md:px-6 mx-auto w-full -mt-24">
-        <div className="mt-12 relative pb-32">
+        <div className="mt-5 relative pb-32">
+        <div className="flex pt-6 px-12 justify-end ">
+            <Link to="/world" className="hover-no-underline">
+                <Button color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
+                    {createenvironment.buttons.buildYourEnvironment.text}
+                  <i className={createenvironment.buttons.buildYourEnvironment.icon+" ml-2"}/>
+                </Button>
+            </Link>
+        </div>
+
+
+
           <div className="relative w-full overflow-hidden">
             <div>
               {items.map((prop, key) => {
