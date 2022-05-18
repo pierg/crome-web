@@ -20,7 +20,7 @@ import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironm
 export default function CustomDashboard(props) {
     const location = useLocation();
     const [id, setId] = useLocalStorage('id');
-    const [cookie, setCookie] = useLocalStorage('cookie')
+    const [cookie] = useLocalStorage('cookie')
     const tabId = sessionStorage.tabID ?
             sessionStorage.tabID :
             sessionStorage.tabID = Math.random();

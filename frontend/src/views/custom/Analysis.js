@@ -149,24 +149,24 @@ export default class Analysis extends React.Component {
         let goals = id.split("/\\")
         let str = ""
         if (goals.length===2) {
-            str+="a conjunction link between "
+            str+="a conjunction link between { "
             str+=this.getGeneratedGoals(goals[0])
             str+=" and "
-            str+=this.getGeneratedGoals(goals[1])
+            str+=this.getGeneratedGoals(goals[1])+" } "
         } else {
             goals = id.split("**")
             if (goals.length===2) {
-                str+="a composition link between "
+                str+="a composition link between { "
                 str+=this.getGeneratedGoals(goals[0])
                 str+=" and "
-                str+=this.getGeneratedGoals(goals[1])
+                str+=this.getGeneratedGoals(goals[1])+" } "
             } else {
                 goals = id.split("||")
                 if (goals.length===2) {
-                    str+="a refinement link between "
+                    str+="a refinement link between { "
                     str+=this.getGeneratedGoals(goals[0])
                     str+=" and "
-                    str+=this.getGeneratedGoals(goals[1])
+                    str+=this.getGeneratedGoals(goals[1])+" } "
                 } else {
                     str += "<strong>"+this.findGoalIndexById(id).goal.name+"</strong>"
                 }

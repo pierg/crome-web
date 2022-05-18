@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from "../Elements/Button";
-import LegendCGG from "./LegendCGG";
 
 function BuildCGG2(props) {
 

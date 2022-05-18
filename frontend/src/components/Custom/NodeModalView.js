@@ -3,7 +3,7 @@ import {Button, ModalFooter} from "reactstrap";
 
 function NodeModalView(props) {
 
-    const [open, setOpen] = React.useState(false)
+    /*const [open, setOpen] = React.useState(false)
 
     const contract = []
 
@@ -11,7 +11,7 @@ function NodeModalView(props) {
       setOpen(bool)
     };
 
-    /*for (const property in props.goal.contract) {
+    for (const property in props.goal.contract) {
         if (props.goal.contract.hasOwnProperty(property)) {
             contract[Object.keys(props.goal.contract).indexOf(property)] = []
             contract[Object.keys(props.goal.contract).indexOf(property)]["title"]=property
