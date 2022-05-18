@@ -10,6 +10,7 @@ import GetCGG from "../../components/Custom/Examples/GetCGG";
 import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
 import BuildCGG2 from "../../components/Custom/BuildCGG2";
 import ReactLoading from "react-loading";
+import LegendCGG from "../../components/Custom/LegendCGG";
 
 export default class Analysis extends React.Component {
 
@@ -270,7 +271,7 @@ export default class Analysis extends React.Component {
                 />
 
                 {this.state.cgg && (<>
-                    <div className="flex flex-auto mt-4">
+                    <div className="relative flex flex-auto mt-4">
                         <CGG
                             active={this.props.active}
                             graph={graph}
@@ -282,6 +283,7 @@ export default class Analysis extends React.Component {
                             clickOnGoal2={this.clickOnGoal2}
                             goals={this.props.goals}
                         />
+                        <LegendCGG/>
                     </div>
 
                     </>)}

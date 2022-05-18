@@ -33,7 +33,7 @@ function LegendCGG() {
                 <circle cx="60" cy="50" r="15" stroke="black" strokeWidth="3"/>
             </svg>
 
-            <span className="font-bold ml-4 uppercase text-blueGray-700">Composition link</span>
+            <span className="font-bold ml-4 uppercase text-blueGray-700">Conjunction link</span>
         </div>
 
 
@@ -43,7 +43,7 @@ function LegendCGG() {
                 <polygon points="40 50, 60 35, 80 50, 60 65"/>
             </svg>
 
-            <span className="font-bold ml-4 uppercase text-blueGray-700">Conjunction link</span>
+            <span className="font-bold ml-4 uppercase text-blueGray-700">Composition link</span>
         </div>
 
 
