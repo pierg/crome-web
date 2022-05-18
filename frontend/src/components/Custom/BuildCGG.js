@@ -1,99 +1,86 @@
 import React from 'react';
-import Checkbox from "../Elements/Checkbox";
-import Radio from "../Elements/Radio";
 import Button from "../Elements/Button";
 
+/**
+ * Create the component printing the goals and libraries and allowing to build the CGG
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function BuildCGG(props) {
 
-    const [infoMessage, setInfoMessage] = React.useState("")
+    const [selectedRow, setSelectedRow] = React.useState(null)
 
-    function changeOperator(operator) {
-        if (operator === "Refinement" || props.selectedOperator === "Refinement") {
-            operator === "Refinement" ? setInfoMessage(props.infos.refinementMessages[0]) : setInfoMessage("")
-            props.updateSelectedGoals([])
-        }
-        if (operator === "Extension" || props.selectedOperator === "Extension") {
-            props.updateSelectedGoals([])
-            props.setLibrary(null)
-        }
-        props.setOperator(operator)
+    function selectLibrary(id, selected) {
+        if (selected)
+            setSelectedRow(id)
+        else
+            setSelectedRow(null)
     }
 
-    /*function changeLibrary(name) {
-        props.setLibrary(name)
-    }*/
-
-    function changeGoals(goal) {
-
-        let tmpSelectedGoals = JSON.parse(JSON.stringify(props.selectedGoals))
-
-        if (props.selectedGoals.includes(goal)) { // Removing a goal
-            if (props.selectedOperator === "Refinement") {
-                setInfoMessage(props.infos.refinementMessages[tmpSelectedGoals.length - 1])
-            }
-            if (props.selectedOperator === "Extension") {
-                setInfoMessage("")
-            }
-            tmpSelectedGoals.splice(tmpSelectedGoals.indexOf(goal), 1)
-            props.updateSelectedGoals(tmpSelectedGoals)
-        }
-        else { // Adding a goal
-            if (props.selectedOperator === "Refinement") {
-                switch (tmpSelectedGoals.length) {
-                    case 0: setInfoMessage(props.infos.refinementMessages[1]); break;
-                    case 1: setInfoMessage(getGoalName(props.selectedGoals[0])+" --> "+getGoalName(goal)); break;
-                    case 2: setInfoMessage(props.infos.refinementMessages[2]); return;
-                    default: break
-                }
-            }
-            if (props.selectedOperator === "Extension" && tmpSelectedGoals.length === 1) {
-                setInfoMessage(props.infos.libraryWarning)
-                return
-            }
-            tmpSelectedGoals.push(goal)
-            props.updateSelectedGoals(tmpSelectedGoals)
+    const goals = []
+    if (props.goals != null) {
+        for (let i = 0; i < props.goals.length; i += 1) {
+            if (i === 0)
+                goals.push(<li key={i}
+                               className="border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer" onClick={() => props.clickOnGoal2(i)}>{props.goals[i].name}</li>)
+            else
+                goals.push(<li key={i}
+                               className="border-b-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer" onClick={() => props.clickOnGoal2(i)}>{props.goals[i].name}</li>)
         }
     }
 
-    function getGoalName(node) {
-        if (node.hasOwnProperty("name")) {
-            return node.name
-        }
-        else {
-            return typeof node === "object" && node.hasOwnProperty("id") ? props.findGoalById(node.id)["name"] : props.findGoalById(node)["name"]
-        }
+    const tmp_libraries = []
+    let libraryClass = ""
+    for (let i = 0; i < 1000; i += 1) {
+        let select = true
+        libraryClass = "border-b-1 text-blueGray-700 text-lg py-1 cursor-pointer"
+        if (i===0) libraryClass += " border-t-1"
+        if (i===selectedRow) {
+            libraryClass += " bg-blueGray-200 hover:bg-blueGray-300"
+            select = false
+            console.log(select)
+        } else
+            libraryClass += "  hover:bg-blueGray-100"
+
+        tmp_libraries.push(<li key={i} className={libraryClass} onClick={() => selectLibrary(i, {select})}>library_{i}</li>)
     }
 
-    return(
-        <>
-            <div className="w-full flex justify-center my-4">
-                {props.infos.operators.map((prop, key) => (
-                    <Radio key={key} label={prop} onChange={() => changeOperator(prop)} checked={props.selectedOperator === prop} name="operator"/>
-                ))}
-            </div>
-            <div className="flex w-full justify-center">
-                {infoMessage}
-            </div>
-            <div className="flex">
-                <div className="w-1/2 flex">
-                    <div className="flex flex-col">
-                        {props.goals !== null && props.goals.map((prop, key) => (
-                            <Checkbox key={key} onChange={() => changeGoals(prop.id)} checked={props.selectedGoals.includes(prop.id) ? "checked" : ""} label={prop.name}/>
-                        ))}
+
+    return (
+        <div className="w-full lg:w-5/12 xl:w-6/12 flex-col">
+             <div className="ml-12 px-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg mb-12">
+                <div className="flex flex-col justify-center p-4 pr-0">
+                    <span className="font-bold text-xl uppercase text-blueGray-700">Input Goals</span>
+
+                    <div className="overflow-auto max-h-200-px pt-3 px-5">
+                        <ul>
+                            {goals}
+                        </ul>
                     </div>
-                    {/*props.selectedOperator === "Extension" && (<div className="flex flex-col">
-                        {props.cgg !== null && props.cgg.libraries.map((prop, key) => ( // TODO change origin of libraries (by putting them not in cgg.json)
-                            <Radio key={key} onChange={() => changeLibrary(prop.name)} checked={props.selectedLibrary === prop.name} label={prop.name}/>
-                        ))}
-                    </div>)*/}
-                </div>
-                <div className="w-1/2 flex justify-center items-center">
-                    <Button onClick={props.applyOperator}>{props.infos.buttonText}</Button>
+                    <div className="flex flex-col m-auto py-2 uppercase">
+                        <Button onClick={() => props.callCGG("auto")}>Build CGG</Button>
+                    </div>
                 </div>
             </div>
-        </>
-    );
+
+            <div className="ml-12 px-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
+                <div className="flex flex-col justify-center p-4 pr-0">
+                    <span className="font-bold text-xl uppercase text-blueGray-700">Libraries</span>
+
+                    <div className="overflow-auto max-h-200-px pt-3 px-5">
+                        <ul>
+                            {tmp_libraries}
+                        </ul>
+                    </div>
+                    <div className="flex flex-col m-auto py-2 uppercase ">
+                        <Button>Map to library</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    )
 }
 
 export default BuildCGG;
-

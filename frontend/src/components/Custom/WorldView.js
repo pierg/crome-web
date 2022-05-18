@@ -9,7 +9,7 @@ function WorldView(props) {
 
     return(
         <>
-            <div onClick={props.onClick} className={"w-full lg:w-4/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex cursor-pointer flex-col min-w-0 break-words border-lightBlue-700 bg-white rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out "
+            <div onClick={props.onClick} className={"w-full lg:w-4/12 xl:w-3/12 mt-8 ml-4 mr-4 pl-3 pr-2 relative flex cursor-pointer flex-col min-w-0 break-words border-lightBlue-700 bg-white rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out "
                 + (props.selected ? "world-border-8" : "world-border-0")}>
                 <div className="flex-auto p-3 pt-4 pr-0">
                     <div className="flex">
@@ -36,7 +36,7 @@ function WorldView(props) {
                                 <Link to="/world" className="hover-no-underline"><div
                                     onClick={() => props.modify(props.number)}
                                     className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer " +
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
                                     }
                                 >
@@ -48,7 +48,7 @@ function WorldView(props) {
                                     onClick={() => props.delete(true, props.number)}
                                     id={"deleteButton"}
                                     className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer " +
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
                                     }
                                 >

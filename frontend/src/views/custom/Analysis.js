@@ -8,11 +8,15 @@ import GoalModalView from "../../components/Custom/GoalModalView";
 import CGG from "../../components/Crome/CGG";
 import GetCGG from "../../components/Custom/Examples/GetCGG";
 import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
-import BuildCGG2 from "../../components/Custom/BuildCGG2";
+import BuildCGG from "../../components/Custom/BuildCGG";
 import ReactLoading from "react-loading";
 import LegendCGG from "../../components/Custom/LegendCGG";
 import NodeModalView from "../../components/Custom/NodeModalView";
 
+/**
+ * The analysis page component
+ * This component allows to generate the cgg
+ */
 export default class Analysis extends React.Component {
 
     state = {
@@ -139,12 +143,18 @@ export default class Analysis extends React.Component {
         this.setCurrentGoalIndex(id)
     }
 
+
     addEdges = (edges) => {
         for(let i=0; i<this.state.cggTab['edges'].length; i++) {
             edges.push({"from": this.state.cggTab['edges'][i]["from"], "to": this.state.cggTab['edges'][i]["to"], "arrows": {to: {type: cgginfo.symbols[this.state.cggTab['edges'][i]["link"].toLowerCase()]}}})
         }
     }
 
+    /**
+     * Create, recursively, the string to print when double-clicking on a generated goal
+     * @param id
+     * @returns {string}
+     */
     getGeneratedGoals = (id) => {
         let goals = id.split("/\\")
         let str = ""
@@ -189,7 +199,11 @@ export default class Analysis extends React.Component {
     render() {
 
         let that = this
-        
+
+        /**
+         * Open the right modal when double-clicking on a goal or a node on the CGG
+         * @param id
+         */
         function clickOnGoal(id) {
             const result = that.findGoalIndexById(id[0])
             console.log(result)
@@ -276,7 +290,7 @@ export default class Analysis extends React.Component {
                     }
                 }
             },
-            height: "750px",
+            height: "725px",
             autoResize: true,
             /*"physics": { // PARAMETERS FOR THE CGG, see documentation for more info
                 "forceAtlas2Based": {
@@ -323,7 +337,7 @@ export default class Analysis extends React.Component {
                             options={options}
                             events={events}
                         />
-                        <BuildCGG2
+                        <BuildCGG
                             callCGG={this.callCGG}
                             clickOnGoal2={this.clickOnGoal2}
                             goals={this.props.goals}
@@ -344,10 +358,10 @@ export default class Analysis extends React.Component {
                     </>)}
                 {!this.state.cgg && (<>
                     <div className="flex flex-auto mt-4">
-                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md flex items-center justify-center" style={{width : 750, height : 750}}>
+                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md flex items-center justify-center" style={{width : 750, height : 725}}>
                             {this.state.triggerCGG && (<ReactLoading type="spinningBubbles" color="#fff" />)}
                         </div>
-                        <BuildCGG2
+                        <BuildCGG
                             callCGG={this.callCGG}
                             clickOnGoal2={this.clickOnGoal2}
                             goals={this.props.goals}
