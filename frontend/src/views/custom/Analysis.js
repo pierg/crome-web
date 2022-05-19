@@ -22,7 +22,9 @@ export default class Analysis extends React.Component {
     state = {
         modalGoal: false,
         modalNode : false,
-        nodeDescription : "",
+        nodeLabel : "",
+        nodeChildren : "",
+        nodeParent : "",
         currentGoalIndex: 0,
         cgg: false,
         cggTab: null,
@@ -31,7 +33,7 @@ export default class Analysis extends React.Component {
         selectedLibrary: null,
         library: null,
         triggerOperation: false,
-        triggerCGG: false,
+        triggerCGG: false
     }
 
     setModalGoal = (bool) => {
@@ -52,9 +54,21 @@ export default class Analysis extends React.Component {
         })
     }
 
-    setNodeDescription = (str) => {
+    setNodeLabel = (str) => {
         this.setState({
-            nodeDescription: str
+            nodeLabel: str
+        })
+    }
+
+    setNodeChildren = (str) => {
+        this.setState({
+            nodeChildren : str
+        })
+    }
+
+    setNodeParent = (str) => {
+        this.setState({
+            nodeParent : str
         })
     }
 
@@ -148,41 +162,82 @@ export default class Analysis extends React.Component {
         for(let i=0; i<this.state.cggTab['edges'].length; i++) {
             edges.push({"from": this.state.cggTab['edges'][i]["from"], "to": this.state.cggTab['edges'][i]["to"], "arrows": {to: {type: cgginfo.symbols[this.state.cggTab['edges'][i]["link"].toLowerCase()]}}})
         }
+
     }
 
     /**
-     * Create, recursively, the string to print when double-clicking on a generated goal
+     * Find the operations and the children concerned of a node
      * @param id
      * @returns {string}
      */
-    getGeneratedGoals = (id) => {
-        let goals = id.split("/\\")
+    getNodeChildren = (nodesArray,id) => {
+        let str = ""
+        let goals1 = id.split("/\\")
+        let goals2 = id.split("**")
+        let goals3 = id.split("||")
+        if (goals1.length===2) {
+            str+="a conjunction link between "
+            str+=this.findNodesIndexById(nodesArray,goals1[0])+" and "
+            str+=this.findNodesIndexById(nodesArray,goals1[1])
+        } else if(goals2.length===2) {
+            str+="a refinement link between "
+            str+=this.findNodesIndexById(nodesArray,goals2[0])+" and "
+            str+=this.findNodesIndexById(nodesArray,goals2[1])
+        } else if(goals3.length===2) {
+            str+="a composition link between "
+            str+=this.findNodesIndexById(nodesArray,goals3[0])+" and "
+            str+=this.findNodesIndexById(nodesArray,goals3[1])
+        }
+        return str
+        /*let goals = id.split("/\\")
         let str = ""
         if (goals.length===2) {
             str+="a conjunction link between { "
-            str+=this.getGeneratedGoals(goals[0])
+            str+=this.getNodeChildren(goals[0])
             str+=" and "
-            str+=this.getGeneratedGoals(goals[1])+" } "
+            str+=this.getNodeChildren(goals[1])+" } "
         } else {
             goals = id.split("**")
             if (goals.length===2) {
-                str+="a composition link between { "
-                str+=this.getGeneratedGoals(goals[0])
+                str+="a refinement link between { "
+                str+=this.getNodeChildren(goals[0])
                 str+=" and "
-                str+=this.getGeneratedGoals(goals[1])+" } "
+                str+=this.getNodeChildren(goals[1])+" } "
             } else {
                 goals = id.split("||")
                 if (goals.length===2) {
-                    str+="a refinement link between { "
-                    str+=this.getGeneratedGoals(goals[0])
+                    str+="a composition link between { "
+                    str+=this.getNodeChildren(goals[0])
                     str+=" and "
-                    str+=this.getGeneratedGoals(goals[1])+" } "
+                    str+=this.getNodeChildren(goals[1])+" } "
                 } else {
                     str += "<strong>"+this.findGoalIndexById(id).goal.name+"</strong>"
                 }
             }
         }
-        return str
+        return str*/
+    }
+
+
+    getNodeParent = (nodesArray,edgesArray,id) => {
+        let str = ""
+        const operations = {"/\\" : "conjunction", "**" : "refinement","||" : "composition"}
+        let goals
+         if (edgesArray !== null) {
+             for (let i = 0; i < edgesArray.length; i++) {
+                if (edgesArray[i].from === id) {
+                    for (const key in operations) {
+                        goals = edgesArray[i].to.split(key)
+                        if (goals.length === 2 && (goals[0]===id || goals[1]===id)) {
+                            str+=operations[key]+" of "+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"\n"
+                        }
+                    }
+                    //goals = edgesArray[i].to.split("/\\")
+                    //if (goals)
+                }
+             }
+         }
+         return str
     }
 
     findGoalIndexById = (id) => {
@@ -195,11 +250,21 @@ export default class Analysis extends React.Component {
         }
     }
 
+    findNodesIndexById = (nodesArray,id) => {
+        if (nodesArray !== null) {
+            for (let i = 0; i < nodesArray.length; i++) {
+                if (nodesArray[i].id === id) {
+                    return nodesArray[i].label
+                }
+            }
+        }
+    }
 
     render() {
 
         let that = this
-
+        let nodesArray = []
+        let edgesArray = []
         /**
          * Open the right modal when double-clicking on a goal or a node on the CGG
          * @param id
@@ -211,13 +276,15 @@ export default class Analysis extends React.Component {
                 that.setModalGoal(true)
                 that.setCurrentGoalIndex(result.index)
             } else {
-                that.setNodeDescription(that.getGeneratedGoals(id[0]))
+                const node = that.findNodesIndexById(nodesArray,id[0])
+                that.setNodeLabel(node)
+                that.setNodeChildren(that.getNodeChildren(nodesArray,id[0]))
+                that.setNodeParent(that.getNodeParent(nodesArray,edgesArray,id[0]))
                 that.setModalNode(true)
             }
         }
 
-        let nodesArray = []
-        let edgesArray = []
+
 
         if (this.state.cgg) {
             // the cgg state is a boolean, true if the cgg has been built
@@ -227,7 +294,10 @@ export default class Analysis extends React.Component {
             this.addCombinedGoal(nodesArray)
 
             this.addEdges(edgesArray)
+
+
         }
+
 
 
         /* DEFINE CGG PARAMETERS PASSED TO CGG COMPONENT */
@@ -348,9 +418,11 @@ export default class Analysis extends React.Component {
                         isOpen={this.state.modalNode}
                         toggle={() => this.setModalNode(false)}
                         className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                        {this.props.goals !== null && this.state.nodeDescription && (<>
+                        {this.props.goals !== null && (<>
                             <NodeModalView
-                                node={this.state.nodeDescription}
+                                nodeChildren={this.state.nodeChildren}
+                                nodeLabel={this.state.nodeLabel}
+                                nodeParent={this.state.nodeParent}
                                 close={() => this.setModalNode(false)}
                                 {...goaleditinfo}/>
                         </>)}
