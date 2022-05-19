@@ -23,7 +23,8 @@ const textProps = {
     componentsList: [
         {
             content: [],
-            title: "Locations"
+            title: "Locations",
+            displayAddWallButton: false
         },
         {
             content: [],

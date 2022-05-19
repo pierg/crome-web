@@ -22,108 +22,34 @@ export default class Synthesis extends React.Component {
     }
 
     state = {
+        started : false,
         table: null,
         running: false
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.world !== null) {
-            this.generateGridworldWithJSON();
+        if (this.props.world !== null && !this.state.started) {
+            this.loadGridworld();
             this.generate();
+            this.setState({
+                started : true
+            })
         }
         if (this.props.active) this.drawRobot()
     }
 
 
-    generateGridworldWithJSON() {
+    loadGridworld() {
         const json = this.props.world.environment
+        this.world = new GridWorld(this.myCanvas.current, json.size.width, json.size.height, {
+                padding: {top: 10, left: 10, right: 10, bottom: 60},
+                resizeCanvas: true,
+                drawBorder: true
+            },this.setModalLocationId);
+
+        //load grid with location colors
         const locations = json.grid.locations;
-
-        let x;
-        let y;
-        this.map = this.buildMap(this.map, (json.size.width / 2));
-        for (let i = 0; i < locations.length; i++) {
-            for (let j = 0; j < locations[i].coordinates.length; j++) {
-                x = locations[i].coordinates[j].x * 2 - 1;
-                y = locations[i].coordinates[j].y * 2 - 1;
-                this.map[x][y] = [locations[i].color, true, locations[i].id];
-
-            }
-        }
-
-        this.displayWall("horizontal", json);
-        this.displayWall("vertical", json);
-        let leftColor;
-        let aboveColor;
-
-        for (let i = 1; i < json.size.width; i++) {
-            for (let j = 1; j < json.size.width; j++) {
-                if (i % 2 !== 1 || j % 2 !== 1) {
-                    this.checkNeighbour(this.map, i, j);
-                }
-            }
-        }
-        for (let i = 2; i < json.size.width; i += 2) {
-            for (let j = 2; j < json.size.width; j += 2) {
-                this.checkNeighbour(this.map, i, j);
-            }
-        }
-        for (let i = 2; i < json.size.width; i += 2) {
-            aboveColor = this.map[i - 1][0][0];
-            if (aboveColor === this.map[i + 1][0][0] && aboveColor !== "white") {
-                this.map[i][0] = this.map[i - 1][0];
-            }
-        }
-        for (let j = 2; j < json.size.width; j += 2) {
-            leftColor = this.map[0][j - 1][0];
-            if (leftColor === this.map[0][j + 1][0] && leftColor !== "white") {
-                this.map[0][j] = this.map[0][j - 1];
-            }
-        }
-        this.world = this.buildGrid(this.myCanvas.current, (json.size.width / 2), this.map);
-    }
-
-    buildMap(map, size) {
-        map = [];
-        for (let i = 0; i < size * 2 + 1; i++) {
-            map[i] = [];
-            for (let j = 0; j < size * 2 + 1; j++) {
-                map[i].push(["white", false, null]);
-            }
-        }
-        return map
-    }
-
-    displayWall(orientation) {
-        const json = this.props.world.environment
-        const wall = json.grid.walls[orientation];
-        let x;
-        let y;
-        let direction1;
-        let direction2;
-        if (orientation === "horizontal") {
-            direction1 = "left";
-            direction2 = "right";
-        }
-        else {
-            direction1 = "up";
-            direction2 = "down";
-        }
-        for (let i = 0; i < wall.length; i++) {
-            x = ((wall[i][direction1].x * 2 - 1) + (wall[i][direction2].x * 2 - 1)) / 2 ;
-            y = ((wall[i][direction1].y * 2 - 1) + (wall[i][direction2].y * 2 - 1)) / 2 ;
-            this.map[x][y] = ["black", true, null];
-        }
-    }
-
-    checkNeighbour(map, i, j) {
-        const aboveColor = this.map[i - 1][j][0];
-        const leftColor = this.map[i][j - 1][0];
-        if (aboveColor === this.map[i + 1][j][0] && aboveColor !== "white") {
-            this.map[i][j] = this.map[i - 1][j];
-        } else if (leftColor === this.map[i][j + 1][0] && leftColor !== "white") {
-            this.map[i][j] = this.map[i][j - 1];
-        }
+        this.world.loadGrid(locations)
     }
 
     /* ROBOT FUNCTIONS */
@@ -216,29 +142,6 @@ export default class Synthesis extends React.Component {
     }
 
     /* ROBOT FUNCTIONS */
-
-
-    buildGrid(canvas, size, map,) {
-        if (map.length === 0) {
-            this.map = this.buildMap(map, size);
-        }
-
-        let world = new GridWorld(canvas, size, size, {
-            padding: {top: 10, left: 10, right: 10, bottom: 60},
-            resizeCanvas: true,
-            drawBorder: true});
-
-        world.onclick = function (node) {
-        }
-        for (let i = 0; i < size * 2 + 1; i++) {
-            for (let j = 0; j < size * 2 + 1; j++) {
-                world.setColorIdBlocked(i, j, map[i][j][0], map[i][j][1], map[i][j][2]);
-            }
-        }
-
-        return world;
-    }
-
     generate() {
         const locations = this.props.world.environment.grid.locations
         const simulation = jsoninfo.simulation;

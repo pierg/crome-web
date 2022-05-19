@@ -1,6 +1,5 @@
 const textProps = {
   colors: [
-      "#0000FF",
       "#FF0000",
       "#8FF484",
       "#FF00FF",

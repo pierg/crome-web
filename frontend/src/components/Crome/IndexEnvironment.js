@@ -1,35 +1,43 @@
-import gridcolors from "_texts/custom/gridcolors.js";
-import createenvironment from "_texts/custom/createenvironment.js";
+import gridcolors from "../../_texts/custom/gridcolors";
 
+function isObjEmpty(obj) {
+    for (let prop in obj) {
+        if (obj.hasOwnProperty(prop)) return false;
+    }
 
-function _n(val, def) {
-  return (typeof val === 'number') ? val : def;
+    return true;
 }
 
 const floor = Math.floor;
-const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
-function Node(x, y, backgroundColor) {
-  this.x = x;
-  this.y = y;
-  this.backgroundColor = backgroundColor || null;
-  this.blocked = false;
+function Location(id, color) {
+  this.id = id;
+  this.color = color;
+  this.neighbour = []
+  this.selected = false
+}
+
+function Node(row, col, backgroundColor) {
+  this.row = row;
+  this.col = col;
+  this.backgroundColor = backgroundColor || "#FFFFFF";
+  this.location = null;
 }
 
 Node.prototype = {
   toString: function() {
-    return "<node x=" + this.x + " y=" + this.y + " blocked=" + this.blocked + ">";
+    return "<node x=" + this.x + " y=" + this.y + " location='"+ this.location +"'>";
   }
 }
 
-function GridWorld(canvas, width, height, options) {
-
+function GridWorld(canvas, width, height, options, setModalLocationId) {
   options = options || {};
 
   this.canvas  = canvas;
   this.ctx     = canvas.getContext('2d');
-  this.width   = floor(width) * 2 ;
-  this.height  = floor(height) * 2 ;
+  this.width   = floor(width);
+  this.height  = floor(height);
+  this.setModalLocationId = setModalLocationId
 
   let padding = options.padding;
 
@@ -44,590 +52,582 @@ function GridWorld(canvas, width, height, options) {
       bottom  : padding,
       left    : padding
     };
-  } else {
+  }
+  else {
     this.padding = padding;
   }
 
-  this.cellSize = _n(options.cellSize, 25);
-  this.cellSizeWall = _n(options.cellSize, 5);
-  this.cellSpacing = _n(options.cellSpacing, 2);
-  this.drawBorder = !!options.drawBorder;
-  this.borderColor = options.borderColor || 'lightgrey';
-  this.backgroundColor = options.backgroundColor || 'white';
-
-  this.nodeDown = undefined;
-  this.countUp = 0;
-  this.drag = false;
-
-  this.locations = new Map()
+  this.cellSize = 50;
+  this.cellSpacing = 2;
+  this.drawBorder = options.drawBorder;
+  this.borderColor = options.borderColor || '#D3D3D3';
+  this.backgroundColor = options.backgroundColor || '#FFFFFF';
 
   if (options.resizeCanvas) {
     let cw = this.padding.left + this.padding.right,
         ch = this.padding.top + this.padding.bottom;
-    cw += ((this.width) * (this.cellSize +  this.cellSizeWall + this.cellSpacing));
-    ch += ((this.height) * (this.cellSize + this.cellSizeWall + this.cellSpacing)) -  2 * this.cellSize;
+
+    cw += ((this.width) * (this.cellSize + this.cellSpacing));
+    ch += ((this.height) * (this.cellSize + this.cellSpacing));
 
     if (this.drawBorder) {
-      cw += (this.cellSpacing * 2);
-      ch += (this.cellSpacing * 2);
+      cw += this.cellSpacing*2;
+      ch += this.cellSpacing*2;
     }
+
     this.canvas.width = cw;
     this.canvas.height = ch;
   }
-  this.nodes = [];
 
-  for (let j = 0; j < this.height + 1; ++j) {
-    for (let i = 0; i < this.width + 1; ++i) {
-      this.nodes.push(new Node( i,j, null));
+  this.nodes = [];
+  for (let row= 0; row < this.height; ++row) {
+    this.nodes[row] = []
+    for (let col = 0; col < this.width; ++col) {
+      this.nodes[row][col] = new Node( row,col, "#FFFFFF")
     }
   }
 
-  //
+  this.locations = []
+  this.colorTable = gridcolors.colors
+  this.isColorTable = new Array(this.colorTable.length).fill(false)
+
+  this.countClick = 0
+
+  this.boolLocWall = true
+
   // Event handling
-  // TODO: support dragging
-
   const self = this;
-
-  this.onclick = options.onclick;
 
   function p2n(x, y) {
     x -= self.padding.left;
     y -= self.padding.top;
 
     if (self.drawBorder) {
-      x -= (self.cellSpacing * 2);
-      y -= (self.cellSpacing * 2);
+      x -= (self.cellSpacing);
+      y -= (self.cellSpacing);
     }
-    let a = 2 * self.cellSpacing + 2 * self.cellSizeWall;
-    const tabX = [a]; // array that gives the pixel from which we change nodes from the x-coordinate
-    const tabY = [a]; // array that gives the pixel from which we change nodes from the y-coordinate
 
-    for (let i = 0; i < self.width; i += 2) {
-      a += 2 * self.cellSize;
-      tabX.push(a);
-      tabY.push(a);
-      a += 2 * self.cellSizeWall + self.cellSpacing;
-      tabX.push(a);
-      tabY.push(a);
-      a += self.cellSpacing;
-    }
-    let indexX = 0;
-    if (x > tabX[0]) {
-      indexX = 1;
-    }
-    while (x >= tabX[indexX] ) { // find out in which interval the clicked pixel is located from the x-coordinate
-      indexX++;
-    }
-    let indexY = 0;
-    if (y > tabY[0]) {
-      indexY = 1;
-    }
-    while (y >= tabY[indexY] ) { // find out in which interval the clicked pixel is located from the y-coordinate
-      indexY++;
-    }
-    if (indexX >= 0 && indexX < self.width + 3 * self.cellSizeWall && indexY >= 0 && indexY < self.height + 3 * self.cellSizeWall) { // associates the clicked pixel with a node
-      return self.nodes[(indexY * (self.width + 1)) + indexX];
+    x = floor((x-((x/self.cellSize)*self.cellSpacing))/self.cellSize)
+    y = floor((y-((y/self.cellSize)*self.cellSpacing))/self.cellSize)
+
+    if(x >= 0  &&  x < self.width  &&  y >= 0  &&  y  < self.height) {
+      return self.nodes[y][x]
     }
     else {
-      return null;
+      return null
     }
   }
 
+
   canvas.addEventListener('mousedown', function(evt) {
-    if (!self.onclick) {
-      return;
-    }
+    if(self.boolLocWall) {//manage location
+      if (!self.onclick) {
+        return;
+      }
 
-    const node = p2n(evt.offsetX, evt.offsetY);
+      const node = p2n(evt.offsetX, evt.offsetY);
 
-    if(!(node.y%2 === 0  &&  node.x%2 === 0)) {
-      self.drag = true
-      if(!self.nodeDown) {
-        if (node) {
-          self.nodeDown = node
-          self.onclick(node);
+      if (node) { // check if click in on the map
+        if(!isObjEmpty(self.getStart())) {//zone complete with 2 clicks
+          self.countClick = 0
         }
+        else {//first click
+          self.countClick = 1
+        }
+        self.onclick(node);
       }
     }
   });
 
   canvas.addEventListener('mouseup', function(evt) {
-    if (!self.onclick) {
-      return;
-    }
-
-    const node = p2n(evt.offsetX, evt.offsetY);
-
-    self.drag = false
-
-    if(node) {
-      if(node.y%2 === 0  &&  node.x%2 === 0  &&  self.countUp === 0) {
-        self.restoreColorNode()
+    if(self.boolLocWall) {//manage location
+      if (!self.onclick) {
+        return;
       }
-      else {
-        if(self.nodeDown !== node  ||  self.countUp === 1) {
-          self.nodeDown = undefined
 
-          self.restoreColorNode()
+      const node = p2n(evt.offsetX, evt.offsetY);
 
-          self.countUp = 0
+      if (node  &&  !isObjEmpty(self.getStart())) { // check if click in on the map
+        let start = self.getStart()
+        if(self.countClick > 0  &&  !(start.row === node.row  &&  start.col === node.col)) { //zone complete with drag and drop
+          self.countClick = 0
           self.onclick(node);
         }
-        else {
-            self.countUp = 1
-          }
+        else {//first click on the same bloc
+          self.countClick = 2
+        }
       }
     }
-    self.draw()
   });
 
   canvas.addEventListener('mousemove', function(evt) {
-    if(self.drag) {
-      const node = p2n(evt.offsetX, evt.offsetY);
+    if(self.boolLocWall) {//manage location
+      if(self.countClick === 1) {
+        const node = p2n(evt.offsetX, evt.offsetY);
 
-      self.restoreColorNode()
+        if(node) {
+          self.restoreColorNode()
 
-      let minX = node.x
-      let maxX = node.x
-      let minY = node.y
-      let maxY = node.y
-      if(minX < self.nodeDown.x) {
-        maxX = self.nodeDown.x
-      }
-      else {
-        minX = self.nodeDown.x
-      }
-      if(minY < self.nodeDown.y) {
-        maxY = self.nodeDown.y
-      }
-      else {
-        minY = self.nodeDown.y
-      }
-
-      if(self.nodeDown.x%2 === 0) { //vertical border
-        if(self.nodeDown.x === node.x) {
-          if(minY%2 !== 1) {
-            minY++;
-          }
-          if(maxY%2 !== 1) {
-            maxY--;
-          }
-          for(let i=minY ; i<=maxY ; i++) {
-            self.nodes[i*(self.width+1)+node.x].backgroundColor = "lightgray"
-          }
+          self.setEndNode(node.row,node.col)
+          self.setZoneColor("#D3D3D3")
         }
       }
-      else if(self.nodeDown.y%2 === 0) { //horizontal border
-        if(self.nodeDown.y === node.y) {
-          if(minX%2 !== 1) {
-            minX++;
-          }
-          if(maxX%2 !== 1) {
-            maxX--;
-          }
-          for(let i=minX ; i<=maxX ; i++) {
-            self.nodes[node.y*(self.width+1)+i].backgroundColor = "lightgray"
-          }
-        }
-      }
-      else {
-        if(minX%2 !== 1) {
-          minX++;
-        }
-        if(maxX%2 !== 1) {
-          maxX--;
-        }
-        if(minY%2 !== 1) {
-          minY++;
-        }
-        if(maxY%2 !== 1) {
-          maxY--;
-        }
-        for(let i=minX ; i<=maxX ; i++) {
-          for(let j=minY ; j<=maxY ; j++) {
-            self.nodes[j*(self.width+1)+i].backgroundColor = "lightgray"
-          }
-        }
-      }
-
-      self.draw()
     }
   });
+
+  canvas.addEventListener('click', function(evt) {
+    if(!self.boolLocWall) {//manage wall
+      console.log("wall")
+      const node = p2n(evt.offsetX, evt.offsetY);
+
+      if (node) { // check if click in on the map
+        if(node.location !== null) {
+          self.selectLocation(node)
+        }
+      }
+    }
+  });
+
+  this.draw()
 }
 
-let idTable = []
-let colorTable = gridcolors.colors
-let isColorTable = new Array(colorTable.length).fill(false)
-let start =[]
-let end =[]
-let startWall =[]
-let endWall =[]
-let previousColorWall
-let previousStartColor
-let clickedNode = {x: false, y: false}
-let previousColorArray = [];
+let startNode = {}
+let endNode = {}
 
 GridWorld.prototype = {
-  draw: function() {
-    let csz = this.cellSize,
-        csz2 = this.cellSizeWall,
-        csp = this.cellSpacing,
-        ctx = this.ctx,
-        ix = 0;
 
-    const bAdj = this.drawBorder ? this.cellSpacing : -this.cellSpacing,
-        cAdj = this.drawBorder ? this.cellSpacing : 0;
+  loadGrid: function(loadLocations) {
+    for(let i=0; i<loadLocations.length; i++) {
+      //add location (id and color)
+      this.locations.push(new Location(loadLocations[i].id,loadLocations[i].color))
 
-    ctx.save();
-    ctx.fillStyle = this.borderColor;
-    ctx.fillRect(this.padding.left,
-        this.padding.top,
-        (( csz + csz2 + csp) * this.width) + 2 *csz2 + 2 * csp + bAdj,
-        ((csz + csz2 + csp) * this.height) + 2 *csz2 + 2 * csp + bAdj);
-
-    let cy = this.padding.top + cAdj;
-    for (let j = 0; j < this.height + 1; ++j) {
-      let cx = this.padding.left + cAdj;
-      for (let i = 0; i < this.width + 1; ++i) { // draw a wall and then a cell (size times) each wall or cell represent one node
-        const n = this.nodes[ix++];
-        ctx.fillStyle = n.backgroundColor || this.backgroundColor;
-        if ( j % 2 === 1 ) {
-          cx = this.drawNode(i, ctx, cx, cy, csp, 2 * csz, 2 * csz, 2 * csz2, 2 * csz);
-        }
-        else {
-          cx = this.drawNode(i, ctx, cx, cy, csp, 2 * csz, 2 * csz2, 2 * csz2, 2 * csz2);
-        }
+      //add neighbour of a location
+      for(let j=0; j<loadLocations[i].adjacency.length; j++) {
+        this.locations[i].neighbour.push(loadLocations[i].adjacency[j])
       }
-      if (j % 2 === 1) {
-        cy += 2 * csz + csp;
-      }
-      else {
-        cy += 2 * csz2 + csp;
+
+      //add location in the grid
+      for(let j=0; j<loadLocations[i].coordinates.length; j++) {
+        this.nodes[loadLocations[i].coordinates[j].row][loadLocations[i].coordinates[j].col].backgroundColor = this.locations[i].color
+        this.nodes[loadLocations[i].coordinates[j].row][loadLocations[i].coordinates[j].col].location = this.locations[i].id
       }
     }
-
+    this.draw()
   },
 
-  drawNode(i, ctx, cx, cy, csp, w1, h1, w2, h2) {
-    if (i % 2 === 1) {
-      ctx.fillRect(cx, cy, w1, h1);
-      cx += w1 + csp;
-    }
-    else  {
-      ctx.fillRect(cx, cy,w2, h2);
-      cx += w2 + csp;
-    }
-    return cx;
+  getNodes: function () {
+    return this.nodes;
   },
 
-  get: function(x, y) {
-    return this.nodes[(y * (this.width + 1)) + x];
+  setNodes: function (oldNodes, startRow, endRow, shiftRow, startCol, endCol, shiftCol) {
+    for (let row = startRow; row < endRow; row++) {
+      for (let col = startCol; col < endCol; col++) {
+        this.nodes[row][col].backgroundColor = oldNodes[shiftRow + row][shiftCol + col].backgroundColor
+        this.nodes[row][col].location = oldNodes[shiftRow + row][shiftCol + col].location
+      }
+    }
   },
 
   getStart: function () {
-    return start;
-  },
-  getStartWall: function () {
-    return startWall;
-  },
-  getEnd: function () {
-    return end;
-  },
-  getEndWall: function () {
-    return endWall;
+    return startNode;
   },
 
-  getPreviousStartColor :function () {
-    return previousStartColor;
+  setStartNode: function(row, col) {
+    startNode.row = row
+    startNode.col = col
   },
 
-  getPreviousColorWall :function () {
-    return previousColorWall;
+  setEndNode: function(row, col) {
+    endNode.row = row
+    endNode.col = col
   },
 
-  getBackgroundColor: function(x, y) {
-    return this.nodes[(y *  (this.width + 1)) + x].backgroundColor;
+  resetNode: function() {
+    startNode = {}
+    endNode = {}
   },
 
-  getIdTable : function () {
-    return idTable;
+  setBackgroundColor: function(row, col, color) {
+    this.nodes[row][col].backgroundColor = color;
   },
 
-  setPreviousStartColor: function (color) {
-    previousStartColor = color;
-  },
-
-  setPreviousColorWall: function (color) {
-    previousColorWall = color;
-  },
-
-  setBackgroundColor: function(x, y, color) {
-    this.nodes[(y *  (this.width + 1)) + x].backgroundColor = color;
+  setZoneColor: function(color) {
+    let rowMinMax = this.minMax(startNode.row,endNode.row)
+    let colMinMax = this.minMax(startNode.col,endNode.col)
+    for(let row=rowMinMax[0]; row <= rowMinMax[1]; row++) {
+      for(let col=colMinMax[0]; col <= colMinMax[1]; col++) {
+        this.setBackgroundColor(row,col,color)
+      }
+    }
     this.draw();
   },
 
-  setBackgroundColorWall: function(x, y, previousColorWall) {
-    if (previousColorWall === "black") {
-      this.setColorIdBlocked(x, y, "white", false, null);
-    } else {
-      this.setColorIdBlocked(x, y, "black", true, null);
+  //if color is light gray or gray, restore previous color
+  restoreColorNode : function() {
+    for (let row= 0; row < this.height; ++row) {
+      for (let col = 0; col < this.width; ++col) {
+        if(this.nodes[row][col].backgroundColor === "#D3D3D3"  ||  this.nodes[row][col].backgroundColor === "#808080") {
+          if(this.nodes[row][col].location === null) { //if no location -> white
+            this.setBackgroundColor(row,col,"#FFFFFF")
+          }
+          else { //else bring color location in array locations
+            let index = this.getIndexLocation(this.nodes[row][col].location)
+            if(index !== -1) {
+              this.setBackgroundColor(row,col,this.locations[index].color)
+            }
+          }
+        }
+      }
+    }
+    this.draw();
+  },
+
+  setLocation: function(row, col, location) {
+    let tmpLocation = this.nodes[row][col].location
+    this.nodes[row][col].location = location;
+    if(tmpLocation !== null) {
+      this.checkPresentLocation(tmpLocation)
     }
   },
 
-  setClickedNode: function(x, y) {
-    clickedNode.x = x
-    clickedNode.y = y
+  getNbLocations: function() {
+    return this.locations.length
+  },
+
+  setZoneLocation: function(location) {
+    let rowMinMax = this.minMax(startNode.row,endNode.row)
+    let colMinMax = this.minMax(startNode.col,endNode.col)
+    for(let row=rowMinMax[0]; row <= rowMinMax[1]; row++) {
+      for(let col=colMinMax[0]; col <= colMinMax[1]; col++) {
+        this.setLocation(row,col,location.id)
+        this.setBackgroundColor(row,col,location.color)
+      }
+    }
+    this.draw();
+  },
+
+  getLocations: function() {
+    return this.locations
+  },
+
+  getLocationsSelected: function() {
+    let locations = []
+    for(let i=0; i<this.getNbLocations(); i++) {
+      if(this.locations[i].selected) {
+        locations.push(this.locations[i])
+      }
+    }
+    return locations
+  },
+
+  setLocations: function(locations) {
+    for(let i=0; i<locations.length; i++) {
+      this.locations.push(locations[i])
+      this.checkColor(locations[i].color)
+    }
+  },
+
+  checkPresentLocation : function (location) {
+    let cpt = 0
+    //check if the parameter location is already in the map
+    for(let row=0; row<this.height; row++) {
+      for(let col=0; col < this.width; col++) {
+        if(this.nodes[row][col].location === location) {
+          cpt++
+        }
+      }
+    }
+    if(cpt === 0) {//if location isn't in the map, delete it
+      let index = this.getIndexLocation(location)
+      if(index !== -1) {
+        this.deleteLocationInArray(index)
+      }
+    }
+  },
+
+  addLocation : function(id) {
+    let color = this.askToColor(id)
+    if(color) {
+      if(color[0] < 0) { //if new location, add it in the list
+        this.locations.push(new Location(id,color[1]))
+        color[0] = this.getNbLocations()-1
+      }
+      this.setZoneLocation(this.locations[color[0]])
+      color[0] = this.getIndexLocation(id)
+      this.addLocationNeighbour(this.locations[color[0]])
+    }
+    this.restoreColorNode()
+    this.resetNode()
+  },
+
+  deleteLocation : function(indexLocation) {
+    let id = this.locations[indexLocation].id
+    for(let row=0; row < this.height; row++) {
+      for(let col=0; col < this.width; col++) {
+        if(this.nodes[row][col].location === id) {
+          this.setBackgroundColor(row,col,"#FFFFFF")
+          this.setLocation(row,col,null)
+        }
+      }
+    }
+    this.draw();
+  },
+
+  deleteLocationInArray : function(indexLocation) {
+    if(this.locations[indexLocation] !== undefined) {
+      for (let i = 0; i < this.colorTable.length; i++) {
+        if (this.colorTable[i] === this.locations[indexLocation].color) {
+          this.isColorTable[i] = false
+        }
+      }
+      this.deleteLocationNeighbour(this.locations[indexLocation])
+      for (let i = indexLocation; i < this.locations.length - 1; i++) {
+        this.locations[i] = this.locations[i+1]
+      }
+      this.locations.pop()
+    }
+  },
+
+  deleteLocations() {
+    for(let row=0; row < this.height; row++) {
+      for(let col=0; col < this.width; col++) {
+        this.setBackgroundColor(row,col,"#FFFFFF")
+        this.setLocation(row,col,null)
+      }
+    }
+    this.draw();
+
+    this.resetBackgroundColor()
+    this.resetNode()
+    this.locations = []
+  },
+
+  getIndexLocation : function(idLocation) {
+    for(let i=0; i<this.getNbLocations(); i++) {
+      if(this.locations[i].id === idLocation) {
+        return i
+      }
+    }
+    return -1
+  },
+
+  checkNeighbour : function(locationA,locationB) {
+    for(let row=0; row<this.height; row++) {
+      for (let col = 0; col < this.width; col++) {
+        if(this.nodes[row][col].location === locationA.id) {
+          if(row-1 >= 0) {
+            if(this.nodes[row-1][col].location === locationB.id) {
+              return true
+            }
+          }
+          if(col-1 >= 0) {
+            if(this.nodes[row][col-1].location === locationB.id) {
+              return true
+            }
+          }
+          if(row+1 < this.height) {
+            if(this.nodes[row+1][col].location === locationB.id) {
+              return true
+            }
+          }
+          if(col+1 < this.width) {
+            if(this.nodes[row][col+1].location === locationB.id) {
+              return true
+            }
+          }
+        }
+      }
+    }
+    return false
+  },
+
+  isNeighbour : function(location,neighbour) {
+    for(let i=0; i<location.neighbour.length; i++) {
+      if(location.neighbour[i] === neighbour) {
+        return true
+      }
+    }
+    return false
+  },
+
+  addLocationNeighbour : function(location) {
+    for(let row=0; row<this.height; row++) {
+      for(let col=0; col<this.width; col++) {
+        //if the location is in the node here
+        if(this.nodes[row][col].location === location.id) {
+          if(row-1 >= 0) {
+            //check if current nodes has neighbour on the top
+            if(this.nodes[row-1][col].location !== location.id  &&  this.nodes[row-1][col].location !== null) {
+              //check if the neighbour is already in the list
+              if(!this.isNeighbour(location,this.nodes[row-1][col].location)) {
+                //if not, add neighbour for the current node
+                location.neighbour.push(this.nodes[row-1][col].location)
+                //and add the current node as a neighbour for the other node
+                this.locations[this.getIndexLocation(this.nodes[row-1][col].location)].neighbour.push(location.id)
+              }
+            }
+          }
+          if(col-1 >= 0) {
+            //check if current nodes has neighbour on the left
+            if(this.nodes[row][col-1].location !== location.id  &&  this.nodes[row][col-1].location !== null) {
+              //check if the neighbour is already in the list
+              if(!this.isNeighbour(location,this.nodes[row][col-1].location)) {
+                //if not, add neighbour
+                location.neighbour.push(this.nodes[row][col-1].location)
+                //and add the current node as a neighbour for the other node
+                this.locations[this.getIndexLocation(this.nodes[row][col-1].location)].neighbour.push(location.id)
+              }
+            }
+          }
+          if(row+1 < this.height) {
+            //check if current nodes has neighbour on the bot
+            if(this.nodes[row+1][col].location !== location.id  &&  this.nodes[row+1][col].location !== null) {
+              //check if the neighbour is already in the list
+              if(!this.isNeighbour(location,this.nodes[row+1][col].location)) {
+                //if not, add neighbour
+                location.neighbour.push(this.nodes[row+1][col].location)
+                //and add the current node as a neighbour for the other node
+                this.locations[this.getIndexLocation(this.nodes[row+1][col].location)].neighbour.push(location.id)
+              }
+            }
+          }
+          if(col+1 < this.width) {
+            //check if current nodes has neighbour on the right
+            if(this.nodes[row][col+1].location !== location.id  &&  this.nodes[row][col+1].location !== null) {
+              //check if the neighbour is already in the list
+              if(!this.isNeighbour(location,this.nodes[row][col+1].location)) {
+                //if not, add neighbour
+                location.neighbour.push(this.nodes[row][col+1].location)
+                //and add the current node as a neighbour for the other node
+                this.locations[this.getIndexLocation(this.nodes[row][col+1].location)].neighbour.push(location.id)
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  deleteNeighbour : function(location, neighbour) {
+    for(let i=0; i<location.neighbour.length; i++) {
+      let bool = false
+      if(location.neighbour[i] === neighbour.id) {
+        bool = true
+      }
+      if(bool) {
+        location.neighbour[i] = location.neighbour[i+1]
+      }
+      location.neighbour.pop()
+    }
+  },
+
+  deleteLocationNeighbour : function(location) {
+    for(let i=0; i<location.neighbour.length; i++) {
+      let bool = false
+      let neighbourLoc = this.locations[this.getIndexLocation(location.neighbour[i])]
+      for(let j=0; j<neighbourLoc.neighbour.length-1; j++) {
+        if(neighbourLoc.neighbour[j] === location.id) {
+          bool = true
+        }
+        if(bool) {
+          neighbourLoc.neighbour[j] = neighbourLoc.neighbour[j+1]
+        }
+      }
+      neighbourLoc.neighbour.pop()
+    }
+  },
+
+  resetBackgroundColor: function () {
+    for (let i = 0; i < this.isColorTable.length; i++) {
+      this.isColorTable[i] = false;
+    }
+  },
+
+  checkColor: function (color) {
+    for (let i = 0; i < this.colorTable.length; i++) {
+      if (this.colorTable[i] === color) {
+        this.isColorTable[i] = true;
+      }
+    }
   },
 
   chooseBackgroundColor: function () {
-    for (let i = 0; i < isColorTable.length; i++) {
-      if (isColorTable[i] === false) {
-        isColorTable[i] = true;
-        return colorTable[i];
+    for (let i = 0; i < this.isColorTable.length; i++) {
+      if (this.isColorTable[i] === false) {
+        this.isColorTable[i] = true;
+        return this.colorTable[i];
       }
     }
     return false;
   },
 
-  resetInColorTable() {
-    for (let i = 0; i < isColorTable.length; i++) {
-      isColorTable[i] = false;
-    }
-  },
-
-  setInColorTable(color, bool) {
-    for (let i = 0; i < isColorTable.length; i++) {
-      if (colorTable[i] === color) {
-        isColorTable[i] = bool;
+  checkSameNeighbour: function(id) {
+    let rowMinMax = this.minMax(startNode.row,endNode.row)
+    let colMinMax = this.minMax(startNode.col,endNode.col)
+    for(let row=rowMinMax[0]; row <= rowMinMax[1]; row++) {
+      for(let col=colMinMax[0]; col <= colMinMax[1]; col++) {
+        // lets try all position around the selected zone
+        if(this.nodes[row][col].location === id) {
+          return true
+        }
+        if(row-1 >= 0) {
+          if(this.nodes[row-1][col].location === id) {
+            return true
+          }
+        }
+        if(col-1 >= 0) {
+          if(this.nodes[row][col-1].location === id) {
+            return true
+          }
+        }
+        if(row+1 < this.height) {
+          if(this.nodes[row+1][col].location === id) {
+            return true
+          }
+        }
+        if(col+1 < this.width) {
+          if(this.nodes[row][col+1].location === id) {
+            return true
+          }
+        }
       }
     }
+    return false
   },
 
-  getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  },
-
-  cancelFirstClick() {
-    let limits = this.getLimits()
-
-    for (let i = limits.minX; i < limits.maxX + 1; i += 1) {
-      for (let j = limits.minY; j < limits.maxY + 1; j += 1) {
-        this.setBackgroundColor(i, j, previousColorArray[i][j - limits.minY]);
-      }
-    }
-    this.setBackgroundColor(start[0],start[1], previousStartColor)
-
-    this.reset()
-
-    this.restoreColorNode()
-
-    return this.nodes
-  },
-
-  getLimits(push = true) {
-    let start = this.getStart();
-    let end = this.getEnd();
-
-    if (push) {
-      end.push(clickedNode.x)
-      end.push(clickedNode.y)
-    }
-
-    return {minX: this.min(start[0], end[0])[0],
-            maxX: this.min(start[0], end[0])[1],
-            minY: this.min(start[1], end[1])[0],
-            maxY: this.min(start[1], end[1])[1]}
-  },
-
-  getPreviousColorArray(push = true) {
-    let previousColorArray = [];
-    let limits = this.getLimits()
-    let start = this.getStart();
-
-    for (let i = limits.minX; i < limits.maxX + 1; i += 1) {
-      previousColorArray[i] = [];
-      for (let j = limits.minY; j < limits.maxY + 1; j += 1) {
-        previousColorArray[i].push(this.getBackgroundColor(i, j));
-      }
-    }
-    previousColorArray[start[0]][start[1] - limits.minY] = previousStartColor;
-    return previousColorArray
-  },
-
-  setSelectionInGray() {
-    let limits = this.getLimits(true)
-
-    for (let i = limits.minX; i < limits.maxX + 1; i += 1) {
-      previousColorArray[i] = [];
-      for (let j = limits.minY; j < limits.maxY + 1; j += 1) {
-        previousColorArray[i].push(this.getBackgroundColor(i, j))
-        this.setBackgroundColor(i, j, "#9b9b9b");
-      }
-    }
-  },
-
-  askToColor(id, minX, maxX, maxY, minY, previousColorArray, map, callbackError) {
+  askToColor(id) {
     if (id === null || id === "") {
-      this.cancelFirstClick()
-      this.reset();
+      this.restoreColorNode()
+      this.resetNode()
       return false;
     }
     else {
       let color;
-      let index = this.isID(id);
-      if (index !== false) {
-        color = idTable[index][1];
-      } else {
-        color = this.chooseBackgroundColor();
-      }
-      let newBlock = [];
-      for (let i = minX; i < maxX + 1; i += 1) {
-        for (let j = minY; j < maxY + 1; j += 1) {
-          newBlock.push([id, i, j]);
-        }
-      }
-      if (this.validMap(map, newBlock, color)) {
-        for (let i = minX; i < maxX + 1; i += 1) {
-          for (let j = minY; j < maxY + 1; j += 1) {
-            this.checkNeighbour(i, j, color); //if the cell has already a color, color his neighbors in white except if there is a wall
-            this.setColorIdBlocked(i, j, color, true, id);
+      let index = -1
+      for(let i=0; i<this.getNbLocations(); i++) {
+        if(this.locations[i].id === id) {
+          if(this.checkSameNeighbour(id)) {
+            index = i
+          }
+          else {
+            index = -2
           }
         }
-        this.reset();
-        return [color, id];
       }
-
-      else {
-        this.cancelFirstClick();
-        callbackError(createenvironment.errorMsg.splitLocations)
-        this.reset();
+      if(index === -1) { //new location
+        color = this.chooseBackgroundColor()
+      }
+      else if(index >= 0){ //next to a location who have same name
+        color = this.locations[index].color
+      }
+      else { //error -> same location name but not near
         return false;
       }
+      return [index,color]
     }
   },
 
-  isBlocked: function(x, y) {
-    return this.nodes[(y *  (this.width + 1)) + x].blocked;
-  },
-
-  setBlocked: function(x, y, blocked) {
-    this.nodes[(y *  (this.width + 1)) + x].blocked = !!blocked;
-  },
-
-
-  setAttribute: function(x, y, key, value) {
-    this.nodes[(y * (this.width + 1)) + x][key] = value;
-    if (this.isID(value) === false && this.getBackgroundColor(x,y) !== "white" && this.getBackgroundColor(x,y) !== "black") { // if the value entered by the user has not already been selected, this value is added to the array :idTable
-      idTable.push([value,this.getBackgroundColor(x,y)]);
-    }
-  },
-
-  removeAttribute: function(value) {
-    if (this.isID(value) !== false) {
-      const index = this.isID(value);
-      const color = idTable[index][1];
-      this.setInColorTable(color, false);
-      for (let i = 0; i < this.width; i++) {
-        for (let j = 0; j < this.height; j++) {
-          if (this.getAttribute(i, j, "id") === value) {
-            this.setColorIdBlocked(i, j, "white", false, null);
-          }
-        }
-      }
-      this.clearAttribute(value);
-      this.draw();
-      return true;
-    }
-    return false;
-  },
-
-  isID : function(value) { // checks if an id is in the array : idTable
-       for (let i = 0; i < idTable.length ; i++) {
-          if (idTable[i][0] === value) {
-            return i;
-          }
-       }
-       return false;
-  },
-
-  clearAttribute: function(value) {
-      let index = -1;
-      for (let i = 0; i < idTable.length; i++) {
-        if (idTable[i][0] === value) {
-          index = i;
-        }
-      }
-      let a = idTable[index];
-      idTable[index] = idTable[idTable.length - 1];
-      idTable[idTable.length - 1] = a;
-      idTable.pop();
-  },
-
-  getAttribute: function(x, y, key) {
-     return this.nodes[(y * (this.width + 1)) + x][key];
-  },
-
-  clearAttributeTable: function () {
-    idTable = [];
-    isColorTable = new Array(colorTable.length).fill(false)
-  },
-
-  checkNeighbour: function (i, j, color) {
-    let corner = [];
-    if (this.getBackgroundColor(i, j) !== color) {
-      if (this.getBackgroundColor(i + 1, j) !== color && this.getBackgroundColor(i + 1, j) !== "black" && this.getBackgroundColor(i + 1, j) !== "white") {
-        this.setColorIdBlocked(i + 1, j, "white", false, null);
-        corner.push(i+1);
-
-      }
-      if (this.getBackgroundColor(i - 1, j) !== color && this.getBackgroundColor(i - 1, j) !== "black" && this.getBackgroundColor(i - 1, j) !== "white") {
-        this.setColorIdBlocked(i - 1, j, "white", false, null);
-        corner.push(i-1);
-
-      }
-      if (this.getBackgroundColor(i, j - 1) !== color && this.getBackgroundColor(i, j - 1) !== "black" && this.getBackgroundColor(i, j - 1) !== "white") {
-        this.setColorIdBlocked(i, j - 1, "white", false, null);
-        corner.push(j-1);
-
-      }
-      if (this.getBackgroundColor(i, j + 1) !== color && this.getBackgroundColor(i, j + 1) !== "black" && this.getBackgroundColor(i, j + 1) !== "white") {
-        this.setColorIdBlocked(i, j + 1, "white", false, null);
-        corner.push(j+1);
-      }
-      if (corner.length === 2) {
-        this.setColorIdBlocked(corner[0], corner[1], "white", false, null);
-      }
-      if (corner.length === 4) {
-        this.setColorIdBlocked(corner[0], corner[2], "white", false, null);
-        this.setColorIdBlocked(corner[1], corner[3], "white", false, null);
-        this.setColorIdBlocked(corner[0], corner[3], "white", false, null);
-        this.setColorIdBlocked(corner[1], corner[2], "white", false, null);
-      }
-    }
-  },
-
-  setColorIdBlocked :function(i, j, color, blocked, id) {
-    this.setBackgroundColor(i, j, color); // color the cell with the color choose by the user
-    this.setBlocked(i, j, blocked);
-    if (id !== null) {
-      this.setAttribute(i, j, "id", id); // the cell has a attribute id which have a value of the input of the user
-    }
-    else {
-      this.setAttribute(i, j, "id", "");
-    }
-    this.draw();
-  },
-
-  errorMessage: function(start, previousColor) {
-    this.setBackgroundColor(start[0], start[1], previousColor);
-  },
-
-  min :function(x, y) {
+  minMax :function(x, y) {
     let min;
     let max;
     let answer = [];
@@ -644,143 +644,241 @@ GridWorld.prototype = {
     return answer;
   },
 
-  resetCellWall: function(x1, x2, color1, color2) {
-    this.setBackgroundColor(x1[0], x1[1], color1);
-    if (x2 !== null) {
-      this.setBackgroundColor(x2[0], x2[1], color2);
-    }
-    this.draw();
-    this.reset();
-  },
-
-  reset : function () {
-    start = [];
-    end = [];
-    startWall = [];
-    endWall = [];
-  },
-
-  getListColor: function(map, id) {  // Print the list of cells of a specified id (only cells, not walls)
-    let list = []
-     for (let i = 1; i < map.length; i += 2) {
-      for (let j = 1; j < map[0].length; j += 2) {
-        if (map[i][j][2] === id) {
-          list.push([i, j]);
-        }
-      }
-    }
-    return list
-  },
-
-  coordInArray: function(list, coord) {
-    for (let i = 0; i < list.length; i++) {
-      if (equals(list[i] , coord)) {
-        return true;
-      }
-    }
-    return false
-  },
-
-  validColor: function(map, id, newBlock) {
-    let list = this.getListColor(map, id);
-    if (list.length !== 0) {
-      for (let i = 0; i < newBlock.length; i++) {
-        if (this.coordInArray(list, [newBlock[i][1], newBlock[i][2]])) {
-          return true;
-        }
-      }
-      return false;
-    }
-    return true;
-  },
-
-  valid: function(list, coord) {
-    if (equals(list[list.length - 1], coord)) {
-      return 1;
-    }
-    else if (this.coordInArray(list, coord)) {
-      return this.valid(list, [coord[0] + 2, coord[1]]) + this.valid(list, [coord[0], coord[1] + 2]);
+  onclick: function(node) {
+    let start = this.getStart();
+    if (!isObjEmpty(start)) {
+      this.setEndNode(node.row, node.col)
+      this.setZoneColor("#808080");
+      this.setModalLocationId(true)
     }
     else {
-      return 0;
+      this.setStartNode(node.row, node.col)
+      this.setBackgroundColor(node.row, node.col, "#D3D3D3");
+      this.draw();
     }
   },
 
-  validColorSplit: function(map, id) {
-    let list = this.getListColor(map, id);
-    return this.valid(list, list[0]) >= 1;
+  triggerWall: function() {
+    this.restoreColorNode()
+    this.resetNode()
+    this.boolLocWall = !this.boolLocWall
+    this.draw()
   },
 
-  validMap: function(map, newBlock, color) {
-    if (!this.validColor(map, newBlock[0][0], newBlock)) {
-      return false;
-    }
-    let map2 = []
-    for(let i = 0; i < map.length; ++i) {
-      map2[i] = [];
-      for(let j = 0; j < map[0].length; ++j) {
-        map2[i].push([map[i][j][0],map[i][j][1], map[i][j][2]]);
-      }
-    }
-
-    for (let i = 0; i < newBlock.length; i++) {
-      map2[newBlock[i][1]][newBlock[i][2]] = [color, true, newBlock[i][0]];
-    }
-    for (let i = 0; i < idTable.length; i++) {
-      if (!this.validColorSplit(map2, idTable[i][0])) {
-        return false;
-      }
-    }
-    return true;
-  },
-
-  actualiseIsColorTable : function () {
-    for (let i = 0; i < idTable.length; i++) {
-      const color = idTable[i][1];
-      const index = colorTable.indexOf(color);
-      isColorTable[index] = true;
-    }
-  },
-
-  drawCorner : function(map) {
-    for (let i = 2; i < map.length - 1; i+= 2) {
-      for (let j= 2; j < map.length - 1; j+= 2) {
-        if ((map[i - 1][j][0] === "black" || map[i + 1][j][0] === "black") && (map[i][j - 1][0] === "black" || map[i][j + 1][0] === "black")) {
-          this.setColorIdBlocked(i, j, "black", true, null);
+  selectLocation: function(node) {
+    let indexLocation = this.getIndexLocation(node.location)
+    this.locations[indexLocation].selected = !this.locations[indexLocation].selected
+    let locationsSelected = this.getLocationsSelected()
+    if(locationsSelected.length > 1) {
+      if(this.checkNeighbour(locationsSelected[0],locationsSelected[1])) { //if locations are near
+        if(this.isNeighbour(locationsSelected[0],locationsSelected[1].id)) { //if neighbour delete
+          this.deleteNeighbour(locationsSelected[0],locationsSelected[1])
+          this.deleteNeighbour(locationsSelected[1],locationsSelected[0])
+        }
+        else {//if not neighbour, add
+          locationsSelected[0].neighbour.push(locationsSelected[1].id)
+          locationsSelected[1].neighbour.push(locationsSelected[0].id)
         }
       }
+      locationsSelected[0].selected = !locationsSelected[0].selected
+      locationsSelected[1].selected = !locationsSelected[1].selected
     }
+    this.draw()
   },
 
-  updateMap : function(map) {
-    for (let i = 0; i < map.length; i++) {
-      for (let j = 0; j < map[0].length; j++) {
-        map[i][j] = [this.getBackgroundColor(i, j), this.isBlocked(i, j), this.getAttribute(i, j, "id")];
+  clearMsgMode() {
+    this.boolLocWall = 1
+  },
+
+  draw: function() {
+    let ctx = this.ctx
+    let csz = this.cellSize
+    let csp = this.cellSpacing
+
+    const bAdj = this.drawBorder ? this.cellSpacing : -this.cellSpacing,
+        cAdj = this.drawBorder ? this.cellSpacing : 0;
+
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    ctx.save()
+    ctx.fillStyle = this.borderColor;
+    ctx.fillRect(this.padding.left,
+                  this.padding.top,
+              ((csz + csp) * this.width) + bAdj,
+              ((csz + csp) * this.height) + bAdj);
+
+    let cy = this.padding.top + cAdj;
+    for (let row= 0; row < this.height; ++row) {
+      let cx = this.padding.left + cAdj;
+      for (let col = 0; col < this.width; ++col) {
+        // draw a cell (size times) each cell represent one node
+        ctx.filter = "brightness(100%)";
+        ctx.fillStyle = this.nodes[row][col].backgroundColor || this.backgroundColor;
+        if(ctx.fillStyle !== "#ffffff") {
+          //change luminosity if location is selected (for wall)
+          if(this.nodes[row][col].location !== null) {
+            if(this.locations[this.getIndexLocation(this.nodes[row][col].location)].selected) {
+              ctx.filter = "brightness(50%)";
+            }
+            //draw wall between cells
+            this.drawWall(ctx, cx, cy, csz, csp, row, col)
+          }
+          //draw border and corner between cells (same location)
+          this.drawBorderLocation(ctx, cx, cy, csz, csp, row, col)
+        }
+        this.drawNode(ctx, cx, cy, csz);
+        cx += csz + csp;
+      }
+      cy += csz + csp;
+    }
+
+    //draw name location
+    for(let i=0; i<this.getNbLocations(); i++) {
+      let tmpArea = []
+      let maxArea = [-1,-1,-1]
+      for (let row= 0; row < this.height; ++row) {
+        for (let col = 0; col < this.width; ++col) {
+          if(this.nodes[row][col].location === this.locations[i].id) {
+            tmpArea = this.getAreaFromACell(row,col)
+            if(tmpArea[2] > maxArea[2]) {
+              maxArea = tmpArea
+            }
+          }
+        }
+      }
+      ctx.font = "30px Arial";
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#000000"
+      let x = csp+this.padding.left
+      let y = csp+this.padding.top
+      x += maxArea[1]*(csp+csz)
+      y += maxArea[0]*(csp+csz)
+      x += (maxArea[3]*(csp+csz))/2
+      y += (maxArea[4]*(csp+csz))/2
+      ctx.fillText(this.locations[i].id,x,y)
+    }
+
+    //write mode (location or wall)
+    if(this.boolLocWall !== 1) {//display msg only if we don't want to take a screenshot
+      let x = csp+this.padding.left
+      let y = csp+this.padding.top
+      x += (this.width*csz)/2
+      y += this.height*csz+this.padding.bottom/2
+      ctx.font = "20px Arial";
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#000000"
+      if(this.boolLocWall) {
+        ctx.fillText("Location mode",x,y)
+      }
+      else {
+        ctx.fillText("Wall mode",x,y)
       }
     }
   },
 
-  addLocation : function(location) {
-    this.locations.set(location[1],location[0])
+  drawNode(ctx, cx, cy, size) {
+    ctx.fillRect(cx, cy, size, size);
   },
 
-  delLocation : function(location) {
-    this.locations.delete(location)
+  drawBorderLocation(ctx, cx, cy, size, csp, row, col) {
+    let cpt = 0
+    if(row-1 >= 0) {//border top
+      if(this.nodes[row-1][col].backgroundColor === ctx.fillStyle.toUpperCase()) {
+        ctx.fillRect(cx, cy-csp, size, csp);
+        cpt++
+      }
+    }
+    if(col-1 >= 0) {//border left
+      if(this.nodes[row][col-1].backgroundColor === ctx.fillStyle.toUpperCase()) {
+        ctx.fillRect(cx-csp, cy, csp, size);
+        cpt++
+      }
+    }
+    if(cpt === 2) {//corner top left if node top left has same color
+      if(this.nodes[row-1][col-1].backgroundColor === ctx.fillStyle.toUpperCase()) {
+        ctx.fillRect(cx-csp, cy-csp, csp, csp);
+      }
+      cpt = 0
+    }
   },
 
-  restoreColorNode : function() {
-    for(let i=0 ; i<this.nodes.length ; i++) {
-      if(this.nodes[i].backgroundColor === "lightgray") {
-        if(this.nodes[i].id !== "") {
-          this.nodes[i].backgroundColor = this.locations.get(this.nodes[i].id)
+  drawWall(ctx, cx, cy, size, csp, row, col) {
+    ctx.fillStyle = "#000000"
+    let currentLocation
+    let cpt = 0
+    if(row-1 >= 0) {//wall top
+      if(this.nodes[row-1][col].location !== null) { //if there is a location on top
+        if(this.nodes[row][col].location !== this.nodes[row-1][col].location) { //if it's a different location
+          currentLocation = this.locations[this.getIndexLocation(this.nodes[row][col].location)]
+          if(!this.isNeighbour(currentLocation,this.nodes[row-1][col].location)) { //if they are not neighbour
+            ctx.fillRect(cx, cy-csp-csp/2, size, csp+csp/2);//print a wall
+            cpt++
+          }
         }
         else {
-          this.nodes[i].backgroundColor = "white"
+          cpt++
         }
       }
     }
-  }
+    if(col-1 >= 0) {//wall left
+      if(this.nodes[row][col-1].location !== null) {//if there is a location on left
+        if(this.nodes[row][col].location !== this.nodes[row][col-1].location) { //if it's a different location
+          currentLocation = this.locations[this.getIndexLocation(this.nodes[row][col].location)]
+          if(!this.isNeighbour(currentLocation,this.nodes[row][col-1].location)) { //if they are not neighbour
+            ctx.fillRect(cx-csp-csp/2, cy, csp+csp/2, size);//print a wall
+            cpt++
+          }
+        }
+        else {
+          cpt++
+        }
+      }
+    }
+    if(cpt === 2) {//corner top left
+      if(this.nodes[row-1][col-1].location !== null) {
+        if(this.nodes[row][col].location !== this.nodes[row-1][col-1].location) {
+          currentLocation = this.locations[this.getIndexLocation(this.nodes[row][col].location)]
+          if(!this.isNeighbour(currentLocation,this.nodes[row-1][col-1].location)) {
+            ctx.fillRect(cx-csp-csp/2, cy-csp-csp/2, csp+csp/2, csp+csp/2);//print a wall
+          }
+        }
+      }
+      cpt = 0
+    }
+    ctx.fillStyle = this.nodes[row][col].backgroundColor
+  },
 
-};
+  getAreaFromACell(startRow, startCol) {
+    let limitCol = this.width
+    let maxArea = -1
+    let maxHeight = -1
+    let maxWidth = -1
+    for(let row=startRow; row<this.height; row++) {
+      if(this.nodes[startRow][startCol].location === this.nodes[row][startCol].location) {
+        for(let col=startCol; col<limitCol; col++) {
+          if(this.nodes[row][startCol].location === this.nodes[row][col].location) {
+            if(maxArea < (row-startRow+1)*(col-startCol+1)) {
+              maxArea = (row-startRow+1)*(col-startCol+1)
+              maxHeight = row-startRow+1
+              maxWidth = col-startCol+1
+            }
+          }
+          else {
+            limitCol = col
+            col = this.width
+          }
+        }
+      }
+      else {
+        row = this.height
+      }
+    }
+
+    return [startRow, startCol, maxArea, maxWidth, maxHeight]
+  },
+
+}
 
 export default GridWorld;

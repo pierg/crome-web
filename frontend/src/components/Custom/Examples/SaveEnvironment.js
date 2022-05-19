@@ -30,6 +30,7 @@ function SocketSaveEnvironment(props) {
                 props.world.info.project_id = props.world.environment.project_id
             }
 
+            console.log("emit socket save-project")
             socket.emit('save-project', {world: props.world})
 
             props.setTrigger(false)
