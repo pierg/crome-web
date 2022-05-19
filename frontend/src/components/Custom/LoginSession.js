@@ -100,7 +100,7 @@ export default function LoginSession({id, onIdSubmit, cookie}) {
                     <Form.Control type="text" className="border-lightBlue-200" ref={idRef} id={"inputSession"} required onChange={() => setErrorMsg("")} placeholder={"Load another session"}/>
                     <span className="text-red-500 text-xs mt-1">{errorMsg}</span>
                 </Form.Group>
-                <div className="flex w-full justify-center">
+                <div className="flex w-full justify-center p-2">
                     <Button onClick={createNewId} color="teal" variant="secondary" type="reset">Reset</Button>
                     <Button type="submit" color="lightBlue" id="loadButton">Load</Button>
                 </div>
