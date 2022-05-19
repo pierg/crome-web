@@ -176,16 +176,16 @@ export default class Analysis extends React.Component {
         let goals3 = id.split("||")
         if (goals1.length===2) {
             str+="a conjunction link between "
-            str+=this.findNodesIndexById(nodesArray,goals1[0])+" and "
-            str+=this.findNodesIndexById(nodesArray,goals1[1])
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[0])+"</strong> and "
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[1])+"</strong>"
         } else if(goals2.length===2) {
             str+="a refinement link between "
-            str+=this.findNodesIndexById(nodesArray,goals2[0])+" and "
-            str+=this.findNodesIndexById(nodesArray,goals2[1])
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[0])+"</strong> and "
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[1])+"</strong>"
         } else if(goals3.length===2) {
             str+="a composition link between "
-            str+=this.findNodesIndexById(nodesArray,goals3[0])+" and "
-            str+=this.findNodesIndexById(nodesArray,goals3[1])
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[0])+"</strong> and "
+            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[1])+"</strong>"
         }
         return str
         /*let goals = id.split("/\\")
@@ -228,7 +228,7 @@ export default class Analysis extends React.Component {
                     for (const key in operations) {
                         goals = edgesArray[i].to.split(key)
                         if (goals.length === 2 && (goals[0]===id || goals[1]===id)) {
-                            str+=operations[key]+" of "+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"\n"
+                            str+=operations[key]+" of <strong>"+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"</strong>\n"
                         }
                     }
                     //goals = edgesArray[i].to.split("/\\")

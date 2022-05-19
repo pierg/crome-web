@@ -88,15 +88,18 @@ export default class WorldModeling extends React.Component {
     downloadWorld = (index) => {
         console.log(index)
         console.log(this.state.worlds[index])
-        const json = JSON.stringify(this.state.worlds[index])
+        const json = JSON.stringify(this.state.worlds[index],null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
         console.log(blob)
         const file = new File([blob], this.state.worlds[index].project_id+".json")
         saveAs(file)
     }
 
-    saveFile = (blob) => {
-
+    buildFileSelector = () => {
+      const fileSelector = document.createElement('input');
+      fileSelector.setAttribute('type', 'file');
+      fileSelector.setAttribute('multiple', 'multiple');
+      return fileSelector;
     }
 
     clearWorld = () => {
@@ -159,6 +162,7 @@ export default class WorldModeling extends React.Component {
 
     render() {
 
+
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
             children.push(<WorldView key={i} number={i}
@@ -219,9 +223,12 @@ export default class WorldModeling extends React.Component {
     }
 }
 
+
+
 const ParentComponent = props => (
     <section className="relative">
         <div className="flex px-6 justify-end">
+
             <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
                 <ElementsButton color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
                     {createenvironment.buttons.buildYourEnvironment.text}
