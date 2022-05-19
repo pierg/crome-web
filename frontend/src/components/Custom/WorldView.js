@@ -19,14 +19,15 @@ function WorldView(props) {
                                     <span className="font-bold text-xl uppercase text-blueGray-700">{props.title}</span>
                                 </div>
                             </div>
-                            <div className="flex flex-col flex-wrap w-full">
+                            {props.description !== "" &&(<div className="flex flex-col flex-wrap w-full">
                                 <div className="relative w-full pr-4 mt-2 mb-2 max-w-full flex-grow flex-1 ">
                                     <span className="text-md text-blueGray-700">
                                         {props.description}
                                     </span>
                                 </div>
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1"/>
-                            </div>
+                            </div>)}
+                            {props.description === "" &&(<div className="flex flex-col h-8 flex-wrap w-full"></div>)}
                             <div className="w-full">
                                 <img src={"data:image/png;base64," + arrayBufferToImage(props.image)} alt={"World"} className="w-full"/>
                             </div>
@@ -55,6 +56,17 @@ function WorldView(props) {
                                     <i className={props.statSecondIconName} id={"deleteIcon"}/>
                                 </div>
                             </div>)}
+                            <div className="relative pl-4 flex mt-auto justify-end flex-initial ">
+                                <div
+                                    onClick={() => props.dowload(props.number)}
+                                    id={"dowloadButton"}
+                                    className={
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer bg-emerald-400"
+                                    }
+                                >
+                                    <i className={props.statDownloadIconName} id={"dowloadIcon"}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col mt-4">

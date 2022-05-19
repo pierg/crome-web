@@ -2,6 +2,7 @@ const textProps = {
     info: {
         goalComponent: {
             editIconName: "fas fa-pen",
+            downloadIconName: "fas fa-arrow-down",
             deleteIconName: "fas fa-trash-alt" ,
             iconColor: "bg-lightBlue-600",
         },

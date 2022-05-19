@@ -7,6 +7,7 @@ import SocketIoProjects from "../../components/Custom/Examples/GetProjects";
 import {Button, Modal, ModalFooter} from "reactstrap";
 import ElementsButton from "../../components/Elements/Button";
 import createenvironment from "../../_texts/custom/createenvironment";
+import { saveAs } from 'file-saver';
 
 export default class WorldModeling extends React.Component {
 
@@ -84,6 +85,20 @@ export default class WorldModeling extends React.Component {
         this.props.setWorld({"environment": this.state.worlds[index], "info": this.state.info[index]})
     }
 
+    downloadWorld = (index) => {
+        console.log(index)
+        console.log(this.state.worlds[index])
+        const json = JSON.stringify(this.state.worlds[index])
+        const blob = new Blob([json], {type : "text/json;charset=utf-8"})
+        console.log(blob)
+        const file = new File([blob], this.state.worlds[index].project_id+".json")
+        saveAs(file)
+    }
+
+    saveFile = (blob) => {
+
+    }
+
     clearWorld = () => {
         this.props.setWorld(null)
     }
@@ -147,16 +162,18 @@ export default class WorldModeling extends React.Component {
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
             children.push(<WorldView key={i} number={i}
-                                    title={this.state.info[i].name}
-                                    description={this.state.info[i].description}
-                                    image={this.state.images[i]}
-                                    statIconName={this.props.info.goalComponent.editIconName}
-                                    statSecondIconName={this.props.info.goalComponent.deleteIconName}
-                                    statIconColor={this.props.info.goalComponent.iconColor}
-                                    selected={this.state.worldSelected === i}
-                                    onClick={(e) => this.selectWorld(i, e.target.id)}
-                                    modify={this.modifyWorld}
-                                    delete={this.setModalDeletionConfirmation}
+                            title={this.state.info[i].name}
+                            description={this.state.info[i].description}
+                            image={this.state.images[i]}
+                            statIconName={this.props.info.goalComponent.editIconName}
+                            statSecondIconName={this.props.info.goalComponent.deleteIconName}
+                            statDownloadIconName={this.props.info.goalComponent.downloadIconName}
+                            statIconColor={this.props.info.goalComponent.iconColor}
+                            selected={this.state.worldSelected === i}
+                            onClick={(e) => this.selectWorld(i, e.target.id)}
+                            modify={this.modifyWorld}
+                            dowload={this.downloadWorld}
+                            delete={this.setModalDeletionConfirmation}
             />);
         }
 
@@ -204,18 +221,17 @@ export default class WorldModeling extends React.Component {
 
 const ParentComponent = props => (
     <section className="relative">
-
-                <div className="flex px-6 justify-end">
-                    <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
+        <div className="flex px-6 justify-end">
+            <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
                 <ElementsButton color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
                     {createenvironment.buttons.buildYourEnvironment.text}
                   <i className={createenvironment.buttons.buildYourEnvironment.icon+" ml-2"}/>
                 </ElementsButton>
             </Link>
-                </div>
-                <div className="flex flex-wrap justify-center">
-                    {props.children}
-                </div>
+        </div>
+        <div className="flex flex-wrap justify-center">
+            {props.children}
+        </div>
 
     </section>
 );
