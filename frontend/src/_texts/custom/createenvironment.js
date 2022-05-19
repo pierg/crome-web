@@ -18,6 +18,14 @@ const textProps = {
                 title: "How to delete a Location?",
                 content: "In the list of locations, click on the cross corresponding to the location you want to delete."
             },
+            {
+                title: "How to put a Wall?",
+                content: "Go to wall mode, click on a location and next, click on a neighbour location. A wall will be built."
+            },
+            {
+                title: "How to delete a Wall?",
+                content: "Go to wall mode, click on 2 locations between which there is a wall. The wall will disappear."
+            },
         ]
     },
     componentsList: [
