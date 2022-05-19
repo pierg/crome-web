@@ -152,7 +152,6 @@ export default class Analysis extends React.Component {
     }
 
     clickOnGoal2 = (id) => {
-        console.log("wsh")
         this.setModalGoal(true)
         this.setCurrentGoalIndex(id)
     }
@@ -445,13 +444,14 @@ export default class Analysis extends React.Component {
                     isOpen={this.state.modalGoal}
                     toggle={() => this.setModalGoal(false)}
                     className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                    {this.props.goals !== null && this.props.goals[this.state.currentGoalIndex] !== undefined && (
+                    {this.props.goals !== null && this.props.goals[this.state.currentGoalIndex] !== undefined && (<>
                         <GoalModalView
                             goal={this.props.goals[this.state.currentGoalIndex]}
+                            library={true}
                             close={() => this.setModalGoal(false)}
                             patterns={this.props.patterns}
                             {...goaleditinfo}/>
-                    )}
+                    </>)}
                 </Modal>
             </>
         );

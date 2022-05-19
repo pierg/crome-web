@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from "../Elements/Checkbox";
 import ContractAccordionItem from "./ContractAccordionItem";
 import {Button, ModalFooter} from "reactstrap";
+import LibraryView from "./LibraryView";
 
 function GoalModalView(props) {
 
@@ -59,6 +60,9 @@ function GoalModalView(props) {
                             </div>
                         </div>
                     </div>
+                    {props.library && (<div className="mt-5">
+                        <LibraryView/>
+                    </div>)}
                 </div>
             </div>
             <ModalFooter>
