@@ -126,7 +126,7 @@
   },
   {
     "name": "PromptReaction",
-    "description": "The occurrence of a stimulus triggers a counteraction promptly, i.e in the next time instant."
+    "description": "The occurrence of a stimulus triggers a counteraction promptly, i.e in the next time instant.",
     "ltl_example": "",
     "arguments": [
       {
