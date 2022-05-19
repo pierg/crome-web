@@ -10,8 +10,10 @@ from pathlib import Path
 from time import strftime
 from typing import Any
 
+from crome_cgg.context.exceptions import ContextException
 from docker.errors import DockerException
 
+from crome_contracts.contract.exceptions import ContractException
 from operations.analysis import Analysis
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
@@ -310,6 +312,13 @@ def add_goal(data) -> None:
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
                                                                f'for the LTL',
+            room=request.sid
+        )
+    except ContextException:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. '
+                                                               f'The contexts are not compatible.',
             room=request.sid
         )
     except Exception as e:

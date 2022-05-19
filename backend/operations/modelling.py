@@ -5,6 +5,8 @@ from pathlib import Path
 import crome_cgg.goal as crome_cgg_goal
 import crome_cgg.world as crome_cgg_world
 from crome_cgg.context import Context
+from crome_cgg.context.exceptions import ContextException
+
 from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import *
 from crome_logic.patterns.robotic_triggers import *
@@ -115,7 +117,6 @@ class Modelling:
         w = load_world(project_folder)
 
         goal_path = Path(os.path.join(project_folder, f"goals/{goal_file}"))
-        json_obj = None
         with open(goal_path) as json_file:
             json_obj = json.load(json_file)
         contract_names = ["assumptions", "guarantees"]
@@ -183,13 +184,28 @@ class Modelling:
                                 _typeset=Typeset(values),
                             ),
                         )
-
+        error = False
         context = Context(_init_formula="TRUE")
         if len(json_obj["context"]) == 1:
             context = w[json_obj["context"][0]]
         elif len(json_obj["context"]) > 1:
+            mutexs_group = []
             for cont in json_obj["context"]:
-                context &= w[cont]
+                mutex = w.typeset[cont].mutex_group
+                if mutex == "":
+                    context &= w[cont]
+                    continue
+                if mutex not in mutexs_group:
+                    mutexs_group.append(mutex)
+                else:
+                    error = True
+                    break
+
+        if error:
+            context_array = []
+            for cont in json_obj["context"]:
+                context_array.append(w[cont])
+            raise ContextException(contexts=set(context_array))
 
         lists_with_and_operators: list[LTL] = []
         for i in range(len(contract_lists)):
@@ -238,4 +254,5 @@ class Modelling:
                 if goal.id != goal_id:
                     new_set_of_goals.add(goal)
             set_of_goals = new_set_of_goals
+
         dump_goals(set_of_goals, project_folder)
