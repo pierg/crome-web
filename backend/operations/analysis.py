@@ -26,7 +26,6 @@ class Analysis:
                 goals_to_compose.add(goal)
 
         new_goal = g_composition(goals_to_compose)
-        print(f"The id of the goal is {new_goal.id}")
         set_of_goals.add(new_goal)
         dump_goals(set_of_goals, project_folder)
 
@@ -51,7 +50,7 @@ class Analysis:
         name = f"{new_goal.id} -- composition of -- {goals_ids}"
         json_content["name"] = name
 
-        # Finally write the content into the new json file
+        # Finally, write the content into the new json file
         json_file = open(os.path.join(goals_dir, f"{json_content['filename']}.json"), "w")
         json_formatted = json.dumps(json_content, indent=4, sort_keys=True)
         json_file.write(json_formatted)
