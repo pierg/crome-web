@@ -601,8 +601,8 @@ def disconnected() -> None:
 
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
-    print(f"users : {users}")
-    if session_id in users and users[session_id] != {}:
+    
+    if session_id in users and tab_id in users[session_id]:
         now = time.localtime(time.time())
         emit(
             "send-message",
