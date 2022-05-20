@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
+import {UncontrolledTooltip} from "reactstrap";
 
 export default function CustomSelect({
   border,
@@ -12,6 +13,7 @@ export default function CustomSelect({
   closeOnSelect,
   placeholder,
   defaultValue,
+  patternDescription,
   changeSelector,
   assumptions,
   key,
@@ -78,10 +80,13 @@ export default function CustomSelect({
       }, 350);
     }
   };
+
+
   return (
     <>
       <div className="mb-2 mt-2 ml-2 pt-0 relative">
         <input
+          id={"tooltipValues"+key}
           value={defaultValue}
           type="text"
           onChange={() => {}}
@@ -91,6 +96,16 @@ export default function CustomSelect({
           size={size}
           className= {inputClasses}
         />
+
+      <UncontrolledTooltip
+          delay={100}
+          placement="right"
+          target={"tooltipValues"+key}
+      >
+        {patternDescription[items.indexOf(defaultValue)]}
+      </UncontrolledTooltip>
+
+
         <div
           ref={popoverDropdownRef}
           className={(menuShow ? "block " : "hidden ") + "z-50"}
