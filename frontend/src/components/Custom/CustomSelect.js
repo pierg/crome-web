@@ -86,7 +86,7 @@ export default function CustomSelect({
     <>
       <div className="mb-2 mt-2 ml-2 pt-0 relative">
         <input
-          id={"tooltipValues"+key}
+
           value={defaultValue}
           type="text"
           onChange={() => {}}
@@ -97,16 +97,10 @@ export default function CustomSelect({
           className= {inputClasses}
         />
 
-      <UncontrolledTooltip
-          delay={100}
-          placement="right"
-          target={"tooltipValues"+key}
-      >
-        {patternDescription[items.indexOf(defaultValue)]}
-      </UncontrolledTooltip>
 
 
         <div
+
           ref={popoverDropdownRef}
           className={(menuShow ? "block " : "hidden ") + "z-50"}
         >
@@ -116,22 +110,37 @@ export default function CustomSelect({
               " absolute opacity-0 border bg-white text-base z-50 float-left p-2 text-left rounded-lg shadow-lg min-w-48 transition-all duration-200 ease-in-out transform scale-95 origin-top-left " +
               transformOrigin
             }
+
           >
             {items.map((prop, key) => {
               if (prop.disabled) {
                 return (
                   <span
-                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
+
+                    className="text-sm pt-12 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
                     key={key}
                   >
                     {prop.text}
+
                   </span>
+
                 );
               } else {
-                return (
+                return (<>
+
+                  <UncontrolledTooltip
+                      key={key+"tooltip"}
+                      delay={100}
+                      placement="right"
+                      target={"dropDownMenu" + key}
+                  >
+                    {patternDescription[items.indexOf(prop)]}
+                  </UncontrolledTooltip>
+
                   <a
                     href="#pablo"
                     key={key}
+                    id={"dropDownMenu"+key}
                     name={name}
                     className={
                       (prop === defaultValue ? "bg-lightBlue-100 " : "") +
@@ -147,6 +156,7 @@ export default function CustomSelect({
                   >
                     {prop}
                   </a>
+                  </>
                 );
               }
             })}
