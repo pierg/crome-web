@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import {Table} from "reactstrap";
+import {Table, UncontrolledTooltip} from "reactstrap";
 import makeStringOf from "hooks/listToStringConversion.js";
 import searchPatterns from "hooks/searchPatterns.js";
 import Switch from "react-bootstrap-switch";
@@ -92,7 +92,7 @@ const ContractAccordionItem = ({
     purple: "text-purple-500 hover:text-purple-700",
     pink: "text-pink-500 hover:text-pink-700",
   };
-  
+
   const childrenTR = [];
   let cpt = 0;
   for (let i = 0; i < contract.length; i += 1) {
@@ -110,16 +110,24 @@ const ContractAccordionItem = ({
       }
       else {
         if(contract[i].content[j].pattern !== undefined) {
-          childrenTR[i].push(
+          childrenTR[i].push(<>
+                            <UncontrolledTooltip
+                      delay={100}
+                      placement="right"
+                      target={"dropDownMenu"}
+                  >
+                              {patterns[j].description}
+              </UncontrolledTooltip>
+
             <tr key={cpt}>
-              <td>
-                <p>{contract[i].content[j].pattern.name}</p>
+              <td className="flex flex-col items-start">
+                <p id={"dropDownMenu"}>{contract[i].content[j].pattern.name}</p>
                 {searchPatterns(contract[i].content[j].pattern, patterns).map((arg, subKey) => (
                   <p key={subKey}>{arg.name+" : "+makeStringOf(arg.value)}</p>
                 ))}
               </td>
             </tr>
-          )
+          </>)
           cpt++
         }
       }
@@ -162,13 +170,19 @@ const ContractAccordionItem = ({
           </div>
           {contract.map((prop, key) => (
             <div key={key} className="text-blueGray-500 px-4 flex-auto leading-relaxed">
+
+
+
+
+
+
               <Table responsive>
                 <thead>
                   <tr>
                     <th className={"title-up font-semibold-important"}>{prop.title}</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody >
                   {childrenTR[key]}
                 </tbody>
               </Table>
