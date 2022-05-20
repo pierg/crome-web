@@ -177,7 +177,6 @@ function GridWorld(canvas, width, height, options, setModalLocationId) {
 
   canvas.addEventListener('click', function(evt) {
     if(!self.boolLocWall) {//manage wall
-      console.log("wall")
       const node = p2n(evt.offsetX, evt.offsetY);
 
       if (node) { // check if click in on the map
@@ -509,8 +508,8 @@ GridWorld.prototype = {
   },
 
   deleteNeighbour : function(location, neighbour) {
+    let bool = false
     for(let i=0; i<location.neighbour.length; i++) {
-      let bool = false
       if(location.neighbour[i] === neighbour.id) {
         bool = true
       }
@@ -811,8 +810,8 @@ GridWorld.prototype = {
       if(this.nodes[row-1][col-1].backgroundColor === ctx.fillStyle.toUpperCase()) {
         ctx.fillRect(cx-csp, cy-csp, csp, csp);
       }
-      cpt = 0
     }
+    cpt = 0
   },
 
   drawWall(ctx, cx, cy, size, csp, row, col) {
@@ -856,8 +855,8 @@ GridWorld.prototype = {
           }
         }
       }
-      cpt = 0
     }
+    cpt = 0
     ctx.fillStyle = this.nodes[row][col].backgroundColor
   },
 
