@@ -12,6 +12,15 @@ function ListBlock(props) {
                     <thead>
                     <tr>
                         <th colSpan={props.colspan} className="title-up text-center">{props.title}</th>
+                        {props.displayAddButton && (
+                            <th className="text-center">
+                                <div>
+                                    <Button size="sm" color="lightBlue" onClick={props.addLine}>
+                                        <i className="fas fa-plus fa-lg"/>
+                                    </Button>
+                                </div>
+                            </th>
+                        )}
                     </tr>
                     </thead>
                     <tbody>
@@ -23,14 +32,6 @@ function ListBlock(props) {
                     <div className="flex flex-col m-auto pb-2">
                         <Button color="lightBlue" onClick={props.addWall}>
                             Add wall
-                        </Button>
-                    </div>
-                )}
-
-                {props.displayAddButton && (
-                    <div className="flex flex-col m-auto pb-2">
-                        <Button color="lightBlue" onClick={props.addLine}>
-                            <i className="text-xl fas fa-plus-square"/>
                         </Button>
                     </div>
                 )}
