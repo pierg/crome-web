@@ -10,10 +10,9 @@ from pathlib import Path
 from time import strftime
 from typing import Any
 
-from crome_cgg.context.exceptions import ContextException
+from crome_cgg.context import ContextException
 from docker.errors import DockerException
 
-from crome_contracts.contract.exceptions import ContractException
 from operations.analysis import Analysis
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
@@ -539,8 +538,10 @@ def composition(data) -> None:
     tab_id = str(request.args.get("tabId"))
 
     project_id = data["goals"][0].split("-")[-2]
-
-    Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
+    try:
+        Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
+    except ContextException:
+        emit("operation-complete", False, room=request.sid)
 
     emit("operation-complete", True, room=request.sid)
 
@@ -676,4 +677,7 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
+    Analysis.composition(str(project_path("a27adebe-269b-45e8-8405-394a6d6f5788", "testproject_891305")),
+                         {"a27adebe-269b-45e8-8405-394a6d6f5788-testproject_891305-0000",
+                          "a27adebe-269b-45e8-8405-394a6d6f5788-testproject_891305-0001"})
     socketio.run(app, host="0.0.0.0")
