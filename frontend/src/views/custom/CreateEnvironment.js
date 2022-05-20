@@ -599,6 +599,9 @@ export default class CreateEnvironment2 extends React.Component {
             if(this.world.getNbLocations() > 1) {
                 this.componentsList[0].displayAddWallButton = true
             }
+            else {
+                this.componentsList[0].displayAddWallButton = false
+            }
         }
 
         for (let k = 1; k < this.state.lists.length; k++) {

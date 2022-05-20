@@ -682,6 +682,7 @@ GridWorld.prototype = {
       }
       locationsSelected[0].selected = !locationsSelected[0].selected
       locationsSelected[1].selected = !locationsSelected[1].selected
+      this.boolLocWall = !this.boolLocWall
     }
     this.draw()
   },
@@ -774,6 +775,16 @@ GridWorld.prototype = {
       }
       else {
         ctx.fillText("Wall mode",x,y)
+      }
+      ctx.font = "12px Arial";
+      if(this.boolLocWall) {
+        ctx.fillText("Click on a first cell, then click on",x,y+17)
+        ctx.fillText("the opposite corner of the location you want.",x,y+29)
+        ctx.fillText("You can also drag and drop",x,y+42)
+      }
+      else {
+        ctx.fillText("Click on a first location, then click on the second location.",x,y+17)
+        ctx.fillText("A wall will appear",x,y+32)
       }
     }
   },
