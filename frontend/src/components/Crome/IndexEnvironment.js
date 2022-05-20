@@ -692,7 +692,6 @@ GridWorld.prototype = {
   },
 
   draw: function() {
-    console.log(this.locations)
     let ctx = this.ctx
     let csz = this.cellSize
     let csp = this.cellSpacing

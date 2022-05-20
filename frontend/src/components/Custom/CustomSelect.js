@@ -16,7 +16,6 @@ export default function CustomSelect({
   patternDescription,
   changeSelector,
   assumptions,
-  key,
   name,
   ...rest
 }) {
@@ -81,7 +80,6 @@ export default function CustomSelect({
     }
   };
 
-
   return (
     <>
       <div className="mb-2 mt-2 ml-2 pt-0 relative">
@@ -116,47 +114,44 @@ export default function CustomSelect({
               if (prop.disabled) {
                 return (
                   <span
-
                     className="text-sm pt-12 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
                     key={key}
                   >
                     {prop.text}
-
                   </span>
-
                 );
               } else {
-                return (<>
-
-                  <UncontrolledTooltip
-                      key={key+"tooltip"}
-                      delay={100}
-                      placement="right"
-                      target={"dropDownMenu" + key}
-                  >
-                    {patternDescription[items.indexOf(prop)]}
-                  </UncontrolledTooltip>
-
-                  <a
-                    href="#pablo"
+                return (
+                  <span
                     key={key}
-                    id={"dropDownMenu"+key}
-                    name={name}
-                    className={
-                      (prop === defaultValue ? "bg-lightBlue-100 " : "") +
-                      "text-sm px-3 py-2 font-normal block w-full whitespace-nowrap transition-all duration-200 hover:bg-blueGray-100 rounded"
-                    }
-                    onClick={(e) => {
-                      e.preventDefault();
-                      changeSelector(e, prop);
-                      if (closeOnSelect) {
-                        startAnimation();
-                      }
-                    }}
                   >
-                    {prop}
-                  </a>
-                  </>
+                    <UncontrolledTooltip
+                        delay={100}
+                        placement="right"
+                        target={"dropDownMenu" + key}
+                    >
+                      {patternDescription[items.indexOf(prop)]}
+                    </UncontrolledTooltip>
+
+                    <a
+                      href="#pablo"
+                      id={"dropDownMenu"+key}
+                      name={name}
+                      className={
+                        (prop === defaultValue ? "bg-lightBlue-100 " : "") +
+                        "text-sm px-3 py-2 font-normal block w-full whitespace-nowrap transition-all duration-200 hover:bg-blueGray-100 rounded"
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        changeSelector(e, prop);
+                        if (closeOnSelect) {
+                          startAnimation();
+                        }
+                      }}
+                    >
+                      {prop}
+                    </a>
+                  </span>
                 );
               }
             })}
