@@ -92,14 +92,13 @@ const ContractAccordionItem = ({
     purple: "text-purple-500 hover:text-purple-700",
     pink: "text-pink-500 hover:text-pink-700",
   };
-
+  
   const childrenTR = [];
   let cpt = 0;
   for (let i = 0; i < contract.length; i += 1) {
     childrenTR[i] = []
     for (let j = 0; j < contract[i].content.length; j += 1) {
       if(toggleLTL) {
-        if(contract[i].content[j].pattern === undefined) {
           childrenTR[i].push(
             <tr key={cpt}>
               <td>
@@ -108,7 +107,6 @@ const ContractAccordionItem = ({
             </tr>
           )
           cpt++
-        }
       }
       else {
         if(contract[i].content[j].pattern !== undefined) {
