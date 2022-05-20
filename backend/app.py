@@ -541,6 +541,7 @@ def composition(data) -> None:
     try:
         Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
     except ContextException:
+        print("Context Exception")
         emit("operation-complete", False, room=request.sid)
 
     emit("operation-complete", True, room=request.sid)
@@ -601,7 +602,7 @@ def disconnected() -> None:
 
     session_id = str(request.args.get("id"))
     tab_id = str(request.args.get("tabId"))
-    
+
     if session_id in users and tab_id in users[session_id]:
         now = time.localtime(time.time())
         emit(
@@ -677,7 +678,4 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
-    Analysis.composition(str(project_path("a27adebe-269b-45e8-8405-394a6d6f5788", "testproject_891305")),
-                         {"a27adebe-269b-45e8-8405-394a6d6f5788-testproject_891305-0000",
-                          "a27adebe-269b-45e8-8405-394a6d6f5788-testproject_891305-0001"})
     socketio.run(app, host="0.0.0.0")

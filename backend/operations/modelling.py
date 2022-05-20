@@ -5,7 +5,7 @@ from pathlib import Path
 import crome_cgg.goal as crome_cgg_goal
 import crome_cgg.world as crome_cgg_world
 from crome_cgg.context import Context
-from crome_cgg.context.exceptions import ContextException
+from crome_cgg.context import ContextException
 
 from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import *
