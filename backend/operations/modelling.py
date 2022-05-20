@@ -186,12 +186,16 @@ class Modelling:
                         )
         error = False
         context = Context(_init_formula="TRUE")
+        typeset_context = Typeset()
         if len(json_obj["context"]) == 1:
-            context = w[json_obj["context"][0]]
+            typeset_context += w.typeset[json_obj['context'][0]]
+            context = Context(_init_formula=w[json_obj["context"][0]].formula,
+                              _typeset=typeset_context)
         elif len(json_obj["context"]) > 1:
             mutexs_group = []
             for cont in json_obj["context"]:
                 mutex = w.typeset[cont].mutex_group
+                typeset_context += w.typeset[cont]
                 if mutex == "":
                     context &= w[cont]
                     continue
