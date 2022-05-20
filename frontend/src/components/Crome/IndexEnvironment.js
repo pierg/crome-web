@@ -199,6 +199,7 @@ GridWorld.prototype = {
     for(let i=0; i<loadLocations.length; i++) {
       //add location (id and color)
       this.locations.push(new Location(loadLocations[i].id,loadLocations[i].color))
+      this.checkColor(loadLocations[i].color)
 
       //add neighbour of a location
       for(let j=0; j<loadLocations[i].adjacency.length; j++) {
@@ -763,8 +764,8 @@ GridWorld.prototype = {
     if(this.boolLocWall !== 1) {//display msg only if we don't want to take a screenshot
       let x = csp+this.padding.left
       let y = csp+this.padding.top
-      x += (this.width*csz)/2
-      y += this.height*csz+this.padding.bottom/2
+      x += (this.width*(csp+csz))/2
+      y += this.height*(csp+csz)+10
       ctx.font = "20px Arial";
       ctx.textBaseline = 'middle';
       ctx.textAlign = "center";

@@ -641,30 +641,27 @@ export default class CreateEnvironment2 extends React.Component {
                             <div>
                                 <div id="body" className="flex justify-center items-center">
                                     <div className="flex container px-4 justify-center">
+                                        <div className="flex justify-center pr-4">
+                                            <Link to="/index" className="hover-no-underline">
+                                                <Button color={createenvironment.buttons.back.color} outline={true}>
+                                                    <i className={createenvironment.buttons.back.icon+" mr-2"}/>
+                                                    {createenvironment.buttons.back.text}
+                                                </Button>
+                                            </Link>
+                                        </div>
                                         <div className="flex justify-center">
-                                            <div className="w-full mt-4">
-                                                <div className="mx-12 my-3 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg ">
-                                                    <div className="flex flex-col pl-1 pt-3 pb-3 inline-block">
-                                                        <Button color="amber" size={"regular"} onClick={this.clearEnvironment}>
-                                                            <i className="text-xl mr-2 fas fa-trash-alt"/>
-                                                            {createenvironment.buttons.clear}
-                                                        </Button>
-                                                        <div className="mt-2"/>
-                                                        <Button color="emerald" size={"regular"} onClick={this.saveInToJSON}>
-                                                            <i className="text-xl mr-2 fas fa-check-square"/>
+                                            <div className="flex flex-col items-center">
+                                                <div className="w-full flex relative h-10">
+                                                    <div className="absolute right-7/100">
+                                                        <Button color="emerald" onClick={this.saveInToJSON}>
+                                                            <i className="mr-2 fas fa-check"/>
                                                             {this.projectId === null ? createenvironment.buttons.save : createenvironment.buttons.update}
                                                         </Button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col items-center">
-                                                <div className="w-full ml-4">
-                                                    <Link to="/index" className="hover-no-underline">
-                                                        <Button color={createenvironment.buttons.back.color} outline={true}>
-                                                            <i className={createenvironment.buttons.back.icon+" mr-2"}/>
-                                                            {createenvironment.buttons.back.text}
+                                                        <Button color="amber" onClick={this.clearEnvironment}>
+                                                            <i className="mr-2 fas fa-trash"/>
+                                                            {createenvironment.buttons.clear}
                                                         </Button>
-                                                    </Link>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <CustomDownload
@@ -688,12 +685,16 @@ export default class CreateEnvironment2 extends React.Component {
                                                     </PopoverBody>
                                                 </UncontrolledPopover>
                                                 <div className="m-4 px-16 pt-2 pb-2 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
-                                                    <span className="font-semibold text-xs mb-1 text-center uppercase text-blueGray-700">
+                                                    <span className="font-semibold text-sm mb-1 text-center uppercase text-blueGray-700">
                                                         {createenvironment.gridSize}
                                                     </span>
-                                                    <div className="flex pl-2">
-                                                        <Button color="red" onClick={() => this.modifyGridSize(-1)}><i className="text-xl fas fa-minus-square"/></Button>
-                                                        <Button color="lightBlue" onClick={() => this.modifyGridSize(1)}><i className="text-xl fas fa-plus-square"/></Button>
+                                                    <div className="text-center">
+                                                        <Button size="sm" color="red" onClick={() => this.modifyGridSize(-1)}>
+                                                            <i className="fas fa-minus"/>
+                                                        </Button>
+                                                        <Button size="sm" color="lightBlue" onClick={() => this.modifyGridSize(1)}>
+                                                            <i className="fas fa-plus"/>
+                                                        </Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -729,7 +730,7 @@ export default class CreateEnvironment2 extends React.Component {
                                                     displayAddButton={prop.displayAddButton === true}
                                                     addLine={() => this.onAddLine(key)}
                                                     content={prop.content}
-                                                    colspan={4}
+                                                    colspan={3}
                                                     title={prop.title}
                                                 />
                                             ))}
