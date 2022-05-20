@@ -199,6 +199,7 @@ GridWorld.prototype = {
     for(let i=0; i<loadLocations.length; i++) {
       //add location (id and color)
       this.locations.push(new Location(loadLocations[i].id,loadLocations[i].color))
+      this.checkColor(loadLocations[i].color)
 
       //add neighbour of a location
       for(let j=0; j<loadLocations[i].adjacency.length; j++) {
