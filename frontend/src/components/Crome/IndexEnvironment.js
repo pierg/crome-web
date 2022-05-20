@@ -517,8 +517,8 @@ GridWorld.prototype = {
       if(bool) {
         location.neighbour[i] = location.neighbour[i+1]
       }
-      location.neighbour.pop()
     }
+    location.neighbour.pop()
   },
 
   deleteLocationNeighbour : function(location) {
@@ -692,6 +692,7 @@ GridWorld.prototype = {
   },
 
   draw: function() {
+    console.log(this.locations)
     let ctx = this.ctx
     let csz = this.cellSize
     let csp = this.cellSpacing

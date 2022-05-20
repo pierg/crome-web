@@ -15,7 +15,7 @@
         ],
         "guarantees": [
             {
-                "ltl_value": "",
+                "ltl_value": "GF(r1 & Fr2) & (!r2 U r1) & G(r2 -> X(!r2 U r1)) & G(r1 -> X(!r1 U r2))",
                 "pattern": {
                     "arguments": [
                         {
@@ -26,7 +26,15 @@
                         }
                     ],
                     "name": "StrictOrderedPatrolling"
-                }
+                },
+                "world_values": [
+                    [],
+                    [],
+                    [
+                        "r1",
+                        "r2"
+                    ]
+                ]
             }
         ]
     },

@@ -111,8 +111,6 @@ export default class CreateEnvironment2 extends React.Component {
         super(props);
         this.test = React.createRef();
         this.saveInToJSON = this.saveInToJSON.bind(this);
-        //this.clearGridworld = this.clearGridworld.bind(this);
-        //this.removeId = this.removeId.bind(this);
         this.world = null;
         this.size = 8;
         this.componentsList = [];
@@ -605,6 +603,7 @@ export default class CreateEnvironment2 extends React.Component {
         }
 
         for (let k = 1; k < this.state.lists.length; k++) {
+            this.componentsList[k].content = []
             for (let i = 0; i < this.state.numChildren[k]; i += 1) {
                 this.componentsList[k].content[i]=(
                     <ListLine

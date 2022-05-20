@@ -1,6 +1,6 @@
 {
-    "description": "Gridworld with 5 locations",
-    "name": "Default Gridworld",
+    "description": "",
+    "name": "default gridworld",
     "project_id": "simple",
     "session_id": "default"
 }
