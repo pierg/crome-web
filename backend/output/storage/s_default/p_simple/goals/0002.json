@@ -3,19 +3,19 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "G(F(person))",
+                "ltl_value": "GFperson",
                 "world_values": [
-                    [],
-                    [],
                     [
                         "person"
-                    ]
+                    ],
+                    [],
+                    []
                 ]
             }
         ],
         "guarantees": [
             {
-                "ltl_value": "",
+                "ltl_value": "G(greet <-> person)",
                 "pattern": {
                     "arguments": [
                         {
@@ -26,7 +26,16 @@
                         }
                     ],
                     "name": "BoundReaction"
-                }
+                },
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [
+                        "greet"
+                    ],
+                    []
+                ]
             }
         ]
     },

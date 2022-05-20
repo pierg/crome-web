@@ -42,13 +42,14 @@ export default class Synthesis extends React.Component {
     loadGridworld() {
         const json = this.props.world.environment
         this.world = new GridWorld(this.myCanvas.current, json.size.width, json.size.height, {
-                padding: {top: 10, left: 10, right: 10, bottom: 60},
+                padding: {top: 10, left: 10, right: 10, bottom: 10},
                 resizeCanvas: true,
                 drawBorder: true
             },this.setModalLocationId);
 
         //load grid with location colors
         const locations = json.grid.locations;
+        this.world.clearMsgMode()
         this.world.loadGrid(locations)
     }
 
@@ -94,7 +95,7 @@ export default class Synthesis extends React.Component {
             this.clear();
             return;
         }
-        this.drawRobot();
+        //this.drawRobot();
     }
 
     run() {
@@ -118,7 +119,7 @@ export default class Synthesis extends React.Component {
 
     drawPreviousCase(ctx, index) {
         ctx.fillRect(this.x, this.y, 50, 50);
-        this.world.setBackgroundColor(this.tab[index][0],this.tab[index][1],this.map[this.tab[index][0]][this.tab[index][1]][0]);
+        //this.world.setBackgroundColor(this.tab[index][0],this.tab[index][1],this.map[this.tab[index][0]][this.tab[index][1]][0]);
     }
 
     clear() {

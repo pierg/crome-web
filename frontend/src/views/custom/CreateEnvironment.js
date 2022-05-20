@@ -510,7 +510,6 @@ export default class CreateEnvironment2 extends React.Component {
         this.world.draw()
         this.setModalSaving(false)
         this.props.saveEnvironment(this.state.savingInfos, this.state.environmentToBeSaved)
-        this.componentsList = []
     }
 
     /* save JSON */

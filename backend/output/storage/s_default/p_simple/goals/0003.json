@@ -5,19 +5,19 @@
     "contract": {
         "assumptions": [
             {
-                "ltl_value": "G(F(person))",
+                "ltl_value": "GFperson",
                 "world_values": [
-                    [],
-                    [],
                     [
                         "person"
-                    ]
+                    ],
+                    [],
+                    []
                 ]
             }
         ],
         "guarantees": [
             {
-                "ltl_value": "",
+                "ltl_value": "G(person <-> Xregister)",
                 "pattern": {
                     "arguments": [
                         {
@@ -28,7 +28,16 @@
                         }
                     ],
                     "name": "BoundDelay"
-                }
+                },
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [
+                        "register"
+                    ],
+                    []
+                ]
             }
         ]
     },
