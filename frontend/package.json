@@ -29,6 +29,7 @@
     "reactstrap": "^9.0.2",
     "socket.io-client": "^4.5.0",
     "tailwindcss": "2.1.1",
+    "use-file-picker": "^1.4.2",
     "use-react-screenshot": "^3.0.0"
   },
   "scripts": {

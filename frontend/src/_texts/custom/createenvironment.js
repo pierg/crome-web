@@ -63,6 +63,11 @@ const textProps = {
             text: "Build your environment",
             color: "facebook",
             icon: "fas fa-long-arrow-alt-right"
+        },
+        uploadWorld:{
+            text: "Upload a world",
+            color: "facebook",
+            icon: "fas fa-arrow-up"
         }
     },
     modal: {

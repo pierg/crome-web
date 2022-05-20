@@ -32,9 +32,10 @@ function WorldView(props) {
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1"/>
                             </div>)}
                             {props.description === "" &&(<div className="flex flex-col h-8 flex-wrap w-full"></div>)}
+                            {props.image && (
                             <div className="w-full">
                                 <img src={"data:image/png;base64," + arrayBufferToImage(props.image)} alt={"World"} className="w-full"/>
-                            </div>
+                            </div>)}
                         </div>
                         <div className="flex flex-col min-content">
                             <div className="relative pl-4 flex justify-end flex-initial">
@@ -63,7 +64,7 @@ function WorldView(props) {
                             </div>)}
                             <div className="relative pl-4 flex mt-auto justify-end flex-initial ">
                                 <div
-                                    onClick={() => props.dowload(props.number)}
+                                    onClick={() => props.download(props.number)}
                                     id={"downloadButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer bg-emerald-400"

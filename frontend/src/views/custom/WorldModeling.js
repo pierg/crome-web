@@ -8,6 +8,8 @@ import {Button, Modal, ModalFooter} from "reactstrap";
 import ElementsButton from "../../components/Elements/Button";
 import createenvironment from "../../_texts/custom/createenvironment";
 import { saveAs } from 'file-saver';
+import UploadButton from "../../components/Custom/UploadButton";
+import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 
 export default class WorldModeling extends React.Component {
 
@@ -20,7 +22,28 @@ export default class WorldModeling extends React.Component {
         numChildren: 0,
         modalDeletionConfirmation : false,
         deletionConfirmation: false,
-        worldSelected: null
+        worldSelected: null,
+        uploadedWorld : null,
+        triggerSave : false,
+        projectID : null
+    }
+
+    setUploadedWorld = (world) => {
+        this.setState({
+            uploadedWorld: world
+        })
+    }
+
+    setProjectID = (id) => {
+        this.setState({
+            projectID: id
+        })
+    }
+
+    setTriggerSave= (bool) => {
+        this.setState({
+            triggerSave: bool
+        })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -86,20 +109,22 @@ export default class WorldModeling extends React.Component {
     }
 
     downloadWorld = (index) => {
-        console.log(index)
+        console.log(this.state.images[index])
         console.log(this.state.worlds[index])
-        const json = JSON.stringify(this.state.worlds[index],null,'\t')
+        const environment = {"environment" : this.state.worlds[index], "info" : this.state.info[index]}
+        const json = JSON.stringify(environment,null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
         console.log(blob)
         const file = new File([blob], this.state.worlds[index].project_id+".json")
         saveAs(file)
     }
 
-    buildFileSelector = () => {
-      const fileSelector = document.createElement('input');
-      fileSelector.setAttribute('type', 'file');
-      fileSelector.setAttribute('multiple', 'multiple');
-      return fileSelector;
+    uploadWorld = (json) => {
+        const environment = JSON.parse(json)
+        /*console.log(environment)
+        this.props.setWorld(environment)*/
+        this.setUploadedWorld(environment)
+        this.setTriggerSave(true)
     }
 
     clearWorld = () => {
@@ -161,8 +186,6 @@ export default class WorldModeling extends React.Component {
     }
 
     render() {
-
-
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
             children.push(<WorldView key={i} number={i}
@@ -176,7 +199,7 @@ export default class WorldModeling extends React.Component {
                             selected={this.state.worldSelected === i}
                             onClick={(e) => this.selectWorld(i, e.target.id)}
                             modify={this.modifyWorld}
-                            dowload={this.downloadWorld}
+                            download={this.downloadWorld}
                             delete={this.setModalDeletionConfirmation}
             />);
         }
@@ -188,7 +211,14 @@ export default class WorldModeling extends React.Component {
                                   deletionConfirmation={this.state.deletionConfirmation}
                                   deletionChanger={this.setDeletionConfirmation}
                                   projectAdded={this.props.projectAdded}/>
-                <ParentComponent clearWorld={this.clearWorld}>
+                <SocketSaveEnvironment
+                    session={this.props.id}
+                    world={this.state.uploadedWorld}
+                    trigger={this.state.triggerSave}
+                    returnProjectId={this.setProjectID}
+                    setTrigger={this.setTriggerSave}/>
+
+                <ParentComponent uploadWorld={this.uploadWorld} clearWorld={this.clearWorld}>
                     {children}
                 </ParentComponent>
                 <Modal
@@ -227,8 +257,14 @@ export default class WorldModeling extends React.Component {
 
 const ParentComponent = props => (
     <section className="relative">
-        <div className="flex px-6 justify-end">
 
+        <div className="flex px-6 justify-between">
+            <UploadButton
+                upload={props.uploadWorld}
+                color={createenvironment.buttons.uploadWorld.color}
+                text={createenvironment.buttons.uploadWorld.text}
+                icon={createenvironment.buttons.uploadWorld.icon}
+            />
             <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
                 <ElementsButton color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
                     {createenvironment.buttons.buildYourEnvironment.text}
