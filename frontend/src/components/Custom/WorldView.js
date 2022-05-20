@@ -1,11 +1,15 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {UncontrolledTooltip} from "reactstrap";
+
 
 function WorldView(props) {
+
     function arrayBufferToImage( buffer ) {
         buffer = buffer.slice(2,buffer.length-1)
         return buffer;
     }
+
 
     return(
         <>
@@ -36,6 +40,7 @@ function WorldView(props) {
                             <div className="relative pl-4 flex justify-end flex-initial">
                                 <Link to="/world" className="hover-no-underline"><div
                                     onClick={() => props.modify(props.number)}
+                                    id={"editButton"}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
@@ -59,13 +64,15 @@ function WorldView(props) {
                             <div className="relative pl-4 flex mt-auto justify-end flex-initial ">
                                 <div
                                     onClick={() => props.dowload(props.number)}
-                                    id={"dowloadButton"}
+                                    id={"downloadButton"}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer bg-emerald-400"
                                     }
                                 >
-                                    <i className={props.statDownloadIconName} id={"dowloadIcon"}/>
+                                    <i className={props.statDownloadIconName} id={"downloadIcon"}/>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -78,6 +85,17 @@ function WorldView(props) {
                     </div>
                 </div>
             </div>
+
+
+            <UncontrolledTooltip placement="right" target="editButton">
+                edit
+            </UncontrolledTooltip>
+            <UncontrolledTooltip placement="right" target="deleteButton">
+                delete
+            </UncontrolledTooltip>
+            <UncontrolledTooltip placement="right" target="downloadButton">
+                download
+            </UncontrolledTooltip>
         </>
     );
 }
