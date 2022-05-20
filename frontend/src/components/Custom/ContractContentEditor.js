@@ -17,8 +17,18 @@ import LTLTextArea from "./LTLTextArea";
 
 function NamesOf(obj) {
   let list = [];
+
   for (let i = 0; i < obj.length; i++) {
     list.push(obj[i].name);
+  }
+  return list;
+}
+
+function DescriptionOf(obj) {
+  let list = [];
+
+  for (let i = 0; i < obj.length; i++) {
+    list.push(obj[i].description);
   }
   return list;
 }
@@ -34,6 +44,7 @@ export default function ContractContentEditor({
   listOfWorldVariables,
   setLTLWorldValues,
   infos,
+
 }) {
   const [open, setOpen] = React.useState();
 
@@ -99,6 +110,7 @@ export default function ContractContentEditor({
                           items={NamesOf(patterns)}
                           placeholder={infos.placeholders.pattern}
                           defaultValue={prop.pattern.name}
+                          patternDescription={DescriptionOf(patterns)}
                           name="contentName"
                           changeSelector={(e, value) =>
                             changeParameter(e, contractType, key, value)
@@ -106,6 +118,7 @@ export default function ContractContentEditor({
                         />
                       )}
                     </td>
+
                     <td>
                       {prop.pattern !== undefined && (
                         <ContractEditArguments
