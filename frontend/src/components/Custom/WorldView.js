@@ -40,7 +40,7 @@ function WorldView(props) {
                             <div className="relative pl-4 flex justify-end flex-initial">
                                 <Link to="/world" className="hover-no-underline"><div
                                     onClick={() => props.modify(props.number)}
-                                    id={"editButton"}
+                                    id={"editButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
@@ -52,7 +52,7 @@ function WorldView(props) {
                             {props.number !== 0 && (<div className="relative pl-4 flex mt-2 justify-end flex-initial">
                                 <div
                                     onClick={() => props.delete(true, props.number)}
-                                    id={"deleteButton"}
+                                    id={"deleteButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
@@ -64,7 +64,7 @@ function WorldView(props) {
                             <div className="relative pl-4 flex mt-auto justify-end flex-initial ">
                                 <div
                                     onClick={() => props.dowload(props.number)}
-                                    id={"downloadButton"}
+                                    id={"downloadButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer bg-emerald-400"
                                     }
@@ -87,13 +87,13 @@ function WorldView(props) {
             </div>
 
 
-            <UncontrolledTooltip placement="right" target="editButton">
+            <UncontrolledTooltip placement="right" target={"editButton-"+props.number}>
                 edit
             </UncontrolledTooltip>
-            <UncontrolledTooltip placement="right" target="deleteButton">
+            {props.number !== 0 && (<UncontrolledTooltip placement="right" target={"deleteButton-"+props.number}>
                 delete
-            </UncontrolledTooltip>
-            <UncontrolledTooltip placement="right" target="downloadButton">
+            </UncontrolledTooltip>)}
+            <UncontrolledTooltip placement="right" target={"downloadButton-"+props.number}>
                 download
             </UncontrolledTooltip>
         </>
