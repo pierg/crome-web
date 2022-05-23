@@ -3,6 +3,7 @@ const textProps = {
         title: "Edit a Goal",
         goalComponent: {
             editIconName: "fas fa-pen",
+            downloadIconName: "fas fa-arrow-down",
             deleteIconName: "fas fa-trash-alt" ,
             iconColor: "bg-lightBlue-600",
         },

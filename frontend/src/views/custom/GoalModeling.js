@@ -12,7 +12,7 @@ import goaleditinfo from "_texts/custom/goaleditinfo.js";
 import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
 import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
-
+import { saveAs } from 'file-saver';
 
 
 export default class GoalModeling extends React.Component {
@@ -29,6 +29,14 @@ export default class GoalModeling extends React.Component {
         deletionIndex: null
     }
 
+    downloadGoal = (index) => {
+        console.log(this.state.goals[index])
+        const json = JSON.stringify(this.state.goals[index],null,'\t')
+        const blob = new Blob([json], {type : "text/json;charset=utf-8"})
+        const file = new File([blob], this.state.goals[index].id+".json")
+        saveAs(file)
+    }
+
     render() {
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
@@ -43,9 +51,11 @@ export default class GoalModeling extends React.Component {
                     contract={this.state.receivedGoals[i].contract}
                     patterns={this.state.patterns}
                     statIconName={this.props.info.goalComponent.editIconName}
+                    statDownloadIconName={this.props.info.goalComponent.downloadIconName}
                     statSecondIconName={this.props.info.goalComponent.deleteIconName}
                     statIconColor={this.props.info.goalComponent.iconColor}
                     modify={this.setModalClassic}
+                    download={this.downloadGoal}
                     delete={this.deleteGoal}
                 />
             );

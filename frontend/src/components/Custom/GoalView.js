@@ -89,6 +89,17 @@ function GoalView(props) {
                                     <i className={props.statSecondIconName}/>
                                 </div>
                             </div>
+                            <div className="relative pl-4 flex mt-2 justify-end flex-initial">
+                                <div
+                                    onClick={() => props.download(props.number)}
+                                    id={"downloadButton-"+props.number}
+                                    className={
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer bg-emerald-400"
+                                    }
+                                >
+                                    <i className={props.statDownloadIconName} id={"downloadIcon"}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col mt-4">
