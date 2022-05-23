@@ -29,6 +29,18 @@ function SocketIoProjects(props) {
     }, [message])  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
+
+        if (props.uploadConfirmation) {
+            socket.emit('get-projects')
+            props.uploadChange(false)
+            setTrigger(!trigger)
+            socket.on('receive-projects', setMessageFunction)
+            return () => socket.off('receive-projects')
+        }
+
+    }, [socket, props.uploadChange, props.uploadConfirmation, setMessageFunction, props.projectAdded, trigger])
+
+    useEffect(() => {
         if (props.deletionConfirmation) {
             socket.emit('delete-project', {index: props.deletionIndex})
             props.deletionChanger(false)

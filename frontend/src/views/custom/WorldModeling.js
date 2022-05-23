@@ -22,6 +22,7 @@ export default class WorldModeling extends React.Component {
         numChildren: 0,
         modalDeletionConfirmation : false,
         deletionConfirmation: false,
+        uploadConfirmation : false,
         worldSelected: null,
         uploadedWorld : null,
         triggerSave : false,
@@ -43,6 +44,12 @@ export default class WorldModeling extends React.Component {
     setTriggerSave= (bool) => {
         this.setState({
             triggerSave: bool
+        })
+    }
+
+    setUploadConfirmation = (bool) => {
+        this.setState({
+            uploadConfirmation : bool
         })
     }
 
@@ -109,22 +116,35 @@ export default class WorldModeling extends React.Component {
     }
 
     downloadWorld = (index) => {
-        console.log(this.state.images[index])
-        console.log(this.state.worlds[index])
         const environment = {"environment" : this.state.worlds[index], "info" : this.state.info[index]}
         const json = JSON.stringify(environment,null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
-        console.log(blob)
         const file = new File([blob], this.state.worlds[index].project_id+".json")
         saveAs(file)
     }
 
+    isJsonString = (str) => {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
     uploadWorld = (json) => {
-        const environment = JSON.parse(json)
-        /*console.log(environment)
-        this.props.setWorld(environment)*/
-        this.setUploadedWorld(environment)
-        this.setTriggerSave(true)
+        if (this.isJsonString(json)) {
+            const environment = JSON.parse(json)
+            if (environment.hasOwnProperty("environment") && environment.hasOwnProperty("info")) {
+                this.setUploadedWorld(environment)
+                this.setTriggerSave(true)
+                this.setUploadConfirmation(true)
+            }
+            /*console.log(environment)
+            this.props.setWorld(environment)*/
+
+        }
+
     }
 
     clearWorld = () => {
@@ -209,6 +229,8 @@ export default class WorldModeling extends React.Component {
                 <SocketIoProjects worlds={this.getWorlds}
                                   deletionIndex={this.state.selectedWorldToDelete}
                                   deletionConfirmation={this.state.deletionConfirmation}
+                                  uploadConfirmation={this.state.uploadConfirmation}
+                                  uploadChange={this.setUploadConfirmation}
                                   deletionChanger={this.setDeletionConfirmation}
                                   projectAdded={this.props.projectAdded}/>
                 <SocketSaveEnvironment
