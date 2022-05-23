@@ -25,7 +25,10 @@
     "grid": {
         "locations": [
             {
-                "adjacency": [],
+                "adjacency": [
+                    "r2",
+                    "r5"
+                ],
                 "color": "#FF0000",
                 "coordinates": [
                     {
@@ -49,6 +52,7 @@
             },
             {
                 "adjacency": [
+                    "r1",
                     "r5"
                 ],
                 "color": "#8FF484",
@@ -74,6 +78,7 @@
             },
             {
                 "adjacency": [
+                    "r4",
                     "r5"
                 ],
                 "color": "#FF00FF",
@@ -99,6 +104,7 @@
             },
             {
                 "adjacency": [
+                    "r3",
                     "r5"
                 ],
                 "color": "#FFFF00",
@@ -124,6 +130,7 @@
             },
             {
                 "adjacency": [
+                    "r1",
                     "r3",
                     "r2",
                     "r4"

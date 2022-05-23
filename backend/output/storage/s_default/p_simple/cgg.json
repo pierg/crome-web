@@ -2,6 +2,16 @@
     "edges": [
         {
             "from": "default-simple-0002",
+            "link": "merging",
+            "to": "default-simple-0002**default-simple-0001"
+        },
+        {
+            "from": "default-simple-0001",
+            "link": "merging",
+            "to": "default-simple-0002**default-simple-0001"
+        },
+        {
+            "from": "default-simple-0002",
             "link": "composition",
             "to": "default-simple-0002||default-simple-0003"
         },
@@ -21,16 +31,6 @@
             "to": "default-simple-0002||default-simple-0003**default-simple-0000"
         },
         {
-            "from": "default-simple-0002",
-            "link": "merging",
-            "to": "default-simple-0002**default-simple-0001"
-        },
-        {
-            "from": "default-simple-0001",
-            "link": "merging",
-            "to": "default-simple-0002**default-simple-0001"
-        },
-        {
             "from": "default-simple-0002||default-simple-0003**default-simple-0000",
             "link": "conjunction",
             "to": "default-simple-0002||default-simple-0003**default-simple-0000/\\default-simple-0002**default-simple-0001"
@@ -46,6 +46,12 @@
             "id": "default-simple-0002"
         },
         {
+            "id": "default-simple-0002**default-simple-0001"
+        },
+        {
+            "id": "default-simple-0001"
+        },
+        {
             "id": "default-simple-0002||default-simple-0003"
         },
         {
@@ -56,12 +62,6 @@
         },
         {
             "id": "default-simple-0000"
-        },
-        {
-            "id": "default-simple-0002**default-simple-0001"
-        },
-        {
-            "id": "default-simple-0001"
         },
         {
             "id": "default-simple-0002||default-simple-0003**default-simple-0000/\\default-simple-0002**default-simple-0001"
