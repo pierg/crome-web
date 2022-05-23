@@ -116,7 +116,7 @@ export default class WorldModeling extends React.Component {
     }
 
     downloadWorld = (index) => {
-        const environment = {"environment" : this.state.worlds[index], "info" : this.state.info[index]}
+        const environment = {"environment" : this.state.worlds[index], "info" : this.state.info[index], "image" : this.state.images[index]}
         const json = JSON.stringify(environment,null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
         const file = new File([blob], this.state.worlds[index].project_id+".json")
@@ -238,7 +238,9 @@ export default class WorldModeling extends React.Component {
                     world={this.state.uploadedWorld}
                     trigger={this.state.triggerSave}
                     returnProjectId={this.setProjectID}
-                    setTrigger={this.setTriggerSave}/>
+                    setTrigger={this.setTriggerSave}
+                    uploadImage={this.state.triggerSave}
+                />
 
                 <ParentComponent uploadWorld={this.uploadWorld} clearWorld={this.clearWorld}>
                     {children}

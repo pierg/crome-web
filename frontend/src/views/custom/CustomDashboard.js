@@ -59,7 +59,7 @@ export default function CustomDashboard(props) {
             <CustomSidebar {...customsidebar} currentRoute={"#" + location.pathname} id={id} setId={setId} cookie={cookie}/>
             <Console {...consoleinfo} customText={message}/>
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
-            <SocketSaveEnvironment session={id} world={savedEnvironment} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
+            <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
             <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
                 {(() => {
                     switch (props.page) {

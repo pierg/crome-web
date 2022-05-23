@@ -32,6 +32,9 @@ function SocketSaveEnvironment(props) {
 
             console.log("emit socket save-project")
             socket.emit('save-project', {world: props.world})
+            if (props.uploadImage) {
+                socket.emit("save-image", {"image": props.world.image.split("'")[1], "project": props.world.environment.project_id})
+            }
 
             props.setTrigger(false)
             
