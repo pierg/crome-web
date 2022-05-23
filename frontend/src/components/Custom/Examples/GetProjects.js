@@ -38,7 +38,7 @@ function SocketIoProjects(props) {
             return () => socket.off('receive-projects')
         }
 
-    }, [socket, props.uploadChange, props.uploadConfirmation, setMessageFunction, props.projectAdded, trigger])
+    }, [socket, props.uploadChange, props.uploadConfirmation, setMessageFunction, props.projectAdded, trigger]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (props.deletionConfirmation) {
