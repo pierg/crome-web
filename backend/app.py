@@ -102,7 +102,6 @@ def get_projects() -> list[list[dict[str, str]]]:
         list[dict[str, str]]
     ] = []  # array that will be sent containing all projects #
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     list_of_sessions: list[str] = [f"default", session_id]
 
     for session in list_of_sessions:
@@ -145,7 +144,6 @@ def get_projects() -> list[list[dict[str, str]]]:
 @socketio.on("save-project")
 def save_project(data) -> None:
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     print(f"SAVE PROJECT : {session_id}")
 
     session_dir = session_path(session_id)
@@ -211,7 +209,6 @@ def save_image(data) -> None:
 @socketio.on("delete-project")
 def delete_project(data) -> None:
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     current_session_folder = session_path(session_id)
     dir_path, dir_names, filenames = next(walk(current_session_folder))
     i = 1
@@ -235,8 +232,7 @@ def delete_project(data) -> None:
 def get_goals(data) -> None:
     project_id = str(data["project"])
     session = "default" if project_id == "simple" else str(request.args.get("id"))
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
+
     goals_folder = goals_path(session, data["project"])
 
     """Retrieving files"""
@@ -260,7 +256,6 @@ def get_goals(data) -> None:
 def add_goal(data) -> None:
     project_id = str(data["project_id"])
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(session_id)
@@ -340,7 +335,6 @@ def add_goal(data) -> None:
 def delete_goal(data) -> None:
     project_id = str(data["project"])
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get('tabId'))
     is_simple = str(project_id) == "simple"
     if is_simple:
         project_id = copy_simple(session_id)
@@ -381,7 +375,6 @@ def delete_goal(data) -> None:
 def check_goals(data) -> None:
     session_id = str(request.args.get("id"))
     project_id = str(data["project"])
-    tab_id = str(request.args.get("tabId"))
     if project_id == "simple":
         return
 
@@ -400,8 +393,6 @@ def check_goals(data) -> None:
 
 @socketio.on("get-patterns")
 def get_patterns() -> None:
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
@@ -417,7 +408,6 @@ def get_patterns() -> None:
 def process_goals(data) -> None:
     now = time.localtime(time.time())
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
 
     emit(
         "send-notification",
@@ -510,8 +500,6 @@ def process_goals(data) -> None:
 
 @socketio.on("process-cgg")
 def process_cgg() -> None:
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
     cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
     with open(cgg_file_path) as json_file:
         cgg_file = json.load(json_file)
@@ -522,8 +510,6 @@ def process_cgg() -> None:
 def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
-
     project_id = data["goals"][0].split("-")[-2]
 
     Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
@@ -535,7 +521,6 @@ def conjunction(data) -> None:
 def composition(data) -> None:
     print("APPLY OPERATION : composition")
     session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
 
     project_id = data["goals"][0].split("-")[-2]
     try:
@@ -550,8 +535,6 @@ def composition(data) -> None:
 @socketio.on("apply-disjunction")
 def disjunction(data) -> None:
     print("APPLY OPERATION : disjunction")
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
 
     emit("operation-complete", True, room=request.sid)
 
@@ -559,16 +542,14 @@ def disjunction(data) -> None:
 @socketio.on("apply-refinement")
 def refinement(data) -> None:
     print("APPLY OPERATION : refinement")
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
+
     emit("operation-complete", True, room=request.sid)
 
 
 @socketio.on("apply-extension")
 def extension(data) -> None:
     print("APPLY OPERATION : extension")
-    session_id = str(request.args.get("id"))
-    tab_id = str(request.args.get("tabId"))
+
     emit("operation-complete", True, room=request.sid)
 
 
