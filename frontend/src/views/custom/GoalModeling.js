@@ -13,6 +13,8 @@ import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
 import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 import { saveAs } from 'file-saver';
+import createenvironment from "../../_texts/custom/createenvironment";
+import UploadButton from "../../components/Custom/UploadButton";
 
 
 export default class GoalModeling extends React.Component {
@@ -30,11 +32,32 @@ export default class GoalModeling extends React.Component {
     }
 
     downloadGoal = (index) => {
-        console.log(this.state.goals[index])
-        const json = JSON.stringify(this.state.goals[index],null,'\t')
+        const goal = {"context" : this.state.goals[index].context, "contract" : this.state.goals[index].contract, "description" : this.state.goals[index].description, "name" : this.state.goals[index].name}
+        const json = JSON.stringify(goal,null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
-        const file = new File([blob], this.state.goals[index].id+".json")
+        const file = new File([blob], this.state.goals[index].name+".json")
         saveAs(file)
+    }
+
+    isJsonString = (str) => {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+    uploadGoal = (json) => {
+         if (this.isJsonString(json)) {
+             const goal = JSON.parse(json)
+
+             this.onUploadChild(goal)
+             this.saveCurrentGoal(goal)
+            /*console.log(environment)
+            this.props.setWorld(environment)*/
+
+        }
     }
 
     render() {
@@ -89,7 +112,7 @@ export default class GoalModeling extends React.Component {
                     toggleGetTrigger={this.props.toggleGetTrigger}
                     switchWorld={this.switchWorld}
                 />
-                <ParentComponent addChild={this.onAddChild}>
+                <ParentComponent uploadGoal={this.uploadGoal} addChild={this.onAddChild}>
                     {children}
                 </ParentComponent>
                 <Modal
@@ -119,6 +142,15 @@ export default class GoalModeling extends React.Component {
         this.setState({
             editedGoals: tmpGoals,
         },() => this.setModalClassic(true, tmpGoals.length - 1))
+    }
+
+    onUploadChild = (newGoal) => {
+        let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
+        tmpGoals.push(JSON.parse(JSON.stringify(newGoal)))
+
+        this.setState({
+            currentGoalIndex: tmpGoals.length - 1
+        })
     }
 
     setModalClassic = (bool, key = -1) => {
@@ -163,6 +195,7 @@ export default class GoalModeling extends React.Component {
                     return item;
                 }
             });
+            console.log(goals)
             return {
                 goals,
             };
@@ -222,6 +255,12 @@ const ParentComponent = props => (
         <div className="px-4 md:px-10 mx-auto w-full">
             <div>
                 <div className="flex justify-center">
+                    <UploadButton
+                        upload={props.uploadGoal}
+                        color={createenvironment.buttons.uploadWorld.color}
+                        text={createenvironment.buttons.uploadWorld.text}
+                        icon={createenvironment.buttons.uploadWorld.icon}
+                    />
                     <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
                         <AddButton
                             statText="Add a Goal"
