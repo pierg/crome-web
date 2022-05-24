@@ -9,6 +9,7 @@ function GoalEdit(props) {
 
     const [formulaRed, setFormulaRed] = React.useState(null);
     const [goal] = React.useState(JSON.parse(JSON.stringify(props.goal)));
+    const [formulaText, setFormulaText] = React.useState(props.goal.context["formula"]);
 
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
 
@@ -20,6 +21,7 @@ function GoalEdit(props) {
             case "description": goal.description = value; break;
             case "context":
                 //init formula context
+                setFormulaText(value)
                 goal.context["formula"] = value
 
                 //fill tab world_values
@@ -68,7 +70,7 @@ function GoalEdit(props) {
     }
 
     useEffect(() => {
-        let tabFormula = props.goal.context["formula"].split(" ");
+        let tabFormula = formulaText.split(" ");
         let context = ""
         let formulaRed = ""
 
@@ -87,7 +89,7 @@ function GoalEdit(props) {
         }
 
         setFormulaRed(formulaRed);
-    }, [props.goal.context,props.listOfWorldVariables]);
+    }, [formulaText,props.listOfWorldVariables]);
 
     return(
         <>
