@@ -7,7 +7,7 @@ import CustomDownload from "../../components/Custom/CustomDownload";
 import {Link} from "react-router-dom";
 import createenvironment from "../../_texts/custom/createenvironment";
 import Button from "../../components/Elements/Button";
-import {Modal, PopoverBody, PopoverHeader, UncontrolledPopover, UncontrolledTooltip} from "reactstrap";
+import {Modal, PopoverBody, PopoverHeader, UncontrolledPopover} from "reactstrap";
 import ListBlock from "../../components/Custom/ListBlock";
 import Location from "../../components/Custom/Location";
 import FooterAdmin from "../../components/Footers/Admin/FooterAdmin";
@@ -18,11 +18,13 @@ import deleteSubArrays from "../../hooks/deleteSubArrays";
 import ListLine from "../../components/Custom/ListLine";
 import LocationIdEdit from "../../components/Custom/LocationIdEdit";
 import SavingEdit from "../../components/Custom/SavingEdit";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 export default class CreateEnvironment2 extends React.Component {
 
     state = {
-        started : false,
+        started: false,
         modalClassic: false,//modal for action sensors and context
         lists: [[], [], [], []],//lists component (not location)
         numChildren: [0, 0, 0, 0],
@@ -33,7 +35,7 @@ export default class CreateEnvironment2 extends React.Component {
         mutexList: [],
         modalLocationId: false,//modal for locaiton
         currentIdInput: "",
-        myCanvas : null,
+        myCanvas: null,
         modalSaving: false,//modal for save
         savingInfos: {name: "", description: ""},
         environmentToBeSaved: null,
@@ -41,9 +43,20 @@ export default class CreateEnvironment2 extends React.Component {
         warningPop: false,
     }
 
+    /* GRID FUNCTIONS */
+    constructor(props) {
+        super(props);
+        this.test = React.createRef();
+        this.saveInToJSON = this.saveInToJSON.bind(this);
+        this.world = null;
+        this.size = 8;
+        this.componentsList = [];
+        this.projectId = null;
+    }
+
     setRef = (ref) => {
         this.setState({
-            myCanvas : ref.current
+            myCanvas: ref.current
         })
     }
 
@@ -56,7 +69,7 @@ export default class CreateEnvironment2 extends React.Component {
         if (this.state.myCanvas !== null && !this.state.started) {
             this.starting();
             this.setState({
-                started : true
+                started: true
             })
         }
     }
@@ -67,8 +80,7 @@ export default class CreateEnvironment2 extends React.Component {
                 savingInfos: this.props.world.info
             })
             this.loadGridworld()
-        }
-        else {
+        } else {
             this.generateGridworld()
         }
     }
@@ -76,10 +88,10 @@ export default class CreateEnvironment2 extends React.Component {
     loadGridworld() {
         const json = this.props.world.environment
         this.world = new GridWorld(this.state.myCanvas, json.size.width, json.size.height, {
-                padding: {top: 10, left: 10, right: 10, bottom: 60},
-                resizeCanvas: true,
-                drawBorder: true
-            },this.setModalLocationId);
+            padding: {top: 10, left: 10, right: 10, bottom: 60},
+            resizeCanvas: true,
+            drawBorder: true
+        }, this.setModalLocationId);
 
         this.projectId = json.project_id
 
@@ -97,24 +109,14 @@ export default class CreateEnvironment2 extends React.Component {
         this.size = json.size.width;
     }
 
+    //-------------------------- CANVAS (LOCATION) ------------------------
+
     generateGridworld() {
         this.world = new GridWorld(this.state.myCanvas, this.size, this.size, {
-                padding: {top: 10, left: 10, right: 10, bottom: 60},
-                resizeCanvas: true,
-                drawBorder: true
-            },this.setModalLocationId);
-    }
-
-    //-------------------------- CANVAS (LOCATION) ------------------------
-    /* GRID FUNCTIONS */
-    constructor(props) {
-        super(props);
-        this.test = React.createRef();
-        this.saveInToJSON = this.saveInToJSON.bind(this);
-        this.world = null;
-        this.size = 8;
-        this.componentsList = [];
-        this.projectId = null;
+            padding: {top: 10, left: 10, right: 10, bottom: 60},
+            resizeCanvas: true,
+            drawBorder: true
+        }, this.setModalLocationId);
     }
 
     modifyGridSize(increment) {
@@ -149,8 +151,7 @@ export default class CreateEnvironment2 extends React.Component {
         if (isInRow < 0 || isInCol < 0) {
             this.updateErrorMsg(createenvironment.errorMsg.gridTooSmall);
             this.size -= increment
-        }
-        else {
+        } else {
             let startRow = Math.trunc(isInRow / 2);
             let startCol = Math.trunc(isInCol / 2);
 
@@ -162,10 +163,10 @@ export default class CreateEnvironment2 extends React.Component {
 
             this.world.onclick = null
             this.world = new GridWorld(this.state.myCanvas, this.size, this.size, {
-                    padding: {top: 10, left: 10, right: 10, bottom: 60},
-                    resizeCanvas: true,
-                    drawBorder: true
-                },this.setModalLocationId);
+                padding: {top: 10, left: 10, right: 10, bottom: 60},
+                resizeCanvas: true,
+                drawBorder: true
+            }, this.setModalLocationId);
             this.world.setLocations(oldLocations)
             this.world.setNodes(oldNodes, startRow, endRow, shiftRow, startCol, endCol, shiftCol)
             this.world.draw()
@@ -190,8 +191,7 @@ export default class CreateEnvironment2 extends React.Component {
                 this.world.resetNode()
                 this.world.draw()
             }
-        }
-        else {
+        } else {
             this.world.setZoneColor("#808080")
         }
         this.setState({
@@ -245,20 +245,20 @@ export default class CreateEnvironment2 extends React.Component {
 
         this.setState({
             tmpLists: tmpLists,
-        },() => this.editLine(index, this.state.numChildren[index]))
+        }, () => this.editLine(index, this.state.numChildren[index]))
     }
 
     editLine = (listIndex, elementIndex) => {
         this.setState({
             currentList: listIndex,
             currentIndex: elementIndex,
-        },() => this.setState({
+        }, () => this.setState({
             mutexList: this.getMutexElements(this.state.tmpLists[listIndex][elementIndex])
         }, () => this.setModalClassic(true)))
     }
 
     editCurrentElement = (newElement) => {
-        this.setState( state => {
+        this.setState(state => {
             const tmpLists = state.tmpLists.map((list, j) => {
                 if (j === this.state.currentList) {
                     return list.map((item, k) => {
@@ -291,7 +291,7 @@ export default class CreateEnvironment2 extends React.Component {
             })
         }
 
-        this.setState( state => {
+        this.setState(state => {
             const lists = state.lists.map((list, j) => {
                 if (j === this.state.currentList) {
                     return list.map((item, k) => {
@@ -309,9 +309,12 @@ export default class CreateEnvironment2 extends React.Component {
             return {
                 lists,
             }
-        }, () => {this.setState({
-            tmpLists: this.state.lists,
-        }); this.updateMutexArray(newElement, mutexArray)})
+        }, () => {
+            this.setState({
+                tmpLists: this.state.lists,
+            });
+            this.updateMutexArray(newElement, mutexArray)
+        })
 
         this.setModalClassic(false)
     }
@@ -330,7 +333,9 @@ export default class CreateEnvironment2 extends React.Component {
             tmpLists: tmpLists,
             numChildren: tmpNumChildren,
             currentList: listIndex
-        }, () => {if (listIndex !== 0) this.cleanMutexGroups()})
+        }, () => {
+            if (listIndex !== 0) this.cleanMutexGroups()
+        })
     }
 
     validName = (element, isLocation = false) => { // checking if the given name is valid, i.e. not empty and not already existing in any list
@@ -338,9 +343,9 @@ export default class CreateEnvironment2 extends React.Component {
         let lists = this.state.lists
         let i = isLocation ? 1 : 0 // the list of locations is the only list where we can add an already existing element (to increase the size of a location)
         let currentList = isLocation ? 0 : this.state.currentList
-        for (i; i<lists.length; i++) {
-            for (let j = 0; j<lists[i].length; j++) {
-                if (lists[i][j] === element &&! (i === currentList && j === this.state.currentIndex)) return false
+        for (i; i < lists.length; i++) {
+            for (let j = 0; j < lists[i].length; j++) {
+                if (lists[i][j] === element && !(i === currentList && j === this.state.currentIndex)) return false
             }
         }
         return true
@@ -351,14 +356,14 @@ export default class CreateEnvironment2 extends React.Component {
         let tmpMutex = this.state.mutexGroups
 
         tmpLists[index] = []
-        tmpMutex[index-1] = []
+        tmpMutex[index - 1] = []
 
-        for (let i=0; i<list.length; i++) {
+        for (let i = 0; i < list.length; i++) {
             tmpLists[index].push(list[i].name)
             if (list[i].mutex_group !== undefined && Array.isArray(list[i].mutex_group)) {
-                for (let j=0; j<list[i].mutex_group.length; j++) {
-                    if (tmpMutex[index-1][list[i].mutex_group[j]] === undefined) tmpMutex[index-1][list[i].mutex_group[j]] = []
-                    tmpMutex[index-1][list[i].mutex_group[j]].push(list[i].name)
+                for (let j = 0; j < list[i].mutex_group.length; j++) {
+                    if (tmpMutex[index - 1][list[i].mutex_group[j]] === undefined) tmpMutex[index - 1][list[i].mutex_group[j]] = []
+                    tmpMutex[index - 1][list[i].mutex_group[j]].push(list[i].name)
                 }
             }
         }
@@ -377,7 +382,7 @@ export default class CreateEnvironment2 extends React.Component {
     getMutexElements = (element) => { // get every element exclusive to the specified element
         let elements = []
         let mutexGroup = this.state.mutexGroups[this.state.currentList - 1]
-        if(this.state.currentList > 0) {
+        if (this.state.currentList > 0) {
             for (let i = 0; i < mutexGroup.length; i++) {
                 if (mutexGroup[i].includes(element)) {
                     for (let j = 0; j < mutexGroup[i].length; j++) {
@@ -399,19 +404,21 @@ export default class CreateEnvironment2 extends React.Component {
 
     cleanMutexGroups = () => { // deleting doubles and empty arrays
         let mutexGroups = this.state.mutexGroups
-        let mutexGroup = mutexGroups[this.state.currentList-1]
+        let mutexGroup = mutexGroups[this.state.currentList - 1]
         let newArray = []
         let found = {}
-        for (let i=0; i<mutexGroup.length; i++) {
+        for (let i = 0; i < mutexGroup.length; i++) {
             let jsonArray = JSON.stringify(mutexGroup[i])
-            if (found[jsonArray] || jsonArray === "[]") { continue }
+            if (found[jsonArray] || jsonArray === "[]") {
+                continue
+            }
             newArray.push(mutexGroup[i])
             found[jsonArray] = true
         }
 
         newArray = deleteSubArrays(newArray)
 
-        mutexGroups[this.state.currentList-1] = newArray
+        mutexGroups[this.state.currentList - 1] = newArray
         this.setState({
             mutexGroups: mutexGroups
         })
@@ -420,21 +427,20 @@ export default class CreateEnvironment2 extends React.Component {
     updateMutexArray = (newElement, mutexArray) => {
         this.deleteEveryMutexOccurrenceOf(newElement) // deleting every occurrence of the element before placing it again at the right place
         let flag = true
-        let mutexGroup = this.state.mutexGroups[this.state.currentList-1]
+        let mutexGroup = this.state.mutexGroups[this.state.currentList - 1]
 
-        for (let i=0; i<mutexGroup.length; i++) {
+        for (let i = 0; i < mutexGroup.length; i++) {
             mutexGroup[i].sort()
-        	if (arrayEquals(mutexGroup[i], mutexArray)) {
-        		mutexGroup[i].push(newElement)
-        		flag = false
-        		break
-        	}
+            if (arrayEquals(mutexGroup[i], mutexArray)) {
+                mutexGroup[i].push(newElement)
+                flag = false
+                break
+            }
         }
         if (flag) {
             if (mutexArray.length === 0) {
-        		mutexGroup.push([newElement]);
-        	}
-        	else {
+                mutexGroup.push([newElement]);
+            } else {
                 for (let i = 0; i < mutexArray.length; i++) {
                     mutexGroup.push([newElement, mutexArray[i]]);
                 }
@@ -445,8 +451,8 @@ export default class CreateEnvironment2 extends React.Component {
 
     deleteEveryMutexOccurrenceOf = (element, list = false) => {
         let currentList = list || this.state.currentList
-        let mutexGroup = this.state.mutexGroups[currentList-1]
-        for (let i=0; i<mutexGroup.length; i++) {
+        let mutexGroup = this.state.mutexGroups[currentList - 1]
+        for (let i = 0; i < mutexGroup.length; i++) {
             let index = mutexGroup[i].indexOf(element)
             if (index !== -1) {
                 mutexGroup[i].splice(index, 1)
@@ -485,8 +491,7 @@ export default class CreateEnvironment2 extends React.Component {
                 this.setState({
                     savingInfos: {name: "", description: ""}
                 })
-            }
-            else {
+            } else {
                 this.setState({
                     savingInfos: this.props.world.info
                 })
@@ -516,26 +521,26 @@ export default class CreateEnvironment2 extends React.Component {
     saveInToJSON() {
         let obj = {filetype: "environment", project_id: this.projectId};
         obj.size = {width: this.size, height: this.size};
-        obj.grid = {locations : []};
+        obj.grid = {locations: []};
 
         //INSERT LOCATIONS
         const locations = this.world.getLocations()
         for (let i = 0; i < locations.length; i++) {
-            obj.grid.locations.push({coordinates : [], color : locations[i].color, id : locations[i].id, adjacency : []});
+            obj.grid.locations.push({coordinates: [], color: locations[i].color, id: locations[i].id, adjacency: []});
             //INSERT NEIGHBOURS OF LOCATIONS
-            for(let j=0; j<locations[i].neighbour.length; j++) {
+            for (let j = 0; j < locations[i].neighbour.length; j++) {
                 obj.grid.locations[i].adjacency.push(locations[i].neighbour[j])
             }
         }
 
         //INSERT COORDONATES OF LOCATIONS
         const nodes = this.world.getNodes()
-        for(let row=0; row<nodes.length; row++) {
-            for(let col=0; col<nodes[row].length; col++) {
-                if(nodes[row][col].backgroundColor !== "#FFFFFF"  &&  nodes[row][col].backgroundColor !== null) {
+        for (let row = 0; row < nodes.length; row++) {
+            for (let col = 0; col < nodes[row].length; col++) {
+                if (nodes[row][col].backgroundColor !== "#FFFFFF" && nodes[row][col].backgroundColor !== null) {
                     for (let i = 0; i < locations.length; i++) {
-                        if(nodes[row][col].location === locations[i].id) {
-                            obj.grid.locations[i].coordinates.push({row : row, col : col})
+                        if (nodes[row][col].location === locations[i].id) {
+                            obj.grid.locations[i].coordinates.push({row: row, col: col})
                         }
                     }
                 }
@@ -544,12 +549,12 @@ export default class CreateEnvironment2 extends React.Component {
 
         let lists = ["actions", "sensors", "context"]
         for (let i = 1; i < this.state.lists.length; i++) {
-            obj[lists[i-1]] = []
+            obj[lists[i - 1]] = []
             for (let j = 0; j < this.state.lists[i].length; j++) {
-                obj[lists[i-1]][j] = {"name": this.state.lists[i][j]}
+                obj[lists[i - 1]][j] = {"name": this.state.lists[i][j]}
                 let indexArray = this.getEveryIndexOf(this.state.lists[i][j], i)
                 if (indexArray.length > 0) {
-                    obj[lists[i-1]][j].mutex_group = indexArray
+                    obj[lists[i - 1]][j].mutex_group = indexArray
                 }
             }
         }
@@ -568,8 +573,7 @@ export default class CreateEnvironment2 extends React.Component {
             setTimeout(() => {
                 this.setState({warningPop: false});
             }, 4000)
-        }
-        else {
+        } else {
             this.setState({
                 warningPop: false
             })
@@ -579,11 +583,11 @@ export default class CreateEnvironment2 extends React.Component {
     render() {
         this.componentsList = createenvironment.componentsList
 
-        if(this.world !== null) {
+        if (this.world !== null) {
             this.componentsList[0].content = []
             for (let i = 0; i < this.world.getNbLocations(); i += 1) {
                 let answer = this.world.getLocations()
-                this.componentsList[0].content[i]=(
+                this.componentsList[0].content[i] = (
                     <Location
                         key={i}
                         name={answer[i].id}
@@ -594,23 +598,18 @@ export default class CreateEnvironment2 extends React.Component {
                     />
                 );
             }
-            if(this.world.getNbLocations() > 1) {
-                this.componentsList[0].displayAddWallButton = true
-            }
-            else {
-                this.componentsList[0].displayAddWallButton = false
-            }
+            this.componentsList[0].displayAddWallButton = this.world.getNbLocations() > 1;
         }
 
         for (let k = 1; k < this.state.lists.length; k++) {
             this.componentsList[k].content = []
             for (let i = 0; i < this.state.numChildren[k]; i += 1) {
-                this.componentsList[k].content[i]=(
+                this.componentsList[k].content[i] = (
                     <ListLine
-                        key={(k-1)*this.state.numChildren[k] + i}
-                        number={(k-1)*this.state.numChildren[k] + i}
+                        key={(k - 1) * this.state.numChildren[k] + i}
+                        number={(k - 1) * this.state.numChildren[k] + i}
                         name={this.state.lists[k][i]}
-                        list={k-1}
+                        list={k - 1}
                         onEdit={() => this.editLine(k, i)}
                         onDelete={() => this.deleteElement(k, i)}
                         colors={this.getEveryIndexOf(this.state.lists[k][i], k)}
@@ -643,7 +642,7 @@ export default class CreateEnvironment2 extends React.Component {
                                         <div className="flex justify-center pr-4">
                                             <Link to="/index" className="hover-no-underline">
                                                 <Button color={createenvironment.buttons.back.color} outline={true}>
-                                                    <i className={createenvironment.buttons.back.icon+" mr-2"}/>
+                                                    <i className={createenvironment.buttons.back.icon + " mr-2"}/>
                                                     {createenvironment.buttons.back.text}
                                                 </Button>
                                             </Link>
@@ -683,15 +682,19 @@ export default class CreateEnvironment2 extends React.Component {
                                                         {this.state.errorMsg}
                                                     </PopoverBody>
                                                 </UncontrolledPopover>
-                                                <div className="m-4 px-16 pt-2 pb-2 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
-                                                    <span className="font-semibold text-sm mb-1 text-center uppercase text-blueGray-700">
+                                                <div
+                                                    className="m-4 px-16 pt-2 pb-2 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
+                                                    <span
+                                                        className="font-semibold text-sm mb-1 text-center uppercase text-blueGray-700">
                                                         {createenvironment.gridSize}
                                                     </span>
                                                     <div className="text-center">
-                                                        <Button size="sm" color="red" onClick={() => this.modifyGridSize(-1)}>
+                                                        <Button size="sm" color="red"
+                                                                onClick={() => this.modifyGridSize(-1)}>
                                                             <i className="fas fa-minus"/>
                                                         </Button>
-                                                        <Button size="sm" color="lightBlue" onClick={() => this.modifyGridSize(1)}>
+                                                        <Button size="sm" color="lightBlue"
+                                                                onClick={() => this.modifyGridSize(1)}>
                                                             <i className="fas fa-plus"/>
                                                         </Button>
                                                     </div>
@@ -699,28 +702,36 @@ export default class CreateEnvironment2 extends React.Component {
                                             </div>
                                         </div>
                                         <div className="w-full lg:w-4/12 xl:w-3/12 flex-col mt-4">
-                                            <div id="tooltipHelpBuild" className="mx-12 my-3 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
-                                                <div className="flex flex-col justify-center">
-                                                    <div className="flex justify-center items-center title-up text-center my-2">
-                                                        {createenvironment.help.title}
-                                                        <i className="ml-1 text-lightBlue-700 text-lg fas fa-info-circle"/>
+
+                                            <Tooltip
+                                                html={(
+                                                    <div className="flex flex-col text-left">
+                                                        {createenvironment.help.messages.map((prop, key) => (
+                                                            <div className="mb-2" key={key}>
+                                                                <h4 className="font-bold">{prop.title}</h4>
+                                                                <div>{prop.content}</div>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                    <UncontrolledTooltip
-                                                        delay={0}
-                                                        placement="right"
-                                                        target="tooltipHelpBuild"
-                                                    >
-                                                        <div className="flex flex-col text-left">
-                                                            {createenvironment.help.messages.map((prop, key) => (
-                                                                <div className="mb-2" key={key}>
-                                                                    <h4 className="font-bold">{prop.title}</h4>
-                                                                    <div>{prop.content}</div>
-                                                                </div>
-                                                            ))}
+                                                )}
+
+                                                position="right"
+                                                arrow="true"
+                                            >
+
+                                                <div id="tooltipHelpBuild"
+                                                     className="mx-12 my-3 px-4 relative flex flex-col min-w-0 break-words bg-white rounded shadow-lg">
+                                                    <div
+                                                        className="flex flex-col justify-center">
+                                                        <div
+                                                            className="flex justify-center items-center title-up text-center my-2">
+                                                            {createenvironment.help.title}
+                                                            <i className="ml-1 text-lightBlue-700 text-lg fas fa-info-circle"/>
                                                         </div>
-                                                    </UncontrolledTooltip>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                            </Tooltip>
                                             {this.componentsList.map((prop, key) => (
                                                 <ListBlock
                                                     key={key}
