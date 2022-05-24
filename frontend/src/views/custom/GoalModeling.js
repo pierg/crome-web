@@ -13,7 +13,6 @@ import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
 import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 import { saveAs } from 'file-saver';
-import createenvironment from "../../_texts/custom/createenvironment";
 import UploadButton from "../../components/Custom/UploadButton";
 import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
 
@@ -50,21 +49,18 @@ export default class GoalModeling extends React.Component {
     }
 
     uploadGoal = (json) => {
-         if (this.isJsonString(json)) {
-             const goal = JSON.parse(json)
-
-             let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
-            tmpGoals.push(JSON.parse(JSON.stringify(goal)))
-            console.log(tmpGoals.length - 1)
-            this.setState({
-                currentGoalIndex: tmpGoals.length - 1,
-                editedGoals: tmpGoals
-            })
-            console.log(this.state.currentGoalIndex)
-             this.saveCurrentGoal(goal)
-            /*console.log(environment)
-            this.props.setWorld(environment)*/
-
+        if (this.isJsonString(json)) {
+            const goal = JSON.parse(json)
+            if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
+                this.saveCurrentGoal(goal)
+                console.log(this.props.listOfWorldVariables)
+                let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
+                tmpGoals.push(JSON.parse(JSON.stringify(goal)))
+                this.setState({
+                    currentGoalIndex: tmpGoals.length - 1,
+                    editedGoals: tmpGoals
+                })
+            }
         }
     }
 
