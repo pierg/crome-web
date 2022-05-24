@@ -184,32 +184,13 @@ class Modelling:
                                 _typeset=Typeset(values),
                             ),
                         )
-        error = False
-        context = Context(_init_formula="TRUE")
-        typeset_context = Typeset()
-        if len(json_obj["context"]) == 1:
-            typeset_context += w.typeset[json_obj['context'][0]]
-            context = Context(_init_formula=w[json_obj["context"][0]].formula,
-                              _typeset=typeset_context)
-        elif len(json_obj["context"]) > 1:
-            mutexs_group = []
-            for cont in json_obj["context"]:
-                mutex = w.typeset[cont].mutex_group
-                typeset_context += w.typeset[cont]
-                if mutex == "":
-                    context &= w[cont]
-                    continue
-                if mutex not in mutexs_group:
-                    mutexs_group.append(mutex)
-                else:
-                    error = True
-                    break
+        context = Context("true")
 
-        if error:
-            context_array = []
-            for cont in json_obj["context"]:
-                context_array.append(w[cont])
-            raise ContextException(contexts=set(context_array))
+        if json_obj["context"]["formula"]:
+            values = set()
+            for cont in json_obj["context"]["world_values"]:
+                values.add(w.typeset[cont])
+            context = Context(_init_formula=json_obj["context"]["formula"], _typeset=Typeset(values))
 
         lists_with_and_operators: list[LTL] = []
         for i in range(len(contract_lists)):
