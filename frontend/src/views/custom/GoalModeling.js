@@ -15,6 +15,7 @@ import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 import { saveAs } from 'file-saver';
 import createenvironment from "../../_texts/custom/createenvironment";
 import UploadButton from "../../components/Custom/UploadButton";
+import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
 
 
 export default class GoalModeling extends React.Component {
@@ -52,7 +53,14 @@ export default class GoalModeling extends React.Component {
          if (this.isJsonString(json)) {
              const goal = JSON.parse(json)
 
-             this.onUploadChild(goal)
+             let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
+            tmpGoals.push(JSON.parse(JSON.stringify(goal)))
+            console.log(tmpGoals.length - 1)
+            this.setState({
+                currentGoalIndex: tmpGoals.length - 1,
+                editedGoals: tmpGoals
+            })
+            console.log(this.state.currentGoalIndex)
              this.saveCurrentGoal(goal)
             /*console.log(environment)
             this.props.setWorld(environment)*/
@@ -144,14 +152,6 @@ export default class GoalModeling extends React.Component {
         },() => this.setModalClassic(true, tmpGoals.length - 1))
     }
 
-    onUploadChild = (newGoal) => {
-        let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
-        tmpGoals.push(JSON.parse(JSON.stringify(newGoal)))
-
-        this.setState({
-            currentGoalIndex: tmpGoals.length - 1
-        })
-    }
 
     setModalClassic = (bool, key = -1) => {
         this.setState({
@@ -254,12 +254,12 @@ const ParentComponent = props => (
     <section className="mt-5 mt-xl-2 pt-2 relative">
         <div className="px-4 md:px-10 mx-auto w-full">
             <div>
-                <div className="flex justify-center">
+                <div className="flex justify-between">
                     <UploadButton
                         upload={props.uploadGoal}
-                        color={createenvironment.buttons.uploadWorld.color}
-                        text={createenvironment.buttons.uploadWorld.text}
-                        icon={createenvironment.buttons.uploadWorld.icon}
+                        color={goalmodelinginfo.info.buttons.uploadGoal.color}
+                        text={goalmodelinginfo.info.buttons.uploadGoal.text}
+                        icon={goalmodelinginfo.info.buttons.uploadGoal.icon}
                     />
                     <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
                         <AddButton
@@ -268,6 +268,7 @@ const ParentComponent = props => (
                             statIconColor="text-lightBlue-700"
                         />
                     </div>
+                    <div  style={{width : 191, height : 164}}></div>
                 </div>
                 <div className="flex flex-wrap justify-center">
                     {props.children}

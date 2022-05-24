@@ -17,6 +17,13 @@ const textProps = {
                 color: "lightBlue"
             }
         ],
+        buttons: {
+            uploadGoal:{
+                text: "Upload a goal",
+                color: "facebook",
+                icon: "fas fa-arrow-up"
+            }
+        },
         modal: {
             close: "now-ui-icons ui-1_simple-remove",
             cancelText: "Cancel",
