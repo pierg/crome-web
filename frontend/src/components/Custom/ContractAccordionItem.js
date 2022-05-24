@@ -1,10 +1,12 @@
 import React from "react";
 import classnames from "classnames";
-import {Table, UncontrolledTooltip} from "reactstrap";
+import {Table} from "reactstrap";
 import makeStringOf from "hooks/listToStringConversion.js";
 import searchPatterns from "hooks/searchPatterns.js";
 import Switch from "react-bootstrap-switch";
 import Button from "../Elements/Button";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 const ContractAccordionItem = ({
   contract,
@@ -111,17 +113,20 @@ const ContractAccordionItem = ({
       else {
         if(contract[i].content[j].pattern !== undefined) {
           childrenTR[i].push(<>
-                            <UncontrolledTooltip
-                      delay={100}
-                      placement="right"
-                      target={"dropDownMenu"}
-                  >
-                              {patterns[j].description}
-              </UncontrolledTooltip>
 
             <tr key={cpt}>
               <td className="flex flex-col items-start">
+
+                                                    <Tooltip
+                                        title="Edit"
+                                        position="right"
+                                        arrow="true"
+                                        html={patterns[j].description}
+                                        >
+
                 <p id={"dropDownMenu"}>{contract[i].content[j].pattern.name}</p>
+
+                                                    </Tooltip>
                 {searchPatterns(contract[i].content[j].pattern, patterns).map((arg, subKey) => (
                   <p key={subKey}>{arg.name+" : "+makeStringOf(arg.value)}</p>
                 ))}

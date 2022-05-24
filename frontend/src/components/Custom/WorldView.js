@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {UncontrolledTooltip} from "reactstrap";
-
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 function WorldView(props) {
 
@@ -39,33 +39,50 @@ function WorldView(props) {
                         </div>
                         <div className="flex flex-col min-content">
                             <div className="relative pl-4 flex justify-end flex-initial">
-                                <Link to="/world" className="hover-no-underline"><div
+                                <Link to="/world" className="hover-no-underline">
+                                    <Tooltip
+                                        title="Edit"
+                                        position="right"
+                                        arrow="true"
+                                        >
+                                    <div
                                     onClick={() => props.modify(props.number)}
-                                    id={"editButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
                                         props.statIconColor
                                     }
                                 >
                                     <i className={props.statIconName}/>
-                                </div></Link>
+                                </div>
+                                </Tooltip>
+                                </Link>
                             </div>
                             {props.number !== 0 && (<div className="relative pl-4 flex mt-2 justify-end flex-initial">
-                                <div
-                                    onClick={() => props.delete(true, props.number)}
-                                    id={"deleteButton-"+props.number}
-                                    className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
-                                        props.statIconColor
-                                    }
-                                >
-                                    <i className={props.statSecondIconName} id={"deleteIcon"}/>
-                                </div>
+                                 <Tooltip
+                                    title="Delete"
+                                    position="right"
+                                    arrow="true"
+                                    >
+                                    <div
+                                        onClick={() => props.delete(true, props.number)}
+                                        className={
+                                            "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer " +
+                                            props.statIconColor
+                                        }
+                                    >
+                                        <i className={props.statSecondIconName} id={"deleteIcon"}/>
+                                    </div>
+                                     </Tooltip>
                             </div>)}
                             <div className="relative pl-4 flex mt-auto justify-end flex-initial ">
+                                                                   <Tooltip
+                                        title="Download"
+                                        position="right"
+                                        arrow="true"
+                                        >
+
                                 <div
                                     onClick={() => props.download(props.number)}
-                                    id={"downloadButton-"+props.number}
                                     className={
                                         "text-white p-3 text-center inline-flex items-center justify-center w-10 h-10 shadow-lg rounded-full cursor-pointer bg-emerald-400"
                                     }
@@ -73,6 +90,7 @@ function WorldView(props) {
                                     <i className={props.statDownloadIconName} id={"downloadIcon"}/>
 
                                 </div>
+                                                                   </Tooltip>
 
                             </div>
                         </div>
@@ -87,16 +105,6 @@ function WorldView(props) {
                 </div>
             </div>
 
-
-            <UncontrolledTooltip placement="right" target={"editButton-"+props.number}>
-                edit
-            </UncontrolledTooltip>
-            {props.number !== 0 && (<UncontrolledTooltip placement="right" target={"deleteButton-"+props.number}>
-                delete
-            </UncontrolledTooltip>)}
-            <UncontrolledTooltip placement="right" target={"downloadButton-"+props.number}>
-                download
-            </UncontrolledTooltip>
         </>
     );
 }
