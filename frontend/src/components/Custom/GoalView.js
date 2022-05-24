@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import ContractAccordionItem from "./ContractAccordionItem";
 import {Modal} from "reactstrap";
 import ContractModalDetails from "./ContractModalDetails";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
+
 
 function GoalView(props) {
 
@@ -51,6 +54,11 @@ function GoalView(props) {
                         </div>
                         <div className="flex flex-col min-content">
                             <div className="relative pl-4 flex justify-end flex-initial">
+                                                                    <Tooltip
+                                        title="Edit"
+                                        position="right"
+                                        arrow="true"
+                                        >
                                 <div
                                     onClick={() => props.modify(true, props.number)}
                                     className={
@@ -60,8 +68,15 @@ function GoalView(props) {
                                 >
                                     <i className={props.statIconName}/>
                                 </div>
+                                                                    </Tooltip>
                             </div>
                             <div className="relative pl-4 flex mt-2 justify-end flex-initial">
+
+                                                                                                   <Tooltip
+                                        title="Delete"
+                                        position="right"
+                                        arrow="true"
+                                        >
                                 <div
                                     onClick={() => props.delete(props.number)}
                                     className={
@@ -71,7 +86,13 @@ function GoalView(props) {
                                 >
                                     <i className={props.statSecondIconName}/>
                                 </div>
+                                                                                                   </Tooltip>
                             </div>
+                                                                                               <Tooltip
+                                        title="Download"
+                                        position="right"
+                                        arrow="true"
+                                        >
                             <div className="relative pl-4 flex mt-2 justify-end flex-initial">
                                 <div
                                     onClick={() => props.download(props.number)}
@@ -83,6 +104,7 @@ function GoalView(props) {
                                     <i className={props.statDownloadIconName} id={"downloadIcon"}/>
                                 </div>
                             </div>
+                                                                                               </Tooltip>
                         </div>
                     </div>
                     <div className="flex flex-col mt-4">
