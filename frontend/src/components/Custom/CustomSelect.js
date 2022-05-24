@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
-import {UncontrolledTooltip} from "reactstrap";
-
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 export default function CustomSelect({
   border,
   size,
@@ -125,17 +125,12 @@ export default function CustomSelect({
                   <span
                     key={key}
                   >
-                    <UncontrolledTooltip
-                        delay={100}
-                        placement="right"
-                        target={"dropDownMenu" + key}
-                    >
-                      {patternDescription[items.indexOf(prop)]}
-                    </UncontrolledTooltip>
-
+                  <Tooltip
+                      html={patternDescription[items.indexOf(prop)]}
+                      position="right"
+                      arrow="true"
+                      >
                     <a
-                      href="#pablo"
-                      id={"dropDownMenu"+key}
                       name={name}
                       className={
                         (prop === defaultValue ? "bg-lightBlue-100 " : "") +
@@ -151,6 +146,7 @@ export default function CustomSelect({
                     >
                       {prop}
                     </a>
+                                    </Tooltip>
                   </span>
                 );
               }

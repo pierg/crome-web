@@ -1,13 +1,13 @@
 import React from "react";
-import {UncontrolledTooltip} from "reactstrap";
 import PropTypes from "prop-types";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 const ContractEditArguments = ({
   border,
   size,
   content,
   changeParameter,
-  number,
   infos,
   presentPattern,
 }) => {
@@ -41,8 +41,13 @@ const ContractEditArguments = ({
               <div className="mr-4 text-right whitespace-nowrap">
                 {prop.name[0].toUpperCase()+prop.name.slice(1)+" : "}
               </div>
+             <Tooltip
+                      title='To enter several values, separate them with ","'
+                      position="right"
+                      arrow="true"
+                      >
+
               <input
-                id={"tooltipValues"+number+key}
                 type="text"
                 autoComplete="off"
                 className= {inputClasses}
@@ -51,15 +56,7 @@ const ContractEditArguments = ({
                 name="subValue"
                 onChange={(e) => changeParameter(e, key)}
               />
-              {prop.format === "list" && (
-                  <UncontrolledTooltip
-                      delay={100}
-                      placement="bottom"
-                      target={"tooltipValues"+number+key}
-                  >
-                    To enter several values, separate them with ","
-                  </UncontrolledTooltip>
-              )}
+              </Tooltip>
             </div>))}
       </>
   );

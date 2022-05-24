@@ -4,7 +4,8 @@ import {Form} from 'react-bootstrap'
 import {v4 as uuidV4} from 'uuid'
 import {CSSTransition, SwitchTransition} from "react-transition-group";
 import {useSocket} from "../../contexts/SocketProvider";
-import {UncontrolledTooltip} from "reactstrap";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 export default function LoginSession({id, onIdSubmit, cookie}) {
     const idRef = useRef()
@@ -75,20 +76,20 @@ export default function LoginSession({id, onIdSubmit, cookie}) {
                     key={id.split("-")[0]+"-"+id.split("-")[1]+"..."}
                 >
                     <>
-                    <p className={"text-center font-semibold hover:text-lightBlue-500 cursor-pointer transition-all duration-300 ease-in-out "+toolTipColor}
+                              <Tooltip
+      html={<div>{toolTipText ? "Click to Copy ID" : "ID Copied!"}</div>}
+      position="bottom"
+      arrow="true"
+      >
+
+                        <p className={"text-center font-semibold hover:text-lightBlue-500 cursor-pointer transition-all duration-300 ease-in-out "+toolTipColor}
                        onClick={() => {navigator.clipboard.writeText(id).then(() => toggleToolTipText(false))}}
-                       id={"idDisplay"}
+
                        onMouseOut={() => setTimeout(function() {toggleToolTipText(true)},500)}>
                         {id.split("-")[0]+"-"+id.split("-")[1]+"..."}
                     </p>
-                    <UncontrolledTooltip
-                        delay={0}
-                        placement="bottom"
-                        target="idDisplay"
-                        className="dark-tooltip"
-                    >
-                        <div>{toolTipText ? "Click to Copy ID" : "ID Copied!"}</div>
-                    </UncontrolledTooltip></>
+                              </Tooltip>
+</>
                 </CSSTransition>
             </SwitchTransition>)}
 

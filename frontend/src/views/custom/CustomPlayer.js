@@ -15,7 +15,9 @@ import WorldModeling from "./WorldModeling";
 import Analysis from "./Analysis";
 import Synthesis from "./Synthesis";
 import CustomNavButton from "../../components/Custom/CustomNavButton";
-import { UncontrolledTooltip } from "reactstrap";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
+
 
 export default function CustomPlayer({
   world,
@@ -106,7 +108,12 @@ export default function CustomPlayer({
             type={"back"}
           />
         </div>
-        <div id="continueArrow">
+          <Tooltip
+      title="Select an Environment to continue"
+      position="bottom"
+      arrow="true"
+      >
+        <div >
           <CustomNavButton
             open={open}
             toggleNew={toggleNew}
@@ -116,11 +123,8 @@ export default function CustomPlayer({
           />
 
         </div>
-        {project === 0 && (
-          <UncontrolledTooltip delay={0} placement="bottom" target="continueArrow">
-            <span>Select an Environment to continue</span>
-          </UncontrolledTooltip>
-        )}
+          </Tooltip>
+
       </div>
       <div className="px-4 md:px-6 mx-auto w-full -mt-24">
         <div className="mt-5 relative pb-32">

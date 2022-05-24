@@ -1,6 +1,8 @@
 import React from 'react';
-import {Button, UncontrolledTooltip} from "reactstrap";
+import {Button} from "reactstrap";
 import mutexcolors from "_texts/custom/mutexcolors.js";
+import 'react-tippy/dist/tippy.css'
+import {Tooltip} from 'react-tippy';
 
 function ListLine(props) {
     return(
@@ -8,16 +10,15 @@ function ListLine(props) {
             <td>
                 <div className="grid grid-template-2">
                     {props.colors.map((prop, key) => (
-                        <span key={key}><i id={"tooltipMutex"+props.list+"-"+props.number+"-"+key} className={"text-2xl "+props.statIconName} style={{color: mutexcolors.colors[props.list][prop]}}/>
-                        <UncontrolledTooltip
-                        delay={0}
-                        placement="left"
-                        target={"tooltipMutex"+props.list+"-"+props.number+"-"+key}
-                        >
-                        <div className="flex flex-col text-left">
+                      <Tooltip
+                    html={                        <div className="flex flex-col text-left">
                             Mutex group {prop}
-                        </div>
-                        </UncontrolledTooltip></span>
+                        </div>}
+                    position="left"
+                    arrow="true"
+                    >
+                        <span key={key}><i id={"tooltipMutex"+props.list+"-"+props.number+"-"+key} className={"text-2xl "+props.statIconName} style={{color: mutexcolors.colors[props.list][prop]}}/></span>
+                      </Tooltip>
                     ))}
                 </div>
             </td>
