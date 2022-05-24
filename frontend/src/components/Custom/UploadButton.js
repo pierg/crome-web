@@ -10,13 +10,15 @@ function UploadButton(props) {
         limitFilesConfig: { max: 1 },
     });
     const [saved,setSaved] = useState(false)
+    const [previousContent, setPreviousContent] = useState(null)
+
 
 
     useEffect(() => {
-         if (filesContent[0] && !saved) {
-            console.log("coucou")
-            props.upload(atob(filesContent[0].content.split(",")[1]))
-            setSaved(true)
+         if (filesContent[0] && (!saved || previousContent !== filesContent[0])) {
+             props.upload(atob(filesContent[0].content.split(",")[1]))
+             setSaved(true)
+             setPreviousContent(filesContent[0])
         }
     }, [props, saved, filesContent])
 
