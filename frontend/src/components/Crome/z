@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {Button, ModalFooter} from "reactstrap";
 import Input from "../Elements/Input";
+import Checkbox from "../Elements/Checkbox";
 import ContractContentEditor from "../Custom/ContractContentEditor";
 import contracteditorinfo from "_texts/custom/contracteditorinfo.js";
 import makeListOf from "hooks/stringToListConversion.js";
@@ -87,7 +88,7 @@ function GoalEdit(props) {
         }
 
         setFormulaRed(formulaRed);
-    }, [props.goal.context,props.listOfWorldVariables]);
+    }, [props.goal.context["formula"]]);
 
     return(
         <>

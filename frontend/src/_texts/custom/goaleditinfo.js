@@ -24,7 +24,7 @@ const textProps = {
         },
         lists: {
             title: "List of",
-            elements: ["Locations", "Actions", "Sensors"]
+            elements: ["Locations", "Actions", "Sensors", "Contexts"]
         }
     }
 };

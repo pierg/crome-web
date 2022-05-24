@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import Checkbox from "../Elements/Checkbox";
 import ContractAccordionItem from "./ContractAccordionItem";
 import {Modal} from "reactstrap";
 import ContractModalDetails from "./ContractModalDetails";
@@ -22,27 +21,9 @@ function GoalView(props) {
         setOpen(false)
     }, [props.contract]);
 
-
-    function parseContext(context,contextChecked) {
-        return context===undefined ? "" : contextChecked.includes(context) ? "checked" : ""
-    }
-
     let callBackAction = (bool) => {
       setOpen(bool);
     };
-
-    const children = [];
-    for (let i = 0; i < props.context.length; i += 1) {
-        children.push(
-            <Checkbox
-                key={i}
-                className="mr-4"
-                label={props.context[i]}
-                readOnly
-                checked={parseContext(props.context[i],props.contextChecked)}
-            />
-        );
-    }
 
     return(
         <>
@@ -62,7 +43,9 @@ function GoalView(props) {
                                 </span>
                                 </div>
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    {children}
+                                    <div>
+                                        <b>Context :</b> {props.contextChecked["formula"]}
+                                    </div>
                                 </div>
                             </div>
                         </div>

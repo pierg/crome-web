@@ -1,7 +1,10 @@
 const textProps = {
   name: "",
   description: "",
-  context: [],
+  context: {
+      "formula": "",
+      world_values: []
+  },
   contract: {
       assumptions: [],
       guarantees: []
