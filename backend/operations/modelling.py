@@ -192,6 +192,9 @@ class Modelling:
                 values.add(w.typeset[cont])
             context = Context(_init_formula=json_obj["context"]["formula"], _typeset=Typeset(values))
 
+        if not context.is_satisfiable:
+            raise ContextException(context)
+
         lists_with_and_operators: list[LTL] = []
         for i in range(len(contract_lists)):
             if not contract_lists[i]:

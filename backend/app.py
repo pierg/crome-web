@@ -308,11 +308,11 @@ def add_goal(data) -> None:
                                                                f'for the LTL',
             room=request.sid
         )
-    except ContextException:
+    except ContextException as e:
         emit(
             "send-message",
             strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. '
-                                                               f'The contexts are not compatible.',
+                                                               f'{e}',
             room=request.sid
         )
     except Exception as e:
@@ -326,7 +326,8 @@ def add_goal(data) -> None:
         emit(
             "send-notification",
             {"crometypes": "error",
-             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved.'},
+             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. See the console for '
+                                                                           'more information'},
             room=request.sid,
         )
 
@@ -432,8 +433,9 @@ def process_goals(data) -> None:
     set_of_goals: set[Goal] | None = None
 
     # Now we try to create the Cgg by capturing the possible errors and give them to the user
+    set_of_goals = load_goals(str(project_folder))
     try:
-        set_of_goals = load_goals(str(project_folder))
+
         if set_of_goals is None:
             emit(
                 "send-message",
