@@ -125,28 +125,28 @@ export default function CustomSelect({
                   <span
                     key={key}
                   >
-                  <Tooltip
+                    <Tooltip
                       html={patternDescription[items.indexOf(prop)]}
                       position="right"
                       arrow="true"
                       >
-                    <a
-                      name={name}
-                      className={
-                        (prop === defaultValue ? "bg-lightBlue-100 " : "") +
-                        "text-sm px-3 py-2 font-normal block w-full whitespace-nowrap transition-all duration-200 hover:bg-blueGray-100 rounded"
-                      }
-                      onClick={(e) => {
-                        e.preventDefault();
-                        changeSelector(e, prop);
-                        if (closeOnSelect) {
-                          startAnimation();
+                      <span
+                        name={name}
+                        className={
+                          (prop === defaultValue ? "bg-lightBlue-100 " : "") +
+                          "text-sm px-3 py-2 font-normal block w-full whitespace-nowrap transition-all duration-200 hover:bg-blueGray-100 rounded"
                         }
-                      }}
-                    >
-                      {prop}
-                    </a>
-                                    </Tooltip>
+                        onClick={(e) => {
+                          e.preventDefault();
+                          changeSelector(e, prop);
+                          if (closeOnSelect) {
+                            startAnimation();
+                          }
+                        }}
+                      >
+                        {prop}
+                      </span>
+                    </Tooltip>
                   </span>
                 );
               }

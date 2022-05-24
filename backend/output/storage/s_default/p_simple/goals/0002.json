@@ -1,5 +1,11 @@
 {
-    "context": [],
+    "context": {
+        "formula": "day & night",
+        "world_values": [
+            "day",
+            "night"
+        ]
+    },
     "contract": {
         "assumptions": [
             {

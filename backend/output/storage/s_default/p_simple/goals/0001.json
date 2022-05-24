@@ -1,7 +1,10 @@
 {
-    "context": [
-        "night"
-    ],
+    "context": {
+        "formula": "night",
+        "world_values": [
+            "night"
+        ]
+    },
     "contract": {
         "assumptions": [
             {

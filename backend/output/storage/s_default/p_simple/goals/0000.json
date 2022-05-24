@@ -1,7 +1,10 @@
 {
-    "context": [
-        "day"
-    ],
+    "context": {
+        "formula": "day",
+        "world_values": [
+            "day"
+        ]
+    },
     "contract": {
         "assumptions": [
             {
