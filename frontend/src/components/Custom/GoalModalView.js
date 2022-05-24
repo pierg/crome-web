@@ -40,9 +40,7 @@ function GoalModalView(props) {
                                 </span>
                                 </div>
                                 <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    {props.goal.context.map((prop, key) => (
-                                        <Checkbox key={key} label={prop} name="context" readOnly checked={true}/>
-                                    ))}
+                                    <b>Context : </b> {props.goal.context["formula"]}
                                 </div>
                             </div>
                         </div>
