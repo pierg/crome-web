@@ -10,14 +10,14 @@ function ListLine(props) {
             <td>
                 <div className="grid grid-template-2">
                     {props.colors.map((prop, key) => (
-                      <Tooltip
-                    html={                        <div className="flex flex-col text-left">
+                      <Tooltip key={key}
+                        html={<div className="flex flex-col text-left">
                             Mutex group {prop}
                         </div>}
-                    position="left"
-                    arrow="true"
-                    >
-                        <span key={key}><i id={"tooltipMutex"+props.list+"-"+props.number+"-"+key} className={"text-2xl "+props.statIconName} style={{color: mutexcolors.colors[props.list][prop]}}/></span>
+                        position="left"
+                        arrow="true"
+                        >
+                            <span key={key}><i id={"tooltipMutex"+props.list+"-"+props.number+"-"+key} className={"text-2xl "+props.statIconName} style={{color: mutexcolors.colors[props.list][prop]}}/></span>
                       </Tooltip>
                     ))}
                 </div>
