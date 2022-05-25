@@ -4,6 +4,7 @@ import Input from "../Elements/Input";
 import ContractContentEditor from "../Custom/ContractContentEditor";
 import contracteditorinfo from "_texts/custom/contracteditorinfo.js";
 import makeListOf from "hooks/stringToListConversion.js";
+import {Table} from "reactstrap";
 
 function GoalEdit(props) {
 
@@ -119,21 +120,34 @@ function GoalEdit(props) {
                     value={goal.description}
                     onChange={changeParameter}
                 />
-                <div className="mt-2 text-center">
-                    {props.listOfWorldVariables.map((prop, key) => (
-                        (key !== (props.listOfWorldVariables.length) && (
-                            <div key={key}>
-                                <span className="font-semibold">
-                                    {props.info.lists.title} {props.info.lists.elements[key]} :
-                                </span>
-                                {prop.map((subProp, subKey) => (
-                                    <span key={subKey}>
-                                        {" "+subProp}{subKey !== (prop.length - 1) ? ", " : ""}
-                                    </span>
+                <div>
+                    <div className="m-auto w-50">
+                         <Table responsive>
+                             <thead>
+                                 <tr className="text-center">
+                                    <th colSpan={2}>Atomic propositions</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                {props.listOfWorldVariables.map((prop, key) => (
+                                    (key !== (props.listOfWorldVariables.length) && (
+                                        <tr key={key} className="m-0">
+                                            <td className="font-semibold text-center">
+                                                {props.info.lists.title} {props.info.lists.elements[key]} :
+                                            </td>
+                                            <td className="text-left">
+                                            {prop.map((subProp, subKey) => (
+                                                <span key={subKey}>
+                                                    {" "+subProp}{subKey !== (prop.length - 1) ? ", " : ""}
+                                                </span>
+                                            ))}
+                                            </td>
+                                        </tr>
+                                    ))
                                 ))}
-                            </div>
-                        ))
-                    ))}
+                             </tbody>
+                        </Table>
+                    </div>
                 </div>
                 <div className="mt-4">
                     <h4 className="font-bold title-up mb-2 inline">{props.info.context.title} : </h4>
