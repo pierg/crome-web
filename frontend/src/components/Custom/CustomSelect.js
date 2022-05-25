@@ -130,7 +130,8 @@ export default function CustomSelect({
                       position="right"
                       arrow="true"
                       >
-                      <span
+                      <a
+                        href="#pablo"
                         name={name}
                         className={
                           (prop === defaultValue ? "bg-lightBlue-100 " : "") +
@@ -145,7 +146,7 @@ export default function CustomSelect({
                         }}
                       >
                         {prop}
-                      </span>
+                      </a>
                     </Tooltip>
                   </span>
                 );
