@@ -31,6 +31,11 @@ export default class GoalModeling extends React.Component {
         deletionIndex: null
     }
 
+
+    /**
+     * Download a goal
+     * @param index
+     */
     downloadGoal = (index) => {
         const goal = {"context" : this.state.goals[index].context, "contract" : this.state.goals[index].contract, "description" : this.state.goals[index].description, "name" : this.state.goals[index].name}
         const json = JSON.stringify(goal,null,'\t')
@@ -39,6 +44,11 @@ export default class GoalModeling extends React.Component {
         saveAs(file)
     }
 
+    /**
+     * Verify if a string is convertible to json
+     * @param str
+     * @returns {boolean}
+     */
     isJsonString = (str) => {
         try {
             JSON.parse(str);
