@@ -61,20 +61,23 @@ export default class GoalModeling extends React.Component {
             }
 
         } else return false
-        if (goal.contract.hasOwnProperty("assumptions") && goal.contract.assumptions[0].hasOwnProperty("world_values")) {
-            for (let i=0; i<goal.contract.assumptions.length; i++) {
-                if (goal.contract.assumptions[0].world_values[i][0]) {
-                    if (!(this.props.listOfWorldVariables[0].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.assumptions[0].world_values[i][0])))
-                        return false
+        if (goal.contract.hasOwnProperty("assumptions")) {
+            if (goal.contract.assumptions[0] && goal.contract.assumptions[0].hasOwnProperty("world_values")) {
+                for (let i = 0; i < goal.contract.assumptions.length; i++) {
+                    if (goal.contract.assumptions[0].world_values[i][0]) {
+                        if (!(this.props.listOfWorldVariables[0].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.assumptions[0].world_values[i][0])))
+                            return false
+                    }
                 }
             }
-
         } else return false
-        if (goal.contract.hasOwnProperty("guarantees") && goal.contract.guarantees[0].hasOwnProperty("world_values")) {
-            for (let i=0; i<goal.contract.guarantees.length; i++) {
-                if (goal.contract.guarantees[0].world_values[i][0]) {
-                    if (!(this.props.listOfWorldVariables[0].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.guarantees[0].world_values[i][0])))
-                        return false
+        if (goal.contract.hasOwnProperty("guarantees")) {
+            if (goal.contract.guarantees[0] && goal.contract.guarantees[0].hasOwnProperty("world_values")) {
+                for (let i = 0; i < goal.contract.guarantees.length; i++) {
+                    if (goal.contract.guarantees[0].world_values[i][0]) {
+                        if (!(this.props.listOfWorldVariables[0].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.guarantees[0].world_values[i][0])))
+                            return false
+                    }
                 }
             }
         } else return false
@@ -88,7 +91,6 @@ export default class GoalModeling extends React.Component {
     uploadGoal = (json) => {
         if (this.isJsonString(json)) {
             const goal = JSON.parse(json)
-            console.log(goal)
             if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
                 if (this.goalPartOfProject(goal)) {
                     this.saveCurrentGoal(goal)
