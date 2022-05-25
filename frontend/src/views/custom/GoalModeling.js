@@ -6,7 +6,6 @@ import GoalView from "../../components/Custom/GoalView";
 import AddButton from "../../components/Custom/AddButton";
 import {Modal} from "reactstrap";
 import GoalEdit from "../../components/Crome/GoalEdit";
-import SocketIoGaols from "../../components/Custom/Examples/GetGoals";
 import defaultgoal from "_texts/custom/defaultgoal.js";
 import goaleditinfo from "_texts/custom/goaleditinfo.js";
 import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
@@ -15,6 +14,7 @@ import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 import { saveAs } from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
 import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
+import SocketIoGoals from "../../components/Custom/Examples/GetGoals";
 
 
 export default class GoalModeling extends React.Component {
@@ -48,18 +48,57 @@ export default class GoalModeling extends React.Component {
         return true;
     }
 
+    /**
+     * Verify if an upload goal is part of the project
+     * @param goal
+     * @returns {boolean}
+     */
+    goalPartOfProject = (goal) => {
+        if (goal.context.hasOwnProperty("world_values")) {
+            for (let i=0; i<goal.context.world_values.length; i++) {
+                if (!this.props.listOfWorldVariables[3].includes(goal.context.world_values[i]))
+                    return false
+            }
+
+        } else return false
+        if (goal.contract.hasOwnProperty("assumptions") && goal.contract.assumptions[0].hasOwnProperty("world_values")) {
+            for (let i=0; i<goal.contract.assumptions.length; i++) {
+                if (goal.contract.assumptions[0].world_values[i][0]) {
+                    if (!(this.props.listOfWorldVariables[0].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.assumptions[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.assumptions[0].world_values[i][0])))
+                        return false
+                }
+            }
+
+        } else return false
+        if (goal.contract.hasOwnProperty("guarantees") && goal.contract.guarantees[0].hasOwnProperty("world_values")) {
+            for (let i=0; i<goal.contract.guarantees.length; i++) {
+                if (goal.contract.guarantees[0].world_values[i][0]) {
+                    if (!(this.props.listOfWorldVariables[0].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[1].includes(goal.contract.guarantees[0].world_values[i][0]) || this.props.listOfWorldVariables[2].includes(goal.contract.guarantees[0].world_values[i][0])))
+                        return false
+                }
+            }
+        } else return false
+        return true
+    }
+
+    /**
+     * Upload a new goal
+     * @param json
+     */
     uploadGoal = (json) => {
         if (this.isJsonString(json)) {
             const goal = JSON.parse(json)
+            console.log(goal)
             if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
-                this.saveCurrentGoal(goal)
-                console.log(this.props.listOfWorldVariables)
-                let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
-                tmpGoals.push(JSON.parse(JSON.stringify(goal)))
-                this.setState({
-                    currentGoalIndex: tmpGoals.length - 1,
-                    editedGoals: tmpGoals
-                })
+                if (this.goalPartOfProject(goal)) {
+                    this.saveCurrentGoal(goal)
+                    let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
+                    tmpGoals.push(JSON.parse(JSON.stringify(goal)))
+                    this.setState({
+                        currentGoalIndex: tmpGoals.length - 1,
+                        editedGoals: tmpGoals
+                    })
+                }
             }
         }
     }
@@ -95,7 +134,7 @@ export default class GoalModeling extends React.Component {
                     triggerGoalsChecked={this.props.triggerGoalsChecked}
                     swapTriggerGoalsChecked={this.props.swapTriggerGoalsChecked}
                 />
-                <SocketIoGaols
+                <SocketIoGoals
                     projectId={this.props.project}
                     session={this.props.id}
                     updateGoals={this.getGoals}

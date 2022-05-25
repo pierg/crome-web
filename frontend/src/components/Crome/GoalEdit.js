@@ -131,7 +131,7 @@ function GoalEdit(props) {
                              <tbody>
                                 {props.listOfWorldVariables.map((prop, key) => (
                                     (key !== (props.listOfWorldVariables.length) && (
-                                        <tr key={key} className="m-0">
+                                        <tr key={key}>
                                             <td className="font-semibold text-center">
                                                 {props.info.lists.title} {props.info.lists.elements[key]} :
                                             </td>

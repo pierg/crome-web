@@ -1,7 +1,7 @@
 import React, {useEffect, useCallback, useState} from 'react'
 import {useSocket} from "../../../contexts/SocketProvider";
 
-function SocketIoGaols(props) {
+function SocketIoGoals(props) {
 
     const socket = useSocket()
 
@@ -52,4 +52,4 @@ function SocketIoGaols(props) {
     return (<></>);
 }
 
-export default SocketIoGaols;
+export default SocketIoGoals;
