@@ -20,6 +20,9 @@ from backend.tools.persistence import dump_goals, dump_world, load_goals, load_w
 class Modelling:
     @staticmethod
     def create_environment(project_folder):
+        """
+        Create the environment.dat corresponding to the .json file of the project.
+        """
 
         with open(Path(os.path.join(project_folder, "environment.json"))) as json_file:
             json_obj = json.load(json_file)
@@ -112,6 +115,9 @@ class Modelling:
 
     @staticmethod
     def add_goal(project_folder, goal_file, goal_id):
+        """
+        It add the goal to the .dat file. And it checks also if this goal is already in. In that case, it removes it.
+        """
         set_of_goals = load_goals(project_folder)
 
         w = load_world(project_folder)
@@ -205,6 +211,7 @@ class Modelling:
                 lists_with_and_operators[i] = (
                     lists_with_and_operators[i] & contract_lists[i][j]
                 )
+
         # We update the json file with the new value of the LTL.
 
         for i in range(len(contract_lists)):
