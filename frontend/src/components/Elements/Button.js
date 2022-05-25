@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Button = React.forwardRef(
-  ({ outline, size, color, children, fullWidth, ...rest }, ref) => {
+  ({ outline, worldModeling, size, color, children, fullWidth, ...rest }, ref) => {
     const sizes = {
       sm: "text-xs px-3 py-2 shadow hover:shadow-md rounded-md",
       regular: "text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       regular2: "w-100 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       lg: "text-sm px-6 py-3 shadow-md hover:shadow-lg rounded-lg",
-      worldModeling : "w-64 text-sm py-1 shadow-md hover:shadow-lg rounded-lg whitespace-nowrap break-all",
     };
     const colors = {
       facebook:
@@ -111,11 +110,20 @@ const Button = React.forwardRef(
         "text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600",
       "pink-outline":
         "text-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600 active:text-white",
+      gray:
+        "text-black bg-blueGray-200 border-blueGray-200 active:bg-blueGray-300 active:border-blueGray-300",
+      "gray-outline":
+        "text-lightBlue-700 border-blueGray-200 active:bg-blueGray-300 active:border-blueGray-300 active:text-white",
     };
     let className =
       "inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 ";
     className = className + " " + colors[color + (outline ? "-outline" : "")];
-    className = className + " " + sizes[size];
+    if(worldModeling) {
+      className = className + " w-64 text-sm py-1 shadow-md hover:shadow-lg rounded-lg whitespace-nowrap break-all border-1"
+    }
+    else {
+      className = className + " " + sizes[size];
+    }
     if (fullWidth) {
       className = className + " w-full text-center";
     }

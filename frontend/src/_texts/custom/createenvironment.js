@@ -61,12 +61,12 @@ const textProps = {
         },
         buildYourEnvironment:{
             text: "Build your environment",
-            color: "facebook",
+            color: "gray",
             icon: "fas fa-plus-square"
         },
         uploadWorld:{
             text: "Upload a world",
-            color: "facebook",
+            color: "gray",
             icon: "fas fa-arrow-up"
         }
     },

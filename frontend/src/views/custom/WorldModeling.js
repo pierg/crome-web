@@ -291,7 +291,7 @@ const ParentComponent = props => (
             />
             <Link to="/world" className="mt-2 hover-no-underline" onClick={props.clearWorld}>
                 <ElementsButton
-                    size="worldModeling"
+                    worldModeling={true}
                     color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
                     <i className={createenvironment.buttons.buildYourEnvironment.icon+" mr-2"}/>
                     {createenvironment.buttons.buildYourEnvironment.text}

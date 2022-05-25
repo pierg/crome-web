@@ -21,7 +21,7 @@ function UploadButton(props) {
     }, [props, saved, filesContent, previousContent])
 
     return (<div>
-      <ElementsButton size="worldModeling" color={props.color} outline={true} onClick={() => openFileSelector()}>
+      <ElementsButton worldModeling={true} color={props.color} outline={true} onClick={() => openFileSelector()}>
            <i className={props.icon+" mr-2"}/>
           {props.text}
 
