@@ -56,7 +56,7 @@ const textProps = {
         update: "Update",
         back: {
             text: "Back to Crome",
-            color: "facebook",
+            color: "gray",
             icon: "fas fa-long-arrow-alt-left"
         },
         buildYourEnvironment:{
