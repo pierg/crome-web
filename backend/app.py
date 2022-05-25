@@ -63,6 +63,10 @@ cookies: dict[str, str] = {}
 
 @socketio.on("connect")
 def connected() -> None:
+    """
+    Establish the connection between the front and the back
+    while checking that the session is not already in use.
+    """
     print("Connected")
     print(f'ID {request.args.get("id")}')
     lock = threading.Lock()
@@ -98,6 +102,9 @@ def connected() -> None:
 
 @socketio.on("get-projects")
 def get_projects() -> list[list[dict[str, str]]]:
+    """
+    Get the list of all the project created by this session. We gave to the frontend the json content plus the image.
+    """
     list_of_projects: list[
         list[dict[str, str]]
     ] = []  # array that will be sent containing all projects #
@@ -143,9 +150,11 @@ def get_projects() -> list[list[dict[str, str]]]:
 
 @socketio.on("save-project")
 def save_project(data) -> None:
+    """
+    Save the new World created by the user. If it is a modification of the default project, we make a copy of the
+    default project in the session folder that we then modify.
+    """
     session_id = str(request.args.get("id"))
-    print(f"SAVE PROJECT : {session_id}")
-
     session_dir = session_path(session_id)
     if not os.path.isdir(session_dir):
         os.makedirs(session_dir)
@@ -183,13 +192,15 @@ def save_project(data) -> None:
     send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
                          room_id=request.sid, crometype="success")
 
-    print("creating environment test")
     Modelling.create_environment(project_dir)
-    print("saved")
 
 
 @socketio.on("save-image")
 def save_image(data) -> None:
+    """
+    We save the screenshot taken of the world project. The frontend send us the binary code of the image.
+    We just have to write it inside the good folder.
+    """
     img_data = bytes(data["image"], "utf-8")
 
     session_id = str(request.args.get("id"))
@@ -208,6 +219,10 @@ def save_image(data) -> None:
 
 @socketio.on("delete-project")
 def delete_project(data) -> None:
+    """
+    Delete the folder corresponding to the project.
+    The front give us only an index value corresponding of the date of creation of the project.
+    """
     session_id = str(request.args.get("id"))
     current_session_folder = session_path(session_id)
     dir_path, dir_names, filenames = next(walk(current_session_folder))
@@ -230,6 +245,9 @@ def delete_project(data) -> None:
 
 @socketio.on("get-goals")
 def get_goals(data) -> None:
+    """
+    Send the json content of all goals created inside the project.
+    """
     project_id = str(data["project"])
     session = "default" if project_id == "simple" else str(request.args.get("id"))
 
@@ -254,6 +272,11 @@ def get_goals(data) -> None:
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
+    """
+    The front end send us all the information of the goal (a new goal without ID or a modified goal) in the form of a
+    json file. We just put this information in the right file, and then we add the goal in goal.dat file thanks to
+    Modelling. It catches also all the error related to the goal creation and send them to the user.
+    """
     project_id = str(data["project_id"])
     session_id = str(request.args.get("id"))
     is_simple = str(project_id) == "simple"
@@ -334,6 +357,10 @@ def add_goal(data) -> None:
 
 @socketio.on("delete-goal")
 def delete_goal(data) -> None:
+    """
+    We delete the json file related to the goal id given by the frontend.
+    Moreover, we supress it from the goal.dat file.
+    """
     project_id = str(data["project"])
     session_id = str(request.args.get("id"))
     is_simple = str(project_id) == "simple"
@@ -374,6 +401,10 @@ def delete_goal(data) -> None:
 
 @socketio.on("check-goals")
 def check_goals(data) -> None:
+    """
+    Before the user goes to the Analysis page, we check if there are goals in goal.dat.
+    If not, we notify the user of this missing goal.
+    """
     session_id = str(request.args.get("id"))
     project_id = str(data["project"])
     if project_id == "simple":
@@ -383,7 +414,7 @@ def check_goals(data) -> None:
     set_of_goals = None
     try:
         set_of_goals = load_goals(str(project_path(session_id, project_id)))
-    except:
+    except Exception:
         emit_warning = True
 
     if set_of_goals is None or set_of_goals == set() or emit_warning:
@@ -394,6 +425,9 @@ def check_goals(data) -> None:
 
 @socketio.on("get-patterns")
 def get_patterns() -> None:
+    """
+    Send to the frontend the name and the usage of all the pattern used. It gives also a short description of each one.
+    """
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
@@ -407,6 +441,9 @@ def get_patterns() -> None:
 
 @socketio.on("process-goals")
 def process_goals(data) -> None:
+    """
+    Create the CGG corresponding to the project. It checks all the error and send them to the user.
+    """
     now = time.localtime(time.time())
     session_id = str(request.args.get("id"))
 
@@ -430,8 +467,6 @@ def process_goals(data) -> None:
     ):
         build_simple_project()
 
-    set_of_goals: set[Goal] | None = None
-
     # Now we try to create the Cgg by capturing the possible errors and give them to the user
     set_of_goals = load_goals(str(project_folder))
     try:
@@ -439,7 +474,7 @@ def process_goals(data) -> None:
         if set_of_goals is None:
             emit(
                 "send-message",
-                "No goals has been saved, please create them correctly",
+                "No goals has been saved, please create them correctly. See the console for more information",
                 room=request.sid
             )
     except DockerException:
@@ -459,9 +494,6 @@ def process_goals(data) -> None:
     error_occurrence = True
 
     try:
-        if set_of_goals is None:
-            raise UnboundLocalError("Can't get the goal of this project")
-
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
         json_content = cgg.export_to_json(project_folder)
         emit(
@@ -480,8 +512,6 @@ def process_goals(data) -> None:
             room=request.sid,
         )
 
-    except UnboundLocalError:
-        pass
     except Exception as e:
         emit(
             "send-message",
@@ -494,7 +524,7 @@ def process_goals(data) -> None:
             "send-notification",
             {
                 "crometypes": "error",
-                "content": "CGG cannot be built, see console for more info",
+                "content": "CGG cannot be built, see console for more information",
             },
             room=request.sid,
         )
@@ -510,6 +540,9 @@ def process_cgg() -> None:
 
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
+    """
+    Apply the conjunction operation on the given goals.
+    """
     print("APPLY OPERATION : conjunction")
     session_id = str(request.args.get("id"))
     project_id = data["goals"][0].split("-")[-2]
@@ -521,6 +554,9 @@ def conjunction(data) -> None:
 
 @socketio.on("apply-composition")
 def composition(data) -> None:
+    """
+        Apply the composition operation on the given goals.
+    """
     print("APPLY OPERATION : composition")
     session_id = str(request.args.get("id"))
 
@@ -536,6 +572,9 @@ def composition(data) -> None:
 
 @socketio.on("apply-disjunction")
 def disjunction(data) -> None:
+    """
+        Apply the disjunction operation on the given goals.
+    """
     print("APPLY OPERATION : disjunction")
 
     emit("operation-complete", True, room=request.sid)
@@ -543,6 +582,9 @@ def disjunction(data) -> None:
 
 @socketio.on("apply-refinement")
 def refinement(data) -> None:
+    """
+        Apply the refinement operation on the given goals.
+    """
     print("APPLY OPERATION : refinement")
 
     emit("operation-complete", True, room=request.sid)
@@ -550,6 +592,9 @@ def refinement(data) -> None:
 
 @socketio.on("apply-extension")
 def extension(data) -> None:
+    """
+        Apply the extension operation on the given goals.
+    """
     print("APPLY OPERATION : extension")
 
     emit("operation-complete", True, room=request.sid)
@@ -557,6 +602,9 @@ def extension(data) -> None:
 
 @socketio.on("session-existing")
 def check_if_session_exist(data) -> None:
+    """
+    Check if a session is free and if the user can enter it.
+    """
     session_id = str(data["session"])
     tab_id = str(request.args.get("tabId"))
     cookie = str(request.args.get("cookie"))
@@ -579,6 +627,9 @@ def check_if_session_exist(data) -> None:
 
 @socketio.on("disconnect")
 def disconnected() -> None:
+    """
+    It disconnects the user of the session he was attached to.
+    """
     print("Disconnected")
     print(request.args)
     print(f'ID {request.args.get("id")}')
@@ -607,6 +658,9 @@ def get_current_time() -> dict[str, float]:
 
 
 def copy_simple(session_id: str) -> str:
+    """
+    Copy the default session into the desired session.
+    """
     number_of_copies = 1
     while os.path.isdir(
             project_path(session_id, f"simple_{number_of_copies}")
@@ -638,6 +692,9 @@ def copy_simple(session_id: str) -> str:
 
 
 def build_simple_project() -> None:
+    """
+    Build the default project with all the .dat file.
+    """
     project_dir = project_path("default", "simple")
     Modelling.create_environment(project_dir)
     Modelling.add_goal(project_dir, "0000.json", "default-simple-0000")
@@ -647,6 +704,9 @@ def build_simple_project() -> None:
 
 
 def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
+    """
+    Simplified version to send a notification and a message to a user.
+    """
     emit(
         "send-notification",
         {"crometypes": crometype, "content": content},

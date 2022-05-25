@@ -12,15 +12,13 @@ function UploadButton(props) {
     const [saved,setSaved] = useState(false)
     const [previousContent, setPreviousContent] = useState(null)
 
-
-
     useEffect(() => {
          if (filesContent[0] && (!saved || previousContent !== filesContent[0])) {
              props.upload(atob(filesContent[0].content.split(",")[1]))
              setSaved(true)
              setPreviousContent(filesContent[0])
         }
-    }, [props, saved, filesContent])
+    }, [props, saved, filesContent, previousContent])
 
     return (<div>
       <ElementsButton size="worldModeling" color={props.color} outline={true} onClick={() => openFileSelector()}>
