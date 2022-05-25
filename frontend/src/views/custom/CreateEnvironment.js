@@ -20,6 +20,8 @@ import LocationIdEdit from "../../components/Custom/LocationIdEdit";
 import SavingEdit from "../../components/Custom/SavingEdit";
 import 'react-tippy/dist/tippy.css'
 import {Tooltip} from 'react-tippy';
+import CustomHeader from "../../components/Crome/CustomHeader";
+import customheadercards from "../../_texts/custom/customheadercards";
 
 export default class CreateEnvironment2 extends React.Component {
 
@@ -621,25 +623,20 @@ export default class CreateEnvironment2 extends React.Component {
             }
         }
 
+        const headerStates = [true, false, false, false]
+        console.log(createenvironment.buttons.back.color)
+
         return (
             <>
                 <Link to="/index" ref={input => this.inputElement = input}/>
-                <div className="relative pt-32 pb-32 bg-orange-500">
-                    <div className="px-4 md:px-6 mx-auto w-full">
-                        <div>
-                            <div className="flex flex-wrap justify-center">
-                                <h1 className="display-3 title-up text-white font-semibold text-center">{createenvironment.mainTitle}</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="px-4 md:px-6 mx-auto w-full -mt-24">
-                    <div className="mt-6 relative">
+                <CustomHeader {...customheadercards} states={headerStates} />
+                <div className="px-4 md:px-6 mx-auto w-full -mt-6">
+                    <div className="relative">
                         <div className="relative w-full overflow-hidden">
                             <div>
                                 <div id="body" className="flex justify-center items-center">
                                     <div className="flex container px-4 justify-center">
-                                        <div className="flex justify-center pr-4">
+                                        <div className="flex justify-center pr-4 mt-5">
                                             <Link to="/index" className="hover-no-underline">
                                                 <Button color={createenvironment.buttons.back.color} outline={true}>
                                                     <i className={createenvironment.buttons.back.icon + " mr-2"}/>

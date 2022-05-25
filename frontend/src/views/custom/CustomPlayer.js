@@ -109,29 +109,25 @@ export default function CustomPlayer({
           />
         </div>
           <Tooltip
-      title="Select an Environment to continue"
-      position="bottom"
-      arrow="true"
-      >
-        <div >
-          <CustomNavButton
-            open={open}
-            toggleNew={toggleNew}
-            itemsLength={items.length}
-            type={"continue"}
-            noProject={project === 0}
-          />
+            title="Select an Environment to continue"
+            position="bottom"
+            arrow="true"
+          >
+            <div >
+              <CustomNavButton
+                open={open}
+                toggleNew={toggleNew}
+                itemsLength={items.length}
+                type={"continue"}
+                noProject={project === 0}
+              />
 
-        </div>
+            </div>
           </Tooltip>
 
       </div>
       <div className="px-4 md:px-6 mx-auto w-full -mt-24">
         <div className="mt-5 relative pb-32">
-
-
-
-
           <div className="relative w-full overflow-hidden">
             <div>
               {items.map((prop, key) => {
