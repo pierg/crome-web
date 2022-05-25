@@ -20,7 +20,7 @@ const textProps = {
         buttons: {
             uploadGoal:{
                 text: "Upload a goal",
-                color: "facebook",
+                color: "gray",
                 icon: "fas fa-arrow-up"
             }
         },

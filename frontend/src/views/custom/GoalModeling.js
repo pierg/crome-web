@@ -247,8 +247,8 @@ GoalModeling.defaultProps = {
 };
 
 const ParentComponent = props => (
-    <section className="mt-5 mt-xl-2 pt-2 relative">
-        <div className="px-4 md:px-10 mx-auto w-full">
+    <section className="mt-2pt-2 relative">
+        <div className="mx-auto w-full">
             <div>
                 <div className="flex justify-between">
                     <UploadButton
