@@ -282,17 +282,20 @@ export default class WorldModeling extends React.Component {
 const ParentComponent = props => (
     <section className="relative">
 
-        <div className="flex px-6 justify-between">
+        <div className="flex flex-col">
             <UploadButton
                 upload={props.uploadWorld}
                 color={createenvironment.buttons.uploadWorld.color}
                 text={createenvironment.buttons.uploadWorld.text}
                 icon={createenvironment.buttons.uploadWorld.icon}
             />
-            <Link to="/world" className="hover-no-underline" onClick={props.clearWorld}>
-                <ElementsButton color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
+            <Link to="/world" className="mt-2 hover-no-underline" onClick={props.clearWorld}>
+                <ElementsButton
+                    size="worldModeling"
+                    color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
+                    <i className={createenvironment.buttons.buildYourEnvironment.icon+" mr-2"}/>
                     {createenvironment.buttons.buildYourEnvironment.text}
-                  <i className={createenvironment.buttons.buildYourEnvironment.icon+" ml-2"}/>
+
                 </ElementsButton>
             </Link>
         </div>

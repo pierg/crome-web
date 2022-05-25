@@ -23,11 +23,12 @@ function UploadButton(props) {
     }, [props, saved, filesContent])
 
     return (<div>
-      <ElementsButton color={props.color} outline={true} onClick={() => openFileSelector()}>
+      <ElementsButton size="worldModeling" color={props.color} outline={true} onClick={() => openFileSelector()}>
+           <i className={props.icon+" mr-2"}/>
           {props.text}
-          <i className={props.icon+" ml-2"}/>
+
+
       </ElementsButton>
-      <br />
 
     </div>);
 

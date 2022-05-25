@@ -8,6 +8,7 @@ const Button = React.forwardRef(
       regular: "text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       regular2: "w-100 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       lg: "text-sm px-6 py-3 shadow-md hover:shadow-lg rounded-lg",
+      worldModeling : "w-64 text-sm py-1 shadow-md hover:shadow-lg rounded-lg whitespace-nowrap break-all",
     };
     const colors = {
       facebook:
