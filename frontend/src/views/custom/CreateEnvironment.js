@@ -624,7 +624,6 @@ export default class CreateEnvironment2 extends React.Component {
         }
 
         const headerStates = [true, false, false, false]
-        console.log(createenvironment.buttons.back.color)
 
         return (
             <>
