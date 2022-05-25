@@ -1,0 +1,54 @@
+{
+  "nodes": [
+    {
+      "id": "default-simple-0000"
+    },
+    {
+      "id": "default-simple-0001"
+    },
+    {
+      "id": "default-simple-0002"
+    },
+    {
+      "id": "default-simple-0003"
+    },
+    {
+      "id": 4,
+      "group": "new",
+      "name": "New Goal"
+    }
+  ],
+  "edges": [
+    {
+      "from": "default-simple-0000",
+      "to": "default-simple-0001",
+      "type": "conjunction"
+    },
+    {
+      "from": "default-simple-0001",
+      "to": "default-simple-0002",
+      "type": "refinement"
+    },
+    {
+      "from": "default-simple-0001",
+      "to": "default-simple-0003",
+      "type": "refinement"
+    },
+    {
+      "from": 4,
+      "to": "default-simple-0003",
+      "type": "refinement"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "library_1"
+    },
+    {
+      "name": "library_2"
+    },
+    {
+      "name": "library_3"
+    }
+  ]
+}
