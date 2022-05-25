@@ -285,13 +285,14 @@ const ParentComponent = props => (
         <div className="flex flex-col">
             <UploadButton
                 upload={props.uploadWorld}
+                size={createenvironment.buttons.uploadWorld.size}
                 color={createenvironment.buttons.uploadWorld.color}
                 text={createenvironment.buttons.uploadWorld.text}
                 icon={createenvironment.buttons.uploadWorld.icon}
             />
             <Link to="/world" className="mt-2 hover-no-underline" onClick={props.clearWorld}>
                 <ElementsButton
-                    worldModeling={true}
+                    size={createenvironment.buttons.buildYourEnvironment.size}
                     color={createenvironment.buttons.buildYourEnvironment.color} outline={true}>
                     <i className={createenvironment.buttons.buildYourEnvironment.icon+" mr-2"}/>
                     {createenvironment.buttons.buildYourEnvironment.text}

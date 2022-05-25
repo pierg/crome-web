@@ -8,6 +8,7 @@ const Button = React.forwardRef(
       regular: "text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       regular2: "w-100 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       lg: "text-sm px-6 py-3 shadow-md hover:shadow-lg rounded-lg",
+      worldModeling: "w-64 text-sm py-1 shadow-md hover:shadow-lg rounded-lg whitespace-nowrap break-all border-1"
     };
     const colors = {
       facebook:
@@ -118,12 +119,7 @@ const Button = React.forwardRef(
     let className =
       "inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 ";
     className = className + " " + colors[color + (outline ? "-outline" : "")];
-    if(worldModeling) {
-      className = className + " w-64 text-sm py-1 shadow-md hover:shadow-lg rounded-lg whitespace-nowrap break-all border-1"
-    }
-    else {
-      className = className + " " + sizes[size];
-    }
+    className = className + " " + sizes[size];
     if (fullWidth) {
       className = className + " w-full text-center";
     }
@@ -145,7 +141,7 @@ Button.defaultProps = {
   size: "regular",
 };
 Button.propTypes = {
-  size: PropTypes.oneOf(["sm", "lg", "regular"]),
+  size: PropTypes.oneOf(["sm", "lg", "regular", "worldModeling"]),
   outline: PropTypes.bool,
   children: PropTypes.node,
   fullWidth: PropTypes.bool,
@@ -175,6 +171,7 @@ Button.propTypes = {
     "indigo",
     "purple",
     "pink",
+    "gray",
   ]),
 };
 
