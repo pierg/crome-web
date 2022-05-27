@@ -12,6 +12,7 @@ export default function CustomSidebar({
   id,
   setId,
   cookie,
+  page,
 }) {
   const [sidebarShow, setSidebarShow] = React.useState("-translate-x-full");
 
@@ -26,6 +27,7 @@ export default function CustomSidebar({
     purple: "text-purple-500 hover:text-purple-700",
     pink: "text-pink-500 hover:text-pink-700",
   };
+
   return (
     <>
       <nav
@@ -80,34 +82,23 @@ export default function CustomSidebar({
               {items.map((prop, key) => {
                 if (prop.divider) {
                   return <hr key={key} className="my-4 xxl:min-w-full" />;
-                } else if (prop.title) {
+                } else if (prop.titleCrome) {
                   return (
                     <h6
                       key={key}
-                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline"
                     >
-                      {prop.title}
+                      {prop.titleCrome}
                     </h6>
                   );
-                } else if (prop.link && prop.link.to) {
+                } else if (prop.titleSynthesis) {
                   return (
-                    <Link
-                      {...prop.link}
+                    <h6
                       key={key}
-                      className={classnames("text-xs uppercase py-3 font-bold block", {
-                        [activeColors[activeColor]]: prop.link.href === currentRoute,
-                        "text-blueGray-800 hover:text-blueGray-500":
-                          prop.link.href !== currentRoute,
-                      })}
+                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3"
                     >
-                      <i
-                        className={classnames(prop.icon, "mr-2 text-sm", {
-                          "opacity-75": prop.link.href === currentRoute,
-                          "text-blueGray-400": prop.link.href !== currentRoute,
-                        })}
-                      />
-                      {prop.text}
-                    </Link>
+                      {prop.titleSynthesis}
+                    </h6>
                   );
                 } else {
                   return (
@@ -127,6 +118,12 @@ export default function CustomSidebar({
                         })}
                       />
                       {prop.text}
+                      {(page !== "index") && (prop.text === "Run CROME") &&
+                        <i className="fas fa-arrow-right ml-2"/>
+                      }
+                      {(page !== "synthesis") && (prop.text === "Run SYNTHESIS") &&
+                        <i className="fas fa-arrow-right ml-2"/>
+                      }
                     </a>
                   );
                 }

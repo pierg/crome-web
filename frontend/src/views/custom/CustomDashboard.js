@@ -15,6 +15,7 @@ import Console from "../../components/Crome/Console";
 import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
+import CustomSynthesis from "./CustomSynthesis";
 
 
 export default function CustomDashboard(props) {
@@ -53,10 +54,18 @@ export default function CustomDashboard(props) {
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
+
     return (
         <SocketProvider id={id} cookie={cookie} tabId={tabId}>
             <ConnectorProvider setId={setId}/>
-            <CustomSidebar {...customsidebar} currentRoute={"#" + location.pathname} id={id} setId={setId} cookie={cookie}/>
+            <CustomSidebar
+                {...customsidebar}
+                currentRoute={"#" + location.pathname}
+                id={id}
+                setId={setId}
+                cookie={cookie}
+                page={props.page}
+            />
             <Console {...consoleinfo} customText={message}/>
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
@@ -66,6 +75,10 @@ export default function CustomDashboard(props) {
                         case 'world':
                             return (
                                 <CreateEnvironment world={world} session={id} worldNames={listOfWorldNames} returnedProjectId={projectId} resetProject={() => setProjectId(null)} saveEnvironment={saveEnvironment}/>
+                            )
+                        case 'synthesis':
+                            return (
+                                <CustomSynthesis/>
                             )
                         default:
                             return (

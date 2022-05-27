@@ -12,13 +12,23 @@ const textProps = {
       divider: true,
     },
     {
-      title: "CROME",
+      titleCrome: "CROME",
     },
     {
       icon: "fas fa-tv",
       text: "Run CROME",
       link: {
         href: "#/index",
+      },
+    },
+    {
+      titleSynthesis: "SYNTHESIS",
+    },
+    {
+      icon: "fas fa-tv",
+      text: "Run SYNTHESIS",
+      link: {
+        href: "#/synthesis",
       },
     },
   ],
