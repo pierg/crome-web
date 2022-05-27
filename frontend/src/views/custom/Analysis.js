@@ -165,7 +165,7 @@ export default class Analysis extends React.Component {
     }
 
     /**
-     * Find the operations and the children concerned of a node
+     * Find the children of a node and the type of operations they are linked with
      * @param id
      * @returns {string}
      */
@@ -217,7 +217,13 @@ export default class Analysis extends React.Component {
         return str*/
     }
 
-
+    /**
+     * Find the parents of a node and the type of operations they are linked with
+     * @param nodesArray
+     * @param edgesArray
+     * @param id
+     * @returns {string}
+     */
     getNodeParent = (nodesArray,edgesArray,id) => {
         let str = ""
         const operations = {"/\\" : "conjunction", "**" : "refinement","||" : "composition"}
@@ -231,8 +237,6 @@ export default class Analysis extends React.Component {
                             str+=operations[key]+" of <strong>"+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"</strong>\n"
                         }
                     }
-                    //goals = edgesArray[i].to.split("/\\")
-                    //if (goals)
                 }
              }
          }
@@ -259,6 +263,27 @@ export default class Analysis extends React.Component {
         }
     }
 
+    /**
+     * Verif
+     * @param goals
+     * @returns {boolean}
+     */
+    isDefaultGoals(goals) {
+        if (goals.length !==0) {
+            console.log(goals.length)
+            if (goals.length > 4) return false
+            if (goals[0].name === "Night Patrolling" && goals[1].name === "Greet Person" && goals[2].name === "Register Person" && goals[3].name === "Day Patrolling") return true
+        }
+        return false
+    }
+
+    componentDidMount() {
+        console.log(this.props.goals)
+        if (this.props.project === "simple" && !this.state.cgg ) { //&& this.isDefaultGoals(this.props.goals)
+            this.callCGG("auto")
+        }
+    }
+
     render() {
 
         let that = this
@@ -270,7 +295,6 @@ export default class Analysis extends React.Component {
          */
         function clickOnGoal(id) {
             const result = that.findGoalIndexById(id[0])
-            console.log(result)
             if (result !== undefined && !result.goal.hasOwnProperty("group")) {
                 that.setModalGoal(true)
                 that.setCurrentGoalIndex(result.index)
@@ -284,7 +308,6 @@ export default class Analysis extends React.Component {
         }
 
 
-
         if (this.state.cgg) {
             // the cgg state is a boolean, true if the cgg has been built
             // if you don't see how to fill the graph, there is an example in storage/crome/cgg.json
@@ -293,11 +316,7 @@ export default class Analysis extends React.Component {
             this.addCombinedGoal(nodesArray)
 
             this.addEdges(edgesArray)
-
-
         }
-
-
 
         /* DEFINE CGG PARAMETERS PASSED TO CGG COMPONENT */
         const graph = {
@@ -380,6 +399,7 @@ export default class Analysis extends React.Component {
         };
 
 
+
         return (
             <>
                 <GetCGG
@@ -455,5 +475,7 @@ export default class Analysis extends React.Component {
                 </Modal>
             </>
         );
+
+
     }
 }

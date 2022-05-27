@@ -22,7 +22,7 @@ function UploadButton(props) {
 
     return (<div>
       <ElementsButton size={props.size} color={props.color} outline={true} onClick={() => openFileSelector()}>
-           <i className={props.icon+" mr-2"}/>
+           <i className={props.icon+"mr-2"}/>
           {props.text}
 
 
