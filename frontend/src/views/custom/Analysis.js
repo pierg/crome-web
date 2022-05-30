@@ -12,7 +12,7 @@ import BuildCGG from "../../components/Custom/BuildCGG";
 import ReactLoading from "react-loading";
 import LegendCGG from "../../components/Custom/LegendCGG";
 import NodeModalView from "../../components/Custom/NodeModalView";
-
+import default_cgg from './default_cgg.json'
 /**
  * The analysis page component
  * This component allows to generate the cgg
@@ -278,9 +278,10 @@ export default class Analysis extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.goals)
+        console.log(default_cgg)
         if (this.props.project === "simple" && !this.state.cgg ) { //&& this.isDefaultGoals(this.props.goals)
-            this.callCGG("auto")
+            //this.callCGG("auto")
+            this.setState({ cgg : true })
         }
     }
 
@@ -311,19 +312,26 @@ export default class Analysis extends React.Component {
         if (this.state.cgg) {
             // the cgg state is a boolean, true if the cgg has been built
             // if you don't see how to fill the graph, there is an example in storage/crome/cgg.json
-            this.addGoalAlreadyHere(that.props,nodesArray)
+            if (!(this.props.project === "simple")) {
+                this.addGoalAlreadyHere(that.props, nodesArray)
 
-            this.addCombinedGoal(nodesArray)
+                this.addCombinedGoal(nodesArray)
 
-            this.addEdges(edgesArray)
+                this.addEdges(edgesArray)
+            }
         }
 
         /* DEFINE CGG PARAMETERS PASSED TO CGG COMPONENT */
-        const graph = {
+        let graph = {
             nodes: nodesArray,
             edges: edgesArray
         }
 
+        if (this.props.project === "simple") {
+            graph = default_cgg
+        }
+
+        console.log(graph)
         const options = {
             layout: {
                 improvedLayout: true,
