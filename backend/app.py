@@ -528,15 +528,7 @@ def process_goals(data) -> None:
             },
             room=request.sid,
         )
-
-
-@socketio.on("process-cgg")
-def process_cgg() -> None:
-    cgg_file_path = Path(os.path.join(storage_path, "crome/cgg.json"))
-    with open(cgg_file_path) as json_file:
-        cgg_file = json.load(json_file)
-    emit("receive-cgg", {"cgg": json.dumps(cgg_file)}, room=request.sid)
-
+        
 
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
