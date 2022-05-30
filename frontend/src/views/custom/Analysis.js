@@ -13,6 +13,7 @@ import ReactLoading from "react-loading";
 import LegendCGG from "../../components/Custom/LegendCGG";
 import NodeModalView from "../../components/Custom/NodeModalView";
 import default_cgg from './default_cgg.json'
+
 /**
  * The analysis page component
  * This component allows to generate the cgg
@@ -269,16 +270,14 @@ export default class Analysis extends React.Component {
      * @returns {boolean}
      */
     isDefaultGoals(goals) {
-        if (goals.length !==0) {
-            console.log(goals.length)
+       if (goals.length !==0) {
             if (goals.length > 4) return false
-            if (goals[0].name === "Night Patrolling" && goals[1].name === "Greet Person" && goals[2].name === "Register Person" && goals[3].name === "Day Patrolling") return true
+            if (goals[0].id === "default-simple-0001" && goals[1].id === "default-simple-0002" && goals[2].id === "default-simple-0003" && goals[3].id === "default-simple-0000") return true
         }
         return false
     }
 
     componentDidMount() {
-        console.log(default_cgg)
         if (this.props.project === "simple" && !this.state.cgg ) { //&& this.isDefaultGoals(this.props.goals)
             //this.callCGG("auto")
             this.setState({ cgg : true })
@@ -327,11 +326,10 @@ export default class Analysis extends React.Component {
             edges: edgesArray
         }
 
-        if (this.props.project === "simple") {
+        if (this.props.project === "simple" && this.isDefaultGoals(this.props.goals)) {
             graph = default_cgg
         }
 
-        console.log(graph)
         const options = {
             layout: {
                 improvedLayout: true,
@@ -401,7 +399,6 @@ export default class Analysis extends React.Component {
 
         const events = {
             doubleClick: function (event) {
-                console.log(event)
                 if (event.nodes.length !== 0) clickOnGoal(event.nodes)
             }
         };
