@@ -86,7 +86,7 @@
   * None
 * returns-via: `"cgg-production"`
 
-[comment]: <> (#TODO these functions are never called)
+[comment]: <> (#TODO the 5 following functions are never called, check TODO in SocketBuildCGG.js)
 
 ### `"apply-conjunction"`
 #### Apply the conjunction operation
