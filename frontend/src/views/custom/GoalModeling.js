@@ -118,7 +118,6 @@ export default class GoalModeling extends React.Component {
             if (goals.length) {
                 goals.push(defaultgoal)
                 for (let i = 0; i < goals.length; i++) {
-                    console.log(goals[i])
                     setTimeout(() => {
                         this.uploadGoal(goals[i])
                     }, 2000)
@@ -136,7 +135,6 @@ export default class GoalModeling extends React.Component {
                 this.saveCurrentGoal(goal)
                 let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
                 tmpGoals.push(JSON.parse(JSON.stringify(goal)))
-                console.log(tmpGoals)
                 this.setState({
                     currentGoalIndex: tmpGoals.length - 1,
                     editedGoals: tmpGoals
