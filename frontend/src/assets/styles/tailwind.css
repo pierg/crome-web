@@ -405,6 +405,9 @@ img {
 textarea {
   resize: vertical;
 }
+.textareaResizeNone {
+  resize: none;
+}
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   opacity: 1;
@@ -4397,6 +4400,9 @@ select {
 }
 .left-3\/100 {
   left: 3%;
+}
+.left-20-px {
+  left: 20px;
 }
 
 .top-7\/20 {

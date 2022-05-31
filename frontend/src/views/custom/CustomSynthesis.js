@@ -1,42 +1,126 @@
 import React from "react";
 import TextareaAutosize from 'react-textarea-autosize';
+import {Input} from "reactstrap";
+import Button from "../../components/Elements/Button";
 
 export default class CustomSynthesis extends React.Component {
 
     state = {
-        textareaContent: "",
-        textareaHeight: 0,
+        textareaContentAssumption: [],
+        textareaHeightAssumption: 0,
+        tabCptLineAssumption: [],
+        textareaContentGuarantee: [],
+        textareaHeightGuarantee: 0,
+        tabCptLineGuarantee: [],
     }
 
-    setTextareaContent = (e) => {
+    setTextareaContentAssumption = (e) => {
+        let tabValue = e.target.value.split("")
+        let tmpTabCptLine = this.state.tabCptLineAssumption
+        if(tabValue[tabValue.length-1] === "\n"  &&  tmpTabCptLine[tmpTabCptLine.length-1] !== 1) {
+            tmpTabCptLine[tmpTabCptLine.length-1]--
+            tmpTabCptLine.push(1)
+        }
+
         this.setState({
-            textareaContent: e.target.value
+            textareaContentAssumption: e.target.value.split("\n"),
+            tabCptLineAssumption: tmpTabCptLine,
         })
     }
 
-    textareaHeightChange = (height) => {
-        console.log((height-42)/24)
+    textareaHeightChangeAssumption = (height) => {
+        let tmpHeight = (height-42)/24
+        let tmpTabCptLine = this.state.tabCptLineAssumption
+        if(tmpTabCptLine.length === 0) {
+            tmpTabCptLine.push(1)
+        }
+        else if(tmpHeight > this.state.textareaHeightAssumption) {
+            tmpTabCptLine[tmpTabCptLine.length-1]++
+        }
+        else {
+            if(tmpTabCptLine[tmpTabCptLine.length-1] === 1) {
+                tmpTabCptLine.pop()
+            }
+            else {
+                tmpTabCptLine[tmpTabCptLine.length-1]--
+            }
+        }
+
         this.setState({
-            textareaHeight: (height-42)/24
+            textareaHeightAssumption: tmpHeight,
+            tabCptLineAssumption: tmpTabCptLine,
         })
-        console.log(this.state.textareaContent)
-        let tab = this.state.textareaContent.split("")
-        console.log(tab)
+    }
+
+    setTextareaContentGuarantee = (e) => {
+        let tabValue = e.target.value.split("")
+        let tmpTabCptLine = this.state.tabCptLineGuarantee
+        if(tabValue[tabValue.length-1] === "\n"  &&  tmpTabCptLine[tmpTabCptLine.length-1] !== 1) {
+            tmpTabCptLine[tmpTabCptLine.length-1]--
+            tmpTabCptLine.push(1)
+        }
+
+        this.setState({
+            textareaContentGuarantee: e.target.value.split("\n"),
+            tabCptLineGuarantee: tmpTabCptLine,
+        })
+    }
+
+    textareaHeightChangeGuarantee = (height) => {
+        let tmpHeight = (height-42)/24
+        let tmpTabCptLine = this.state.tabCptLineGuarantee
+        if(tmpTabCptLine.length === 0) {
+            tmpTabCptLine.push(1)
+        }
+        else if(tmpHeight > this.state.textareaHeightGuarantee) {
+            tmpTabCptLine[tmpTabCptLine.length-1]++
+        }
+        else {
+            if(tmpTabCptLine[tmpTabCptLine.length-1] === 1) {
+                tmpTabCptLine.pop()
+            }
+            else {
+                tmpTabCptLine[tmpTabCptLine.length-1]--
+            }
+        }
+
+        this.setState({
+            textareaHeightGuarantee: tmpHeight,
+            tabCptLineGuarantee: tmpTabCptLine,
+        })
     }
 
     render(){
-        const children = [];
         let className = ""
-        for (let i = 0; i <= this.state.textareaHeight; i++) {
-            className = "absolute top-"+(i*24+10)+"-px left-3/100 text-blueGray-400"
-            children.push(
+        let heigth = 0
+        const childrenAssumption = [];
+        for(let i=0; i<this.state.tabCptLineAssumption.length; i++) {
+            className = "absolute top-"+(heigth*24+10)+"-px left-20-px text-blueGray-400"
+            childrenAssumption.push(
                 <div
                     key={i}
                     className={className}
                 >
-                    {i}
+                    {i+1}
                 </div>
             );
+            heigth += this.state.tabCptLineAssumption[i]
+        }
+
+        className = ""
+        heigth = 0
+        const childrenGuarantee = [];
+        for(let i=0; i<this.state.tabCptLineGuarantee.length; i++) {
+            className = "absolute top-"+(heigth*24+10)+"-px left-20-px text-blueGray-400"
+            childrenGuarantee.push(
+                <div
+                    key={i}
+                    className={className}
+                >
+                    {i+1}
+                </div>
+            );
+            heigth += this.state.tabCptLineGuarantee[i]
         }
 
 
@@ -55,17 +139,71 @@ export default class CustomSynthesis extends React.Component {
                 </div>
                 <div className="container mt-5">
                     <div className="row">
-                        <div className="col-2 offset-1 fs-4 text-left text-blueGray-500 uppercase font-bold">
-                            ASSUMPTIONS
+                        <div className="col-8">
+                            <div className="row">
+                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                    ASSUMPTIONS
+                                </div>
+                                <div className="col-7 relative">
+                                    <TextareaAutosize
+                                        onChange={this.setTextareaContentAssumption}
+                                        onHeightChange={this.textareaHeightChangeAssumption}
+                                        className="pl-8 textareaResizeNone w-100"
+                                    />
+                                    {childrenAssumption}
+                                </div>
+                            </div>
+                            <div className="row mt-4">
+                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                    Guarantees
+                                </div>
+                                <div className="col-7 relative">
+                                    <TextareaAutosize
+                                        onChange={this.setTextareaContentGuarantee}
+                                        onHeightChange={this.textareaHeightChangeGuarantee}
+                                        className="pl-8 textareaResizeNone w-100"
+                                    />
+                                    {childrenGuarantee}
+                                </div>
+                            </div>
+                            <div className="row mt-4">
+                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                    Inputs
+                                </div>
+                                <div className="col-7 relative">
+                                    <Input
+                                    />
+                                </div>
+                            </div>
+                            <div className="row mt-4">
+                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                    Outputs
+                                </div>
+                                <div className="col-7 relative">
+                                    <Input
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-6 relative">
-                            <TextareaAutosize
-                                onHeightChange={this.textareaHeightChange}
-                                onChange={this.setTextareaContent}
-                                cacheMeasurements={false}
-                                className="pl-8"
-                            />
-                            {children}
+                        <div className="col-4">
+                            <div className="row">
+                                <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
+                                    Load examples
+                                </div>
+                            </div>
+                            <div className="row">
+                                <select>
+
+                                </select>
+                            </div>
+                            <div className="row mt-2">
+                                <div className="col-8 offset-2 text-center">
+                                    <Button color="gray" outline={true}>
+                                        UPLOAD
+                                        <i className="fas fa-long-arrow-alt-up ml-2"></i>
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
