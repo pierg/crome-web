@@ -15,7 +15,7 @@ import { saveAs } from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
 import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
 import SocketIoGoals from "../../components/Custom/Examples/GetGoals";
-
+import ElementsButton from "../../components/Elements/Button";
 
 export default class GoalModeling extends React.Component {
 
@@ -28,7 +28,7 @@ export default class GoalModeling extends React.Component {
         numChildren: 0,
         patterns: [],
         saveTrigger: false,
-        deletionIndex: null
+        deletionIndex: null,
     }
 
 
@@ -41,6 +41,20 @@ export default class GoalModeling extends React.Component {
         const json = JSON.stringify(goal,null,'\t')
         const blob = new Blob([json], {type : "text/json;charset=utf-8"})
         const file = new File([blob], this.state.goals[index].name+".json")
+        saveAs(file)
+    }
+
+    downloadAllGoals = () => {
+        if (this.state.goals.length === 0) return
+        let goals = []
+        let goal
+        for (let i=0; i<this.state.goals.length; i++) {
+            goal = {"context" : this.state.goals[i].context, "contract" : this.state.goals[i].contract, "description" : this.state.goals[i].description, "name" : this.state.goals[i].name}
+            goals.push(goal)
+        }
+        const json = JSON.stringify(goals,null,'\t')
+        const blob = new Blob([json], {type : "text/json;charset=utf-8"})
+        const file = new File([blob], this.props.project+"_goals.json")
         saveAs(file)
     }
 
@@ -95,22 +109,38 @@ export default class GoalModeling extends React.Component {
     }
 
     /**
-     * Upload a new goal
+     * Upload goals
      * @param json
      */
-    uploadGoal = (json) => {
+    uploadGoals = (json) => {
         if (this.isJsonString(json)) {
-            const goal = JSON.parse(json)
-            if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
-                if (this.goalPartOfProject(goal)) {
-                    this.saveCurrentGoal(goal)
-                    let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
-                    tmpGoals.push(JSON.parse(JSON.stringify(goal)))
-                    this.setState({
-                        currentGoalIndex: tmpGoals.length - 1,
-                        editedGoals: tmpGoals
-                    })
+            const goals = JSON.parse(json)
+            if (goals.length) {
+                goals.push(defaultgoal)
+                for (let i = 0; i < goals.length; i++) {
+                    console.log(goals[i])
+                    setTimeout(() => {
+                        this.uploadGoal(goals[i])
+                    }, 2000)
                 }
+            } else {
+                this.uploadGoal(goals)
+            }
+        }
+    }
+
+    uploadGoal = (goal) => {
+
+        if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
+            if (this.goalPartOfProject(goal)) {
+                this.saveCurrentGoal(goal)
+                let tmpGoals = JSON.parse(JSON.stringify(this.state.goals))
+                tmpGoals.push(JSON.parse(JSON.stringify(goal)))
+                console.log(tmpGoals)
+                this.setState({
+                    currentGoalIndex: tmpGoals.length - 1,
+                    editedGoals: tmpGoals
+                })
             }
         }
     }
@@ -167,7 +197,7 @@ export default class GoalModeling extends React.Component {
                     toggleGetTrigger={this.props.toggleGetTrigger}
                     switchWorld={this.switchWorld}
                 />
-                <ParentComponent uploadGoal={this.uploadGoal} addChild={this.onAddChild}>
+                <ParentComponent uploadGoal={this.uploadGoals} addChild={this.onAddChild} downloadGoals={this.downloadAllGoals}>
                     {children}
                 </ParentComponent>
                 <Modal
@@ -242,7 +272,6 @@ export default class GoalModeling extends React.Component {
                     return item;
                 }
             });
-            console.log(goals)
             return {
                 goals,
             };
@@ -302,12 +331,21 @@ const ParentComponent = props => (
         <div className="mx-auto w-full">
             <div>
                 <div className="flex justify-between">
-                    <UploadButton
-                        upload={props.uploadGoal}
-                        color={goalmodelinginfo.info.buttons.uploadGoal.color}
-                        text={goalmodelinginfo.info.buttons.uploadGoal.text}
-                        icon={goalmodelinginfo.info.buttons.uploadGoal.icon}
-                    />
+                    <div className="flex flex-col">
+                        <UploadButton
+                            size="worldModeling"
+                            upload={props.uploadGoal}
+                            color={goalmodelinginfo.info.buttons.uploadGoal.color}
+                            text={goalmodelinginfo.info.buttons.uploadGoal.text}
+                            icon={goalmodelinginfo.info.buttons.uploadGoal.icon}
+                        />
+                        <div className="mt-2">
+                            <ElementsButton size="worldModeling" color={goalmodelinginfo.info.buttons.downloadGoals.color} outline={true} onClick={props.downloadGoals}>
+                               <i className={goalmodelinginfo.info.buttons.downloadGoals.icon+"mr-2"}/>
+                              {goalmodelinginfo.info.buttons.downloadGoals.text}
+                            </ElementsButton>
+                        </div>
+                    </div>
                     <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
                         <AddButton
                             statText="Add a Goal"

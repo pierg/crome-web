@@ -19,9 +19,14 @@ const textProps = {
         ],
         buttons: {
             uploadGoal:{
-                text: "Upload a goal",
+                text: "Upload goals",
                 color: "gray",
                 icon: "fas fa-arrow-up"
+            },
+            downloadGoals:{
+                text: "Download goals",
+                color: "gray",
+                icon: "fas fa-arrow-down"
             }
         },
         modal: {
