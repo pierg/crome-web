@@ -1,0 +1,39 @@
+{
+  "goal": {
+    "name": "my_goal_title",
+    "description": "my_goal_description",
+    "context": {
+      "formula": "",
+      "world_values": []
+    },
+    "contract": {
+      "assumptions": [
+        {
+          "ltl_value": "",
+          "pattern": {
+            "name": "Patrolling",
+            "arguments": [
+              {
+                "value": "my_location"
+              }
+            ]
+          }
+        }
+      ],
+      "guarantees": [
+        {
+          "ltl_value": "",
+          "pattern": {
+            "name": "OrderedPatrolling",
+            "arguments": [
+              {
+                "value": "my_location"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "project_id": "my_project_name_770369"
+}

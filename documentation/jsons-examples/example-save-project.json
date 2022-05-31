@@ -1,0 +1,81 @@
+{
+  "world": {
+    "info": {
+      "description": "my_description",
+      "name": "my_world",
+      "project_id": "my_id_446572",
+      "session_id": "1456e89e-3699-42c4-a928-5552233953be"
+    },
+    "environment": {
+      "filetype": "environment",
+      "project_id": "my_id_446572",
+      "size": {
+        "width": 8,
+        "height": 8
+      },
+      "grid": {
+        "locations": [
+          {
+            "coordinates": [
+              {
+                "row": 2,
+                "col": 2
+              },
+              {
+                "row": 2,
+                "col": 3
+              },
+              {
+                "row": 2,
+                "col": 4
+              },
+              {
+                "row": 3,
+                "col": 2
+              },
+              {
+                "row": 3,
+                "col": 3
+              },
+              {
+                "row": 3,
+                "col": 4
+              },
+              {
+                "row": 4,
+                "col": 2
+              },
+              {
+                "row": 4,
+                "col": 3
+              },
+              {
+                "row": 4,
+                "col": 4
+              }
+            ],
+            "color": "#FF0000",
+            "id": "my_location",
+            "adjacency": []
+          }
+        ]
+      },
+      "actions": [
+        {
+          "name": "my_action"
+        }
+      ],
+      "sensors": [
+        {
+          "name": "my_sensor"
+        }
+      ],
+      "context": [
+        {
+          "name": "my_context"
+        }
+      ],
+      "session_id": "1456e89e-3699-42c4-a928-5552233953be"
+    }
+  }
+}
