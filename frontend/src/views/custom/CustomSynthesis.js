@@ -141,6 +141,7 @@ export default class CustomSynthesis extends React.Component {
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-8">
+                            <div className="row bg-lightBlue-500 bg-opacity-25 w-50"></div>
                             <div className="row">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.assumptions}
@@ -201,7 +202,7 @@ export default class CustomSynthesis extends React.Component {
 
                                 </select>
                             </div>
-                            <div className="row mt-2">
+                            <div className="row mt-3">
                                 <div className="col-8 offset-2 text-center">
                                     <Button color={synthesisInfo.info.buttons.upload.color} outline={true}>
                                         {synthesisInfo.info.buttons.upload.text}
