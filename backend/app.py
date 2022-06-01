@@ -1,5 +1,4 @@
 import argparse
-import base64
 import json
 import os
 import shutil
@@ -10,25 +9,24 @@ from pathlib import Path
 from time import strftime
 from typing import Any
 
+from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from docker.errors import DockerException
 
 from operations.analysis import Analysis
+from backend.utility.project import ProjectUtility
 import crome_cgg.cgg as crome_cgg
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
-
-from crome_cgg.goal import Goal
 from operations.modelling import Modelling
 
 from backend.shared.paths import (
     build_path,
     goals_path,
     project_path,
-    session_path,
     storage_path,
 )
-from backend.tools.persistence import load_goals, dump_goals
+from backend.tools.persistence import load_goals
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
@@ -101,51 +99,14 @@ def connected() -> None:
 
 
 @socketio.on("get-projects")
-def get_projects() -> list[list[dict[str, str]]]:
+def get_projects() -> None:
     """
     Get the list of all the project created by this session. We gave to the frontend the json content plus the image.
     """
-    list_of_projects: list[
-        list[dict[str, str]]
-    ] = []  # array that will be sent containing all projects #
     session_id = str(request.args.get("id"))
-    list_of_sessions: list[str] = [f"default", session_id]
-
-    for session in list_of_sessions:
-        session_folder = session_path(session)
-
-        if os.path.isdir(session_folder):  # if there is a folder for this session #
-            dir_path, dir_names, filenames = next(walk(session_folder))
-            for subdir in dir_names:
-                project_folder: Path = Path(os.path.join(dir_path, subdir))
-                folder_path, project_directories, project_files = next(
-                    walk(project_folder)
-                )
-                default_project: list[dict[str, str]] = []
-                for file in project_files:
-                    if os.path.splitext(file)[1] == ".json":
-                        with open(Path(os.path.join(folder_path, file))) as json_file:
-                            json_obj = json.load(json_file)
-                            json_str = json.dumps(json_obj)
-                            default_project.append(
-                                {
-                                    "title": os.path.splitext(file)[0],
-                                    "content": json_str,
-                                }
-                            )
-                    if os.path.splitext(file)[1] == ".png":
-                        with open(
-                                Path(os.path.join(folder_path, file)), "rb"
-                        ) as png_file:
-                            read_png_file = base64.b64encode(png_file.read())
-                            default_project.append(
-                                {"title": "image", "content": str(read_png_file)}
-                            )
-
-                list_of_projects.append(default_project)
+    list_of_projects = ProjectUtility.get_projects(session_id)
 
     emit("receive-projects", list_of_projects, room=request.sid)
-    return list_of_projects
 
 
 @socketio.on("save-project")
@@ -155,44 +116,14 @@ def save_project(data) -> None:
     default project in the session folder that we then modify.
     """
     session_id = str(request.args.get("id"))
-    session_dir = session_path(session_id)
-    if not os.path.isdir(session_dir):
-        os.makedirs(session_dir)
-    is_simple = data["world"]["info"]["project_id"] == "simple"
-    if is_simple:
-        number_of_copies = 1
-        while os.path.isdir(
-                os.path.join(
-                    storage_path, f"sessions/{session_id}/simple_{number_of_copies}"
-                )
-        ):
-            number_of_copies += 1
-        data["world"]["environment"]["project_id"] = f"simple_{number_of_copies}"
-        data["world"]["info"]["project_id"] = f"simple_{number_of_copies}"
-    project_dir = project_path(session_id, data["world"]["info"]["project_id"])
-    if not os.path.isdir(project_dir):
-        os.mkdir(project_dir)
-    goals_dir = goals_path(session_id, data["world"]["info"]["project_id"])
-    if not os.path.isdir(goals_dir):
-        if is_simple:
-            shutil.copytree(
-                goals_path("default", "simple"), goals_dir
-            )
-        else:
-            os.mkdir(goals_dir)
-    list_of_files = ["environment", "info"]
-    for filename in list_of_files:
-        json_file = open(os.path.join(project_dir, filename + ".json"), "w")
-        json_formatted = json.dumps(data["world"][filename], indent=4, sort_keys=True)
-        json_file.write(json_formatted)
-        json_file.close()
+
+    ProjectUtility.save_project(data, session_id)
+
     name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=request.sid)
     send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
                          room_id=request.sid, crometype="success")
-
-    Modelling.create_environment(project_dir)
 
 
 @socketio.on("save-image")
@@ -201,20 +132,9 @@ def save_image(data) -> None:
     We save the screenshot taken of the world project. The frontend send us the binary code of the image.
     We just have to write it inside the good folder.
     """
-    img_data = bytes(data["image"], "utf-8")
 
     session_id = str(request.args.get("id"))
-    project_id = str(data["project"])
-
-    current_project_image = Path(
-        os.path.join(
-            storage_path,
-            f"s_{session_id}/p_{project_id}/environment.png",
-        )
-    )
-
-    with open(current_project_image, "wb") as fh:
-        fh.write(base64.decodebytes(img_data))
+    ProjectUtility.save_image(data, session_id)
 
 
 @socketio.on("delete-project")
@@ -224,18 +144,7 @@ def delete_project(data) -> None:
     The front give us only an index value corresponding of the date of creation of the project.
     """
     session_id = str(request.args.get("id"))
-    current_session_folder = session_path(session_id)
-    dir_path, dir_names, filenames = next(walk(current_session_folder))
-    i = 1
-
-    for name in dir_names:
-        if i == data["index"]:
-            if len(dir_names) == 1:
-                shutil.rmtree(current_session_folder)
-            else:
-                dir_to_delete = Path(os.path.join(current_session_folder, name))
-                shutil.rmtree(dir_to_delete)
-        i += 1
+    ProjectUtility.delete_project(data, session_id)
 
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
@@ -248,26 +157,9 @@ def get_goals(data) -> None:
     """
     Send the json content of all goals created inside the project.
     """
-    project_id = str(data["project"])
-    session = "default" if project_id == "simple" else str(request.args.get("id"))
+    list_of_goals = GoalUtility.get_goals(data, request.args.get("id"))
 
-    goals_folder = goals_path(session, data["project"])
-
-    """Retrieving files"""
-    if os.path.isdir(goals_folder):
-        files_paths = []
-        dir_path, dir_names, filenames = next(walk(goals_folder))
-        for file in filenames:
-            files_paths.append(Path(os.path.join(dir_path, file)))
-
-        list_of_goals = []
-        for path in files_paths:
-            with open(path) as json_file:
-                json_obj = json.load(json_file)
-                json_str = json.dumps(json_obj)
-                list_of_goals.append(json_str)
-
-        emit("receive-goals", list_of_goals, room=request.sid)
+    emit("receive-goals", list_of_goals, room=request.sid)
 
 
 @socketio.on("add-goal")
@@ -367,33 +259,12 @@ def delete_goal(data) -> None:
     if is_simple:
         project_id = copy_simple(session_id)
 
-    current_goals_folder = goals_path(session_id, project_id)
-    dir_path, dir_names, filenames = next(walk(current_goals_folder))
-    i = 0
-    for goal_file in filenames:
-        if i == data["index"]:
-            goal_to_delete = Path(os.path.join(current_goals_folder, goal_file))
-            with open(goal_to_delete) as json_file:
-                json_content = json.load(json_file)
-                id_to_remove = json_content["id"]
-            os.remove(goal_to_delete)
-        i += 1
+    GoalUtility.delete_goal(data, session_id, project_id)
+
     if is_simple:
         emit("deleting-simple", project_id, room=request.sid)
 
     # Now we remove the goal from the .dat file
-    project_folder: Path = project_path(session_id, project_id)
-    set_of_goals: set[Goal] = load_goals(str(project_folder))
-
-    if set_of_goals is not None:
-        tmp: set[Goal] = set()
-
-        for goal in set_of_goals:
-            if goal.id != id_to_remove:
-                tmp.add(goal)
-
-        dump_goals(tmp, str(project_folder))
-
     now = time.localtime(time.time())
     send_message_to_user(content=strftime("%H:%M:%S", now) + " The goal has been deleted.",
                          room_id=request.sid, crometype="success")
