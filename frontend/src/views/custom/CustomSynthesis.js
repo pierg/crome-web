@@ -2,6 +2,7 @@ import React from "react";
 import TextareaAutosize from 'react-textarea-autosize';
 import {Input} from "reactstrap";
 import Button from "../../components/Elements/Button";
+import synthesisInfo from "../../_texts/custom/synthesisinfo";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -131,7 +132,7 @@ export default class CustomSynthesis extends React.Component {
                         <div>
                             <div className="flex flex-wrap justify-center">
                                 <h1 className="display-3 title-up text-white font-semibold text-center">
-                                    Synthesis
+                                    {synthesisInfo.info.texts.synthesis}
                                 </h1>
                             </div>
                         </div>
@@ -142,7 +143,7 @@ export default class CustomSynthesis extends React.Component {
                         <div className="col-8">
                             <div className="row">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    ASSUMPTIONS
+                                    {synthesisInfo.info.texts.assumptions}
                                 </div>
                                 <div className="col-7 relative">
                                     <TextareaAutosize
@@ -155,7 +156,7 @@ export default class CustomSynthesis extends React.Component {
                             </div>
                             <div className="row mt-4">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    Guarantees
+                                    {synthesisInfo.info.texts.guarantees}
                                 </div>
                                 <div className="col-7 relative">
                                     <TextareaAutosize
@@ -168,7 +169,7 @@ export default class CustomSynthesis extends React.Component {
                             </div>
                             <div className="row mt-4">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    Inputs
+                                    {synthesisInfo.info.texts.inputs}
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
@@ -178,7 +179,7 @@ export default class CustomSynthesis extends React.Component {
                             </div>
                             <div className="row mt-4">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    Outputs
+                                    {synthesisInfo.info.texts.outputs}
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
@@ -190,19 +191,21 @@ export default class CustomSynthesis extends React.Component {
                         <div className="col-4">
                             <div className="row">
                                 <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
-                                    Load examples
+                                    {synthesisInfo.info.texts.load}
                                 </div>
                             </div>
                             <div className="row">
-                                <select>
+                                <select
+                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                >
 
                                 </select>
                             </div>
                             <div className="row mt-2">
                                 <div className="col-8 offset-2 text-center">
-                                    <Button color="gray" outline={true}>
-                                        UPLOAD
-                                        <i className="fas fa-long-arrow-alt-up ml-2"></i>
+                                    <Button color={synthesisInfo.info.buttons.upload.color} outline={true}>
+                                        {synthesisInfo.info.buttons.upload.text}
+                                        <i className={synthesisInfo.info.buttons.upload.icon}></i>
                                     </Button>
                                 </div>
                             </div>
