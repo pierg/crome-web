@@ -127,7 +127,7 @@ export default class CustomSynthesis extends React.Component {
 
         return (
             <>
-                <div className="relative pt-8 pb-12 bg-orange-800">
+                <div className="relative pt-8 pb-12 bg-emerald-400">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
                             <div className="flex flex-wrap justify-center">
