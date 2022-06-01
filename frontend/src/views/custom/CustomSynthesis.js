@@ -141,46 +141,48 @@ export default class CustomSynthesis extends React.Component {
                     <div className="row">
                         <div className="col-8">
                             <div className="row">
-                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     ASSUMPTIONS
                                 </div>
                                 <div className="col-7 relative">
                                     <TextareaAutosize
                                         onChange={this.setTextareaContentAssumption}
                                         onHeightChange={this.textareaHeightChangeAssumption}
-                                        className="pl-8 textareaResizeNone w-100"
+                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                     />
                                     {childrenAssumption}
                                 </div>
                             </div>
                             <div className="row mt-4">
-                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     Guarantees
                                 </div>
                                 <div className="col-7 relative">
                                     <TextareaAutosize
                                         onChange={this.setTextareaContentGuarantee}
                                         onHeightChange={this.textareaHeightChangeGuarantee}
-                                        className="pl-8 textareaResizeNone w-100"
+                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100 pl-8 textareaResizeNone w-100"
                                     />
                                     {childrenGuarantee}
                                 </div>
                             </div>
                             <div className="row mt-4">
-                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     Inputs
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
+                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                     />
                                 </div>
                             </div>
                             <div className="row mt-4">
-                                <div className="col-4 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     Outputs
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
+                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                     />
                                 </div>
                             </div>
