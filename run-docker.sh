@@ -1,0 +1,1 @@
+docker run -it pmallozzi/crome-web:dev -s
