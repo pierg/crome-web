@@ -1,5 +1,3 @@
-events { }
-
 http {
 
   map $http_upgrade $connection_upgrade {
