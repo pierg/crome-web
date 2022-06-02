@@ -25,7 +25,7 @@ from backend.shared.paths import (
     build_path,
     goals_path,
     project_path,
-    storage_path,
+    storage_path, controller_path,
 )
 from backend.tools.persistence import load_goals
 
@@ -400,7 +400,7 @@ def process_goals(data) -> None:
             },
             room=request.sid,
         )
-        
+
 
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
@@ -464,14 +464,23 @@ def extension(data) -> None:
     emit("operation-complete", True, room=request.sid)
 
 
-@socketio.on("get-synthesis-example")
-def get_synthesis_example() -> None:
-    """
-        Get all the examples of synthesis.
-    """
-    list_examples = Synthesis.get_examples()
+@socketio.on("get-synthesis")
+def get_synthesis() -> None:
+    controller_folder_default = controller_path("default")
+    controller_folder_session = controller_path(str(request.args.get("id")))
+    list_examples = Synthesis.get_synthesis(controller_folder_default) + \
+                    Synthesis.get_synthesis(controller_folder_session)
 
-    emit("receive-synthesis-example", list_examples, room=request.sid)
+    emit("receive-synthesis", list_examples, room=request.sid)
+
+
+@socketio.on("save-synthesis")
+def save_synthesis(data) -> None:
+    session_id = str(request.args.get("id"))
+    Synthesis.create_txt_file(data, session_id)
+
+    emit("synthesis-saved", True, room=request.sid)
+
 
 @socketio.on("session-existing")
 def check_if_session_exist(data) -> None:
