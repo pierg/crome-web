@@ -53,7 +53,10 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="container mt-5">
+                 <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                <div className="flex flex-col justify-center p-5 ">
+                <div className="container">
                     <div className="row">
                         <div className="col-7">
                              <div className="row mt-4">
@@ -146,6 +149,9 @@ export default class CustomSynthesis extends React.Component {
                                     </Button>
                                 </div>
                             </div>
+                            </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

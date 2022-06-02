@@ -189,33 +189,6 @@ export default class Analysis extends React.Component {
             str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[1])+"</strong>"
         }
         return str
-        /*let goals = id.split("/\\")
-        let str = ""
-        if (goals.length===2) {
-            str+="a conjunction link between { "
-            str+=this.getNodeChildren(goals[0])
-            str+=" and "
-            str+=this.getNodeChildren(goals[1])+" } "
-        } else {
-            goals = id.split("**")
-            if (goals.length===2) {
-                str+="a refinement link between { "
-                str+=this.getNodeChildren(goals[0])
-                str+=" and "
-                str+=this.getNodeChildren(goals[1])+" } "
-            } else {
-                goals = id.split("||")
-                if (goals.length===2) {
-                    str+="a composition link between { "
-                    str+=this.getNodeChildren(goals[0])
-                    str+=" and "
-                    str+=this.getNodeChildren(goals[1])+" } "
-                } else {
-                    str += "<strong>"+this.findGoalIndexById(id).goal.name+"</strong>"
-                }
-            }
-        }
-        return str*/
     }
 
     /**
