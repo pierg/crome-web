@@ -1,8 +1,9 @@
 import React from "react";
-import TextareaAutosize from 'react-textarea-autosize';
 import {Input} from "reactstrap";
 import Button from "../../components/Elements/Button";
 import synthesisInfo from "../../_texts/custom/synthesisinfo";
+import Editor from "react-simple-code-editor";
+import "../../assets/styles/textEditorStyle.css"
 
 export default class CustomSynthesis extends React.Component {
 
@@ -13,117 +14,31 @@ export default class CustomSynthesis extends React.Component {
         textareaContentGuarantee: [],
         textareaHeightGuarantee: 0,
         tabCptLineGuarantee: [],
+        assumptionsValue : "",
+        guaranteesValue : ""
     }
 
-    setTextareaContentAssumption = (e) => {
-        let tabValue = e.target.value.split("")
-        let tmpTabCptLine = this.state.tabCptLineAssumption
-        if(tabValue[tabValue.length-1] === "\n"  &&  tmpTabCptLine[tmpTabCptLine.length-1] !== 1) {
-            tmpTabCptLine[tmpTabCptLine.length-1]--
-            tmpTabCptLine.push(1)
-        }
-
+    setAssumptionsValue(value) {
         this.setState({
-            textareaContentAssumption: e.target.value.split("\n"),
-            tabCptLineAssumption: tmpTabCptLine,
+            assumptionsValue : value
         })
     }
 
-    textareaHeightChangeAssumption = (height) => {
-        let tmpHeight = (height-42)/24
-        let tmpTabCptLine = this.state.tabCptLineAssumption
-        if(tmpTabCptLine.length === 0) {
-            tmpTabCptLine.push(1)
-        }
-        else if(tmpHeight > this.state.textareaHeightAssumption) {
-            tmpTabCptLine[tmpTabCptLine.length-1]++
-        }
-        else {
-            if(tmpTabCptLine[tmpTabCptLine.length-1] === 1) {
-                tmpTabCptLine.pop()
-            }
-            else {
-                tmpTabCptLine[tmpTabCptLine.length-1]--
-            }
-        }
-
+    setGuaranteesValue(value) {
         this.setState({
-            textareaHeightAssumption: tmpHeight,
-            tabCptLineAssumption: tmpTabCptLine,
+            guaranteesValue : value
         })
     }
 
-    setTextareaContentGuarantee = (e) => {
-        let tabValue = e.target.value.split("")
-        let tmpTabCptLine = this.state.tabCptLineGuarantee
-        if(tabValue[tabValue.length-1] === "\n"  &&  tmpTabCptLine[tmpTabCptLine.length-1] !== 1) {
-            tmpTabCptLine[tmpTabCptLine.length-1]--
-            tmpTabCptLine.push(1)
-        }
-
-        this.setState({
-            textareaContentGuarantee: e.target.value.split("\n"),
-            tabCptLineGuarantee: tmpTabCptLine,
-        })
+    hightlightWithLineNumbers = (input) => {
+        return input
+            .split("\n")
+            .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
+            .join("\n");
     }
 
-    textareaHeightChangeGuarantee = (height) => {
-        let tmpHeight = (height-42)/24
-        let tmpTabCptLine = this.state.tabCptLineGuarantee
-        if(tmpTabCptLine.length === 0) {
-            tmpTabCptLine.push(1)
-        }
-        else if(tmpHeight > this.state.textareaHeightGuarantee) {
-            tmpTabCptLine[tmpTabCptLine.length-1]++
-        }
-        else {
-            if(tmpTabCptLine[tmpTabCptLine.length-1] === 1) {
-                tmpTabCptLine.pop()
-            }
-            else {
-                tmpTabCptLine[tmpTabCptLine.length-1]--
-            }
-        }
-
-        this.setState({
-            textareaHeightGuarantee: tmpHeight,
-            tabCptLineGuarantee: tmpTabCptLine,
-        })
-    }
 
     render(){
-        let className = ""
-        let heigth = 0
-        const childrenAssumption = [];
-        for(let i=0; i<this.state.tabCptLineAssumption.length; i++) {
-            className = "absolute top-"+(heigth*24+10)+"-px left-20-px text-blueGray-400"
-            childrenAssumption.push(
-                <div
-                    key={i}
-                    className={className}
-                >
-                    {i+1}
-                </div>
-            );
-            heigth += this.state.tabCptLineAssumption[i]
-        }
-
-        className = ""
-        heigth = 0
-        const childrenGuarantee = [];
-        for(let i=0; i<this.state.tabCptLineGuarantee.length; i++) {
-            className = "absolute top-"+(heigth*24+10)+"-px left-20-px text-blueGray-400"
-            childrenGuarantee.push(
-                <div
-                    key={i}
-                    className={className}
-                >
-                    {i+1}
-                </div>
-            );
-            heigth += this.state.tabCptLineGuarantee[i]
-        }
-
 
         return (
             <>
@@ -138,37 +53,53 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="container mt-5">
+                 <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                <div className="flex flex-col justify-center p-5 ">
+                <div className="container">
                     <div className="row">
-                        <div className="col-8">
-                            <div className="row bg-lightBlue-500 bg-opacity-25 w-50"></div>
-                            <div className="row">
+                        <div className="col-7">
+                             <div className="row mt-4">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.assumptions}
                                 </div>
                                 <div className="col-7 relative">
-                                    <TextareaAutosize
-                                        onChange={this.setTextareaContentAssumption}
-                                        onHeightChange={this.textareaHeightChangeAssumption}
-                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                    <Editor
+                                      value={this.state.assumptionsValue}
+                                      onValueChange={code => this.setAssumptionsValue(code)}
+                                      highlight={code => this.hightlightWithLineNumbers(code)}
+                                      padding={10}
+                                      className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
+                                      textareaId="codeArea"
+                                      style={{
+                                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                                        fontSize: 18,
+                                        outline: 0,
+                                      }}
                                     />
-                                    {childrenAssumption}
                                 </div>
                             </div>
-                            <div className="row mt-4">
+                            <div className="row mt-5">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.guarantees}
                                 </div>
                                 <div className="col-7 relative">
-                                    <TextareaAutosize
-                                        onChange={this.setTextareaContentGuarantee}
-                                        onHeightChange={this.textareaHeightChangeGuarantee}
-                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100 pl-8 textareaResizeNone w-100"
+                                    <Editor
+                                      value={this.state.guaranteesValue}
+                                      onValueChange={code => this.setGuaranteesValue(code)}
+                                      highlight={code => this.hightlightWithLineNumbers(code)}
+                                      padding={10}
+                                      className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
+                                      textareaId="codeArea"
+                                      style={{
+                                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                                        fontSize: 18,
+                                        outline: 0,
+                                      }}
                                     />
-                                    {childrenGuarantee}
                                 </div>
                             </div>
-                            <div className="row mt-4">
+                            <div className="row mt-5">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.inputs}
                                 </div>
@@ -178,7 +109,7 @@ export default class CustomSynthesis extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <div className="row mt-4">
+                            <div className="row mt-5">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.outputs}
                                 </div>
@@ -202,7 +133,7 @@ export default class CustomSynthesis extends React.Component {
 
                                 </select>
                             </div>
-                            <div className="row mt-3">
+                            <div className="row mt-4">
                                 <div className="col-8 offset-2 text-center">
                                     <Button color={synthesisInfo.info.buttons.upload.color} outline={true}>
                                         {synthesisInfo.info.buttons.upload.text}
@@ -210,6 +141,17 @@ export default class CustomSynthesis extends React.Component {
                                     </Button>
                                 </div>
                             </div>
+
+                            <div className="row mt-32 pt-12">
+                                <div className="col-8 offset-2 text-center">
+                                    <Button color={synthesisInfo.info.buttons.formula.color}  className="bg-emerald-400" outline={true}>
+                                        {synthesisInfo.info.buttons.formula.text}
+                                    </Button>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

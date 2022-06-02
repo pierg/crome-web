@@ -9,6 +9,7 @@ from pathlib import Path
 from time import strftime
 from typing import Any
 
+from backend.operations.synthesis import Synthesis
 from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from docker.errors import DockerException
@@ -24,7 +25,7 @@ from backend.shared.paths import (
     build_path,
     goals_path,
     project_path,
-    storage_path,
+    storage_path, controller_path,
 )
 from backend.tools.persistence import load_goals
 
@@ -399,7 +400,7 @@ def process_goals(data) -> None:
             },
             room=request.sid,
         )
-        
+
 
 @socketio.on("apply-conjunction")
 def conjunction(data) -> None:
@@ -461,6 +462,24 @@ def extension(data) -> None:
     print("APPLY OPERATION : extension")
 
     emit("operation-complete", True, room=request.sid)
+
+
+@socketio.on("get-synthesis")
+def get_synthesis() -> None:
+    controller_folder_default = controller_path("default")
+    controller_folder_session = controller_path(str(request.args.get("id")))
+    list_examples = Synthesis.get_synthesis(controller_folder_default) + \
+                    Synthesis.get_synthesis(controller_folder_session)
+
+    emit("receive-synthesis", list_examples, room=request.sid)
+
+
+@socketio.on("save-synthesis")
+def save_synthesis(data) -> None:
+    session_id = str(request.args.get("id"))
+    Synthesis.create_txt_file(data, session_id)
+
+    emit("synthesis-saved", True, room=request.sid)
 
 
 @socketio.on("session-existing")

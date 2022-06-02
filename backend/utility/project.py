@@ -90,8 +90,8 @@ class ProjectUtility:
 
     @staticmethod
     def save_image(data, session_id) -> None:
-        img_data = data["image"]
-        project_id = data["project"]
+        img_data = bytes(data["image"], "utf-8")
+        project_id = str(data["project"])
 
         current_project_image = Path(
             os.path.join(
@@ -99,6 +99,7 @@ class ProjectUtility:
                 f"s_{session_id}/p_{project_id}/environment.png",
             )
         )
+        print(f"Image saved here : {current_project_image}")
         with open(current_project_image, "wb") as fh:
             fh.write(base64.decodebytes(img_data))
 
