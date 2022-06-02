@@ -15,14 +15,14 @@ else
           ;;
         -r)
           echo "Launch backend server"
-          python3 ./backend/app.py
+          python3 ./backend/app.py serve
           ;;
         -d)
           echo "Build and deploy..."
           cd ./frontend
           npm run deploy
           cd ../
-          python3 ./backend/app.py
+          python3 ./backend/app.py serve
           ;;
         *)
           break
