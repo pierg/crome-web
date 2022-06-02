@@ -1,8 +1,8 @@
+echo "...activating conda env..."
+source ./venv/bin/activate
 if [ $# -eq 0 ]
   then
     echo "No parameters provided. Launching bash"
-    echo "...activating conda env..."
-    source ./venv/bin/activate
     exec bash
     bash
 else
