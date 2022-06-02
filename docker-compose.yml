@@ -27,7 +27,7 @@ services:
     restart: always
     container_name: backend
     volumes:
-      - ./frontend/build:/home/crome/web/frontend/build
+      - ./frontend/build:/home/crome-web/frontend/build
     expose:
       - 5000
     ports:
