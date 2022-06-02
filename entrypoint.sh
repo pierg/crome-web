@@ -23,9 +23,11 @@ git config pull.rebase true
 git pull
 
 cd /home/crome-web
-git reset --hard
+git reset --hard dev
 git config pull.rebase true
 git pull
+
+echo "repositories updated"
 
 
 if [ $# -eq 0 ]
