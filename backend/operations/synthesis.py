@@ -8,8 +8,7 @@ from crome_synthesis.controller import ControllerInfo
 class Synthesis:
 
     @staticmethod
-    def get_examples() -> list[dict[str, str]]:
-        controller_folder = controller_path("simple")
+    def get_synthesis(controller_folder) -> list[dict[str, str | list[str]]]:
         dir_path, dir_names, filenames = next(walk(controller_folder))
         list_examples = []
         for filename in filenames:
