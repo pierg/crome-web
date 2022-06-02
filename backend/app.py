@@ -474,6 +474,14 @@ def get_synthesis() -> None:
     emit("receive-synthesis", list_examples, room=request.sid)
 
 
+@socketio.on("save-synthesis")
+def save_synthesis(data) -> None:
+    session_id = str(request.args.get("id"))
+    Synthesis.create_txt_file(data, session_id)
+
+    emit("synthesis-saved", True, room=request.sid)
+
+
 @socketio.on("session-existing")
 def check_if_session_exist(data) -> None:
     """
