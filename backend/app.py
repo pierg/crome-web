@@ -9,6 +9,7 @@ from pathlib import Path
 from time import strftime
 from typing import Any
 
+from backend.operations.synthesis import Synthesis
 from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from docker.errors import DockerException
@@ -462,6 +463,15 @@ def extension(data) -> None:
 
     emit("operation-complete", True, room=request.sid)
 
+
+@socketio.on("get-synthesis-example")
+def get_synthesis_example() -> None:
+    """
+        Get all the examples of synthesis.
+    """
+    list_examples = Synthesis.get_examples()
+
+    emit("receive-synthesis-example", list_examples, room=request.sid)
 
 @socketio.on("session-existing")
 def check_if_session_exist(data) -> None:
