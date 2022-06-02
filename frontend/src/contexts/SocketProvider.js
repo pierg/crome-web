@@ -12,7 +12,7 @@ export function SocketProvider({ id, cookie, tabId, children }) {
     useEffect(() => {
         console.log("Connecting merged")
         console.log(id)
-        const newSocket = io("http://129.192.81.130:5000",{ query: { id, cookie, tabId } }
+        const newSocket = io("http://172.18.0.3:5000",{ query: { id, cookie, tabId } }
         )
         setSocket(newSocket)
 
