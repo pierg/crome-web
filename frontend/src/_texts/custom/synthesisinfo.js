@@ -6,6 +6,10 @@ const textProps = {
                 text:"upload",
                 icon:"fas fa-long-arrow-alt-up ml-2"
             },
+            formula: {
+                color:"emerald",
+                text:"load formula",
+            },
             up: "fas fa-chevron-up",
             down: "fas fa-chevron-down",
             run: "fas fa-play",
