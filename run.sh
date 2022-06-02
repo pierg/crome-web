@@ -13,8 +13,12 @@ else
           echo "-h, --help                show brief help"
           exit 0
           ;;
-        -r)
+        -b)
           echo "Launch backend server"
+          python3 ./backend/app.py
+          ;;
+        -s)
+          echo "Launch backend server with serving"
           python3 ./backend/app.py serve
           ;;
         -d)

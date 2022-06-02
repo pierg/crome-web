@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - URL=crometool.duckdns.org
+      - URL=cromedev.duckdns.org
       - SUBDOMAINS=www,
       - VALIDATION=duckdns
       - DUCKDNSTOKEN=40ec2401-1546-484c-a2cd-26691ecc0ebb
@@ -22,20 +22,8 @@ services:
       - 80:80
     restart: unless-stopped
 
-  frontend:
-    image: pmallozzi/crome:latest
-    restart: always
-    container_name: backend
-    volumes:
-      - ./frontend/build:/home/crome/web/frontend/build
-    expose:
-      - 5000
-    ports:
-      - 5000:5000
-    command: -b
-
   backend:
-    image: pmallozzi/crome:latest
+    image: pmallozzi/crome-web:dev
     restart: always
     container_name: backend
     volumes:
