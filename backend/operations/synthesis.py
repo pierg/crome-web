@@ -33,6 +33,10 @@ class Synthesis:
         print(filenames)
 
         with open(os.path.join(controller_folder, f"{str(greatest_id).zfill(4)}.txt"), "w") as file:
+            if "name" in data:
+                file.write("**NAME**\n\n")
+                file.write(f"{data['name']}\n\n")
+                
             file.write("**ASSUMPTIONS**\n\n")
             for assumption in data["assumptions"]:
                 file.write(f"{assumption}\n")
