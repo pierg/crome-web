@@ -31,7 +31,7 @@ from backend.tools.persistence import load_goals
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
-    "serve", default=False, type=bool, help="indicate if serving the pages"
+    "--serve", default=False, type=bool, help="indicate if serving the pages"
 )
 args = parser.parse_args()
 

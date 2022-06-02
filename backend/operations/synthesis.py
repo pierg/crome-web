@@ -2,7 +2,7 @@ import os
 from os import walk
 
 from backend.shared.paths import controller_path
-from crome_synthesis.controller import ControllerInfo, _check_header
+from crome_synthesis.controller import ControllerInfo
 
 
 class Synthesis:
