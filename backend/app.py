@@ -340,9 +340,9 @@ def process_goals(data) -> None:
         build_simple_project()
 
     # Now we try to create the Cgg by capturing the possible errors and give them to the user
-    set_of_goals = load_goals(str(project_folder))
-    try:
 
+    try:
+        set_of_goals = load_goals(str(project_folder))
         if set_of_goals is None:
             emit(
                 "send-message",
@@ -410,8 +410,10 @@ def conjunction(data) -> None:
     print("APPLY OPERATION : conjunction")
     session_id = str(request.args.get("id"))
     project_id = data["goals"][0].split("-")[-2]
-
-    Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
+    try:
+        Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
+    except ContextException:
+        emit("operation-complete", False, room=request.sid)
 
     emit("operation-complete", True, room=request.sid)
 
@@ -428,7 +430,6 @@ def composition(data) -> None:
     try:
         Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
     except ContextException:
-        print("Context Exception")
         emit("operation-complete", False, room=request.sid)
 
     emit("operation-complete", True, room=request.sid)
@@ -480,6 +481,18 @@ def save_synthesis(data) -> None:
     Synthesis.create_txt_file(data, session_id)
 
     emit("synthesis-saved", True, room=request.sid)
+
+
+@socketio.on("controller-strix")
+def create_controller_strix(data) -> None:
+    json_content = Synthesis.create_from_strix(data)
+    emit("controller-created-strix", json_content, room=request.sid)
+
+
+@socketio.on("controller-crome")
+def create_controller_crome(data) -> None:
+    json_content = Synthesis.create_from_crome(data)
+    emit("controller-created-crome", json_content, room=request.sid)
 
 
 @socketio.on("session-existing")
