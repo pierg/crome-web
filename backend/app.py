@@ -483,6 +483,7 @@ def save_synthesis(data) -> None:
     session_id = str(request.args.get("id"))
     Synthesis.create_txt_file(data, session_id)
 
+    send_message_to_user("The mealy has been saved", "success", request.sid)
     emit("synthesis-saved", True, room=request.sid)
 
 
@@ -492,6 +493,8 @@ def create_controller_strix(data) -> None:
         Create the controller and the mealy according to the strix method
     """
     json_content = Synthesis.create_controller(data, "strix")
+
+    send_message_to_user("The mealy has been created using strix method", "success", request.sid)
     emit("controller-created-strix", json_content, room=request.sid)
 
 
@@ -501,6 +504,7 @@ def create_controller_crome(data) -> None:
         Create the controller and the mealy according to the parallel method
     """
     json_content = Synthesis.create_controller(data, "crome")
+    send_message_to_user("The mealy has been created using parallel method", "success", request.sid)
     emit("controller-created-crome", json_content, room=request.sid)
 
 
