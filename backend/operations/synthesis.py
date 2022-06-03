@@ -109,7 +109,7 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
-    def create_from_strix(data):
+    def create_controller(data, mode) -> list[dict[str, Any]] | None:
         session, index = data["file"].split("_")
 
         current_controller_folder = controller_path(session)
@@ -122,32 +122,17 @@ class Synthesis:
                 break
             i += 1
         if not controller_file:
-            return  # Make it return an error because the index is wrong
-        controller = Controller.from_file(file_path=controller_file)
-        return controller.mealy.export_to_json()
-
-    @staticmethod
-    def create_from_crome(data):
-        session, index = data["file"].split("_")
-
-        current_controller_folder = controller_path(session)
-        dir_path, dir_names, filenames = next(os.walk(current_controller_folder))
-        i = 0
-        controller_file = None
-        for controller_file in filenames:
-            if i == index:
-                controller_file = Path(os.path.join(current_controller_folder, controller_file))
-                break
-            i += 1
-        if not controller_file:
-            return  # Make it return an error because the index is wrong
-        pcontrollers = PControllers.from_file(file_path=controller_file)
-
-        json_content = []
-        for controller in pcontrollers.controllers:
-            json_content.append(controller.mealy.export_to_json())
-        return json_content
-
-
-
+            return None # Make it return an error because the index is wrong
+        if mode == "crome":
+            pcontrollers = PControllers.from_file(file_path=controller_file)
+            json_content = []
+            for controller in pcontrollers.controllers:
+                json_content.append(controller.mealy.export_to_json())
+            return json_content
+        elif mode == "strix":
+            controller = Controller.from_file(file_path=controller_file)
+            return controller.mealy.export_to_json()
+        else:
+            # Not a good mode !
+            return None
 

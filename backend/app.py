@@ -467,7 +467,7 @@ def extension(data) -> None:
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
-
+    
     list_examples = Synthesis.get_synthesis(str(request.args.get("id")))
 
     emit("receive-synthesis", list_examples, room=request.sid)
@@ -483,13 +483,13 @@ def save_synthesis(data) -> None:
 
 @socketio.on("controller-strix")
 def create_controller_strix(data) -> None:
-    json_content = Synthesis.create_from_strix(data)
+    json_content = Synthesis.create_controller(data, "strix")
     emit("controller-created-strix", json_content, room=request.sid)
 
 
 @socketio.on("controller-crome")
 def create_controller_crome(data) -> None:
-    json_content = Synthesis.create_from_crome(data)
+    json_content = Synthesis.create_controller(data, "crome")
     emit("controller-created-crome", json_content, room=request.sid)
 
 
