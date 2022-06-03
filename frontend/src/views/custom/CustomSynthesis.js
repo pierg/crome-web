@@ -15,7 +15,9 @@ export default class CustomSynthesis extends React.Component {
         textareaHeightGuarantee: 0,
         tabCptLineGuarantee: [],
         assumptionsValue : "",
-        guaranteesValue : ""
+        guaranteesValue : "",
+        clickedButtonStrix : false,
+        clickedButtonParallel : false
     }
 
     setAssumptionsValue(value) {
@@ -37,8 +39,30 @@ export default class CustomSynthesis extends React.Component {
             .join("\n");
     }
 
+    synthesisStrix = () => {
+        this.setState({
+            clickedButtonStrix : true,
+            clickedButtonParallel : false
+        })
+    }
+
+    parallelSynthesis = () => {
+        this.setState({
+            clickedButtonStrix : false,
+            clickedButtonParallel : true
+        })
+    }
 
     render(){
+
+        let outlineStrix = true
+        let outlineParallel = true
+        if(this.state.clickedButtonStrix) {
+            outlineParallel = false
+        }
+        if(this.state.clickedButtonParallel) {
+            outlineStrix = false
+        }
 
         return (
             <>
@@ -155,6 +179,53 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                    <div className="px-3 pb-5 relative flex flex-col min-w-0 m-auto">
+                        <div className="flex flex-col justify-center p-5 ">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-3 offset-2">
+                                        <Button
+                                            id="buttonSynthesisStrix"
+                                            color={synthesisInfo.info.buttons.synthesis.color}
+                                            size="lg"
+                                            outline={this.state.clickedButtonStrix}
+                                            fullWidth={true}
+                                            onClick={this.synthesisStrix}
+                                        >
+                                            {synthesisInfo.info.buttons.synthesis.strix}
+                                        </Button>
+                                    </div>
+                                    <div className="col-3 offset-2">
+                                        <Button
+                                            id="buttonParallelSynthesis"
+                                            color={synthesisInfo.info.buttons.synthesis.color}
+                                            size="lg"
+                                            outline={this.state.clickedButtonParallel}
+                                            fullWidth={true}
+                                            onClick={this.parallelSynthesis}
+                                        >
+                                            {synthesisInfo.info.buttons.synthesis.parallel}
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {
+                    this.state.clickedButtonStrix || this.state.clickedButtonParallel ?
+                    <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mx-auto">
+                        <div className="pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                            <div className="w-full border-b-1">
+                                <div className="fs-4 m-2 text-center">
+                                    {this.state.clickedButtonStrix ? synthesisInfo.info.buttons.synthesis.strix : synthesisInfo.info.buttons.synthesis.parallel}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    : null
+                }
             </>
         )
     }

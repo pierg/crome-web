@@ -13,7 +13,12 @@ const textProps = {
             up: "fas fa-chevron-up",
             down: "fas fa-chevron-down",
             run: "fas fa-play",
-            pause: "fas fa-pause"
+            pause: "fas fa-pause",
+            synthesis: {
+                color:"gray",
+                strix:"Synthesis with strix",
+                parallel:"Parallel synthesis",
+            },
         },
         texts: {
             synthesis: "synthesis",
