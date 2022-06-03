@@ -4,6 +4,7 @@ import Button from "../../components/Elements/Button";
 import synthesisInfo from "../../_texts/custom/synthesisinfo";
 import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
+import {Link} from 'react-scroll';
 
 export default class CustomSynthesis extends React.Component {
 
@@ -168,9 +169,11 @@ export default class CustomSynthesis extends React.Component {
 
                             <div className="row mt-32 pt-12">
                                 <div className="col-8 offset-2 text-center">
-                                    <Button color={synthesisInfo.info.buttons.formula.color}  className="bg-emerald-400" outline={true}>
-                                        {synthesisInfo.info.buttons.formula.text}
-                                    </Button>
+                                    <Link  to="buttons" spy={true} smooth={true}>
+                                        <Button color={synthesisInfo.info.buttons.formula.color}  className="bg-emerald-400" outline={true}>
+                                            {synthesisInfo.info.buttons.formula.text}
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                             </div>
@@ -179,53 +182,57 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-32 mx-auto">
                     <div className="px-3 pb-5 relative flex flex-col min-w-0 m-auto">
                         <div className="flex flex-col justify-center p-5 ">
                             <div className="container">
                                 <div className="row">
-                                    <div className="col-3 offset-2">
-                                        <Button
-                                            id="buttonSynthesisStrix"
-                                            color={synthesisInfo.info.buttons.synthesis.color}
-                                            size="lg"
-                                            outline={this.state.clickedButtonStrix}
-                                            fullWidth={true}
-                                            onClick={this.synthesisStrix}
-                                        >
-                                            {synthesisInfo.info.buttons.synthesis.strix}
-                                        </Button>
+                                    <div id="buttons" className="col-3 offset-2">
+                                        <Link  to="synthesis" spy={true} smooth={true}>
+                                            <Button
+                                                id="buttonSynthesisStrix"
+                                                color={synthesisInfo.info.buttons.synthesis.color}
+                                                size="lg"
+                                                outline={this.state.clickedButtonStrix}
+                                                fullWidth={true}
+                                                onClick={this.synthesisStrix}
+                                            >
+                                                {synthesisInfo.info.buttons.synthesis.strix}
+                                            </Button>
+                                        </Link>
                                     </div>
                                     <div className="col-3 offset-2">
-                                        <Button
-                                            id="buttonParallelSynthesis"
-                                            color={synthesisInfo.info.buttons.synthesis.color}
-                                            size="lg"
-                                            outline={this.state.clickedButtonParallel}
-                                            fullWidth={true}
-                                            onClick={this.parallelSynthesis}
-                                        >
-                                            {synthesisInfo.info.buttons.synthesis.parallel}
-                                        </Button>
+                                         <Link  to="synthesis" spy={true} smooth={true}>
+                                            <Button
+                                                id="buttonParallelSynthesis"
+                                                color={synthesisInfo.info.buttons.synthesis.color}
+                                                size="lg"
+                                                outline={this.state.clickedButtonParallel}
+                                                fullWidth={true}
+                                                onClick={this.parallelSynthesis}
+                                            >
+                                                {synthesisInfo.info.buttons.synthesis.parallel}
+                                            </Button>
+                                         </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 py-5 mx-auto">
                 {
-                    this.state.clickedButtonStrix || this.state.clickedButtonParallel ?
-                    <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mx-auto">
-                        <div className="pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
-                            <div className="w-full border-b-1">
-                                <div className="fs-4 m-2 text-center">
-                                    {this.state.clickedButtonStrix ? synthesisInfo.info.buttons.synthesis.strix : synthesisInfo.info.buttons.synthesis.parallel}
+                        this.state.clickedButtonStrix || this.state.clickedButtonParallel ?
+                            <div className="pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                                <div className="w-full border-b-1">
+                                    <div className="fs-4 m-2 text-center">
+                                        {this.state.clickedButtonStrix ? synthesisInfo.info.buttons.synthesis.strix : synthesisInfo.info.buttons.synthesis.parallel}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    : null
+                        : null
                 }
+                </div>
             </>
         )
     }
