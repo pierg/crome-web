@@ -1,6 +1,7 @@
 import os
 from os import walk
 from pathlib import Path
+from typing import Dict, List, Any
 
 from backend.shared.paths import controller_path
 from crome_synthesis.controller import ControllerInfo, _check_header, Controller
@@ -10,11 +11,11 @@ from crome_synthesis.pcontrollers import PControllers
 class Synthesis:
 
     @staticmethod
-    def get_synthesis(controller_folder) -> list[dict[str, str | list[str]]]:
-        dir_path, dir_names, filenames = next(walk(controller_folder))
-        print(f"dir_path is {dir_path}")
-        print(f"And dir_names is {dir_names}")
-        list_examples = []
+    def get_synthesis(session_id) -> dict[str, list[Any]]:
+        list_controller = {"Your creation": []}
+        # We get the controller of the current session
+        controller_folder = controller_path(session_id)
+        _, _, filenames = next(walk(controller_folder))
         for filename in filenames:
             info = ControllerInfo.from_file(controller_folder / filename)
             name = ""
@@ -34,8 +35,35 @@ class Synthesis:
                             name_found = True
             data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                     "outputs": info.o}
-            list_examples.append(data)
-        return list_examples
+            list_controller["Your creation"].append(data)
+
+        # Now we get all the examples !
+        controller_folder = controller_path("default")
+        dir_path, dir_names, _ = next(walk(controller_folder))
+        for dir_name in dir_names:
+            _, _, filenames = next(walk(os.path.join(controller_folder, dir_name)))
+            for filename in filenames:
+                info = ControllerInfo.from_file(controller_folder / filename)
+                name = ""
+                with open(controller_folder / filename, 'r') as ifile:
+                    name_found = False
+                    for line in ifile:
+                        if name_found:
+                            name = line.strip()
+                            break
+                        line, header = _check_header(line)
+
+                        if not line:
+                            continue
+
+                        elif header:
+                            if line == "**NAME**":
+                                name_found = True
+                data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
+                        "outputs": info.o}
+                list_controller[dir_name].append(data)
+
+        return list_controller
 
     @staticmethod
     def create_txt_file(data, session_id) -> None:

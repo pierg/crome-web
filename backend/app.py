@@ -467,10 +467,8 @@ def extension(data) -> None:
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
-    controller_folder_default = controller_path("default")
-    controller_folder_session = controller_path(str(request.args.get("id")))
-    list_examples = Synthesis.get_synthesis(controller_folder_default) + \
-                    Synthesis.get_synthesis(controller_folder_session)
+
+    list_examples = Synthesis.get_synthesis(str(request.args.get("id")))
 
     emit("receive-synthesis", list_examples, room=request.sid)
 
