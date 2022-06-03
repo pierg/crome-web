@@ -21,6 +21,7 @@ const textProps = {
             },
         },
         texts: {
+            name: "name",
             synthesis: "synthesis",
             assumptions: "assumptions",
             guarantees: "guarantees",

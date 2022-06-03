@@ -5,20 +5,25 @@ import synthesisInfo from "../../_texts/custom/synthesisinfo";
 import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
+import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 
 export default class CustomSynthesis extends React.Component {
 
     state = {
-        textareaContentAssumption: [],
-        textareaHeightAssumption: 0,
-        tabCptLineAssumption: [],
-        textareaContentGuarantee: [],
-        textareaHeightGuarantee: 0,
-        tabCptLineGuarantee: [],
+        nameValue : "",
         assumptionsValue : "",
         guaranteesValue : "",
+        inputsValue : "",
+        outputsValue : "",
+        triggerSave : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false
+    }
+
+    setNameValue(e) {
+        this.setState({
+            nameValue : e.target.value
+        })
     }
 
     setAssumptionsValue(value) {
@@ -33,11 +38,34 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    setInputsValue(e) {
+        this.setState({
+            inputsValue : e.target.value
+        })
+    }
+
+    setOutputsValue(e) {
+        this.setState({
+            outputsValue : e.target.value
+        })
+    }
+
     hightlightWithLineNumbers = (input) => {
         return input
             .split("\n")
             .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
             .join("\n");
+    }
+
+    loadFormula = () => {
+        console.log("load formula")
+        this.setTriggerSave(true)
+    }
+
+    setTriggerSave= (bool) => {
+        this.setState({
+            triggerSave: bool
+        })
     }
 
     synthesisStrix = () => {
@@ -56,17 +84,17 @@ export default class CustomSynthesis extends React.Component {
 
     render(){
 
-        let outlineStrix = true
-        let outlineParallel = true
-        if(this.state.clickedButtonStrix) {
-            outlineParallel = false
-        }
-        if(this.state.clickedButtonParallel) {
-            outlineStrix = false
-        }
-
         return (
             <>
+                <SocketSaveSynthesis
+                    trigger={this.state.triggerSave}
+                    setTrigger={this.setTriggerSave}
+                    name={this.state.nameValue}
+                    assumptions={this.state.assumptionsValue.split("\n")}
+                    guarantees={this.state.guaranteesValue.split("\n")}
+                    inputs={this.state.inputsValue.split(",")}
+                    outputs={this.state.outputsValue.split(",")}
+                />
                 <div className="relative pt-8 pb-12 bg-emerald-400">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
@@ -84,7 +112,18 @@ export default class CustomSynthesis extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-7">
-                             <div className="row mt-4">
+                            <div className="row">
+                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                    {synthesisInfo.info.texts.name}
+                                </div>
+                                <div className="col-7 relative">
+                                    <Input
+                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                        onChange={e => this.setNameValue(e)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row mt-5">
                                 <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.assumptions}
                                 </div>
@@ -131,6 +170,7 @@ export default class CustomSynthesis extends React.Component {
                                 <div className="col-7 relative">
                                     <Input
                                         className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                        onChange={e => this.setInputsValue(e)}
                                     />
                                 </div>
                             </div>
@@ -141,11 +181,12 @@ export default class CustomSynthesis extends React.Component {
                                 <div className="col-7 relative">
                                     <Input
                                         className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                        onChange={e => this.setOutputsValue(e)}
                                     />
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4">
+                        <div className="col-4 relative">
                             <div className="row">
                                 <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
                                     {synthesisInfo.info.texts.load}
@@ -167,10 +208,15 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="row mt-32 pt-12">
+                            <div className="row absolute bottom-0 text-center w-100">
                                 <div className="col-8 offset-2 text-center">
                                     <Link  to="buttons" spy={true} smooth={true}>
-                                        <Button color={synthesisInfo.info.buttons.formula.color}  className="bg-emerald-400" outline={true}>
+                                        <Button
+                                            color={synthesisInfo.info.buttons.formula.color}
+                                            className="bg-emerald-400"
+                                            outline={true}
+                                            onClick={this.loadFormula}
+                                        >
                                             {synthesisInfo.info.buttons.formula.text}
                                         </Button>
                                     </Link>
@@ -227,6 +273,16 @@ export default class CustomSynthesis extends React.Component {
                                 <div className="w-full border-b-1">
                                     <div className="fs-4 m-2 text-center">
                                         {this.state.clickedButtonStrix ? synthesisInfo.info.buttons.synthesis.strix : synthesisInfo.info.buttons.synthesis.parallel}
+                                    </div>
+                                </div>
+                                <div className="row h-auto">
+                                    <div className="col-9">
+
+                                    </div>
+                                    <div className="col-2 offset-1 text-center py-5">
+                                        <Button>
+                                            simulation
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
