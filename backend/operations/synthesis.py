@@ -18,21 +18,7 @@ class Synthesis:
         _, _, filenames = next(walk(controller_folder))
         for filename in filenames:
             info = ControllerInfo.from_file(controller_folder / filename)
-            name = ""
-            with open(controller_folder / filename, 'r') as ifile:
-                name_found = False
-                for line in ifile:
-                    if name_found:
-                        name = line.strip()
-                        break
-                    line, header = _check_header(line)
-
-                    if not line:
-                        continue
-
-                    elif header:
-                        if line == "**NAME**":
-                            name_found = True
+            name = Synthesis.__get_name_controller(controller_folder / filename)
             data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                     "outputs": info.o}
             list_controller["Your creation"].append(data)
@@ -44,21 +30,7 @@ class Synthesis:
             _, _, filenames = next(walk(os.path.join(controller_folder, dir_name)))
             for filename in filenames:
                 info = ControllerInfo.from_file(controller_folder / filename)
-                name = ""
-                with open(controller_folder / filename, 'r') as ifile:
-                    name_found = False
-                    for line in ifile:
-                        if name_found:
-                            name = line.strip()
-                            break
-                        line, header = _check_header(line)
-
-                        if not line:
-                            continue
-
-                        elif header:
-                            if line == "**NAME**":
-                                name_found = True
+                name = Synthesis.__get_name_controller(controller_folder / filename)
                 data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                         "outputs": info.o}
                 list_controller[dir_name].append(data)
@@ -75,10 +47,15 @@ class Synthesis:
 
         greatest_id = int(len(filenames)) + 1
 
-        with open(os.path.join(controller_folder, f"{str(greatest_id).zfill(4)}.txt"), "w") as file:
-            if "name" in data:
-                file.write("**NAME**\n\n")
-                file.write(f"{data['name']}\n\n")
+        # We check if the same name don't already exist. If so we use the same .txt
+        file_checked = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
+        file = os.path.join(controller_folder, f"{str(greatest_id).zfill(4)}.txt")
+        if file_checked:
+            file = os.path.join(controller_folder, file_checked)
+
+        with open(file, "w") as file:
+            file.write("**NAME**\n\n")
+            file.write(f"{data['name']}\n\n")
 
             file.write("**ASSUMPTIONS**\n\n")
             for assumption in data["assumptions"]:
@@ -122,7 +99,7 @@ class Synthesis:
                 break
             i += 1
         if not controller_file:
-            return None # Make it return an error because the index is wrong
+            return None  # Make it return an error because the index is wrong
         if mode == "crome":
             pcontrollers = PControllers.from_file(file_path=controller_file)
             json_content = []
@@ -136,3 +113,30 @@ class Synthesis:
             # Not a good mode !
             return None
 
+    @staticmethod
+    def __check_if_controller_exist(name, controller_folder) -> str:
+        if not name:
+            return ""
+        _, _, filenames = next(walk(controller_folder))
+        for filename in filenames:
+            name_found = Synthesis.__get_name_controller(controller_folder / filename)
+            if name_found == name:
+                return filename
+        return ""
+
+    @staticmethod
+    def __get_name_controller(file) -> str:
+        with open(file, 'r') as ifile:
+            name_found = False
+            for line in ifile:
+                if not line.strip():
+                    continue
+
+                if name_found:
+                    return line.strip()
+                line, header = _check_header(line)
+
+                if header:
+                    if line == "**NAME**":
+                        name_found = True
+        return ""
