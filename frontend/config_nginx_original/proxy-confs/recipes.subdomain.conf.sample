@@ -1,0 +1,49 @@
+## Version 2021/05/18
+# make sure that your dns has a cname set for recipes
+# make sure to mount /media/ in your swag container to point to your Recipes Media directory
+
+# if using Authelia use this one:
+# Doc: https://vabene1111.github.io/recipes/install/docker/#using-proxy-authentication
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name recipes.*;
+
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 0;
+
+    # enable for ldap auth, fill in ldap details in ldap.conf
+    #include /config/nginx/ldap.conf;
+
+    # enable for Authelia
+    #include /config/nginx/authelia-server.conf;
+	
+    # serve media files
+    location /media/ {
+        alias /media/;
+    }
+	
+    location / {
+        # enable the next two lines for http auth
+        #auth_basic "Restricted";
+        #auth_basic_user_file /config/nginx/.htpasswd;
+
+        # enable the next two lines for ldap auth
+        #auth_request /auth;
+        #error_page 401 =200 /ldaplogin;
+
+        # enable for Authelia
+        #include /config/nginx/authelia-location.conf;
+
+        include /config/nginx/proxy.conf;
+        include /config/nginx/resolver.conf;
+        set $upstream_app recipes;
+        set $upstream_port 8080;
+        set $upstream_proto http;
+        proxy_pass $upstream_proto://$upstream_app:$upstream_port;
+
+    }
+}
