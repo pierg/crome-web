@@ -16,7 +16,7 @@ services:
       - EMAIL=piergiuseppe.mallozzi@gmail.com
     volumes:
       - ./frontend/build:/config/www
-      - ./frontend/nginx_config:/config/nginx/site-confs
+      - ./frontend/config_nginx:/config/nginx/
     ports:
       - 443:443
       - 80:80
