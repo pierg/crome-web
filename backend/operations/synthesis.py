@@ -12,29 +12,31 @@ class Synthesis:
 
     @staticmethod
     def get_synthesis(session_id) -> dict[str, list[Any]]:
-        list_controller = {"Your creation": []}
+        list_controller = {}
         # We get the controller of the current session
         controller_folder = controller_path(session_id)
         _, _, filenames = next(walk(controller_folder))
+        dict_controller = {"Your creation": []}
         for filename in filenames:
             info = ControllerInfo.from_file(controller_folder / filename)
             name = Synthesis.__get_name_controller(controller_folder / filename)
             data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                     "outputs": info.o}
-            list_controller["Your creation"].append(data)
-
+            dict_controller["Your creation"].append(data)
+        list_controller.update(dict_controller)
         # Now we get all the examples !
         controller_folder = controller_path("default")
         dir_path, dir_names, _ = next(walk(controller_folder))
         for dir_name in dir_names:
             _, _, filenames = next(walk(os.path.join(controller_folder, dir_name)))
+            dict_controller = {dir_name: []}
             for filename in filenames:
-                info = ControllerInfo.from_file(controller_folder / filename)
-                name = Synthesis.__get_name_controller(controller_folder / filename)
+                info = ControllerInfo.from_file(controller_folder / dir_name / filename)
+                name = Synthesis.__get_name_controller(controller_folder / dir_name  / filename)
                 data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                         "outputs": info.o}
-                list_controller[dir_name].append(data)
-
+                dict_controller[dir_name].append(data)
+            list_controller.update(dict_controller)
         return list_controller
 
     @staticmethod
