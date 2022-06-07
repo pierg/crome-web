@@ -6,6 +6,7 @@ import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
+import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -16,8 +17,10 @@ export default class CustomSynthesis extends React.Component {
         inputsValue : "",
         outputsValue : "",
         triggerSave : false,
+        triggerSynthesis : false,
         clickedButtonStrix : false,
-        clickedButtonParallel : false
+        clickedButtonParallel : false,
+        graph : null
     }
 
     setNameValue(e) {
@@ -50,6 +53,13 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    setGraph(graph) {
+        console.log(graph)
+        this.setState({
+            graph : graph
+        })
+    }
+
     hightlightWithLineNumbers = (input) => {
         return input
             .split("\n")
@@ -68,17 +78,25 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    setTriggerSynthesis = (bool) => {
+        this.setState({
+            triggerSynthesis: bool
+        })
+    }
+
     synthesisStrix = () => {
         this.setState({
             clickedButtonStrix : true,
-            clickedButtonParallel : false
+            clickedButtonParallel : false,
+            triggerSynthesis : true
         })
     }
 
     parallelSynthesis = () => {
         this.setState({
             clickedButtonStrix : false,
-            clickedButtonParallel : true
+            clickedButtonParallel : true,
+            triggerSynthesis : true
         })
     }
 
@@ -94,6 +112,14 @@ export default class CustomSynthesis extends React.Component {
                     guarantees={this.state.guaranteesValue.split("\n")}
                     inputs={this.state.inputsValue.split(",")}
                     outputs={this.state.outputsValue.split(",")}
+                />
+                <SocketGetSynthesis
+                    trigger={this.state.triggerSynthesis}
+                    setTrigger={this.setTriggerSynthesis}
+                    name={this.state.nameValue}
+                    strix={this.state.clickedButtonStrix}
+                    parallel={this.state.clickedButtonParallel}
+                    setGraph={this.setGraph}
                 />
                 <div className="relative pt-8 pb-12 bg-emerald-400">
                     <div className="px-4 md:px-6 mx-auto w-full">
