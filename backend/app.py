@@ -481,8 +481,10 @@ def save_synthesis(data) -> None:
         Save the current synthesis inside a .txt file inside the session folder
     """
     session_id = str(request.args.get("id"))
-    Synthesis.create_txt_file(data, session_id)
-
+    try:
+        Synthesis.create_txt_file(data, session_id)
+    except Exception as e:
+        send_message_to_user(e.__str__(), "error", request.sid)
     send_message_to_user("The mealy has been saved", "success", request.sid)
     emit("synthesis-saved", True, room=request.sid)
 
