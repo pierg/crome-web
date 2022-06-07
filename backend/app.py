@@ -488,22 +488,22 @@ def save_synthesis(data) -> None:
 
 
 @socketio.on("controller-strix")
-def create_controller_strix(data) -> None:
+def create_controller_strix(name) -> None:
     """
         Create the controller and the mealy according to the strix method
     """
-    json_content = Synthesis.create_controller(data, request.args.get("id"), "strix")
+    json_content = Synthesis.create_controller(name, request.args.get("id"), "strix")
 
     send_message_to_user("The mealy has been created using strix method", "success", request.sid)
     emit("controller-created-strix", json_content, room=request.sid)
 
 
 @socketio.on("controller-crome")
-def create_controller_crome(data) -> None:
+def create_controller_crome(name) -> None:
     """
         Create the controller and the mealy according to the parallel method
     """
-    json_content = Synthesis.create_controller(data, request.args.get("id"), "crome")
+    json_content = Synthesis.create_controller(name, request.args.get("id"), "crome")
     send_message_to_user("The mealy has been created using parallel method", "success", request.sid)
     emit("controller-created-crome", json_content, room=request.sid)
 

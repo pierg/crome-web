@@ -86,13 +86,13 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
-    def create_controller(data, session_id,mode) -> list[dict[str, Any]] | None:
+    def create_controller(name, session_id, mode) -> list[dict[str, Any]] | None:
 
         controller_folder = controller_path(session_id)
         dir_path, dir_names, filenames = next(os.walk(controller_folder))
         i = 0
 
-        controller_file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
+        controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
         if not controller_file:
             return None  # Make it return an error because the index is wrong
         controller_file = Path(os.path.join(controller_folder, controller_file))
@@ -119,6 +119,8 @@ class Synthesis:
                 controller = Controller.from_file(controller_folder / file)
                 content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
                            "inputs": controller.info.i, "outputs": controller.info.o, "name": data["name"]}
+                if session == "simple":
+                    Synthesis.create_txt_file(content, session_id)
                 return content
             _, dir_names, filenames = next(walk(controller_folder))
             for dir_name in dir_names:
