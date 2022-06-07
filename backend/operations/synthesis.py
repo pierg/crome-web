@@ -95,6 +95,7 @@ class Synthesis:
         controller_file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
         if not controller_file:
             return None  # Make it return an error because the index is wrong
+        controller_file = Path(os.path.join(controller_folder, controller_file))
         if mode == "crome":
             pcontrollers = PControllers.from_file(file_path=controller_file)
             json_content = []
