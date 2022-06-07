@@ -340,7 +340,7 @@ def process_goals(data) -> None:
         build_simple_project()
 
     # Now we try to create the Cgg by capturing the possible errors and give them to the user
-
+    set_of_goals = None
     try:
         set_of_goals = load_goals(str(project_folder))
         if set_of_goals is None:
@@ -508,6 +508,26 @@ def create_controller_crome(name) -> None:
     json_content = Synthesis.create_controller(name, request.args.get("id"), "crome")
     send_message_to_user("The mealy has been created using parallel method", "success", request.sid)
     emit("controller-created-crome", json_content, room=request.sid)
+
+
+@socketio.on("simulate-strix")
+def simulate_controller_strix(name) -> None:
+    """
+        Simulate the mealy according to the method strix
+    """
+    content = Synthesis.simulate_controller(name, request.args.get("id"), "strix")
+    send_message_to_user("The mealy has been simulated", "success", request.sid)
+    emit("mealy-simulated-strix", content)
+
+
+@socketio.on("simulate-crome")
+def simulate_controller_crome(name) -> None:
+    """
+        Simulate the mealy according to the parallel method
+    """
+    content = Synthesis.simulate_controller(name, request.args.get("id"), "crome")
+    send_message_to_user("The mealy has been simulated", "success", request.sid)
+    emit("mealy-simulated-crome", content)
 
 
 @socketio.on("session-existing")

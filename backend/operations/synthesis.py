@@ -92,7 +92,7 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
-    def create_controller(name, session_id, mode) -> list[dict[str, Any]] | None:
+    def create_controller(name, session_id, mode, controller_return = False) -> list[dict[str, Any]] | None | Controller | PControllers:
 
         controller_folder = controller_path(session_id)
 
@@ -102,12 +102,16 @@ class Synthesis:
         controller_file = Path(os.path.join(controller_folder, controller_file))
         if mode == "crome":
             pcontrollers = PControllers.from_file(file_path=controller_file)
+            if controller_return:
+                return pcontrollers
             json_content = []
             for controller in pcontrollers.controllers:
                 json_content.append(controller.mealy.export_to_json())
             return json_content
         elif mode == "strix":
             controller = Controller.from_file(file_path=controller_file)
+            if controller_return:
+                return controller
             return controller.mealy.export_to_json()
         else:
             # Not a good mode !
@@ -135,6 +139,29 @@ class Synthesis:
                                "inputs": controller.info.i,
                                "outputs": controller.info.o, "name": data["name"]}
                     return content
+
+    @staticmethod
+    def simulate_controller(name, session_id, mode):
+        controller = Synthesis.create_controller(name, session_id, mode, controller_return=True)
+        if mode == "crome":
+            content = []
+            for ctr in controller.controllers:
+                simu = ctr.mealy.simulate(do_print=False)
+                content_simu = []
+                for line in simu:
+                    if line[-1] != "" and line[-2] == "":
+                        content_simu.append(line)
+                content.append(content_simu)
+            return content
+        elif mode == "strix":
+            simu = controller.mealy.simulate(do_print=False)
+            content_simu = []
+            for line in simu:
+                if line[-1] != "" and line[-2] == "":
+                    content_simu.append(line)
+            return content_simu
+        else:
+            return None
 
     @staticmethod
     def __check_if_controller_exist(name, controller_folder) -> str:
