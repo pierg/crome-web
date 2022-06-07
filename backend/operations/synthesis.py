@@ -1,7 +1,7 @@
 import os
 from os import walk
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any
 
 from backend.shared.paths import controller_path
 from crome_synthesis.controller import ControllerInfo, _check_header, Controller
@@ -86,18 +86,13 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
-    def create_controller(data, mode) -> list[dict[str, Any]] | None:
-        session, index = data["file"].split("_")
+    def create_controller(data, session_id,mode) -> list[dict[str, Any]] | None:
 
-        current_controller_folder = controller_path(session)
-        dir_path, dir_names, filenames = next(os.walk(current_controller_folder))
+        controller_folder = controller_path(session_id)
+        dir_path, dir_names, filenames = next(os.walk(controller_folder))
         i = 0
-        controller_file = None
-        for controller_file in filenames:
-            if i == index:
-                controller_file = Path(os.path.join(current_controller_folder, controller_file))
-                break
-            i += 1
+
+        controller_file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
         if not controller_file:
             return None  # Make it return an error because the index is wrong
         if mode == "crome":
@@ -112,6 +107,27 @@ class Synthesis:
         else:
             # Not a good mode !
             return None
+
+    @staticmethod
+    def get_specific_synthesis(data, session_id):
+        list_session = ["simple", session_id]
+        for session in list_session:
+            controller_folder = controller_path(session)
+            file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
+            if file:
+                controller = Controller.from_file(controller_folder / file)
+                content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
+                           "inputs": controller.info.i, "outputs": controller.info.o, "name": data["name"]}
+                return content
+            _, dir_names, filenames = next(walk(controller_folder))
+            for dir_name in dir_names:
+                file = Synthesis.__check_if_controller_exist(data["name"], controller_folder / dir_name)
+                if file:
+                    controller = Controller.from_file(controller_folder / dir_name / file)
+                    content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
+                               "inputs": controller.info.i,
+                               "outputs": controller.info.o, "name": data["name"]}
+                    return content
 
     @staticmethod
     def __check_if_controller_exist(name, controller_folder) -> str:
