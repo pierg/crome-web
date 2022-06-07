@@ -53,7 +53,7 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    setGraph(graph) {
+    setGraph = (graph) => {
         console.log(graph)
         this.setState({
             graph : graph
@@ -72,7 +72,7 @@ export default class CustomSynthesis extends React.Component {
         this.setTriggerSave(true)
     }
 
-    setTriggerSave= (bool) => {
+    setTriggerSave = (bool) => {
         this.setState({
             triggerSave: bool
         })
