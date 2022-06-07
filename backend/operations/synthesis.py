@@ -40,19 +40,20 @@ class Synthesis:
     @staticmethod
     def create_txt_file(data, session_id) -> None:
         controller_folder = controller_path(session_id)
-        examples_folder = controller_path("simple")
+        examples_folder = controller_path("default")
 
         if not os.path.exists(controller_folder):
             os.makedirs(controller_folder)
-        dir_path, dir_names, filenames = next(walk(controller_folder))
-
+        _, _, filenames = next(walk(controller_folder))
         greatest_id = int(len(filenames)) + 1
 
         # We check if the same name don't already exist. If so we use the same .txt
         # Moreover we have to check if the name used is already an examples name
-        check = Synthesis.__check_if_controller_exist(data["name"], examples_folder)
-        if check:
-            raise Exception("The name is already used by an examples, please change it")
+        _, dir_names, _ = next(walk(examples_folder))
+        for dir_name in dir_names:
+            check = Synthesis.__check_if_controller_exist(data["name"], examples_folder / dir_name)
+            if check:
+                raise Exception("The name is already used by an examples, please change it")
         file_checked = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
         file = os.path.join(controller_folder, f"{str(greatest_id).zfill(4)}.txt")
         if file_checked:
@@ -94,8 +95,6 @@ class Synthesis:
     def create_controller(name, session_id, mode) -> list[dict[str, Any]] | None:
 
         controller_folder = controller_path(session_id)
-        dir_path, dir_names, filenames = next(os.walk(controller_folder))
-        i = 0
 
         controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
         if not controller_file:
