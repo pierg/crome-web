@@ -14,6 +14,7 @@ from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from docker.errors import DockerException
 
+from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
 from operations.analysis import Analysis
 from backend.utility.project import ProjectUtility
 import crome_cgg.cgg as crome_cgg
@@ -451,6 +452,27 @@ def refinement(data) -> None:
         Apply the refinement operation on the given goals.
     """
     print("APPLY OPERATION : refinement")
+
+    session_id = request.args.get("id")
+    project_id = data["project"]
+    project_folder = str(project_path(session_id, project_id))
+
+    try:
+        Analysis.refinement(project_folder, data["abstract"], data["refine"])
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying refinement operations."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
+        emit("operation-complete", False, room=request.sid)
+        return
 
     emit("operation-complete", True, room=request.sid)
 

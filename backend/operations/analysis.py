@@ -3,10 +3,12 @@ import os.path
 from os import walk
 from typing import Set
 
+from crome_cgg.cgg import Cgg, Link
 from crome_cgg.goal.operations.composition import g_composition
 from crome_cgg.goal.operations.conjunction import g_conjunction
+from crome_cgg.goal.operations.refinement import g_refinement
 
-from backend.tools.persistence import dump_goals, load_goals
+from backend.tools.persistence import dump_goals, load_goals, load_cgg, dump_cgg
 
 
 class Analysis:
@@ -84,7 +86,7 @@ class Analysis:
         # TODO: add Cgg reference and create a refinement there
 
         set_of_goals = load_goals(project_folder)
-
+        cgg = load_cgg(project_folder)
         abstract_goal = None
         refined_goal = None
         for goal in set_of_goals:
@@ -93,7 +95,8 @@ class Analysis:
             if goal.id == refined_goal_id:
                 refined_goal = goal
 
-        if abstract_goal is not None:
-            abstract_goal.refine_by(refined_goal)
+        g_refinement(abstract_goal, refined_goal, cgg)
 
-        dump_goals(set_of_goals, project_folder)
+        dump_cgg(cgg)
+
+
