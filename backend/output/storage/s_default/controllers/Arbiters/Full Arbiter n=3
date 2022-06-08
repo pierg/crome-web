@@ -20,9 +20,9 @@ G ((grant_1 & X (!request_1 & !grant_1)) -> X (request_1 R !grant_1))
 
 G ((grant_2 & X (!request_2 & !grant_2)) -> X (request_2 R !grant_2))
 
-G ((grant_2 & X (!request_2 & !grant_2)) -> X (request_2 R !grant_2))
-
 G ((!grant_0 & !grant_1) | ((!grant_0 | !grant_1) & !grant_2))
+
+request_0 R !grant_0
 
 request_1 R !grant_1
 
