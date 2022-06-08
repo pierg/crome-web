@@ -128,6 +128,14 @@
   * None
 * returns-via: `"operation-complete"`
 
+### `"apply-merging"`
+#### Apply the merging operation
+* accepts :
+  * A list of goals and the project_id
+* returns :
+  * None
+* returns-via: `"operation-complete"`
+
 ### `"apply-extension"`
 #### Apply the extension operation
 * accepts :

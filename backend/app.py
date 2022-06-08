@@ -514,13 +514,43 @@ def quotient(data) -> None:
     """
         Apply the quotient operation on the two goals given
     """
-    print("APPLY OPERATION : quotient")
+    print("APPLY OPERATION : merging")
     project_id = data["project"]
     session_id = request.args.get("id")
     project_folder = str(project_path(session_id, project_id))
 
     try:
         Analysis.quotient(project_folder, data["dividend"], data["divisor"])
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying merging operation."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
+        emit("operation-complete", False, room=request.sid)
+        return
+
+    emit("operation-complete", True, room=request.sid)
+
+
+@socketio.on("apply-merging")
+def merging(data) -> None:
+    """
+        Apply the merging operation on the two goals given
+    """
+    print("APPLY OPERATION : quotient")
+    project_id = data["project"]
+    session_id = request.args.get("id")
+    project_folder = str(project_path(session_id, project_id))
+
+    try:
+        Analysis.merging(project_folder, data["goals"])
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
@@ -537,7 +567,6 @@ def quotient(data) -> None:
         return
 
     emit("operation-complete", True, room=request.sid)
-
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
