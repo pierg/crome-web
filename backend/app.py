@@ -524,7 +524,7 @@ def quotient(data) -> None:
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
-            {"crometypes": "error", "content": "Problem while applying merging operation."
+            {"crometypes": "error", "content": "Problem while applying quotient operation."
                                                " See the console for more information"},
             room=request.sid
         )
@@ -544,7 +544,7 @@ def merging(data) -> None:
     """
         Apply the merging operation on the two goals given
     """
-    print("APPLY OPERATION : quotient")
+    print("APPLY OPERATION : merging")
     project_id = data["project"]
     session_id = request.args.get("id")
     project_folder = str(project_path(session_id, project_id))
@@ -554,7 +554,7 @@ def merging(data) -> None:
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
-            {"crometypes": "error", "content": "Problem while applying quotient operation."
+            {"crometypes": "error", "content": "Problem while applying merging operation."
                                                " See the console for more information"},
             room=request.sid
         )
@@ -567,6 +567,37 @@ def merging(data) -> None:
         return
 
     emit("operation-complete", True, room=request.sid)
+
+
+@socketio.on("apply-separation")
+def separation(data) -> None:
+    """
+        Apply the separation operation on the two goals given
+    """
+    print("APPLY OPERATION : separation")
+    project_id = data["project"]
+    session_id = request.args.get("id")
+    project_folder = str(project_path(session_id, project_id))
+
+    try:
+        Analysis.separation(project_folder, data["dividend"], data["divisor"])
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying separation operation."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
+        emit("operation-complete", False, room=request.sid)
+        return
+
+    emit("operation-complete", True, room=request.sid)
+
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:

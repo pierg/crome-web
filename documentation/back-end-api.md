@@ -144,14 +144,13 @@
   * None
 * returns-via: `"operation-complete"`
 
-### `"apply-extension"`
-#### Apply the extension operation
+### `"apply-separation"`
+#### Apply the separation operation
 * accepts :
-  * List of goals
+  * Two goals and the project id
 * returns :
   * None
 * returns-via: `"operation-complete"`
-
 
 ### `"get-synthesis"`
 #### Retrieve synthesis and all the examples in output folder related to the session

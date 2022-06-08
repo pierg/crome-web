@@ -10,6 +10,7 @@ from crome_cgg.goal.operations.quotient import g_quotient
 from crome_cgg.goal.operations.refinement import g_refinement
 
 from backend.tools.persistence import dump_goals, load_goals, load_cgg, dump_cgg
+from crome_cgg.goal.operations.separation import g_separation
 
 
 class Analysis:
@@ -135,6 +136,27 @@ class Analysis:
                 goal_to_merge.add(goal)
 
         new_goal = g_merging(goal_to_merge, cgg)
+
+        set_of_goals.add(new_goal)
+
+        dump_goals(set_of_goals, project_folder)
+        dump_cgg(cgg, project_folder)
+
+    @staticmethod
+    def separation(project_folder: str, goal_dividend_id: str, goal_divisor_id: str):
+        set_of_goals = load_goals(project_folder)
+        cgg = load_cgg(project_folder)
+
+        goal_divisor = None
+        goal_dividend = None
+
+        for goal in set_of_goals:
+            if goal_divisor_id == goal.id:
+                goal_divisor = goal
+            if goal_dividend_id == goal.id:
+                goal_dividend = goal
+
+        new_goal = g_separation(goal_dividend, goal_divisor, cgg)
 
         set_of_goals.add(new_goal)
 
