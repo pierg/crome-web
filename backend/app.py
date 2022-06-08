@@ -28,7 +28,7 @@ from backend.shared.paths import (
     project_path,
     storage_path, controller_path,
 )
-from backend.tools.persistence import load_goals
+from backend.tools.persistence import load_goals, dump_cgg, load_cgg
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
@@ -344,12 +344,7 @@ def process_goals(data) -> None:
     set_of_goals = None
     try:
         set_of_goals = load_goals(str(project_folder))
-        if set_of_goals is None:
-            emit(
-                "send-message",
-                "No goals has been saved, please create them correctly. See the console for more information",
-                room=request.sid
-            )
+
     except DockerException:
         emit(
             "send-message",
@@ -362,12 +357,38 @@ def process_goals(data) -> None:
             f"Error while retrieving the goals. Error : {e}",
             room=request.sid
         )
+    if set_of_goals is None:
+        emit(
+            "send-message",
+            "No goals has been saved, please create them correctly. See the console for more information",
+            room=request.sid
+        )
+        return
+
+    # Before creating a new cgg, we check if one is already created with the same goals.
+    good = True
+    cgg = load_cgg(str(project_folder))
+    if len(cgg.init_goals) == set_of_goals:
+        for goal in set_of_goals:
+            if goal not in cgg.init_goals:
+                good = False
+
+    if good:
+        emit(
+            "send-notification",
+            {"crometypes": "success", "content": "CGG has been built!"},
+            room=request.sid,
+        )
+        emit("cgg-saved", cgg.export_to_json(), room=request.sid)
+        return
+
     from crome_cgg.goal.exceptions import GoalException
 
     error_occurrence = True
 
     try:
         cgg = crome_cgg.Cgg(init_goals=set_of_goals)
+        dump_cgg(cgg, str(project_folder))
         json_content = cgg.export_to_json(project_folder)
         emit(
             "send-notification",
