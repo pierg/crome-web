@@ -449,7 +449,7 @@ def composition(data) -> None:
     print("APPLY OPERATION : composition")
     session_id = str(request.args.get("id"))
 
-    project_id = data["goals"][0].split("-")[-2]
+    project_id = data["project"]
     try:
         Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
     except ContextException:
