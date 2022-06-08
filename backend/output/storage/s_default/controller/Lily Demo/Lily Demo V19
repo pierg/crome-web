@@ -4,18 +4,26 @@ Lily Demo V19
 
 **ASSUMPTIONS**
 
-true
+G F ets
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G (hl -> (hl U ets))
+
+G (fl -> (fl U ets))
+
+G !(hl & fl)
+
+G (ec -> F fl)
+
+G F hl
 
 **INPUTS**
 
-request_0, request_1
+ets, ec
 
 **OUTPUTS**
 
-request_0, request_1
+hl, fl
 
 **END**

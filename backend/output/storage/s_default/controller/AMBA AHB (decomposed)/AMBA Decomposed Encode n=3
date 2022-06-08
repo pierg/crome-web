@@ -4,18 +4,26 @@ AMBA Decomposed Encode n=3
 
 **ASSUMPTIONS**
 
-true
+G ((!hgrant_0 & ! hgrant_1) | ((!hgrant_0 | ! hgrant_1) & !hgrant_2))
+
+G (hgrant_0 | hgrant_1 | hgrant_2)
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G (hready -> (X (!hmaster_0 & !hmaster_1) <-> hgrant_0))
+
+G (hready -> (X (hmaster_0 & !hmaster_1) <-> hgrant_1))
+
+G (hready -> (X (!hmaster_0 & hmaster_1) <-> hgrant_2))
+
+G (!hready -> ((X hmaster_0 <-> hmaster_0) & (X hmaster_1 <-> hmaster_1)))
 
 **INPUTS**
 
-request_0, request_1
+hready, hgrant_0, hgrant_1, hgrant_2
 
 **OUTPUTS**
 
-request_0, request_1
+hmaster_0, hmaster_1
 
 **END**

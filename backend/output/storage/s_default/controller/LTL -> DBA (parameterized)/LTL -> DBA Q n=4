@@ -8,14 +8,14 @@ true
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+((F p_0 | G p_1) & (F p_1 | G p_2) & (F p_2 | G p_3) & F p_3) <-> G F acc
 
 **INPUTS**
 
-request_0, request_1
+p_0, p_1, p_2, p_3
 
 **OUTPUTS**
 
-request_0, request_1
+acc
 
 **END**

@@ -4,18 +4,44 @@ AMBA Decomposed Arbiter n=2
 
 **ASSUMPTIONS**
 
-true
+G F allready
+
+allready
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G (!hgrant_0 | ! hgrant_1)
+
+G (hgrant_0 | hgrant_1)
+
+G (!allready -> (X hgrant_0 <-> hgrant_0))
+
+G (!allready -> (X hgrant_1 <-> hgrant_1))
+
+G (hbusreq_0 -> F (!hbusreq_0 | hgrant_0))
+
+G (hbusreq_1 -> F (!hbusreq_1 | hgrant_1))
+
+G (hgrant_0 -> (busreq <-> hbusreq_0))
+
+G (hgrant_1 -> (busreq <-> hbusreq_1))
+
+G (!allready -> !decide)
+
+G (decide <-> (!(X hgrant_0 <-> hgrant_0) | !(X hgrant_1 <-> (hgrant_1))))
+
+G ((!hbusreq_0 & !hbusreq_1 & decide) -> X hgrant_0)
+
+! decide
+
+hgrant_0
 
 **INPUTS**
 
-request_0, request_1
+allready, hbusreq_0, hbusreq_1
 
 **OUTPUTS**
 
-request_0, request_1
+decide, busreq, hgrant_0, hgrant_1
 
 **END**

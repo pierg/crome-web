@@ -4,18 +4,18 @@ Lily Demo V8
 
 **ASSUMPTIONS**
 
-true
+G F req
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G F grant
 
 **INPUTS**
 
-request_0, request_1
+req
 
 **OUTPUTS**
 
-request_0, request_1
+grant
 
 **END**

@@ -8,14 +8,14 @@ true
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+(G !grant) | (G (req -> F ack)) | (G (go -> F grant))
 
 **INPUTS**
 
-request_0, request_1
+req, go
 
 **OUTPUTS**
 
-request_0, request_1
+grant, ack
 
 **END**

@@ -8,14 +8,18 @@ true
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G F r0 -> G F g0
+
+G F r1 -> G F g1
+
+G !(g0 & g1)
 
 **INPUTS**
 
-request_0, request_1
+r0, r1
 
 **OUTPUTS**
 
-request_0, request_1
+g0, g1
 
 **END**

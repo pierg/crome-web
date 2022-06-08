@@ -8,7 +8,7 @@ true
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+(G F request_0 & G F request_1) <-> G F grant
 
 **INPUTS**
 
@@ -16,6 +16,6 @@ request_0, request_1
 
 **OUTPUTS**
 
-request_0, request_1
+grant
 
 **END**

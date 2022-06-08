@@ -8,14 +8,22 @@ true
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G ((!hburst_0 & !hburst_1) -> single)
+
+G ((hburst_0 & !hburst_1) -> burst4)
+
+G ((!hburst_0 & hburst_1) -> incr)
+
+G !(single & (burst4 | incr))
+
+G !(burst4 & incr)
 
 **INPUTS**
 
-request_0, request_1
+hburst_0, hburst_1
 
 **OUTPUTS**
 
-request_0, request_1
+incr, burst4, single
 
 **END**

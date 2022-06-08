@@ -4,18 +4,36 @@ Lily Demo V20
 
 **ASSUMPTIONS**
 
-true
+!etc
+
+G ((!etc & !sts) -> X !etc)
+
+G (etc -> F !etc)
+
+G (sts -> X etc)
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G ((shlr & X !shlr) -> sts)
+
+G ((sflr & X !sflr) -> sts)
+
+G ((!sflr & (!etc | !ec)) -> X sflr)
+
+G ((!shlr & (!etc |  ec)) -> X shlr)
+
+G (sflr | shlr)
+
+G (ec -> F !sflr)
+
+G F !shlr
 
 **INPUTS**
 
-request_0, request_1
+etc, ec
 
 **OUTPUTS**
 
-request_0, request_1
+sts, shlr, sflr
 
 **END**

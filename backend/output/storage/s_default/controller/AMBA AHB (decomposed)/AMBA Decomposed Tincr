@@ -4,18 +4,30 @@ AMBA Decomposed Tincr
 
 **ASSUMPTIONS**
 
-true
+!decide
+
+G F hready
+
+G F !busreq
+
+G (!ready1 -> X !decide)
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G (decide -> X X (((incr & locked) -> (!ready1 W (hready & !busreq))) & (!(incr & locked) -> ready1)))
+
+G ((ready1 & X !decide) -> X ready1)
+
+G ((ready1 & X decide) -> X (!ready1 & X !ready1))
+
+ready1
 
 **INPUTS**
 
-request_0, request_1
+busreq, decide, locked, hready, incr
 
 **OUTPUTS**
 
-request_0, request_1
+ready1
 
 **END**

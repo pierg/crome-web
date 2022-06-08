@@ -4,18 +4,34 @@ Lily Demo V22
 
 **ASSUMPTIONS**
 
-true
+!godown
+
+!goup
+
+!ws
+
+G !(godown & goup)
+
+G F !ws
+
+G ((!ws & ss) -> X !ws)
+
+G (ws -> X (!ws | X (!ws | X (!ws | X !ws))))
 
 **GUARANTEES**
 
-G (request_0 -> F grant_0) & G (request_1 -> F grant_1)
+G !(ws & X ss)
+
+G (goup -> F !ss)
+
+G (godown -> F ss)
 
 **INPUTS**
 
-request_0, request_1
+godown, goup, ws
 
 **OUTPUTS**
 
-request_0, request_1
+ss
 
 **END**
