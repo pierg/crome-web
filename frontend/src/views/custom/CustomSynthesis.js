@@ -7,6 +7,7 @@ import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
+import Graph from "react-graph-vis";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -20,6 +21,7 @@ export default class CustomSynthesis extends React.Component {
         triggerSynthesis : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false,
+        network : null,
         graph : null
     }
 
@@ -53,7 +55,7 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    setGraph(graph) {
+    setGraph = (graph) => {
         console.log(graph)
         this.setState({
             graph : graph
@@ -72,7 +74,7 @@ export default class CustomSynthesis extends React.Component {
         this.setTriggerSave(true)
     }
 
-    setTriggerSave= (bool) => {
+    setTriggerSave = (bool) => {
         this.setState({
             triggerSave: bool
         })
@@ -100,7 +102,67 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    addStates = (states) => {
+        for (let i=0; i<this.state.graph.length; i++) {
+            states.push({"id": this.state.graph[i].name, "label": this.state.graph[i].name})
+        }
+    }
+
+    addTransitions = (transitions) => {
+        for (let i=0; i<this.state.graph.length; i++) {
+            for (let j=0; j<this.state.graph[i].transition.length; j++) {
+                transitions.push({"from": this.state.graph[i].name, "to": this.state.graph[i].transition[j].next_state,  "label": this.state.graph[i].transition[j].outputs.replace(","," & ")+(this.state.graph[i].transition[j].outputs !== "" && this.state.graph[i].transition[j].inputs !== "" ? " & " : "")+this.state.graph[i].transition[j].inputs.replace(","," & ")})
+            }
+        }
+    }
+
     render(){
+        let states = []
+        let transitions = []
+
+        if (this.state.graph) {
+            if (this.state.clickedButtonStrix) {
+                this.addStates(states)
+                this.addTransitions(transitions)
+            }
+
+        }
+
+         let graph = {
+            nodes: states,
+            edges: transitions
+        }
+
+        console.log(graph)
+
+        const options = {
+            autoResize : true,
+            height: "400px",
+            layout: {
+                improvedLayout: true,
+                hierarchical: {
+                    enabled : true,
+                    sortMethod: 'directed',
+                    direction: 'DU',
+                    shakeTowards: 'roots'
+                }
+
+            },
+            edges: {
+                arrows: {
+                    to: {
+                        scaleFactor: 1,
+                        type: "arrow",
+                    },
+
+                },
+                smooth: {
+                    enabled : true,
+                    type : "curvedCW",
+                    roundness : 0.4
+                }
+            },
+        };
 
         return (
             <>
@@ -303,9 +365,18 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="row h-auto">
                                     <div className="col-9">
-
+                                        <Graph
+                                            graph={graph}
+                                            options={options}
+                                            getNetwork={network => {
+                                                this.setState({
+                                                    network: network
+                                                })
+                                                //  if you want access to vis.js network api you can set the state in a parent component using this property
+                                            }}
+                                        />
                                     </div>
-                                    <div className="col-2 offset-1 text-center py-5">
+                                    <div className="col-2 offset-1 text-center py-5 m-auto">
                                         <Button>
                                             simulation
                                         </Button>
