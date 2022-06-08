@@ -91,7 +91,7 @@
 ### `"apply-conjunction"`
 #### Apply the conjunction operation
 * accepts :
-  * List of goals example
+  * A list of goals and the project id.
 * returns :
   * None
 * returns-via: `"operation-complete"`
@@ -99,7 +99,7 @@
 ### `"apply-composition"`
 #### Apply the composition operation
 * accepts :
-  * List of goals
+  * A list of goals and the project id.
 * returns :
   * None
 * returns-via: `"operation-complete"`
@@ -115,6 +115,22 @@
 ### `"apply-refinement"`
 #### Apply the refinement operation
 * accepts :
+  * Two goals and the project_id
+* returns :
+  * None
+* returns-via: `"operation-complete"`
+
+### `"apply-quotient"`
+#### Apply the quotient operation
+* accepts :
+  * Two goals and the project_id
+* returns :
+  * None
+* returns-via: `"operation-complete"`
+
+### `"apply-extension"`
+#### Apply the extension operation
+* accepts :
   * List of goals
 * returns :
   * None
@@ -127,6 +143,7 @@
 * returns :
   * None
 * returns-via: `"operation-complete"`
+
 
 ### `"get-synthesis"`
 #### Retrieve synthesis and all the examples in output folder related to the session
