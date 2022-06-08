@@ -484,7 +484,7 @@ def refinement(data) -> None:
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
-            {"crometypes": "error", "content": "Problem while applying refinement operations."
+            {"crometypes": "error", "content": "Problem while applying refinement operation."
                                                " See the console for more information"},
             room=request.sid
         )
@@ -505,6 +505,36 @@ def extension(data) -> None:
         Apply the extension operation on the given goals.
     """
     print("APPLY OPERATION : extension")
+
+    emit("operation-complete", True, room=request.sid)
+
+
+@socketio.on("apply-quotient")
+def quotient(data) -> None:
+    """
+        Apply the quotient operation on the two goals given
+    """
+    print("APPLY OPERATION : quotient")
+    project_id = data["project"]
+    session_id = request.args.get("id")
+    project_folder = str(project_path(session_id, project_id))
+
+    try:
+        Analysis.quotient(project_folder, data["dividend"], data["divisor"])
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying quotient operation."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
+        emit("operation-complete", False, room=request.sid)
+        return
 
     emit("operation-complete", True, room=request.sid)
 

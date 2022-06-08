@@ -6,6 +6,7 @@ from typing import Set
 from crome_cgg.cgg import Cgg, Link
 from crome_cgg.goal.operations.composition import g_composition
 from crome_cgg.goal.operations.conjunction import g_conjunction
+from crome_cgg.goal.operations.quotient import g_quotient
 from crome_cgg.goal.operations.refinement import g_refinement
 
 from backend.tools.persistence import dump_goals, load_goals, load_cgg, dump_cgg
@@ -83,7 +84,6 @@ class Analysis:
 
     @staticmethod
     def refinement(project_folder: str, abstract_goal_id: str, refined_goal_id: str):
-        # TODO: add Cgg reference and create a refinement there
 
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -99,4 +99,22 @@ class Analysis:
 
         dump_cgg(cgg)
 
+    @staticmethod
+    def quotient(project_folder: str, goal_dividend_id: str, goal_divisor_id: str):
 
+        set_of_goals = load_goals(project_folder)
+        cgg = load_cgg(project_folder)
+        goal_divisor = None
+        goal_dividend = None
+
+        for goal in set_of_goals:
+            if goal_divisor_id == goal.id:
+                goal_divisor = goal
+            if goal_dividend_id == goal.id:
+                goal_dividend = goal
+
+        new_goal = g_quotient(goal_dividend, goal_divisor, cgg)
+
+        set_of_goals.add(new_goal)
+        dump_goals(set_of_goals)
+        dump_cgg(cgg)
