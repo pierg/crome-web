@@ -368,12 +368,13 @@ def process_goals(data) -> None:
     # Before creating a new cgg, we check if one is already created with the same goals.
     good = True
     cgg = load_cgg(str(project_folder))
-    if len(cgg.init_goals) == set_of_goals:
-        for goal in set_of_goals:
-            if goal not in cgg.init_goals:
-                good = False
+    if cgg is not None:
+        if len(cgg.init_goals) == set_of_goals:
+            for goal in set_of_goals:
+                if goal not in cgg.init_goals:
+                    good = False
 
-    if good:
+    if good and cgg is not None:
         emit(
             "send-notification",
             {"crometypes": "success", "content": "CGG has been built!"},
