@@ -128,6 +128,54 @@
   * None
 * returns-via: `"operation-complete"`
 
+### `"get-synthesis"`
+#### Retrieve synthesis and all the examples in output folder related to the session
+* accepts :
+  * None
+* returns :
+  * None
+* returns-via: `"receive-synthesis"`
+
+### `"save-synthesis"`
+#### Save the current synthesis in the output folder
+* accepts :
+  * example-save-synthesis.json
+* returns :
+  * None
+* returns-via: `"synthesis-saved"`
+
+### `"controller-strix"`
+#### Create the controller associated to the synthesis according to the Strix method
+* accepts :
+  * Name of the synthesis, example : `'name': 'My Name'`
+* returns :
+  * None
+* returns-via: `"controller-created-strix"`
+
+### `"controller-crome"`
+#### Create the controller associated to the synthesis according to the parallel method
+* accepts :
+  * Name of the synthesis, example : `'name': 'My Name'`
+* returns :
+  * None
+* returns-via: `"controller-created-crome"`
+
+### `"simulate-strix"`
+#### Simulate the mealy associated to the controller created by the Strix method
+* accepts :
+  * Name of the synthesis, example : `'name': 'My Name'`
+* returns :
+  * None
+* returns-via: `"mealy-simulated-strix"`
+
+### `"simulate-crome"`
+#### Simulate the mealies associated to the controller created by the parallel method
+* accepts :
+  * Name of the synthesis, example : `'name': 'My Name'`
+* returns :
+  * None
+* returns-via: `"mealy-simulated-crome"`
+
 ### `"session-existing"`
 #### Check if a session is existing in output folder
 * accepts : 
