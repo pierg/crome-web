@@ -122,7 +122,7 @@ class Synthesis:
                 controller = Controller.from_file(file_path=controller_file)
                 if controller_return:
                     return controller
-                return Synthesis.__upgrade_dot(controller.spot_automaton.to_str("dot"))
+                return Synthesis.__upgrade_dot(controller.get_format("dot"))
             else:
                 # Not a good mode !
                 return None
