@@ -5,9 +5,12 @@ import synthesisInfo from "../../_texts/custom/synthesisinfo";
 import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { Tree, Classes } from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
+import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -17,6 +20,9 @@ export default class CustomSynthesis extends React.Component {
         guaranteesValue : "",
         inputsValue : "",
         outputsValue : "",
+        triggerExample : true,
+        tree : [],
+        isOpen : [],
         triggerSave : false,
         triggerSynthesis : false,
         clickedButtonStrix : false,
@@ -74,6 +80,61 @@ export default class CustomSynthesis extends React.Component {
         this.setTriggerSave(true)
     }
 
+    setTriggerExample = (bool) => {
+        this.setState({
+            triggerExample: bool
+        })
+    }
+
+    changeIsOpen(e: React.MouseEvent<HTMLElement>) {
+        e.isExpanded = !e.isExpanded
+        if(e.id.length !== undefined) {
+            this.setState({
+                nameValue : e.label,
+                assumptionsValue : e.assumptions.join("\n"),
+                guaranteesValue : e.guarantees.join("\n"),
+                inputsValue : e.inputs.join(", "),
+                outputsValue : e.outputs.join(", "),
+            })
+        }
+        let treeTmp = this.state.tree
+        this.setState({
+            tree : treeTmp
+        })
+    }
+
+    setTree = (tree) => {
+        let treeTmp = []
+        let keys = Object.keys(tree).sort()
+        let node
+        for(let i=0;i<keys.length;i++) {
+            node = {}
+            node.id = i
+            node.label = keys[i]
+            node.icon = "folder-close"
+            node.isExpanded = false
+            node.childNodes = []
+
+            let childNode
+            for(let j=0;j<tree[keys[i]].length;j++) {
+                childNode = {}
+                childNode.id = i+"_"+j
+                childNode.label = tree[keys[i]][j].id
+                childNode.assumptions = tree[keys[i]][j].assumptions
+                childNode.guarantees = tree[keys[i]][j].guarantees
+                childNode.inputs = tree[keys[i]][j].inputs
+                childNode.outputs = tree[keys[i]][j].outputs
+                node.childNodes[j] = childNode
+            }
+
+            treeTmp[i] = node
+        }
+
+        this.setState({
+            tree : treeTmp
+        })
+    }
+
     setTriggerSave = (bool) => {
         this.setState({
             triggerSave: bool
@@ -121,6 +182,11 @@ export default class CustomSynthesis extends React.Component {
 
         return (
             <>
+                <SocketGetExamples
+                    trigger={this.state.triggerExample}
+                    setTrigger={this.setTriggerExample}
+                    setTree={this.setTree}
+                />
                 <SocketSaveSynthesis
                     trigger={this.state.triggerSave}
                     setTrigger={this.setTriggerSave}
@@ -161,6 +227,7 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
+                                        value={this.state.nameValue}
                                         className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                         onChange={e => this.setNameValue(e)}
                                     />
@@ -212,6 +279,7 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
+                                        value={this.state.inputsValue}
                                         className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                         onChange={e => this.setInputsValue(e)}
                                     />
@@ -223,6 +291,7 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="col-7 relative">
                                     <Input
+                                        value={this.state.outputsValue}
                                         className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                         onChange={e => this.setOutputsValue(e)}
                                     />
@@ -242,7 +311,7 @@ export default class CustomSynthesis extends React.Component {
 
                                 </select>
                             </div>
-                            <div className="row mt-4">
+                            <div className="row mt-2">
                                 <div className="col-8 offset-2 text-center">
                                     <Button color={synthesisInfo.info.buttons.upload.color} outline={true}>
                                         {synthesisInfo.info.buttons.upload.text}
@@ -250,8 +319,15 @@ export default class CustomSynthesis extends React.Component {
                                     </Button>
                                 </div>
                             </div>
+                            <div className="row mt-2">
+                                <Tree
+                                    contents={this.state.tree}
+                                    className={Classes.ELEVATION_0}
+                                    onNodeClick={e => this.changeIsOpen(e)}
+                                />
+                            </div>
 
-                            <div className="row absolute bottom-0 text-center w-100">
+                            <div className="row mt-4">
                                 <div className="col-8 offset-2 text-center">
                                     <Link  to="buttons" spy={true} smooth={true}>
                                         <Button

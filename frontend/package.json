@@ -5,6 +5,7 @@
   "license": "SEE LICENSE IN <https://www.creative-tim.com/product/notus-pro-react>",
   "main": "./index.js",
   "dependencies": {
+    "@blueprintjs/core": "^4.4.1",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@popperjs/core": "2.9.2",
     "@tailwindcss/forms": "0.3.2",
