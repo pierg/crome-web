@@ -159,7 +159,7 @@ class Synthesis:
                 simu = ctr.mealy.simulate(do_print=False)
                 content_simu = []
                 for line in simu:
-                    if line[-1] != "" and line[-2] == "":
+                    if not('-' in line[-1] and '-' in line[-2]):
                         content_simu.append(line)
                 content.append(content_simu)
             return content
@@ -167,7 +167,7 @@ class Synthesis:
             simu = controller.mealy.simulate(do_print=False)
             content_simu = []
             for line in simu:
-                if line[-1] != "" and line[-2] == "":
+                if not('-' in line[-1] and '-' in line[-2]):
                     content_simu.append(line)
             return content_simu
         else:
