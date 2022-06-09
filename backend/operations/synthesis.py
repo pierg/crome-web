@@ -88,7 +88,8 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
-    def create_controller(name, session_id, mode, controller_return = False) -> list[dict[str, Any]] | None | Controller | PControllers:
+    def create_controller(name, session_id, mode, controller_return=False)\
+            -> list[str] | str | None | Controller | PControllers:
         list_session = [session_id, "simple"]
 
         controller_file = None
@@ -115,13 +116,13 @@ class Synthesis:
                     return pcontrollers
                 json_content = []
                 for controller in pcontrollers.controllers:
-                    json_content.append(controller.spot_automaton.to_str("dot"))
+                    json_content.append(Synthesis.upgrade_dot(controller.spot_automaton.to_str("dot")))
                 return json_content
             elif mode == "strix":
                 controller = Controller.from_file(file_path=controller_file)
                 if controller_return:
                     return controller
-                return controller.spot_automaton.to_str("dot")
+                return Synthesis.upgrade_dot(controller.spot_automaton.to_str("dot"))
             else:
                 # Not a good mode !
                 return None
@@ -202,3 +203,21 @@ class Synthesis:
                     if line == "**NAME**":
                         name_found = True
         return ""
+
+    @staticmethod
+    def upgrade_dot(raw_dot: str) -> str:
+        lst = raw_dot.split("\n")
+        result = []
+        for line in lst:
+            if "->" in line and "label" in line:  # It's a line with a
+                split_line = line.split("label=")
+                to_modify = split_line[1].replace(']', '').replace('"', '')
+                lst_to_modify = to_modify.split("&")
+                tmp = []
+                for elt in lst_to_modify:
+                    if "!" not in elt:
+                        tmp.append(elt.replace(' ', ''))
+                split_line[1] = " & ".join(tmp)
+                line = 'label="'.join(split_line) + '"]'
+            result.append(line)
+        return "\n".join(result)
