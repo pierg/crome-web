@@ -11,37 +11,40 @@
             "to": "default-simple-0003||default-simple-0002"
         },
         {
-            "from": "default-simple-0003||default-simple-0002",
-            "link": "merging",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000"
-        },
-        {
             "from": "default-simple-0000",
             "link": "merging",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000"
+            "to": "default-simple-0000**default-simple-0003||default-simple-0002"
         },
         {
-            "from": "default-simple-0001",
+            "from": "default-simple-0003||default-simple-0002",
             "link": "merging",
-            "to": "default-simple-0001**default-simple-0002"
+            "to": "default-simple-0000**default-simple-0003||default-simple-0002"
         },
         {
             "from": "default-simple-0002",
             "link": "merging",
-            "to": "default-simple-0001**default-simple-0002"
+            "to": "default-simple-0002**default-simple-0001"
         },
         {
-            "from": "default-simple-0003||default-simple-0002**default-simple-0000",
-            "link": "conjunction",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+            "from": "default-simple-0001",
+            "link": "merging",
+            "to": "default-simple-0002**default-simple-0001"
         },
         {
-            "from": "default-simple-0001**default-simple-0002",
+            "from": "default-simple-0000**default-simple-0003||default-simple-0002",
             "link": "conjunction",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+            "to": "default-simple-0000**default-simple-0003||default-simple-0002/\\default-simple-0002**default-simple-0001"
+        },
+        {
+            "from": "default-simple-0002**default-simple-0001",
+            "link": "conjunction",
+            "to": "default-simple-0000**default-simple-0003||default-simple-0002/\\default-simple-0002**default-simple-0001"
         }
     ],
     "nodes": [
+        {
+            "id": "default-simple-0000"
+        },
         {
             "id": "default-simple-0003"
         },
@@ -52,19 +55,16 @@
             "id": "default-simple-0002"
         },
         {
-            "id": "default-simple-0000"
-        },
-        {
-            "id": "default-simple-0003||default-simple-0002**default-simple-0000"
+            "id": "default-simple-0000**default-simple-0003||default-simple-0002"
         },
         {
             "id": "default-simple-0001"
         },
         {
-            "id": "default-simple-0001**default-simple-0002"
+            "id": "default-simple-0002**default-simple-0001"
         },
         {
-            "id": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+            "id": "default-simple-0000**default-simple-0003||default-simple-0002/\\default-simple-0002**default-simple-0001"
         }
     ]
 }
