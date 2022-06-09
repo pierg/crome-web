@@ -4,7 +4,8 @@ from pathlib import Path
 from typing import Any
 
 from backend.shared.paths import controller_path
-from crome_synthesis.controller import ControllerInfo, _check_header, Controller
+from crome_synthesis.controller import _check_header, Controller
+from crome_synthesis.controller.controller_info import ControllerSpec
 from crome_synthesis.pcontrollers import PControllers
 
 
@@ -18,7 +19,7 @@ class Synthesis:
         _, _, filenames = next(walk(controller_folder))
         dict_controller = {"Your creation": []}
         for filename in filenames:
-            info = ControllerInfo.from_file(controller_folder / filename)
+            info = ControllerSpec.from_file(controller_folder / filename)
             name = Synthesis.__get_name_controller(controller_folder / filename)
             data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                     "outputs": info.o}
@@ -31,8 +32,8 @@ class Synthesis:
             _, _, filenames = next(walk(os.path.join(controller_folder, dir_name)))
             dict_controller = {dir_name: []}
             for filename in filenames:
-                info = ControllerInfo.from_file(controller_folder / dir_name / filename)
-                name = Synthesis.__get_name_controller(controller_folder / dir_name  / filename)
+                info = ControllerSpec.from_file(controller_folder / dir_name / filename)
+                name = Synthesis.__get_name_controller(controller_folder / dir_name / filename)
                 data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
                         "outputs": info.o}
                 dict_controller[dir_name].append(data)
