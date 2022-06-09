@@ -22,7 +22,7 @@ const textProps = {
       },
     },
     {
-      titleSynthesis: "SYNTHESIS",
+      titleContracts: "SYNTHESIS",
     },
     {
       icon: "fas fa-tv",
@@ -31,6 +31,17 @@ const textProps = {
         href: "#/synthesis",
       },
     },
+    {
+      titleSynthesis: "CONTRACTS",
+    },
+    {
+      icon: "fas fa-tv",
+      text: "Run CONTRACTS",
+      link: {
+        href: "#/contracts",
+      },
+    },
+
   ],
 };
 export default textProps;
