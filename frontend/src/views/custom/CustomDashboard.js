@@ -4,7 +4,8 @@ import {useLocation} from "react-router-dom";
 // components
 import CustomSidebar from "components/Crome/CustomSidebar";
 import CustomPlayer from "./CustomPlayer";
-
+import CustomSynthesis from "./CustomSynthesis";
+import CustomContracts from "./CustomContracts";
 // texts as props
 import customsidebar from "../../_texts/custom/customsidebar";
 import custommediaplayerteaminfo from "_texts/custom/customplayerinfo.js";
@@ -15,7 +16,7 @@ import Console from "../../components/Crome/Console";
 import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
-import CustomSynthesis from "./CustomSynthesis";
+
 
 
 export default function CustomDashboard(props) {
@@ -79,6 +80,10 @@ export default function CustomDashboard(props) {
                         case 'synthesis':
                             return (
                                 <CustomSynthesis/>
+                            )
+                        case 'contracts':
+                            return(
+                                <CustomContracts/>
                             )
                         default:
                             return (

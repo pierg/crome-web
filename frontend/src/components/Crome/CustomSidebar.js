@@ -135,6 +135,9 @@ export default function CustomSidebar({
                       {(page !== "synthesis") && (prop.text === "Run SYNTHESIS") &&
                         <i className="fas fa-arrow-right ml-2"/>
                       }
+                      {(page !== "contracts") && (prop.text === "Run CONTRACTS") &&
+                        <i className="fas fa-arrow-right ml-2"/>
+                      }
                     </a>
                   );
                 }
