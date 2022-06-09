@@ -151,7 +151,8 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             clickedButtonStrix : true,
             clickedButtonParallel : false,
-            triggerSynthesis : true
+            triggerSynthesis : true,
+            graph: null
         })
     }
 
@@ -161,20 +162,6 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonParallel : true,
             triggerSynthesis : true
         })
-    }
-
-    addStates = (states) => {
-        for (let i=0; i<this.state.graph.length; i++) {
-            states.push({"id": this.state.graph[i].name, "label": this.state.graph[i].name})
-        }
-    }
-
-    addTransitions = (transitions) => {
-        for (let i=0; i<this.state.graph.length; i++) {
-            for (let j=0; j<this.state.graph[i].transition.length; j++) {
-                transitions.push({"from": this.state.graph[i].name, "to": this.state.graph[i].transition[j].next_state,  "label": this.state.graph[i].transition[j].outputs.replace(","," & ")+(this.state.graph[i].transition[j].outputs !== "" && this.state.graph[i].transition[j].inputs !== "" ? " & " : "")+this.state.graph[i].transition[j].inputs.replace(","," & ")})
-            }
-        }
     }
 
     render(){
@@ -400,7 +387,7 @@ export default class CustomSynthesis extends React.Component {
                                             dot={this.state.graph}
                                             options={({
                                                 fit: true,
-                                                height: 500,
+                                                height: 500+this.state.graph.length/10,
                                                 width: 1000,
                                                 zoom: true
                                             })}
