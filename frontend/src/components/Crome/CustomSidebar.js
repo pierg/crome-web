@@ -100,7 +100,18 @@ export default function CustomSidebar({
                       {prop.titleSynthesis}
                     </h6>
                   );
-                } else {
+                } else if(prop.titleContracts){
+                  return (
+                    <h6
+                      key={key}
+                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3"
+                    >
+                      {prop.titleContracts}
+                    </h6>
+                  );
+                }
+
+                else {
                   return (
                     <a
                       {...prop.link}
