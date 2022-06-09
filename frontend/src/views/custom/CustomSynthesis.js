@@ -175,6 +175,23 @@ export default class CustomSynthesis extends React.Component {
 
         let width=window.innerWidth
 
+        const children = [];
+        if (this.state.clickedButtonParallel && this.state.graph) {
+
+            for (let i = 0; i < this.state.graph.length; i += 1) {
+                children.push(<Graphviz
+                                dot={this.state.graph[i]}
+                                key={i}
+                                options={({
+                                    fit: true,
+                                    height: 400,
+                                    width: width / 4,
+                                    zoom: true
+                                })}
+                                className="p-4 flex wrap-content"/>);
+            }
+        }
+
         return (
             <>
                 <SocketGetExamples
@@ -376,16 +393,20 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="row h-auto">
                                     <div className="col-9">
-                                        <Graphviz
-                                            dot={this.state.graph}
-                                            options={({
-                                                fit: true,
-                                                height: 500+this.state.graph.length/10,
-                                                width: width/2,
-                                                zoom: true
-                                            })}
-                                            className="p-4 flex wrap-content"
-                                        />
+                                        {this.state.clickedButtonStrix ?
+                                            <Graphviz
+                                                dot={this.state.graph}
+                                                options={({
+                                                    fit: true,
+                                                    height: 500 + this.state.graph.length / 10,
+                                                    width: width / 2,
+                                                    zoom: true
+                                                })}
+                                                className="p-4 flex wrap-content"
+                                            />
+                                        :
+                                            <div className="flex flex-wrap justify-center">{children}</div>
+                                        }
                                     </div>
                                     <div className="col-2 offset-1 text-center py-5 m-auto">
                                         <Button>
