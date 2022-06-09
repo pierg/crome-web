@@ -237,19 +237,6 @@ export default class Analysis extends React.Component {
         }
     }
 
-    /**
-     * Verif
-     * @param goals
-     * @returns {boolean}
-     */
-    isDefaultGoals(goals) {
-       if (goals.length !==0) {
-            if (goals.length > 4) return false
-            if (goals[0].id === "default-simple-0001" && goals[1].id === "default-simple-0002" && goals[2].id === "default-simple-0003" && goals[3].id === "default-simple-0000") return true
-        }
-        return false
-    }
-
     componentDidMount() {
         if (this.props.project === "simple" && !this.state.cgg ) { //&& this.isDefaultGoals(this.props.goals)
             //this.callCGG("auto")
@@ -299,7 +286,7 @@ export default class Analysis extends React.Component {
             edges: edgesArray
         }
 
-        if (this.props.project === "simple" && this.isDefaultGoals(this.props.goals)) {
+        if (this.props.project === "simple") {
             graph = default_cgg
         }
 
