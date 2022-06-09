@@ -11,7 +11,7 @@ function SocketGetSynthesis(props) {
     useEffect(() => {
         if (socket == null) return
 
-        if (props.trigger && props.name !== null) {
+        if (props.trigger && props.name !== "") {
             if (props.strix) {
                 socket.emit("controller-strix", props.name)
                 socket.on('controller-created-strix', setGraph)

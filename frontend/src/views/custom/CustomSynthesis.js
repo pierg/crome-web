@@ -167,7 +167,8 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             clickedButtonStrix : false,
             clickedButtonParallel : true,
-            triggerSynthesis : true
+            triggerSynthesis : true,
+            graph : null
         })
     }
 
@@ -185,10 +186,10 @@ export default class CustomSynthesis extends React.Component {
                                 options={({
                                     fit: true,
                                     height: 400,
-                                    width: width / 4,
+                                    width: width / 4.5,
                                     zoom: true
                                 })}
-                                className="p-4 flex wrap-content"/>);
+                                className="p-4 m-4 border-solid border-2 rounded-md flex border-blueGray-300 wrap-content"/>);
             }
         }
 
@@ -217,7 +218,7 @@ export default class CustomSynthesis extends React.Component {
                     parallel={this.state.clickedButtonParallel}
                     setGraph={this.setGraph}
                 />
-                <div className="relative pt-8 pb-12 bg-emerald-400">
+                <div className="relative pt-8 pb-12 bg-emerald-400 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
                             <div className="flex flex-wrap justify-center">
@@ -405,7 +406,7 @@ export default class CustomSynthesis extends React.Component {
                                                 className="p-4 flex wrap-content"
                                             />
                                         :
-                                            <div className="flex flex-wrap justify-center">{children}</div>
+                                            <div className="flex flex-wrap p-4 ">{children}</div>
                                         }
                                     </div>
                                     <div className="col-2 offset-1 text-center py-5 m-auto">
