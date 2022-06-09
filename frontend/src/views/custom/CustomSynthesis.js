@@ -166,6 +166,7 @@ export default class CustomSynthesis extends React.Component {
 
     render(){
 
+        let width=window.innerWidth
 
         return (
             <>
@@ -388,10 +389,10 @@ export default class CustomSynthesis extends React.Component {
                                             options={({
                                                 fit: true,
                                                 height: 500+this.state.graph.length/10,
-                                                width: 1000,
+                                                width: width/2,
                                                 zoom: true
                                             })}
-                                            className="p-4"
+                                            className="p-4 flex wrap-content"
                                         />
                                     </div>
                                     <div className="col-2 offset-1 text-center py-5 m-auto">
