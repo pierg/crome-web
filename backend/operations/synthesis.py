@@ -116,13 +116,13 @@ class Synthesis:
                     return pcontrollers
                 json_content = []
                 for controller in pcontrollers.controllers:
-                    json_content.append(Synthesis.upgrade_dot(controller.spot_automaton.to_str("dot")))
+                    json_content.append(Synthesis.__upgrade_dot(controller.spot_automaton.to_str("dot")))
                 return json_content
             elif mode == "strix":
                 controller = Controller.from_file(file_path=controller_file)
                 if controller_return:
                     return controller
-                return Synthesis.upgrade_dot(controller.spot_automaton.to_str("dot"))
+                return Synthesis.__upgrade_dot(controller.spot_automaton.to_str("dot"))
             else:
                 # Not a good mode !
                 return None
@@ -205,7 +205,7 @@ class Synthesis:
         return ""
 
     @staticmethod
-    def upgrade_dot(raw_dot: str) -> str:
+    def __upgrade_dot(raw_dot: str) -> str:
         lst = raw_dot.split("\n")
         result = []
         for line in lst:
