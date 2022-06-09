@@ -12,10 +12,9 @@ function SocketGetExamples(props) {
         if (socket == null) return
 
         if (props.trigger) {
+            props.setTrigger(false)
             socket.emit("get-synthesis")
             socket.on('receive-synthesis', setTree)
-
-            props.setTrigger(false)
 
             return () => socket.off('graph-generated')
         }

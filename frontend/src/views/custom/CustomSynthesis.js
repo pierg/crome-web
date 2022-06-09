@@ -97,9 +97,11 @@ export default class CustomSynthesis extends React.Component {
                 outputsValue : e.outputs.join(", "),
             })
         }
-        let treeTmp = this.state.tree
         this.setState({
-            tree : treeTmp
+            clickedButtonStrix : false,
+            clickedButtonParallel : false,
+            triggerSynthesis : false,
+            graph: null
         })
     }
 
@@ -141,6 +143,11 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    savedDone = () => {
+        this.setTriggerSave(false)
+        this.setTriggerExample(true)
+    }
+
     setTriggerSynthesis = (bool) => {
         this.setState({
             triggerSynthesis: bool
@@ -178,6 +185,7 @@ export default class CustomSynthesis extends React.Component {
                 <SocketSaveSynthesis
                     trigger={this.state.triggerSave}
                     setTrigger={this.setTriggerSave}
+                    savedDone={this.savedDone}
                     name={this.state.nameValue}
                     assumptions={this.state.assumptionsValue.split("\n")}
                     guarantees={this.state.guaranteesValue.split("\n")}
@@ -203,135 +211,119 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                 <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
-                <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
-                <div className="flex flex-col justify-center p-5 ">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-7">
-                            <div className="row">
-                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.name}
-                                </div>
-                                <div className="col-7 relative">
-                                    <Input
-                                        value={this.state.nameValue}
-                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                        onChange={e => this.setNameValue(e)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.assumptions}
-                                </div>
-                                <div className="col-7 relative">
-                                    <Editor
-                                      value={this.state.assumptionsValue}
-                                      onValueChange={code => this.setAssumptionsValue(code)}
-                                      highlight={code => this.hightlightWithLineNumbers(code)}
-                                      padding={10}
-                                      className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
-                                      textareaId="codeArea"
-                                      style={{
-                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                        fontSize: 18,
-                                        outline: 0,
-                                      }}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.guarantees}
-                                </div>
-                                <div className="col-7 relative">
-                                    <Editor
-                                      value={this.state.guaranteesValue}
-                                      onValueChange={code => this.setGuaranteesValue(code)}
-                                      highlight={code => this.hightlightWithLineNumbers(code)}
-                                      padding={10}
-                                      className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
-                                      textareaId="codeArea"
-                                      style={{
-                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                        fontSize: 18,
-                                        outline: 0,
-                                      }}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.inputs}
-                                </div>
-                                <div className="col-7 relative">
-                                    <Input
-                                        value={this.state.inputsValue}
-                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                        onChange={e => this.setInputsValue(e)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.outputs}
-                                </div>
-                                <div className="col-7 relative">
-                                    <Input
-                                        value={this.state.outputsValue}
-                                        className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                        onChange={e => this.setOutputsValue(e)}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-4 relative">
-                            <div className="row">
-                                <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
-                                    {synthesisInfo.info.texts.load}
-                                </div>
-                            </div>
-                            <div className="row">
-                                <select
-                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                >
-
-                                </select>
-                            </div>
-                            <div className="row mt-2">
-                                <div className="col-8 offset-2 text-center">
-                                    <Button color={synthesisInfo.info.buttons.upload.color} outline={true}>
-                                        {synthesisInfo.info.buttons.upload.text}
-                                        <i className={synthesisInfo.info.buttons.upload.icon}></i>
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className="row mt-2">
-                                <Tree
-                                    contents={this.state.tree}
-                                    className={Classes.ELEVATION_0}
-                                    onNodeClick={e => this.changeIsOpen(e)}
-                                />
-                            </div>
-
-                            <div className="row mt-4">
-                                <div className="col-8 offset-2 text-center">
-                                    <Link  to="buttons" spy={true} smooth={true}>
-                                        <Button
-                                            color={synthesisInfo.info.buttons.formula.color}
-                                            className="bg-emerald-400"
-                                            outline={true}
-                                            onClick={this.loadFormula}
-                                        >
-                                            {synthesisInfo.info.buttons.formula.text}
-                                        </Button>
-                                    </Link>
+                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                    <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                        <div className="flex flex-col justify-center p-5 ">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-7">
+                                        <div className="row">
+                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.name}
+                                            </div>
+                                            <div className="col-7 relative">
+                                                <Input
+                                                    value={this.state.nameValue}
+                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    onChange={e => this.setNameValue(e)}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.assumptions}
+                                            </div>
+                                            <div className="col-7 relative">
+                                                <Editor
+                                                  value={this.state.assumptionsValue}
+                                                  onValueChange={code => this.setAssumptionsValue(code)}
+                                                  highlight={code => this.hightlightWithLineNumbers(code)}
+                                                  padding={10}
+                                                  className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
+                                                  textareaId="codeArea"
+                                                  style={{
+                                                    fontFamily: '"Fira code", "Fira Mono", monospace',
+                                                    fontSize: 18,
+                                                    outline: 0,
+                                                  }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.guarantees}
+                                            </div>
+                                            <div className="col-7 relative">
+                                                <Editor
+                                                  value={this.state.guaranteesValue}
+                                                  onValueChange={code => this.setGuaranteesValue(code)}
+                                                  highlight={code => this.hightlightWithLineNumbers(code)}
+                                                  padding={10}
+                                                  className="editor border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200"
+                                                  textareaId="codeArea"
+                                                  style={{
+                                                    fontFamily: '"Fira code", "Fira Mono", monospace',
+                                                    fontSize: 18,
+                                                    outline: 0,
+                                                  }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.inputs}
+                                            </div>
+                                            <div className="col-7 relative">
+                                                <Input
+                                                    value={this.state.inputsValue}
+                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    onChange={e => this.setInputsValue(e)}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.outputs}
+                                            </div>
+                                            <div className="col-7 relative">
+                                                <Input
+                                                    value={this.state.outputsValue}
+                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    onChange={e => this.setOutputsValue(e)}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-4 relative">
+                                        <div className="row">
+                                            <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
+                                                {synthesisInfo.info.texts.load}
+                                            </div>
+                                        </div>
+                                        <div className="row mt-2">
+                                            <Tree
+                                                contents={this.state.tree}
+                                                className={Classes.ELEVATION_0}
+                                                onNodeClick={e => this.changeIsOpen(e)}
+                                            />
+                                        </div>
+                                        <div className="row mt-4">
+                                            <div className="col-8 offset-2 text-center">
+                                                <Link  to="buttons" spy={true} smooth={true}>
+                                                    <Button
+                                                        color={synthesisInfo.info.buttons.formula.color}
+                                                        className="bg-emerald-400"
+                                                        outline={true}
+                                                        onClick={this.loadFormula}
+                                                    >
+                                                        {synthesisInfo.info.buttons.formula.text}
+                                                    </Button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>

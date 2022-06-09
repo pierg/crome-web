@@ -1,9 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useCallback} from 'react'
 import {useSocket} from "../../../contexts/SocketProvider";
 
 function SocketSaveSynthesis(props) {
 
     const socket = useSocket()
+
+    const savedDone = useCallback((tree) => {
+        props.savedDone();
+    }, [props]) // eslint-disable-next-line
 
     useEffect(() => {
         if (socket == null) return
@@ -20,13 +24,13 @@ function SocketSaveSynthesis(props) {
                     outputs: props.outputs,
             })
 
-            props.setTrigger(false)
+            socket.on('synthesis-saved', savedDone)
 
             //socket.on('synthesis-saved', sendReturnTrigger)
             return () => socket.off('saving-complete')
         }
 
-    }, [socket, props])
+    }, [socket, props, savedDone])
 
     return (<></>);
 }

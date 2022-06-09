@@ -89,29 +89,42 @@ class Synthesis:
 
     @staticmethod
     def create_controller(name, session_id, mode, controller_return = False) -> list[dict[str, Any]] | None | Controller | PControllers:
+        list_session = [session_id, "simple"]
 
-        controller_folder = controller_path(session_id)
+        controller_file = None
+        for session in list_session:
+            controller_folder = controller_path(session)
+            print(controller_folder)
+            controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
+            if controller_file:
+                controller_file = Path(os.path.join(controller_folder, controller_file))
+                break
+            else:
+                if session == "simple":
+                    _, dir_names, _ = next(walk(controller_folder))
+                    for dir_name in dir_names:
+                        controller_file = Synthesis.__check_if_controller_exist(name, controller_folder / dir_name)
+                        if controller_file:
+                            controller_file = Path(os.path.join(controller_folder / dir_name, controller_file))
+                            break
 
-        controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
-        if not controller_file:
-            return None  # Make it return an error because the name of this controller doesn't exist.
-        controller_file = Path(os.path.join(controller_folder, controller_file))
-        if mode == "crome":
-            pcontrollers = PControllers.from_file(file_path=controller_file)
-            if controller_return:
-                return pcontrollers
-            json_content = []
-            for controller in pcontrollers.controllers:
-                json_content.append(controller.spot_automaton.to_str("dot"))
-            return json_content
-        elif mode == "strix":
-            controller = Controller.from_file(file_path=controller_file)
-            if controller_return:
-                return controller
-            return controller.spot_automaton.to_str("dot")
-        else:
-            # Not a good mode !
-            return None
+        if controller_file:
+            if mode == "crome":
+                pcontrollers = PControllers.from_file(file_path=controller_file)
+                if controller_return:
+                    return pcontrollers
+                json_content = []
+                for controller in pcontrollers.controllers:
+                    json_content.append(controller.spot_automaton.to_str("dot"))
+                return json_content
+            elif mode == "strix":
+                controller = Controller.from_file(file_path=controller_file)
+                if controller_return:
+                    return controller
+                return controller.spot_automaton.to_str("dot")
+            else:
+                # Not a good mode !
+                return None
 
     @staticmethod
     def get_specific_synthesis(data, session_id):
@@ -126,7 +139,7 @@ class Synthesis:
                 if session == "simple":
                     Synthesis.create_txt_file(content, session_id)
                 return content
-            _, dir_names, filenames = next(walk(controller_folder))
+            _, dir_names, _ = next(walk(controller_folder))
             for dir_name in dir_names:
                 file = Synthesis.__check_if_controller_exist(data["name"], controller_folder / dir_name)
                 if file:
@@ -163,7 +176,10 @@ class Synthesis:
     def __check_if_controller_exist(name, controller_folder) -> str:
         if not name:
             return ""
-        _, _, filenames = next(walk(controller_folder))
+        try:
+            _, _, filenames = next(walk(controller_folder))
+        except StopIteration:
+            return ""
         for filename in filenames:
             name_found = Synthesis.__get_name_controller(controller_folder / filename)
             if name_found == name:
