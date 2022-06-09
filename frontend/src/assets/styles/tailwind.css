@@ -324,9 +324,9 @@ ul {
  */
 
 /**
- * 1. Use the user's configured `sans` font-family (with Tailwind's default
+ * 1. Use the user's.js configured `sans` font-family (with Tailwind's.js default
  *    sans-serif font stack as a fallback) as a sane default.
- * 2. Use Tailwind's default "normal" line-height so the user isn't forced
+ * 2. Use Tailwind's.js default "normal" line-height so the user isn't forced
  *    to override it to ensure consistency even when using the default theme.
  */
 
@@ -359,7 +359,7 @@ body {
  * 2. Allow adding a border to an element by just adding a border-width.
  *
  *    By default, the way the browser specifies that an element should have no
- *    border is by setting it's border-style to `none` in the user-agent
+ *    border is by setting it's.js border-style to `none` in the user-agent
  *    stylesheet.
  *
  *    In order to easily add borders to elements by just setting the `border-width`
@@ -486,7 +486,7 @@ samp {
 }
 
 /**
- * Make replaced elements `display: block` by default as that's
+ * Make replaced elements `display: block` by default as that's.js
  * the behavior you want almost all of the time. Inspired by
  * CSS Remedy, with `svg` added as well.
  *
