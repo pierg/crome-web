@@ -68,8 +68,18 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    hightlightWithLineNumbers = (input) => {
+    highlight = (input) => {
         return input
+            .replaceAll("(", "<span class='text-red-500'>(</span>")
+            .replaceAll(")", "<span class='text-red-500'>)</span>")
+            /*.replaceAll("->","<span class='text-emerald-500'>-></span>")
+            .replaceAll("|","<span class='text-emerald-500'>|</span>")
+            .replaceAll("!","<span class='text-emerald-500'>!</span>")
+            .replaceAll("&","<span class='text-emerald-500'>&</span>")*/
+    }
+
+    hightlightWithLineNumbers = (input) => {
+        return this.highlight(input)
             .split("\n")
             .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
             .join("\n");
@@ -155,6 +165,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     synthesisStrix = () => {
+        this.setTriggerSave(true)
         this.setState({
             clickedButtonStrix : true,
             clickedButtonParallel : false,
@@ -164,6 +175,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     parallelSynthesis = () => {
+        this.setTriggerSave(true)
         this.setState({
             clickedButtonStrix : false,
             clickedButtonParallel : true,
@@ -177,11 +189,12 @@ export default class CustomSynthesis extends React.Component {
         let width=window.innerWidth
 
         const children = [];
+        let graph
         if (this.state.clickedButtonParallel && this.state.graph) {
-
             for (let i = 0; i < this.state.graph.length; i += 1) {
+                graph = this.state.graph[i].slice(0,this.state.graph[i].indexOf("{")+1)+'\n  bgcolor="#F1F5F9"'+this.state.graph[i].slice(this.state.graph[i].indexOf("{")+1)
                 children.push(<Graphviz
-                                dot={this.state.graph[i]}
+                                dot={graph}
                                 key={i}
                                 options={({
                                     fit: true,
@@ -189,7 +202,7 @@ export default class CustomSynthesis extends React.Component {
                                     width: width / 4.5,
                                     zoom: true
                                 })}
-                                className="p-4 m-4 border-solid border-2 rounded-md flex border-blueGray-300 wrap-content"/>);
+                                className="p-4 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
             }
         }
 
@@ -325,28 +338,14 @@ export default class CustomSynthesis extends React.Component {
                                                 onNodeClick={e => this.changeIsOpen(e)}
                                             />
                                         </div>
-                                        <div className="row mt-4">
-                                            <div className="col-8 offset-2 text-center">
-                                                <Link  to="buttons" spy={true} smooth={true}>
-                                                    <Button
-                                                        color={synthesisInfo.info.buttons.formula.color}
-                                                        className="bg-emerald-400"
-                                                        outline={true}
-                                                        onClick={this.loadFormula}
-                                                    >
-                                                        {synthesisInfo.info.buttons.formula.text}
-                                                    </Button>
-                                                </Link>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-32 mx-auto">
-                    <div className="px-3 pb-5 relative flex flex-col min-w-0 m-auto">
+                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 mx-auto">
+                    <div className="px-3 relative flex flex-col min-w-0 m-auto">
                         <div className="flex flex-col justify-center p-5 ">
                             <div className="container">
                                 <div className="row">
@@ -383,7 +382,7 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 py-5 mx-auto">
+                <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 pb-5 mx-auto">
                 {
                         this.state.graph ?
                             <div className="pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
