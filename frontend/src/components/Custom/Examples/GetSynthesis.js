@@ -9,7 +9,13 @@ function SocketGetSynthesis(props) {
             props.setGraph(message_received["graph"]);
         }
         props.displayMessages(message_received);
-    }, [props]) // eslint-disable-next-line
+        if (props.strix) {
+            socket.off('controller-created-strix')
+        }
+        else {
+            socket.off('controller-created-crome')
+        }
+    }, [props,socket]) // eslint-disable-next-line
 
     useEffect(() => {
         if (socket == null) return

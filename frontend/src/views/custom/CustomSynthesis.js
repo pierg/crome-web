@@ -77,7 +77,13 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             simulation: simulation
         })
-        this.generateTable()
+        if (this.state.clickedButtonStrix)
+            this.generateTable(this.state.simulation)
+        else {
+            for (let i=0; i<this.state.simulation.length; i++) {
+                this.generateTable(this.state.simulation[i])
+            }
+        }
     }
 
     highlight = (input) => {
@@ -208,13 +214,13 @@ export default class CustomSynthesis extends React.Component {
         this.setTriggerSimulation(true)
     }
 
-    generateTable = () => {
+    generateTable = (simulation) => {
         let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
         this.tab = []
-        for (let i = 0; i < this.state.simulation.length; i++) {
-            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer text-center\" ><td>" + this.state.simulation[i][0] + "</td>"
-            table += "<td>" + this.state.simulation[i][1] + "</td>";
-            table += "<td>" + this.state.simulation[i][2] + "</td></tr>";
+        for (let i = 0; i < simulation.length; i++) {
+            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer text-center\" ><td>" + simulation[i][0] + "</td>"
+            table += "<td>" + simulation[i][1] + "</td>";
+            table += "<td>" + simulation[i][2] + "</td></tr>";
         }
         document.getElementById("simulationTable").innerHTML = table;
     }
