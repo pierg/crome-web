@@ -32,6 +32,7 @@ def save_synthesis(data) -> None:
     send_message_to_user("The mealy has been saved", "success", request.sid)
     emit("synthesis-saved", True, room=request.sid)
 
+
 @socketio.on("delete-synthesis")
 def delete_synthesis(name) -> None:
     """
@@ -40,7 +41,7 @@ def delete_synthesis(name) -> None:
     session_id = str(request.args.get("id"))
 
     Synthesis.delete_synthesis(name, session_id)
-    send_message_to_user(f"The synthesis '{name}' has been deleted.")
+    send_message_to_user(f"The synthesis '{name}' has been deleted.", "success", request.sid)
     emit("synthesis-deleted")
 
 
@@ -83,5 +84,3 @@ def simulate_controller_crome(name) -> None:
     content = Synthesis.simulate_controller(name, request.args.get("id"), "crome")
     send_message_to_user("The mealy has been simulated", "success", request.sid)
     emit("mealy-simulated-crome", content)
-
-
