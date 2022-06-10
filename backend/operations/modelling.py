@@ -114,7 +114,7 @@ class Modelling:
         dump_goals(set_of_goals, project_folder)
 
     @staticmethod
-    def add_goal(project_folder, goal_file, goal_id):
+    def add_goal(project_folder, goal_file):
         """
         It add the goal to the .dat file. And it checks also if this goal is already in. In that case, it removes it.
         """
@@ -125,6 +125,7 @@ class Modelling:
         goal_path = Path(os.path.join(project_folder, f"goals/{goal_file}"))
         with open(goal_path) as json_file:
             json_obj = json.load(json_file)
+
         contract_names = ["assumptions", "guarantees"]
         contract_lists = [[], []]  # type: list[list[LTL]]
         for i in range(len(contract_lists)):
@@ -230,7 +231,7 @@ class Modelling:
             _assumptions=lists_with_and_operators[0],
             _guarantees=lists_with_and_operators[1],
         )
-
+        goal_id = json_obj["id"]
         new_goal = crome_cgg_goal.Goal(
             description=json_obj["description"],
             id=goal_id,

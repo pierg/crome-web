@@ -19,7 +19,7 @@ from operations.modelling import Modelling
 from backend.shared.paths import (
     build_path,
     project_path,
-    storage_path,
+    storage_path, goals_path,
 )
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
@@ -159,9 +159,10 @@ def copy_simple(session_id: str) -> str:
     ):
         number_of_copies += 1
     project_id = f"simple_{number_of_copies}"
+    project_folder = project_path(session_id, project_id)
     shutil.copytree(
         project_path("default", "simple"),
-        project_path(session_id, project_id),
+        project_folder,
     )
 
     list_save = ["info", "environment"]
@@ -180,6 +181,7 @@ def copy_simple(session_id: str) -> str:
         ) as file:
             json_formatted = json.dumps(json_data, indent=4, sort_keys=True)
             file.write(json_formatted)
+
     return project_id
 
 
@@ -189,10 +191,10 @@ def build_simple_project() -> None:
     """
     project_dir = project_path("default", "simple")
     Modelling.create_environment(project_dir)
-    Modelling.add_goal(project_dir, "0000.json", "default-simple-0000")
-    Modelling.add_goal(project_dir, "0001.json", "default-simple-0001")
-    Modelling.add_goal(project_dir, "0002.json", "default-simple-0002")
-    Modelling.add_goal(project_dir, "0003.json", "default-simple-0003")
+    Modelling.add_goal(project_dir, "0000.json")
+    Modelling.add_goal(project_dir, "0001.json")
+    Modelling.add_goal(project_dir, "0002.json")
+    Modelling.add_goal(project_dir, "0003.json")
 
 
 def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
