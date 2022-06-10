@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // components
 import CustomCardMini from "../Custom/CustomCardMini";
 
-export default function CustomHeader({ cards, color, states }) {
+export default function CustomHeader({ cards, color, states, clickable, onSelectCustomHeader}) {
   const bgColors = {
     light: "bg-blueGray-200",
     dark: "bg-blueGray-800",
@@ -20,6 +20,12 @@ export default function CustomHeader({ cards, color, states }) {
     pink: "bg-pink-500",
   };
 
+const handleClick = (key) =>{
+    if(clickable){
+    onSelectCustomHeader(key)
+      }
+    };
+
   return (
     <>
       <div className={"relative pt-8 pb-12 " + bgColors[color]}>
@@ -27,8 +33,9 @@ export default function CustomHeader({ cards, color, states }) {
           <div>
             <div className="flex flex-wrap justify-center ">
               {cards.map((prop, key) => (
-                <div key={key} className="flex-initial w-64 px-3 ">
-                  <CustomCardMini {...prop} state={states[key]} />
+                <div onClick={() => handleClick(key)} key={key} className="flex-initial w-64 px-3 ">
+                  <CustomCardMini
+                      {...prop} clickable={clickable} state={states[key]}/>
                 </div>
               ))}
             </div>
