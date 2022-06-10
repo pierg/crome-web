@@ -1,0 +1,51 @@
+{
+    "context": {
+        "formula": "day",
+        "world_values": [
+            "day"
+        ]
+    },
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "GFperson",
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [],
+                    []
+                ]
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "G(person <-> Xregister)",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "value": "person"
+                        },
+                        {
+                            "value": "register"
+                        }
+                    ],
+                    "name": "BoundDelay"
+                },
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [
+                        "register"
+                    ],
+                    []
+                ]
+            }
+        ]
+    },
+    "description": "During context day => if see a person, register in the next step, Only if see a person, register in the next step",
+    "filename": "0003.json",
+    "id": "contracts-separation-0003",
+    "name": "Register Person"
+}

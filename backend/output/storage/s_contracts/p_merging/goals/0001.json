@@ -1,0 +1,48 @@
+{
+    "context": {
+        "formula": "night",
+        "world_values": [
+            "night"
+        ]
+    },
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "true",
+                "world_values": [
+                    [],
+                    [],
+                    []
+                ]
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "GF(r3 & Fr4) & (!r4 U r3) & G(r4 -> X(!r4 U r3)) & G(r3 -> X(!r3 U r4))",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "value": [
+                                "r3",
+                                "r4"
+                            ]
+                        }
+                    ],
+                    "name": "StrictOrderedPatrolling"
+                },
+                "world_values": [
+                    [],
+                    [],
+                    [
+                        "r3",
+                        "r4"
+                    ]
+                ]
+            }
+        ]
+    },
+    "description": "During context night => start from r3, patrol r3, r4 in strict order, Strict Ordered Patrolling Location r3, r4",
+    "filename": "0001.json",
+    "id": "contracts-merging-0001",
+    "name": "Night Patrolling"
+}

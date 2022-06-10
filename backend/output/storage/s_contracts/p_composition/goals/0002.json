@@ -1,0 +1,49 @@
+{
+    "context": {
+        "formula": "",
+        "world_values": []
+    },
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "GFperson",
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [],
+                    []
+                ]
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "G(greet <-> person)",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "value": "person"
+                        },
+                        {
+                            "value": "greet"
+                        }
+                    ],
+                    "name": "BoundReaction"
+                },
+                "world_values": [
+                    [
+                        "person"
+                    ],
+                    [
+                        "greet"
+                    ],
+                    []
+                ]
+            }
+        ]
+    },
+    "description": "Always => if see a person, greet in the same step, Only if see a person, greet immediately",
+    "filename": "0002.json",
+    "id": "contracts-composition-0002",
+    "name": "Greet Person"
+}
