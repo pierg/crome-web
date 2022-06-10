@@ -88,6 +88,15 @@ class Synthesis:
             file.write("\n**END**")
 
     @staticmethod
+    def delete_synthesis(name, session_id):
+        controller_folder = controller_path(session_id)
+        _, _, filenames = next(walk(controller_folder))
+        for filename in filenames:
+            name_found = Synthesis.__get_name_controller(controller_folder / filename)
+            if name_found == name:
+                os.remove(controller_folder / filename)
+
+    @staticmethod
     def create_controller(name, session_id, mode, controller_return=False)\
             -> list[str] | str | None | Controller | PControllers:
         list_session = [session_id, "default"]
@@ -174,10 +183,7 @@ class Synthesis:
     def __check_if_controller_exist(name, controller_folder) -> str:
         if not name:
             return ""
-        try:
-            _, _, filenames = next(walk(controller_folder))
-        except StopIteration:
-            return ""
+        _, _, filenames = next(walk(controller_folder))
         for filename in filenames:
             name_found = Synthesis.__get_name_controller(controller_folder / filename)
             if name_found == name:
