@@ -79,7 +79,7 @@ export default function CustomDashboard(props) {
                             )
                         case 'synthesis':
                             return (
-                                <CustomSynthesis/>
+                                <CustomSynthesis updateMessage={updateMessage}/>
                             )
                         case 'contracts':
                             return(
