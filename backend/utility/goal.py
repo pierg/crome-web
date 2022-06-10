@@ -10,11 +10,11 @@ from crome_cgg.goal import Goal
 class GoalUtility:
 
     @staticmethod
-    def get_goals(data, session_id) -> list:
-        project_id = str(data["project"])
+    def get_goals(project_id, session_id) -> list:
+
         session = "default" if project_id == "simple" else session_id
 
-        goals_folder = goals_path(session, data["project"])
+        goals_folder = goals_path(session, project_id)
 
         """Retrieving files"""
         list_of_goals = []

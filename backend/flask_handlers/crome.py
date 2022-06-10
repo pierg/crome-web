@@ -86,7 +86,7 @@ def get_goals(data) -> None:
     """
     Send the json content of all goals created inside the project.
     """
-    list_of_goals = GoalUtility.get_goals(data, request.args.get("id"))
+    list_of_goals = GoalUtility.get_goals(data["project"], request.args.get("id"))
 
     emit("receive-goals", list_of_goals, room=request.sid)
 
