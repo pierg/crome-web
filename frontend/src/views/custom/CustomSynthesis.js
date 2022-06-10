@@ -63,7 +63,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     setGraph = (graph) => {
-        console.log(graph)
         this.setState({
             graph : graph
         })
@@ -338,10 +337,9 @@ export default class CustomSynthesis extends React.Component {
                                                 {synthesisInfo.info.texts.load}
                                             </div>
                                         </div>
-                                        <div className="row mt-2">
+                                        <div className="row mt-3">
                                             <Tree
                                                 contents={this.state.tree}
-                                                className={Classes.ELEVATION_0}
                                                 onNodeClick={e => this.changeIsOpen(e)}
                                             />
                                         </div>
