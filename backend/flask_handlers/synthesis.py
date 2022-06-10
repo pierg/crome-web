@@ -42,7 +42,7 @@ def delete_synthesis(name) -> None:
 
     Synthesis.delete_synthesis(name, session_id)
     send_message_to_user(f"The synthesis '{name}' has been deleted.", "success", request.sid)
-    emit("synthesis-deleted")
+    emit("synthesis-deleted", True, request.sid)
 
 
 @socketio.on("controller-strix")
