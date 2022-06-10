@@ -104,21 +104,6 @@ def add_goal(data) -> None:
     if is_simple:
         project_id = copy_simple(session_id)
 
-    goals_dir = goals_path(session_id, project_id)
-
-    if "id" not in data["goal"]:
-        dir_path, dir_names, filenames = next(walk(goals_dir))
-        greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
-        greatest_id += 1
-        data["goal"]["id"] = (
-                session_id + "-" + project_id + "-" + str(greatest_id).zfill(4)
-        )
-        filename = str(greatest_id).zfill(4) + ".json"
-        data["goal"]["filename"] = filename
-    json_file = open(os.path.join(goals_dir, data["goal"]["filename"]), "w")
-    json_formatted = json.dumps(data["goal"], indent=4, sort_keys=True)
-    json_file.write(json_formatted)
-    json_file.close()
     if is_simple:
         emit("saving-simple", project_id, room=request.sid)
     else:
@@ -130,10 +115,7 @@ def add_goal(data) -> None:
     error_occurrence = True
 
     try:
-        Modelling.add_goal(
-            project_path(session_id, project_id),
-            data["goal"]["filename"],
-        )
+        GoalUtility.add_goal(data, session_id, project_id)
         send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
                              room_id=request.sid, crometype="success")
         error_occurrence = False

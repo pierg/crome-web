@@ -2,6 +2,7 @@ import json
 import os
 from pathlib import Path
 
+from backend.operations.modelling import Modelling
 from backend.shared.paths import goals_path, project_path
 from backend.tools.persistence import dump_goals, load_goals
 from crome_cgg.goal import Goal
@@ -56,3 +57,27 @@ class GoalUtility:
                     tmp.add(goal)
 
             dump_goals(tmp, str(project_folder))
+
+    @staticmethod
+    def add_goal(data, session_id, project_id):
+
+        goals_dir = goals_path(session_id, project_id)
+
+        if "id" not in data["goal"]:
+            dir_path, dir_names, filenames = next(walk(goals_dir))
+            greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
+            greatest_id += 1
+            data["goal"]["id"] = (
+                    session_id + "-" + project_id + "-" + str(greatest_id).zfill(4)
+            )
+            filename = str(greatest_id).zfill(4) + ".json"
+            data["goal"]["filename"] = filename
+        json_file = open(os.path.join(goals_dir, data["goal"]["filename"]), "w")
+        json_formatted = json.dumps(data["goal"], indent=4, sort_keys=True)
+        json_file.write(json_formatted)
+        json_file.close()
+
+        Modelling.add_goal(
+            project_path(session_id, project_id),
+            data["goal"]["filename"],
+        )
