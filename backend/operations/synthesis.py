@@ -90,18 +90,17 @@ class Synthesis:
     @staticmethod
     def create_controller(name, session_id, mode, controller_return=False)\
             -> list[str] | str | None | Controller | PControllers:
-        list_session = [session_id, "simple"]
+        list_session = [session_id, "default"]
 
         controller_file = None
         for session in list_session:
             controller_folder = controller_path(session)
-            print(controller_folder)
             controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
             if controller_file:
                 controller_file = Path(os.path.join(controller_folder, controller_file))
                 break
             else:
-                if session == "simple":
+                if session == "default":
                     _, dir_names, _ = next(walk(controller_folder))
                     for dir_name in dir_names:
                         controller_file = Synthesis.__check_if_controller_exist(name, controller_folder / dir_name)
@@ -129,7 +128,7 @@ class Synthesis:
 
     @staticmethod
     def get_specific_synthesis(data, session_id):
-        list_session = ["simple", session_id]
+        list_session = ["default", session_id]
         for session in list_session:
             controller_folder = controller_path(session)
             file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
@@ -137,8 +136,6 @@ class Synthesis:
                 controller = Controller.from_file(controller_folder / file)
                 content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
                            "inputs": controller.info.i, "outputs": controller.info.o, "name": data["name"]}
-                if session == "simple":
-                    Synthesis.create_txt_file(content, session_id)
                 return content
             _, dir_names, _ = next(walk(controller_folder))
             for dir_name in dir_names:
