@@ -12,6 +12,8 @@ import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
 import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
 import {toast} from "react-toastify";
+import SocketGetSimulation from "../../components/Custom/Examples/GetSimulation";
+
 
 export default class CustomSynthesis extends React.Component {
 
@@ -26,10 +28,12 @@ export default class CustomSynthesis extends React.Component {
         isOpen : [],
         triggerSave : false,
         triggerSynthesis : false,
+        triggerSimulation : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false,
         network : null,
-        graph : null
+        graph : null,
+        simulation : null
     }
 
     setNameValue(e) {
@@ -66,6 +70,14 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             graph : graph
         })
+    }
+
+    setSimulation = (simulation) => {
+        console.log(simulation)
+        this.setState({
+            simulation: simulation
+        })
+        this.generateTable()
     }
 
     highlight = (input) => {
@@ -110,7 +122,8 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonStrix : false,
             clickedButtonParallel : false,
             triggerSynthesis : false,
-            graph: null
+            graph: null,
+            simulation: null
         })
     }
 
@@ -163,13 +176,20 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    setTriggerSimulation = (bool) => {
+        this.setState({
+            triggerSimulation: bool
+        })
+    }
+
     synthesisStrix = () => {
         this.setTriggerSave(true)
         this.setState({
             clickedButtonStrix : true,
             clickedButtonParallel : false,
             triggerSynthesis : true,
-            graph: null
+            graph: null,
+            simulation: null
         })
     }
 
@@ -179,10 +199,26 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonStrix : false,
             clickedButtonParallel : true,
             triggerSynthesis : true,
-            graph : null
+            graph : null,
+            simulation: null
         })
     }
 
+    clickSimulation = () => {
+        this.setTriggerSimulation(true)
+    }
+
+    generateTable = () => {
+        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
+        this.tab = []
+        for (let i = 0; i < this.state.simulation.length; i++) {
+            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer text-center\" ><td>" + this.state.simulation[i][0] + "</td>"
+            table += "<td>" + this.state.simulation[i][1] + "</td>";
+            table += "<td>" + this.state.simulation[i][2] + "</td></tr>";
+        }
+        document.getElementById("simulationTable").innerHTML = table;
+    }
+    
     displayMessages = (message_received) => {
         toast[message_received["crometypes"]](message_received["content"]);
         this.props.updateMessage(message_received["content"])
@@ -203,10 +239,10 @@ export default class CustomSynthesis extends React.Component {
                                 options={({
                                     fit: true,
                                     height: 400,
-                                    width: width / 4.5,
+                                    width: width / 4,
                                     zoom: true
                                 })}
-                                className="p-4 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
+                                className="p-2 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
             }
         }
 
@@ -236,6 +272,14 @@ export default class CustomSynthesis extends React.Component {
                     strix={this.state.clickedButtonStrix}
                     parallel={this.state.clickedButtonParallel}
                     setGraph={this.setGraph}
+                />
+                <SocketGetSimulation
+                    trigger={this.state.triggerSimulation}
+                    setTrigger={this.setTriggerSimulation}
+                    name={this.state.nameValue}
+                    strix={this.state.clickedButtonStrix}
+                    parallel={this.state.clickedButtonParallel}
+                    setSimulation={this.setSimulation}
                 />
                 <div className="relative pt-8 pb-12 bg-emerald-400 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
@@ -387,10 +431,10 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 pb-5 mx-auto">
+                <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
                 {
                         this.state.graph ?
-                            <div className="pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                            <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
                                 <div className="w-full border-b-1">
                                     <div className="fs-4 m-2 text-center">
                                         {this.state.clickedButtonStrix ? synthesisInfo.info.buttons.synthesis.strix : synthesisInfo.info.buttons.synthesis.parallel}
@@ -414,14 +458,41 @@ export default class CustomSynthesis extends React.Component {
                                         }
                                     </div>
                                     <div className="col-2 offset-1 text-center py-5 m-auto">
-                                        <Button>
-                                            simulation
-                                        </Button>
+                                        <Link  to="simulation" spy={true} smooth={true}>
+                                            <Button
+                                                id="simulationButton"
+                                                size="lg"
+                                                onClick={this.clickSimulation}
+                                            >
+                                                simulation
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         : null
                 }
+                </div>
+                <div  id="simulation" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
+                    {
+                        this.state.simulation ?
+                            <div
+                                className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                                <div className="w-full border-b-1">
+                                    <div className="fs-4 m-2 text-center">
+                                        Simulation
+                                    </div>
+                                </div>
+                                <div className="row h-auto">
+                                    <div className="flex flex-col">
+                                        <div className="w-full flex justify-center">
+                                            <table id='simulationTable' className="pt-4"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            : null
+                    }
                 </div>
             </>
         )
