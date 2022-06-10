@@ -1,10 +1,19 @@
+import json
+import os
+import shutil
+import time
+
+from time import time, strftime
 from flask import request
 from flask_socketio import emit
 
 from backend.operations.analysis import Analysis
-from backend.shared.paths import project_path
+from backend.operations.modelling import Modelling
+from backend.shared.paths import project_path, goals_path
+from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
+from backend.app import send_message_to_user
 
 try:
     from __main__ import socketio
@@ -164,3 +173,82 @@ def separation(data) -> None:
         return
 
     emit("operation-complete", True, room=request.sid)
+
+
+# We redo the function for getting a goals and modify it for this page :
+@socketio.on("get-contracts-goals")
+def get_contracts_goals(name_operator):
+    session_id = request.args.get("id")
+
+    if not os.path.isdir(project_path(session_id, name_operator)):
+        session_id = "contracts"
+
+    list_of_goals = GoalUtility.get_goals(name_operator, session_id)
+    emit("receive-contracts-goals", list_of_goals, room=request.sid)
+
+
+@socketio.on("modify-contracts-goals")
+def modify_contracts_goals(data):
+    project_id = data["project"]
+    session_id = request.args.get("id")
+
+    project_folder = project_path(session_id, project_id)
+    if not os.path.isdir(project_folder):
+        os.mkdir(project_folder)
+        shutil.copytree(
+            project_path("contracts", project_id), project_folder
+        )
+
+    now = time.localtime(time.time())
+    name: str = data["goal"]["name"]
+
+    error_occurrence = True
+
+    try:
+        GoalUtility.add_goal(data, session_id, project_id)
+        send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
+                             room_id=request.sid, crometype="success")
+        error_occurrence = False
+    except KeyError as keyError:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. Error with the entry of the '
+                                                               f'LTL/Pattern \n KeyError : {keyError}',
+            room=request.sid,
+        )
+    except SyntaxError:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. You did not put an expression '
+                                                               f'for the LTL',
+            room=request.sid
+        )
+    except ContextException as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. '
+                                                               f'{e}',
+            room=request.sid
+        )
+    except Exception as e:
+        emit(
+            "send-message",
+            strftime("%H:%M:%S", now) + ' The goal "' + name + f'" has not been saved. Error unknown : {e}',
+            room=request.sid
+        )
+
+    if error_occurrence:
+        emit(
+            "send-notification",
+            {"crometypes": "error",
+             "content": strftime("%H:%M:%S", now) + ' The goal "' + name + '" has not been saved. See the console for '
+                                                                           'more information'},
+            room=request.sid,
+        )
+
+
+@socketio.on("process-goals-contracts")
+def process_goals_contracts(data):
+    pass
+
+
