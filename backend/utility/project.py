@@ -87,6 +87,9 @@ class ProjectUtility:
             json_file.close()
 
         Modelling.create_environment(project_dir)
+        _, _, filenames = next(walk(goals_dir))
+        for filename in filenames:
+            Modelling.add_goal(project_path(session_id, data["world"]["info"]["project_id"]), filename)
 
     @staticmethod
     def save_image(data, session_id) -> None:
@@ -99,7 +102,7 @@ class ProjectUtility:
                 f"s_{session_id}/p_{project_id}/environment.png",
             )
         )
-        print(f"Image saved here : {current_project_image}")
+
         with open(current_project_image, "wb") as fh:
             fh.write(base64.decodebytes(img_data))
 

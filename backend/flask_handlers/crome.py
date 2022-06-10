@@ -42,10 +42,13 @@ def save_project(data) -> None:
     default project in the session folder that we then modify.
     """
     session_id = str(request.args.get("id"))
+    name: str = data["world"]["info"]["name"]
+    now = time.localtime(time.time())
+    send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" is being saved.',
+                         room_id=request.sid, crometype="success")
 
     ProjectUtility.save_project(data, session_id)
 
-    name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=request.sid)
     send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
@@ -83,7 +86,7 @@ def get_goals(data) -> None:
     """
     Send the json content of all goals created inside the project.
     """
-    list_of_goals = GoalUtility.get_goals(data, request.args.get("id"))
+    list_of_goals = GoalUtility.get_goals(data["project"], request.args.get("id"))
 
     emit("receive-goals", list_of_goals, room=request.sid)
 
@@ -130,7 +133,6 @@ def add_goal(data) -> None:
         Modelling.add_goal(
             project_path(session_id, project_id),
             data["goal"]["filename"],
-            data["goal"]["id"],
         )
         send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
                              room_id=request.sid, crometype="success")

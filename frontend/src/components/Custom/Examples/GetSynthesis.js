@@ -4,8 +4,11 @@ import {useSocket} from "../../../contexts/SocketProvider";
 function SocketGetSynthesis(props) {
     const socket = useSocket()
 
-    const setGraph = useCallback((graph) => {
-        props.setGraph(graph);
+    const setGraph = useCallback((message_received) => {
+        if(message_received["crometypes"] === "success") {
+            props.setGraph(message_received["graph"]);
+        }
+        props.displayMessages(message_received);
     }, [props]) // eslint-disable-next-line
 
     useEffect(() => {

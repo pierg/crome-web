@@ -11,6 +11,7 @@ import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis"
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
 import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
+import {toast} from "react-toastify";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -62,7 +63,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     setGraph = (graph) => {
-        console.log(graph)
         this.setState({
             graph : graph
         })
@@ -86,7 +86,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     loadFormula = () => {
-        console.log("load formula")
         this.setTriggerSave(true)
     }
 
@@ -184,6 +183,11 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    displayMessages = (message_received) => {
+        toast[message_received["crometypes"]](message_received["content"]);
+        this.props.updateMessage(message_received["content"])
+    }
+
     render(){
 
         let width=window.innerWidth
@@ -217,6 +221,7 @@ export default class CustomSynthesis extends React.Component {
                     trigger={this.state.triggerSave}
                     setTrigger={this.setTriggerSave}
                     savedDone={this.savedDone}
+                    displayMessages={this.displayMessages}
                     name={this.state.nameValue}
                     assumptions={this.state.assumptionsValue.split("\n")}
                     guarantees={this.state.guaranteesValue.split("\n")}
@@ -226,6 +231,7 @@ export default class CustomSynthesis extends React.Component {
                 <SocketGetSynthesis
                     trigger={this.state.triggerSynthesis}
                     setTrigger={this.setTriggerSynthesis}
+                    displayMessages={this.displayMessages}
                     name={this.state.nameValue}
                     strix={this.state.clickedButtonStrix}
                     parallel={this.state.clickedButtonParallel}
@@ -331,10 +337,9 @@ export default class CustomSynthesis extends React.Component {
                                                 {synthesisInfo.info.texts.load}
                                             </div>
                                         </div>
-                                        <div className="row mt-2">
+                                        <div className="row mt-3">
                                             <Tree
                                                 contents={this.state.tree}
-                                                className={Classes.ELEVATION_0}
                                                 onNodeClick={e => this.changeIsOpen(e)}
                                             />
                                         </div>

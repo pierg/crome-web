@@ -28,9 +28,8 @@ def save_synthesis(data) -> None:
     try:
         Synthesis.create_txt_file(data, session_id)
     except Exception as e:
-        send_message_to_user(e.__str__(), "error", request.sid)
-    send_message_to_user("The mealy has been saved", "success", request.sid)
-    emit("synthesis-saved", True, room=request.sid)
+        emit("synthesis-saved", {"crometypes": "error", "content": e.__str__()}, room=request.sid)
+    emit("synthesis-saved", {"crometypes": "success", "content": "The mealy has been saved"}, room=request.sid)
 
 
 @socketio.on("delete-synthesis")
@@ -52,8 +51,12 @@ def create_controller_strix(name) -> None:
     """
     json_content = Synthesis.create_controller(name, request.args.get("id"), "strix")
 
-    send_message_to_user("The mealy has been created using strix method", "success", request.sid)
-    emit("controller-created-strix", json_content, room=request.sid)
+    emit("controller-created-strix",
+         {
+             "graph": json_content,
+             "crometypes": "success",
+             "content": "The mealy has been created using strix method"
+         }, room=request.sid)
 
 
 @socketio.on("controller-crome")
@@ -62,8 +65,13 @@ def create_controller_crome(name) -> None:
         Create the controller and the mealy according to the parallel method
     """
     json_content = Synthesis.create_controller(name, request.args.get("id"), "crome")
-    send_message_to_user("The mealy has been created using parallel method", "success", request.sid)
-    emit("controller-created-crome", json_content, room=request.sid)
+
+    emit("controller-created-crome",
+         {
+             "graph": json_content,
+             "crometypes": "success",
+             "content": "The mealy has been created using parallel method"
+         }, room=request.sid)
 
 
 @socketio.on("simulate-strix")
