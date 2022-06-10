@@ -16,15 +16,16 @@ class Synthesis:
         list_controller = {}
         # We get the controller of the current session
         controller_folder = controller_path(session_id)
-        _, _, filenames = next(walk(controller_folder))
-        dict_controller = {"Your creation": []}
-        for filename in filenames:
-            info = ControllerSpec.from_file(controller_folder / filename)
-            name = Synthesis.__get_name_controller(controller_folder / filename)
-            data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
-                    "outputs": info.o}
-            dict_controller["Your creation"].append(data)
-        list_controller.update(dict_controller)
+        if os.path.isdir(controller_folder):
+            _, _, filenames = next(walk(controller_folder))
+            dict_controller = {"Your creation": []}
+            for filename in filenames:
+                info = ControllerSpec.from_file(controller_folder / filename)
+                name = Synthesis.__get_name_controller(controller_folder / filename)
+                data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
+                        "outputs": info.o}
+                dict_controller["Your creation"].append(data)
+            list_controller.update(dict_controller)
         # Now we get all the examples !
         controller_folder = controller_path("default")
         dir_path, dir_names, _ = next(walk(controller_folder))
