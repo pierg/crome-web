@@ -132,6 +132,7 @@ export default function CustomPlayer({
             <div>
               {items.map((prop, key) => {
                 return (
+
                   <div
                     className={classnames(
                       "p-6 transform duration-300 transition-all ease-in-out mx-auto",

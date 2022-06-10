@@ -83,7 +83,7 @@ export default function CustomDashboard(props) {
                             )
                         case 'contracts':
                             return(
-                                <CustomContracts/>
+                                <CustomContracts id={id}/>
                             )
                         default:
                             return (

@@ -297,9 +297,11 @@ export default class GoalModeling extends React.Component {
     }
 
     getPatterns = (list) => {
-        this.setState({
-            patterns: JSON.parse(list)
-        }, () => this.props.setPatterns(this.state.patterns))
+        if(!this.props.contracts) {
+            this.setState({
+                patterns: JSON.parse(list)
+            }, () => this.props.setPatterns(this.state.patterns))
+        }
     }
 
     toggleSaveTrigger = (bool) => {
@@ -315,8 +317,10 @@ export default class GoalModeling extends React.Component {
     }
 
     switchWorld = (id) => {
-        this.props.setProject(id)
-        this.props.toggleGetTrigger()
+        if(!this.props.contracts){
+            this.props.setProject(id)
+            this.props.toggleGetTrigger()
+        }
     }
 }
 
