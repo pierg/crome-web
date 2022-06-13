@@ -25,10 +25,14 @@ def save_synthesis(data) -> None:
         Save the current synthesis inside a .txt file inside the session folder
     """
     session_id = str(request.args.get("id"))
-    try:
-        Synthesis.create_txt_file(data, session_id)
-    except Exception as e:
-        emit("synthesis-saved", {"crometypes": "error", "content": e.__str__()}, room=request.sid)
+    for key in data:
+        if not data[key]:
+            emit("synthesis-saved",
+                 {"crometypes": "error", "content": "The mealy was not saved. Some fields are not filled in."},
+                 room=request.sid)
+            return
+    Synthesis.create_txt_file(data, session_id)
+
     emit("synthesis-saved", {"crometypes": "success", "content": "The mealy has been saved"}, room=request.sid)
 
 
