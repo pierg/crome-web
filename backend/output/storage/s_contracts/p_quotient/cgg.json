@@ -1,0 +1,70 @@
+{
+    "edges": [
+        {
+            "from": "contracts-quotient-0002",
+            "link": "composition",
+            "to": "contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "from": "contracts-quotient-0003",
+            "link": "composition",
+            "to": "contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "from": "contracts-quotient-0000",
+            "link": "merging",
+            "to": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "from": "contracts-quotient-0002||contracts-quotient-0003",
+            "link": "merging",
+            "to": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "from": "contracts-quotient-0002",
+            "link": "merging",
+            "to": "contracts-quotient-0002**contracts-quotient-0001"
+        },
+        {
+            "from": "contracts-quotient-0001",
+            "link": "merging",
+            "to": "contracts-quotient-0002**contracts-quotient-0001"
+        },
+        {
+            "from": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003",
+            "link": "conjunction",
+            "to": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003/\\contracts-quotient-0002**contracts-quotient-0001"
+        },
+        {
+            "from": "contracts-quotient-0002**contracts-quotient-0001",
+            "link": "conjunction",
+            "to": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003/\\contracts-quotient-0002**contracts-quotient-0001"
+        }
+    ],
+    "nodes": [
+        {
+            "id": "contracts-quotient-0002"
+        },
+        {
+            "id": "contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "id": "contracts-quotient-0003"
+        },
+        {
+            "id": "contracts-quotient-0000"
+        },
+        {
+            "id": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003"
+        },
+        {
+            "id": "contracts-quotient-0001"
+        },
+        {
+            "id": "contracts-quotient-0002**contracts-quotient-0001"
+        },
+        {
+            "id": "contracts-quotient-0000**contracts-quotient-0002||contracts-quotient-0003/\\contracts-quotient-0002**contracts-quotient-0001"
+        }
+    ]
+}

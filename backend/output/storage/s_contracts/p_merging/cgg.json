@@ -1,0 +1,70 @@
+{
+    "edges": [
+        {
+            "from": "contracts-merging-0001",
+            "link": "merging",
+            "to": "contracts-merging-0001**contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0002",
+            "link": "merging",
+            "to": "contracts-merging-0001**contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0003",
+            "link": "composition",
+            "to": "contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0002",
+            "link": "composition",
+            "to": "contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0000",
+            "link": "merging",
+            "to": "contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0003||contracts-merging-0002",
+            "link": "merging",
+            "to": "contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0001**contracts-merging-0002",
+            "link": "conjunction",
+            "to": "contracts-merging-0001**contracts-merging-0002/\\contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "from": "contracts-merging-0000**contracts-merging-0003||contracts-merging-0002",
+            "link": "conjunction",
+            "to": "contracts-merging-0001**contracts-merging-0002/\\contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        }
+    ],
+    "nodes": [
+        {
+            "id": "contracts-merging-0001"
+        },
+        {
+            "id": "contracts-merging-0002"
+        },
+        {
+            "id": "contracts-merging-0001**contracts-merging-0002"
+        },
+        {
+            "id": "contracts-merging-0000"
+        },
+        {
+            "id": "contracts-merging-0003"
+        },
+        {
+            "id": "contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "id": "contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        },
+        {
+            "id": "contracts-merging-0001**contracts-merging-0002/\\contracts-merging-0000**contracts-merging-0003||contracts-merging-0002"
+        }
+    ]
+}

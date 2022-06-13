@@ -1,0 +1,70 @@
+{
+    "edges": [
+        {
+            "from": "contracts-refinement-0003",
+            "link": "composition",
+            "to": "contracts-refinement-0003||contracts-refinement-0002"
+        },
+        {
+            "from": "contracts-refinement-0002",
+            "link": "composition",
+            "to": "contracts-refinement-0003||contracts-refinement-0002"
+        },
+        {
+            "from": "contracts-refinement-0003||contracts-refinement-0002",
+            "link": "merging",
+            "to": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000"
+        },
+        {
+            "from": "contracts-refinement-0000",
+            "link": "merging",
+            "to": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000"
+        },
+        {
+            "from": "contracts-refinement-0002",
+            "link": "merging",
+            "to": "contracts-refinement-0002**contracts-refinement-0001"
+        },
+        {
+            "from": "contracts-refinement-0001",
+            "link": "merging",
+            "to": "contracts-refinement-0002**contracts-refinement-0001"
+        },
+        {
+            "from": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000",
+            "link": "conjunction",
+            "to": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000/\\contracts-refinement-0002**contracts-refinement-0001"
+        },
+        {
+            "from": "contracts-refinement-0002**contracts-refinement-0001",
+            "link": "conjunction",
+            "to": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000/\\contracts-refinement-0002**contracts-refinement-0001"
+        }
+    ],
+    "nodes": [
+        {
+            "id": "contracts-refinement-0003"
+        },
+        {
+            "id": "contracts-refinement-0003||contracts-refinement-0002"
+        },
+        {
+            "id": "contracts-refinement-0002"
+        },
+        {
+            "id": "contracts-refinement-0000"
+        },
+        {
+            "id": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000"
+        },
+        {
+            "id": "contracts-refinement-0001"
+        },
+        {
+            "id": "contracts-refinement-0002**contracts-refinement-0001"
+        },
+        {
+            "id": "contracts-refinement-0003||contracts-refinement-0002**contracts-refinement-0000/\\contracts-refinement-0002**contracts-refinement-0001"
+        }
+    ]
+}
