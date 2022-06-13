@@ -92,18 +92,96 @@ export default class CustomSynthesis extends React.Component {
         }
     }
 
-    highlight = (input) => {
-        return input
-            .replaceAll("(", "<span class='text-red-500'>(</span>")
-            .replaceAll(")", "<span class='text-red-500'>)</span>")
-            /*.replaceAll("->","<span class='text-emerald-500'>-></span>")
-            .replaceAll("|","<span class='text-emerald-500'>|</span>")
-            .replaceAll("!","<span class='text-emerald-500'>!</span>")
-            .replaceAll("&","<span class='text-emerald-500'>&</span>")*/
+    /**
+     * Highlight matching parenthesis in a string
+     * @param input
+     * @returns {string}
+     */
+    highlightParenthesis = (input) => {
+        let out = "";
+        let level = 0;
+        input.split(/([()])/).forEach((bit) => {
+          if (bit === "(") {
+            level++; // eslint-disable-next-line
+            out=out+"<span class=\""+`l${level}`+"\">"+bit+"</span>";
+          } else if (bit === ")") { // eslint-disable-next-line
+            out=out+"<span class=\""+`l${level}`+"\">"+bit+"</span>";
+            level--;
+          } else {
+            out=out+bit;
+          }
+        });
+        return out.toString();
     }
 
+    /**
+     * Highlight the inputs and outputs contains in a string
+     * @param input
+     * @returns {string}
+     */
+    highlightWords = (input) => {
+        let words = []
+        let context = ""
+        let output = ""
+        let textBefore = ""
+        let textAfter = ""
+        words = this.state.inputsValue.replaceAll(" ","").split(",")
+        words = words.concat(this.state.outputsValue.replaceAll(" ","").split(","))
+        words = words.filter(n => n)
+        const inputTab = input.split(/(\s+)/)
+        console.log(inputTab)
+        if (words) {
+            for (let i=0; i<inputTab.length; i++) {
+                    textBefore = ""
+                    textAfter = ""
+                    context = inputTab[i]
+                    while (context && (context.charAt(0) === "!" || context.charAt(0) === "(")) {
+                        textBefore += context.charAt(0)
+                        context = context.substring(1)
+                    }
+
+                    while (context && (context.charAt(context.length - 1) === ")")) {
+                        textAfter += context.charAt(context.length - 1)
+                        context = context.substring(0, 1 * context.length - 1)
+                    }
+                    if (words.includes(context)) {
+                        context = "<span class='text-emerald-500'>" + context + "</span>"
+                    }
+
+                    output = output + textBefore + context + textAfter
+            }
+        }
+        console.log(output)
+        return output
+    }
+
+    /**
+     * Highligth LTL operators and symbols in a string
+     * @param input
+     * @returns {*}
+     */
+    highlight = (input) => {
+        const LTL = ["G", "F", "X", "U", "R", "W", "M"]
+        const symbols = ["->", "&", "|"]
+
+        for (let i=0; i<LTL.length; i++) {
+            input = input.replaceAll(LTL[i],"<strong>"+LTL[i]+"</strong>")
+        }
+        for (let i=0; i<symbols.length; i++) {
+            input = input.replaceAll(symbols[i],"<strong>"+symbols[i]+"</strong>")
+        }
+        return input
+    }
+
+    /**
+     * Highlight what needs to be highlight in the textarea and put the line numbers before the text
+     * @param input
+     * @returns {string}
+     */
     hightlightWithLineNumbers = (input) => {
-        return this.highlight(input)
+        input = this.highlightWords(input)
+        input = this.highlight(input)
+        return this.highlightParenthesis(input)
             .split("\n")
             .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
             .join("\n");
@@ -263,7 +341,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     generateTable = (simulation, tableID) => {
-        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 bg-blueGray-200\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
+        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
         this.tab = []
         for (let i = 0; i < simulation.length; i++) {
             table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 text-center\" ><td>" + simulation[i][0] + "</td>"
