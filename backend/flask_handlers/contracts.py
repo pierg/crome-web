@@ -8,6 +8,7 @@ from flask_socketio import emit
 
 from backend.operations.analysis import Analysis
 from backend.shared.paths import project_path
+from backend.tools.persistence import load_cgg
 from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
@@ -264,8 +265,15 @@ def modify_contracts_goals(data):
 
 
 @socketio.on("process-goals-contracts")
-def process_goals_contracts(data):
-    pass
+def process_goals_contracts(project_id):
+    session_id = request.args.get("id")
+    project_folder = project_path(session_id, project_id)
+    if not os.path.isdir(project_folder):
+        project_folder = project_path("contracts", project_id)
+
+    cgg = load_cgg(str(project_folder))
+    json_content = cgg.export_to_json()
+    emit("received-process-goals-contracts", json_content, room=request.sid)
 
 
 def create_session_contracts(session_id, project_id):
