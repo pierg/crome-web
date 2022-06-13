@@ -6,8 +6,9 @@ import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Tree } from "@blueprintjs/core";
+import { Tree, Classes } from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
+import SocketDeleteSynthesis from "../../components/Custom/Examples/DeleteSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
 import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
@@ -27,13 +28,18 @@ export default class CustomSynthesis extends React.Component {
         tree : [],
         isOpen : [],
         triggerSave : false,
+        triggerDelete : false,
+        nameToDelete : "",
         triggerSynthesis : false,
         triggerSimulation : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false,
         network : null,
         graph : null,
-        simulation : null
+        simulation : null,
+        nbFolders : 0,
+        nbExampleCreation : 0,
+        creationExpanded: false,
     }
 
     setNameValue(e) {
@@ -115,6 +121,8 @@ export default class CustomSynthesis extends React.Component {
 
     changeIsOpen(e: React.MouseEvent<HTMLElement>) {
         e.isExpanded = !e.isExpanded
+        let creationExpanded = this.state.creationExpanded
+        let sizeFolder = this.state.nbFolders
         if(e.id.length !== undefined) {
             this.setState({
                 nameValue : e.label,
@@ -124,12 +132,27 @@ export default class CustomSynthesis extends React.Component {
                 outputsValue : e.outputs.join(", "),
             })
         }
+        else {
+            if(e.label !== "Your creation") {
+                if(!e.isExpanded) {
+                    sizeFolder -= e.childNodes.length
+                }
+                else {
+                    sizeFolder += e.childNodes.length
+                }
+            }
+            else {
+                creationExpanded = e.isExpanded
+            }
+        }
         this.setState({
             clickedButtonStrix : false,
             clickedButtonParallel : false,
             triggerSynthesis : false,
             graph: null,
-            simulation: null
+            simulation: null,
+            nbFolders: sizeFolder,
+            creationExpanded: creationExpanded,
         })
     }
 
@@ -137,6 +160,7 @@ export default class CustomSynthesis extends React.Component {
         let treeTmp = []
         let keys = Object.keys(tree).sort()
         let node
+        let nbExampleCreation = 0
         for(let i=0;i<keys.length;i++) {
             node = {}
             node.id = i
@@ -150,6 +174,9 @@ export default class CustomSynthesis extends React.Component {
                 childNode = {}
                 childNode.id = i+"_"+j
                 childNode.label = tree[keys[i]][j].id
+                if(keys[i] === "Your creation") {
+                    nbExampleCreation++
+                }
                 childNode.assumptions = tree[keys[i]][j].assumptions
                 childNode.guarantees = tree[keys[i]][j].guarantees
                 childNode.inputs = tree[keys[i]][j].inputs
@@ -161,8 +188,20 @@ export default class CustomSynthesis extends React.Component {
         }
 
         this.setState({
-            tree : treeTmp
+            tree : treeTmp,
+            nbFolders : keys.length,
+            nbExampleCreation : nbExampleCreation,
+            creationExpanded: false,
         })
+    }
+
+    deleteCreationClick = (nodeId) => {
+        console.log("trash click")
+        console.log(this.state.tree[this.state.tree.length-1].childNodes[nodeId].label)
+        this.setState({
+            nameToDelete: this.state.tree[this.state.tree.length-1].childNodes[nodeId].label
+        })
+        this.setTriggerDelete(true)
     }
 
     setTriggerSave = (bool) => {
@@ -171,8 +210,17 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
+    setTriggerDelete = (bool) => {
+        this.setState({
+            triggerDelete: bool
+        })
+    }
+
     savedDone = () => {
-        this.setTriggerSave(false)
+        this.setTriggerExample(true)
+    }
+
+    deletedDone = () => {
         this.setTriggerExample(true)
     }
 
@@ -224,13 +272,26 @@ export default class CustomSynthesis extends React.Component {
         }
         document.getElementById(tableID).innerHTML = table;
     }
-    
+
     displayMessages = (message_received) => {
         toast[message_received["crometypes"]](message_received["content"]);
         this.props.updateMessage(message_received["content"])
     }
 
     render(){
+        const deleteCreation = [];
+        for (let i = 0; i < this.state.nbExampleCreation; i += 1) {
+            deleteCreation.push(
+                <button
+                    key={i}
+                    style={{top: ((this.state.nbFolders+i)*30)+"px", right: "10px", height: "30px", width: "30px"}}
+                    className="absolute text-right"
+                    onClick={() => this.deleteCreationClick(i)}
+                >
+                    <span className="fas fa-trash"></span>
+                </button>
+            );
+        }
 
         let width=window.innerWidth
 
@@ -278,6 +339,13 @@ export default class CustomSynthesis extends React.Component {
                     guarantees={this.state.guaranteesValue.split("\n")}
                     inputs={this.state.inputsValue.split(",")}
                     outputs={this.state.outputsValue.split(",")}
+                />
+                <SocketDeleteSynthesis
+                    trigger={this.state.triggerDelete}
+                    setTrigger={this.setTriggerDelete}
+                    deletedDone={this.deletedDone}
+                    displayMessages={this.displayMessages}
+                    name={this.state.nameToDelete}
                 />
                 <SocketGetSynthesis
                     trigger={this.state.triggerSynthesis}
@@ -390,17 +458,19 @@ export default class CustomSynthesis extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-4 relative">
+                                    <div className="col-4">
                                         <div className="row">
                                             <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.load}
                                             </div>
                                         </div>
-                                        <div className="row mt-3">
+                                        <div className="row mt-3 relative">
                                             <Tree
                                                 contents={this.state.tree}
+                                                className={Classes.TEXT_SMALL}
                                                 onNodeClick={e => this.changeIsOpen(e)}
                                             />
+                                            {this.state.creationExpanded && deleteCreation}
                                         </div>
                                     </div>
                                 </div>

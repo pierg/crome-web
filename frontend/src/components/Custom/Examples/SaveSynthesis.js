@@ -28,7 +28,6 @@ function SocketSaveSynthesis(props) {
 
             socket.on('synthesis-saved', savedFinish)
 
-            //socket.on('synthesis-saved', sendReturnTrigger)
             return () => socket.off('synthesis-saved')
         }
 
