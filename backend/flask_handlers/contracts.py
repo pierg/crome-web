@@ -10,6 +10,7 @@ from backend.operations.analysis import Analysis
 from backend.shared.paths import project_path
 from backend.tools.persistence import load_cgg
 from backend.utility.goal import GoalUtility
+from backend.utility.project import ProjectUtility
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
 from backend.app import send_message_to_user
@@ -274,6 +275,14 @@ def process_goals_contracts(project_id):
     cgg = load_cgg(str(project_folder))
     json_content = cgg.export_to_json()
     emit("received-process-goals-contracts", json_content, room=request.sid)
+
+
+@socketio.on("get-contracts-project")
+def get_contracts_project():
+
+    list_of_projects = ProjectUtility.get_projects("contracts")
+
+    emit("receive-contracts-projects", list_of_projects, room=request.sid)
 
 
 def create_session_contracts(session_id, project_id):
