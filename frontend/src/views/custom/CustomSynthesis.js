@@ -215,7 +215,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     generateTable = (simulation, tableID) => {
-        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
+        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 bg-blueGray-200\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
         this.tab = []
         for (let i = 0; i < simulation.length; i++) {
             table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 text-center\" ><td>" + simulation[i][0] + "</td>"
@@ -502,7 +502,7 @@ export default class CustomSynthesis extends React.Component {
                                     <div className="flex flex-col">
                                         {this.state.clickedButtonStrix ?
                                             <div className="w-full flex justify-center">
-                                                <table id='simulationTable_0' className="pt-4"/>
+                                                <table id='simulationTable_0' className="m-4"/>
                                             </div>
                                             : <div className="flex flex-wrap justify-center">
                                                 {simulationTable}
