@@ -1,4 +1,3 @@
-import json
 import os
 import shutil
 import time
@@ -8,8 +7,7 @@ from flask import request
 from flask_socketio import emit
 
 from backend.operations.analysis import Analysis
-from backend.operations.modelling import Modelling
-from backend.shared.paths import project_path, goals_path
+from backend.shared.paths import project_path
 from backend.utility.goal import GoalUtility
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
@@ -28,7 +26,10 @@ def conjunction(data) -> None:
     """
     print("APPLY OPERATION : conjunction")
     session_id = str(request.args.get("id"))
-    project_id = data["goals"][0].split("-")[-2]
+    project_id = data["project"]
+
+    create_session_contracts(session_id, project_id)
+
     try:
         Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
     except ContextException:
@@ -46,6 +47,9 @@ def composition(data) -> None:
     session_id = str(request.args.get("id"))
 
     project_id = data["project"]
+
+    create_session_contracts(session_id, project_id)
+
     try:
         Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
     except ContextException:
@@ -63,6 +67,9 @@ def refinement(data) -> None:
 
     session_id = request.args.get("id")
     project_id = data["project"]
+
+    create_session_contracts(session_id, project_id)
+
     project_folder = str(project_path(session_id, project_id))
 
     try:
@@ -93,6 +100,9 @@ def quotient(data) -> None:
     print("APPLY OPERATION : merging")
     project_id = data["project"]
     session_id = request.args.get("id")
+
+    create_session_contracts(session_id, project_id)
+
     project_folder = str(project_path(session_id, project_id))
 
     try:
@@ -123,6 +133,9 @@ def merging(data) -> None:
     print("APPLY OPERATION : merging")
     project_id = data["project"]
     session_id = request.args.get("id")
+
+    create_session_contracts(session_id, project_id)
+
     project_folder = str(project_path(session_id, project_id))
 
     try:
@@ -153,6 +166,9 @@ def separation(data) -> None:
     print("APPLY OPERATION : separation")
     project_id = data["project"]
     session_id = request.args.get("id")
+
+    create_session_contracts(session_id, project_id)
+
     project_folder = str(project_path(session_id, project_id))
 
     try:
@@ -177,13 +193,13 @@ def separation(data) -> None:
 
 # We redo the function for getting a goals and modify it for this page :
 @socketio.on("get-contracts-goals")
-def get_contracts_goals(name_operator):
+def get_contracts_goals(project_id):
     session_id = request.args.get("id")
 
-    if not os.path.isdir(project_path(session_id, name_operator)):
+    if not os.path.isdir(project_path(session_id, project_id)):
         session_id = "contracts"
 
-    list_of_goals = GoalUtility.get_goals(name_operator, session_id)
+    list_of_goals = GoalUtility.get_goals(project_id, session_id)
     emit("receive-contracts-goals", list_of_goals, room=request.sid)
 
 
@@ -252,3 +268,15 @@ def process_goals_contracts(data):
     pass
 
 
+def create_session_contracts(session_id, project_id):
+    project_folder = project_path(session_id, project_id)
+    # Check is the project_id correspond to some project of contracts
+    if project_id not in ["composition", "conjunction", "merging", "quotient", "refinement", "separation"]:
+        return
+    if os.path.isdir(project_folder):
+        return
+    else:
+        os.mkdir(project_folder)
+        shutil.copytree(
+            project_path("contracts", project_id), project_folder
+        )
