@@ -64,7 +64,7 @@ class GoalUtility:
         goals_dir = goals_path(session_id, project_id)
 
         if "id" not in data["goal"]:
-            dir_path, dir_names, filenames = next(walk(goals_dir))
+            dir_path, dir_names, filenames = next(os.walk(goals_dir))
             greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
             greatest_id += 1
             data["goal"]["id"] = (
