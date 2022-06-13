@@ -105,9 +105,9 @@ def check_if_session_exist(data) -> None:
     found = False
     sessions_folder = f"s_" + session_id
     for dir_name in dir_names:
-        if dir_name == sessions_folder and dir_name != "default":
+        if dir_name == sessions_folder:
             found = True
-    if session_id == "default":
+    if session_id == "default" or session_id == "contracts":
         found = False
 
     if found:
