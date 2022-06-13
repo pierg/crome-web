@@ -6,7 +6,7 @@ import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Tree, Classes } from "@blueprintjs/core";
+import { Tree } from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
@@ -78,10 +78,10 @@ export default class CustomSynthesis extends React.Component {
             simulation: simulation
         })
         if (this.state.clickedButtonStrix)
-            this.generateTable(this.state.simulation)
+            this.generateTable(this.state.simulation, "simulationTable_0")
         else {
             for (let i=0; i<this.state.simulation.length; i++) {
-                this.generateTable(this.state.simulation[i])
+                this.generateTable(this.state.simulation[i], "simulationTable_"+i)
             }
         }
     }
@@ -214,15 +214,15 @@ export default class CustomSynthesis extends React.Component {
         this.setTriggerSimulation(true)
     }
 
-    generateTable = (simulation) => {
+    generateTable = (simulation, tableID) => {
         let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
         this.tab = []
         for (let i = 0; i < simulation.length; i++) {
-            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 cursor-pointer text-center\" ><td>" + simulation[i][0] + "</td>"
+            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 text-center\" ><td>" + simulation[i][0] + "</td>"
             table += "<td>" + simulation[i][1] + "</td>";
             table += "<td>" + simulation[i][2] + "</td></tr>";
         }
-        document.getElementById("simulationTable").innerHTML = table;
+        document.getElementById(tableID).innerHTML = table;
     }
     
     displayMessages = (message_received) => {
@@ -249,6 +249,15 @@ export default class CustomSynthesis extends React.Component {
                                     zoom: true
                                 })}
                                 className="p-2 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
+            }
+        }
+
+        const simulationTable = [];
+        if (this.state.clickedButtonParallel && this.state.simulation) {
+            let idTable =""
+            for (let i=0; i<this.state.simulation.length; i++) {
+                idTable="simulationTable_"+i
+                simulationTable.push(<table key={i} id={idTable} className="m-5"/>)
             }
         }
 
@@ -491,9 +500,14 @@ export default class CustomSynthesis extends React.Component {
                                 </div>
                                 <div className="row h-auto">
                                     <div className="flex flex-col">
-                                        <div className="w-full flex justify-center">
-                                            <table id='simulationTable' className="pt-4"/>
-                                        </div>
+                                        {this.state.clickedButtonStrix ?
+                                            <div className="w-full flex justify-center">
+                                                <table id='simulationTable_0' className="pt-4"/>
+                                            </div>
+                                            : <div className="flex flex-wrap justify-center">
+                                                {simulationTable}
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
