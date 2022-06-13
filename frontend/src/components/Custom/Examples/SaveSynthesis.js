@@ -7,6 +7,7 @@ function SocketSaveSynthesis(props) {
     const socket = useSocket()
 
     const savedFinish = useCallback((message_received) => {
+        props.setTrigger(false);
         if(message_received["crometypes"] === "success") {
             props.savedDone();
         }
