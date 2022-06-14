@@ -86,8 +86,10 @@ export default class CustomSynthesis extends React.Component {
         if (this.state.clickedButtonStrix)
             this.generateTable(this.state.simulation, "simulationTable_0")
         else {
-            for (let i=0; i<this.state.simulation.length; i++) {
-                this.generateTable(this.state.simulation[i], "simulationTable_"+i)
+            if (this.state.simulation) {
+                for (let i = 0; i < this.state.simulation.length; i++) {
+                    this.generateTable(this.state.simulation[i], "simulationTable_" + i)
+                }
             }
         }
     }
@@ -327,7 +329,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     parallelSynthesis = () => {
-        this.state.toastLoading.loading('Synthesis is working, please wait')
         this.setTriggerSave(true)
         this.setState({
             clickedButtonStrix : false,
@@ -392,8 +393,8 @@ export default class CustomSynthesis extends React.Component {
                                 key={i}
                                 options={({
                                     fit: true,
-                                    height: 400,
-                                    width: width / 4.5,
+                                    height: 300,
+                                    width: width / 4.2,
                                     zoom: true
                                 })}
                                 className="p-2 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
@@ -405,7 +406,7 @@ export default class CustomSynthesis extends React.Component {
             let idTable =""
             for (let i=0; i<this.state.simulation.length; i++) {
                 idTable="simulationTable_"+i
-                simulationTable.push(<table key={i} id={idTable} className="m-5"/>)
+                simulationTable.push(<table key={i} id={idTable} className="m-4"/>)
             }
         }
 
@@ -463,16 +464,16 @@ export default class CustomSynthesis extends React.Component {
                     </div>
                 </div>
                 <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
-                    <div className="px-3 pb-5 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                    <div className="px-3 pb-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
                         <div className="flex flex-col justify-center p-5 ">
                             <div className="container">
                                 <div className="row">
-                                    <div className="col-7">
+                                    <div className="col-8">
                                         <div className="row">
-                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.name}
                                             </div>
-                                            <div className="col-7 relative">
+                                            <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.nameValue}
                                                     className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
@@ -481,10 +482,10 @@ export default class CustomSynthesis extends React.Component {
                                             </div>
                                         </div>
                                         <div className="row mt-5">
-                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.assumptions}
                                             </div>
-                                            <div className="col-7 relative">
+                                            <div className="col-8 relative">
                                                 <Editor
                                                   value={this.state.assumptionsValue}
                                                   onValueChange={code => this.setAssumptionsValue(code)}
@@ -494,17 +495,17 @@ export default class CustomSynthesis extends React.Component {
                                                   textareaId="codeArea"
                                                   style={{
                                                     fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    fontSize: 18,
+                                                    fontSize: 16,
                                                     outline: 0,
                                                   }}
                                                 />
                                             </div>
                                         </div>
                                         <div className="row mt-5">
-                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.guarantees}
                                             </div>
-                                            <div className="col-7 relative">
+                                            <div className="col-8 relative">
                                                 <Editor
                                                   value={this.state.guaranteesValue}
                                                   onValueChange={code => this.setGuaranteesValue(code)}
@@ -514,17 +515,17 @@ export default class CustomSynthesis extends React.Component {
                                                   textareaId="codeArea"
                                                   style={{
                                                     fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    fontSize: 18,
+                                                    fontSize: 16,
                                                     outline: 0,
                                                   }}
                                                 />
                                             </div>
                                         </div>
                                         <div className="row mt-5">
-                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.inputs}
                                             </div>
-                                            <div className="col-7 relative">
+                                            <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.inputsValue}
                                                     className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
@@ -533,10 +534,10 @@ export default class CustomSynthesis extends React.Component {
                                             </div>
                                         </div>
                                         <div className="row mt-5">
-                                            <div className="col-4 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
+                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.outputs}
                                             </div>
-                                            <div className="col-7 relative">
+                                            <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.outputsValue}
                                                     className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
@@ -613,20 +614,20 @@ export default class CustomSynthesis extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row h-auto">
-                                    <div className="col-9">
+                                    <div className="col-9 m-auto">
                                         {this.state.clickedButtonStrix ?
                                             <Graphviz
                                                 dot={this.state.graph}
                                                 options={({
                                                     fit: true,
-                                                    height: 500 + this.state.graph.length / 10,
-                                                    width: width / 2,
+                                                    height: 450,
+                                                    width: width / 1.5,
                                                     zoom: true
                                                 })}
                                                 className="p-4 flex wrap-content"
                                             />
                                         :
-                                            <div className="flex flex-wrap p-4 ">{children}</div>
+                                            <div className="flex flex-wrap p-4 justify-center">{children}</div>
                                         }
                                     </div>
                                     <div className="col-2 offset-1 text-center py-5 m-auto">
