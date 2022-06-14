@@ -78,21 +78,20 @@ def create_controller_crome(name) -> None:
          }, room=request.sid)
 
 
-@socketio.on("simulate-strix")
-def simulate_controller_strix(name) -> None:
+@socketio.on("get-inputs")
+def get_inputs(data):
+    session_id = request.args.get("id")
+    inputs = Synthesis.get_input_possible(data["name"], session_id, data["mode"])
+
+    emit("received-inputs", inputs, room=request.sid)
+
+
+@socketio.on("simulate-controller")
+def simulate_controller(data) -> None:
     """
         Simulate the mealy according to the method strix
     """
-    content = Synthesis.simulate_controller(name, request.args.get("id"), "strix")
+    content = Synthesis.simulate_controller(data["name"], request.args.get("id"), data["mode"], data["input"])
     send_message_to_user("The mealy has been simulated", "success", request.sid)
-    emit("mealy-simulated-strix", content)
+    emit("mealy-simulated", content)
 
-
-@socketio.on("simulate-crome")
-def simulate_controller_crome(name) -> None:
-    """
-        Simulate the mealy according to the parallel method
-    """
-    content = Synthesis.simulate_controller(name, request.args.get("id"), "crome")
-    send_message_to_user("The mealy has been simulated", "success", request.sid)
-    emit("mealy-simulated-crome", content)

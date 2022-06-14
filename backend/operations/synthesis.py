@@ -7,7 +7,7 @@ from backend.shared.paths import controller_path
 from crome_synthesis.controller import _check_header, Controller
 from crome_synthesis.controller.controller_info import ControllerSpec
 from crome_synthesis.pcontrollers import PControllers
-from crome_synthesis.tools.persistence import dump_mono_controller
+from crome_synthesis.tools.persistence import dump_mono_controller, load_mono_controller
 
 
 class Synthesis:
@@ -179,9 +179,32 @@ class Synthesis:
             return content
 
     @staticmethod
-    def simulate_controller(name, session_id, mode):
+    def simulate_controller(name, session_id, mode, choice):
+        controller_folder = controller_path(session_id)
         if mode == "crome":
             return  # We haven't implemented it yet
+        if mode == "strix":
+            controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
+            if not controller:
+                return  # The controller saved is not the one wanted. Glitch !
+            old_state = controller.mealy.current_state.name
+            output = controller.mealy.react(choice)
+            result = [choice, old_state, controller.mealy.current_state.name, output]
+            dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
+            return result
+
+    @staticmethod
+    def get_input_possible(name, session_id, mode):
+        controller_folder = controller_path(session_id)
+        if mode == "crome":
+            return  # Not implemented yet
+        if mode == "strix":
+            controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
+            if not controller:
+                return
+            tmp = controller.mealy.current_state.possible_inputs
+            inputs = [str(i).strip() for i in tmp]
+            return inputs
 
     @staticmethod
     def __check_if_controller_exist(name, controller_folder) -> str:
