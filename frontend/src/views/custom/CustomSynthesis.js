@@ -6,14 +6,14 @@ import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import {Tree, Classes, Icon} from "@blueprintjs/core";
+import { Tree, Classes } from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketDeleteSynthesis from "../../components/Custom/Examples/DeleteSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
 import { Graphviz } from 'graphviz-react';
 import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
 import {toast} from "react-toastify";
-import SocketGetSimulation from "../../components/Custom/Examples/GetSimulation";
+import Simulation from "../../components/Custom/Simulation";
 
 
 export default class CustomSynthesis extends React.Component {
@@ -24,23 +24,24 @@ export default class CustomSynthesis extends React.Component {
         guaranteesValue : "",
         inputsValue : "",
         outputsValue : "",
+
         triggerExample : true,
         tree : [],
         isOpen : [],
+        nameToDelete : "",
+        nbFolders : 0,
+        nbExampleCreation : 0,
+        creationExpanded: false,
         triggerSave : false,
         triggerDelete : false,
-        nameToDelete : "",
+
         triggerSynthesis : false,
         toastLoading : null,
-        triggerSimulation : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false,
         network : null,
         graph : null,
-        simulation : null,
-        nbFolders : 0,
-        nbExampleCreation : 0,
-        creationExpanded: false,
+        simulation : false,
     }
 
     setNameValue(e) {
@@ -77,21 +78,6 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             graph : graph
         })
-    }
-
-    setSimulation = (simulation) => {
-        this.setState({
-            simulation: simulation
-        })
-        if (this.state.simulation) {
-            if (this.state.clickedButtonStrix)
-                this.generateTable(this.state.simulation, "simulationTable_0")
-            else {
-                for (let i = 0; i < this.state.simulation.length; i++) {
-                    this.generateTable(this.state.simulation[i], "simulationTable_" + i)
-                }
-            }
-        }
     }
 
     /**
@@ -293,7 +279,10 @@ export default class CustomSynthesis extends React.Component {
     }
 
     savedDone = () => {
-        this.displayMessagesWaiting()
+        const toastId = toast.loading('Synthesis is working, please wait')
+        this.setState({
+            toastLoading: toastId
+        })
         this.setTriggerExample(true)
     }
 
@@ -304,12 +293,6 @@ export default class CustomSynthesis extends React.Component {
     setTriggerSynthesis = (bool) => {
         this.setState({
             triggerSynthesis: bool
-        })
-    }
-
-    setTriggerSimulation = (bool) => {
-        this.setState({
-            triggerSimulation: bool
         })
     }
 
@@ -336,35 +319,9 @@ export default class CustomSynthesis extends React.Component {
     }
 
     clickSimulation = () => {
-        this.setTriggerSimulation(true)
-    }
-
-    generateTable = (simulation, tableID) => {
-        let table = "<tr class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100\"><th class=\"px-5\">T</th> <th class=\"px-5\">INPUTS</th> <th class=\"px-5\">OUTPUTS</th> </tr>"
-        this.tab = []
-        for (let i = 0; i < simulation.length; i++) {
-            table += "<tr key={i} class=\"border-b-1 border-t-1 text-blueGray-700 text-lg py-1 hover:bg-blueGray-100 text-center\" ><td>" + simulation[i][0] + "</td>"
-            table += "<td>" + simulation[i][1] + "</td>";
-            table += "<td>" + simulation[i][2] + "</td></tr>";
-        }
-        document.getElementById(tableID).innerHTML = table;
-    }
-
-    displayMessagesWaiting = () => {
-        const toastId = toast.loading(
-            <>
-                <div>
-                    Synthesis is working.
-                </div>
-                <div>
-                    Please wait...
-                </div>
-            </>,
-            {
-                icon: <Icon icon="time" size={20} color="blue"/>,
-            })
+        console.log("click")
         this.setState({
-            toastLoading: toastId
+            simulation: true,
         })
     }
 
@@ -457,14 +414,6 @@ export default class CustomSynthesis extends React.Component {
                     strix={this.state.clickedButtonStrix}
                     parallel={this.state.clickedButtonParallel}
                     setGraph={this.setGraph}
-                />
-                <SocketGetSimulation
-                    trigger={this.state.triggerSimulation}
-                    setTrigger={this.setTriggerSimulation}
-                    name={this.state.nameValue}
-                    strix={this.state.clickedButtonStrix}
-                    parallel={this.state.clickedButtonParallel}
-                    setSimulation={this.setSimulation}
                 />
                 <div className="relative pt-8 pb-12 bg-emerald-400 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
@@ -673,11 +622,12 @@ export default class CustomSynthesis extends React.Component {
                                 <div className="row h-auto">
                                     <div className="flex flex-col">
                                         {this.state.clickedButtonStrix ?
-                                            <div className="w-full flex justify-center">
-                                                <table id='simulationTable_0' className="m-4"/>
-                                            </div>
+                                            <Simulation
+                                                name={this.state.nameValue}
+                                                mode="strix"
+                                            />
                                             : <div className="flex flex-wrap justify-center">
-                                                {simulationTable}
+                                                Work in progress
                                             </div>
                                         }
                                     </div>

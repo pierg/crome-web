@@ -7,7 +7,6 @@ function SocketDeleteSynthesis(props) {
     const socket = useSocket()
 
     const deletedFinish = useCallback((message_received) => {
-        console.log(message_received)
         props.setTrigger(false);
         if(message_received["crometypes"] === "success") {
             props.deletedDone();
