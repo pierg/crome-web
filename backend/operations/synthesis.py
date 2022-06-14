@@ -96,6 +96,8 @@ class Synthesis:
         controller_folder = controller_path(session_id)
         _, _, filenames = next(walk(controller_folder))
         for filename in filenames:
+            if len(filename.split(".")) == 2 and filename.split(".")[-1] == "dat":
+                continue
             name_found = Synthesis.__get_name_controller(controller_folder / filename)
             if name_found == name:
                 os.remove(controller_folder / filename)
