@@ -7,6 +7,7 @@ from backend.shared.paths import controller_path
 from crome_synthesis.controller import _check_header, Controller
 from crome_synthesis.controller.controller_info import ControllerSpec
 from crome_synthesis.pcontrollers import PControllers
+from crome_synthesis.tools.persistence import dump_mono_controller
 
 
 class Synthesis:
@@ -20,6 +21,8 @@ class Synthesis:
             _, _, filenames = next(walk(controller_folder))
             dict_controller = {"Your creation": []}
             for filename in filenames:
+                if len(filename.split(".")) == 2 and filename.split(".")[-1] == "dat":
+                    continue
                 info = ControllerSpec.from_file(controller_folder / filename)
                 name = Synthesis.__get_name_controller(controller_folder / filename)
                 data = {"id": name, "assumptions": info.a, "guarantees": info.g, "inputs": info.i,
@@ -103,6 +106,8 @@ class Synthesis:
         list_session = [session_id, "default"]
 
         controller_file = None
+        controller_folder = None
+        stop = False
         for session in list_session:
             controller_folder = controller_path(session)
             controller_file = Synthesis.__check_if_controller_exist(name, controller_folder)
@@ -116,11 +121,15 @@ class Synthesis:
                         controller_file = Synthesis.__check_if_controller_exist(name, controller_folder / dir_name)
                         if controller_file:
                             controller_file = Path(os.path.join(controller_folder / dir_name, controller_file))
+                            stop = True
                             break
+            if stop:
+                break
 
         if controller_file:
             if mode == "crome":
                 pcontrollers = PControllers.from_file(file_path=controller_file)
+                # We have to dump the pcontrollers when the function will be written and works correctly
                 if controller_return:
                     return pcontrollers
                 json_content = []
@@ -129,6 +138,8 @@ class Synthesis:
                 return json_content
             elif mode == "strix":
                 controller = Controller.from_file(file_path=controller_file)
+                Synthesis.__remove_dat_file(controller_folder)
+                dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
                 if controller_return:
                     return controller
                 return Synthesis.__upgrade_dot(controller.get_format("dot"))
@@ -142,6 +153,7 @@ class Synthesis:
         file = None
         dir = None
         controller_folder = None
+        stop = False
         for session in list_session:
             controller_folder = controller_path(session)
             file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
@@ -153,6 +165,9 @@ class Synthesis:
                 if file:
                     stop = True
                     break
+            if stop:
+                break
+
         if file:
             if dir:
                 controller = Controller.from_file(controller_folder / dir / file)
@@ -174,6 +189,8 @@ class Synthesis:
             return ""
         _, _, filenames = next(walk(controller_folder))
         for filename in filenames:
+            if len(filename.split(".")) == 2 and filename.split(".")[-1] == "dat":
+                continue
             name_found = Synthesis.__get_name_controller(controller_folder / filename)
             if name_found == name:
                 return filename
@@ -213,3 +230,11 @@ class Synthesis:
                 line = 'label="'.join(split_line) + '"]'
             result.append(line)
         return "\n".join(result)
+
+    @staticmethod
+    def __remove_dat_file(folder):
+        _, _, filenames = next(walk(folder))
+        for filename in filenames:
+            tmp = filename.split(".")
+            if len(tmp) == 2 and tmp[-1] == "dat":
+                os.remove(folder / filename)
