@@ -357,14 +357,11 @@ export default class CustomSynthesis extends React.Component {
         if(synthesis) {
             const toastId = this.state.toastLoading
             toast.dismiss(toastId)
-            toast[message_received["crometypes"]](message_received["content"],{id: toastId});
             this.setState({
                 toastLoading: null
             })
         }
-        else {
-            toast[message_received["crometypes"]](message_received["content"]);
-        }
+        toast[message_received["crometypes"]](message_received["content"]);
         this.props.updateMessage(message_received["content"])
     }
 
