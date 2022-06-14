@@ -67,7 +67,7 @@ export default function CustomSidebar({
               <a
                 {...brand}
                 href={brand.link.href}
-                className="xxl:flex items-center flex-col text-center xxl:pb-2 text-blueGray-700 mr-0 inline-flex whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                className="xxl:flex items-center flex-col text-center xxl:pb-2 text-blueGray-700 mr-0 inline-flex whitespace-nowrap text-sm uppercase font-bold "
               >
                 {brand && brand.image && (
                   <img src={brand.image} alt="..." className="max-w-full rounded" />
