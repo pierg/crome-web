@@ -7,7 +7,8 @@ from backend.shared.paths import controller_path
 from crome_synthesis.controller import _check_header, Controller
 from crome_synthesis.controller.controller_info import ControllerSpec
 from crome_synthesis.pcontrollers import PControllers
-from crome_synthesis.tools.persistence import dump_mono_controller, load_mono_controller
+from crome_synthesis.tools.persistence import dump_mono_controller, load_mono_controller, load_parallel_controller, \
+    dump_parallel_controller
 
 
 class Synthesis:
@@ -212,7 +213,12 @@ class Synthesis:
     def reset_controller(name, session_id, mode):
         controller_folder = controller_path(session_id)
         if mode == "crome":
-            return  # Not implemented yet
+            pcontroller = load_parallel_controller(absolute_folder_path=controller_folder, controller_name=name)
+            if not pcontroller:
+                return
+            for controller in pcontroller.controllers:
+                controller.mealy.reset()
+            dump_parallel_controller(absolute_folder_path=controller_folder, controller=pcontroller)
         if mode == "strix":
             controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
             if not controller:
