@@ -93,5 +93,11 @@ def simulate_controller(data) -> None:
     """
     content = Synthesis.simulate_controller(data["name"], request.args.get("id"), data["mode"], data["input"])
     send_message_to_user("The mealy has been simulated", "success", request.sid)
-    emit("mealy-simulated", content)
+    emit("mealy-simulated", content, room=request.sid)
 
+
+@socketio.on("reset-controller")
+def reset_controller(data):
+    session_id = request.args.get("id")
+    Synthesis.reset_controller(data["name"], session_id, data["mode"])
+    emit("reset-done", True, room=request.sid)
