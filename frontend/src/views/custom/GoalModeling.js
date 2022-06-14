@@ -182,6 +182,7 @@ export default class GoalModeling extends React.Component {
                     triggerGoals={this.props.triggerGetGoals}
                     deleteTrigger={this.deleteTrigger}
                     switchWorld={this.switchWorld}
+                    contracts={this.props.contracts}
                 />
                 <SocketIoPatterns
                     patterns={this.getPatterns}
@@ -278,6 +279,8 @@ export default class GoalModeling extends React.Component {
     }
 
     getGoals = (list) => {
+        // console.log("list in GoalModeling")
+        // console.log(list)
         let tmpArray = []
         let allGoals = []
         for (let i=0; i<list.length; i++) {
@@ -293,15 +296,15 @@ export default class GoalModeling extends React.Component {
             editedGoals: tmpArray,
             numChildren: tmpArray.length
         })
+        // console.log("allGoals in GoalModeling")
+        // console.log(allGoals)
         this.props.setGoals(allGoals)
     }
 
     getPatterns = (list) => {
-        if(!this.props.contracts) {
             this.setState({
                 patterns: JSON.parse(list)
             }, () => this.props.setPatterns(this.state.patterns))
-        }
     }
 
     toggleSaveTrigger = (bool) => {
@@ -317,10 +320,8 @@ export default class GoalModeling extends React.Component {
     }
 
     switchWorld = (id) => {
-        if(!this.props.contracts){
             this.props.setProject(id)
             this.props.toggleGetTrigger()
-        }
     }
 }
 

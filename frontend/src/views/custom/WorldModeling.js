@@ -62,6 +62,7 @@ export default class WorldModeling extends React.Component {
     }
 
     getWorlds = (list) => {
+        console.log(list)
         let worlds = []
         let info = []
         let names = []

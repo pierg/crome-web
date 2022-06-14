@@ -26,6 +26,8 @@ function SocketIoProjects(props) {
 
     useEffect(() => {
         props.worlds(message)
+        console.log("Message dans GetProjects")
+        console.log(message)
     }, [message])  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {

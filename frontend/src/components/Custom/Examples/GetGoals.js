@@ -19,6 +19,7 @@ function SocketIoGoals(props) {
     
     
     useEffect(() => {
+
         if (socket == null || props.deleteIndex === null) return
 
         socket.emit('delete-goal', {index: props.deleteIndex, project: props.projectId})
@@ -34,11 +35,18 @@ function SocketIoGoals(props) {
 
     useEffect(() => {
         if (socket == null) return
+        if(props.contracts) {
+            socket.emit('get-contracts-goals', props.projectId)
+            socket.on('receive-contracts-goals', setMessageFunction)
+            return () => socket.off('receive-contracts-goals')
+        }
+        else{
         socket.emit('get-goals', {project: props.projectId})
 
         socket.on('receive-goals', setMessageFunction)
 
         return () => socket.off('receive-goals')
+            }
     }, [socket, setMessageFunction, props.projectId, props.triggerGoals])
 
     useEffect(() => {

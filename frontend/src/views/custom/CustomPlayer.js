@@ -175,6 +175,7 @@ export default function CustomPlayer({
                               }
                               triggerGoalsChecked={triggerGoalsChecked}
                               swapTriggerGoalsChecked={swapTriggerGoalsChecked}
+                              contracts={false}
                             />
                           ),
                           analysis: (
