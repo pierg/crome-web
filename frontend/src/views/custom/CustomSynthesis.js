@@ -6,7 +6,7 @@ import Editor from "react-simple-code-editor";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Tree, Classes } from "@blueprintjs/core";
+import {Tree, Classes, Icon} from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketDeleteSynthesis from "../../components/Custom/Examples/DeleteSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
@@ -293,11 +293,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     savedDone = () => {
-        console.log("loading")
-        const toastId = toast.loading('Synthesis is working, please wait')
-        this.setState({
-            toastLoading: toastId
-        })
+        this.displayMessagesWaiting()
         this.setTriggerExample(true)
     }
 
@@ -352,6 +348,24 @@ export default class CustomSynthesis extends React.Component {
             table += "<td>" + simulation[i][2] + "</td></tr>";
         }
         document.getElementById(tableID).innerHTML = table;
+    }
+
+    displayMessagesWaiting = () => {
+        const toastId = toast.loading(
+            <>
+                <div>
+                    Synthesis is working.
+                </div>
+                <div>
+                    Please wait...
+                </div>
+            </>,
+            {
+                icon: <Icon icon="time" size={20} color="blue"/>,
+            })
+        this.setState({
+            toastLoading: toastId
+        })
     }
 
     displayMessages = (message_received, synthesis = false) => {
