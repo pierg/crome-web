@@ -207,6 +207,18 @@ class Synthesis:
             return inputs
 
     @staticmethod
+    def reset_controller(name, session_id, mode):
+        controller_folder = controller_path(session_id)
+        if mode == "crome":
+            return  # Not implemented yet
+        if mode == "strix":
+            controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
+            if not controller:
+                return
+            controller.mealy.reset()
+            dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
+
+    @staticmethod
     def __check_if_controller_exist(name, controller_folder) -> str:
         if not name:
             return ""
