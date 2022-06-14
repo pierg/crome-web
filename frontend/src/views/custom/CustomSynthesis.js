@@ -384,7 +384,7 @@ export default class CustomSynthesis extends React.Component {
                                 options={({
                                     fit: true,
                                     height: 400,
-                                    width: width / 4,
+                                    width: width / 4.5,
                                     zoom: true
                                 })}
                                 className="p-2 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
