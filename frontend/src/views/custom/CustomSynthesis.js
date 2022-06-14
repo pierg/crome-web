@@ -83,10 +83,10 @@ export default class CustomSynthesis extends React.Component {
         this.setState({
             simulation: simulation
         })
-        if (this.state.clickedButtonStrix)
-            this.generateTable(this.state.simulation, "simulationTable_0")
-        else {
-            if (this.state.simulation) {
+        if (this.state.simulation) {
+            if (this.state.clickedButtonStrix)
+                this.generateTable(this.state.simulation, "simulationTable_0")
+            else {
                 for (let i = 0; i < this.state.simulation.length; i++) {
                     this.generateTable(this.state.simulation[i], "simulationTable_" + i)
                 }
