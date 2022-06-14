@@ -138,22 +138,22 @@ export default class CustomContracts extends React.Component {
                     onSelectCustomHeader={this.handleHeaderStates}
                 />
 
-                <div className="flex justify-center mt-5">
+                <div className="flex justify-center my-3 mx-60">
 
-                    <div className="px-3 pb-5 mx-3 relative flex min-w-0 break-words bg-white rounded shadow-md ">
+                    <div className="px-3 pb-5 mx-3 relative flex min-w-0 justify-center break-words bg-white rounded shadow-md w-full">
                         <div className=" mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                             {customcontractsinfo.info.texts.goals}
                         </div>
                     </div>
 
-                    <div className="px-3 mx-2 pb-5 mx-3 relative flex min-w-0 break-words bg-white rounded shadow-md ">
+                    <div className="px-3 pb-5 mx-3 relative flex min-w-0 justify-center break-words bg-white rounded shadow-md w-full">
                         <div className=" mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                             {customcontractsinfo.info.texts.description}
                         </div>
                     </div>
 
                 </div>
-                <div className="mx-60 pb-12 ">
+                <div className="mx-64 pb-12 ">
                 <GoalModeling
                     {...goalmodelinginfo}
                     id={this.state.id}

@@ -3410,6 +3410,11 @@ select {
   margin-left: 15rem;
   margin-right: 15rem;
 }
+.mx-64 {
+  margin-left: 16rem;
+  margin-right: 16rem;
+}
+
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;

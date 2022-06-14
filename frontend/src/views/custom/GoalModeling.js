@@ -330,7 +330,7 @@ GoalModeling.defaultProps = {
 };
 
 const ParentComponent = props => (
-    <section className="mt-2pt-2 relative">
+    <section className="relative">
         <div className="mx-auto w-full">
             <div>
                 <div className="flex justify-between">
@@ -349,14 +349,14 @@ const ParentComponent = props => (
                             </ElementsButton>
                         </div>
                     </div>
-                    <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
+                    <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
                         <AddButton
                             statText="Add a Goal"
                             statIconName="fas fa-plus-square"
                             statIconColor="text-lightBlue-700"
                         />
                     </div>
-                    <div  style={{width : 191, height : 164}}></div>
+                    <div  style={{width : 256, height : 164}}></div>
                 </div>
                 <div className="flex flex-wrap justify-center">
                     {props.children}
