@@ -47,7 +47,7 @@ function SocketIoGoals(props) {
 
         return () => socket.off('receive-goals')
             }
-    }, [socket, setMessageFunction, props.projectId, props.triggerGoals])
+    }, [socket, setMessageFunction, props.projectId, props.triggerGoals, props.contracts])
 
     useEffect(() => {
         props.updateGoals(message)

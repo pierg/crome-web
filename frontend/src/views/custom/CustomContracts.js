@@ -11,6 +11,7 @@ export default class CustomContracts extends React.Component {
     state = {
         id : "contracts",
         worlds: [],
+        headerNames : ["conjunction", "composition", "refinement", "quotient", "merging", "separation"],
         headerStates: [true, false, false, false, false, false],
         activeHeaderIndex : 0,
         project: "conjunction",
@@ -40,7 +41,8 @@ export default class CustomContracts extends React.Component {
             newHeaderStates[activeHeaderIndex] = true
             this.setState({
                 headerStates: newHeaderStates,
-                activeHeaderIndex : activeHeaderIndex
+                activeHeaderIndex : activeHeaderIndex,
+                project : this.state.headerNames[activeHeaderIndex]
             })
             this.displayWorldGoal(activeHeaderIndex)
         }
@@ -108,9 +110,9 @@ export default class CustomContracts extends React.Component {
         this.setState({
             worlds: worlds,
         })
-        {
-            this.displayWorldGoal(this.state.activeHeaderIndex)
-        }
+
+        this.displayWorldGoal(this.state.activeHeaderIndex)
+
         // console.log("this.state.worlds CustomContracts")
         // console.log(this.state.worlds)
     }

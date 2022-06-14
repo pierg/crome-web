@@ -2,31 +2,31 @@
 const textProps = {
   color: "lightBlue",
   cards: [{
-      statTitle: "Conjunction",
+      statTitle: "conjunction",
       statIconName: "fas fa-circle-ampersand",
     },
     {
-      statTitle: "Composition",
+      statTitle: "composition",
       statIconName: "fas fa-bullseye",
       statIconColor: "bg-orange-500",
     },
     {
-      statTitle: "Refinement",
+      statTitle: "refinement",
       statIconName: "fas fa-check-circle",
       statIconColor: "bg-lightBlue-500",
     },
           {
-      statTitle: "Quotient",
+      statTitle: "quotient",
       statIconName: "fas fa-check-circle",
       statIconColor: "bg-lightBlue-500",
     },
           {
-      statTitle: "Merging",
+      statTitle: "merging",
       statIconName: "fas fa-check-circle",
       statIconColor: "bg-lightBlue-500",
     },
-                {
-      statTitle: "Separation",
+      {
+      statTitle: "separation",
       statIconName: "fas fa-check-circle",
       statIconColor: "bg-lightBlue-500",
     },
