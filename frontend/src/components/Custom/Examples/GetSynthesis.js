@@ -8,7 +8,7 @@ function SocketGetSynthesis(props) {
         if(message_received["crometypes"] === "success") {
             props.setGraph(message_received["graph"]);
         }
-        props.displayMessages(message_received);
+        props.displayMessages(message_received, true);
         if (props.strix) {
             socket.off('controller-created-strix')
         }

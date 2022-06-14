@@ -31,6 +31,7 @@ export default class CustomSynthesis extends React.Component {
         triggerDelete : false,
         nameToDelete : "",
         triggerSynthesis : false,
+        toastLoading : null,
         triggerSimulation : false,
         clickedButtonStrix : false,
         clickedButtonParallel : false,
@@ -79,7 +80,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     setSimulation = (simulation) => {
-        console.log(simulation)
         this.setState({
             simulation: simulation
         })
@@ -129,7 +129,6 @@ export default class CustomSynthesis extends React.Component {
         words = words.concat(this.state.outputsValue.replaceAll(" ","").split(","))
         words = words.filter(n => n)
         const inputTab = input.split(/(\s+)/)
-        console.log(inputTab)
         if (words) {
             for (let i=0; i<inputTab.length; i++) {
                     textBefore = ""
@@ -151,7 +150,6 @@ export default class CustomSynthesis extends React.Component {
                     output = output + textBefore + context + textAfter
             }
         }
-        console.log(output)
         return output
     }
 
@@ -274,8 +272,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     deleteCreationClick = (nodeId) => {
-        console.log("trash click")
-        console.log(this.state.tree[this.state.tree.length-1].childNodes[nodeId].label)
         this.setState({
             nameToDelete: this.state.tree[this.state.tree.length-1].childNodes[nodeId].label
         })
@@ -295,6 +291,11 @@ export default class CustomSynthesis extends React.Component {
     }
 
     savedDone = () => {
+        console.log("loading")
+        const toastId = toast.loading('Synthesis is working, please wait')
+        this.setState({
+            toastLoading: toastId
+        })
         this.setTriggerExample(true)
     }
 
@@ -326,6 +327,7 @@ export default class CustomSynthesis extends React.Component {
     }
 
     parallelSynthesis = () => {
+        this.state.toastLoading.loading('Synthesis is working, please wait')
         this.setTriggerSave(true)
         this.setState({
             clickedButtonStrix : false,
@@ -351,8 +353,18 @@ export default class CustomSynthesis extends React.Component {
         document.getElementById(tableID).innerHTML = table;
     }
 
-    displayMessages = (message_received) => {
-        toast[message_received["crometypes"]](message_received["content"]);
+    displayMessages = (message_received, synthesis = false) => {
+        if(synthesis) {
+            const toastId = this.state.toastLoading
+            toast.dismiss(toastId)
+            toast[message_received["crometypes"]](message_received["content"],{id: toastId});
+            this.setState({
+                toastLoading: null
+            })
+        }
+        else {
+            toast[message_received["crometypes"]](message_received["content"]);
+        }
         this.props.updateMessage(message_received["content"])
     }
 

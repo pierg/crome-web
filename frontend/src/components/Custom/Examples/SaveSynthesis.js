@@ -8,10 +8,10 @@ function SocketSaveSynthesis(props) {
 
     const savedFinish = useCallback((message_received) => {
         props.setTrigger(false);
+        props.displayMessages(message_received);
         if(message_received["crometypes"] === "success") {
             props.savedDone();
         }
-        props.displayMessages(message_received);
     }, [props]) // eslint-disable-next-line
 
     useEffect(() => {
