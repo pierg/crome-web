@@ -137,7 +137,7 @@ export default class CustomContracts extends React.Component {
                     clickable={true}
                     onSelectCustomHeader={this.handleHeaderStates}
                 />
-
+                <div className="pb-12">
                 <div className="flex justify-center my-3 mx-60">
 
                     <div className="px-3 pb-5 mx-3 relative flex min-w-0 justify-center break-words bg-white rounded shadow-md w-full">
@@ -153,7 +153,7 @@ export default class CustomContracts extends React.Component {
                     </div>
 
                 </div>
-                <div className="mx-64 pb-12 ">
+                <div className="mx-64 mb-12 p-4 bg-white rounded shadow-md">
                 <GoalModeling
                     {...goalmodelinginfo}
                     id={this.state.id}
@@ -168,6 +168,7 @@ export default class CustomContracts extends React.Component {
                     contracts={true}
                 />
             </div>
+                    </div>
             </>
 
 
