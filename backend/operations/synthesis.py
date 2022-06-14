@@ -139,46 +139,34 @@ class Synthesis:
     @staticmethod
     def get_specific_synthesis(data, session_id):
         list_session = ["default", session_id]
+        file = None
+        dir = None
+        controller_folder = None
         for session in list_session:
             controller_folder = controller_path(session)
             file = Synthesis.__check_if_controller_exist(data["name"], controller_folder)
             if file:
-                controller = Controller.from_file(controller_folder / file)
-                content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
-                           "inputs": controller.info.i, "outputs": controller.info.o, "name": data["name"]}
-                return content
+                break
             _, dir_names, _ = next(walk(controller_folder))
             for dir_name in dir_names:
                 file = Synthesis.__check_if_controller_exist(data["name"], controller_folder / dir_name)
                 if file:
-                    controller = Controller.from_file(controller_folder / dir_name / file)
-                    content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
-                               "inputs": controller.info.i,
-                               "outputs": controller.info.o, "name": data["name"]}
-                    return content
+                    stop = True
+                    break
+        if file:
+            if dir:
+                controller = Controller.from_file(controller_folder / dir / file)
+            else:
+                controller = Controller.from_file(controller_folder / file)
+            content = {"assumptions": controller.info.a, "guarantees": controller.info.g,
+                       "inputs": controller.info.i,
+                       "outputs": controller.info.o, "name": data["name"]}
+            return content
 
     @staticmethod
     def simulate_controller(name, session_id, mode):
-        controller = Synthesis.create_controller(name, session_id, mode, controller_return=True)
         if mode == "crome":
-            content = []
-            for ctr in controller.controllers:
-                simu = ctr.mealy.simulate(do_print=False)
-                content_simu = []
-                for line in simu:
-                    if not('-' in line[-1] and '-' in line[-2]):
-                        content_simu.append(line)
-                content.append(content_simu)
-            return content
-        elif mode == "strix":
-            simu = controller.mealy.simulate(do_print=False)
-            content_simu = []
-            for line in simu:
-                if not('-' in line[-1] and '-' in line[-2]):
-                    content_simu.append(line)
-            return content_simu
-        else:
-            return None
+            return  # We haven't implemented it yet
 
     @staticmethod
     def __check_if_controller_exist(name, controller_folder) -> str:
