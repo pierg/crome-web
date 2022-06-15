@@ -104,14 +104,6 @@
   * None
 * returns-via: `"operation-complete"`
 
-### `"apply-disjunction"`
-#### Apply the disjunction operation
-* accepts :
-  * List of goals
-* returns :
-  * None
-* returns-via: `"operation-complete"`
-
 ### `"apply-refinement"`
 #### Apply the refinement operation
 * accepts :
@@ -132,14 +124,6 @@
 #### Apply the merging operation
 * accepts :
   * A list of goals and the project_id
-* returns :
-  * None
-* returns-via: `"operation-complete"`
-
-### `"apply-extension"`
-#### Apply the extension operation
-* accepts :
-  * List of goals
 * returns :
   * None
 * returns-via: `"operation-complete"`
@@ -168,6 +152,14 @@
   * None
 * returns-via: `"synthesis-saved"`
 
+### `"delete-synthesis"`
+#### Remove a synthesis from the session folder
+* accepts :
+  * The name of the synthesis
+* returns :
+  * None
+* returns-via: `"synthesis-deleted"`
+
 ### `"controller-strix"`
 #### Create the controller associated to the synthesis according to the Strix method
 * accepts :
@@ -184,21 +176,37 @@
   * None
 * returns-via: `"controller-created-crome"`
 
-### `"simulate-strix"`
-#### Simulate the mealy associated to the controller created by the Strix method
+### `"simulate-controller"`
+#### Make a controller react to a specific input chose by the user
 * accepts :
-  * Name of the synthesis, example : `'name': 'My Name'`
+  * The name of the controller, the mode of simulation and the input
 * returns :
   * None
-* returns-via: `"mealy-simulated-strix"`
+* returns-via: `"mealy-simulated"`
 
-### `"simulate-crome"`
-#### Simulate the mealies associated to the controller created by the parallel method
+### `"get-inputs"`
+#### Get all the inputs possible for the current state of a controller
 * accepts :
-  * Name of the synthesis, example : `'name': 'My Name'`
+  * The name of the controller and the mode of simulation
 * returns :
   * None
-* returns-via: `"mealy-simulated-crome"`
+* returns-via: `"received-inputs"`
+
+### `"reset-controller"`
+#### Reset a controller to his initial state
+* accepts :
+  * The name of the controller and the mode of simulation
+* returns :
+  * None
+* returns-via: `"reset-done"`
+
+### `"random-simulation-controller"`
+#### It simulates a controller by randomly choosing the inputs for each state
+* accepts :
+  * The name of the controller, the mode of simulation and the number of iterations
+* returns :
+  * None
+* returns-via: `"receive-random-simulation-controller"`
 
 ### `"session-existing"`
 #### Check if a session is existing in output folder
