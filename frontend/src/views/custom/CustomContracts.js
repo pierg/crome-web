@@ -163,6 +163,13 @@ export default class CustomContracts extends React.Component {
 
     }
 
+    addGoalAlreadyHere = (nodes) => {
+        for (let i=0; i<this.state.goals.length; i++) {
+            nodes.push({"id": this.state.goals[i].id, "label": this.state.goals[i].name})
+            nodes[nodes.length - 1].group = this.state.goals[i].hasOwnProperty("group") ? this.state.goals[i].group : "input"
+        }
+    }
+
 
     render() {
         let nodesArray = []
@@ -170,6 +177,8 @@ export default class CustomContracts extends React.Component {
 
 
         if (this.state.cgg) {
+            console.log(this.state.cggTab)
+            this.addGoalAlreadyHere(nodesArray)
             this.addCombinedGoal(nodesArray)
             this.addEdges(edgesArray)
         }
@@ -235,7 +244,7 @@ export default class CustomContracts extends React.Component {
                     }
                 }
             },
-            height: "400px",
+            height: "350px",
             autoResize: true,
             /*"physics": { // PARAMETERS FOR THE CGG, see documentation for more info
                 "forceAtlas2Based": {
@@ -278,7 +287,7 @@ export default class CustomContracts extends React.Component {
                             </div>
                             {this.state.cgg && (<>
                                 <div className="relative flex flex-auto mt-4 m-auto">
-                                    <div className="bg-lightBlue-500 bg-opacity-25 w-100 shadow-md">
+                                    <div className="bg-lightBlue-500 bg-opacity-25 w-100 shadow-md mx-4">
                                         <Graph
                                             graph={graph}
                                             options={options}
