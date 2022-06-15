@@ -154,9 +154,6 @@ export default class GoalModeling extends React.Component {
     }
 
     render() {
-
-        console.log("props.contracts dans goalmmodeling")
-        console.log(this.props.contracts)
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
             children.push(
@@ -296,8 +293,6 @@ export default class GoalModeling extends React.Component {
     }
 
     getGoals = (list) => {
-        // console.log("list in GoalModeling")
-        // console.log(list)
         let tmpArray = []
         let allGoals = []
         for (let i = 0; i < list.length; i++) {
@@ -313,8 +308,6 @@ export default class GoalModeling extends React.Component {
             editedGoals: tmpArray,
             numChildren: tmpArray.length
         })
-        // console.log("allGoals in GoalModeling")
-        // console.log(allGoals)
         this.props.setGoals(allGoals)
     }
 
