@@ -20,12 +20,6 @@ export default function CustomHeader({ cards, color, states, clickable, onSelect
     pink: "bg-pink-500",
   };
 
-const handleClick = (key) =>{
-    if(clickable){
-    onSelectCustomHeader(key)
-      }
-    };
-
   return (
     <>
       <div className={"relative pt-8 pb-12 " + bgColors[color]}>
@@ -33,9 +27,9 @@ const handleClick = (key) =>{
           <div>
             <div className="flex flex-wrap justify-center ">
               {cards.map((prop, key) => (
-                <div onClick={() => handleClick(key)} key={key} className="flex-initial w-64 px-3 ">
+                <div key={key} className="flex-initial w-64 px-3 ">
                   <CustomCardMini
-                      {...prop} clickable={clickable} state={states[key]}/>
+                      {...prop} clickable={clickable} headerKey={key} state={states[key]} onSelectCustomHeader={onSelectCustomHeader}/>
                 </div>
               ))}
             </div>

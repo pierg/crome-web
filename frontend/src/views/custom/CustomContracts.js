@@ -95,8 +95,8 @@ export default class CustomContracts extends React.Component {
         })
     }
 
-    handleHeaderStates = (activeHeaderIndex) => {
-        if (!this.state.headerStates[activeHeaderIndex]) {
+    onSelectCustomHeader = (activeHeaderIndex, clickable) => {
+        if (!this.state.headerStates[activeHeaderIndex] && clickable) {
             let newHeaderStates = Array(this.state.headerStates.length).fill(false);
             newHeaderStates[activeHeaderIndex] = true
             this.setState({
@@ -409,7 +409,7 @@ export default class CustomContracts extends React.Component {
                     color={"purple"}
                     states={this.state.headerStates}
                     clickable={true}
-                    onSelectCustomHeader={this.handleHeaderStates}
+                    onSelectCustomHeader={this.onSelectCustomHeader}
                 />
                 <div className="pb-12">
                     <div className="flex justify-center my-3 mx-60">
