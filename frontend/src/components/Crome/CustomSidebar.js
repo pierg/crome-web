@@ -79,6 +79,8 @@ export default function CustomSidebar({
               <LoginSession id={id} onIdSubmit={setId} cookie={cookie}/>
             </div>
             <div className="xxl:flex-col xxl:min-w-full flex flex-col list-none">
+
+
               {items.map((prop, key) => {
                 if (prop.divider) {
                   return <hr key={key} className="my-4 xxl:min-w-full" />;
@@ -104,7 +106,7 @@ export default function CustomSidebar({
                   return (
                     <h6
                       key={key}
-                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3"
+                      className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3 "
                     >
                       {prop.titleContracts}
                     </h6>
@@ -115,7 +117,7 @@ export default function CustomSidebar({
                     <a
                       {...prop.link}
                       key={key}
-                      className={classnames("text-xs uppercase py-3 font-bold block", {
+                      className={classnames("text-xs uppercase py-3 font-bold block focus:outline-none", {
                         [activeColors[activeColor]]: prop.link.href === currentRoute,
                         "text-blueGray-800 hover:text-blueGray-500":
                           prop.link.href !== currentRoute,
