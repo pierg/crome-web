@@ -101,3 +101,10 @@ def reset_controller(data):
     session_id = request.args.get("id")
     Synthesis.reset_controller(data["name"], session_id, data["mode"])
     emit("reset-done", True, room=request.sid)
+
+
+@socketio.on("random-simulation-controller")
+def random_simulation_controller(data):
+    session_id = request.args.get("id")
+    content = Synthesis.random_simulation(data["name"], data["iterations"], data["mode"], session_id)
+    emit("receive-random-simulation-controller", content, room=request.sid)
