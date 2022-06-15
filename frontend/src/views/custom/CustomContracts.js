@@ -8,6 +8,7 @@ import SocketIoContracts from "../../components/Custom/Examples/GetContracts";
 import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
 import cgginfo from "../../_texts/custom/cgginfo";
 import CGG from "../../components/Crome/CGG";
+import CustomContractsDescription from "./CustomContractsDescription";
 
 export default class CustomContracts extends React.Component {
     state = {
@@ -270,11 +271,17 @@ export default class CustomContracts extends React.Component {
                                 </>)}
                         </div>
 
-                        <div className="px-3 pb-5 mx-3 relative flex min-w-0 justify-center break-words bg-white rounded shadow-md w-full">
-                            <div className=" mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                {customcontractsinfo.info.texts.description}
-                            </div>
-                        </div>
+
+
+
+
+                <CustomContractsDescription
+                >
+
+                </CustomContractsDescription>
+
+
+
 
                     </div>
                 <div className="mx-64 mb-12 p-4 bg-white rounded shadow-md">

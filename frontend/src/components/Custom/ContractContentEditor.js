@@ -92,8 +92,8 @@ export default function ContractContentEditor({
                         </DropdownMenu>
                       </UncontrolledDropdown>
                     </td>
-                    <td>
-                      {prop.pattern === undefined && (
+                    {prop.pattern === undefined && (
+                    <td className="w-9/12" colSpan={2}>
                         <LTLTextArea
                           value={prop.ltl_value}
                           name="ltl_value"
@@ -104,8 +104,10 @@ export default function ContractContentEditor({
                             setLTLWorldValues(key, contractType, values)
                           }
                         />
-                      )}
-                      {prop.pattern !== undefined && (
+                    </td>
+                    )}
+                    {prop.pattern !== undefined && (
+                    <td className="w-5/12">
                         <CustomSelect
                           items={NamesOf(patterns)}
                           placeholder={infos.placeholders.pattern}
@@ -116,11 +118,11 @@ export default function ContractContentEditor({
                             changeParameter(e, contractType, key, value)
                           }
                         />
-                      )}
                     </td>
+                    )}
 
-                    <td>
-                      {prop.pattern !== undefined && (
+                    {prop.pattern !== undefined && (
+                    <td className="w-4/12">
                         <ContractEditArguments
                           title={infos.details}
                           content={searchPatterns(prop.pattern, patterns)}
@@ -134,8 +136,8 @@ export default function ContractContentEditor({
                           defaultOpened={key === open}
                           presentPattern={prop.pattern}
                         />
-                      )}
                     </td>
+                    )}
                     <td>
                       <Button
                         className="btn-icon"
