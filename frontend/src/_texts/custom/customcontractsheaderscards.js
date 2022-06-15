@@ -19,7 +19,7 @@ const textProps = {
           {
       statTitle: "quotient",
       statIconName: "fas fa-solid fa-divide",
-      statIconColor: "bg-indigo-500",
+      statIconColor: "bg-red-500",
     },
           {
       statTitle: "merging",
@@ -29,7 +29,7 @@ const textProps = {
       {
       statTitle: "separation",
       statIconName: "fas fa-solid fa-arrows-left-right-to-line",
-      statIconColor: "bg-red-500",
+      statIconColor: "bg-indigo-700",
     },
   ],
 };
