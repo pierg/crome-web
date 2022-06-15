@@ -274,7 +274,7 @@ export default class CustomSynthesis extends React.Component {
                                     width: width / 4.2,
                                     zoom: true
                                 })}
-                                className="p-2 m-4 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
+                                className="p-2 m-3 border-solid border-2 rounded-md flex bg-blueGray-100 border-blueGray-100 wrap-content"/>);
             }
         }
 
@@ -482,23 +482,23 @@ export default class CustomSynthesis extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row h-auto">
-                                    <div className="col-9 m-auto">
+                                    <div className="m-auto">
                                         {this.state.clickedButtonStrix ?
                                             <Graphviz
                                                 dot={this.state.graph}
                                                 options={({
                                                     fit: true,
-                                                    height: 450,
-                                                    width: width / 1.5,
+                                                    height: 400,
+                                                    width: width / 1.2,
                                                     zoom: true
                                                 })}
-                                                className="p-4 flex wrap-content"
+                                                className="p-4 flex wrap-content justify-center"
                                             />
                                         :
                                             <div className="flex flex-wrap p-4 justify-center">{children}</div>
                                         }
                                     </div>
-                                    <div className="col-2 offset-1 text-center py-5 m-auto">
+                                    <div className="row offset-1 text-center py-2 m-auto">
                                         <Link  to="simulation" spy={true} smooth={true}>
                                             <Button
                                                 id="simulationButton"
