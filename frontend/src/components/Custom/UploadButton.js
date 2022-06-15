@@ -21,8 +21,6 @@ function UploadButton(props) {
     }, [props, saved, filesContent, previousContent])
 
     if(props.contracts){
-        console.log("props.contracts dans Upload")
-        console.log(props.contracts)
         return (<></>);
     } else{
     return (

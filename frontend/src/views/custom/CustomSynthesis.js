@@ -319,7 +319,6 @@ export default class CustomSynthesis extends React.Component {
     }
 
     clickSimulation = () => {
-        console.log("click")
         this.setState({
             simulation: true,
         })
@@ -619,18 +618,16 @@ export default class CustomSynthesis extends React.Component {
                                         Simulation
                                     </div>
                                 </div>
-                                <div className="row h-auto">
-                                    <div className="flex flex-col">
-                                        {this.state.clickedButtonStrix ?
-                                            <Simulation
-                                                name={this.state.nameValue}
-                                                mode="strix"
-                                            />
-                                            : <div className="flex flex-wrap justify-center">
-                                                Work in progress
-                                            </div>
-                                        }
-                                    </div>
+                                <div className="row h-auto mt-4">
+                                    {this.state.clickedButtonStrix ?
+                                        <Simulation
+                                            name={this.state.nameValue}
+                                            mode="strix"
+                                        />
+                                        : <div className="flex flex-wrap justify-center">
+                                            Work in progress
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             : null

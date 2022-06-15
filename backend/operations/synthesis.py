@@ -192,12 +192,14 @@ class Synthesis:
             if not controller:
                 return  # The controller saved is not the one wanted. Glitch !
             old_state = controller.mealy.current_state.name
+            input_mealy = None
             for possible_input in controller.mealy.current_state.possible_inputs:
                 if str(possible_input).strip() == choice:
-                    choice = possible_input
+                    input_mealy = possible_input
                     break
-            
-            outputs = controller.mealy.react(choice)
+
+            outputs = controller.mealy.react(input_mealy)
+            outputs = " ".join([str(a) for a in outputs.sorted])
             result = [choice, old_state, controller.mealy.current_state.name, outputs]
             dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
             return result
@@ -216,6 +218,7 @@ class Synthesis:
                 old_state = controller.mealy.current_state.name
                 choice = random.choice(controller.mealy.current_state.possible_inputs)
                 outputs = controller.mealy.react(choice)
+                outputs = " ".join([str(a) for a in outputs.sorted])
                 new_state = controller.mealy.current_state.name
                 history.append([choice, old_state, new_state, outputs])
             return history
