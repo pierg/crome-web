@@ -10,7 +10,7 @@ import "assets/demo/react-demo.css";
 import "assets/demo/nucleo-icons-page-styles.css";
 
 // styles from Notus template
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import "assets/styles/tailwind.min.css";
 import "assets/styles/docs.css";
 

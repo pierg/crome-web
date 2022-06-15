@@ -1,5 +1,5 @@
 import React from 'react';
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import "../../assets/styles/tailwind.css";
 import GridWorld from "../../components/Crome/IndexEnvironment";
 import img from "./robot1.png";

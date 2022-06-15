@@ -1,5 +1,5 @@
 import React from 'react';
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import "../../assets/styles/tailwind.css";
 import "../../assets/styles/custom.css";
 import GoalView from "../../components/Custom/GoalView";
