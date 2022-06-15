@@ -214,13 +214,14 @@ class Synthesis:
             if not controller:
                 return
             history = []
-            for i in range(nb_iteration):
+            for i in range(int(nb_iteration)):
                 old_state = controller.mealy.current_state.name
                 choice = random.choice(controller.mealy.current_state.possible_inputs)
                 outputs = controller.mealy.react(choice)
                 outputs = " ".join([str(a) for a in outputs.sorted])
                 new_state = controller.mealy.current_state.name
                 history.append([str(choice).strip(), old_state, new_state, outputs])
+            dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
             return history
 
     @staticmethod

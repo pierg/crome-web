@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect} from 'react'
 import {useSocket} from "../../../contexts/SocketProvider";
 
-function SocketInputClicked(props) {
+function SocketResetClicked(props) {
     const socket = useSocket()
 
-    const setLine = useCallback((line) => {
-        socket.off('mealy-simulated')
-        props.setLine(line);
+    const setLines = useCallback((lines) => {
+        socket.off('reset-done')
+        props.emptyLines()
         props.setTriggerGetInput(true);
     }, [props,socket]) // eslint-disable-next-line
 
@@ -15,13 +15,13 @@ function SocketInputClicked(props) {
 
         if (props.trigger) {
             props.setTrigger(false)
-            socket.emit("simulate-controller",{name: props.name, mode: props.mode, input: props.input})
-            socket.on('mealy-simulated', setLine)
+            socket.emit("reset-controller",{name: props.name, mode: props.mode})
+            socket.on('reset-done', setLines)
         }
 
-    }, [socket, props, setLine])
+    }, [socket, props, setLines])
 
     return (<></>);
 }
 
-export default SocketInputClicked;
+export default SocketResetClicked;

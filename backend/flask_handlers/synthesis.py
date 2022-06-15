@@ -79,7 +79,11 @@ def create_controller_crome(name) -> None:
 
 
 @socketio.on("get-inputs")
-def get_inputs(data):
+def get_inputs(data) -> None:
+    """
+        Get all the imputs possible for the current state of a controller.
+        It differentiates the two ways of simulating the synthesis.
+    """
     session_id = request.args.get("id")
     inputs = Synthesis.get_input_possible(data["name"], session_id, data["mode"])
 
@@ -97,14 +101,22 @@ def simulate_controller(data) -> None:
 
 
 @socketio.on("reset-controller")
-def reset_controller(data):
+def reset_controller(data) -> None:
+    """
+        It reset a controller to his initial state.
+        It differentiates the two ways of simulating the synthesis.
+    """
     session_id = request.args.get("id")
     Synthesis.reset_controller(data["name"], session_id, data["mode"])
     emit("reset-done", True, room=request.sid)
 
 
 @socketio.on("random-simulation-controller")
-def random_simulation_controller(data):
+def random_simulation_controller(data) -> None:
+    """
+        It simulates a controller by randomly choosing the inputs for each state.
+        It differentiates the two ways of simulating the synthesis.
+    """
     session_id = request.args.get("id")
     content = Synthesis.random_simulation(data["name"], data["iterations"], data["mode"], session_id)
     emit("receive-random-simulation-controller", content, room=request.sid)
