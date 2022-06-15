@@ -1,6 +1,8 @@
 import React from "react";
 import SocketGetInputs from "./Examples/GetInputs";
 import SocketInputClicked from "./Examples/InputClicked";
+import SocketResetClicked from "./Examples/ResetClicked";
+import SocketRandomClicked from "./Examples/RandomClicked";
 import Button from "../Elements/Button";
 
 export default class Simulation extends React.Component {
@@ -9,8 +11,11 @@ export default class Simulation extends React.Component {
         triggerGetInputs : true,
         inputs : [],
         triggerInputClicked : false,
+        triggerResetClicked: false,
         inputClicked : null,
         inputNumberRandom : 25,
+        triggerRandomClicked: false,
+        lines : [],
     }
 
     setTriggerGetInputs = (bool) => {
@@ -33,7 +38,23 @@ export default class Simulation extends React.Component {
     }
 
     setLine = (line) => {
-        console.log(line)
+        let lines = this.state.lines
+        lines.push(line)
+        this.setState({
+            lines : lines,
+        })
+    }
+
+    setTriggerResetClicked = (bool) => {
+        this.setState({
+            triggerResetClicked : bool,
+        })
+    }
+
+    emptyLines = () => {
+        this.setState({
+            lines : [],
+        })
     }
 
     handleChange = (event) => {
@@ -44,6 +65,12 @@ export default class Simulation extends React.Component {
         this.setState({
             inputNumberRandom: inputNumberRandomTmp,
         });
+    }
+
+    setTriggerRandomClicked = (bool) => {
+        this.setState({
+            triggerRandomClicked : bool,
+        })
     }
 
     render(){
@@ -72,6 +99,33 @@ export default class Simulation extends React.Component {
                 </tr>
             );
         }
+
+        let linesDisplay = []
+        if(this.state.lines.length !== 0) {
+            for(let i=0; i<this.state.lines.length; i++) {
+                linesDisplay.push(
+                    <tr
+                        key={i}
+                    >
+                        <th scope="row">
+                            {i}
+                        </th>
+                        <td>
+                            {this.state.lines[i][0]}
+                        </td>
+                        <td>
+                            {this.state.lines[i][1]}
+                        </td>
+                        <td>
+                            {this.state.lines[i][2]}
+                        </td>
+                        <td>
+                            {this.state.lines[i][3]}
+                        </td>
+                    </tr>
+                );
+            }
+        }
         return (
             <>
                 <SocketGetInputs
@@ -84,58 +138,102 @@ export default class Simulation extends React.Component {
                 <SocketInputClicked
                     trigger={this.state.triggerInputClicked}
                     setTrigger={this.setTriggerInputClicked}
+                    setTriggerGetInput={this.setTriggerGetInputs}
                     setLine={this.setLine}
                     name={this.props.name}
                     mode={this.props.mode}
                     input={this.state.inputClicked}
                 />
-                <div className="col-2 offset-1">
-                    <div className="row">
-                        <table className="table">
-                            <thead className="mb-2">
-                                <tr className="text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Inputs</th>
-                                </tr>
-                            </thead>
-                            <tbody className="text-center">
-                                {inputDisplay}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="row">
-                        <div className="text-center">
-                            <Button
-                                size="sm"
-                                color="gray"
-                            >
-                                RESET
-                            </Button>
+                <SocketResetClicked
+                    trigger={this.state.triggerResetClicked}
+                    setTrigger={this.setTriggerResetClicked}
+                    setTriggerGetInput={this.setTriggerGetInputs}
+                    emptyLines={this.emptyLines}
+                    name={this.props.name}
+                    mode={this.props.mode}
+                />
+                <SocketRandomClicked
+                    trigger={this.state.triggerRandomClicked}
+                    setTrigger={this.setTriggerRandomClicked}
+                    setTriggerGetInput={this.setTriggerGetInputs}
+                    setLine={this.setLine}
+                    name={this.props.name}
+                    mode={this.props.mode}
+                    number={this.state.inputNumberRandom}
+                />
+                <div className="row mt-2">
+                    <div className="col-4 mt-2">
+                        <div className="row">
+                            <div className="text-center">
+                                <span
+                                    className="text-right inline-block w-16 mr-1"
+                                >
+                                    <input
+                                        type="text"
+                                        className="w-full"
+                                        pattern="[0-9]*"
+                                        onInput={this.handleChange}
+                                        value={this.state.inputNumberRandom}
+                                    />
+                                </span>
+                                <span className="text-left inline-block w-auto ml-1">
+                                    <Button
+                                        color="teal"
+                                        onClick={() => {this.setTriggerRandomClicked(true)}}
+                                    >
+                                        Random
+                                    </Button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="col-7 offset-1">
-                    <div className="row">
-                        <div className="col-2 offset-3">
-                            <input
-                                type="text"
-                                pattern="[0-9]*"
-                                className="w-full"
-                                onInput={this.handleChange}
-                                value={this.state.inputNumberRandom}
-                            />
+                        <div className="row mt-2">
+                            <div className="col-10 offset-1">
+                                <table className="table">
+                                    <thead className="mb-2">
+                                        <tr className="text-center">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Inputs</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-center">
+                                        {inputDisplay}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div className="col-4">
+                        <div className="row">
                             <div className="text-center">
                                 <Button
-                                    color="teal"
+                                    size="sm"
+                                    color="gray"
+                                    onClick={() => {this.setTriggerResetClicked(true)}}
                                 >
-                                    Random
+                                    RESET
                                 </Button>
                             </div>
                         </div>
                     </div>
-                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    <div className="col-7">
+                        <div className="row">
+                            {
+                                linesDisplay.length !== 0 &&
+                                <table className="table table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style={{"width":"5%"}}>#</th>
+                                            <th scope="col" style={{"width":"30%"}}>Inputs</th>
+                                            <th scope="col" style={{"width":"5%"}}>S</th>
+                                            <th scope="col" style={{"width":"5%"}}>S'</th>
+                                            <th scope="col" style={{"width":"55%"}}>outputs</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {linesDisplay}
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
                 </div>
             </>
         )

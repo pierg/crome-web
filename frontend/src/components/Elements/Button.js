@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Button = React.forwardRef(
   ({ outline, worldModeling, size, color, children, fullWidth, contracts, ...rest }, ref) => {
     const sizes = {
-      sm: "text-xs px-3 py-2 shadow hover:shadow-md rounded-md",
+      sm: "text-xs px-3 py-2 shadow-sm hover:shadow-md rounded-md",
       regular: "text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       regular2: "w-100 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
       lg: "text-sm px-6 py-3 shadow-md hover:shadow-lg rounded-lg",
