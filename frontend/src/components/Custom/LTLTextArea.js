@@ -48,15 +48,13 @@ const LTLTextArea = React.forwardRef(
       <>
         <div className={wrapperClasses + " relative"} ref={ref}>
           {leftAddon}
-            <>
-                  <LTLEdit
-                    goalEdit={true}
-                    value={spanValue}
-                    setValue={setSpanValue}
-                    size={12}
-                    inputsValue={listOfWorldVariables.toString()}
-                  />
-            </>
+          <LTLEdit
+            goalEdit={true}
+            value={spanValue}
+            setValue={setSpanValue}
+            size={12}
+            inputsValue={listOfWorldVariables.toString()}
+          />
           {rightAddon}
         </div>
       </>

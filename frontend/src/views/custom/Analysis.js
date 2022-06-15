@@ -11,7 +11,6 @@ import SocketBuildCGG from "../../components/Custom/Examples/SocketBuildCGG";
 import BuildCGG from "../../components/Custom/BuildCGG";
 import ReactLoading from "react-loading";
 import LegendCGG from "../../components/Custom/LegendCGG";
-import NodeModalView from "../../components/Custom/NodeModalView";
 import default_cgg from './default_cgg.json'
 
 /**
@@ -165,78 +164,6 @@ export default class Analysis extends React.Component {
 
     }
 
-    /**
-     * Find the children of a node and the type of operations they are linked with
-     * @param id
-     * @returns {string}
-     */
-    getNodeChildren = (nodesArray,id) => {
-        let str = ""
-        let goals1 = id.split("/\\")
-        let goals2 = id.split("**")
-        let goals3 = id.split("||")
-        if (goals1.length===2) {
-            str+="a conjunction link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[1])+"</strong>"
-        } else if(goals2.length===2) {
-            str+="a refinement link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[1])+"</strong>"
-        } else if(goals3.length===2) {
-            str+="a composition link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[1])+"</strong>"
-        }
-        return str
-    }
-
-    /**
-     * Find the parents of a node and the type of operations they are linked with
-     * @param nodesArray
-     * @param edgesArray
-     * @param id
-     * @returns {string}
-     */
-    getNodeParent = (nodesArray,edgesArray,id) => {
-        let str = ""
-        const operations = {"/\\" : "conjunction", "**" : "refinement","||" : "composition"}
-        let goals
-         if (edgesArray !== null) {
-             for (let i = 0; i < edgesArray.length; i++) {
-                if (edgesArray[i].from === id) {
-                    for (const key in operations) {
-                        goals = edgesArray[i].to.split(key)
-                        if (goals.length === 2 && (goals[0]===id || goals[1]===id)) {
-                            str+=operations[key]+" of <strong>"+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"</strong>\n"
-                        }
-                    }
-                }
-             }
-         }
-         return str
-    }
-
-    findGoalIndexById = (id) => {
-        if (this.props.goals !== null) {
-            for (let i = 0; i < this.props.goals.length; i++) {
-                if (this.props.goals[i].id === id) {
-                    return {"index": i, "goal": this.props.goals[i]}
-                }
-            }
-        }
-    }
-
-    findNodesIndexById = (nodesArray,id) => {
-        if (nodesArray !== null) {
-            for (let i = 0; i < nodesArray.length; i++) {
-                if (nodesArray[i].id === id) {
-                    return nodesArray[i].label
-                }
-            }
-        }
-    }
-
     componentDidMount() {
         if (this.props.project === "simple" && !this.state.cgg ) { //&& this.isDefaultGoals(this.props.goals)
             //this.callCGG("auto")
@@ -249,24 +176,6 @@ export default class Analysis extends React.Component {
         let that = this
         let nodesArray = []
         let edgesArray = []
-        /**
-         * Open the right modal when double-clicking on a goal or a node on the CGG
-         * @param id
-         */
-        function clickOnGoal(id) {
-            const result = that.findGoalIndexById(id[0])
-            if (result !== undefined && !result.goal.hasOwnProperty("group")) {
-                that.setModalGoal(true)
-                that.setCurrentGoalIndex(result.index)
-            } else {
-                const node = that.findNodesIndexById(nodesArray,id[0])
-                that.setNodeLabel(node)
-                that.setNodeChildren(that.getNodeChildren(nodesArray,id[0]))
-                that.setNodeParent(that.getNodeParent(nodesArray,edgesArray,id[0]))
-                that.setModalNode(true)
-            }
-        }
-
 
         if (this.state.cgg) {
             // the cgg state is a boolean, true if the cgg has been built
@@ -289,80 +198,6 @@ export default class Analysis extends React.Component {
         if (this.props.project === "simple") {
             graph = default_cgg
         }
-
-        const options = {
-            layout: {
-                improvedLayout: true,
-                hierarchical: {
-                    enabled : true,
-                    sortMethod: 'directed',
-                    direction: 'DU',
-                    shakeTowards: 'roots'
-                }
-
-            },
-            edges: {
-                color: "#000000",
-                arrows: {
-                    to: {
-                        scaleFactor: 1
-                    }
-                }
-            },
-            nodes: {
-                shape: "box"
-            },
-            groups: {
-                input: {
-                    color: {
-                        border: "#00bb00",
-                        background: "#ffffff",
-                        highlight: {
-                            border: "#88bb88",
-                            background: "#ccccee"
-                        }
-                    }
-                },
-                new: {
-                    color: {
-                        border: "#00bb00",
-                        background: "#00bb00",
-                        highlight: {
-                            border: "#88bb88",
-                            background: "#bbffbb"
-                        }
-                    }
-                },
-                library: {
-                    color: {
-                        border: "#ffbb00",
-                        background: "#ffffff",
-                        highlight: {
-                            border: "#ffbb88",
-                            background: "#eeeecc"
-                        }
-                    }
-                }
-            },
-            height: "725px",
-            autoResize: true,
-            /*"physics": { // PARAMETERS FOR THE CGG, see documentation for more info
-                "forceAtlas2Based": {
-                    "gravitationalConstant": -138,
-                    "centralGravity": 0.02,
-                    "springLength": 100
-                },
-                "minVelocity": 0.75,
-                "solver": "forceAtlas2Based",
-            }*/
-        };
-
-        const events = {
-            doubleClick: function (event) {
-                if (event.nodes.length !== 0) clickOnGoal(event.nodes)
-            }
-        };
-
 
 
         return (
@@ -388,8 +223,11 @@ export default class Analysis extends React.Component {
                         <CGG
                             active={this.props.active}
                             graph={graph}
-                            options={options}
-                            events={events}
+                            size="725px"
+                            goals={this.props.goals}
+                            patterns={this.props.patterns}
+                            nodesArray={nodesArray}
+                            edgesArray={edgesArray}
                         />
                         <BuildCGG
                             callCGG={this.callCGG}
@@ -398,19 +236,6 @@ export default class Analysis extends React.Component {
                         />
                         <LegendCGG/>
                     </div>
-                    <Modal
-                        isOpen={this.state.modalNode}
-                        toggle={() => this.setModalNode(false)}
-                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                        {this.props.goals !== null && (<>
-                            <NodeModalView
-                                nodeChildren={this.state.nodeChildren}
-                                nodeLabel={this.state.nodeLabel}
-                                nodeParent={this.state.nodeParent}
-                                close={() => this.setModalNode(false)}
-                                {...goaleditinfo}/>
-                        </>)}
-                    </Modal>
                     </>)}
                 {!this.state.cgg && (<>
                     <div className="flex flex-auto mt-4">

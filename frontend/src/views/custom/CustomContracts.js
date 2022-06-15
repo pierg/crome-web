@@ -7,11 +7,7 @@ import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
 import SocketIoContracts from "../../components/Custom/Examples/GetContracts";
 import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
 import cgginfo from "../../_texts/custom/cgginfo";
-import Graph from "react-graph-vis";
-import GoalModalView from "../../components/Custom/GoalModalView";
-import goaleditinfo from "../../_texts/custom/goaleditinfo";
-import {Modal} from "reactstrap";
-import NodeModalView from "../../components/Custom/NodeModalView";
+import CGG from "../../components/Crome/CGG";
 
 export default class CustomContracts extends React.Component {
     state = {
@@ -211,99 +207,11 @@ export default class CustomContracts extends React.Component {
         }
     }
 
-    findGoalIndexById = (id) => {
-        if (this.state.goals !== null) {
-            for (let i = 0; i < this.state.goals.length; i++) {
-                if (this.state.goals[i].id === id) {
-                    return {"index": i, "goal": this.state.goals[i]}
-                }
-            }
-        }
-    }
-
-    findNodesIndexById = (nodesArray,id) => {
-        if (nodesArray !== null) {
-            for (let i = 0; i < nodesArray.length; i++) {
-                if (nodesArray[i].id === id) {
-                    return nodesArray[i].label
-                }
-            }
-        }
-    }
-
-    /**
-     * Find the children of a node and the type of operations they are linked with
-     * @param id
-     * @returns {string}
-     */
-    getNodeChildren = (nodesArray,id) => {
-        let str = ""
-        let goals1 = id.split("/\\")
-        let goals2 = id.split("**")
-        let goals3 = id.split("||")
-        if (goals1.length===2) {
-            str+="a conjunction link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals1[1])+"</strong>"
-        } else if(goals2.length===2) {
-            str+="a refinement link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals2[1])+"</strong>"
-        } else if(goals3.length===2) {
-            str+="a composition link between "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[0])+"</strong> and "
-            str+="<strong>"+this.findNodesIndexById(nodesArray,goals3[1])+"</strong>"
-        }
-        return str
-    }
-
-    /**
-     * Find the parents of a node and the type of operations they are linked with
-     * @param nodesArray
-     * @param edgesArray
-     * @param id
-     * @returns {string}
-     */
-    getNodeParent = (nodesArray,edgesArray,id) => {
-        let str = ""
-        const operations = {"/\\" : "conjunction", "**" : "refinement","||" : "composition"}
-        let goals
-         if (edgesArray !== null) {
-             for (let i = 0; i < edgesArray.length; i++) {
-                if (edgesArray[i].from === id) {
-                    for (const key in operations) {
-                        goals = edgesArray[i].to.split(key)
-                        if (goals.length === 2 && (goals[0]===id || goals[1]===id)) {
-                            str+=operations[key]+" of <strong>"+this.findNodesIndexById(nodesArray,edgesArray[i].to)+"</strong>\n"
-                        }
-                    }
-                }
-             }
-         }
-         return str
-    }
 
 
     render() {
-        let that = this
         let nodesArray = []
         let edgesArray = []
-
-        function clickOnGoal(id) {
-            console.log(id[0])
-            const result = that.findGoalIndexById(id[0])
-            console.log(result)
-             if (result !== undefined && !result.goal.hasOwnProperty("group")) {
-                that.setModalGoal(true)
-                that.setCurrentGoalIndex(result.index)
-            } else {
-                const node = that.findNodesIndexById(nodesArray,id[0])
-                that.setNodeLabel(node)
-                that.setNodeChildren(that.getNodeChildren(nodesArray,id[0]))
-                that.setNodeParent(that.getNodeParent(nodesArray,edgesArray,id[0]))
-                that.setModalNode(true)
-            }
-        }
 
         if (this.state.cgg) {
             this.addGoalAlreadyHere(nodesArray)
@@ -316,79 +224,6 @@ export default class CustomContracts extends React.Component {
             edges: edgesArray
         }
 
-        const events = {
-            doubleClick: function (event) {
-                if (event.nodes.length !== 0) clickOnGoal(event.nodes)
-            }
-        };
-
-
-        const options = {
-            layout: {
-                improvedLayout: true,
-                hierarchical: {
-                    enabled : true,
-                    sortMethod: 'directed',
-                    direction: 'DU',
-                    shakeTowards: 'roots'
-                }
-
-            },
-            edges: {
-                color: "#000000",
-                arrows: {
-                    to: {
-                        scaleFactor: 1
-                    }
-                }
-            },
-            nodes: {
-                shape: "box"
-            },
-            groups: {
-                input: {
-                    color: {
-                        border: "#00bb00",
-                        background: "#ffffff",
-                        highlight: {
-                            border: "#88bb88",
-                            background: "#ccccee"
-                        }
-                    }
-                },
-                new: {
-                    color: {
-                        border: "#00bb00",
-                        background: "#00bb00",
-                        highlight: {
-                            border: "#88bb88",
-                            background: "#bbffbb"
-                        }
-                    }
-                },
-                library: {
-                    color: {
-                        border: "#ffbb00",
-                        background: "#ffffff",
-                        highlight: {
-                            border: "#ffbb88",
-                            background: "#eeeecc"
-                        }
-                    }
-                }
-            },
-            height: "350px",
-            autoResize: true,
-            /*"physics": { // PARAMETERS FOR THE CGG, see documentation for more info
-                "forceAtlas2Based": {
-                    "gravitationalConstant": -138,
-                    "centralGravity": 0.02,
-                    "springLength": 100
-                },
-                "minVelocity": 0.75,
-                "solver": "forceAtlas2Based",
-            }*/
-        };
 
         return (
             <>
@@ -418,42 +253,20 @@ export default class CustomContracts extends React.Component {
                             <div className=" mt-2 fs-5 text-center text-blueGray-500 uppercase font-bold">
                                 {customcontractsinfo.info.texts.goals}
                             </div>
-                            {this.state.cgg && (<>
+                            {this.state.cgg && this.state.goals && (<>
                                     <div className="relative flex flex-auto mt-4 m-auto">
-                                        <div className="bg-lightBlue-500 bg-opacity-25 w-100 shadow-md mx-4">
-                                            <Graph
+                                        <div className="mx-4 w-100">
+                                            <CGG
+                                                active={true}
                                                 graph={graph}
-                                                options={options}
-                                                events={events}
+                                                size={"350px"}
+                                                goals={this.state.goals}
+                                                nodesArray={nodesArray}
+                                                edgesArray={edgesArray}
+                                                patterns={this.state.patterns}
                                             />
                                         </div>
                                     </div>
-                                    <Modal
-                                        isOpen={this.state.modalGoal}
-                                        toggle={() => this.setModalGoal(false)}
-                                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                                        {this.state.goals !== null && this.state.goals[this.state.currentGoalIndex] !== undefined && (<>
-                                            <GoalModalView
-                                                goal={this.state.goals[this.state.currentGoalIndex]}
-                                                library={true}
-                                                close={() => this.setModalGoal(false)}
-                                                patterns={this.state.patterns}
-                                                {...goaleditinfo}/>
-                                        </>)}
-                                    </Modal>
-                                <Modal
-                                    isOpen={this.state.modalNode}
-                                    toggle={() => this.setModalNode(false)}
-                                    className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
-                                    {this.state.goals !== null && (<>
-                                        <NodeModalView
-                                            nodeChildren={this.state.nodeChildren}
-                                            nodeLabel={this.state.nodeLabel}
-                                            nodeParent={this.state.nodeParent}
-                                            close={() => this.setModalNode(false)}
-                                            {...goaleditinfo}/>
-                                    </>)}
-                                </Modal>
                                 </>)}
                         </div>
 
@@ -479,7 +292,7 @@ export default class CustomContracts extends React.Component {
                     contracts={true}
                 />
             </div>
-                    </div>
+                </div>
             </>
 
 
