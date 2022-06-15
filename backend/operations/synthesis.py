@@ -221,6 +221,7 @@ class Synthesis:
                 outputs = " ".join([str(a) for a in outputs.sorted])
                 new_state = controller.mealy.current_state.name
                 history.append([str(choice).strip(), old_state, new_state, outputs])
+            dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
             return history
 
     @staticmethod
