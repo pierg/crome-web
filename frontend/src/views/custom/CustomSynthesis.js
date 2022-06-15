@@ -345,8 +345,11 @@ export default class CustomSynthesis extends React.Component {
                                             <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.nameValue}
-                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                                     onChange={e => this.setNameValue(e)}
+                                                    style={{
+                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -387,8 +390,11 @@ export default class CustomSynthesis extends React.Component {
                                             <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.inputsValue}
-                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                                     onChange={e => this.setInputsValue(e)}
+                                                    style={{
+                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -399,8 +405,11 @@ export default class CustomSynthesis extends React.Component {
                                             <div className="col-8 relative">
                                                 <Input
                                                     value={this.state.outputsValue}
-                                                    className="border-blueGray-300 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
+                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
                                                     onChange={e => this.setOutputsValue(e)}
+                                                    style={{
+                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                                                    }}
                                                 />
                                             </div>
                                         </div>
