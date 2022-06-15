@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Button = React.forwardRef(
-  ({ outline, worldModeling, size, color, children, fullWidth, ...rest }, ref) => {
+  ({ outline, worldModeling, size, color, children, fullWidth, contracts, ...rest }, ref) => {
     const sizes = {
       sm: "text-xs px-3 py-2 shadow hover:shadow-md rounded-md",
       regular: "text-sm px-6 py-2 shadow hover:shadow-lg rounded-md",
@@ -120,6 +120,10 @@ const Button = React.forwardRef(
       "inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2 ";
     className = className + " " + colors[color + (outline ? "-outline" : "")];
     className = className + " " + sizes[size];
+
+    if(contracts) {
+      return (<></>);
+    }else{
     if (fullWidth) {
       className = className + " w-full text-center";
     }
@@ -133,6 +137,7 @@ const Button = React.forwardRef(
       </button>
     );
   }
+    }
 );
 Button.defaultProps = {
   outline: false,

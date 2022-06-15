@@ -11,7 +11,7 @@ import goaleditinfo from "_texts/custom/goaleditinfo.js";
 import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
 import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
 import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
 import SocketIoGoals from "../../components/Custom/Examples/GetGoals";
@@ -37,10 +37,15 @@ export default class GoalModeling extends React.Component {
      * @param index
      */
     downloadGoal = (index) => {
-        const goal = {"context" : this.state.goals[index].context, "contract" : this.state.goals[index].contract, "description" : this.state.goals[index].description, "name" : this.state.goals[index].name}
-        const json = JSON.stringify(goal,null,'\t')
-        const blob = new Blob([json], {type : "text/json;charset=utf-8"})
-        const file = new File([blob], this.state.goals[index].name+".json")
+        const goal = {
+            "context": this.state.goals[index].context,
+            "contract": this.state.goals[index].contract,
+            "description": this.state.goals[index].description,
+            "name": this.state.goals[index].name
+        }
+        const json = JSON.stringify(goal, null, '\t')
+        const blob = new Blob([json], {type: "text/json;charset=utf-8"})
+        const file = new File([blob], this.state.goals[index].name + ".json")
         saveAs(file)
     }
 
@@ -48,13 +53,18 @@ export default class GoalModeling extends React.Component {
         if (this.state.goals.length === 0) return
         let goals = []
         let goal
-        for (let i=0; i<this.state.goals.length; i++) {
-            goal = {"context" : this.state.goals[i].context, "contract" : this.state.goals[i].contract, "description" : this.state.goals[i].description, "name" : this.state.goals[i].name}
+        for (let i = 0; i < this.state.goals.length; i++) {
+            goal = {
+                "context": this.state.goals[i].context,
+                "contract": this.state.goals[i].contract,
+                "description": this.state.goals[i].description,
+                "name": this.state.goals[i].name
+            }
             goals.push(goal)
         }
-        const json = JSON.stringify(goals,null,'\t')
-        const blob = new Blob([json], {type : "text/json;charset=utf-8"})
-        const file = new File([blob], this.props.project+"_goals.json")
+        const json = JSON.stringify(goals, null, '\t')
+        const blob = new Blob([json], {type: "text/json;charset=utf-8"})
+        const file = new File([blob], this.props.project + "_goals.json")
         saveAs(file)
     }
 
@@ -79,7 +89,7 @@ export default class GoalModeling extends React.Component {
      */
     goalPartOfProject = (goal) => {
         if (goal.context.hasOwnProperty("world_values")) {
-            for (let i=0; i<goal.context.world_values.length; i++) {
+            for (let i = 0; i < goal.context.world_values.length; i++) {
                 if (!this.props.listOfWorldVariables[3].includes(goal.context.world_values[i]))
                     return false
             }
@@ -144,6 +154,9 @@ export default class GoalModeling extends React.Component {
     }
 
     render() {
+
+        console.log("props.contracts dans goalmmodeling")
+        console.log(this.props.contracts)
         const children = [];
         for (let i = 0; i < this.state.numChildren; i += 1) {
             children.push(
@@ -196,7 +209,11 @@ export default class GoalModeling extends React.Component {
                     toggleGetTrigger={this.props.toggleGetTrigger}
                     switchWorld={this.switchWorld}
                 />
-                <ParentComponent uploadGoal={this.uploadGoals} addChild={this.onAddChild} downloadGoals={this.downloadAllGoals}>
+                <ParentComponent
+                    uploadGoal={this.uploadGoals}
+                    addChild={this.onAddChild}
+                    contracts={this.props.contracts}
+                    downloadGoals={this.downloadAllGoals}>
                     {children}
                 </ParentComponent>
                 <Modal
@@ -225,7 +242,7 @@ export default class GoalModeling extends React.Component {
 
         this.setState({
             editedGoals: tmpGoals,
-        },() => this.setModalClassic(true, tmpGoals.length - 1))
+        }, () => this.setModalClassic(true, tmpGoals.length - 1))
     }
 
 
@@ -248,7 +265,7 @@ export default class GoalModeling extends React.Component {
     }
 
     editCurrentGoal = (newGoal) => {
-        this.setState( state => {
+        this.setState(state => {
             const editedGoals = state.editedGoals.map((item, j) => {
                 if (j === this.state.currentGoalIndex) {
                     return newGoal;
@@ -263,7 +280,7 @@ export default class GoalModeling extends React.Component {
     }
 
     saveCurrentGoal = (newGoal) => {
-        this.setState( state => {
+        this.setState(state => {
             const goals = state.goals.map((item, j) => {
                 if (j === this.state.currentGoalIndex) {
                     return newGoal;
@@ -283,7 +300,7 @@ export default class GoalModeling extends React.Component {
         // console.log(list)
         let tmpArray = []
         let allGoals = []
-        for (let i=0; i<list.length; i++) {
+        for (let i = 0; i < list.length; i++) {
             let parsedGoal = JSON.parse(list[i])
             if (!parsedGoal.hasOwnProperty("group") || parsedGoal.group !== "new") {
                 tmpArray.push(parsedGoal)
@@ -302,9 +319,9 @@ export default class GoalModeling extends React.Component {
     }
 
     getPatterns = (list) => {
-            this.setState({
-                patterns: JSON.parse(list)
-            }, () => this.props.setPatterns(this.state.patterns))
+        this.setState({
+            patterns: JSON.parse(list)
+        }, () => this.props.setPatterns(this.state.patterns))
     }
 
     toggleSaveTrigger = (bool) => {
@@ -320,47 +337,53 @@ export default class GoalModeling extends React.Component {
     }
 
     switchWorld = (id) => {
-            this.props.setProject(id)
-            this.props.toggleGetTrigger()
+        this.props.setProject(id)
+        this.props.toggleGetTrigger()
     }
 }
 
 GoalModeling.defaultProps = {
-  contract : ""
+    contract: ""
 };
 
 const ParentComponent = props => (
+
     <section className="relative">
+        <UploadButton
+            size="worldModeling"
+            upload={props.uploadGoal}
+            color={goalmodelinginfo.info.buttons.uploadGoal.color}
+            text={goalmodelinginfo.info.buttons.uploadGoal.text}
+            icon={goalmodelinginfo.info.buttons.uploadGoal.icon}
+            contracts={props.contracts}
+        />
+        <ElementsButton
+            contracts={props.contracts}
+            size="worldModeling"
+            color={goalmodelinginfo.info.buttons.downloadGoals.color} outline={true}
+            onClick={props.downloadGoals}>
+            <i className={goalmodelinginfo.info.buttons.downloadGoals.icon + "mr-2"}/>
+            {goalmodelinginfo.info.buttons.downloadGoals.text}
+        </ElementsButton>
+
         <div className="mx-auto w-full">
-            <div>
-                <div className="flex justify-between">
-                    <div className="flex flex-col">
-                        <UploadButton
-                            size="worldModeling"
-                            upload={props.uploadGoal}
-                            color={goalmodelinginfo.info.buttons.uploadGoal.color}
-                            text={goalmodelinginfo.info.buttons.uploadGoal.text}
-                            icon={goalmodelinginfo.info.buttons.uploadGoal.icon}
-                        />
-                        <div className="mt-2">
-                            <ElementsButton size="worldModeling" color={goalmodelinginfo.info.buttons.downloadGoals.color} outline={true} onClick={props.downloadGoals}>
-                               <i className={goalmodelinginfo.info.buttons.downloadGoals.icon+"mr-2"}/>
-                              {goalmodelinginfo.info.buttons.downloadGoals.text}
-                            </ElementsButton>
-                        </div>
+
+            <div className="flex justify-center">
+                <div className="flex flex-col">
+                    <div className="mt-2">
                     </div>
-                    <div onClick={props.addChild} className="w-full lg:w-6/12 xl:w-3/12 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
-                        <AddButton
-                            statText="Add a Goal"
-                            statIconName="fas fa-plus-square"
-                            statIconColor="text-lightBlue-700"
-                        />
-                    </div>
-                    <div  style={{width : 256, height : 164}}></div>
                 </div>
-                <div className="flex flex-wrap justify-center">
-                    {props.children}
+                <div onClick={props.addChild}
+                     className="w-full lg:w-6/12 xl:w-3/12 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-lightBlue-600 rounded mb-6 xl:mb-0 shadow-lg cursor-pointer opacity-1 transform duration-300 transition-all ease-in-out">
+                    <AddButton
+                        statText="Add a Goal"
+                        statIconName="fas fa-plus-square"
+                        statIconColor="text-lightBlue-700"
+                    />
                 </div>
+            </div>
+            <div className="flex flex-wrap justify-center">
+                {props.children}
             </div>
         </div>
     </section>

@@ -20,6 +20,11 @@ function UploadButton(props) {
         }
     }, [props, saved, filesContent, previousContent])
 
+    if(props.contracts){
+        console.log("props.contracts dans Upload")
+        console.log(props.contracts)
+        return (<></>);
+    } else{
     return (
         <div>
       <ElementsButton size={props.size} color={props.color} outline={true} onClick={() => openFileSelector()}>
@@ -30,7 +35,7 @@ function UploadButton(props) {
       </ElementsButton>
 
     </div>);
-
+}
 }
 
 export default UploadButton;
