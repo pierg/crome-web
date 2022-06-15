@@ -5,8 +5,6 @@ function SocketGetInputs(props) {
     const socket = useSocket()
 
     const setInputs = useCallback((inputs) => {
-        console.log("inputs SET")
-        console.log(inputs)
         props.setInputs(inputs);
     }, [props]) // eslint-disable-next-line
 
