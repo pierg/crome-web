@@ -214,7 +214,7 @@ class Synthesis:
             if not controller:
                 return
             history = []
-            for i in range(nb_iteration):
+            for i in range(int(nb_iteration)):
                 old_state = controller.mealy.current_state.name
                 choice = random.choice(controller.mealy.current_state.possible_inputs)
                 outputs = controller.mealy.react(choice)
