@@ -1,4 +1,5 @@
 import os
+import random
 from os import walk
 from pathlib import Path
 from typing import Any
@@ -191,10 +192,28 @@ class Synthesis:
             if not controller:
                 return  # The controller saved is not the one wanted. Glitch !
             old_state = controller.mealy.current_state.name
-            output = controller.mealy.react(choice)
-            result = [choice, old_state, controller.mealy.current_state.name, output]
+            outputs = controller.mealy.react(choice)
+            result = [choice, old_state, controller.mealy.current_state.name, outputs]
             dump_mono_controller(absolute_folder_path=controller_folder, controller=controller)
             return result
+
+    @staticmethod
+    def random_simulation(name, nb_iteration, mode, session_id):
+        controller_folder = controller_path(session_id)
+        if mode == "crome":
+            return  # TODO : After
+        if mode == "strix":
+            controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
+            if not controller:
+                return
+            history = []
+            for i in range(nb_iteration):
+                old_state = controller.mealy.current_state.name
+                choice = random.choice(controller.mealy.current_state.possible_inputs)
+                outputs = controller.mealy.react(choice)
+                new_state = controller.mealy.current_state.name
+                history.append([choice, old_state, new_state, outputs])
+            return history
 
     @staticmethod
     def get_input_possible(name, session_id, mode):
