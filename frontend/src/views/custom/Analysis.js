@@ -21,10 +21,6 @@ export default class Analysis extends React.Component {
 
     state = {
         modalGoal: false,
-        modalNode : false,
-        nodeLabel : "",
-        nodeChildren : "",
-        nodeParent : "",
         currentGoalIndex: 0,
         cgg: false,
         cggTab: null,
@@ -42,33 +38,9 @@ export default class Analysis extends React.Component {
         })
     }
 
-    setModalNode = (bool) => {
-        this.setState({
-            modalNode : bool
-        })
-    }
-
     setCurrentGoalIndex = (id) => {
         this.setState({
             currentGoalIndex: id
-        })
-    }
-
-    setNodeLabel = (str) => {
-        this.setState({
-            nodeLabel: str
-        })
-    }
-
-    setNodeChildren = (str) => {
-        this.setState({
-            nodeChildren : str
-        })
-    }
-
-    setNodeParent = (str) => {
-        this.setState({
-            nodeParent : str
         })
     }
 
@@ -220,15 +192,17 @@ export default class Analysis extends React.Component {
 
                 {this.state.cgg && (<>
                     <div className="relative flex flex-auto mt-4">
-                        <CGG
-                            active={this.props.active}
-                            graph={graph}
-                            size="725px"
-                            goals={this.props.goals}
-                            patterns={this.props.patterns}
-                            nodesArray={nodesArray}
-                            edgesArray={edgesArray}
-                        />
+                        <div className="w-11/12">
+                            <CGG
+                                active={this.props.active}
+                                graph={graph}
+                                size="725px"
+                                goals={this.props.goals}
+                                patterns={this.props.patterns}
+                                nodesArray={nodesArray}
+                                edgesArray={edgesArray}
+                            />
+                        </div>
                         <BuildCGG
                             callCGG={this.callCGG}
                             clickOnGoal2={this.clickOnGoal2}
@@ -239,7 +213,7 @@ export default class Analysis extends React.Component {
                     </>)}
                 {!this.state.cgg && (<>
                     <div className="flex flex-auto mt-4">
-                        <div className="bg-lightBlue-500 bg-opacity-25 w-50 shadow-md flex items-center justify-center" style={{width : 750, height : 725}}>
+                        <div className="bg-lightBlue-500 bg-opacity-25 w-75 shadow-md flex items-center justify-center" style={{width : 750, height : 725}}>
                             {this.state.triggerCGG && (<ReactLoading type="spinningBubbles" color="#fff" />)}
                         </div>
                         <BuildCGG
