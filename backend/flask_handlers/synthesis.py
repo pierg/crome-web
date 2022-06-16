@@ -2,28 +2,12 @@ from flask import request
 from flask_socketio import emit
 from backend.app import send_message_to_user
 from backend.operations.synthesis import Synthesis
-import time
-from time import strftime
 
 try:
     from __main__ import socketio
 except ImportError:
     from backend.app import socketio
 
-
-@socketio.on("test-notification")
-def test_notification():
-    now = time.localtime(time.time())
-    emit(
-        "send-notification",
-        {"crometypes": "success", "content": f"{strftime('%H:%M:%S', now)} test notification"},
-        room=request.sid
-    )
-    emit(
-        "send-message",
-        f"{strftime('%H:%M:%S', now)} test notification",
-        room=request.sid
-    )
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
@@ -116,6 +100,7 @@ def reset_controller(data) -> None:
     """
     session_id = request.args.get("id")
     Synthesis.reset_controller(data["name"], session_id, data["mode"])
+    send_message_to_user("The simulation has been reset", request.sid, "success")
     emit("reset-done", True, room=request.sid)
 
 
@@ -128,3 +113,5 @@ def random_simulation_controller(data) -> None:
     session_id = request.args.get("id")
     content = Synthesis.random_simulation(data["name"], data["iterations"], data["mode"], session_id)
     emit("receive-random-simulation-controller", content, room=request.sid)
+    send_message_to_user(f"A random simulation of {data['iterations']} iterations has been made",
+                         request.sid, "success")

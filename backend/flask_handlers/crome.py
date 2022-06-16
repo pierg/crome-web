@@ -44,14 +44,14 @@ def save_project(data) -> None:
     session_id = str(request.args.get("id"))
     name: str = data["world"]["info"]["name"]
     now = time.localtime(time.time())
-    send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" is being saved.',
+    send_message_to_user(content='The project "' + name + '" is being saved.',
                          room_id=request.sid, crometype="success")
 
     ProjectUtility.save_project(data, session_id)
 
     now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=request.sid)
-    send_message_to_user(content=strftime("%H:%M:%S", now) + ' The project "' + name + '" has been saved.',
+    send_message_to_user(content='The project "' + name + '" has been saved.',
                          room_id=request.sid, crometype="success")
 
 
@@ -77,7 +77,7 @@ def delete_project(data) -> None:
 
     emit("deletion-complete", True, room=request.sid)
     now = time.localtime(time.time())
-    send_message_to_user(content=time.strftime("%H:%M:%S", now) + " The project has been deleted.",
+    send_message_to_user(content="The project has been deleted.",
                          room_id=request.sid, crometype="success")
 
 
@@ -116,7 +116,7 @@ def add_goal(data) -> None:
 
     try:
         GoalUtility.add_goal(data, session_id, project_id)
-        send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
+        send_message_to_user(content='The goal "' + name + '" has been saved.',
                              room_id=request.sid, crometype="success")
         error_occurrence = False
     except KeyError as keyError:
@@ -176,7 +176,7 @@ def delete_goal(data) -> None:
 
     # Now we remove the goal from the .dat file
     now = time.localtime(time.time())
-    send_message_to_user(content=strftime("%H:%M:%S", now) + " The goal has been deleted.",
+    send_message_to_user(content="The goal has been deleted.",
                          room_id=request.sid, crometype="success")
 
 

@@ -201,6 +201,7 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
     """
     Simplified version to send a notification and a message to a user.
     """
+    now = time.localtime(time.time())
     emit(
         "send-notification",
         {"crometypes": crometype, "content": content},
@@ -208,7 +209,7 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
     )
     emit(
         "send-message",
-        content,
+        f"{strftime('%H:%M:%S', now)} - {content}",
         room=room_id
     )
 

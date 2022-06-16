@@ -224,7 +224,7 @@ def modify_contracts_goals(data):
     try:
         GoalUtility.add_goal(data, session_id, project_id)
         emit("contract-goals-saved", True, room=request.sid)
-        send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
+        send_message_to_user(content='The goal "' + name + '" has been saved.',
                              room_id=request.sid, crometype="success")
         error_occurrence = False
     except KeyError as keyError:
