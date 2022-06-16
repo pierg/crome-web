@@ -1,11 +1,9 @@
 import React from "react";
-import {Input} from "reactstrap";
 import Button from "../../components/Elements/Button";
 import synthesisInfo from "../../_texts/custom/synthesisinfo";
 import "../../assets/styles/textEditorStyle.css"
 import {Link} from 'react-scroll';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Tree, Classes } from "@blueprintjs/core";
 import SocketSaveSynthesis from "../../components/Custom/Examples/SaveSynthesis";
 import SocketDeleteSynthesis from "../../components/Custom/Examples/DeleteSynthesis";
 import SocketGetSynthesis from "../../components/Custom/Examples/GetSynthesis";
@@ -13,8 +11,7 @@ import { Graphviz } from 'graphviz-react';
 import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
 import {toast} from "react-toastify";
 import Simulation from "../../components/Custom/Simulation";
-import LTLEdit from "../../components/Custom/LTLEdit";
-
+import SynthesisForm from "../../components/Custom/SynthesisForm";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -44,7 +41,7 @@ export default class CustomSynthesis extends React.Component {
         simulation : false,
     }
 
-    setNameValue(e) {
+    setNameValue = (e) => {
         this.setState({
             nameValue : e.target.value
         })
@@ -62,13 +59,13 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    setInputsValue(e) {
+    setInputsValue = (e) => {
         this.setState({
             inputsValue : e.target.value
         })
     }
 
-    setOutputsValue(e) {
+    setOutputsValue = (e) => {
         this.setState({
             outputsValue : e.target.value
         })
@@ -93,7 +90,7 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    changeIsOpen({e}) {
+    changeIsOpen = ({e}) => {
         e.isExpanded = !e.isExpanded
         let creationExpanded = this.state.creationExpanded
         let sizeFolder = this.state.nbFolders
@@ -311,140 +308,26 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
-                    <div className="px-3 pb-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
-                        <div className="flex flex-col justify-center p-5 ">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-8">
-                                        <div className="row">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.name}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={this.state.nameValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => this.setNameValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.assumptions}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <LTLEdit
-                                                    goalEdit={false}
-                                                    value={this.state.assumptionsValue}
-                                                    setValue={this.setAssumptionsValue}
-                                                    size={16}
-                                                    inputsValue={this.state.inputsValue}
-                                                    outputsValue={this.state.outputsValue}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.guarantees}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <LTLEdit
-                                                    goalEdit={false}
-                                                    value={this.state.guaranteesValue}
-                                                    setValue={this.setGuaranteesValue}
-                                                    size={16}
-                                                    inputsValue={this.state.inputsValue}
-                                                    outputsValue={this.state.outputsValue}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.inputs}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={this.state.inputsValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => this.setInputsValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.outputs}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={this.state.outputsValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => this.setOutputsValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-4">
-                                        <div className="row">
-                                            <div className="text-center fs-6 text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.load}
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3 relative">
-                                            <Tree
-                                                contents={this.state.tree}
-                                                className={Classes.TEXT_SMALL}
-                                                onNodeClick={e => this.changeIsOpen({e: e})}
-                                            />
-                                            {this.state.creationExpanded && deleteCreation}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="container mt-16">
-                                    <div className="row">
-                                        <div id="buttons" className="col-3 offset-2">
-                                            <Link  to="synthesis" spy={true} smooth={true}>
-                                                <Button
-                                                    id="buttonSynthesisStrix"
-                                                    color={synthesisInfo.info.buttons.synthesis.color}
-                                                    size="lg"
-                                                    outline={this.state.clickedButtonStrix}
-                                                    fullWidth={true}
-                                                    onClick={this.synthesisStrix}
-                                                >
-                                                    {synthesisInfo.info.buttons.synthesis.strix}
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                        <div className="col-3 offset-2">
-                                             <Link  to="synthesis" spy={true} smooth={true}>
-                                                <Button
-                                                    id="buttonParallelSynthesis"
-                                                    color={synthesisInfo.info.buttons.synthesis.color}
-                                                    size="lg"
-                                                    outline={this.state.clickedButtonParallel}
-                                                    fullWidth={true}
-                                                    onClick={this.parallelSynthesis}
-                                                >
-                                                    {synthesisInfo.info.buttons.synthesis.parallel}
-                                                </Button>
-                                             </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <SynthesisForm
+                    nameValue={this.state.nameValue}
+                    setNameValue={this.setNameValue}
+                    assumptionsValue={this.state.assumptionsValue}
+                    setAssumptionsValue={this.setAssumptionsValue}
+                    inputsValue={this.state.inputsValue}
+                    outputsValue={this.state.outputsValue}
+                    guaranteesValue={this.state.guaranteesValue}
+                    setGuaranteesValue={this.setGuaranteesValue}
+                    setInputsValue={this.setInputsValue}
+                    setOutputsValue={this.setOutputsValue}
+                    tree={this.state.tree}
+                    changeIsOpen={this.changeIsOpen}
+                    creationExpanded={this.state.creationExpanded}
+                    deleteCreation={deleteCreation}
+                    clickedButtonStrix={this.state.clickedButtonStrix}
+                    synthesisStrix={this.synthesisStrix}
+                    clickedButtonParallel={this.state.clickedButtonParallel}
+                    parallelSynthesis={this.parallelSynthesis}
+                />
                 <div  id="synthesis" className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
                 {
                         this.state.graph ?
