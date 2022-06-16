@@ -6,12 +6,11 @@ function SocketDeleteSynthesis(props) {
 
     const socket = useSocket()
 
-    const deletedFinish = useCallback((message_received) => {
+    const deletedFinish = useCallback((bool) => {
         props.setTrigger(false);
-        if(message_received["crometypes"] === "success") {
+        if(bool) {
             props.deletedDone();
         }
-        //props.displayMessages(message_received);
     }, [props]) // eslint-disable-next-line
 
     useEffect(() => {

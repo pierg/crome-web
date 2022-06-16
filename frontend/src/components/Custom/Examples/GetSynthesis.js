@@ -4,11 +4,10 @@ import {useSocket} from "../../../contexts/SocketProvider";
 function SocketGetSynthesis(props) {
     const socket = useSocket()
 
-    const setGraph = useCallback((message_received) => {
-        if(message_received["crometypes"] === "success") {
-            props.setGraph(message_received["graph"]);
+    const setGraph = useCallback((graph) => {
+        if(graph) {
+            props.setGraph(graph);
         }
-        props.displayMessages(message_received, true);
         if (props.strix) {
             socket.off('controller-created-strix')
         }

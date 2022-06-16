@@ -53,7 +53,13 @@ class Synthesis:
         if not os.path.exists(controller_folder):
             os.makedirs(controller_folder)
         _, _, filenames = next(walk(controller_folder))
-        greatest_id = int(len(filenames)) + 1
+        m = -1
+        for filename in filenames:
+            sp = filename.split('.')
+            if sp[-1] == "txt":
+                if m < int(sp[0]):
+                    m = int(sp[0])
+        greatest_id = m + 1
 
         # We check if the same name don't already exist. If so we use the same .txt
         file_checked = Synthesis.__check_if_controller_exist(data["name"], controller_folder)

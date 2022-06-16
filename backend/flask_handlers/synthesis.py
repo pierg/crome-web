@@ -2,12 +2,28 @@ from flask import request
 from flask_socketio import emit
 from backend.app import send_message_to_user
 from backend.operations.synthesis import Synthesis
+import time
+from time import strftime
 
 try:
     from __main__ import socketio
 except ImportError:
     from backend.app import socketio
 
+
+@socketio.on("test-notification")
+def test_notification():
+    now = time.localtime(time.time())
+    emit(
+        "send-notification",
+        {"crometypes": "success", "content": f"{strftime('%H:%M:%S', now)} test notification"},
+        room=request.sid
+    )
+    emit(
+        "send-message",
+        f"{strftime('%H:%M:%S', now)} test notification",
+        room=request.sid
+    )
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
@@ -27,13 +43,12 @@ def save_synthesis(data) -> None:
     session_id = str(request.args.get("id"))
     for key in data:
         if not data[key]:
-            emit("synthesis-saved",
-                 {"crometypes": "error", "content": "The mealy was not saved. Some fields are not filled in."},
-                 room=request.sid)
+            emit("synthesis-saved", False, room=request.sid)
             return
     Synthesis.create_txt_file(data, session_id)
 
-    emit("synthesis-saved", {"crometypes": "success", "content": "The mealy has been saved"}, room=request.sid)
+    send_message_to_user("The mealy has been saved", request.sid, "success")
+    emit("synthesis-saved", True, room=request.sid)
 
 
 @socketio.on("delete-synthesis")
@@ -45,7 +60,8 @@ def delete_synthesis(name) -> None:
 
     Synthesis.delete_synthesis(name, session_id)
 
-    emit("synthesis-deleted", {"crometypes": "success", "content": f"The synthesis '{name}' has been deleted."}, room=request.sid)
+    send_message_to_user(f"The synthesis '{name}' has been deleted.", request.sid, "success")
+    emit("synthesis-deleted", True, room=request.sid)
 
 
 @socketio.on("controller-strix")
@@ -55,12 +71,8 @@ def create_controller_strix(name) -> None:
     """
     json_content = Synthesis.create_controller(name, request.args.get("id"), "strix")
 
-    emit("controller-created-strix",
-         {
-             "graph": json_content,
-             "crometypes": "success",
-             "content": "The mealy has been created using strix method"
-         }, room=request.sid)
+    send_message_to_user("The mealy has been created using strix method", request.sid, "success")
+    emit("controller-created-strix", json_content, room=request.sid)
 
 
 @socketio.on("controller-crome")
@@ -70,12 +82,8 @@ def create_controller_crome(name) -> None:
     """
     json_content = Synthesis.create_controller(name, request.args.get("id"), "crome")
 
-    emit("controller-created-crome",
-         {
-             "graph": json_content,
-             "crometypes": "success",
-             "content": "The mealy has been created using parallel method"
-         }, room=request.sid)
+    send_message_to_user("The mealy has been created using parallel method", request.sid, "success")
+    emit("controller-created-crome", json_content, room=request.sid)
 
 
 @socketio.on("get-inputs")
