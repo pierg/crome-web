@@ -2,28 +2,12 @@ from flask import request
 from flask_socketio import emit
 from backend.app import send_message_to_user
 from backend.operations.synthesis import Synthesis
-import time
-from time import strftime
 
 try:
     from __main__ import socketio
 except ImportError:
     from backend.app import socketio
 
-
-@socketio.on("test-notification")
-def test_notification():
-    now = time.localtime(time.time())
-    emit(
-        "send-notification",
-        {"crometypes": "success", "content": f"{strftime('%H:%M:%S', now)} test notification"},
-        room=request.sid
-    )
-    emit(
-        "send-message",
-        f"{strftime('%H:%M:%S', now)} test notification",
-        room=request.sid
-    )
 
 @socketio.on("get-synthesis")
 def get_synthesis() -> None:
