@@ -139,6 +139,21 @@ def disconnected() -> None:
         del users[session_id][tab_id]
 
 
+@socketio.on("test-notification")
+def test_notification():
+    now = time.localtime(time.time())
+    emit(
+        "send-notification",
+        {"crometypes": "success", "content": f"{strftime('%H:%M:%S', now)} test notification"},
+        room=request.sid
+    )
+    emit(
+        "send-message",
+        f"{strftime('%H:%M:%S', now)} test notification",
+        room=request.sid
+    )
+
+
 @app.route("/")
 def index() -> Response:
     return app.send_static_file("index.html")
