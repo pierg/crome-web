@@ -212,7 +212,6 @@ def modify_contracts_goals(data):
 
     project_folder = project_path(session_id, project_id)
     if not os.path.isdir(project_folder):
-        os.mkdir(project_folder)
         shutil.copytree(
             project_path("contracts", project_id), project_folder
         )
@@ -224,6 +223,7 @@ def modify_contracts_goals(data):
 
     try:
         GoalUtility.add_goal(data, session_id, project_id)
+        emit("contract-goals-saved", True, room=request.sid)
         send_message_to_user(content=strftime("%H:%M:%S", now) + ' The goal "' + name + '" has been saved.',
                              room_id=request.sid, crometype="success")
         error_occurrence = False
