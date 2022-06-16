@@ -27,37 +27,7 @@ export default class CustomContracts extends React.Component {
         projectAdded: false,
         setTriggerGoals: false,
         uploadConfirmation: false,
-        patterns: [],
-        nodeLabel: "",
-        modalGoal: false,
-        modalNode : false,
-        currentGoalIndex: 0,
-        nodeChildren: "",
-        nodeParent: ""
-    }
-
-    setCurrentGoalIndex = (id) => {
-        this.setState({
-            currentGoalIndex: id
-        })
-    }
-
-    setNodeChildren = (str) => {
-        this.setState({
-            nodeChildren : str
-        })
-    }
-
-    setNodeParent = (str) => {
-        this.setState({
-            nodeParent : str
-        })
-    }
-
-    setModalNode = (bool) => {
-        this.setState({
-            modalNode : bool
-        })
+        patterns: []
     }
 
     setTriggerGetContract = (bool) => {
@@ -77,18 +47,6 @@ export default class CustomContracts extends React.Component {
             cggTab: contentJSON,
             triggerCGG: false,
             cgg: true,
-        })
-    }
-
-    setModalGoal = (bool) => {
-        this.setState({
-            modalGoal: bool
-        })
-    }
-
-    setNodeLabel = (str) => {
-        this.setState({
-            nodeLabel: str
         })
     }
 
