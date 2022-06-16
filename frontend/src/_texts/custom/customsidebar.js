@@ -22,7 +22,7 @@ const textProps = {
       },
     },
     {
-      titleContracts: "SYNTHESIS",
+      titleSynthesis: "SYNTHESIS",
     },
     {
       icon: "fas fa-tv",
@@ -32,7 +32,7 @@ const textProps = {
       },
     },
     {
-      titleSynthesis: "CONTRACTS",
+      titleContracts: "CONTRACTS",
     },
     {
       icon: "fas fa-tv",
@@ -42,6 +42,27 @@ const textProps = {
       },
     },
 
+          {
+      titleLogic: "LOGIC",
+    },
+    {
+      icon: "fas fa-tv",
+      text: "Run LOGIC",
+      link: {
+        href: "#/logic",
+      },
+    },
+
+          {
+      titleLastPage: "LastPage",
+    },
+    {
+      icon: "fas fa-tv",
+      text: "Run LastPage",
+      link: {
+        href: "#",
+      },
+    },
   ],
 };
 export default textProps;
