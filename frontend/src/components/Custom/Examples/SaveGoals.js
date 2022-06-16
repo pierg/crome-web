@@ -13,8 +13,10 @@ function SocketSaveGoals(props) {
 
     const triggerGoalSaved = useCallback(() => {
         props.toggleGetTrigger()
-        return () => socket.off('contract-goals-saved')
-    }, [props])
+
+        if (props.contracts)
+            return () => socket.off('contract-goals-saved')
+    }, [props, socket])
 
 
     useEffect(() => {

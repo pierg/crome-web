@@ -25,7 +25,8 @@ export default class CustomContracts extends React.Component {
         cgg: false,
         cggTab: null,
         projectAdded: false,
-        setTriggerGoals: false,
+        triggerGoals: false,
+        triggerGoalsChecked : false,
         uploadConfirmation: false,
         patterns: []
     }
@@ -49,6 +50,12 @@ export default class CustomContracts extends React.Component {
             cgg: true,
         })
     }
+
+    swapTriggerGoalsChecked = (bool) => {
+        this.setState({
+            triggerGoalsChecked: bool
+        })
+      }
 
     onSelectCustomHeader = (activeHeaderIndex, clickable) => {
         if (!this.state.headerStates[activeHeaderIndex] && clickable) {
@@ -98,8 +105,11 @@ export default class CustomContracts extends React.Component {
     }
 
     toggleGetTrigger = () => {
-        this.setState({setTriggerGoals: !this.setTriggerGoals})
+        this.setState({
+            triggerGoals: !this.state.triggerGoals
+        })
     }
+
     setPatterns = () => {
         this.setState({patterns: this.patterns})
     }
@@ -242,11 +252,14 @@ export default class CustomContracts extends React.Component {
                             project={this.state.project}
                             setGoals={this.settingGoals}
                             setPatterns={this.setPatterns}
+                            triggerGetGoals={this.state.triggerGoals}
+                            toggleGetTrigger={this.toggleGetTrigger}
                             listOfWorldVariables={this.state.listOfWorldVariables}
                             setProject={(project) =>
                                 this.addProjectFromGoalModeling(project)
                             }
-                            toggleGetTrigger={this.toggleGetTrigger}
+                            triggerGoalsChecked={this.state.triggerGoalsChecked}
+                            swapTriggerGoalsChecked={this.swapTriggerGoalsChecked}
                             contracts={true}
                         />
                     </div>

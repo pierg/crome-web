@@ -35,18 +35,19 @@ function SocketIoGoals(props) {
 
     useEffect(() => {
         if (socket == null) return
+
         if(props.contracts) {
             socket.emit('get-contracts-goals', props.projectId)
             socket.on('receive-contracts-goals', setMessageFunction)
             return () => socket.off('receive-contracts-goals')
         }
         else{
-        socket.emit('get-goals', {project: props.projectId})
+            socket.emit('get-goals', {project: props.projectId})
 
-        socket.on('receive-goals', setMessageFunction)
+            socket.on('receive-goals', setMessageFunction)
 
-        return () => socket.off('receive-goals')
-            }
+            return () => socket.off('receive-goals')
+        }
     }, [socket, setMessageFunction, props.projectId, props.triggerGoals, props.contracts])
 
     useEffect(() => {
