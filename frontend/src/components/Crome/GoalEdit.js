@@ -85,12 +85,6 @@ function GoalEdit(props) {
         props.edit(goal)
     }
 
-    function handleKeyEvent(event) {
-        if (event.key === "Enter") {
-            props.save(goal)
-        }
-    }
-
     useEffect(() => {
         let tabFormula = formulaText.split(" ");
         let context = ""
@@ -127,7 +121,7 @@ function GoalEdit(props) {
                 </button>
                 <h4 className="title title-up">{props.info.title}</h4>
             </div>
-            <div className="modal-body justify-content-center" onKeyPress={handleKeyEvent}>
+            <div className="modal-body justify-content-center">
                 <Input
                     type="text"
                     placeholder="Title of the Goal"
