@@ -2,7 +2,7 @@ import os
 import shutil
 import time
 
-from time import time, strftime
+from time import strftime
 from flask import request
 from flask_socketio import emit
 
