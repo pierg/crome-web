@@ -92,6 +92,29 @@ function GoalEdit(props) {
         setFormulaRed(formulaRed);
     }, [formulaText,props.listOfWorldVariables]);
 
+let contextHtml;
+    if(props.contracts){
+        contextHtml= <></>
+
+                }
+    else{
+        contextHtml =                 <div className="mt-4">
+                    <h4 className="font-bold title-up mb-2 inline">{props.info.context.title} : </h4>
+                    <input
+                        type="text"
+                        placeholder="write boolean"
+                        name="context"
+                        className="ml-4 border-blueGray-300 text-sm placeholder-blueGray-200 bg-white rounded-md border border-solid"
+                        value={props.goal.context["formula"]}
+                        onChange={changeParameter}
+                    />
+                    <div
+                        className={"w-64 ml-12 center inline"}
+                        dangerouslySetInnerHTML={{ __html: "Formula : "+formulaRed }}
+                    />
+                </div>
+    }
+
     return(
         <>
             <div className="modal-header justify-content-center">
@@ -149,21 +172,12 @@ function GoalEdit(props) {
                         </Table>
                     </div>
                 </div>
-                <div className="mt-4">
-                    <h4 className="font-bold title-up mb-2 inline">{props.info.context.title} : </h4>
-                    <input
-                        type="text"
-                        placeholder="write boolean"
-                        name="context"
-                        className="ml-4 border-blueGray-300 text-sm placeholder-blueGray-200 bg-white rounded-md border border-solid"
-                        value={props.goal.context["formula"]}
-                        onChange={changeParameter}
-                    />
-                    <div
-                        className={"w-64 ml-12 center inline"}
-                        dangerouslySetInnerHTML={{ __html: "Formula : "+formulaRed }}
-                    />
-                </div>
+
+
+                {contextHtml}
+
+
+
                 {props.info.contract.map((prop, key) => (
                     <div key={key}><h4 className="title title-up">{prop.title}</h4>
                     <ContractContentEditor
