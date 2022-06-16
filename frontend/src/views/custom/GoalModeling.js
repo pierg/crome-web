@@ -201,6 +201,7 @@ export default class GoalModeling extends React.Component {
                     projectId={this.props.project}
                     index={this.state.currentGoalIndex}
                     goals={this.state.editedGoals}
+                    contracts={this.props.contracts}
                     triggerSave={this.state.saveTrigger}
                     toggleSaveTrigger={this.toggleSaveTrigger}
                     toggleGetTrigger={this.props.toggleGetTrigger}
@@ -277,6 +278,7 @@ export default class GoalModeling extends React.Component {
     }
 
     saveCurrentGoal = (newGoal) => {
+        console.log(newGoal)
         this.setState(state => {
             const goals = state.goals.map((item, j) => {
                 if (j === this.state.currentGoalIndex) {

@@ -13,6 +13,7 @@ function SocketSaveGoals(props) {
 
     const triggerGoalSaved = useCallback(() => {
         props.toggleGetTrigger()
+        return () => socket.off('contract-goals-saved')
     }, [props])
 
 
@@ -22,17 +23,19 @@ function SocketSaveGoals(props) {
         if (props.goals !== null && props.triggerSave) {
 
             props.toggleSaveTrigger(false)
-            socket.emit('add-goal', {goal : props.goals[props.index], project_id : props.projectId})
+            if (!props.contracts) {
+                socket.emit('add-goal', {goal: props.goals[props.index], project_id: props.projectId})
 
-            //socket.on('goal-saved', props.toggleGetTrigger())
-
-            if (props.projectId === "simple") {
-                socket.on('saving-simple', setIdFunction)
-                return () => socket.off('saving-simple')
-            }
-            else {
-                socket.on('goal-saved', triggerGoalSaved)
-                return () => socket.off('saving-complete')
+                if (props.projectId === "simple") {
+                    socket.on('saving-simple', setIdFunction)
+                    return () => socket.off('saving-simple')
+                } else {
+                    socket.on('goal-saved', triggerGoalSaved)
+                    return () => socket.off('saving-complete')
+                }
+            } else {
+                socket.emit('modify-contracts-goals', {goal: props.goals[props.index], project: props.projectId})
+                socket.on('contract-goals-saved', triggerGoalSaved)
             }
         }
         
