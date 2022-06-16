@@ -90,7 +90,7 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    changeIsOpen(e: React.MouseEvent<HTMLElement>) {
+    changeIsOpen({e}) {
         e.isExpanded = !e.isExpanded
         let creationExpanded = this.state.creationExpanded
         let sizeFolder = this.state.nbFolders
@@ -278,15 +278,6 @@ export default class CustomSynthesis extends React.Component {
             }
         }
 
-        const simulationTable = [];
-        if (this.state.clickedButtonParallel && this.state.simulation) {
-            let idTable =""
-            for (let i=0; i<this.state.simulation.length; i++) {
-                idTable="simulationTable_"+i
-                simulationTable.push(<table key={i} id={idTable} className="m-4"/>)
-            }
-        }
-
         return (
             <>
                 <SocketGetExamples
@@ -424,7 +415,7 @@ export default class CustomSynthesis extends React.Component {
                                             <Tree
                                                 contents={this.state.tree}
                                                 className={Classes.TEXT_SMALL}
-                                                onNodeClick={e => this.changeIsOpen(e)}
+                                                onNodeClick={e => this.changeIsOpen({e: e})}
                                             />
                                             {this.state.creationExpanded && deleteCreation}
                                         </div>
