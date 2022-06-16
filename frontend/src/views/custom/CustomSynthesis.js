@@ -75,8 +75,11 @@ export default class CustomSynthesis extends React.Component {
     }
 
     setGraph = (graph) => {
+        const toastId = this.state.toastLoading
+        toast.dismiss(toastId)
         this.setState({
-            graph : graph
+            graph : graph,
+            toastLoading: null,
         })
     }
 
@@ -231,18 +234,6 @@ export default class CustomSynthesis extends React.Component {
         })
     }
 
-    displayMessages = (message_received, synthesis = false) => {
-        if(synthesis) {
-            const toastId = this.state.toastLoading
-            toast.dismiss(toastId)
-            this.setState({
-                toastLoading: null
-            })
-        }
-        toast[message_received["crometypes"]](message_received["content"]);
-        this.props.updateMessage(message_received["content"])
-    }
-
     render(){
         const deleteCreation = [];
         for (let i = 0; i < this.state.nbExampleCreation; i += 1) {
@@ -289,7 +280,6 @@ export default class CustomSynthesis extends React.Component {
                     trigger={this.state.triggerSave}
                     setTrigger={this.setTriggerSave}
                     savedDone={this.savedDone}
-                    displayMessages={this.displayMessages}
                     name={this.state.nameValue}
                     assumptions={this.state.assumptionsValue.split("\n")}
                     guarantees={this.state.guaranteesValue.split("\n")}
@@ -300,13 +290,11 @@ export default class CustomSynthesis extends React.Component {
                     trigger={this.state.triggerDelete}
                     setTrigger={this.setTriggerDelete}
                     deletedDone={this.deletedDone}
-                    displayMessages={this.displayMessages}
                     name={this.state.nameToDelete}
                 />
                 <SocketGetSynthesis
                     trigger={this.state.triggerSynthesis}
                     setTrigger={this.setTriggerSynthesis}
-                    displayMessages={this.displayMessages}
                     name={this.state.nameValue}
                     strix={this.state.clickedButtonStrix}
                     parallel={this.state.clickedButtonParallel}

@@ -6,18 +6,18 @@ function SocketSaveSynthesis(props) {
 
     const socket = useSocket()
 
-    const savedFinish = useCallback((message_received) => {
-        props.setTrigger(false);
-        props.displayMessages(message_received);
-        if(message_received["crometypes"] === "success") {
+    const savedFinish = useCallback((bool) => {
+        if(bool) {
             props.savedDone();
         }
-    }, [props]) // eslint-disable-next-line
+        socket.off('synthesis-saved')
+    }, [props,socket]) // eslint-disable-next-line
 
     useEffect(() => {
         if (socket == null) return
 
         if (props.trigger) {
+            props.setTrigger(false);
             socket.emit('save-synthesis', {
                     name: props.name,
                     assumptions: props.assumptions,
@@ -27,8 +27,6 @@ function SocketSaveSynthesis(props) {
             })
 
             socket.on('synthesis-saved', savedFinish)
-
-            return () => socket.off('synthesis-saved')
         }
 
     }, [socket, props, savedFinish])
