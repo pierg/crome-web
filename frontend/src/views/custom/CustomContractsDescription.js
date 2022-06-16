@@ -10,14 +10,16 @@ export default class CustomContractsDescription extends React.Component {
 
         for (let i = 0; i < customcontractsinfo.operations.length; i++) {
             tableDescription.push(
-                <tr>
+                <tbody key={i}>
+                <tr >
                     <th className="uppercase whitespace-nowrap align-text-top ">
                         {customcontractsinfo.operations[i].title} :
                     </th>
-                    <td className="p-1 align-text-top">
+                    <td className="px-1 py-2 align-text-top">
                         {customcontractsinfo.operations[i].description}
                     </td>
                 </tr>
+                </tbody>
             )
         }
         return (
@@ -27,11 +29,10 @@ export default class CustomContractsDescription extends React.Component {
                     <div className=" flex m-3 fs-5 text-blueGray-500 uppercase font-bold justify-center ">
                         {customcontractsinfo.info.texts.description}
                     </div>
-                    <div className=" text-blueGray-500 ">
-                        <table className="flex-col text-base ">
+
+                        <table className="flex-col text-base text-blueGray-500">
                             {tableDescription}
                         </table>
-                    </div>
 
                 </div>
             </>
