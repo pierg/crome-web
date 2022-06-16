@@ -332,7 +332,7 @@ export default class CustomSynthesis extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto">
+                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
                     <div className="px-3 pb-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
                         <div className="flex flex-col justify-center p-5 ">
                             <div className="container">
@@ -430,42 +430,36 @@ export default class CustomSynthesis extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full lg:w-9/12 xl:w-10/12 flex-col mt-12 mx-auto">
-                    <div className="px-3 relative flex flex-col min-w-0 m-auto">
-                        <div className="flex flex-col justify-center p-5 ">
-                            <div className="container">
-                                <div className="row">
-                                    <div id="buttons" className="col-3 offset-2">
-                                        <Link  to="synthesis" spy={true} smooth={true}>
-                                            <Button
-                                                id="buttonSynthesisStrix"
-                                                color={synthesisInfo.info.buttons.synthesis.color}
-                                                size="lg"
-                                                outline={this.state.clickedButtonStrix}
-                                                fullWidth={true}
-                                                onClick={this.synthesisStrix}
-                                            >
-                                                {synthesisInfo.info.buttons.synthesis.strix}
-                                            </Button>
-                                        </Link>
-                                    </div>
-                                    <div className="col-3 offset-2">
-                                         <Link  to="synthesis" spy={true} smooth={true}>
-                                            <Button
-                                                id="buttonParallelSynthesis"
-                                                color={synthesisInfo.info.buttons.synthesis.color}
-                                                size="lg"
-                                                outline={this.state.clickedButtonParallel}
-                                                fullWidth={true}
-                                                onClick={this.parallelSynthesis}
-                                            >
-                                                {synthesisInfo.info.buttons.synthesis.parallel}
-                                            </Button>
-                                         </Link>
+                                <div className="container mt-16">
+                                    <div className="row">
+                                        <div id="buttons" className="col-3 offset-2">
+                                            <Link  to="synthesis" spy={true} smooth={true}>
+                                                <Button
+                                                    id="buttonSynthesisStrix"
+                                                    color={synthesisInfo.info.buttons.synthesis.color}
+                                                    size="lg"
+                                                    outline={this.state.clickedButtonStrix}
+                                                    fullWidth={true}
+                                                    onClick={this.synthesisStrix}
+                                                >
+                                                    {synthesisInfo.info.buttons.synthesis.strix}
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                        <div className="col-3 offset-2">
+                                             <Link  to="synthesis" spy={true} smooth={true}>
+                                                <Button
+                                                    id="buttonParallelSynthesis"
+                                                    color={synthesisInfo.info.buttons.synthesis.color}
+                                                    size="lg"
+                                                    outline={this.state.clickedButtonParallel}
+                                                    fullWidth={true}
+                                                    onClick={this.parallelSynthesis}
+                                                >
+                                                    {synthesisInfo.info.buttons.synthesis.parallel}
+                                                </Button>
+                                             </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
