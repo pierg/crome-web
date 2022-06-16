@@ -64,7 +64,8 @@ export default class CustomContracts extends React.Component {
             this.setState({
                 headerStates: newHeaderStates,
                 activeHeaderIndex: activeHeaderIndex,
-                project: this.state.headerNames[activeHeaderIndex]
+                project: this.state.headerNames[activeHeaderIndex],
+                cgg : false
             })
             this.displayWorldGoal(activeHeaderIndex)
         }
@@ -106,7 +107,8 @@ export default class CustomContracts extends React.Component {
 
     toggleGetTrigger = () => {
         this.setState({
-            triggerGoals: !this.state.triggerGoals
+            triggerGoals: !this.state.triggerGoals,
+            cgg : false
         })
     }
 
