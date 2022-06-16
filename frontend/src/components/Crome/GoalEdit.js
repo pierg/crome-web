@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import {Button, ModalFooter} from "reactstrap";
 import Input from "../Elements/Input";
 import ContractContentEditor from "../Custom/ContractContentEditor";
@@ -18,8 +18,12 @@ function GoalEdit(props) {
 
         const contractTypeIndex = contractType ? goal.contract[contractType][index] : false
         switch (e.target.name) {
-            case "name": goal.name = value; break;
-            case "description": goal.description = value; break;
+            case "name":
+                goal.name = value;
+                break;
+            case "description":
+                goal.description = value;
+                break;
             case "context":
                 //init formula context
                 setFormulaText(value)
@@ -28,22 +32,39 @@ function GoalEdit(props) {
                 //fill tab world_values
                 goal.context["world_values"] = []
                 let tabFormula = value.split(" ")
-                for(let i=0; i<tabFormula.length; i++) {
-                    if(tabFormula[i].charAt(0) === "!") {
+                for (let i = 0; i < tabFormula.length; i++) {
+                    if (tabFormula[i].charAt(0) === "!") {
                         tabFormula[i] = tabFormula[i].substring(1)
                     }
-                    if(props.listOfWorldVariables[3].includes(tabFormula[i])) {
-                        if(!goal.context["world_values"].includes(tabFormula[i])) {
+                    if (props.listOfWorldVariables[3].includes(tabFormula[i])) {
+                        if (!goal.context["world_values"].includes(tabFormula[i])) {
                             goal.context["world_values"].push(tabFormula[i])
                         }
                     }
                 }
                 break;
-            case "ltl_value": contractTypeIndex.ltl_value = value; break;
-            case "contentName": contractTypeIndex.pattern.name = value; contractTypeIndex.pattern.arguments = []; break;
-            case "type": if(value === "Pattern") { if (contractTypeIndex.pattern === undefined) {contractTypeIndex.pattern={name: "", arguments: []}; delete contractTypeIndex.world_values }} else { delete contractTypeIndex.pattern; } break;
-            case "subValue": contractTypeIndex.pattern.arguments[subKey] = {"value": makeListOf(value)}; break;
-            default: break;
+            case "ltl_value":
+                contractTypeIndex.ltl_value = value;
+                break;
+            case "contentName":
+                contractTypeIndex.pattern.name = value;
+                contractTypeIndex.pattern.arguments = [];
+                break;
+            case "type":
+                if (value === "Pattern") {
+                    if (contractTypeIndex.pattern === undefined) {
+                        contractTypeIndex.pattern = {name: "", arguments: []};
+                        delete contractTypeIndex.world_values
+                    }
+                } else {
+                    delete contractTypeIndex.pattern;
+                }
+                break;
+            case "subValue":
+                contractTypeIndex.pattern.arguments[subKey] = {"value": makeListOf(value)};
+                break;
+            default:
+                break;
         }
 
         props.edit(goal)
@@ -75,47 +96,25 @@ function GoalEdit(props) {
         let context = ""
         let formulaRed = ""
 
-        for(let i=0; i<tabFormula.length; i++) {
+        for (let i = 0; i < tabFormula.length; i++) {
             context = tabFormula[i]
-            if(tabFormula[i].charAt(0) === "!") {
+            if (tabFormula[i].charAt(0) === "!") {
                 context = tabFormula[i].substring(1)
             }
-            if(props.listOfWorldVariables[3].includes(context)) {
+            if (props.listOfWorldVariables[3].includes(context)) {
                 context = "<span class='text-red-500'>" + context + "</span>"
             }
-            if(tabFormula[i].charAt(0) === "!") {
+            if (tabFormula[i].charAt(0) === "!") {
                 context = "!" + context
             }
             formulaRed += context + " "
         }
 
         setFormulaRed(formulaRed);
-    }, [formulaText,props.listOfWorldVariables]);
+    }, [formulaText, props.listOfWorldVariables]);
 
-let contextHtml;
-    if(props.contracts){
-        contextHtml= <></>
 
-                }
-    else{
-        contextHtml =                 <div className="mt-4">
-                    <h4 className="font-bold title-up mb-2 inline">{props.info.context.title} : </h4>
-                    <input
-                        type="text"
-                        placeholder="write boolean"
-                        name="context"
-                        className="ml-4 border-blueGray-300 text-sm placeholder-blueGray-200 bg-white rounded-md border border-solid"
-                        value={props.goal.context["formula"]}
-                        onChange={changeParameter}
-                    />
-                    <div
-                        className={"w-64 ml-12 center inline"}
-                        dangerouslySetInnerHTML={{ __html: "Formula : "+formulaRed }}
-                    />
-                </div>
-    }
-
-    return(
+    return (
         <>
             <div className="modal-header justify-content-center">
                 <button
@@ -145,67 +144,82 @@ let contextHtml;
                 />
                 <div>
                     <div className="m-auto w-50">
-                         <Table responsive>
-                             <thead>
-                                 <tr className="text-center">
-                                    <th colSpan={2}>Atomic propositions</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                {props.listOfWorldVariables.map((prop, key) => (
-                                    (key !== (props.listOfWorldVariables.length) && (
-                                        <tr key={key}>
-                                            <td className="font-semibold text-center">
-                                                {props.info.lists.title} {props.info.lists.elements[key]} :
-                                            </td>
-                                            <td className="text-left">
+                        <Table responsive>
+                            <thead>
+                            <tr className="text-center">
+                                <th colSpan={2}>Atomic propositions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {props.listOfWorldVariables.map((prop, key) => (
+                                (key !== (props.listOfWorldVariables.length) && (
+                                    <tr key={key}>
+                                        <td className="font-semibold text-center">
+                                            {props.info.lists.title} {props.info.lists.elements[key]} :
+                                        </td>
+                                        <td className="text-left">
                                             {prop.map((subProp, subKey) => (
                                                 <span key={subKey}>
-                                                    {" "+subProp}{subKey !== (prop.length - 1) ? ", " : ""}
+                                                    {" " + subProp}{subKey !== (prop.length - 1) ? ", " : ""}
                                                 </span>
                                             ))}
-                                            </td>
-                                        </tr>
-                                    ))
-                                ))}
-                             </tbody>
+                                        </td>
+                                    </tr>
+                                ))
+                            ))}
+                            </tbody>
                         </Table>
                     </div>
                 </div>
 
 
-                {contextHtml}
-
+                <div className="mt-4">
+                    <h4 className="font-bold title-up mb-2 inline">{props.info.context.title} : </h4>
+                    <input
+                        type="text"
+                        placeholder="write boolean"
+                        name="context"
+                        className="ml-4 border-blueGray-300 text-sm placeholder-blueGray-200 bg-white rounded-md border border-solid"
+                        value={props.goal.context["formula"]}
+                        onChange={changeParameter}
+                    />
+                    <div
+                        className={"w-64 ml-12 center inline"}
+                        dangerouslySetInnerHTML={{__html: "Formula : " + formulaRed}}
+                    />
+                </div>
 
 
                 {props.info.contract.map((prop, key) => (
                     <div key={key}><h4 className="title title-up">{prop.title}</h4>
-                    <ContractContentEditor
-                        items={goal.contract[prop.title]}
-                        patterns={props.patterns}
-                        color={prop.color}
-                        changeParameter={changeParameter}
-                        deleteContent={deleteContractContent}
-                        addContent={addContractContent}
-                        contractType={prop.title}
-                        listOfWorldVariables={props.listOfWorldVariables}
-                        setLTLWorldValues={setLTLWorldValues}
-                        keyType={key}
-                        {...contracteditorinfo}/></div>
+                        <ContractContentEditor
+                            items={goal.contract[prop.title]}
+                            patterns={props.patterns}
+                            color={prop.color}
+                            changeParameter={changeParameter}
+                            deleteContent={deleteContractContent}
+                            addContent={addContractContent}
+                            contractType={prop.title}
+                            listOfWorldVariables={props.listOfWorldVariables}
+                            setLTLWorldValues={setLTLWorldValues}
+                            keyType={key}
+                            {...contracteditorinfo}/></div>
                 ))}
             </div>
             <ModalFooter>
                 <div className="flex flex-col w-full">
-                {goal.contract.guarantees.length === 0 && (
-                    <div className="flex justify-end mb-2"><span className={"text-red-500 "}>{props.info.modal.warningGuarantees}</span></div>
-                )}
+                    {goal.contract.guarantees.length === 0 && (
+                        <div className="flex justify-end mb-2"><span
+                            className={"text-red-500 "}>{props.info.modal.warningGuarantees}</span></div>
+                    )}
                     <div className="flex w-full justify-between">
-                    <Button color={props.info.modal.cancelColor} onClick={props.close}>
-                    {props.info.modal.cancelText}
-                </Button>
-                <Button color={props.info.modal.saveColor} disabled={goal.contract.guarantees.length === 0} onClick={() => props.save(goal)}>
-                    {props.info.modal.saveText}
-                </Button></div>
+                        <Button color={props.info.modal.cancelColor} onClick={props.close}>
+                            {props.info.modal.cancelText}
+                        </Button>
+                        <Button color={props.info.modal.saveColor} disabled={goal.contract.guarantees.length === 0}
+                                onClick={() => props.save(goal)}>
+                            {props.info.modal.saveText}
+                        </Button></div>
                 </div>
             </ModalFooter>
         </>

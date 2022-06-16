@@ -226,7 +226,6 @@ export default class GoalModeling extends React.Component {
                         edit={this.editCurrentGoal}
                         save={this.saveCurrentGoal}
                         close={() => this.setModalClassic(false)}
-                        contracts={this.props.contracts}
                         {...goaleditinfo}
                     />
                 </Modal>
