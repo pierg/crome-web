@@ -100,6 +100,7 @@ def reset_controller(data) -> None:
     """
     session_id = request.args.get("id")
     Synthesis.reset_controller(data["name"], session_id, data["mode"])
+    send_message_to_user("The simulation has been reset", request.sid, "success")
     emit("reset-done", True, room=request.sid)
 
 
@@ -112,3 +113,5 @@ def random_simulation_controller(data) -> None:
     session_id = request.args.get("id")
     content = Synthesis.random_simulation(data["name"], data["iterations"], data["mode"], session_id)
     emit("receive-random-simulation-controller", content, room=request.sid)
+    send_message_to_user(f"A random simulation of {data['iterations']} iterations has been made",
+                         request.sid, "success")
