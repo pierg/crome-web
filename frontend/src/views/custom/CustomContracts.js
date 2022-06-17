@@ -9,12 +9,14 @@ import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
 import cgginfo from "../../_texts/custom/cgginfo";
 import CGG from "../../components/Crome/CGG";
 import CustomContractsDescription from "../../components/Custom/CustomContractsDescription";
+import ElementsButton from "../../components/Elements/Button";
+import {Modal} from "reactstrap";
+import ContractsChoiceActiveGoals from "../../components/Custom/ContractsChoiceActiveGoals";
 
 export default class CustomContracts extends React.Component {
     state = {
         id: "contracts",
         worlds: [],
-        headerNames: ["conjunction", "composition", "refinement", "quotient", "merging", "separation"],
         headerStates: [true, false, false, false, false, false],
         activeHeaderIndex: 0,
         project: "conjunction",
@@ -22,12 +24,13 @@ export default class CustomContracts extends React.Component {
         triggerGetContract: true,
         triggerCGG: false,
         goals: [],
+        activeGoals: [],
+        modalChoiceGoal: false,
         cgg: false,
         cggTab: null,
         projectAdded: false,
         triggerGoals: false,
-        triggerGoalsChecked : false,
-        uploadConfirmation: false,
+        triggerGoalsChecked: false,
         patterns: []
     }
 
@@ -45,9 +48,7 @@ export default class CustomContracts extends React.Component {
 
     setGoalsTrigger = (contentJSON) => {
         this.setState({
-            cggTab: contentJSON,
-            triggerCGG: false,
-            cgg: true,
+            cggTab: contentJSON, triggerCGG: false, cgg: true,
         })
     }
 
@@ -55,25 +56,19 @@ export default class CustomContracts extends React.Component {
         this.setState({
             triggerGoalsChecked: bool
         })
-      }
+    }
 
-    onSelectCustomHeader = (activeHeaderIndex, clickable) => {
+    onSelectCustomHeader = (activeHeaderIndex, clickable, statTitle) => {
+
         if (!this.state.headerStates[activeHeaderIndex] && clickable) {
             let newHeaderStates = Array(this.state.headerStates.length).fill(false);
             newHeaderStates[activeHeaderIndex] = true
+
             this.setState({
-                headerStates: newHeaderStates,
-                activeHeaderIndex: activeHeaderIndex,
-                project: this.state.headerNames[activeHeaderIndex],
-                cgg : false
+                activeHeaderIndex: activeHeaderIndex, project: statTitle, headerStates: newHeaderStates, cgg: false
             })
             this.displayWorldGoal(activeHeaderIndex)
         }
-    }
-    setUploadConfirmation = (bool) => {
-        this.setState({
-            uploadConfirmation: bool
-        })
     }
 
     getListOfWorldVariables(world) {
@@ -96,19 +91,29 @@ export default class CustomContracts extends React.Component {
     settingGoals = (goals) => {
         this.setState({
             goals: goals,
-            triggerCGG: true
         })
     }
 
-    addProjectFromGoalModeling(projectId) {
-        // this.setState({project: projectId})
-        // this.setState({projectAdded: !this.projectAdded})
-    }
+    settingActiveGoals = (goal) => {
+        let activeGoalsTmp = this.state.activeGoals
+        let found = false
+        for(let i=0; i<activeGoalsTmp.length; i++) {
+            if(activeGoalsTmp[i] === goal) {
+                activeGoalsTmp.splice(i,1)
+                found = true
+            }
+        }
+        if(!found) {
+            activeGoalsTmp.push(goal)
+        }
+        this.setState({
+            activeGoals: activeGoalsTmp,
 
+        })
+    }
     toggleGetTrigger = () => {
         this.setState({
-            triggerGoals: !this.state.triggerGoals,
-            cgg : false
+            triggerGoals: !this.state.triggerGoals, cgg: false
         })
     }
 
@@ -123,7 +128,6 @@ export default class CustomContracts extends React.Component {
     }
 
     getWorlds = (list_of_projects) => {
-        // console.log(list_of_projects)
         let worlds = []
 
         for (let i = 0; i < list_of_projects.length; i++) {
@@ -170,17 +174,28 @@ export default class CustomContracts extends React.Component {
     }
 
     addGoalAlreadyHere = (nodes) => {
-        for (let i = 0; i < this.state.goals.length; i++) {
-            nodes.push({"id": this.state.goals[i].id, "label": this.state.goals[i].name})
-            nodes[nodes.length - 1].group = this.state.goals[i].hasOwnProperty("group") ? this.state.goals[i].group : "input"
+        for (let i = 0; i < this.state.activeGoals.length; i++) {
+            nodes.push({"id": this.state.activeGoals[i].id, "label": this.state.activeGoals[i].name})
+            nodes[nodes.length - 1].group = this.state.activeGoals[i].hasOwnProperty("group") ? this.state.activeGoals[i].group : "input"
         }
     }
 
+    setModalGoal = (bool) => {
+        this.setState({
+            modalChoiceGoal: bool
+        })
+    }
+    validate = () => {
+        this.setState({
+            modalChoiceGoal: false,
+            triggerCGG: true
+        })
+    }
 
     render() {
         let nodesArray = []
         let edgesArray = []
-
+        //console.log(this.state.goals)
         if (this.state.cgg) {
             this.addGoalAlreadyHere(nodesArray)
             this.addCombinedGoal(nodesArray)
@@ -188,13 +203,11 @@ export default class CustomContracts extends React.Component {
         }
 
         let graph = {
-            nodes: nodesArray,
-            edges: edgesArray
+            nodes: nodesArray, edges: edgesArray
         }
 
 
-        return (
-            <>
+        return (<>
                 <GetContractCGG
                     session={this.state.id}
                     project={this.state.project}
@@ -218,27 +231,56 @@ export default class CustomContracts extends React.Component {
                     <div className="flex justify-center my-3 mx-60">
 
                         <div
-                            className="px-3 pb-5 mx-3 relative flex flex-col min-w-0 justify-center break-words bg-white rounded shadow-md w-full">
-                            <div className=" mt-2 fs-5 text-center text-blueGray-500 uppercase font-bold">
+                            className="flex-col px-3 pb-5 mx-3 relative min-w-0 break-words bg-white rounded shadow-md w-full">
+                            <div className="flex m-3 fs-5 text-blueGray-500 uppercase font-bold justify-center ">
                                 {customcontractsinfo.info.texts.goals}
                             </div>
-                            {this.state.cgg && this.state.goals && (<>
+
+                            {!this.state.cgg && (<>
+                                    <div className="relative flex justify-center mt-20">
+                                        <ElementsButton size="lg" color="facebook" outline={false}
+                                                        onClick={() => this.setModalGoal(true)}>
+                                            Build your CGG
+
+                                        </ElementsButton>
+                                    </div>
+                                    <Modal
+                                        isOpen={this.state.modalChoiceGoal}
+                                        toggle={() => this.setModalGoal(false)}
+                                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+
+                                        <ContractsChoiceActiveGoals
+                                            settingActiveGoals={this.settingActiveGoals}
+                                            goals={this.state.goals}
+                                            validate={this.validate}
+                                        />
+                                    </Modal>
+                                </>)
+
+                            }
+                            {this.state.cgg && this.state.activeGoals && (<>
                                 <div className="relative flex flex-auto mt-4 m-auto">
                                     <div className="mx-4 w-100">
                                         <CGG
                                             active={true}
                                             graph={graph}
                                             size={"350px"}
-                                            goals={this.state.goals}
+                                            goals={this.state.activeGoals}
                                             nodesArray={nodesArray}
                                             edgesArray={edgesArray}
                                             patterns={this.state.patterns}
                                         />
+
                                     </div>
                                 </div>
                             </>)}
                         </div>
-                        <CustomContractsDescription/>
+
+                        <div
+                            className="flex-col px-3 pb-5 mx-3 relative min-w-0 break-words bg-white rounded shadow-md w-full overflow-scroll">
+                            <CustomContractsDescription/>
+                        </div>
+
                     </div>
                     <div className="mx-64 mb-12 p-4 bg-white rounded shadow-md">
                         <GoalModeling
@@ -250,9 +292,6 @@ export default class CustomContracts extends React.Component {
                             triggerGetGoals={this.state.triggerGoals}
                             toggleGetTrigger={this.toggleGetTrigger}
                             listOfWorldVariables={this.state.listOfWorldVariables}
-                            setProject={(project) =>
-                                this.addProjectFromGoalModeling(project)
-                            }
                             triggerGoalsChecked={this.state.triggerGoalsChecked}
                             swapTriggerGoalsChecked={this.swapTriggerGoalsChecked}
                             contracts={true}

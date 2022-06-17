@@ -338,9 +338,11 @@ export default class GoalModeling extends React.Component {
     }
 
     switchWorld = (id) => {
+        if(!this.props.contracts){
         this.props.setProject(id)
         this.props.toggleGetTrigger()
     }
+        }
 }
 
 GoalModeling.defaultProps = {
