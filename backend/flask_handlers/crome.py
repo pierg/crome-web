@@ -357,8 +357,8 @@ def reset_crome(data) -> None:
     emit("reset-done", True, room=request.sid)
 
 
-@socketio.on("random-simulation-controller")
-def random_simulation_controller(data) -> None:
+@socketio.on("random-simulation-crome")
+def random_simulation_crome(data) -> None:
     """
         It simulates a controller by randomly choosing the inputs for each state.
         It differentiates the two ways of simulating the synthesis.
