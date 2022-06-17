@@ -1,6 +1,6 @@
 import random
 
-from backend.operations.synthesis import Synthesis
+from backend.shared.objects import arrayRunFile
 from backend.shared.paths import controller_path
 from crome_synthesis.tools.persistence import dump_mono_controller, load_mono_controller, load_parallel_controller, \
     dump_parallel_controller
@@ -12,7 +12,7 @@ class Simulation:
     def get_input_possible(session_id, mode, project_id=None, name=None):
         controller_folder = controller_path(session_id)
         if mode == "crome":
-            return  # Not implemented yet
+            return ["person", ""]
         elif mode == "parallel":
             return  # Not implemented yet
         elif mode == "strix":
@@ -25,8 +25,11 @@ class Simulation:
 
     @staticmethod
     def react_to_inputs(session_id, choice, mode, project_id=None, name=None):
+        from backend.shared.objects import lineToSend
         if mode == "crome":
-            return  # Not implemented yet
+            result = arrayRunFile[lineToSend]
+            lineToSend += 1
+            return result
         elif mode == "parallel":
             return  # We haven't implemented it yet
         elif mode == "strix":
@@ -49,8 +52,13 @@ class Simulation:
     @staticmethod
     def random_simulation(name, nb_iteration, mode, session_id):
         controller_folder = controller_path(session_id)
+        from backend.shared.objects import lineToSend
         if mode == "crome":
-            return  # TODO : After
+            beforeLine = lineToSend
+            lineToSend = max(lineToSend+25, len(arrayRunFile))
+            return [arrayRunFile[i] for i in range(beforeLine, lineToSend)]
+        elif mode == "parallel":
+            return
         if mode == "strix":
             controller = load_mono_controller(absolute_folder_path=controller_folder, controller_name=name)
             if not controller:
@@ -69,7 +77,9 @@ class Simulation:
     @staticmethod
     def reset_simulation(session_id, mode, project_id=None, name=None):
         if mode == "crome":
-            return  # Not implemented yet
+            from backend.shared.objects import lineToSend
+            lineToSend = 0
+            return
         elif mode == "parallel":
             controller_folder = controller_path(session_id)
             pcontroller = load_parallel_controller(absolute_folder_path=controller_folder, controller_name=name)
