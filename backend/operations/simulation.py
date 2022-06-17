@@ -1,6 +1,6 @@
 import random
 
-from backend.shared.objects import arrayRunFile
+from backend.shared.objects import arrayRunFile, getter_line, setter_line
 from backend.shared.paths import controller_path
 from crome_synthesis.tools.persistence import dump_mono_controller, load_mono_controller, load_parallel_controller, \
     dump_parallel_controller
@@ -25,10 +25,9 @@ class Simulation:
 
     @staticmethod
     def react_to_inputs(session_id, choice, mode, project_id=None, name=None):
-        from backend.shared.objects import lineToSend
         if mode == "crome":
-            result = arrayRunFile[lineToSend]
-            lineToSend += 1
+            result = arrayRunFile[getter_line()]
+            setter_line(getter_line() + 1)
             return result
         elif mode == "parallel":
             return  # We haven't implemented it yet
@@ -52,10 +51,10 @@ class Simulation:
     @staticmethod
     def random_simulation(session_id, mode, nb_iteration, project_id=None, name=None):
         controller_folder = controller_path(session_id)
-        from backend.shared.objects import lineToSend
         if mode == "crome":
-            beforeLine = lineToSend
-            lineToSend = max(lineToSend+25, len(arrayRunFile))
+            beforeLine = getter_line()
+            lineToSend = max(getter_line()+25, len(arrayRunFile))
+            setter_line(lineToSend)
             return [arrayRunFile[i] for i in range(beforeLine, lineToSend)]
         elif mode == "parallel":
             return
@@ -77,8 +76,7 @@ class Simulation:
     @staticmethod
     def reset_simulation(session_id, mode, project_id=None, name=None):
         if mode == "crome":
-            from backend.shared.objects import lineToSend
-            lineToSend = 0
+            setter_line(0)
             return
         elif mode == "parallel":
             controller_folder = controller_path(session_id)

@@ -17,3 +17,13 @@ for ligne in fichier:
             subArray.append(ligne[tmp:tmp+sizeArray[i+1]].strip())
         arrayRunFile.append(subArray)
 lineToSend = 0
+
+
+def getter_line():
+    global lineToSend
+    return lineToSend
+
+
+def setter_line(number):
+    global lineToSend
+    lineToSend = number
