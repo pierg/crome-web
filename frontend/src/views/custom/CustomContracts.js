@@ -65,7 +65,10 @@ export default class CustomContracts extends React.Component {
             newHeaderStates[activeHeaderIndex] = true
 
             this.setState({
-                activeHeaderIndex: activeHeaderIndex, project: statTitle, headerStates: newHeaderStates, cgg: false
+                activeHeaderIndex: activeHeaderIndex,
+                project: statTitle,
+                headerStates:
+                newHeaderStates, cgg: false
             })
             this.displayWorldGoal(activeHeaderIndex)
         }
@@ -195,7 +198,6 @@ export default class CustomContracts extends React.Component {
     render() {
         let nodesArray = []
         let edgesArray = []
-        //console.log(this.state.goals)
         if (this.state.cgg) {
             this.addGoalAlreadyHere(nodesArray)
             this.addCombinedGoal(nodesArray)
