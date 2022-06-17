@@ -5,8 +5,9 @@ function SocketGetInputs(props) {
     const socket = useSocket()
 
     const setInputs = useCallback((inputs) => {
+        socket.off('received-inputs')
         props.setInputs(inputs);
-    }, [props]) // eslint-disable-next-line
+    }, [props,socket]) // eslint-disable-next-line
 
     useEffect(() => {
         if (socket == null) return
@@ -14,7 +15,13 @@ function SocketGetInputs(props) {
         if (props.trigger) {
             props.setTrigger(false)
 
-            socket.emit("get-inputs",{name: props.name, mode: props.mode})
+            if(props.mode === "crome") {
+                socket.emit("get-inputs-crome",{project_id: props.name, mode: props.mode})
+            }
+            else if(props.mode === "strix"){
+                socket.emit("get-inputs",{name: props.name, mode: props.mode})
+            }
+
             socket.on('received-inputs', setInputs)
 
             return () => socket.off('received-inputs-other')

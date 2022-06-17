@@ -15,7 +15,14 @@ function SocketResetClicked(props) {
 
         if (props.trigger) {
             props.setTrigger(false)
-            socket.emit("reset-controller",{name: props.name, mode: props.mode})
+
+            if(props.mode === "crome") {
+                socket.emit("reset-crome",{project_id: props.name, mode: props.mode})
+            }
+            else if(props.mode === "strix"){
+                socket.emit("reset-controller",{name: props.name, mode: props.mode})
+            }
+
             socket.on('reset-done', setLines)
         }
 

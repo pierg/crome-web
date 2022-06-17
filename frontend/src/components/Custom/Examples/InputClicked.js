@@ -5,7 +5,12 @@ function SocketInputClicked(props) {
     const socket = useSocket()
 
     const setLine = useCallback((line) => {
-        socket.off('mealy-simulated')
+        if(props.mode === "crome") {
+            socket.off('crome-simulated')
+        }
+        else if(props.mode === "strix"){
+            socket.off('mealy-simulated')
+        }
         props.setLine(line);
         props.setTriggerGetInput(true);
     }, [props,socket]) // eslint-disable-next-line
@@ -15,8 +20,16 @@ function SocketInputClicked(props) {
 
         if (props.trigger) {
             props.setTrigger(false)
-            socket.emit("simulate-controller",{name: props.name, mode: props.mode, input: props.input})
-            socket.on('mealy-simulated', setLine)
+
+            if(props.mode === "crome") {
+                socket.emit("simulate-crome",{project_id: props.name, mode: props.mode, input: props.input})
+                socket.on('crome-simulated', setLine)
+            }
+            else if(props.mode === "strix"){
+                socket.emit("simulate-controller",{name: props.name, mode: props.mode, input: props.input})
+                socket.on('mealy-simulated', setLine)
+            }
+
         }
 
     }, [socket, props, setLine])

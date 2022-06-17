@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import goalmodelinginfo from "_texts/custom/goalmodelinginfo.js";
 import worldmodelinginfo from "_texts/custom/worldmodelinginfo.js";
-import synthesisinfo from "_texts/custom/synthesisinfo.js";
 
 // components
 import GoalModeling from "./GoalModeling";
@@ -191,9 +190,8 @@ export default function CustomPlayer({
                           ),
                           synthesis: (
                             <Synthesis
-                              world={world}
-                              {...synthesisinfo}
                               active={headerStates[3]}
+                              project={project}
                             />
                           ),
                         }[prop.component]

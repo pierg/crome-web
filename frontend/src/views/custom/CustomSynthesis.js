@@ -247,7 +247,7 @@ export default class CustomSynthesis extends React.Component {
         }
 
         let width=window.innerWidth
-        console.log(this.state)
+
         const children = [];
         let graph
         if (this.state.clickedButtonParallel && this.state.graph) {
