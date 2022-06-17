@@ -1,0 +1,52 @@
+  t  context         controller    inputs    outputs
+---  --------------  ------------  --------  -------------------
+  0  day & !(night)  SCENARIO_1    person    greet, r1, register
+  1  day & !(night)  SCENARIO_1    person    greet, register, r2
+  2  day & !(night)  SCENARIO_1    person    greet, r1, register
+  3  day & !(night)  SCENARIO_1    person    greet, register, r2
+  4  day & !(night)  SCENARIO_1    person    greet, r1, register
+  5  day & !(night)  SCENARIO_1              register, r2
+  6  day & !(night)  SCENARIO_1    person    greet, r1
+  7  day & !(night)  SCENARIO_1              register, r2
+  8  night & !(day)  TRANS_r2->r5            r5
+  9  night & !(day)  SCENARIO_0    person    r3, greet
+ 10  night & !(day)  SCENARIO_0              r4
+ 11  night & !(day)  SCENARIO_0              r3
+ 12  night & !(day)  SCENARIO_0              r4
+ 13  night & !(day)  SCENARIO_0              r3
+ 14  night & !(day)  SCENARIO_0    person    greet, r4
+ 15  day & !(night)  TRANS_r4->r5            r5
+ 16  day & !(night)  SCENARIO_1              r1
+ 17  day & !(night)  SCENARIO_1    person    greet, r2
+ 18  day & !(night)  SCENARIO_1              r1, register
+ 19  day & !(night)  SCENARIO_1    person    greet, r2
+ 20  day & !(night)  SCENARIO_1              r1, register
+ 21  night & !(day)  TRANS_r1->r5            r5
+ 22  night & !(day)  SCENARIO_0              r3
+ 23  night & !(day)  SCENARIO_0              r4
+ 24  night & !(day)  SCENARIO_0    person    r3, greet
+ 25  night & !(day)  SCENARIO_0              r4
+ 26  night & !(day)  SCENARIO_0              r3
+ 27  night & !(day)  SCENARIO_0              r4
+ 28  night & !(day)  SCENARIO_0              r3
+ 29  night & !(day)  SCENARIO_0              r4
+ 30  day & !(night)  TRANS_r4->r5            r5
+ 31  day & !(night)  SCENARIO_1              r2
+ 32  day & !(night)  SCENARIO_1    person    greet, r1
+ 33  day & !(night)  SCENARIO_1              register, r2
+ 34  day & !(night)  SCENARIO_1    person    greet, r1
+ 35  day & !(night)  SCENARIO_1              register, r2
+ 36  day & !(night)  SCENARIO_1    person    greet, r1
+ 37  night & !(day)  TRANS_r1->r5            r5
+ 38  night & !(day)  SCENARIO_0    person    r3, greet
+ 39  night & !(day)  SCENARIO_0              r4
+ 40  night & !(day)  SCENARIO_0              r3
+ 41  night & !(day)  SCENARIO_0              r4
+ 42  night & !(day)  SCENARIO_0    person    r3, greet
+ 43  night & !(day)  SCENARIO_0              r4
+ 44  night & !(day)  SCENARIO_0    person    r3, greet
+ 45  night & !(day)  SCENARIO_0              r4
+ 46  night & !(day)  SCENARIO_0              r3
+ 47  night & !(day)  SCENARIO_0    person    greet, r4
+ 48  day & !(night)  TRANS_r4->r5            r5
+ 49  day & !(night)  SCENARIO_1    person    greet, register, r2
