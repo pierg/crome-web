@@ -1,5 +1,4 @@
 import React from 'react';
-import synthesisInfo from "../../_texts/custom/synthesisinfo";
 import {Input} from "reactstrap";
 
 function SynthesisInput(props) {

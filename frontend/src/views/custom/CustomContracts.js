@@ -8,7 +8,7 @@ import SocketIoContracts from "../../components/Custom/Examples/GetContracts";
 import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
 import cgginfo from "../../_texts/custom/cgginfo";
 import CGG from "../../components/Crome/CGG";
-import CustomContractsDescription from "./CustomContractsDescription";
+import CustomContractsDescription from "../../components/Custom/CustomContractsDescription";
 
 export default class CustomContracts extends React.Component {
     state = {
@@ -238,14 +238,7 @@ export default class CustomContracts extends React.Component {
                                 </div>
                             </>)}
                         </div>
-
-
-                        <CustomContractsDescription
-                        >
-
-                        </CustomContractsDescription>
-
-
+                        <CustomContractsDescription/>
                     </div>
                     <div className="mx-64 mb-12 p-4 bg-white rounded shadow-md">
                         <GoalModeling

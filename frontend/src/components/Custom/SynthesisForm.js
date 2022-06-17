@@ -1,6 +1,5 @@
 import React from 'react';
 import synthesisInfo from "../../_texts/custom/synthesisinfo";
-import {Input} from "reactstrap";
 import LTLEdit from "./LTLEdit";
 import {Classes, Tree} from "@blueprintjs/core";
 import {Link} from "react-scroll";
