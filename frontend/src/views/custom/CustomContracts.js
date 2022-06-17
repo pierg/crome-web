@@ -48,7 +48,7 @@ export default class CustomContracts extends React.Component {
 
     setGoalsTrigger = (contentJSON) => {
         this.setState({
-            cggTab: contentJSON, triggerCGG: false, cgg: true,
+            cggTab: contentJSON, triggerCGG: false, cgg: true, triggerGoals: !this.state.triggerGoals
         })
     }
 
@@ -177,9 +177,9 @@ export default class CustomContracts extends React.Component {
     }
 
     addGoalAlreadyHere = (nodes) => {
-        for (let i = 0; i < this.state.activeGoals.length; i++) {
-            nodes.push({"id": this.state.activeGoals[i].id, "label": this.state.activeGoals[i].name})
-            nodes[nodes.length - 1].group = this.state.activeGoals[i].hasOwnProperty("group") ? this.state.activeGoals[i].group : "input"
+        for (let i = 0; i < this.state.goals.length; i++) {
+            nodes.push({"id": this.state.goals[i].id, "label": this.state.goals[i].name})
+            nodes[nodes.length - 1].group = this.state.goals[i].hasOwnProperty("group") ? this.state.goals[i].group : "input"
         }
     }
 
@@ -213,6 +213,7 @@ export default class CustomContracts extends React.Component {
                 <GetContractCGG
                     session={this.state.id}
                     project={this.state.project}
+                    goals={this.state.activeGoals}
                     trigger={this.state.triggerCGG}
                     setTrigger={this.setTriggerCGG}
                     setGoalsTrigger={this.setGoalsTrigger}
@@ -239,7 +240,7 @@ export default class CustomContracts extends React.Component {
                             </div>
 
                             {!this.state.cgg && (<>
-                                    <div className="relative flex justify-center mt-20">
+                                    <div className="relative flex justify-center mt-32">
                                         <ElementsButton size="lg" color="facebook" outline={false}
                                                         onClick={() => this.setModalGoal(true)}>
                                             Build your CGG
