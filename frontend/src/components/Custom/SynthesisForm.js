@@ -5,6 +5,7 @@ import LTLEdit from "./LTLEdit";
 import {Classes, Tree} from "@blueprintjs/core";
 import {Link} from "react-scroll";
 import Button from "../Elements/Button";
+import SynthesisInput from "./SynthesisInput";
 
 function SynthesisForm(props) {
 
@@ -15,21 +16,11 @@ function SynthesisForm(props) {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-8">
-                                        <div className="row">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.name}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={props.nameValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => props.setNameValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
+                                        <SynthesisInput
+                                            title={synthesisInfo.info.texts.name}
+                                            value={props.nameValue}
+                                            setValue={props.setNameValue}
+                                        />
                                         <div className="row mt-5">
                                             <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
                                                 {synthesisInfo.info.texts.assumptions}
@@ -60,35 +51,19 @@ function SynthesisForm(props) {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.inputs}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={props.inputsValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => props.setInputsValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
+                                        <div className="mt-5">
+                                            <SynthesisInput
+                                                title={synthesisInfo.info.texts.inputs}
+                                                value={props.inputsValue}
+                                                setValue={props.setInputsValue}
+                                            />
                                         </div>
-                                        <div className="row mt-5">
-                                            <div className="col-3 mt-2 fs-5 text-right text-blueGray-500 uppercase font-bold">
-                                                {synthesisInfo.info.texts.outputs}
-                                            </div>
-                                            <div className="col-8 relative">
-                                                <Input
-                                                    value={props.outputsValue}
-                                                    className="border-blueGray-300 text-base text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200  pl-8 textareaResizeNone w-100"
-                                                    onChange={e => props.setOutputsValue(e)}
-                                                    style={{
-                                                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    }}
-                                                />
-                                            </div>
+                                        <div className="mt-5">
+                                            <SynthesisInput
+                                                title={synthesisInfo.info.texts.outputs}
+                                                value={props.outputsValue}
+                                                setValue={props.setNameValue}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-4">

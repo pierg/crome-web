@@ -121,7 +121,7 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonParallel : false,
             triggerSynthesis : false,
             graph: null,
-            simulation: null,
+            simulation: false,
             nbFolders: sizeFolder,
             creationExpanded: creationExpanded,
         })
@@ -210,7 +210,7 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonParallel : false,
             triggerSynthesis : true,
             graph: null,
-            simulation: null
+            simulation: false
         })
     }
 
@@ -221,13 +221,13 @@ export default class CustomSynthesis extends React.Component {
             clickedButtonParallel : true,
             triggerSynthesis : true,
             graph : null,
-            simulation: null
+            simulation: false
         })
     }
 
     clickSimulation = () => {
         this.setState({
-            simulation: true,
+            simulation: true
         })
     }
 
@@ -247,7 +247,7 @@ export default class CustomSynthesis extends React.Component {
         }
 
         let width=window.innerWidth
-
+        console.log(this.state)
         const children = [];
         let graph
         if (this.state.clickedButtonParallel && this.state.graph) {
