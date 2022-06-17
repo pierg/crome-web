@@ -49,6 +49,9 @@ export default class GoalModeling extends React.Component {
         saveAs(file)
     }
 
+    /**
+     * Download all goals in the project
+     */
     downloadAllGoals = () => {
         if (this.state.goals.length === 0) return
         let goals = []
@@ -138,8 +141,11 @@ export default class GoalModeling extends React.Component {
         }
     }
 
+    /**
+     * Upload one goal
+     * @param goal
+     */
     uploadGoal = (goal) => {
-
         if (goal.hasOwnProperty("context") && goal.hasOwnProperty("contract") && goal.hasOwnProperty("name") && goal.hasOwnProperty("description")) {
             if (this.goalPartOfProject(goal)) {
                 this.saveCurrentGoal(goal)
