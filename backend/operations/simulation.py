@@ -53,7 +53,7 @@ class Simulation:
         controller_folder = controller_path(session_id)
         if mode == "crome":
             beforeLine = getter_line()
-            lineToSend = max(getter_line()+25, len(arrayRunFile))
+            lineToSend = min(getter_line()+25, len(arrayRunFile))
             setter_line(lineToSend)
             return [arrayRunFile[i] for i in range(beforeLine, lineToSend)]
         elif mode == "parallel":
