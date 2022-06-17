@@ -10,6 +10,7 @@ from flask import request
 from flask_socketio import emit
 
 from backend.operations.modelling import Modelling
+from backend.operations.simulation import Simulation
 from backend.shared.paths import goals_path, project_path, storage_path
 from backend.tools.persistence import load_goals, load_cgg, dump_cgg
 from backend.utility.goal import GoalUtility
@@ -331,3 +332,40 @@ def process_goals(data) -> None:
             },
             room=request.sid,
         )
+
+
+@socketio.on("get-inputs-crome")
+def get_inputs_crome(data) -> None:
+    session_id = request.args.get("id")
+    inputs = Simulation.get_input_possible(project_id=data["project_id"], session_id=session_id, mode=data["mode"])
+    emit("received-inputs", inputs, room=request.sid)
+
+
+@socketio.on("simulate-crome")
+def simulate_crome(data) -> None:
+    content = Simulation.react_to_inputs(project_id=data["project_id"], session_id=request.args.get("id"),
+                                         mode=data["mode"], choice=data["input"])
+    send_message_to_user("The project has been simulated", "success", request.sid)
+    emit("crome-simulated", content, room=request.sid)
+
+
+@socketio.on("reset-crome")
+def reset_crome(data) -> None:
+    session_id = request.args.get("id")
+    Simulation.reset_simulation(project_id=data["project_id"], session_id=session_id, mode=data["mode"])
+    send_message_to_user("The simulation has been reset", request.sid, "success")
+    emit("reset-done", True, room=request.sid)
+
+
+@socketio.on("random-simulation-controller")
+def random_simulation_controller(data) -> None:
+    """
+        It simulates a controller by randomly choosing the inputs for each state.
+        It differentiates the two ways of simulating the synthesis.
+    """
+    session_id = request.args.get("id")
+    content = Simulation.random_simulation(project_id=data["project_id"], nb_iteration=data["iterations"],
+                                           mode=data["mode"], session_id=session_id)
+    emit("receive-random-simulation-crome", content, room=request.sid)
+    send_message_to_user(f"A random simulation of {data['iterations']} iterations has been made",
+                         request.sid, "success")

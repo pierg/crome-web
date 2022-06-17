@@ -50,7 +50,7 @@ class Simulation:
             return result
 
     @staticmethod
-    def random_simulation(name, nb_iteration, mode, session_id):
+    def random_simulation(session_id, mode, nb_iteration, project_id=None, name=None):
         controller_folder = controller_path(session_id)
         from backend.shared.objects import lineToSend
         if mode == "crome":
