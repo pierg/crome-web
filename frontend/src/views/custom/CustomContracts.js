@@ -235,7 +235,7 @@ export default class CustomContracts extends React.Component {
                         <div
                             className="flex-col px-3 pb-5 mx-3 relative min-w-0 break-words bg-white rounded shadow-md w-full">
                             <div className="flex m-3 fs-5 text-blueGray-500 uppercase font-bold justify-center ">
-                                {customcontractsinfo.info.texts.goals}
+                                {customcontractsinfo.info.texts.cgg}
                             </div>
 
                             {!this.state.cgg && (<>

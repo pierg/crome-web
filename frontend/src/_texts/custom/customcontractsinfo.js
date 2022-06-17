@@ -2,7 +2,7 @@ const textProps = {
     info: {
         texts: {
             description: "description",
-            goals: "goals"
+            cgg: "CGG"
         }
     },
     operations: [
