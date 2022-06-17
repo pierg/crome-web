@@ -301,7 +301,6 @@ def create_session_contracts(session_id, project_id):
     if os.path.isdir(project_folder):
         return
     else:
-        os.mkdir(project_folder)
         shutil.copytree(
             project_path("contracts", project_id), project_folder
         )
