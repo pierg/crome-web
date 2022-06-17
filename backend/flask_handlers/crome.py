@@ -210,14 +210,28 @@ def get_patterns() -> None:
     """
     Send to the frontend the name and the usage of all the pattern used. It gives also a short description of each one.
     """
+    from crome_logic.patterns.robotic_triggers import Trigger
+    from crome_logic.patterns.robotic_movement import CoreMovement
+
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
-    with open(robotic_patterns_file) as json_file:
-        robotic_patterns = json.load(json_file)
 
+    json_content = []
+    for c in CoreMovement.__subclasses__():
+        content = {"name": c.name, "description": c.description, "ltl_example": "", "arguments": c.arguments}
+
+        json_content.append(content)
+    for c in Trigger.__subclasses__():
+        content = {"name": c.name, "description": c.description, "ltl_example": "", "arguments": c.arguments}
+        json_content.append(content)
+
+    json_file = open(robotic_patterns_file, "w")
+    json_formatted = json.dumps(json_content, indent=4, sort_keys=False)
+    json_file.write(json_formatted)
+    json_file.close()
     emit(
-        "receive-patterns", {"robotic": json.dumps(robotic_patterns)}, room=request.sid
+        "receive-patterns", {"robotic": json.dumps(json_content)}, room=request.sid
     )
 
 

@@ -8,10 +8,6 @@ from os import walk
 from time import strftime
 from typing import Any
 
-from crome_cgg.context import ContextException
-
-from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
-from operations.analysis import Analysis
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
 from operations.modelling import Modelling
@@ -19,7 +15,7 @@ from operations.modelling import Modelling
 from backend.shared.paths import (
     build_path,
     project_path,
-    storage_path, goals_path,
+    storage_path,
 )
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
