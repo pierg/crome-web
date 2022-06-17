@@ -75,29 +75,33 @@ export default class Simulation extends React.Component {
 
     render(){
         let inputDisplay = []
-        for(let i=0; i<this.state.inputs.length; i++) {
-            inputDisplay.push(
-                <tr
-                    key={i}
-                >
-                    <th scope="row">
-                        {i}
-                    </th>
-                    <td
-                        className="p-0"
+        if(this.state.inputs.length !== 0) {
+            for (let i = 0; i < this.state.inputs.length; i++) {
+                inputDisplay.push(
+                    <tr
+                        key={i}
                     >
-                        <Button
-                            size="sm"
-                            color="gray"
-                            outline={true}
-                            fullWidth={true}
-                            onClick={() => {this.setTriggerInputClicked(true,this.state.inputs[i])}}
+                        <th scope="row">
+                            {i}
+                        </th>
+                        <td
+                            className="p-0"
                         >
-                            {this.state.inputs[i]}
-                        </Button>
-                    </td>
-                </tr>
-            );
+                            <Button
+                                size="sm"
+                                color="gray"
+                                outline={true}
+                                fullWidth={true}
+                                onClick={() => {
+                                    this.setTriggerInputClicked(true, this.state.inputs[i])
+                                }}
+                            >
+                                {this.state.inputs[i]}
+                            </Button>
+                        </td>
+                    </tr>
+                );
+            }
         }
 
         let linesDisplay = []
@@ -126,6 +130,7 @@ export default class Simulation extends React.Component {
                 );
             }
         }
+
         return (
             <>
                 <SocketGetInputs
