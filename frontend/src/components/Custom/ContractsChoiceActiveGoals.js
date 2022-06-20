@@ -5,9 +5,10 @@ import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactiv
 
 export default class ContractsChoiceActiveGoals extends React.Component {
     state = {
+        typeOfOperation: "",
         selectedGoals: [],
-        firstDropDownMenuChoice: "",
-        secondDropDownMenuChoice: ""
+        firstDropDownMenuChoice: [],
+        secondDropDownMenuChoice: []
     }
 
     selectGoals = (goal) => {
@@ -25,9 +26,26 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         this.setState({selectedGoals: selectedGoals})
     }
 
+    changeParameter = (menu, prop) => {
+        let tmpGoals = this.state.selectedGoals
+        if (menu === "firstDropDownMenu") {
+            tmpGoals[0] = prop
+            this.setState({
+                firstDropDownMenuChoice: prop,
+                selectedGoals: tmpGoals
+            })
+        } else {
+            tmpGoals[1] = prop
+            this.setState({
+                secondDropDownMenuChoice: prop,
+                selectedGoals: tmpGoals
+            })
+        }
+
+    }
 
     render() {
-        let goalChoice = <></>
+        let goalChoice
         let index = -1
         for (let i = 0; i < Object.keys(contractschoiceactivegoals.operation).length; i++) {
             if (contractschoiceactivegoals.operation[i].name === this.props.operationName) {
@@ -37,42 +55,49 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         if (index !== -1) {
             goalChoice =
                 <div className="flex justify-evenly">
-                <UncontrolledDropdown>
-                    <DropdownToggle
-                        caret
-                        className="btn-round btn-block"
-                        color="black"
-                    >
-                        {this.state.firstDropDownMenuChoice === "" ? contractschoiceactivegoals.operation[index].firstDropDownMenuChoice : this.state.firstDropDownMenuChoice}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        {this.props.goals.map((prop, key) => (<DropdownItem
-                            key={key}
+                    <UncontrolledDropdown>
+                        <DropdownToggle
+                            caret
+                            className="btn-round btn-block"
+                            color="black"
                         >
-                            {prop.name}
-                        </DropdownItem>))}
-                    </DropdownMenu>
-                </UncontrolledDropdown>
+                            {this.state.firstDropDownMenuChoice === [] ? contractschoiceactivegoals.operation[index].firstDropDownMenuChoice : this.state.firstDropDownMenuChoice.name}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {this.props.goals.map((prop, key) => (
+                                <DropdownItem
+                                    key={key}
+                                    onClick={() =>
+                                        this.changeParameter("firstDropDownMenu", prop)
+                                    }
+                                >
+                                    {prop.name}
+                                </DropdownItem>))}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
 
-                <UncontrolledDropdown>
-                    <DropdownToggle
-                        caret
-                        className="btn-round btn-block"
-                        color="black"
-                    >
-                        {this.state.secondDropDownMenuChoice === "" ? contractschoiceactivegoals.operation[index].secondDropDownMenuChoice : this.state.secondDropDownMenuChoice}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        {this.props.goals.map((prop, key) => (<DropdownItem
-                            key={key}
+                    <UncontrolledDropdown>
+                        <DropdownToggle
+                            caret
+                            className="btn-round btn-block"
+                            color="black"
                         >
-                            {prop.name}
-                        </DropdownItem>))}
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-            </div>
+                            {this.state.secondDropDownMenuChoice === [] ? contractschoiceactivegoals.operation[index].secondDropDownMenuChoice : this.state.secondDropDownMenuChoice.name}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {this.props.goals.map((prop, key) => (
+                                <DropdownItem
+                                    key={key}
+                                    onClick={() =>
+                                        this.changeParameter("secondDropDownMenu", prop)
+                                    }
+                                >
+                                    {prop.name}
+                                </DropdownItem>))}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                </div>
         } else {
-
             goalChoice =
                 <div className="grid grid-cols-2 gap-4">
                     {this.props.goals.map((prop, key) => (
@@ -105,7 +130,7 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                     <div className="flex content-center justify-center">
                         <ElementsButton
                             size="sm" color="facebook" outline={false}
-                            onClick={() => this.props.validate()}>
+                            onClick={() => this.props.validate(this.state.selectedGoals)}>
                             Build your CGG
                         </ElementsButton>
                     </div>

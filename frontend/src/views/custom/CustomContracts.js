@@ -97,23 +97,6 @@ export default class CustomContracts extends React.Component {
         })
     }
 
-    settingActiveGoals = (goal) => {
-        let activeGoalsTmp = this.state.activeGoals
-        let found = false
-        for(let i=0; i<activeGoalsTmp.length; i++) {
-            if(activeGoalsTmp[i] === goal) {
-                activeGoalsTmp.splice(i,1)
-                found = true
-            }
-        }
-        if(!found) {
-            activeGoalsTmp.push(goal)
-        }
-        this.setState({
-            activeGoals: activeGoalsTmp,
-
-        })
-    }
     toggleGetTrigger = () => {
         this.setState({
             triggerGoals: !this.state.triggerGoals, cgg: false
@@ -188,8 +171,10 @@ export default class CustomContracts extends React.Component {
             modalChoiceGoal: bool
         })
     }
-    validate = () => {
+    validate = (selectedGoals) => {
+
         this.setState({
+            activeGoals: selectedGoals,
             modalChoiceGoal: false,
             triggerCGG: true
         })
@@ -208,6 +193,7 @@ export default class CustomContracts extends React.Component {
             nodes: nodesArray, edges: edgesArray
         }
 
+        console.log(this.state.activeGoals)
 
         return (<>
                 <GetContractCGG

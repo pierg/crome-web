@@ -21,16 +21,14 @@ function GetContractCGG(props) {
         if (socket == null) return
         if(props.trigger) {
             props.setTrigger(false)
+            console.log(props)
 
-            /*socket.emit('process-goals-contracts', props.project)
-
-            socket.on('received-process-goals-contracts', cggCallback)*/
             switch (props.project) {
                 case "composition" : socket.emit('apply-composition', {project: props.project, goals : props.goals})
                     break;
-                case "refinement" : socket.emit('apply-refinement', {project: props.project, goals : props.goals})
+                case "refinement" : socket.emit('apply-refinement', {project: props.project, abstract : props.goals[0], refine : props.goals[1]})
                     break;
-                case "quotient" : socket.emit('apply-quotient', {project: props.project, goals : props.goals})
+                case "quotient" : socket.emit('apply-quotient', {project: props.project, abstract : props.goals[0], refine : props.goals[1]})
                     break;
                 case "merging" : socket.emit('apply-merging', {project: props.project, goals : props.goals})
                     break;
