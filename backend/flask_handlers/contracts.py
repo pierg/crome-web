@@ -31,9 +31,11 @@ def conjunction(data) -> None:
     project_id = data["project"]
 
     create_session_contracts(session_id, project_id)
-
+    set_of_goals_id = set()
+    for goals in data["goals"]:
+        set_of_goals_id.add(goals["id"])
     try:
-        Analysis.conjunction(str(project_path(session_id, project_id)), data["goals"])
+        Analysis.conjunction(str(project_path(session_id, project_id)), set_of_goals_id)
     except ContextException:
         emit("operation-complete", False, room=request.sid)
 
@@ -52,8 +54,11 @@ def composition(data) -> None:
 
     create_session_contracts(session_id, project_id)
 
+    set_of_goals_id = set()
+    for goals in data["goals"]:
+        set_of_goals_id.add(goals["id"])
     try:
-        Analysis.composition(str(project_path(session_id, project_id)), data["goals"])
+        Analysis.composition(str(project_path(session_id, project_id)), set_of_goals_id)
     except ContextException:
         emit("operation-complete", False, room=request.sid)
 
@@ -75,7 +80,7 @@ def refinement(data) -> None:
     project_folder = str(project_path(session_id, project_id))
 
     try:
-        Analysis.refinement(project_folder, data["abstract"], data["refine"])
+        Analysis.refinement(project_folder, data["abstract"]["id"], data["refine"]["id"])
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
@@ -108,7 +113,7 @@ def quotient(data) -> None:
     project_folder = str(project_path(session_id, project_id))
 
     try:
-        Analysis.quotient(project_folder, data["dividend"], data["divisor"])
+        Analysis.quotient(project_folder, data["dividend"]["id"], data["divisor"]["id"])
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
@@ -140,8 +145,11 @@ def merging(data) -> None:
 
     project_folder = str(project_path(session_id, project_id))
 
+    set_of_goals_id = set()
+    for goals in data["goals"]:
+        set_of_goals_id.add(goals["id"])
     try:
-        Analysis.merging(project_folder, data["goals"])
+        Analysis.merging(project_folder, set_of_goals_id)
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
@@ -174,7 +182,7 @@ def separation(data) -> None:
     project_folder = str(project_path(session_id, project_id))
 
     try:
-        Analysis.separation(project_folder, data["dividend"], data["divisor"])
+        Analysis.separation(project_folder, data["dividend"]["id"], data["divisor"]["id"])
     except GoalAlgebraOperationFail as e:
         emit(
             "send-notification",
@@ -293,7 +301,6 @@ def create_session_contracts(session_id, project_id):
     if os.path.isdir(project_folder):
         return
     else:
-        os.mkdir(project_folder)
         shutil.copytree(
             project_path("contracts", project_id), project_folder
         )
