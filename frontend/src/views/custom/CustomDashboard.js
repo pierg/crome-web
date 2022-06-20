@@ -16,6 +16,7 @@ import Console from "../../components/Crome/Console";
 import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
+import CustomComponent from "./CustomComponent";
 
 
 
@@ -84,6 +85,10 @@ export default function CustomDashboard(props) {
                         case 'contracts':
                             return(
                                 <CustomContracts/>
+                            )
+                        case 'logic':
+                            return (
+                                <CustomComponent/>
                             )
                         default:
                             return (
