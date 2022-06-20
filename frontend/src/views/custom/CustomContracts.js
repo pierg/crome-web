@@ -240,22 +240,24 @@ export default class CustomContracts extends React.Component {
                             </div>
 
                             {!this.state.cgg && (<>
-                                    <div className="relative flex justify-center mt-32">
+                                    <div className="relative flex justify-center mt-20">
                                         <ElementsButton size="lg" color="facebook" outline={false}
                                                         onClick={() => this.setModalGoal(true)}>
-                                            Build your CGG
+                                            Choose your goals
 
                                         </ElementsButton>
                                     </div>
                                     <Modal
                                         isOpen={this.state.modalChoiceGoal}
                                         toggle={() => this.setModalGoal(false)}
-                                        className={"custom-modal-dialog sm:c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                                        size="sm"
+                                        className={"custom-modal-dialog c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
 
                                         <ContractsChoiceActiveGoals
                                             settingActiveGoals={this.settingActiveGoals}
                                             goals={this.state.goals}
                                             validate={this.validate}
+                                            operationName={this.state.project}
                                         />
                                     </Modal>
                                 </>)
