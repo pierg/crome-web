@@ -19,8 +19,6 @@ function GetContractCGG(props) {
 
     useEffect(() => {
         if (socket == null) return
-
-        console.log(props)
         if(props.trigger) {
             props.setTrigger(false)
 
