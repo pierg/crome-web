@@ -36,9 +36,22 @@ def conjunction(data) -> None:
         set_of_goals_id.add(goals["id"])
     try:
         Analysis.conjunction(str(project_path(session_id, project_id)), set_of_goals_id)
-    except ContextException:
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying conjunction operation."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
         emit("operation-complete", False, room=request.sid)
 
+    send_message_to_user(content='Conjunction is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 
@@ -59,9 +72,22 @@ def composition(data) -> None:
         set_of_goals_id.add(goals["id"])
     try:
         Analysis.composition(str(project_path(session_id, project_id)), set_of_goals_id)
-    except ContextException:
+    except GoalAlgebraOperationFail as e:
+        emit(
+            "send-notification",
+            {"crometypes": "error", "content": "Problem while applying composition operation."
+                                               " See the console for more information"},
+            room=request.sid
+        )
+        emit(
+            "send-message",
+            e.__str__(),
+            room=request.sid
+        )
         emit("operation-complete", False, room=request.sid)
 
+    send_message_to_user(content='Composition is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 
@@ -96,6 +122,8 @@ def refinement(data) -> None:
         emit("operation-complete", False, room=request.sid)
         return
 
+    send_message_to_user(content='Refinement is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 
@@ -129,6 +157,8 @@ def quotient(data) -> None:
         emit("operation-complete", False, room=request.sid)
         return
 
+    send_message_to_user(content='Quotient is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 
@@ -165,6 +195,8 @@ def merging(data) -> None:
         emit("operation-complete", False, room=request.sid)
         return
 
+    send_message_to_user(content='Merging is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 
@@ -198,6 +230,8 @@ def separation(data) -> None:
         emit("operation-complete", False, room=request.sid)
         return
 
+    send_message_to_user(content='Separation is done.',
+                         room_id=request.sid, crometype="success")
     emit("operation-complete", True, room=request.sid)
 
 

@@ -14,41 +14,6 @@ from crome_cgg.goal.operations.separation import g_separation
 
 
 class Analysis:
-    @staticmethod
-    def composition(project_folder: str, set_of_goals_id: Set[str]):
-
-        set_of_goals = load_goals(project_folder)
-        cgg = load_cgg(project_folder)
-
-        goals_dir = os.path.join(project_folder, "goals")
-        dir_path, dir_names, filenames = next(walk(goals_dir))
-        greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
-        greatest_id += 1
-
-        goals_to_compose = set()
-        for goal in set_of_goals:
-            if goal.id in set_of_goals_id:
-                goals_to_compose.add(goal)
-
-        new_goal = g_composition(goals_to_compose, cgg)
-        set_of_goals.add(new_goal)
-        dump_goals(set_of_goals, project_folder)
-        dump_cgg(cgg, project_folder)
-
-        # We export now the new goals into the project_folder.
-        json_content = new_goal.export_to_json()
-
-        # We add the last value into the json
-        json_content["filename"] = str(greatest_id).zfill(4)
-        goals_ids = ", ".join(g.id for g in goals_to_compose)
-        name = f"{new_goal.id} -- composition of -- {goals_ids}"
-        json_content["name"] = name
-
-        # Write the content into the new json file
-        json_file = open(os.path.join(goals_dir, f"{json_content['filename']}.json"), "w")
-        json_formatted = json.dumps(json_content, indent=4, sort_keys=True)
-        json_file.write(json_formatted)
-        json_file.close()
 
     @staticmethod
     def conjunction(project_folder: str, set_of_goals_id: Set[str]):
@@ -77,8 +42,42 @@ class Analysis:
 
         # We add the last value into the json
         json_content["filename"] = str(greatest_id).zfill(4)
-        goals_ids = ", ".join(g.id for g in goals_to_compose)
-        name = f"{new_goal.id} -- conjunction of -- {goals_ids}"
+        name = f"CONTRACTS-CONJUNCTION-{json_content['filename']}"
+        json_content["name"] = name
+
+        # Write the content into the new json file
+        json_file = open(os.path.join(goals_dir, f"{json_content['filename']}.json"), "w")
+        json_formatted = json.dumps(json_content, indent=4, sort_keys=True)
+        json_file.write(json_formatted)
+        json_file.close()
+
+    @staticmethod
+    def composition(project_folder: str, set_of_goals_id: Set[str]):
+
+        set_of_goals = load_goals(project_folder)
+        cgg = load_cgg(project_folder)
+
+        goals_dir = os.path.join(project_folder, "goals")
+        dir_path, dir_names, filenames = next(walk(goals_dir))
+        greatest_id = -1 if len(filenames) == 0 else int(max(filenames)[0:4])
+        greatest_id += 1
+
+        goals_to_compose = set()
+        for goal in set_of_goals:
+            if goal.id in set_of_goals_id:
+                goals_to_compose.add(goal)
+
+        new_goal = g_composition(goals_to_compose, cgg)
+        set_of_goals.add(new_goal)
+        dump_goals(set_of_goals, project_folder)
+        dump_cgg(cgg, project_folder)
+
+        # We export now the new goals into the project_folder.
+        json_content = new_goal.export_to_json()
+
+        # We add the last value into the json
+        json_content["filename"] = str(greatest_id).zfill(4)
+        name = f"CONTRACTS-COMPOSITION-{json_content['filename']}"
         json_content["name"] = name
 
         # Write the content into the new json file
