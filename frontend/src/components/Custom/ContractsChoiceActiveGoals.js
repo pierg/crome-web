@@ -61,7 +61,7 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                             className="btn-round btn-block"
                             color="black"
                         >
-                            {this.state.firstDropDownMenuChoice === [] ? contractschoiceactivegoals.operation[index].firstDropDownMenuChoice : this.state.firstDropDownMenuChoice.name}
+                            {this.state.firstDropDownMenuChoice.length === 0 ? contractschoiceactivegoals.operation[index].firstDropDownMenuChoice : this.state.firstDropDownMenuChoice.name}
                         </DropdownToggle>
                         <DropdownMenu>
                             {this.props.goals.map((prop, key) => (
@@ -82,7 +82,7 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                             className="btn-round btn-block"
                             color="black"
                         >
-                            {this.state.secondDropDownMenuChoice === [] ? contractschoiceactivegoals.operation[index].secondDropDownMenuChoice : this.state.secondDropDownMenuChoice.name}
+                            {this.state.secondDropDownMenuChoice.length === 0 ? contractschoiceactivegoals.operation[index].secondDropDownMenuChoice : this.state.secondDropDownMenuChoice.name}
                         </DropdownToggle>
                         <DropdownMenu>
                             {this.props.goals.map((prop, key) => (

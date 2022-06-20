@@ -28,11 +28,11 @@ function GetContractCGG(props) {
                     break;
                 case "refinement" : socket.emit('apply-refinement', {project: props.project, abstract : props.goals[0], refine : props.goals[1]})
                     break;
-                case "quotient" : socket.emit('apply-quotient', {project: props.project, abstract : props.goals[0], refine : props.goals[1]})
+                case "quotient" : socket.emit('apply-quotient', {project: props.project, dividend : props.goals[0], divisor : props.goals[1]})
                     break;
                 case "merging" : socket.emit('apply-merging', {project: props.project, goals : props.goals})
                     break;
-                case "separation" : socket.emit('apply-separation', {project: props.project, goals : props.goals})
+                case "separation" : socket.emit('apply-separation', {project: props.project,dividend : props.goals[0], divisor : props.goals[1]})
                     break;
                 default : socket.emit('apply-conjunction', {project: props.project, goals : props.goals});
             }
