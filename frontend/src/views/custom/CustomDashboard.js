@@ -86,7 +86,7 @@ export default function CustomDashboard(props) {
                             return(
                                 <CustomContracts/>
                             )
-                        case 'logic':
+                        case 'composent':
                             return (
                                 <CustomComponent/>
                             )
