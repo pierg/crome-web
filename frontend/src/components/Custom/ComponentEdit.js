@@ -22,11 +22,9 @@ function ComponentEdit(props) {
                 component.description = value;
                 break;
             case "inputs":
-                console.log("inputs")
                 component.inputs = value
                 break;
             case "outputs":
-                console.log("outputs")
                 component.outputs = value
                 break;
             case "ltl_value":
