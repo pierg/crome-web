@@ -24,7 +24,7 @@ export default function CustomNavButton({
     return (
         <a
             href="#/index"
-            className={(disabled ? "hover:no-underline cursor-default " : "") + customnavbutton.textColor + " text-center opacity-85 hover:opacity-100 transition-opacity duration-150 ease-linear w-12 text-xl z-50"}
+            className={(disabled ? "hover:no-underline cursor-default " : "") + customnavbutton.textColor + " text-center opacity-85 focus:outline-none hover:opacity-100 transition-opacity duration-150 ease-linear w-12 text-xl z-50"}
             onClick={(e) => toggleNew(e, actionToggle)}
         >
             <div>
