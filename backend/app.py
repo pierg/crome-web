@@ -214,6 +214,7 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
 import backend.flask_handlers.crome
 import backend.flask_handlers.synthesis
 import backend.flask_handlers.contracts
+import backend.flask_handlers.component
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
