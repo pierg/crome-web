@@ -113,13 +113,13 @@ export default function CustomSidebar({
                                             {prop.titleContracts}
                                         </h6>
                                     );
-                                    } else if (prop.titleComposent) {
+                                    } else if (prop.titleComponent) {
                                     return (
                                         <h6
                                             key={key}
                                             className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3 "
                                         >
-                                            {prop.titleComposent}
+                                            {prop.titleComponent}
                                         </h6>
                                     );
                                     } else if (prop.titleLastPage) {
@@ -158,7 +158,7 @@ export default function CustomSidebar({
                                             {(page !== "contracts") && (prop.text === "Run CONTRACTS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "composent") && (prop.text === "Run COMPOSENT") &&
+                                            {(page !== "component") && (prop.text === "Run COMPONENT") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
                                             {(page !== "LastPage") && (prop.text === "Run LastPage") &&
