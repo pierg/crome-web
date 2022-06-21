@@ -1,6 +1,5 @@
 import React from 'react';
 import ElementsButton from "../Elements/Button";
-import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
 import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactivegoals";
 
 export default class ContractsChoiceActiveGoals extends React.Component {
@@ -54,48 +53,67 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
         if (index !== -1) {
             goalChoice =
-                <div className="flex justify-evenly">
-                    <UncontrolledDropdown>
-                        <DropdownToggle
-                            caret
-                            className="btn-round btn-block"
-                            color="black"
-                        >
-                            {this.state.firstDropDownMenuChoice.length === 0 ? contractschoiceactivegoals.operation[index].firstDropDownMenuChoice : this.state.firstDropDownMenuChoice.name}
-                        </DropdownToggle>
-                        <DropdownMenu>
+                <div className="flex justify-content-evenly">
+                    <div className="flex flex-col">
+
+                        <label htmlFor="firstDropDownMenu"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                            choose your {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
+                        </label>
+                        <select id="firstDropDownMenu"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option
+                                value={contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
+                                hidden={true}
+                                className="text-white"
+                            >
+                                {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
+                            </option>
                             {this.props.goals.map((prop, key) => (
-                                <DropdownItem
+                                <option
+                                    value={prop.name}
                                     key={key}
                                     onClick={() =>
                                         this.changeParameter("firstDropDownMenu", prop)
-                                    }
-                                >
+                                    }>
                                     {prop.name}
-                                </DropdownItem>))}
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
+                                </option>
 
-                    <UncontrolledDropdown>
-                        <DropdownToggle
-                            caret
-                            className="btn-round btn-block"
-                            color="black"
-                        >
-                            {this.state.secondDropDownMenuChoice.length === 0 ? contractschoiceactivegoals.operation[index].secondDropDownMenuChoice : this.state.secondDropDownMenuChoice.name}
-                        </DropdownToggle>
-                        <DropdownMenu>
+                            ))}
+                        </select>
+
+                    </div>
+
+                    <div className="flex flex-col">
+
+                        <label htmlFor="firstDropDownMenu"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                            choose your {contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
+                        </label>
+                        <select id="firstDropDownMenu"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option
+                                value={contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
+                                hidden={true}
+                                className="text-white"
+                            >
+                                {contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
+                            </option>
                             {this.props.goals.map((prop, key) => (
-                                <DropdownItem
+                                <option
+                                    value={prop.name}
                                     key={key}
                                     onClick={() =>
                                         this.changeParameter("secondDropDownMenu", prop)
-                                    }
-                                >
+                                    }>
                                     {prop.name}
-                                </DropdownItem>))}
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
+                                </option>
+
+                            ))}
+                        </select>
+
+                    </div>
+
                 </div>
         } else {
             goalChoice =
