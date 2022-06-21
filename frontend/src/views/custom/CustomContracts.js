@@ -192,8 +192,7 @@ export default class CustomContracts extends React.Component {
         let graph = {
             nodes: nodesArray, edges: edgesArray
         }
-
-        console.log(this.state.activeGoals)
+        
 
         return (<>
                 <GetContractCGG
