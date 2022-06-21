@@ -9,7 +9,16 @@ export default class CustomComponent extends React.Component {
 
     state = {
         patterns: [],
+        components : []
+
     }
+
+    setComponents = (components) => {
+        this.setState({
+            components
+        })
+    }
+
 
     getPatterns = (list) => {
         this.setState({

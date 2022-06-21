@@ -11,7 +11,8 @@ export default class ComponentsView extends React.Component {
 
     state = {
         triggerAddComponent: false,
-        tmpComponent: false
+        tmpComponent: false,
+        selectedComponents : []
     }
 
     setTriggerAddComponent = (bool) => {
@@ -35,9 +36,13 @@ export default class ComponentsView extends React.Component {
         this.setTriggerAddComponent(true)
     }
 
-    editComponent = (component) => {
-        console.log(component)
-        this.setTmpComponent(component)
+    editComponent = (i) => {
+        console.log(i)
+        //this.setTmpComponent(component)
+    }
+
+    deleteComponent = (i) => {
+        console.log(i)
     }
 
     saveComponent = (component) => {
@@ -46,19 +51,43 @@ export default class ComponentsView extends React.Component {
 
     render() {
         let components = []
-        for(let i=0; i<3; i++) {
-            components.push(
-                <div
-                    key={i}
-                    className="flex flex-row"
-                >
-                    <Checkbox
-                        label="My Value"
-                        value={false}
-                        onChange={() => this.checkBoxClicked(i)}
-                    />
-                </div>
-            )
+        for(let i=0; i<20; i++) {
+
+            if (i === 0) {
+                components.push(<li key={i}
+                                    className="border-b-1 border-t-1 text-blueGray-700 text-lg py-3 hover:bg-blueGray-100 cursor-pointer" >
+                    <div className="flex justify-between">
+                        <div>
+                            <Checkbox
+                                className="pr-2"
+                                value={false}
+                                onChange={() => this.checkBoxClicked(i)}
+                            />{" composant_"+i}
+                        </div>
+                        <div >
+                            <Button size="sm" color="gray" onClick={() => this.editComponent(i)}><i className={componentInfo.info.icon.edit}/></Button>
+                            <Button size="sm" color="red" onClick={() => this.deleteComponent(i)}><i className={componentInfo.info.icon.delete}/></Button>
+                        </div>
+                    </div>
+                </li>)
+            } else {
+                components.push(<li key={i}
+                                    className="border-b-1 text-blueGray-700 text-lg py-3 hover:bg-blueGray-100 cursor-pointer">
+                    <div className="flex justify-between">
+                        <div>
+                            <Checkbox
+                                className="pr-2"
+                                value={false}
+                                onChange={() => this.checkBoxClicked(i)}
+                            />{" composant_"+i}
+                        </div>
+                        <div >
+                            <Button size="sm" color="gray" onClick={() => this.editComponent(i)}><i className={componentInfo.info.icon.edit}/></Button>
+                            <Button size="sm" color="red" onClick={() => this.deleteComponent(i)}><i className={componentInfo.info.icon.delete}/></Button>
+                        </div>
+                    </div>
+                </li>)
+            }
         }
 
         return (
@@ -95,7 +124,11 @@ export default class ComponentsView extends React.Component {
                             </Modal>
                         </div>
                     </div>
-                    {components}
+                     <div className="overflow-auto max-h-400-px pt-3 px-5 mb-4">
+                        <ul>
+                            {components}
+                        </ul>
+                     </div>
                 </div>
             </>
         );
