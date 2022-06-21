@@ -108,7 +108,7 @@ export default class CustomComponent extends React.Component {
                             patterns={this.state.patterns}
                         />
                     </div>
-                    <div className="m-auto w-32">
+                    <div className="m-auto">
                         <Button size="xl" color="red"><i className={componentInfo.info.icon.build}/></Button>
                     </div>
                     <div className="w-50 lg:w-9/12 xl:w-10/12">
