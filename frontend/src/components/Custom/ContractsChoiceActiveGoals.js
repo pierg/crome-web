@@ -7,7 +7,8 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         typeOfOperation: "",
         selectedGoals: [],
         firstDropDownMenuChoice: [],
-        secondDropDownMenuChoice: []
+        secondDropDownMenuChoice: [],
+        buildButtonDisabled: true
     }
 
     selectGoals = (goal) => {
@@ -23,8 +24,19 @@ export default class ContractsChoiceActiveGoals extends React.Component {
             selectedGoals.push(goal)
         }
         this.setState({selectedGoals: selectedGoals})
+
+        if (this.state.selectedGoals !== []) {
+            this.disableBuildButton(false)
+        } else {
+            this.disableBuildButton(true)
+        }
     }
 
+    disableBuildButton = (bool) => {
+        this.setState({
+            buildButtonDisabled: bool
+        })
+    }
     changeParameter = (menu, prop) => {
         let tmpGoals = this.state.selectedGoals
         if (menu === "firstDropDownMenu") {
@@ -40,7 +52,12 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                 selectedGoals: tmpGoals
             })
         }
-
+        if (this.state.selectedGoals[0] !== this.state.selectedGoals[1] && this.state.selectedGoals.length === 2) {
+            console.log(this.state.selectedGoals.length)
+            this.disableBuildButton(false)
+        } else {
+            this.disableBuildButton(true)
+        }
     }
 
     render() {
@@ -53,7 +70,7 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
         if (index !== -1) {
             goalChoice =
-                <div className="flex justify-content-evenly">
+                <div className="flex justify-content-evenly mb-6">
                     <div className="flex flex-col">
 
                         <label htmlFor="firstDropDownMenu"
@@ -65,7 +82,6 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                             <option
                                 value={contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
                                 hidden={true}
-                                className="text-white"
                             >
                                 {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
                             </option>
@@ -95,7 +111,6 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                             <option
                                 value={contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
                                 hidden={true}
-                                className="text-white"
                             >
                                 {contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
                             </option>
@@ -145,12 +160,15 @@ export default class ContractsChoiceActiveGoals extends React.Component {
 
                     {goalChoice}
 
-                    <div className="flex content-center justify-center">
-                        <ElementsButton
-                            size="sm" color="facebook" outline={false}
-                            onClick={() => this.props.validate(this.state.selectedGoals)}>
+                    <div className="flex content-center justify-center ">
+
+                        <button
+                            onClick={() => this.props.validate(this.state.selectedGoals)}
+                            disabled={this.state.buildButtonDisabled}
+                            className={this.state.buildButtonDisabled ? "bg-facebook-regular text-white font-bold py-2 px-4 rounded opacity-50 cursor-default " : "bg-facebook-regular hover:shadow-lg text-white font-bold py-2 px-4 rounded"}
+                        >
                             Build your CGG
-                        </ElementsButton>
+                        </button>
                     </div>
                 </div>
 
