@@ -103,12 +103,12 @@ export default class CustomComponent extends React.Component {
                     </div>
                 </div>
                 <div className=" flex flex-row justify-between mx-5 mt-5">
-                    <div className="w-25">
+                    <div className="w-35">
                         <ComponentsView
                             patterns={this.state.patterns}
                         />
                     </div>
-                    <div className="h-auto m-auto">
+                    <div className="m-auto w-32">
                         <Button size="xl" color="red"><i className={componentInfo.info.icon.build}/></Button>
                     </div>
                     <div className="w-50 lg:w-9/12 xl:w-10/12">
