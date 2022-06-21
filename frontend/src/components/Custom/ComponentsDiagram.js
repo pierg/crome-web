@@ -22,18 +22,18 @@ function ComponentsDiagram(props) {
 
 
     return(<>
-            <div className="w-50 lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
-                <div className="px-3 pb-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
-                    <div className="fs-4 m-3 text-center">
-                        {componentInfo.info.texts.diagram}
-                    </div>
-                    <div className="flex flex-col justify-center p-3">
-                        <div>
-                          <UncontrolledDiagram/>
-                        </div>
+        <div className="flex-col mx-auto pb-5">
+            <div className="px-3 pb-3 relative flex flex-col min-w-0 break-words bg-white rounded shadow-md m-auto">
+                <div className="fs-4 m-3 text-center">
+                    {componentInfo.info.texts.diagram}
+                </div>
+                <div className="flex flex-col justify-center p-3">
+                    <div>
+                      <UncontrolledDiagram/>
                     </div>
                 </div>
             </div>
+        </div>
     </>);
 }
 

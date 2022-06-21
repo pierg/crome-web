@@ -2,6 +2,7 @@ import React from "react";
 import componentInfo from "../../_texts/custom/componentInfo";
 import ComponentsDiagram from "../../components/Custom/ComponentsDiagram"
 import ComponentsView from "../../components/Custom/ComponentsView";
+import Button from "../../components/Elements/Button";
 
 export default class CustomComponent extends React.Component {
 
@@ -78,21 +79,22 @@ export default class CustomComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="w-100 row mx-5 mt-5">
-                    <div className="col-3">
+                <div className=" flex flex-row justify-between mx-5 mt-5">
+                    <div className="w-25">
                         <ComponentsView
                         />
                     </div>
-                    <div className="col-3">
-
+                    <div className="h-auto m-auto">
+                        <Button size="xl" color="red"><i className={componentInfo.info.icon.build}/></Button>
                     </div>
-                    <div className="col-6">
+                    <div className="w-50 lg:w-9/12 xl:w-10/12">
                         <ComponentsDiagram
                             nodes={nodes}
                             links={links}
                         />
                     </div>
                 </div>
+
             </>)
     }
 }
