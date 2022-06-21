@@ -1,23 +1,25 @@
 import React from "react";
 import componentInfo from "../../_texts/custom/componentInfo";
 import Diagram, { useSchema, createSchema } from 'beautiful-react-diagrams';
+import "beautiful-react-diagrams/styles.css";
 
 function ComponentsDiagram(props) {
 
-    const initialSchema = createSchema({nodes :props.nodes, links: props.links})
+    const initialSchema = createSchema({nodes: props.nodes, links : props.link});
+
+
 
     const UncontrolledDiagram = () => {
       // create diagrams schema
       const [schema, { onChange }] = useSchema(initialSchema);
 
       return (
-        <div style={{ height: '22.5rem' }}>
-          <Diagram schema={schema} onChange={onChange} />
+        <div className="h-400-px">
+          <Diagram schema={schema} onChange={onChange} className="border-none" />
         </div>
       );
     };
 
-    console.log(initialSchema)
 
     return(<>
             <div className="w-50 lg:w-9/12 xl:w-10/12 flex-col mt-5 mx-auto pb-5">
@@ -25,8 +27,10 @@ function ComponentsDiagram(props) {
                     <div className="fs-4 m-3 text-center">
                         {componentInfo.info.texts.diagram}
                     </div>
-                    <div className="flex flex-col justify-center p-5 ">
-                        <UncontrolledDiagram/>
+                    <div className="flex flex-col justify-center p-3">
+                        <div>
+                          <UncontrolledDiagram/>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,8 +12,6 @@ function GoalEdit(props) {
     const [goal] = React.useState(JSON.parse(JSON.stringify(props.goal)));
     const [formulaText, setFormulaText] = React.useState(props.goal.context["formula"]);
 
-    console.log(props)
-
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
 
         const value = propValue || e.target.value
