@@ -43,13 +43,13 @@ const textProps = {
     },
 
           {
-      titleComposent: "Composent",
+      titleComponent: "Component",
     },
     {
       icon: "fas fa-tv",
-      text: "Run COMPOSENT",
+      text: "Run COMPONENT",
       link: {
-        href: "#/composent",
+        href: "#/component",
       },
     },
 

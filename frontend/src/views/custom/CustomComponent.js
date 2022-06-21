@@ -2,9 +2,20 @@ import React from "react";
 import componentInfo from "../../_texts/custom/componentInfo";
 import ComponentsDiagram from "../../components/Custom/ComponentsDiagram"
 import ComponentsView from "../../components/Custom/ComponentsView";
+import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import Button from "../../components/Elements/Button";
 
 export default class CustomComponent extends React.Component {
+
+    state = {
+        patterns: [],
+    }
+
+    getPatterns = (list) => {
+        this.setState({
+            patterns: JSON.parse(list)
+        })
+    }
 
     render() {
 
@@ -68,6 +79,9 @@ export default class CustomComponent extends React.Component {
 
         return (
             <>
+                <SocketIoPatterns
+                    patterns={this.getPatterns}
+                />
                 <div className="relative pt-8 pb-12 bg-red-500 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
@@ -82,6 +96,7 @@ export default class CustomComponent extends React.Component {
                 <div className=" flex flex-row justify-between mx-5 mt-5">
                     <div className="w-25">
                         <ComponentsView
+                            patterns={this.state.patterns}
                         />
                     </div>
                     <div className="h-auto m-auto">
