@@ -36,9 +36,9 @@ export default class ComponentsView extends React.Component {
         this.setTriggerAddComponent(true)
     }
 
-    editComponent = (i) => {
-        console.log(i)
-        //this.setTmpComponent(component)
+    editComponent = (component) => {
+        console.log("edit")
+        this.setTmpComponent(component)
     }
 
     deleteComponent = (i) => {
