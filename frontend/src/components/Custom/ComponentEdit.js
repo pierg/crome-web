@@ -10,7 +10,6 @@ function ComponentEdit(props) {
     const [component] = React.useState(JSON.parse(JSON.stringify(props.component)));
 
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
-        console.log("vhangeparameete")
 
         const value = propValue || e.target.value
 
