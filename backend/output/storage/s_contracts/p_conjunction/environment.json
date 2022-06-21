@@ -1,0 +1,164 @@
+{
+    "actions": [
+        {
+            "name": "greet"
+        },
+        {
+            "name": "register"
+        }
+    ],
+    "context": [
+        {
+            "mutex_group": [
+                0
+            ],
+            "name": "day"
+        },
+        {
+            "mutex_group": [
+                0
+            ],
+            "name": "night"
+        }
+    ],
+    "filetype": "environment",
+    "grid": {
+        "locations": [
+            {
+                "adjacency": [
+                    "r2",
+                    "r5"
+                ],
+                "color": "#FF0000",
+                "coordinates": [
+                    {
+                        "col": 0,
+                        "row": 0
+                    },
+                    {
+                        "col": 1,
+                        "row": 0
+                    },
+                    {
+                        "col": 0,
+                        "row": 1
+                    },
+                    {
+                        "col": 1,
+                        "row": 1
+                    }
+                ],
+                "id": "r1"
+            },
+            {
+                "adjacency": [
+                    "r1",
+                    "r5"
+                ],
+                "color": "#8FF484",
+                "coordinates": [
+                    {
+                        "col": 2,
+                        "row": 0
+                    },
+                    {
+                        "col": 3,
+                        "row": 0
+                    },
+                    {
+                        "col": 2,
+                        "row": 1
+                    },
+                    {
+                        "col": 3,
+                        "row": 1
+                    }
+                ],
+                "id": "r2"
+            },
+            {
+                "adjacency": [
+                    "r4",
+                    "r5"
+                ],
+                "color": "#FF00FF",
+                "coordinates": [
+                    {
+                        "col": 0,
+                        "row": 3
+                    },
+                    {
+                        "col": 1,
+                        "row": 3
+                    },
+                    {
+                        "col": 0,
+                        "row": 4
+                    },
+                    {
+                        "col": 1,
+                        "row": 4
+                    }
+                ],
+                "id": "r3"
+            },
+            {
+                "adjacency": [
+                    "r3",
+                    "r5"
+                ],
+                "color": "#FFFF00",
+                "coordinates": [
+                    {
+                        "col": 2,
+                        "row": 3
+                    },
+                    {
+                        "col": 3,
+                        "row": 3
+                    },
+                    {
+                        "col": 2,
+                        "row": 4
+                    },
+                    {
+                        "col": 3,
+                        "row": 4
+                    }
+                ],
+                "id": "r4"
+            },
+            {
+                "adjacency": [
+                    "r1",
+                    "r3",
+                    "r2",
+                    "r4"
+                ],
+                "color": "#00FFFF",
+                "coordinates": [
+                    {
+                        "col": 1,
+                        "row": 2
+                    },
+                    {
+                        "col": 2,
+                        "row": 2
+                    }
+                ],
+                "id": "r5"
+            }
+        ]
+    },
+    "project_id": "conjunction",
+    "sensors": [
+        {
+            "name": "person"
+        }
+    ],
+    "session_id": "contracts",
+    "size": {
+        "height": 5,
+        "width": 5
+    }
+}

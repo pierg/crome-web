@@ -1,0 +1,48 @@
+{
+    "context": {
+        "formula": "day",
+        "world_values": [
+            "day"
+        ]
+    },
+    "contract": {
+        "assumptions": [
+            {
+                "ltl_value": "true",
+                "world_values": [
+                    [],
+                    [],
+                    []
+                ]
+            }
+        ],
+        "guarantees": [
+            {
+                "ltl_value": "GF(r1 & Fr2) & (!r2 U r1) & G(r2 -> X(!r2 U r1)) & G(r1 -> X(!r1 U r2))",
+                "pattern": {
+                    "arguments": [
+                        {
+                            "value": [
+                                "r1",
+                                "r2"
+                            ]
+                        }
+                    ],
+                    "name": "StrictOrderedPatrolling"
+                },
+                "world_values": [
+                    [],
+                    [],
+                    [
+                        "r1",
+                        "r2"
+                    ]
+                ]
+            }
+        ]
+    },
+    "description": "During context day => start from r1, patrol r1, r2 in strict order, Strict Ordered Patrolling Location r1, r2",
+    "filename": "0000.json",
+    "id": "contracts-conjunction-0000",
+    "name": "Day patrolling"
+}

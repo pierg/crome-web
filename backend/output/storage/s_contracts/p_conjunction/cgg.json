@@ -1,0 +1,70 @@
+{
+    "edges": [
+        {
+            "from": "contracts-conjunction-0001",
+            "link": "merging",
+            "to": "contracts-conjunction-0001**contracts-conjunction-0002"
+        },
+        {
+            "from": "contracts-conjunction-0002",
+            "link": "merging",
+            "to": "contracts-conjunction-0001**contracts-conjunction-0002"
+        },
+        {
+            "from": "contracts-conjunction-0002",
+            "link": "composition",
+            "to": "contracts-conjunction-0002||contracts-conjunction-0003"
+        },
+        {
+            "from": "contracts-conjunction-0003",
+            "link": "composition",
+            "to": "contracts-conjunction-0002||contracts-conjunction-0003"
+        },
+        {
+            "from": "contracts-conjunction-0002||contracts-conjunction-0003",
+            "link": "merging",
+            "to": "contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        },
+        {
+            "from": "contracts-conjunction-0000",
+            "link": "merging",
+            "to": "contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        },
+        {
+            "from": "contracts-conjunction-0001**contracts-conjunction-0002",
+            "link": "conjunction",
+            "to": "contracts-conjunction-0001**contracts-conjunction-0002/\\contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        },
+        {
+            "from": "contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000",
+            "link": "conjunction",
+            "to": "contracts-conjunction-0001**contracts-conjunction-0002/\\contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        }
+    ],
+    "nodes": [
+        {
+            "id": "contracts-conjunction-0002"
+        },
+        {
+            "id": "contracts-conjunction-0001"
+        },
+        {
+            "id": "contracts-conjunction-0001**contracts-conjunction-0002"
+        },
+        {
+            "id": "contracts-conjunction-0002||contracts-conjunction-0003"
+        },
+        {
+            "id": "contracts-conjunction-0003"
+        },
+        {
+            "id": "contracts-conjunction-0000"
+        },
+        {
+            "id": "contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        },
+        {
+            "id": "contracts-conjunction-0001**contracts-conjunction-0002/\\contracts-conjunction-0002||contracts-conjunction-0003**contracts-conjunction-0000"
+        }
+    ]
+}
