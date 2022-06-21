@@ -1,5 +1,4 @@
 import React from 'react';
-import ElementsButton from "../Elements/Button";
 import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactivegoals";
 
 export default class ContractsChoiceActiveGoals extends React.Component {
