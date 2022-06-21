@@ -1,12 +1,71 @@
 import React from "react";
 import componentInfo from "../../_texts/custom/componentInfo";
-
+import ComponentsDiagram from "../../components/Custom/ComponentsDiagram"
 
 export default class CustomComponent extends React.Component {
 
     render() {
+
+        const nodes = [
+                {
+                    id: 'node-1',
+                    content: 'Start',
+                    coordinates: [100, 150],
+                    outputs: [
+                        {id: 'port-1', alignment: 'right'},
+                        {id: 'port-2', alignment: 'right'},
+                    ],
+                    disableDrag: true,
+                    data: {
+                        foo: 'bar',
+                        count: 0,
+                    }
+                },
+                {
+                    id: 'node-2',
+                    content: 'Middle',
+                    coordinates: [300, 150],
+                    inputs: [
+                        {id: 'port-3', alignment: 'left'},
+                        {id: 'port-4', alignment: 'left'},
+                    ],
+                    outputs: [
+                        {id: 'port-5', alignment: 'right'},
+                        {id: 'port-6', alignment: 'right'},
+                    ],
+                    data: {
+                        bar: 'foo',
+                    }
+                },
+                {
+                    id: 'node-3',
+                    content: 'End',
+                    coordinates: [600, 150],
+                    inputs: [
+                        {id: 'port-7', alignment: 'left'},
+                        {id: 'port-8', alignment: 'left'},
+                    ],
+                    data: {
+                        foo: true,
+                        bar: false,
+                        some: {
+                            deep: {
+                                object: true,
+                            }
+                        },
+                    }
+                },
+            ]
+
+
+            const links = [
+                {input: 'port-1', output: 'port-4'},
+            ]
+
+
+
         return (<>
-            <div className="relative pt-8 pb-12 bg-red-500 ">
+                <div className="relative pt-8 pb-12 bg-red-500 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
                             <div className="flex flex-wrap justify-center">
@@ -17,6 +76,11 @@ export default class CustomComponent extends React.Component {
                         </div>
                     </div>
                 </div>
+                <ComponentsDiagram
+                    nodes={nodes}
+                    links={links}
+                />
+
             </>)
     }
 }

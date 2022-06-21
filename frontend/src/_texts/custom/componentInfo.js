@@ -1,7 +1,8 @@
 const textProps = {
     info: {
         texts: {
-            title: "New page"
+            title: "New page",
+            diagram: "Diagram"
         }
     }
 }
