@@ -21,6 +21,14 @@ function ComponentEdit(props) {
             case "description":
                 component.description = value;
                 break;
+            case "inputs":
+                console.log("inputs")
+                component.inputs = value
+                break;
+            case "outputs":
+                console.log("outputs")
+                component.outputs = value
+                break;
             case "ltl_value":
                 contractTypeIndex.ltl_value = value;
                 break;
@@ -63,7 +71,6 @@ function ComponentEdit(props) {
         props.edit(component)
     }
 
-
     return (
         <>
             <div className="modal-header justify-content-center">
@@ -92,7 +99,24 @@ function ComponentEdit(props) {
                     value={component.description}
                     onChange={changeParameter}
                 />
-
+                <div>
+                    <label htmlFor="inputs" className="title title-up">Inputs</label>
+                    <Input
+                        type="text"
+                        placeholder="inputs"
+                        name="inputs"
+                        value={component.inputs}
+                        onChange={changeParameter}
+                    />
+                    <label htmlFor="outputs" className="title title-up">Outputs</label>
+                    <Input
+                        type="text"
+                        placeholder="outputs"
+                        name="outputs"
+                        value={component.outputs}
+                        onChange={changeParameter}
+                    />
+                </div>
                 {props.info.contract.map((prop, key) => (
                     <div key={key}>
                         <h4 className="title title-up">{prop.title}</h4>
