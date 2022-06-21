@@ -45,8 +45,12 @@ def save_component(data) -> None:
     now = time.localtime(time.time())
     name: str = data["component"]["name"]
 
+    emit("component-saved", True, room=request.sid)
+
     try:
         Component.save_component(data, session_id)
+        send_message_to_user(content='The component "' + name + '" has been saved.',
+                             room_id=request.sid, crometype="success")
     except KeyError as keyError:
         emit(
             "send-message",
@@ -54,5 +58,3 @@ def save_component(data) -> None:
                                                                f'LTL/Pattern \n KeyError : {keyError}',
             room=request.sid,
         )
-
-    emit("receive-components", True, room=request.sid)
