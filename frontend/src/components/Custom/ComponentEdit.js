@@ -10,6 +10,7 @@ function ComponentEdit(props) {
     const [component] = React.useState(JSON.parse(JSON.stringify(props.component)));
 
     function changeParameter(e, contractType = false, index = 0, propValue = false, subKey = -1) {
+        console.log("vhangeparameete")
 
         const value = propValue || e.target.value
 
@@ -45,7 +46,6 @@ function ComponentEdit(props) {
                 break;
         }
 
-        console.log(component)
         props.edit(component)
     }
 
@@ -95,7 +95,8 @@ function ComponentEdit(props) {
                 />
 
                 {props.info.contract.map((prop, key) => (
-                    <div key={key}><h4 className="title title-up">{prop.title}</h4>
+                    <div key={key}>
+                        <h4 className="title title-up">{prop.title}</h4>
                         <ContractContentEditor
                             items={component.contract[prop.title]}
                             patterns={props.patterns}

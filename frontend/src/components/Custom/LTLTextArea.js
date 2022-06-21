@@ -11,7 +11,7 @@ const LTLTextArea = React.forwardRef(
       leftIcon,
       rightIcon,
       type,
-      onChange,
+      changeParameter,
       value,
       listOfWorldVariables,
       setLTLWorldValues,
@@ -41,17 +41,14 @@ const LTLTextArea = React.forwardRef(
       );
     }
 
-    const [spanValue, setSpanValue] = React.useState("");
-
-
     return (
       <>
         <div className={wrapperClasses + " relative"} ref={ref}>
           {leftAddon}
           <LTLEdit
             goalEdit={true}
-            value={spanValue}
-            setValue={setSpanValue}
+            value={value}
+            changeParameter={changeParameter}
             size={12}
             inputsValue={listOfWorldVariables.toString()}
           />

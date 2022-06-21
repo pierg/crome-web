@@ -51,6 +51,19 @@ export default function ContractContentEditor({
   let callBackAction = (key) => {
     setOpen(key);
   };
+
+  let changeParameterTmp = (string, key) => {
+    let e = {
+      target : {
+        name : "",
+        value : ""
+      }
+    }
+    e.target.name = "ltl_value"
+    e.target.value = string
+    changeParameter(e, contractType, key)
+  }
+
   return (
     <>
       <div>
@@ -96,9 +109,8 @@ export default function ContractContentEditor({
                     <td className="w-9/12" colSpan={2}>
                         <LTLTextArea
                           value={prop.ltl_value}
-                          name="ltl_value"
                           placeholder={infos.placeholders.ltl}
-                          onChange={(e) => changeParameter(e, contractType, key)}
+                          changeParameter={(string) => changeParameterTmp(string, key)}
                           listOfWorldVariables={listOfWorldVariables}
                           setLTLWorldValues={(values) =>
                             setLTLWorldValues(key, contractType, values)

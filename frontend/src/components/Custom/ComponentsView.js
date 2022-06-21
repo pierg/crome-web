@@ -36,6 +36,7 @@ export default class ComponentsView extends React.Component {
     }
 
     editComponent = (component) => {
+        console.log(component)
         this.setTmpComponent(component)
     }
 
@@ -85,9 +86,9 @@ export default class ComponentsView extends React.Component {
                             >
                                 <ComponentEdit
                                     component={this.state.tmpComponent}
-                                    patterns={this.props.pattern}
+                                    patterns={this.props.patterns}
                                     edit={(component) => this.editComponent(component)}
-                                    save={() => this.saveComponent}
+                                    save={(component) => this.saveComponent(component)}
                                     close={() => this.setTriggerAddComponent(false)}
                                     {...goaleditinfo}
                                 />
