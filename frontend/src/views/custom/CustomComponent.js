@@ -1,6 +1,7 @@
 import React from "react";
 import componentInfo from "../../_texts/custom/componentInfo";
 import ComponentsDiagram from "../../components/Custom/ComponentsDiagram"
+import ComponentsView from "../../components/Custom/ComponentsView";
 
 export default class CustomComponent extends React.Component {
 
@@ -64,7 +65,8 @@ export default class CustomComponent extends React.Component {
 
 
 
-        return (<>
+        return (
+            <>
                 <div className="relative pt-8 pb-12 bg-red-500 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
@@ -76,11 +78,21 @@ export default class CustomComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-                <ComponentsDiagram
-                    nodes={nodes}
-                    links={links}
-                />
+                <div className="w-100 row mx-5 mt-5">
+                    <div className="col-3">
+                        <ComponentsView
+                        />
+                    </div>
+                    <div className="col-3">
 
+                    </div>
+                    <div className="col-6">
+                        <ComponentsDiagram
+                            nodes={nodes}
+                            links={links}
+                        />
+                    </div>
+                </div>
             </>)
     }
 }
