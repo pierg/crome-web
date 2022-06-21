@@ -12,7 +12,7 @@ class Component:
         list_components = []
         # We get components of the current session
         component_folder = component_path(session_id)
-        print(component_folder)
+
         if os.path.isdir(component_folder):
             _, _, filenames = next(walk(component_folder))
             for filename in filenames:
@@ -24,7 +24,6 @@ class Component:
 
     @staticmethod
     def save_component(data, session_id):
-
         component_folder = component_path(session_id)
 
         if "id" not in data["component"]:
@@ -40,3 +39,13 @@ class Component:
         json_formatted = json.dumps(data["component"], indent=4, sort_keys=True)
         json_file.write(json_formatted)
         json_file.close()
+
+    @staticmethod
+    def delete_component(name, session_id):
+        component_folder = component_path(session_id)
+
+        _, _, filenames = next(walk(component_folder))
+        for filename in filenames:
+            if len(filename.split(".")) == 2 and filename.split(".")[-1] == "dat":
+                continue
+            os.remove(component_folder / filename)

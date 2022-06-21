@@ -58,3 +58,16 @@ def save_component(data) -> None:
                                                                f'LTL/Pattern \n KeyError : {keyError}',
             room=request.sid,
         )
+
+
+@socketio.on("delete-component")
+def delete_component(name) -> None:
+    """
+    We delete the json file related to the component id given by the frontend.
+    """
+    session_id = str(request.args.get("id"))
+
+    Component.delete_component(name, session_id)
+
+    send_message_to_user(f"The component '{name}' has been deleted.", request.sid, "success")
+    emit("component-deleted", True, room=request.sid)
