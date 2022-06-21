@@ -53,7 +53,6 @@ export default class ContractsChoiceActiveGoals extends React.Component {
             })
         }
         if (this.state.selectedGoals[0] !== this.state.selectedGoals[1] && this.state.selectedGoals.length === 2) {
-            console.log(this.state.selectedGoals.length)
             this.disableBuildButton(false)
         } else {
             this.disableBuildButton(true)
