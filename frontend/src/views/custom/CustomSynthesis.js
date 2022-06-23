@@ -297,7 +297,7 @@ export default class CustomSynthesis extends React.Component {
                     parallel={this.state.clickedButtonParallel}
                     setGraph={this.setGraph}
                 />
-                <div className="relative pt-8 pb-12 bg-emerald-400 ">
+                <div className="relative pt-8 pb-12 bg-emerald-500 ">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
                             <div className="flex flex-wrap justify-center">
