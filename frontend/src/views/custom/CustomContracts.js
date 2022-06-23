@@ -78,17 +78,19 @@ export default class CustomContracts extends React.Component {
 
     getListOfWorldVariables(world) {
         let worldVariables = [[], [], [], []]
-        for (let i = 0; i < world.grid.locations.length; i++) {
-            worldVariables[0].push(world.grid.locations[i].id)
-        }
-        for (let i = 0; i < world.actions.length; i++) {
-            worldVariables[1].push(world.actions[i].name)
-        }
-        for (let i = 0; i < world.sensors.length; i++) {
-            worldVariables[2].push(world.sensors[i].name)
-        }
-        for (let i = 0; i < world.context.length; i++) {
-            worldVariables[3].push(world.context[i].name)
+        if(world !== undefined) {
+            for (let i = 0; i < world.grid.locations.length; i++) {
+                worldVariables[0].push(world.grid.locations[i].id)
+            }
+            for (let i = 0; i < world.actions.length; i++) {
+                worldVariables[1].push(world.actions[i].name)
+            }
+            for (let i = 0; i < world.sensors.length; i++) {
+                worldVariables[2].push(world.sensors[i].name)
+            }
+            for (let i = 0; i < world.context.length; i++) {
+                worldVariables[3].push(world.context[i].name)
+            }
         }
         return worldVariables
     }
