@@ -9,7 +9,7 @@ export default class LandingPageCrome extends React.Component {
             <div className="bg-gradient-to-r from-indigo-700 to-lightBlue-600 min-h-screen">
                 <div className="flex justify-center min-h-screen">
                     <div className="flex flex-col justify-center w-50">
-                        <div className="display-1 title-up text-white text-shadow-md mb-8 text-center font-bold">
+                        <div className="transition ease-in-out duration-700 hover:custom-transform display-1 title-up text-white text-shadow-md mb-8 text-center font-bold">
                             Crome
                         </div>
                         <div className="text-base text-white mb-12 text-shadow-md text-justify italic">
@@ -17,7 +17,7 @@ export default class LandingPageCrome extends React.Component {
                         </div>
                         <div className="flex justify-center">
                             <Link to="/crome" class="nav-link">
-                                <Button color="white" outline={true} size="lg">
+                                <Button color="white" outline={true} size="customLg">
                                 <span className="text-lg">
                                     Start Crome
                                 </span>

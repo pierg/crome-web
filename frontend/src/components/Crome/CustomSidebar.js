@@ -152,10 +152,10 @@ export default function CustomSidebar({
                                             {(page !== "index") && (prop.text === "Run CROME") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "synthesis") && (prop.text === "Run SYNTHESIS") &&
+                                            {(page !== "indexSynthesis") && (prop.text === "Run SYNTHESIS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "contracts") && (prop.text === "Run CONTRACTS") &&
+                                            {(page !== "indexContracts") && (prop.text === "Run CONTRACTS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
                                             {(page !== "component") && (prop.text === "Run COMPONENT") &&
