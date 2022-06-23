@@ -12,6 +12,8 @@ import CustomContractsDescription from "../../components/Custom/CustomContractsD
 import ElementsButton from "../../components/Elements/Button";
 import {Modal} from "reactstrap";
 import ContractsChoiceActiveGoals from "../../components/Custom/ContractsChoiceActiveGoals";
+import customfooter from "../../_texts/custom/customfooter";
+import CustomFooter from "../../components/Custom/CustomFooter";
 
 export default class CustomContracts extends React.Component {
     state = {
@@ -215,7 +217,7 @@ export default class CustomContracts extends React.Component {
                     clickable={true}
                     onSelectCustomHeader={this.onSelectCustomHeader}
                 />
-                <div className="pb-12">
+                <div className="pb-20">
                     <div className="flex justify-center my-3 mx-60">
 
                         <div
@@ -288,6 +290,7 @@ export default class CustomContracts extends React.Component {
                         />
                     </div>
                 </div>
+                <CustomFooter {...customfooter} />
             </>
 
 

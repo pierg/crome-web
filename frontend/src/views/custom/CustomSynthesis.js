@@ -12,6 +12,8 @@ import SocketGetExamples from "../../components/Custom/Examples/GetExamples";
 import {toast} from "react-toastify";
 import Simulation from "../../components/Custom/Simulation";
 import SynthesisForm from "../../components/Custom/SynthesisForm";
+import customfooter from "../../_texts/custom/customfooter";
+import CustomFooter from "../../components/Custom/CustomFooter";
 
 export default class CustomSynthesis extends React.Component {
 
@@ -395,6 +397,7 @@ export default class CustomSynthesis extends React.Component {
                             : null
                     }
                 </div>
+                <CustomFooter {...customfooter} />
             </>
         )
     }
