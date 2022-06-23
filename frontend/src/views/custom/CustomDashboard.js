@@ -19,8 +19,7 @@ import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironm
 import CustomComponent from "./CustomComponent";
 import LandingPageCrome from "./LandingPageCrome";
 import LandingPageContracts from "./LandingPageContracts";
-
-
+import LandingPageSynthesis from "./LandingPageSynthesis";
 
 export default function CustomDashboard(props) {
     const location = useLocation();
@@ -83,6 +82,10 @@ export default function CustomDashboard(props) {
                         case 'synthesis':
                             return (
                                 <CustomSynthesis updateMessage={updateMessage}/>
+                            )
+                        case 'indexSynthesis':
+                            return (
+                                <LandingPageSynthesis/>
                             )
                         case 'contracts':
                             return(

@@ -28,7 +28,7 @@ const textProps = {
       icon: "fas fa-tv",
       text: "Run SYNTHESIS",
       link: {
-        href: "#/synthesis",
+        href: "#/indexSynthesis",
       },
     },
     {
