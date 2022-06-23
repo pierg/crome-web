@@ -75,7 +75,6 @@ export default function CustomDashboard(props) {
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
             <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
                 {(() => {
-                    console.log(props.page)
                     switch (props.page) {
                         case 'world':
                             return (
@@ -87,7 +86,10 @@ export default function CustomDashboard(props) {
                             )
                         case 'contracts':
                             return(
-                                // <CustomContracts/>
+                                <CustomContracts/>
+                            )
+                        case 'indexContracts':
+                            return(
                                 <LandingPageContracts/>
                             )
                         case 'component':
