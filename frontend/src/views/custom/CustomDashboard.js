@@ -18,6 +18,7 @@ import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleM
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 import CustomComponent from "./CustomComponent";
 import LandingPageCrome from "./LandingPageCrome";
+import LandingPageContracts from "./LandingPageContracts";
 
 
 
@@ -86,7 +87,8 @@ export default function CustomDashboard(props) {
                             )
                         case 'contracts':
                             return(
-                                <CustomContracts/>
+                                // <CustomContracts/>
+                                <LandingPageContracts/>
                             )
                         case 'component':
                             return (
