@@ -6,7 +6,7 @@ export default class LandingPageSynthesis extends React.Component {
 
     render() {
         return (
-            <div className="bg-gradient-to-r from-indigo-700 to-lightBlue-600 min-h-screen">
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-400 min-h-screen">
                 <div className="flex justify-center min-h-screen">
                     <div className="flex flex-col justify-center w-50">
                         <div className="display-1 title-up text-white text-shadow-md mb-8 text-center font-bold">
