@@ -3,7 +3,7 @@ const textProps = {
         types: ["LTL", "Pattern"],
         placeholders: {
             ltl: "LTL Value",
-            pattern: "Name",
+            pattern: "Select a pattern",
             singleValues: "Value",
             listOfValues: "Values"
         },
