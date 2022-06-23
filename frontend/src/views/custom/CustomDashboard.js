@@ -17,6 +17,7 @@ import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 import CustomComponent from "./CustomComponent";
+import LandingPageCrome from "./LandingPageCrome";
 
 
 
@@ -73,6 +74,7 @@ export default function CustomDashboard(props) {
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
             <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
                 {(() => {
+                    console.log(props.page)
                     switch (props.page) {
                         case 'world':
                             return (
@@ -90,9 +92,13 @@ export default function CustomDashboard(props) {
                             return (
                                 <CustomComponent/>
                             )
-                        default:
+                        case 'crome':
                             return (
                                 <CustomPlayer world={world} {...custommediaplayerteaminfo} setWorld={updateWorld} setListOfWorldNames={updateListOfWorldNames} id={id}/>
+                            )
+                        default:
+                            return (
+                                <LandingPageCrome/>
                             )
                     }
                 })()}
