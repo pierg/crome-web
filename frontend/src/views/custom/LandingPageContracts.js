@@ -21,6 +21,7 @@ export default class LandingPageContracts extends React.Component {
                                 <span className="text-lg">
                                     Start Contracts
                                 </span>
+                                    <i className="ml-2 text-lg fa-solid fa-arrow-right"></i>
                                 </Button>
                             </Link>
                         </div>
