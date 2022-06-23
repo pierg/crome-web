@@ -125,6 +125,7 @@ export default function ContractContentEditor({
                           placeholder={infos.placeholders.pattern}
                           defaultValue={prop.pattern.name}
                           patternDescription={DescriptionOf(patterns)}
+                          patterns={patterns}
                           name="contentName"
                           changeSelector={(e, value) =>
                             changeParameter(e, contractType, key, value)

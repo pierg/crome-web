@@ -1,5 +1,4 @@
 import React from 'react';
-import Dropdown from 'react-multilevel-dropdown';
 import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactivegoals";
 
 export default class ContractsChoiceActiveGoals extends React.Component {
@@ -71,22 +70,6 @@ export default class ContractsChoiceActiveGoals extends React.Component {
             goalChoice =
                 <div className="flex justify-content-evenly mb-6">
                     <div className="flex flex-col">
-                        <Dropdown
-                            title='Dropdown title'
-                        >
-                            <Dropdown.Item>
-                                Item 1
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Item 2
-                                <Dropdown.Submenu>
-                                    <Dropdown.Item>
-                                        Subitem 1
-                                    </Dropdown.Item>
-                                </Dropdown.Submenu>
-                            </Dropdown.Item>
-                        </Dropdown>
-
                         <label htmlFor="firstDropDownMenu"
                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                             Choose your {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
