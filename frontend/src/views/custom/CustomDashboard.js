@@ -19,8 +19,7 @@ import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironm
 import CustomComponent from "./CustomComponent";
 import LandingPageCrome from "./LandingPageCrome";
 import LandingPageContracts from "./LandingPageContracts";
-
-
+import LandingPageSynthesis from "./LandingPageSynthesis";
 
 export default function CustomDashboard(props) {
     const location = useLocation();
@@ -75,7 +74,6 @@ export default function CustomDashboard(props) {
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
             <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
                 {(() => {
-                    console.log(props.page)
                     switch (props.page) {
                         case 'world':
                             return (
@@ -85,9 +83,16 @@ export default function CustomDashboard(props) {
                             return (
                                 <CustomSynthesis updateMessage={updateMessage}/>
                             )
+                        case 'indexSynthesis':
+                            return (
+                                <LandingPageSynthesis/>
+                            )
                         case 'contracts':
                             return(
-                                // <CustomContracts/>
+                                <CustomContracts/>
+                            )
+                        case 'indexContracts':
+                            return(
                                 <LandingPageContracts/>
                             )
                         case 'component':

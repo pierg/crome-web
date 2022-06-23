@@ -28,7 +28,7 @@ const textProps = {
       icon: "fas fa-tv",
       text: "Run SYNTHESIS",
       link: {
-        href: "#/synthesis",
+        href: "#/indexSynthesis",
       },
     },
     {
@@ -38,7 +38,7 @@ const textProps = {
       icon: "fas fa-tv",
       text: "Run CONTRACTS",
       link: {
-        href: "#/contracts",
+        href: "#/indexContracts",
       },
     },
 
