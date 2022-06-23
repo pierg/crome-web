@@ -219,11 +219,13 @@ def get_patterns() -> None:
 
     json_content = []
     for c in CoreMovement.__subclasses__():
-        content = {"name": c.name, "description": c.description, "ltl_example": "", "arguments": c.arguments}
+        content = {"id": str(c.__name__), "name": c.name, "description": c.description, "ltl_example": "",
+                   "arguments": c.arguments}
 
         json_content.append(content)
     for c in Trigger.__subclasses__():
-        content = {"name": c.name, "description": c.description, "ltl_example": "", "arguments": c.arguments}
+        content = {"id": str(c.__name__), "name": c.name, "description": c.description, "ltl_example": "",
+                   "arguments": c.arguments}
         json_content.append(content)
 
     json_file = open(robotic_patterns_file, "w")

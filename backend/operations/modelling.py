@@ -4,6 +4,7 @@ from pathlib import Path
 
 import crome_cgg.goal as crome_cgg_goal
 import crome_synthesis.world as crome_cgg_world
+from backend.shared.paths import storage_path
 from crome_cgg.context import Context
 from crome_cgg.context import ContextException
 
@@ -131,6 +132,16 @@ class Modelling:
         for i in range(len(contract_lists)):
             for contract_element in json_obj["contract"][contract_names[i]]:
                 if "pattern" in contract_element:
+                    # We have to get the real name of the pattern that is inside the pattern.json file
+                    pattern_id = None
+                    robotic_patterns_file = Path(
+                        os.path.join(storage_path, "crome/patterns/robotic.json")
+                    )
+                    with open(robotic_patterns_file) as file:
+                        pattern_content = json.load(file)
+                        for pattern in pattern_content:
+                            if pattern["name"] == contract_element["pattern"]["name"]:
+                                pattern_id = pattern["id"]
                     args = contract_element["pattern"]["arguments"]
                     if len(args) == 1:
                         if type(args[0]["value"]) == list:
@@ -142,7 +153,7 @@ class Modelling:
                             contract_lists[i].append(
                                 LTL(
                                     _init_formula=globals()[
-                                        contract_element["pattern"]["name"]
+                                        pattern_id
                                     ](locations=list_of_locations).__str__(),
                                     _typeset=Typeset(typeset_location),
                                 )
@@ -151,7 +162,7 @@ class Modelling:
                             contract_lists[i].append(
                                 LTL(
                                     _init_formula=globals()[
-                                        contract_element["pattern"]["name"]
+                                        pattern_id
                                     ](locations=[w[args[0]["value"]]]).__str__(),
                                     _typeset=Typeset(
                                         {w.typeset[args[0]["value"]]}
@@ -162,7 +173,7 @@ class Modelling:
                         contract_lists[i].append(
                             LTL(
                                 _init_formula=globals()[
-                                    contract_element["pattern"]["name"]
+                                    pattern_id
                                 ](
                                     pre=w[args[0]["value"]],
                                     post=w[args[1]["value"]],
