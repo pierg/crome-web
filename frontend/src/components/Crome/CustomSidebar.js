@@ -132,9 +132,7 @@ export default function CustomSidebar({
                                         </h6>
                                     );
                                 } else {
-                                    console.log(prop.link.href)
-                                    console.log(currentRoute)
-
+              
                                     return (
                                         <a
                                             {...prop.link}

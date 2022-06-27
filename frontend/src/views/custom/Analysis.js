@@ -169,6 +169,8 @@ export default class Analysis extends React.Component {
 
         if (this.props.project === "simple") {
             graph = default_cgg
+            nodesArray = graph.nodes
+            edgesArray = graph.edges
         }
 
 
