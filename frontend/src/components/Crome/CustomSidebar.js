@@ -140,8 +140,8 @@ export default function CustomSidebar({
                                             {...prop.link}
                                             key={key}
                                             className={classnames("text-xs uppercase py-3 font-bold block focus:outline-none", {
-                                                [activeColors[activeColor]]: prop.link.href === currentRoute,
-                                                "text-blueGray-800 hover:text-blueGray-500": prop.link.href !== currentRoute,
+                                                [activeColors[activeColor]]: currentRoute.toUpperCase().includes(prop.name),
+                                                "text-blueGray-800 hover:text-blueGray-500": !currentRoute.toUpperCase().includes(prop.name),
                                             })}
                                         >
                                             <i
