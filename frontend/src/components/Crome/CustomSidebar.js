@@ -132,14 +132,14 @@ export default function CustomSidebar({
                                         </h6>
                                     );
                                 } else {
+              
                                     return (
                                         <a
                                             {...prop.link}
                                             key={key}
                                             className={classnames("text-xs uppercase py-3 font-bold block focus:outline-none", {
-                                                [activeColors[activeColor]]: prop.link.href === currentRoute,
-                                                "text-blueGray-800 hover:text-blueGray-500":
-                                                    prop.link.href !== currentRoute,
+                                                [activeColors[activeColor]]: currentRoute.toUpperCase().includes(prop.name),
+                                                "text-blueGray-800 hover:text-blueGray-500": !currentRoute.toUpperCase().includes(prop.name),
                                             })}
                                         >
                                             <i
@@ -149,13 +149,13 @@ export default function CustomSidebar({
                                                 })}
                                             />
                                             {prop.text}
-                                            {(page !== "index") && (prop.text === "Run CROME") &&
+                                            {(page !== "indexCrome") && (page !== "crome") && (prop.text === "Run CROME") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "indexSynthesis") && (prop.text === "Run SYNTHESIS") &&
+                                            {(page !== "indexSynthesis") && (page !== "synthesis") && (prop.text === "Run SYNTHESIS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "indexContracts") && (prop.text === "Run CONTRACTS") &&
+                                            {(page !== "indexContracts") && (page !== "contracts") && (prop.text === "Run CONTRACTS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
                                             {(page !== "component") && (prop.text === "Run COMPONENT") &&

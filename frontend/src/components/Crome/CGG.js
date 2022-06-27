@@ -127,7 +127,7 @@ export default class CGG extends React.Component {
                     for (const key in operations) {
                         goals = this.props.edgesArray[i].to.split(key)
                         if (goals.length === 2 && (goals[0]===id || goals[1]===id)) {
-                            str+=operations[key]+" of <strong>"+this.findNodesIndexById(this.props.nodesArray,this.props.edgesArray[i].to)+"</strong>\n"
+                            str+=operations[key]+" of <strong>"+this.findNodesIndexById(this.props.edgesArray[i].to)+"</strong>\n"
                         }
                     }
                 }

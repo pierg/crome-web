@@ -229,12 +229,14 @@ export default class CustomContracts extends React.Component {
                             </div>
 
                             {!this.state.cgg && (<>
-                                    <div className="relative flex justify-center mt-20">
-                                        <ElementsButton size="lg" color="facebook" outline={false}
-                                                        onClick={() => this.setModalGoal(true)}>
-                                            Choose your goals
-
-                                        </ElementsButton>
+                                    <div className="flex justify-center min-h-full">
+                                        <div className="flex flex-col justify-center pb-5">
+                                            <ElementsButton size="lg" color="facebook" outline={false}
+                                                            onClick={() => this.setModalGoal(true)}>
+                                                Choose your goals
+    
+                                            </ElementsButton>
+                                        </div>
                                     </div>
                                     <Modal
                                         isOpen={this.state.modalChoiceGoal}

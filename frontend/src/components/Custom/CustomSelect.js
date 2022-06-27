@@ -12,6 +12,19 @@ export default function CustomSelect({
                                      }) {
     const [showDropDown, setShowDropDown] = React.useState(false);
 
+    const DropdownTitle = () => {
+        return(
+            <>
+                <div
+                    className="relative w-100"
+                >
+                    {defaultValue === "" ? placeholder : defaultValue}
+                    <i className="fa-solid fa-square-caret-down absolute right-0"></i>
+                </div>
+            </>
+        )
+    }
+
     const showDropDownFunction = () => {
         setShowDropDown(false)
     }
@@ -83,32 +96,59 @@ export default function CustomSelect({
         return(
             <Dropdown
                 id="dropdown"
-                title={defaultValue === "" ? placeholder : defaultValue}
-                menuClassName={showDropDown ? "hidden" : ""}
+                title={<DropdownTitle/>}
+                menuClassName={showDropDown ? "hidden bg-gray-500" : "bg-gray-500"}
                 position="right"
                 wrapperClassName="w-100"
                 buttonClassName="w-100 text-left"
                 onClick={showDropDownFunction}
             >
-                <Dropdown.Item>
-                    Surveillance
+                <Dropdown.Item
+                    className="focus:outline-none"
+                >
+                    <div
+                        className="relative w-100"
+                    >
+                        Surveillance
+                        <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
+                    </div>
                     <Dropdown.Submenu
+                        style={{"width":"110%"}}
+                        className="bg-gray-500"
                         position={"right"}
                     >
                         {surveillance}
                     </Dropdown.Submenu>
                 </Dropdown.Item>
-                <Dropdown.Item>
-                    Reaction
+                <Dropdown.Item
+                    className="focus:outline-none"
+                >
+                    <div
+                        className="relative w-100"
+                    >
+                        Reaction
+                        <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
+                    </div>
                     <Dropdown.Submenu
+                        style={{"width":"110%"}}
+                        className="bg-gray-500"
                         position={"right"}
                     >
                         {reaction}
                     </Dropdown.Submenu>
                 </Dropdown.Item>
-                <Dropdown.Item>
-                    Others
+                <Dropdown.Item
+                    className="focus:outline-none"
+                >
+                    <div
+                        className="relative w-100"
+                    >
+                        Others
+                        <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
+                    </div>
                     <Dropdown.Submenu
+                        style={{"width":"110%"}}
+                        className="bg-gray-500"
                         position={"right"}
                     >
                         {others}
