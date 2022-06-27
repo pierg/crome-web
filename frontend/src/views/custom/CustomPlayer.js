@@ -57,7 +57,8 @@ export default function CustomPlayer({
     setGoals(goals);
   }
 
-  const toggleNew = (e, newOpen) => {
+  const toggleNew = (e, newOpen, disabled) => {
+    if(disabled) return
     //goal modeling to analysis
     if(open === 1  && newOpen === 2) {
       //check if there are goals
@@ -105,6 +106,7 @@ export default function CustomPlayer({
             toggleNew={toggleNew}
             itemsLength={items.length}
             type={"back"}
+            href="#/crome"
           />
         </div>
           <Tooltip
@@ -119,6 +121,7 @@ export default function CustomPlayer({
                 itemsLength={items.length}
                 type={"continue"}
                 noProject={project === 0}
+                href="#/crome"
               />
 
             </div>

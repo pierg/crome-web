@@ -6,7 +6,8 @@ export default function CustomNavButton({
   open,
   itemsLength,
   type,
-  noProject
+  noProject,
+  href
 }) {
 
     let disabled
@@ -17,15 +18,15 @@ export default function CustomNavButton({
         actionToggle = (open - 1 < 0 ? itemsLength - 1 : open - 1)
     }
     else {
-        disabled = (open === 3 || noProject)
+        disabled = (open === itemsLength -1 || noProject)
         actionToggle = (open + 1 > itemsLength - 1 ? 0 : open + 1)
     }
 
     return (
         <a
-            href="#/crome"
+            href={href}
             className={(disabled ? "hover:no-underline cursor-default " : "") + customnavbutton.textColor + " text-center opacity-85 focus:outline-none hover:opacity-100 transition-opacity duration-150 ease-linear w-12 text-xl z-50"}
-            onClick={(e) => toggleNew(e, actionToggle)}
+            onClick={(e) => toggleNew(e, actionToggle, disabled)}
         >
             <div>
                 {(type === "back") && (
