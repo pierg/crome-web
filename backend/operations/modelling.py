@@ -134,14 +134,18 @@ class Modelling:
                 if "pattern" in contract_element:
                     # We have to get the real name of the pattern that is inside the pattern.json file
                     pattern_id = None
-                    robotic_patterns_file = Path(
-                        os.path.join(storage_path, "crome/patterns/robotic.json")
-                    )
-                    with open(robotic_patterns_file) as file:
-                        pattern_content = json.load(file)
-                        for pattern in pattern_content:
-                            if pattern["name"] == contract_element["pattern"]["name"]:
-                                pattern_id = pattern["id"]
+                    from crome_logic.patterns.robotic_movement import CoreMovement
+                    from crome_logic.patterns.robotic_triggers import Trigger
+                    for c in CoreMovement.__subclasses__():
+                        if c.name == contract_element["pattern"]["name"]:
+                            pattern_id = str(c.__name__)
+                            break
+                    if not pattern_id:
+                        for c in Trigger.__subclasses__():
+                            if c.name == contract_element["pattern"]["name"]:
+                                pattern_id = str(c.__name__)
+                                break
+
                     args = contract_element["pattern"]["arguments"]
                     if len(args) == 1:
                         if type(args[0]["value"]) == list:
