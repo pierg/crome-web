@@ -636,7 +636,7 @@ export default class CreateEnvironment2 extends React.Component {
                                 <div id="body" className="flex justify-center items-center">
                                     <div className="flex container px-4 justify-center">
                                         <div className="flex justify-center pr-4 mt-5">
-                                            <Link to="/index" className="hover-no-underline">
+                                            <Link to="/crome" className="hover-no-underline">
                                                 <Button color={createenvironment.buttons.back.color} outline={true}>
                                                     <i className={createenvironment.buttons.back.icon + " mr-2"}/>
                                                     {createenvironment.buttons.back.text}
