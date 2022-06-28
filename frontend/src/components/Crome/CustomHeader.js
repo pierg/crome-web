@@ -43,6 +43,7 @@ export default function CustomHeader({ cards, color, states, clickable, onSelect
 CustomHeader.defaultProps = {
   cards: [],
   color: "blueGray",
+  onSelectCustomHeader:()=>void 0,
 };
 
 CustomHeader.propTypes = {
