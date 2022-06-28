@@ -109,14 +109,12 @@ class ProjectUtility:
     @staticmethod
     def delete_project(data, session_id) -> None:
         current_session_folder = session_path(session_id)
-        dir_path, dir_names, filenames = next(walk(current_session_folder))
-        i = 1
-
+        _, dir_names, _ = next(walk(current_session_folder))
         for name in dir_names:
-            if i == data["index"]:
+            if name == f"p_{data['project_id']}":
                 if len(dir_names) == 1:
                     shutil.rmtree(current_session_folder)
                 else:
                     dir_to_delete = Path(os.path.join(current_session_folder, name))
                     shutil.rmtree(dir_to_delete)
-            i += 1
+                return
