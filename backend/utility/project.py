@@ -23,6 +23,8 @@ class ProjectUtility:
             if os.path.isdir(session_folder):  # if there is a folder for this session #
                 dir_path, dir_names, filenames = next(walk(session_folder))
                 for subdir in dir_names:
+                    if subdir in ["p_composition", "p_conjunction", "p_merging", "p_quotient", "p_refinement", "p_separation"]:
+                        continue
                     project_folder: Path = Path(os.path.join(dir_path, subdir))
                     folder_path, project_directories, project_files = next(
                         walk(project_folder)
