@@ -627,7 +627,7 @@ export default class CreateEnvironment2 extends React.Component {
 
         return (
             <>
-                <Link to="/index" ref={input => this.inputElement = input}/>
+                <Link to="/crome" ref={input => this.inputElement = input}/>
                 <CustomHeader {...customheadercards} states={headerStates} />
                 <div className="px-4 md:px-6 mx-auto w-full -mt-6">
                     <div className="relative">

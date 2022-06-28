@@ -41,8 +41,11 @@ function SocketIoProjects(props) {
     }, [socket, props.uploadChange, props.uploadConfirmation, setMessageFunction, props.projectAdded, trigger]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
+        
         if (props.deletionConfirmation) {
-            socket.emit('delete-project', {index: props.deletionIndex})
+            console.log(props.listOfWorlds)
+            console.log(props.listOfWorlds[props.deletionIndex].project_id)
+            socket.emit('delete-project', {project_id: props.listOfWorlds[props.deletionIndex].project_id})
             props.deletionChanger(false)
 
             socket.on('deletion-complete', setTrigger(!trigger))
