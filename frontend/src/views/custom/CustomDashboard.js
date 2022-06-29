@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom";
 // components
 import CustomSidebar from "components/Crome/CustomSidebar";
 import CustomPlayer from "./CustomPlayer";
-import CustomSynthesis from "./CustomSynthesis";
 import CustomContracts from "./CustomContracts";
 // texts as props
 import customsidebar from "../../_texts/custom/customsidebar";
@@ -16,10 +15,8 @@ import Console from "../../components/Crome/Console";
 import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
-import CustomComponent from "./CustomComponent";
 import LandingPageCrome from "./LandingPageCrome";
-import LandingPageContracts from "./LandingPageContracts";
-import LandingPageSynthesis from "./LandingPageSynthesis";
+
 
 export default function CustomDashboard(props) {
     const location = useLocation();
@@ -79,25 +76,9 @@ export default function CustomDashboard(props) {
                             return (
                                 <CreateEnvironment world={world} session={id} worldNames={listOfWorldNames} returnedProjectId={projectId} resetProject={() => setProjectId(null)} saveEnvironment={saveEnvironment}/>
                             )
-                        case 'synthesis':
-                            return (
-                                <CustomSynthesis updateMessage={updateMessage}/>
-                            )
-                        case 'indexSynthesis':
-                            return (
-                                <LandingPageSynthesis/>
-                            )
                         case 'contracts':
                             return(
                                 <CustomContracts/>
-                            )
-                        case 'indexContracts':
-                            return(
-                                <LandingPageContracts/>
-                            )
-                        case 'component':
-                            return (
-                                <CustomComponent/>
                             )
                         case 'crome':
                             return (

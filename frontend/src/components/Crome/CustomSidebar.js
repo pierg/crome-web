@@ -95,15 +95,6 @@ export default function CustomSidebar({
                                             {prop.titleCrome}
                                         </h6>
                                     );
-                                } else if (prop.titleSynthesis) {
-                                    return (
-                                        <h6
-                                            key={key}
-                                            className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3"
-                                        >
-                                            {prop.titleSynthesis}
-                                        </h6>
-                                    );
                                 } else if (prop.titleContracts) {
                                     return (
                                         <h6
@@ -113,26 +104,7 @@ export default function CustomSidebar({
                                             {prop.titleContracts}
                                         </h6>
                                     );
-                                    } else if (prop.titleComponent) {
-                                    return (
-                                        <h6
-                                            key={key}
-                                            className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3 "
-                                        >
-                                            {prop.titleComponent}
-                                        </h6>
-                                    );
-                                    } else if (prop.titleLastPage) {
-                                    return (
-                                        <h6
-                                            key={key}
-                                            className="xxl:min-w-full text-blueGray-500 text-xs uppercase font-bold inline mt-3 "
-                                        >
-                                            {prop.titleLastPage}
-                                        </h6>
-                                    );
                                 } else {
-
                                     return (
                                         <a
                                             {...prop.link}
@@ -152,18 +124,10 @@ export default function CustomSidebar({
                                             {(page !== "indexCrome") && (page !== "crome") && (prop.text === "Run CROME") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "indexSynthesis") && (page !== "synthesis") && (prop.text === "Run SYNTHESIS") &&
-                                                <i className="fas fa-arrow-right ml-2"/>
-                                            }
                                             {(page !== "indexContracts") && (page !== "contracts") && (prop.text === "Run CONTRACTS") &&
                                                 <i className="fas fa-arrow-right ml-2"/>
                                             }
-                                            {(page !== "component") && (prop.text === "Run COMPONENT") &&
-                                                <i className="fas fa-arrow-right ml-2"/>
-                                            }
-                                            {(page !== "LastPage") && (prop.text === "Run LastPage") &&
-                                                <i className="fas fa-arrow-right ml-2"/>
-                                            }
+
                                         </a>
                                     );
                                 }
