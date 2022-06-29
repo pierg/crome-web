@@ -1,7 +1,6 @@
 import json
 import os
 import time
-from os import walk
 from pathlib import Path
 from time import strftime
 
@@ -9,9 +8,8 @@ from docker.errors import DockerException
 from flask import request
 from flask_socketio import emit
 
-from backend.operations.modelling import Modelling
 from backend.operations.simulation import Simulation
-from backend.shared.paths import goals_path, project_path, storage_path
+from backend.shared.paths import project_path, storage_path
 from backend.tools.persistence import load_goals, load_cgg, dump_cgg
 from backend.utility.goal import GoalUtility
 from backend.utility.project import ProjectUtility
@@ -44,13 +42,11 @@ def save_project(data) -> None:
     """
     session_id = str(request.args.get("id"))
     name: str = data["world"]["info"]["name"]
-    now = time.localtime(time.time())
     send_message_to_user(content='The project "' + name + '" is being saved.',
                          room_id=request.sid, crometype="success")
 
     ProjectUtility.save_project(data, session_id)
 
-    now = time.localtime(time.time())
     emit("project-saved", data["world"]["info"]["project_id"], room=request.sid)
     send_message_to_user(content='The project "' + name + '" has been saved.',
                          room_id=request.sid, crometype="success")
@@ -77,7 +73,6 @@ def delete_project(data) -> None:
     ProjectUtility.delete_project(data, session_id)
 
     emit("deletion-complete", True, room=request.sid)
-    now = time.localtime(time.time())
     send_message_to_user(content="The project has been deleted.",
                          room_id=request.sid, crometype="success")
 
@@ -176,7 +171,6 @@ def delete_goal(data) -> None:
         emit("deleting-simple", project_id, room=request.sid)
 
     # Now we remove the goal from the .dat file
-    now = time.localtime(time.time())
     send_message_to_user(content="The goal has been deleted.",
                          room_id=request.sid, crometype="success")
 
@@ -216,6 +210,9 @@ def get_patterns() -> None:
     robotic_patterns_file = Path(
         os.path.join(storage_path, "crome/patterns/robotic.json")
     )
+
+    if not os.path.exists(storage_path / "crome" / "patterns"):
+        os.makedirs(storage_path / "crome" / "patterns")
 
     json_content = []
     for c in CoreMovement.__subclasses__():
@@ -353,14 +350,14 @@ def process_goals(data) -> None:
 @socketio.on("get-inputs-crome")
 def get_inputs_crome(data) -> None:
     session_id = request.args.get("id")
-    inputs = Simulation.get_input_possible(project_id=data["project_id"], session_id=session_id, mode=data["mode"])
+    inputs = Simulation.get_input_possible(project_id=data["project_id"], session_id=session_id)
     emit("received-inputs", inputs, room=request.sid)
 
 
 @socketio.on("simulate-crome")
 def simulate_crome(data) -> None:
     content = Simulation.react_to_inputs(project_id=data["project_id"], session_id=request.args.get("id"),
-                                         mode=data["mode"], choice=data["input"])
+                                         choice=data["input"])
     send_message_to_user("The project has been simulated", "success", request.sid)
     emit("crome-simulated", content, room=request.sid)
 
@@ -368,7 +365,7 @@ def simulate_crome(data) -> None:
 @socketio.on("reset-crome")
 def reset_crome(data) -> None:
     session_id = request.args.get("id")
-    Simulation.reset_simulation(project_id=data["project_id"], session_id=session_id, mode=data["mode"])
+    Simulation.reset_simulation(project_id=data["project_id"], session_id=session_id)
     send_message_to_user("The simulation has been reset", request.sid, "success")
     emit("reset-done", True, room=request.sid)
 
@@ -381,7 +378,7 @@ def random_simulation_crome(data) -> None:
     """
     session_id = request.args.get("id")
     content = Simulation.random_simulation(project_id=data["project_id"], nb_iteration=data["iterations"],
-                                           mode=data["mode"], session_id=session_id)
+                                           session_id=session_id)
     emit("receive-random-simulation-crome", content, room=request.sid)
     send_message_to_user(f"A random simulation of {data['iterations']} iterations has been made",
                          request.sid, "success")
