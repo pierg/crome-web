@@ -27,7 +27,9 @@ export default function CustomSidebar({
         purple: "text-purple-500 hover:text-purple-700",
         pink: "text-pink-500 hover:text-pink-700",
     };
-
+    if (page === "index"){
+        return (<></>)
+    }
     return (
         <>
             <nav
