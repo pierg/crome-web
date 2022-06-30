@@ -19,27 +19,6 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         })
 
     }
-    selectGoals = (goal) => {
-        let selectedGoals = this.state.selectedGoals
-        let found = false
-        for (let i = 0; i < selectedGoals.length; i++) {
-            if (selectedGoals[i] === goal) {
-                selectedGoals.splice(i, 1)
-                found = true
-            }
-        }
-        if (!found) {
-            selectedGoals.push(goal)
-        }
-        this.setState({selectedGoals: selectedGoals})
-
-        if (this.state.selectedGoals.length !== []) {
-            this.disableBuildButton(false)
-        } else {
-            this.disableBuildButton(true)
-        }
-    }
-
     disableBuildButton = (bool) => {
         this.setState({
             buildButtonDisabled: bool
@@ -75,13 +54,17 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
         if (index !== -1) {
             goalChoice =
-                <ContractsChoiceBinaryGoals
-                     index={index}
-                    goals={this.props.goals}
-                    setSelectedGoals={this.setSelectedGoals}
-                    disableBuildButton={this.disableBuildButton}
-                    changeParameter={this.changeParameter}
-                />
+                <>
+                    <ContractsChoiceBinaryGoals
+                         index={index}
+                        goals={this.props.goals}
+                        disableBuildButton={this.disableBuildButton}
+                        changeParameter={this.changeParameter}
+                        sameGoal={(this.state.selectedGoals[0] === this.state.selectedGoals[1]) && this.state.selectedGoals.length===2}
+                    />
+
+
+                </>
         } else {
             goalChoice =
                 <ContractsChoiceNaryGoals
@@ -89,6 +72,8 @@ export default class ContractsChoiceActiveGoals extends React.Component {
                     setSelectedGoals={this.setSelectedGoals}
                     disableBuildButton={this.disableBuildButton}
                 />
+
+
         }
 
         return (
