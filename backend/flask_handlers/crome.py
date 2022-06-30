@@ -64,12 +64,12 @@ def save_image(data) -> None:
 
 
 @socketio.on("delete-project")
-def delete_project(data) -> None:
+def delete_project(project_id) -> None:
     """
     Delete the folder corresponding to the project.
     """
     session_id = str(request.args.get("id"))
-    is_deleted = ProjectUtility.delete_project(data, session_id)
+    is_deleted = ProjectUtility.delete_project(project_id, session_id)
 
     emit("deletion-complete", is_deleted, room=request.sid)
     if is_deleted:
@@ -181,13 +181,12 @@ def delete_goal(data) -> None:
 
 
 @socketio.on("check-goals")
-def check_goals(data) -> None:
+def check_goals(project_id) -> None:
     """
     Before the user goes to the Analysis page, we check if there are goals in goal.dat.
     If not, we notify the user of this missing goal.
     """
     session_id = str(request.args.get("id"))
-    project_id = str(data["project"])
     if project_id == "simple":
         return
 
@@ -240,7 +239,7 @@ def get_patterns() -> None:
 
 
 @socketio.on("process-goals")
-def process_goals(data) -> None:
+def process_goals(project_id) -> None:
     """
     Create the CGG corresponding to the project. It checks all the error and send them to the user.
     """
@@ -259,8 +258,8 @@ def process_goals(data) -> None:
     )
     emit("cgg-production", True, room=request.sid)
 
-    session = "default" if data["project"] == "simple" else session_id
-    project_folder = project_path(session, data["project"])
+    session = "default" if project_id == "simple" else session_id
+    project_folder = project_path(session, project_id)
 
     if session == "default" and not os.path.exists(
             os.path.join(project_folder, "goals.dat")
@@ -307,7 +306,6 @@ def process_goals(data) -> None:
             {"crometypes": "success", "content": "CGG has been built!"},
             room=request.sid,
         )
-        print(cgg.export_to_json())
         emit("cgg-saved", cgg.export_to_json(), room=request.sid)
         return
 
@@ -355,9 +353,9 @@ def process_goals(data) -> None:
 
 
 @socketio.on("get-inputs-crome")
-def get_inputs_crome(data) -> None:
+def get_inputs_crome(project_id) -> None:
     session_id = request.args.get("id")
-    inputs = Simulation.get_input_possible(project_id=data["project_id"], session_id=session_id)
+    inputs = Simulation.get_input_possible(project_id=project_id, session_id=session_id)
     emit("received-inputs", inputs, room=request.sid)
 
 
@@ -371,9 +369,9 @@ def simulate_crome(data) -> None:
 
 
 @socketio.on("reset-crome")
-def reset_crome(data) -> None:
+def reset_crome(project_id) -> None:
     session_id = request.args.get("id")
-    Simulation.reset_simulation(project_id=data["project_id"], session_id=session_id)
+    Simulation.reset_simulation(project_id=project_id, session_id=session_id)
     send_message_to_user("The simulation has been reset", request.sid, "success")
     emit("reset-done", True, room=request.sid)
 

@@ -45,7 +45,7 @@ function SocketIoProjects(props) {
         if (props.deletionConfirmation) {
             console.log(props.listOfWorlds)
             console.log(props.listOfWorlds[props.deletionIndex].project_id)
-            socket.emit('delete-project', {project_id: props.listOfWorlds[props.deletionIndex].project_id})
+            socket.emit('delete-project', props.listOfWorlds[props.deletionIndex].project_id)
             props.deletionChanger(false)
 
             socket.on('deletion-complete', setTrigger(!trigger))

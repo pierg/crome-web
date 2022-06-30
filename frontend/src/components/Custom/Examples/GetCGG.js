@@ -16,7 +16,7 @@ function GetCGG(props) {
     useEffect(() => {
         if (socket == null || !props.trigger) return
 
-        socket.emit('process-goals', {project: props.project})
+        socket.emit('process-goals', props.project)
 
         socket.on('cgg-production', cggTriggerBack)
 

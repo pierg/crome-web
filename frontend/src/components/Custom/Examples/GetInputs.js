@@ -16,10 +16,7 @@ function SocketGetInputs(props) {
             props.setTrigger(false)
 
             if(props.mode === "crome") {
-                socket.emit("get-inputs-crome",{project_id: props.name, mode: props.mode})
-            }
-            else if(props.mode === "strix"){
-                socket.emit("get-inputs",{name: props.name, mode: props.mode})
+                socket.emit("get-inputs-crome",props.name)
             }
 
             socket.on('received-inputs', setInputs)

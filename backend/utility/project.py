@@ -113,7 +113,7 @@ class ProjectUtility:
         current_session_folder = session_path(session_id)
         _, dir_names, _ = next(walk(current_session_folder))
         for name in dir_names:
-            if name == f"p_{data['project_id']}":
+            if name == f"p_{project_id}":
                 if len(dir_names) == 1:
                     shutil.rmtree(current_session_folder)
                 else:

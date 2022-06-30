@@ -61,7 +61,7 @@
 ### `"get-goals"`
 #### Send all goal data contained in the JSON file to the backend functions
 * accepts :
-  * id of the project, example : `"project": "my_project_name_770369"`
+  * ID of the project
 * returns :
   * [return example](./jsons-examples/example-receive-goals.json)
 * returns-via: `"receive-goals"`
@@ -77,7 +77,7 @@
 ### `"delete-goal"`
 #### deletes goal.dat from output folder
 * accepts :
-  * index of deleted goal and project id, example : `"index': 0, 'project': 'my_project_name_770369"`
+  * ID of the goal and the project
 * returns :
   * The project id if a simple project copy has been done 
 * returns-via: `"deleting-simple"` or None
@@ -85,7 +85,7 @@
 ### `"check-goals"`
 #### Check if there are goals in goal.dat from output folder
 * accepts :
-  * ID of the current project, example : `'project': 'my_project_name_770369'`
+  * ID of the current project
 * returns : 
   * None
 * returns-via: None
@@ -101,7 +101,7 @@
 ### `"process-goals"`
 #### Create the CGG of the project
 * accepts :
-  * ID of the current project, example : `'project': 'my_project_name_770369'`
+  * ID of the current project
 * returns :
   * [return example](./jsons-examples/example-cgg-production.json)
 * returns-via: `"cgg-production"`
@@ -109,7 +109,7 @@
 ### `"get-inputs-crome"`
 #### Get the possible inputs for the current project
 * accepts :
-  * ID of the current project, example : `'project': 'my_project_name_770369'`
+  * ID of the current project
 * returns :
   * The names of the possible inputs 
 * returns-via: `"received-inputs"`
@@ -125,7 +125,7 @@
 ### `"reset-crome"`
 #### Reset the simulation of the current project
 * accepts :
-  * ID of the current project, example : `'project': 'my_project_name_770369'`
+  * ID of the current project
 * returns :
   * A boolean.
 * returns-via: `"reset-done"`

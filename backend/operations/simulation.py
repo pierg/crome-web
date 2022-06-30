@@ -18,7 +18,7 @@ class Simulation:
     @staticmethod
     def random_simulation(session_id, nb_iteration, project_id):
         beforeLine = getter_line()
-        lineToSend = min(getter_line() + 25, len(arrayRunFile))
+        lineToSend = min(getter_line() + nb_iteration, len(arrayRunFile))
         setter_line(lineToSend)
         return [arrayRunFile[i] for i in range(beforeLine, lineToSend)]
 
