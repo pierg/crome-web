@@ -1,15 +1,24 @@
 import React from 'react';
 import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactivegoals";
+import ContractsChoiceNaryGoals from "./ContractsChoiceNaryGoals";
+import ContractsChoiceBinaryGoals from "./ContractsChoiceBinaryGoals";
 
 export default class ContractsChoiceActiveGoals extends React.Component {
     state = {
         typeOfOperation: "",
         selectedGoals: [],
-        firstDropDownMenuChoice: [],
-        secondDropDownMenuChoice: [],
         buildButtonDisabled: true
     }
 
+
+    setSelectedGoals = (goals) => {
+
+        this.setState({
+            selectedGoals: goals
+
+        })
+
+    }
     selectGoals = (goal) => {
         let selectedGoals = this.state.selectedGoals
         let found = false
@@ -24,7 +33,7 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
         this.setState({selectedGoals: selectedGoals})
 
-        if (this.state.selectedGoals !== []) {
+        if (this.state.selectedGoals.length !== []) {
             this.disableBuildButton(false)
         } else {
             this.disableBuildButton(true)
@@ -41,13 +50,11 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         if (menu === "firstDropDownMenu") {
             tmpGoals[0] = prop
             this.setState({
-                firstDropDownMenuChoice: prop,
                 selectedGoals: tmpGoals
             })
         } else {
             tmpGoals[1] = prop
             this.setState({
-                secondDropDownMenuChoice: prop,
                 selectedGoals: tmpGoals
             })
         }
@@ -68,84 +75,20 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
         if (index !== -1) {
             goalChoice =
-                <div className="flex justify-content-evenly mb-6">
-                    <div className="flex flex-col">
-                        <label htmlFor="firstDropDownMenu"
-                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                            Choose your {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
-                        </label>
-                        <select id="firstDropDownMenu"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option
-                                value={contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
-                                hidden={true}
-                            >
-                                {contractschoiceactivegoals.operation[index].firstDropDownMenuChoice}
-                            </option>
-                            {this.props.goals.map((prop, key) => (
-                                <option
-                                    value={prop.name}
-                                    key={key}
-                                    onClick={() =>
-                                        this.changeParameter("firstDropDownMenu", prop)
-                                    }>
-                                    {prop.name}
-                                </option>
-
-                            ))}
-                        </select>
-
-                    </div>
-
-                    <div className="flex flex-col">
-
-                        <label htmlFor="firstDropDownMenu"
-                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                            Choose your {contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
-                        </label>
-                        <select id="firstDropDownMenu"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option
-                                value={contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
-                                hidden={true}
-                            >
-                                {contractschoiceactivegoals.operation[index].secondDropDownMenuChoice}
-                            </option>
-                            {this.props.goals.map((prop, key) => (
-                                <option
-                                    value={prop.name}
-                                    key={key}
-                                    onClick={() =>
-                                        this.changeParameter("secondDropDownMenu", prop)
-                                    }>
-                                    {prop.name}
-                                </option>
-
-                            ))}
-                        </select>
-
-                    </div>
-
-                </div>
+                <ContractsChoiceBinaryGoals
+                     index={index}
+                    goals={this.props.goals}
+                    setSelectedGoals={this.setSelectedGoals}
+                    disableBuildButton={this.disableBuildButton}
+                    changeParameter={this.changeParameter}
+                />
         } else {
             goalChoice =
-                <div className="grid grid-cols-2 gap-4">
-                    {this.props.goals.map((prop, key) => (
-                        <div key={key}
-                             className="flex items-center mb-4">
-                            <input
-                                onClick={() => this.selectGoals(prop)}
-                                id={key}
-                                type="checkbox"
-                                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            </input>
-                            <label htmlFor={key}
-                                   className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                {prop.name}
-                            </label>
-                        </div>))
-                    }
-                </div>
+                <ContractsChoiceNaryGoals
+                    goals={this.props.goals}
+                    setSelectedGoals={this.setSelectedGoals}
+                    disableBuildButton={this.disableBuildButton}
+                />
         }
 
         return (

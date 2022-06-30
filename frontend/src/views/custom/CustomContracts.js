@@ -78,7 +78,7 @@ export default class CustomContracts extends React.Component {
 
     getListOfWorldVariables(world) {
         let worldVariables = [[], [], [], []]
-        if(world !== undefined) {
+        if (world !== undefined) {
             for (let i = 0; i < world.grid.locations.length; i++) {
                 worldVariables[0].push(world.grid.locations[i].id)
             }
@@ -196,7 +196,7 @@ export default class CustomContracts extends React.Component {
         let graph = {
             nodes: nodesArray, edges: edgesArray
         }
-        
+
 
         return (<>
                 <GetContractCGG
@@ -229,29 +229,29 @@ export default class CustomContracts extends React.Component {
                             </div>
 
                             {!this.state.cgg && (<>
-                                    <div className="flex justify-center min-h-full">
-                                        <div className="flex flex-col justify-center pb-5">
-                                            <ElementsButton size="lg" color="facebook" outline={false}
-                                                            onClick={() => this.setModalGoal(true)}>
-                                                Choose your goals
-    
-                                            </ElementsButton>
-                                        </div>
-                                    </div>
-                                    <Modal
-                                        isOpen={this.state.modalChoiceGoal}
-                                        toggle={() => this.setModalGoal(false)}
-                                        size="sm"
-                                        className={"custom-modal-dialog c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+                                <div className="flex justify-center min-h-full">
+                                    <div className="flex flex-col justify-center pb-5">
+                                        <ElementsButton size="lg" color="facebook" outline={false}
+                                                        onClick={() => this.setModalGoal(true)}>
+                                            Choose your goals
 
-                                        <ContractsChoiceActiveGoals
-                                            settingActiveGoals={this.settingActiveGoals}
-                                            goals={this.state.goals}
-                                            validate={this.validate}
-                                            operationName={this.state.project}
-                                        />
-                                    </Modal>
-                                </>)
+                                        </ElementsButton>
+                                    </div>
+                                </div>
+                                <Modal
+                                    isOpen={this.state.modalChoiceGoal}
+                                    toggle={() => this.setModalGoal(false)}
+                                    size="sm"
+                                    className={"custom-modal-dialog c-m-w-70 md:c-m-w-60 lg:c-m-w-50 xl:c-m-w-40"}>
+
+                                    <ContractsChoiceActiveGoals
+                                        settingActiveGoals={this.settingActiveGoals}
+                                        goals={this.state.goals}
+                                        validate={this.validate}
+                                        operationName={this.state.project}
+                                    />
+                                </Modal>
+                            </>)
 
                             }
                             {this.state.cgg && this.state.activeGoals && (<>
