@@ -81,11 +81,11 @@ def delete_project(data) -> None:
 
 
 @socketio.on("get-goals")
-def get_goals(data) -> None:
+def get_goals(project_id) -> None:
     """
     Send the json content of all goals created inside the project.
     """
-    list_of_goals = GoalUtility.get_goals(data["project"], request.args.get("id"))
+    list_of_goals = GoalUtility.get_goals(project_id, request.args.get("id"))
 
     emit("receive-goals", list_of_goals, room=request.sid)
 
@@ -170,7 +170,7 @@ def delete_goal(data) -> None:
     if is_simple:
         project_id = copy_simple(session_id)
 
-    GoalUtility.delete_goal(data, session_id, project_id)
+    GoalUtility.delete_goal(data["goal_id"], session_id, project_id)
 
     if is_simple:
         emit("deleting-simple", project_id, room=request.sid)

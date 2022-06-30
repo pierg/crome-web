@@ -34,18 +34,15 @@ class GoalUtility:
         return list_of_goals
 
     @staticmethod
-    def delete_goal(data, session_id, project_id) -> None:
+    def delete_goal(goal_id, session_id, project_id) -> None:
         current_goals_folder = goals_path(session_id, project_id)
         dir_path, dir_names, filenames = next(os.walk(current_goals_folder))
         i = 0
         for goal_file in filenames:
-            if i == data["index"]:
-                goal_to_delete = Path(os.path.join(current_goals_folder, goal_file))
-                with open(goal_to_delete) as json_file:
-                    json_content = json.load(json_file)
-                    id_to_remove = json_content["id"]
-                os.remove(goal_to_delete)
-            i += 1
+            with open(current_goals_folder / goal_file) as json_file:
+                json_content = json.load(json_file)
+                if json_content["id"] == goal_id:
+                    os.remove(current_goals_folder / goal_file)
 
         project_folder: Path = project_path(session_id, project_id)
         set_of_goals: set[Goal] = load_goals(str(project_folder))
@@ -53,7 +50,7 @@ class GoalUtility:
             tmp: set[Goal] = set()
 
             for goal in set_of_goals:
-                if goal.id != id_to_remove:
+                if goal.id != goal_id:
                     tmp.add(goal)
 
             dump_goals(tmp, str(project_folder))

@@ -22,7 +22,7 @@ function SocketIoGoals(props) {
 
         if (socket == null || props.deleteIndex === null) return
 
-        socket.emit('delete-goal', {index: props.deleteIndex, project: props.projectId})
+        socket.emit('delete-goal', {goal_id: props.goals[props.deleteIndex].id, project: props.projectId})
 
         props.deleteTrigger()
 
@@ -42,7 +42,7 @@ function SocketIoGoals(props) {
             return () => socket.off('receive-contracts-goals')
         }
         else{
-            socket.emit('get-goals', {project: props.projectId})
+            socket.emit('get-goals', props.projectId)
 
             socket.on('receive-goals', setMessageFunction)
 

@@ -194,6 +194,7 @@ export default class GoalModeling extends React.Component {
                     projectId={this.props.project}
                     session={this.props.id}
                     updateGoals={this.getGoals}
+                    goals={this.state.editedGoals}
                     deleteIndex={this.state.deletionIndex}
                     triggerGoals={this.props.triggerGetGoals}
                     deleteTrigger={this.deleteTrigger}
