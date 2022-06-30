@@ -311,6 +311,7 @@ def modify_contracts_goals(data):
                                                                            'more information'},
             room=request.sid,
         )
+        emit("contract-goals-saved", False, room=request.sid)
 
 
 @socketio.on("process-goals-contracts")

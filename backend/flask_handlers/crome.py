@@ -67,7 +67,6 @@ def save_image(data) -> None:
 def delete_project(data) -> None:
     """
     Delete the folder corresponding to the project.
-    The front give us only an index value corresponding of the date of creation of the project.
     """
     session_id = str(request.args.get("id"))
     is_deleted = ProjectUtility.delete_project(data, session_id)

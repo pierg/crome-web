@@ -1,4 +1,4 @@
-## 
+## Authentication signals
 
 ### `"connect"`
 #### Establish the connection between the frontend and the backend
@@ -31,13 +31,13 @@
 * accepts :
   * None
 * returns :
-  * example-receive-projects.json
+  * [return example](./jsons-examples/example-receive-projects.json)
 * returns-via: `"receive-projects"`
 
 ### `"save-project"`
 #### Save the environment in output folder
 * accepts :
-  * example-save-project.json
+  * [data example](./jsons-examples/example-save-project.json)
 * returns :
   * The project id of the saved project
 * returns-via: `"project-saved"`
@@ -45,7 +45,7 @@
 ### `"save-image"`
 #### Save a screenshot of the world environment in output folder
 * accepts :
-  * example-save-image.json
+  * [data example](./jsons-examples/example-save-image.json)
 * returns :
   * None
 * returns-via: None
@@ -53,7 +53,7 @@
 ### `"delete-project"`
 #### Delete project files in output folder
 * accepts :
-  * index of the project, example : `"index": 1`
+  * ID of the project to delete
 * returns :
   * Boolean
 * returns-via: `"deletion-complete"`
@@ -63,13 +63,13 @@
 * accepts :
   * id of the project, example : `"project": "my_project_name_770369"`
 * returns :
-  * example-receive-goals.json
+  * [return example](./jsons-examples/example-receive-goals.json)
 * returns-via: `"receive-goals"`
 
 ### `"add-goal"`
 #### Add a new goal in goal.dat from output folder
 * accepts :
-  * example-add-goal.json
+  * [data example](./jsons-examples/example-add-goal.json)
 * returns :
   * project id if `"saving-simple"` or boolean if `"goal-saved"`
 * returns-via: `"saving-simple"` or `"goal-saved"`
@@ -95,7 +95,7 @@
 * accepts :
   * None
 * returns :
-  * example-receive-patterns.json
+  * [return example](./jsons-examples/example-receive-patterns.json)
 * returns-via: `"receive-patterns"`
 
 ### `"process-goals"`
@@ -103,7 +103,7 @@
 * accepts :
   * ID of the current project, example : `'project': 'my_project_name_770369'`
 * returns :
-  * example-cgg-production.json
+  * [return example](./jsons-examples/example-cgg-production.json)
 * returns-via: `"cgg-production"`
 
 ### `"get-inputs-crome"`
@@ -195,5 +195,29 @@
 * accepts :
   * The name of the operation
 * returns :
-  * example-goals-received.json
+  * [return example](./jsons-examples/example-receive-goals.json)
 * returns-via: `"receive-contracts-goals"`
+
+### `"modify-contracts-goals"`
+#### Modify the goals inside the contracts project or create a new one.
+* accepts :
+  * ID of the current project, and the goal
+* returns :
+  * A boolean
+* returns-via: `"contract-goals-saved"`
+
+### `"process-goals-contracts"`
+#### Create the CGG
+* accepts :
+  * ID of the operation
+* returns :
+  * [return example](./jsons-examples/example-cgg-production.json)
+* returns-via: `""`
+
+### `"get-contracts-project"`
+#### Get all the operations possible
+* accepts :
+  * None
+* returns :
+  * [return example](./jsons-examples/example-receive-projects.json)
+* returns-via: `"receive-contracts-projects"`
