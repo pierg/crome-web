@@ -70,11 +70,15 @@ def delete_project(data) -> None:
     The front give us only an index value corresponding of the date of creation of the project.
     """
     session_id = str(request.args.get("id"))
-    ProjectUtility.delete_project(data, session_id)
+    is_deleted = ProjectUtility.delete_project(data, session_id)
 
-    emit("deletion-complete", True, room=request.sid)
-    send_message_to_user(content="The project has been deleted.",
-                         room_id=request.sid, crometype="success")
+    emit("deletion-complete", is_deleted, room=request.sid)
+    if is_deleted:
+        send_message_to_user(content="The project has been deleted.",
+                             room_id=request.sid, crometype="success")
+    else:
+        send_message_to_user(content="The project has not been deleted.",
+                             room_id=request.sid, crometype="error")
 
 
 @socketio.on("get-goals")
@@ -102,8 +106,6 @@ def add_goal(data) -> None:
 
     if is_simple:
         emit("saving-simple", project_id, room=request.sid)
-    else:
-        emit("goal-saved", True, room=request.sid)
 
     now = time.localtime(time.time())
     name: str = data["goal"]["name"]
@@ -151,6 +153,10 @@ def add_goal(data) -> None:
                                                                            'more information'},
             room=request.sid,
         )
+        emit("goal-saved", False, room=request.sid)
+        return
+
+    emit("goal-saved", True, room=request.sid)
 
 
 @socketio.on("delete-goal")
@@ -302,6 +308,7 @@ def process_goals(data) -> None:
             {"crometypes": "success", "content": "CGG has been built!"},
             room=request.sid,
         )
+        print(cgg.export_to_json())
         emit("cgg-saved", cgg.export_to_json(), room=request.sid)
         return
 
@@ -319,6 +326,7 @@ def process_goals(data) -> None:
             room=request.sid,
         )
         time.sleep(3)
+        print(json_content)
         emit("cgg-saved", json_content, room=request.sid)
 
         error_occurrence = False
@@ -359,6 +367,7 @@ def simulate_crome(data) -> None:
     content = Simulation.react_to_inputs(project_id=data["project_id"], session_id=request.args.get("id"),
                                          choice=data["input"])
     send_message_to_user("The project has been simulated", "success", request.sid)
+    print(content)
     emit("crome-simulated", content, room=request.sid)
 
 

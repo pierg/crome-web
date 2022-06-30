@@ -1,3 +1,5 @@
+## 
+
 ### `"connect"`
 #### Establish the connection between the frontend and the backend
 * accepts :
@@ -6,12 +8,30 @@
   * None
 * returns-via: `"is-connected"`
 
+### `"session-existing"`
+#### Check if a session is existing in output folder
+* accepts : 
+  * Name of the wanted session, example : `"session": "my_session_name"`
+* returns :
+  * Boolean to know is a session is available
+* returns-via: `"receive-answer"`
+
+### `"disconnect"`
+#### Disconnect the user to its session
+* accepts :
+  * None
+* returns :
+  * None
+* returns-via: None
+
+## Signal of the crome page
+
 ### `"get-projects"`
 #### Retrieve projects data in output folder related to the session
 * accepts :
   * None
 * returns :
-  * example-get-projects.json
+  * example-receive-projects.json
 * returns-via: `"receive-projects"`
 
 ### `"save-project"`
@@ -19,7 +39,7 @@
 * accepts :
   * example-save-project.json
 * returns :
-  * None
+  * The project id of the saved project
 * returns-via: `"project-saved"`
 
 ### `"save-image"`
@@ -35,7 +55,7 @@
 * accepts :
   * index of the project, example : `"index": 1`
 * returns :
-  * None
+  * Boolean
 * returns-via: `"deletion-complete"`
 
 ### `"get-goals"`
@@ -43,7 +63,7 @@
 * accepts :
   * id of the project, example : `"project": "my_project_name_770369"`
 * returns :
-  * None
+  * example-receive-goals.json
 * returns-via: `"receive-goals"`
 
 ### `"add-goal"`
@@ -51,7 +71,7 @@
 * accepts :
   * example-add-goal.json
 * returns :
-  * None
+  * project id if `"saving-simple"` or boolean if `"goal-saved"`
 * returns-via: `"saving-simple"` or `"goal-saved"`
 
 ### `"delete-goal"`
@@ -59,8 +79,8 @@
 * accepts :
   * index of deleted goal and project id, example : `"index': 0, 'project': 'my_project_name_770369"`
 * returns :
-  * None
-* returns-via: `"deleting-simple"`
+  * The project id if a simple project copy has been done 
+* returns-via: `"deleting-simple"` or None
 
 ### `"check-goals"`
 #### Check if there are goals in goal.dat from output folder
@@ -75,25 +95,57 @@
 * accepts :
   * None
 * returns :
-  * None
+  * example-receive-patterns.json
 * returns-via: `"receive-patterns"`
 
 ### `"process-goals"`
-#### Create the CGG JSON file of the project
+#### Create the CGG of the project
 * accepts :
   * ID of the current project, example : `'project': 'my_project_name_770369'`
 * returns :
-  * None
+  * example-cgg-production.json
 * returns-via: `"cgg-production"`
 
-[comment]: <> (#TODO the 5 following functions are never called, check TODO in SocketBuildCGG.js)
+### `"get-inputs-crome"`
+#### Get the possible inputs for the current project
+* accepts :
+  * ID of the current project, example : `'project': 'my_project_name_770369'`
+* returns :
+  * The names of the possible inputs 
+* returns-via: `"received-inputs"`
+
+### `"simulated-crome"`
+#### Make the current project react to an inputs chose by the user
+* accepts :
+  * ID of the current project and the name of the input chose
+* returns :
+  * The line to be display on the page : `['day & !(night)', 'SCENARIO_1', 'person', 'greet, r1, register']`
+* returns-via: `"crome-simulated"`
+
+### `"reset-crome"`
+#### Reset the simulation of the current project
+* accepts :
+  * ID of the current project, example : `'project': 'my_project_name_770369'`
+* returns :
+  * A boolean.
+* returns-via: `"reset-done"`
+
+### `"random-simulation-crome"`
+#### Choose inputs randomly for x iterations
+* accepts :
+  * ID of the current project and the number of iterations.
+* returns :
+  * The x line to be display on the page.
+* returns-via: `"receive-random-simulation-crome"`
+
+## Signal for the different operation on goals
 
 ### `"apply-conjunction"`
 #### Apply the conjunction operation
 * accepts :
   * A list of goals and the project id.
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
 ### `"apply-composition"`
@@ -101,7 +153,7 @@
 * accepts :
   * A list of goals and the project id.
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
 ### `"apply-refinement"`
@@ -109,7 +161,7 @@
 * accepts :
   * Two goals and the project_id
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
 ### `"apply-quotient"`
@@ -117,7 +169,7 @@
 * accepts :
   * Two goals and the project_id
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
 ### `"apply-merging"`
@@ -125,7 +177,7 @@
 * accepts :
   * A list of goals and the project_id
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
 ### `"apply-separation"`
@@ -133,93 +185,15 @@
 * accepts :
   * Two goals and the project id
 * returns :
-  * None
+  * Boolean to know if the operation is done
 * returns-via: `"operation-complete"`
 
-### `"get-synthesis"`
-#### Retrieve synthesis and all the examples in output folder related to the session
-* accepts :
-  * None
-* returns :
-  * None
-* returns-via: `"receive-synthesis"`
+## Signal for the contracts page
 
-### `"save-synthesis"`
-#### Save the current synthesis in the output folder
+### `"get-contracts-goals"`
+#### Get the contracts goals of an operation on the contracts page.
 * accepts :
-  * example-save-synthesis.json
+  * The name of the operation
 * returns :
-  * None
-* returns-via: `"synthesis-saved"`
-
-### `"delete-synthesis"`
-#### Remove a synthesis from the session folder
-* accepts :
-  * The name of the synthesis
-* returns :
-  * None
-* returns-via: `"synthesis-deleted"`
-
-### `"controller-strix"`
-#### Create the controller associated to the synthesis according to the Strix method
-* accepts :
-  * Name of the synthesis, example : `'name': 'My Name'`
-* returns :
-  * None
-* returns-via: `"controller-created-strix"`
-
-### `"controller-crome"`
-#### Create the controller associated to the synthesis according to the parallel method
-* accepts :
-  * Name of the synthesis, example : `'name': 'My Name'`
-* returns :
-  * None
-* returns-via: `"controller-created-crome"`
-
-### `"simulate-controller"`
-#### Make a controller react to a specific input chose by the user
-* accepts :
-  * The name of the controller, the mode of simulation and the input
-* returns :
-  * None
-* returns-via: `"mealy-simulated"`
-
-### `"get-inputs"`
-#### Get all the inputs possible for the current state of a controller
-* accepts :
-  * The name of the controller and the mode of simulation
-* returns :
-  * None
-* returns-via: `"received-inputs"`
-
-### `"reset-controller"`
-#### Reset a controller to his initial state
-* accepts :
-  * The name of the controller and the mode of simulation
-* returns :
-  * None
-* returns-via: `"reset-done"`
-
-### `"random-simulation-controller"`
-#### It simulates a controller by randomly choosing the inputs for each state
-* accepts :
-  * The name of the controller, the mode of simulation and the number of iterations
-* returns :
-  * None
-* returns-via: `"receive-random-simulation-controller"`
-
-### `"session-existing"`
-#### Check if a session is existing in output folder
-* accepts : 
-  * Name of the wanted session, example : `"session": "my_session_name"`
-* returns :
-  * None
-* returns-via: `"receive-answer"`
-
-### `"disconnect"`
-#### Disconnect the user to its session
-* accepts :
-  * None
-* returns :
-  * None
-* returns-via: None
+  * example-goals-received.json
+* returns-via: `"receive-contracts-goals"`

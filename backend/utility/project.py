@@ -109,7 +109,7 @@ class ProjectUtility:
             fh.write(base64.decodebytes(img_data))
 
     @staticmethod
-    def delete_project(data, session_id) -> None:
+    def delete_project(data, session_id) -> bool:
         current_session_folder = session_path(session_id)
         _, dir_names, _ = next(walk(current_session_folder))
         for name in dir_names:
@@ -119,4 +119,5 @@ class ProjectUtility:
                 else:
                     dir_to_delete = Path(os.path.join(current_session_folder, name))
                     shutil.rmtree(dir_to_delete)
-                return
+                return True
+        return False

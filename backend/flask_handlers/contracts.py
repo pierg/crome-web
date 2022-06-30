@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 import time
@@ -244,6 +245,11 @@ def get_contracts_goals(project_id):
         session_id = "contracts"
 
     list_of_goals = GoalUtility.get_goals(project_id, session_id)
+    json_file = open("/home/mathis/Documents/essaie.json", "w")
+    json_formatted = json.dumps(list_of_goals, indent=4, sort_keys=True)
+    json_file.write(json_formatted)
+    json_file.close()
+
     emit("receive-contracts-goals", list_of_goals, room=request.sid)
 
 
