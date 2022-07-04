@@ -30,7 +30,7 @@ function GoalView(props) {
 
     return(
         <>
-            <div className={"w-full lg:w-6/12 xl:w-5/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out"}>
+            <div className={"w-full lg:w-6/12 xl:w-5/12 mt-8 ml-4 mr-4 px-4 relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg opacity-1 transform duration-300 transition-all ease-in-out h-fit"}>
                 <div className="flex-auto p-4 pr-0">
                     <div className="flex">
                         <div className="flex flex-wrap w-full">
@@ -62,7 +62,7 @@ function GoalView(props) {
                                 <div
                                     onClick={() => props.modify(true, props.number)}
                                     className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer " +
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow rounded-full cursor-pointer " +
                                         props.statIconColor
                                     }
                                 >
@@ -80,7 +80,7 @@ function GoalView(props) {
                                 <div
                                     onClick={() => props.delete(props.number)}
                                     className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer " +
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow rounded-full cursor-pointer " +
                                         props.statIconColor
                                     }
                                 >
@@ -98,7 +98,7 @@ function GoalView(props) {
                                     onClick={() => props.download(props.number)}
                                     id={"downloadButton-"+props.number}
                                     className={
-                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full cursor-pointer bg-emerald-400"
+                                        "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow rounded-full cursor-pointer bg-emerald-400"
                                     }
                                 >
                                     <i className={props.statDownloadIconName} id={"downloadIcon"}/>
