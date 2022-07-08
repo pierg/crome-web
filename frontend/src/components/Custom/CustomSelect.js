@@ -11,6 +11,7 @@ export default function CustomSelect({
                                          name,
                                      }) {
     const [showDropDown, setShowDropDown] = React.useState(false);
+    const isSafari = (/constructor/i.test(window["HTMLElement"]) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof window["safari"] !== 'undefined')))
 
     const DropdownTitle = () => {
         return(
@@ -45,6 +46,7 @@ export default function CustomSelect({
             if(prop.arguments.length === 1  &&  prop.arguments[0].name === "locations") {
                 surveillance.push(
                     <Tooltip
+                        disabled={isSafari}
                         html={prop.description}
                         position="right"
                         arrow="true"
