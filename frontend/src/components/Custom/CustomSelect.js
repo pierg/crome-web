@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import 'react-tippy/dist/tippy.css'
 import Dropdown from "react-multilevel-dropdown";
 import {UncontrolledTooltip} from "reactstrap";
+import {Tooltip} from "react-tippy"
 
 export default function CustomSelect({
                                          placeholder,
@@ -12,7 +13,9 @@ export default function CustomSelect({
                                          name,
                                      }) {
     const [showDropDown, setShowDropDown] = React.useState(false);
-
+    const isSafari = (/constructor/i.test(window["HTMLElement"]) || (function (p) {
+        return p.toString() === "[object SafariRemoteNotification]";
+    })(!window['safari'] || (typeof window["safari"] !== 'undefined')))
     const DropdownTitle = () => {
         return (
             <>
@@ -41,10 +44,11 @@ export default function CustomSelect({
         let surveillance = []
         let reaction = []
         let others = []
+        let dropdownItem;
 
         patterns.map((prop, key) => {
-            if (prop.arguments.length === 1 && prop.arguments[0].name === "locations") {
-                surveillance.push(
+            if (isSafari) {
+                dropdownItem =
                     <div key={key}>
                         <UncontrolledTooltip
                             placement="right"
@@ -53,49 +57,40 @@ export default function CustomSelect({
                             {prop.description}
                         </UncontrolledTooltip>
 
-                            <Dropdown.Item
-                                id={"surveillance_" + key}
-                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
-                            >
-                                {prop.name}
-                            </Dropdown.Item>
+                        <Dropdown.Item
+                            id={"surveillance_" + key}
+                            onClick={(e) => hideDropDownFunction(e, name, prop.name)}
+                        >
+                            {prop.name}
+                        </Dropdown.Item>
                     </div>
+            } else {
+                dropdownItem =
+                    <Tooltip
+                        html={prop.description}
+                        position="right"
+                        arrow="true"
+                        key={key}
+                    >
+                        <Dropdown.Item
+                            onClick={(e) => hideDropDownFunction(e, name, prop.name)}
+                        >
+                            {prop.name}
+                        </Dropdown.Item>
+                    </Tooltip>
+            }
+
+            if (prop.arguments.length === 1 && prop.arguments[0].name === "locations") {
+                surveillance.push(
+                    dropdownItem
                 )
             } else if (prop.arguments.length === 2 && prop.arguments[0].name === "trigger" && prop.arguments[1].name === "reaction") {
                 reaction.push(
-                    <div key={key}>
-                        <UncontrolledTooltip
-                            placement="right"
-                            target={"reaction_" + key}
-                        >
-                            {prop.description}
-                        </UncontrolledTooltip>
-
-                            <Dropdown.Item
-                                id={"reaction_" + key}
-                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
-                            >
-                                {prop.name}
-                            </Dropdown.Item>
-                    </div>
+                    dropdownItem
                 )
             } else {
                 others.push(
-                    <div key={key}>
-                        <UncontrolledTooltip
-                            placement="right"
-                            target={"others_" + key}
-                        >
-                            {prop.description}
-                        </UncontrolledTooltip>
-
-                            <Dropdown.Item
-                                id={"others_" + key}
-                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
-                            >
-                                {prop.name}
-                            </Dropdown.Item>
-                    </div>
+                    dropdownItem
                 )
             }
             return ("")
