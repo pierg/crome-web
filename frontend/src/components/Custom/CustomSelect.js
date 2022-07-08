@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import 'react-tippy/dist/tippy.css'
-import {Tooltip} from 'react-tippy';
 import Dropdown from "react-multilevel-dropdown";
+import {UncontrolledTooltip} from "reactstrap";
+
 export default function CustomSelect({
                                          placeholder,
                                          defaultValue,
@@ -11,10 +12,9 @@ export default function CustomSelect({
                                          name,
                                      }) {
     const [showDropDown, setShowDropDown] = React.useState(false);
-    const isSafari = (/constructor/i.test(window["HTMLElement"]) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof window["safari"] !== 'undefined')))
 
     const DropdownTitle = () => {
-        return(
+        return (
             <>
                 <div
                     className="relative w-100"
@@ -29,7 +29,7 @@ export default function CustomSelect({
     const showDropDownFunction = () => {
         setShowDropDown(false)
     }
-    const hideDropDownFunction = async (e,name,prop) => {
+    const hideDropDownFunction = async (e, name, prop) => {
         e.target.name = name
         changeSelector(e, prop);
         setShowDropDown(true)
@@ -42,60 +42,66 @@ export default function CustomSelect({
         let reaction = []
         let others = []
 
-        patterns.map((prop,key) => {
-            if(prop.arguments.length === 1  &&  prop.arguments[0].name === "locations") {
+        patterns.map((prop, key) => {
+            if (prop.arguments.length === 1 && prop.arguments[0].name === "locations") {
                 surveillance.push(
-                    <Tooltip
-                        disabled={isSafari}
-                        html={prop.description}
-                        position="right"
-                        arrow="true"
-                        key={key}
-                    >
-                        <Dropdown.Item
-                            onClick={(e) => hideDropDownFunction(e,name,prop.name)}
+                    <div key={key}>
+                        <UncontrolledTooltip
+                            placement="right"
+                            target={"surveillance_" + key}
                         >
-                            {prop.name}
-                        </Dropdown.Item>
-                    </Tooltip>
+                            {prop.description}
+                        </UncontrolledTooltip>
+
+                            <Dropdown.Item
+                                id={"surveillance_" + key}
+                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
+                            >
+                                {prop.name}
+                            </Dropdown.Item>
+                    </div>
                 )
-            }
-            else if(prop.arguments.length === 2  &&  prop.arguments[0].name === "trigger"  &&  prop.arguments[1].name === "reaction") {
+            } else if (prop.arguments.length === 2 && prop.arguments[0].name === "trigger" && prop.arguments[1].name === "reaction") {
                 reaction.push(
-                    <Tooltip
-                        html={prop.description}
-                        position="right"
-                        arrow="true"
-                        key={key}
-                    >
-                        <Dropdown.Item
-                            onClick={(e) => hideDropDownFunction(e,name,prop.name)}
+                    <div key={key}>
+                        <UncontrolledTooltip
+                            placement="right"
+                            target={"reaction_" + key}
                         >
-                            {prop.name}
-                        </Dropdown.Item>
-                    </Tooltip>
+                            {prop.description}
+                        </UncontrolledTooltip>
+
+                            <Dropdown.Item
+                                id={"reaction_" + key}
+                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
+                            >
+                                {prop.name}
+                            </Dropdown.Item>
+                    </div>
                 )
-            }
-            else {
+            } else {
                 others.push(
-                    <Tooltip
-                        html={prop.description}
-                        position="right"
-                        arrow="true"
-                        key={key}
-                    >
-                        <Dropdown.Item
-                            onClick={(e) => hideDropDownFunction(e,name,prop.name)}
+                    <div key={key}>
+                        <UncontrolledTooltip
+                            placement="right"
+                            target={"others_" + key}
                         >
-                            {prop.name}
-                        </Dropdown.Item>
-                    </Tooltip>
+                            {prop.description}
+                        </UncontrolledTooltip>
+
+                            <Dropdown.Item
+                                id={"others_" + key}
+                                onClick={(e) => hideDropDownFunction(e, name, prop.name)}
+                            >
+                                {prop.name}
+                            </Dropdown.Item>
+                    </div>
                 )
             }
             return ("")
         })
 
-        return(
+        return (
             <Dropdown
                 id="dropdown"
                 title={<DropdownTitle/>}
@@ -115,7 +121,7 @@ export default function CustomSelect({
                         <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
                     </div>
                     <Dropdown.Submenu
-                        style={{"width":"110%"}}
+                        style={{"width": "110%"}}
                         className="bg-gray-500"
                         position={"right"}
                     >
@@ -132,7 +138,7 @@ export default function CustomSelect({
                         <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
                     </div>
                     <Dropdown.Submenu
-                        style={{"width":"110%"}}
+                        style={{"width": "110%"}}
                         className="bg-gray-500"
                         position={"right"}
                     >
@@ -149,7 +155,7 @@ export default function CustomSelect({
                         <i className="fa-solid fa-caret-right absolute right-0 bottom-0"></i>
                     </div>
                     <Dropdown.Submenu
-                        style={{"width":"110%"}}
+                        style={{"width": "110%"}}
                         className="bg-gray-500"
                         position={"right"}
                     >
