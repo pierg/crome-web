@@ -59,14 +59,12 @@
   "optionalDependencies": {
     "typescript": "4.2.4"
   },
-    "eslintConfig": {
+  "eslintConfig": {
     "extends": "react-app"
   },
-
   "devDependencies": {
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
-    "prettier": "2.2.1",
     "react-scripts": "4.0.3"
   },
   "peerDependencies": {
