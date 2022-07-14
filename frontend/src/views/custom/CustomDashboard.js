@@ -1,5 +1,5 @@
 import React from "react";
-import {useLocation} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 
 // components
 import CustomSidebar from "components/Crome/CustomSidebar";
@@ -16,15 +16,20 @@ import consoleinfo from "../../_texts/custom/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 import LandingPageCrome from "./LandingPageCrome";
+import {useParams} from "react-router";
 
 
-export default function CustomDashboard(props) {
+export default function CustomDashboard() {
+
+
+    const page = useParams().id
+
     const location = useLocation();
     const [id, setId] = useLocalStorage('id');
     const [cookie] = useLocalStorage('cookie')
     const tabId = sessionStorage.tabID ?
-            sessionStorage.tabID :
-            sessionStorage.tabID = Math.random();
+        sessionStorage.tabID :
+        sessionStorage.tabID = Math.random();
     let [message, setMessage] = React.useState("");
     let [world, setWorld] = React.useState(null);
     let [savedEnvironment, setSavedEnvironment] = React.useState(null);
@@ -35,18 +40,20 @@ export default function CustomDashboard(props) {
     function updateMessage(msg) {
         if (message === "") {
             setMessage(msg);
-        }
-        else {
+        } else {
             setMessage(message + "\n" + msg);
         }
     }
+
     function updateWorld(wor) {
         setWorld(wor);
     }
+
     function saveEnvironment(info, env) {
-        setSavedEnvironment({"info":info, "environment":env})
+        setSavedEnvironment({"info": info, "environment": env})
         setTriggerSave(true)
     }
+
     function updateListOfWorldNames(names) {
         setListOfWorldNames(names)
     }
@@ -64,29 +71,37 @@ export default function CustomDashboard(props) {
                 id={id}
                 setId={setId}
                 cookie={cookie}
-                page={props.page}
+                page={page}
             />
             <Console {...consoleinfo} customText={message}/>
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
-            <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave} returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
+            <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave}
+                                   returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
             <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
                 {(() => {
-                    switch (props.page) {
+                    switch (page) {
                         case 'world':
                             return (
-                                <CreateEnvironment world={world} session={id} worldNames={listOfWorldNames} returnedProjectId={projectId} resetProject={() => setProjectId(null)} saveEnvironment={saveEnvironment}/>
+                                <CreateEnvironment world={world} session={id} worldNames={listOfWorldNames}
+                                                   returnedProjectId={projectId} resetProject={() => setProjectId(null)}
+                                                   saveEnvironment={saveEnvironment}/>
                             )
                         case 'contracts':
-                            return(
+                            return (
                                 <CustomContracts/>
                             )
                         case 'crome':
                             return (
-                                <CustomPlayer world={world} {...custommediaplayerteaminfo} setWorld={updateWorld} setListOfWorldNames={updateListOfWorldNames} id={id}/>
+                                <CustomPlayer world={world} {...custommediaplayerteaminfo} setWorld={updateWorld}
+                                              setListOfWorldNames={updateListOfWorldNames} id={id}/>
+                            )
+                        case 'index':
+                            return (
+                                <LandingPageCrome/>
                             )
                         default:
                             return (
-                                <LandingPageCrome/>
+                               <Navigate to='index' />
                             )
                     }
                 })()}
