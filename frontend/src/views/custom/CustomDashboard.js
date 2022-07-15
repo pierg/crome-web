@@ -77,7 +77,7 @@ export default function CustomDashboard() {
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave}
                                    returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
-            <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
+            <div className="relative bg-blueGray-100 min-h-screen">
                 {(() => {
                     switch (page) {
                         case 'world':
