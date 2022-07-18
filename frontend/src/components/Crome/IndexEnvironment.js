@@ -1,4 +1,4 @@
-import gridcolors from "../../_texts/custom/gridcolors";
+import gridcolors from "../../_texts/gridcolors";
 
 function isObjEmpty(obj) {
     for (let prop in obj) {

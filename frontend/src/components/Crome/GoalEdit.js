@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {Button, ModalFooter} from "reactstrap";
 import Input from "../Elements/Input";
 import ContractContentEditor from "../Custom/ContractContentEditor";
-import contracteditorinfo from "_texts/custom/contracteditorinfo.js";
+import contracteditorinfo from "_texts/contracteditorinfo.js";
 import makeListOf from "hooks/stringToListConversion.js";
 import {Table} from "reactstrap";
 

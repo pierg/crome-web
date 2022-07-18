@@ -1,8 +1,8 @@
 import React from 'react';
 import "@fortawesome/fontawesome-free/css/all.css";
 import "../../assets/styles/tailwind.css";
-import goaleditinfo from "../../_texts/custom/goaleditinfo";
-import cgginfo from "../../_texts/custom/cgginfo";
+import goaleditinfo from "../../_texts/goaleditinfo";
+import cgginfo from "../../_texts/cgginfo";
 import {Modal} from "reactstrap";
 import GoalModalView from "../../components/Custom/GoalModalView";
 import CGG from "../../components/Crome/CGG";

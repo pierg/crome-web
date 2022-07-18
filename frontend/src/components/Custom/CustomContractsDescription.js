@@ -1,5 +1,5 @@
 import React from 'react';
-import customcontractsinfo from "../../_texts/custom/customcontractsinfo";
+import customcontractsinfo from "../../_texts/customcontractsinfo";
 
 
 export default class CustomContractsDescription extends React.Component {

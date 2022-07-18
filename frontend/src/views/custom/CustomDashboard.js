@@ -6,13 +6,13 @@ import CustomSidebar from "components/Crome/CustomSidebar";
 import CustomPlayer from "./CustomPlayer";
 import CustomContracts from "./CustomContracts";
 // texts as props
-import customsidebar from "../../_texts/custom/customsidebar";
-import custommediaplayerteaminfo from "_texts/custom/customplayerinfo.js";
+import customsidebar from "../../_texts/customsidebar";
+import custommediaplayerteaminfo from "_texts/customplayerinfo.js";
 import {SocketProvider, ConnectorProvider} from "../../contexts/SocketProvider";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import CreateEnvironment from "./CreateEnvironment";
 import Console from "../../components/Crome/Console";
-import consoleinfo from "../../_texts/custom/console";
+import consoleinfo from "../../_texts/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 import LandingPageCrome from "./LandingPageCrome";

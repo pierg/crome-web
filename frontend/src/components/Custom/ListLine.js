@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from "reactstrap";
-import mutexcolors from "_texts/custom/mutexcolors.js";
+import mutexcolors from "_texts/mutexcolors.js";
 import 'react-tippy/dist/tippy.css'
 import {Tooltip} from 'react-tippy';
 
