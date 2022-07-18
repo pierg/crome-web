@@ -5,13 +5,13 @@ import "../../components/Crome/IndexEnvironment";
 import GridWorld from "../../components/Crome/IndexEnvironment";
 import CustomDownload from "../../components/Custom/CustomDownload";
 import {Link} from "react-router-dom";
-import createenvironment from "../../_texts/custom/createenvironment";
+import createenvironment from "../../_texts/createenvironment";
 import Button from "../../components/Elements/Button";
 import {Modal, PopoverBody, PopoverHeader, UncontrolledPopover} from "reactstrap";
 import ListBlock from "../../components/Custom/ListBlock";
 import Location from "../../components/Custom/Location";
-import FooterAdmin from "../../components/Footers/Admin/FooterAdmin";
-import footeradmin from "../../_texts/admin/footers/footeradmin";
+import FooterAdmin from "../../components/Custom/FooterAdmin";
+import footeradmin from "../../_texts/footeradmin";
 import WorldEdit from "../../components/Crome/WorldEdit";
 import arrayEquals from "../../hooks/arrayEquals";
 import deleteSubArrays from "../../hooks/deleteSubArrays";
@@ -21,7 +21,7 @@ import SavingEdit from "../../components/Custom/SavingEdit";
 import 'react-tippy/dist/tippy.css'
 import {Tooltip} from 'react-tippy';
 import CustomHeader from "../../components/Crome/CustomHeader";
-import customheadercards from "../../_texts/custom/customheadercards";
+import customheadercards from "../../_texts/customheadercards";
 
 export default class CreateEnvironment2 extends React.Component {
 

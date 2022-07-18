@@ -1,5 +1,5 @@
 import React from "react";
-import customnavbutton from "_texts/custom/customnavbutton.js";
+import customnavbutton from "_texts/customnavbutton.js";
 
 export default function CustomNavButton({
   toggleNew,

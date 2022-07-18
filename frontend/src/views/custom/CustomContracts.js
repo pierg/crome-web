@@ -1,18 +1,18 @@
 import React from 'react';
 import CustomHeader from "../../components/Crome/CustomHeader";
-import customcontractsheaderscards from "../../_texts/custom/customcontractsheaderscards";
-import customcontractsinfo from "../../_texts/custom/customcontractsinfo";
+import customcontractsheaderscards from "../../_texts/customcontractsheaderscards";
+import customcontractsinfo from "../../_texts/customcontractsinfo";
 import GoalModeling from "./GoalModeling";
-import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
+import goalmodelinginfo from "../../_texts/goalmodelinginfo";
 import SocketIoContracts from "../../components/Custom/Examples/GetContracts";
 import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
-import cgginfo from "../../_texts/custom/cgginfo";
+import cgginfo from "../../_texts/cgginfo";
 import CGG from "../../components/Crome/CGG";
 import CustomContractsDescription from "../../components/Custom/CustomContractsDescription";
 import ElementsButton from "../../components/Elements/Button";
 import {Modal} from "reactstrap";
 import ContractsChoiceActiveGoals from "../../components/Custom/ContractsChoiceActiveGoals";
-import customfooter from "../../_texts/custom/customfooter";
+import customfooter from "../../_texts/customfooter";
 import CustomFooter from "../../components/Custom/CustomFooter";
 
 export default class CustomContracts extends React.Component {

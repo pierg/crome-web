@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import goalmodelinginfo from "_texts/custom/goalmodelinginfo.js";
-import worldmodelinginfo from "_texts/custom/worldmodelinginfo.js";
+import goalmodelinginfo from "_texts/goalmodelinginfo.js";
+import worldmodelinginfo from "_texts/worldmodelinginfo.js";
 
 // components
 import GoalModeling from "./GoalModeling";
 import CustomHeader from "../../components/Crome/CustomHeader";
-import customheadercards from "../../_texts/custom/customheadercards";
+import customheadercards from "../../_texts/customheadercards";
 import CustomFooter from "../../components/Custom/CustomFooter";
-import customfooter from "../../_texts/custom/customfooter";
+import customfooter from "../../_texts/customfooter";
 import WorldModeling from "./WorldModeling";
 import Analysis from "./Analysis";
 import Synthesis from "./Synthesis";

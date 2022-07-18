@@ -6,13 +6,13 @@ import CustomSidebar from "components/Crome/CustomSidebar";
 import CustomPlayer from "./CustomPlayer";
 import CustomContracts from "./CustomContracts";
 // texts as props
-import customsidebar from "../../_texts/custom/customsidebar";
-import custommediaplayerteaminfo from "_texts/custom/customplayerinfo.js";
+import customsidebar from "../../_texts/customsidebar";
+import custommediaplayerteaminfo from "_texts/customplayerinfo.js";
 import {SocketProvider, ConnectorProvider} from "../../contexts/SocketProvider";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import CreateEnvironment from "./CreateEnvironment";
 import Console from "../../components/Crome/Console";
-import consoleinfo from "../../_texts/custom/console";
+import consoleinfo from "../../_texts/console";
 import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
 import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
 import LandingPageCrome from "./LandingPageCrome";
@@ -77,7 +77,7 @@ export default function CustomDashboard() {
             <SocketIoConsoleMessage modifyMessage={(e) => updateMessage(e)} session={id}/>
             <SocketSaveEnvironment session={id} world={savedEnvironment} uploadImage={false} trigger={triggerSave}
                                    returnProjectId={setProjectId} setTrigger={setTriggerSave}/>
-            <div className="relative xxl:ml-64 bg-blueGray-100 min-h-screen">
+            <div className="relative bg-blueGray-100 min-h-screen">
                 {(() => {
                     switch (page) {
                         case 'world':

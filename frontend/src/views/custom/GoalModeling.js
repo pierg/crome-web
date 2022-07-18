@@ -6,14 +6,14 @@ import GoalView from "../../components/Custom/GoalView";
 import AddButton from "../../components/Custom/AddButton";
 import {Modal} from "reactstrap";
 import GoalEdit from "../../components/Crome/GoalEdit";
-import defaultgoal from "_texts/custom/defaultgoal.js";
-import goaleditinfo from "_texts/custom/goaleditinfo.js";
+import defaultgoal from "_texts/defaultgoal.js";
+import goaleditinfo from "_texts/goaleditinfo.js";
 import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
 import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
 import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
 import {saveAs} from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
-import goalmodelinginfo from "../../_texts/custom/goalmodelinginfo";
+import goalmodelinginfo from "../../_texts/goalmodelinginfo";
 import SocketIoGoals from "../../components/Custom/Examples/GetGoals";
 import ElementsButton from "../../components/Elements/Button";
 

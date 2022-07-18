@@ -2,7 +2,7 @@ import React from 'react';
 import Graph from "react-graph-vis";
 import {Modal} from "reactstrap";
 import GoalModalView from "../Custom/GoalModalView";
-import goaleditinfo from "../../_texts/custom/goaleditinfo";
+import goaleditinfo from "../../_texts/goaleditinfo";
 import NodeModalView from "../Custom/NodeModalView";
 
 

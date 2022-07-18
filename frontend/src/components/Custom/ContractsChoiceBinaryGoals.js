@@ -1,5 +1,5 @@
 import React from 'react';
-import contractschoiceactivegoals from "../../_texts/custom/contractschoiceactivegoals";
+import contractschoiceactivegoals from "../../_texts/contractschoiceactivegoals";
 import classnames from "classnames";
 
 function ContractsChoiceBinaryGoals(props) {
