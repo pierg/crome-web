@@ -11,7 +11,7 @@ const textProps = {
       component: "analysis",
     },
     {
-      component: "synthesis",
+      component: "simulation",
     },
   ],
 };

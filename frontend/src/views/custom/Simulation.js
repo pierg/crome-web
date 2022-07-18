@@ -1,9 +1,13 @@
-import React from "react";
-import SocketGetInputs from "./Examples/GetInputs";
-import SocketInputClicked from "./Examples/InputClicked";
-import SocketResetClicked from "./Examples/ResetClicked";
-import SocketRandomClicked from "./Examples/RandomClicked";
-import Button from "../Elements/Button";
+import React from 'react';
+import "@fortawesome/fontawesome-free/css/all.css";
+import "../../assets/styles/tailwind.css";
+import Button from "../../components/Elements/Button";
+import SocketGetInputs from "../../components/Custom/Socket/GetInputs";
+import SocketInputClicked from "../../components/Custom/Socket/InputClicked";
+import SocketResetClicked from "../../components/Custom/Socket/ResetClicked";
+import SocketRandomClicked from "../../components/Custom/Socket/RandomClicked";
+
+const mode = "crome"
 
 export default class Simulation extends React.Component {
 
@@ -137,16 +141,16 @@ export default class Simulation extends React.Component {
                     trigger={this.state.triggerGetInputs}
                     setTrigger={this.setTriggerGetInputs}
                     setInputs={this.setInputs}
-                    name={this.props.name}
-                    mode={this.props.mode}
+                    name={this.props.project}
+                    mode={mode}
                 />
                 <SocketInputClicked
                     trigger={this.state.triggerInputClicked}
                     setTrigger={this.setTriggerInputClicked}
                     setTriggerGetInput={this.setTriggerGetInputs}
                     setLine={this.setLine}
-                    name={this.props.name}
-                    mode={this.props.mode}
+                    name={this.props.project}
+                    mode={mode}
                     input={this.state.inputClicked}
                 />
                 <SocketResetClicked
@@ -154,16 +158,16 @@ export default class Simulation extends React.Component {
                     setTrigger={this.setTriggerResetClicked}
                     setTriggerGetInput={this.setTriggerGetInputs}
                     emptyLines={this.emptyLines}
-                    name={this.props.name}
-                    mode={this.props.mode}
+                    name={this.props.project}
+                    mode={mode}
                 />
                 <SocketRandomClicked
                     trigger={this.state.triggerRandomClicked}
                     setTrigger={this.setTriggerRandomClicked}
                     setTriggerGetInput={this.setTriggerGetInputs}
                     setLine={this.setLine}
-                    name={this.props.name}
-                    mode={this.props.mode}
+                    name={this.props.project}
+                    mode={mode}
                     number={this.state.inputNumberRandom}
                 />
                 <div className="row mt-2">
