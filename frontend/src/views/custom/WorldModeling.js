@@ -3,13 +3,13 @@ import "../../assets/styles/tailwind.css";
 import React from "react";
 import WorldView from "../../components/Custom/WorldView";
 import {Link} from "react-router-dom";
-import SocketIoProjects from "../../components/Custom/Examples/GetProjects";
+import SocketIoProjects from "../../components/Custom/Socket/GetProjects";
 import {Button, Modal, ModalFooter} from "reactstrap";
 import ElementsButton from "../../components/Elements/Button";
 import createenvironment from "../../_texts/createenvironment";
 import { saveAs } from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
-import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
+import SocketSaveEnvironment from "../../components/Custom/Socket/SaveEnvironment";
 
 export default class WorldModeling extends React.Component {
 

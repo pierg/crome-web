@@ -12,7 +12,7 @@ import CustomFooter from "../../components/Custom/CustomFooter";
 import customfooter from "../../_texts/customfooter";
 import WorldModeling from "./WorldModeling";
 import Analysis from "./Analysis";
-import Synthesis from "./Synthesis";
+import Simulation from "./Simulation";
 import CustomNavButton from "../../components/Custom/CustomNavButton";
 import 'react-tippy/dist/tippy.css'
 import {Tooltip} from 'react-tippy';
@@ -191,8 +191,8 @@ export default function CustomPlayer({
                               patterns={patterns}
                             />
                           ),
-                          synthesis: (
-                            <Synthesis
+                          simulation: (
+                            <Simulation
                               active={headerStates[3]}
                               project={project}
                             />

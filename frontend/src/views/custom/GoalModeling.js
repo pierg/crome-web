@@ -8,13 +8,13 @@ import {Modal} from "reactstrap";
 import GoalEdit from "../../components/Crome/GoalEdit";
 import defaultgoal from "_texts/defaultgoal.js";
 import goaleditinfo from "_texts/goaleditinfo.js";
-import SocketIoPatterns from "../../components/Custom/Examples/GetPatterns";
-import SocketSaveGoals from "../../components/Custom/Examples/SaveGoals";
-import SocketCheckGoals from "../../components/Custom/Examples/CheckGoals";
+import SocketIoPatterns from "../../components/Custom/Socket/GetPatterns";
+import SocketSaveGoals from "../../components/Custom/Socket/SaveGoals";
+import SocketCheckGoals from "../../components/Custom/Socket/CheckGoals";
 import {saveAs} from 'file-saver';
 import UploadButton from "../../components/Custom/UploadButton";
 import goalmodelinginfo from "../../_texts/goalmodelinginfo";
-import SocketIoGoals from "../../components/Custom/Examples/GetGoals";
+import SocketIoGoals from "../../components/Custom/Socket/GetGoals";
 import ElementsButton from "../../components/Elements/Button";
 
 export default class GoalModeling extends React.Component {

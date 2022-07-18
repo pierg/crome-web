@@ -13,8 +13,8 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import CreateEnvironment from "./CreateEnvironment";
 import Console from "../../components/Crome/Console";
 import consoleinfo from "../../_texts/console";
-import SocketIoConsoleMessage from "../../components/Custom/Examples/GetConsoleMessage";
-import SocketSaveEnvironment from "../../components/Custom/Examples/SaveEnvironment";
+import SocketIoConsoleMessage from "../../components/Custom/Socket/GetConsoleMessage";
+import SocketSaveEnvironment from "../../components/Custom/Socket/SaveEnvironment";
 import LandingPageCrome from "./LandingPageCrome";
 import {useParams} from "react-router";
 

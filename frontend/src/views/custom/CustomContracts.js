@@ -4,8 +4,8 @@ import customcontractsheaderscards from "../../_texts/customcontractsheaderscard
 import customcontractsinfo from "../../_texts/customcontractsinfo";
 import GoalModeling from "./GoalModeling";
 import goalmodelinginfo from "../../_texts/goalmodelinginfo";
-import SocketIoContracts from "../../components/Custom/Examples/GetContracts";
-import GetContractCGG from "../../components/Custom/Examples/GetContractCGG";
+import SocketIoContracts from "../../components/Custom/Socket/GetContracts";
+import GetContractCGG from "../../components/Custom/Socket/GetContractCGG";
 import cgginfo from "../../_texts/cgginfo";
 import CGG from "../../components/Crome/CGG";
 import CustomContractsDescription from "../../components/Custom/CustomContractsDescription";
