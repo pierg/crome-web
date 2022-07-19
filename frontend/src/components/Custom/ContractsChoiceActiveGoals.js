@@ -2,6 +2,7 @@ import React from 'react';
 import contractschoiceactivegoals from "../../_texts/contractschoiceactivegoals";
 import ContractsChoiceNaryGoals from "./ContractsChoiceNaryGoals";
 import ContractsChoiceBinaryGoals from "./ContractsChoiceBinaryGoals";
+import {ModalBody} from "reactstrap";
 
 export default class ContractsChoiceActiveGoals extends React.Component {
     state = {
@@ -56,11 +57,11 @@ export default class ContractsChoiceActiveGoals extends React.Component {
             goalChoice =
                 <>
                     <ContractsChoiceBinaryGoals
-                         index={index}
+                        index={index}
                         goals={this.props.goals}
                         disableBuildButton={this.disableBuildButton}
                         changeParameter={this.changeParameter}
-                        sameGoal={(this.state.selectedGoals[0] === this.state.selectedGoals[1]) && this.state.selectedGoals.length===2}
+                        sameGoal={(this.state.selectedGoals[0] === this.state.selectedGoals[1]) && this.state.selectedGoals.length === 2}
                     />
 
 
@@ -77,26 +78,22 @@ export default class ContractsChoiceActiveGoals extends React.Component {
         }
 
         return (
+            <ModalBody>
 
-            <>
-                <div
-                    className="w-full mt-8 px-4 relative flex flex-col min-w-0 break-words bg-white rounded mb-6 opacity-1 transform duration-300 transition-all ease-in-out">
+                {goalChoice}
 
+                <div className="flex content-center justify-center ">
 
-                    {goalChoice}
-
-                    <div className="flex content-center justify-center ">
-
-                        <button
-                            onClick={() => this.props.validate(this.state.selectedGoals)}
-                            disabled={this.state.buildButtonDisabled}
-                            className={this.state.buildButtonDisabled ? "bg-facebook-regular text-white font-bold py-2 px-4 rounded opacity-50 cursor-default " : "bg-facebook-regular hover:shadow-lg text-white font-bold py-2 px-4 rounded"}
-                        >
-                            Build your CGG
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => this.props.validate(this.state.selectedGoals)}
+                        disabled={this.state.buildButtonDisabled}
+                        className={this.state.buildButtonDisabled ? "bg-facebook-regular text-white font-bold py-2 px-4 rounded opacity-50 cursor-default " : "bg-facebook-regular hover:shadow-lg text-white font-bold py-2 px-4 rounded"}
+                    >
+                        Build your CGG
+                    </button>
                 </div>
 
-            </>)
+            </ModalBody>
+        )
     }
 }
