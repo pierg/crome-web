@@ -31,7 +31,8 @@ else:
     print("Launching Backend")
     app = Flask(__name__)
 
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app)
+socketio.init_app(app, cors_allowed_origins="*")
 
 users: dict[str, Any] = {}
 # String dictionary associating the id of the request to talk to the user with the session id given by the frontend.
