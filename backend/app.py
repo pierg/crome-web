@@ -217,5 +217,4 @@ import backend.flask_handlers.contracts
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
-    socketio.run(app, host="0.0.0.0", ssl_context=('/config/keys/letsencrypt/fullchain.pem',
-                                                   '/config/keys/letsencrypt/key.pem'))
+    socketio.run(app, host="0.0.0.0")
