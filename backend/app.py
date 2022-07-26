@@ -217,4 +217,10 @@ import backend.flask_handlers.contracts
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
-    socketio.run(app, host="0.0.0.0", ssl_context=('cert.pem', 'privkey.pem'))
+    dir = os.getcwd()
+    _, dir_names, _ = next(walk(dir))
+    if "backend" in dir_names:
+        dir_to_add = "backend/"
+    else:
+        dir_to_add = ""
+    socketio.run(app, host="0.0.0.0", ssl_context=(dir_to_add + 'cert.pem', dir_to_add + 'privkey.pem'))
