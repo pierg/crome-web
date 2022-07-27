@@ -1,6 +1,7 @@
 FROM continuumio/miniconda3 AS build
 
 COPY environment.yml .
+
 RUN conda install -c conda-forge gcc
 RUN conda env create -f environment.yml
 
@@ -30,6 +31,8 @@ WORKDIR /home/crome-web
 
 # Copy /venv from the previous stage:
 COPY --from=build /venv ./venv
+COPY ../cert.pem .
+COPY ../privkey.pem .
 
 ENV PYTHONPATH "/home/crome-web:/home/crome-cgg:/home/crome-contracts:/home/crome-logic:/home/crome-synthesis"
 

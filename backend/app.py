@@ -22,6 +22,9 @@ parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument(
     "--serve", default=False, type=bool, help="indicate if serving the pages"
 )
+parser.add_argument(
+    "--dev", default=False, type=bool, help="indicate if we are in a development mode"
+)
 args = parser.parse_args()
 
 if args.serve:
@@ -217,10 +220,9 @@ import backend.flask_handlers.contracts
 
 if __name__ == "__main__":
     # app.run(host='localhost', debug=True, port=3000)*
-    dir = os.getcwd()
-    _, dir_names, _ = next(walk(dir))
-    if "backend" in dir_names:
-        dir_to_add = "backend/"
+    if args.dev:
+        print("Starting the backend in development mode")
+        socketio.run(app, host="0.0.0.0")
     else:
-        dir_to_add = ""
-    socketio.run(app, host="0.0.0.0", ssl_context=(dir_to_add + 'cert.pem', dir_to_add + 'privkey.pem'))
+        print("Starting the server")
+        socketio.run(app, host="0.0.0.0", ssl_context=('cert.pem', 'privkey.pem'))
