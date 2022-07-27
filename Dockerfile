@@ -31,8 +31,8 @@ WORKDIR /home/crome-web
 
 # Copy /venv from the previous stage:
 COPY --from=build /venv ./venv
-COPY ../cert.pem ./backend
-COPY ../privkey.pem ./backend
+COPY /home/ubuntu/cert.pem ./backend
+COPY /home/ubuntu/privkey.pem ./backend
 
 ENV PYTHONPATH "/home/crome-web:/home/crome-cgg:/home/crome-contracts:/home/crome-logic:/home/crome-synthesis"
 
