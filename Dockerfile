@@ -26,13 +26,14 @@ RUN git clone https://github.com/pierg/crome-cgg.git --branch main --single-bran
 RUN git clone https://github.com/pierg/crome-contracts.git --branch main --single-branch
 RUN git clone https://github.com/pierg/crome-logic.git --branch main --single-branch
 RUN git clone https://github.com/pierg/crome-synthesis.git --branch main --single-branch
+RUN touch essai
 
 WORKDIR /home/crome-web
 
 # Copy /venv from the previous stage:
 COPY --from=build /venv ./venv
-COPY /home/ubuntu/cert.pem ./backend
-COPY /home/ubuntu/privkey.pem ./backend
+COPY /home/ubuntu/cert.pem /home/crome-web
+COPY /home/ubuntu/privkey.pem /home/crome-web
 
 ENV PYTHONPATH "/home/crome-web:/home/crome-cgg:/home/crome-contracts:/home/crome-logic:/home/crome-synthesis"
 
