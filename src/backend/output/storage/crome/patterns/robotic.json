@@ -1,0 +1,285 @@
+[
+    {
+        "name": "Visit",
+        "description": "Visit a set of location in an unspecified order",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Ordered Visit",
+        "description": "The sequenced visit pattern does not forbid to visit a successor location before its predecessor, but only that after the predecessor is visited the successor is also visited. Ordered visit forbids a successor to be visited before its predecessor.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Strict Ordered Visit",
+        "description": "The ordered visit pattern does not avoid a predecessor location to be visited multiple times before its successor. Strict ordered visit forbids the behavior.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Patrolling",
+        "description": "Keep visiting a set of locations, but not a particular order. The patrolling problem also appears in literature as surveillance.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Ordered Patrolling",
+        "description": "Sequence patrolling deos not forbid to visit a successor location before its predecessor. Ordered patrolling ensures that (after a successor is visited) the successor is not visited (again) before its predecessor.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Strict Ordered Patrolling",
+        "description": "The ordered patrolling does not avoid a predecessor location to be visited multiple times before its successor. Strict Ordered Patrolling ensures that, after a predecessor is visited, it is not visited again before its successor.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Strict Order",
+        "description": "Modification of StrictOrderedPatrolling, it impose the order but not the actual visit.The ordered patrolling does not avoid a predecessor location to be visited multiple times before its successor. Strict Ordered Patrolling ensures that, after a predecessor is visited, it is not visited again before its successor. ",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Order Location",
+        "description": "Modification of OrderedPatrolling, it impose the order but not the actual visit.The ordered patrolling does not avoid a predecessor location to be visited multiple times before its successor. Strict Ordered Patrolling ensures that, after a predecessor is visited, it is not visited again before its successor. ",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "locations",
+                "format": "list",
+                "type": "location"
+            }
+        ]
+    },
+    {
+        "name": "Init Instantaneous Reaction",
+        "description": "At the first step, the occurrence of a stimulus instantaneously triggers a counteraction.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Init Bound Reaction",
+        "description": "At the first step, a counteraction must be performed every time and only when a specific location is entered. ",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Init Bound Delay",
+        "description": "At the first step, a counteraction must be performed, in the next time instant, every time and only when a specific location is entered.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Init Prompt Reaction",
+        "description": "At the first step, the occurrence of a stimulus triggers a counteraction promptly, i.e in the next time instant.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Init Delayed Reaction",
+        "description": "At the first step, the occurrence of a stimulus triggers a counteraction some time later.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Instantaneous Reaction",
+        "description": "The occurrence of a stimulus instantaneously triggers a counteraction.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Bound Reaction",
+        "description": "A counteraction must be performed every time and only when a specific location is entered.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Bound Delay",
+        "description": "A counteraction must be performed, in the next time instant, every time and only when a specific location is entered.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Prompt Reaction",
+        "description": "The occurrence of a stimulus triggers a counteraction promptly, i.e in the next time instant.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Delayed Reaction",
+        "description": "The occurrence of a stimulus triggers a counteraction some time later.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "trigger",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "reaction",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    },
+    {
+        "name": "Wait",
+        "description": "Inaction is desired till a stimulus occurs.",
+        "ltl_example": "",
+        "arguments": [
+            {
+                "name": "do",
+                "format": "value",
+                "type": "any"
+            },
+            {
+                "name": "until",
+                "format": "value",
+                "type": "any"
+            }
+        ]
+    }
+]
