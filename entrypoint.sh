@@ -29,6 +29,10 @@ git pull
 
 echo "repositories updated"
 
+echo "creating the frontend"
+cd /home/crome-web/src/frontend
+yarn install
+yarn build
 
 if [ $# -eq 0 ]
   then

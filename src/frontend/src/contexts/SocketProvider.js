@@ -12,7 +12,7 @@ export function SocketProvider({ id, cookie, tabId, children }) {
     useEffect(() => {
         console.log("Connecting merged")
         console.log(id)
-        const newSocket = io("http://127.0.0.1:5000",{ query: { id, cookie, tabId } }
+        const newSocket = io("https://cromedev.duckdns.org:5000",{ query: { id, cookie, tabId } }
         )
         setSocket(newSocket)
 
