@@ -28,8 +28,8 @@ services:
     container_name: backend
     volumes:
       - ./src/frontend/build:/home/crome-web/src/frontend/build
-      - ../cert.pem:/home/crome-web/src/cert.pem
-      - ../privkey.pem:/home/crome-web/src/privkey.pem
+      - ../cert.pem:/home/crome-web/src/backend/cert.pem
+      - ../privkey.pem:/home/crome-web/src/backend/privkey.pem
     expose:
       - 5000
     ports:
