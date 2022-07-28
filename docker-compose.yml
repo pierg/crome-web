@@ -27,9 +27,9 @@ services:
     restart: always
     container_name: backend
     volumes:
-      - ./frontend/build:/home/crome-web/frontend/build
-      - ../cert.pem:/home/crome-web/cert.pem
-      - ../privkey.pem:/home/crome-web/privkey.pem
+      - ./src/frontend/build:/home/crome-web/src/frontend/build
+      - ../cert.pem:/home/crome-web/src/cert.pem
+      - ../privkey.pem:/home/crome-web/src/privkey.pem
     expose:
       - 5000
     ports:
