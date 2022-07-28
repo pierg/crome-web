@@ -15,8 +15,8 @@ services:
       - DUCKDNSTOKEN=40ec2401-1546-484c-a2cd-26691ecc0ebb
       - EMAIL=piergiuseppe.mallozzi@gmail.com
     volumes:
-      - ./frontend/build:/config/www
-      - ./frontend/config_nginx:/config/nginx/
+      - ./src/frontend/build:/config/www
+      - ./src/frontend/config_nginx:/config/nginx/
     ports:
       - 443:443
       - 80:80
