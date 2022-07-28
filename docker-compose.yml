@@ -15,8 +15,8 @@ services:
       - DUCKDNSTOKEN=40ec2401-1546-484c-a2cd-26691ecc0ebb
       - EMAIL=piergiuseppe.mallozzi@gmail.com
     volumes:
-      - ./frontend/build:/config/www
-      - ./frontend/config_nginx:/config/nginx/
+      - ./src/frontend/build:/config/www
+      - ./src/frontend/config_nginx:/config/nginx/
     ports:
       - 443:443
       - 80:80
@@ -27,7 +27,7 @@ services:
     restart: always
     container_name: backend
     volumes:
-      - ./frontend/build:/home/crome-web/frontend/build
+      - ./src/frontend/build:/home/crome-web/src/frontend/build
       - ../cert.pem:/home/crome-web/cert.pem
       - ../privkey.pem:/home/crome-web/privkey.pem
     expose:
