@@ -29,10 +29,12 @@ if [ -n "${PYTHON_VERSIONS}" ]; then
         if pdm use -f "python${python_version}" &>/dev/null; then
             echo "> Using Python ${python_version} interpreter"
             pdm install
+            pdm run pip install editables # Added this line for editable errors
         else
             echo "> pdm use -f python${python_version}: Python interpreter not available?" >&2
         fi
     done
 else
     pdm install
+    pdm run pip install editables # Added this line for editable errors
 fi
