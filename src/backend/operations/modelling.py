@@ -64,14 +64,14 @@ class Modelling:
         dump_world(w, project_folder)
 
     @staticmethod
-    def add_goal(project_folder: str, goal_file: dict) -> None:
+    def add_goal(project_folder: str, goal_file: str) -> None:
         """
             It adds the goal to the .dat file.
             And it checks also if this goal is already in. In that case, it removes it.
 
             Arguments:
                 project_folder: The folder where the goals are.
-                goal_file: the json file of the goal.
+                goal_file: The name of the json file associated to the new goal.
         """
         set_of_goals = load_goals(project_folder)
 
