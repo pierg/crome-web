@@ -1,6 +1,7 @@
 const textProps = {
   color: "lightBlue",
-  items: [{
+  items: [
+    {
       description: "Description 1",
       title: "Title 1",
     },

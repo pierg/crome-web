@@ -14,9 +14,8 @@ import WorldModeling from "./WorldModeling";
 import Analysis from "./Analysis";
 import Simulation from "./Simulation";
 import CustomNavButton from "../../components/Custom/CustomNavButton";
-import 'react-tippy/dist/tippy.css'
-import {Tooltip} from 'react-tippy';
-
+import "react-tippy/dist/tippy.css";
+import { Tooltip } from "react-tippy";
 
 export default function CustomPlayer({
   world,
@@ -58,11 +57,11 @@ export default function CustomPlayer({
   }
 
   const toggleNew = (e, newOpen, disabled) => {
-    if(disabled) return
+    if (disabled) return;
     //goal modeling to analysis
-    if(open === 1  && newOpen === 2) {
+    if (open === 1 && newOpen === 2) {
       //check if there are goals
-      swapTriggerGoalsChecked(true)
+      swapTriggerGoalsChecked(true);
     }
     if (
       (newOpen !== 1 || project !== 0) &&
@@ -109,24 +108,22 @@ export default function CustomPlayer({
             href="#/crome"
           />
         </div>
-          <Tooltip
-            title="Select an Environment to continue"
-            position="bottom"
-            arrow="true"
-          >
-            <div >
-              <CustomNavButton
-                open={open}
-                toggleNew={toggleNew}
-                itemsLength={items.length}
-                type={"continue"}
-                noProject={project === 0}
-                href="#/crome"
-              />
-
-            </div>
-          </Tooltip>
-
+        <Tooltip
+          title="Select an Environment to continue"
+          position="bottom"
+          arrow="true"
+        >
+          <div>
+            <CustomNavButton
+              open={open}
+              toggleNew={toggleNew}
+              itemsLength={items.length}
+              type={"continue"}
+              noProject={project === 0}
+              href="#/crome"
+            />
+          </div>
+        </Tooltip>
       </div>
       <div className="px-4 md:px-6 mx-auto w-full -mt-24">
         <div className="mt-5 relative pb-32">
@@ -134,7 +131,6 @@ export default function CustomPlayer({
             <div>
               {items.map((prop, key) => {
                 return (
-
                   <div
                     className={classnames(
                       "p-6 transform duration-300 transition-all ease-in-out mx-auto",
@@ -192,10 +188,7 @@ export default function CustomPlayer({
                             />
                           ),
                           simulation: (
-                            <Simulation
-                              active={headerStates[3]}
-                              project={project}
-                            />
+                            <Simulation active={headerStates[3]} project={project} />
                           ),
                         }[prop.component]
                       }

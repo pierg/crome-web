@@ -1,12 +1,13 @@
 import json
 import os
 from pathlib import Path
+from typing import List, Set
 
 import crome_cgg.goal as crome_cgg_goal
 import crome_synthesis.world as crome_cgg_world
 from crome_cgg.context import Context, ContextException
 from crome_contracts.contract import Contract
-from crome_logic.patterns.robotic_movement import * # NOQA
+from crome_logic.patterns.robotic_movement import *  # NOQA
 from crome_logic.specification.temporal import LTL
 from crome_logic.typeset import Typeset
 
@@ -14,16 +15,16 @@ from src.backend.tools.persistence import dump_goals, dump_world, load_goals, lo
 
 
 class Modelling:
-    """
-        Class that contains all the useful method to create an environment and the goals.
-    """
+    """Class that contains all the useful method to create an environment and
+    the goals."""
+
     @staticmethod
     def create_environment(project_folder: str) -> None:
-        """
-            Create the environment.dat corresponding to the .json file of the project.
+        """Create the environment.dat corresponding to the .json file of the
+        project.
 
-            Arguments:
-                project_folder: the folder that will contain the environment.dat
+        Arguments:
+            project_folder: the folder that will contain the environment.dat
         """
 
         with open(Path(os.path.join(project_folder, "environment.json"))) as json_file:
@@ -65,13 +66,12 @@ class Modelling:
 
     @staticmethod
     def add_goal(project_folder: str, goal_file: str) -> None:
-        """
-            It adds the goal to the .dat file.
-            And it checks also if this goal is already in. In that case, it removes it.
+        """It adds the goal to the .dat file. And it checks also if this goal
+        is already in. In that case, it removes it.
 
-            Arguments:
-                project_folder: The folder where the goals are.
-                goal_file: The name of the json file associated to the new goal.
+        Arguments:
+            project_folder: The folder where the goals are.
+            goal_file: The name of the json file associated to the new goal.
         """
         set_of_goals = load_goals(project_folder)
 
@@ -82,12 +82,12 @@ class Modelling:
             json_obj = json.load(json_file)
 
         contract_names = ["assumptions", "guarantees"]
-        contract_lists = [[], []]  # type: list[list[LTL]]
+        contract_lists = [[], []]  # type: List[List[LTL]]
         for i in range(len(contract_lists)):
             for contract_element in json_obj["contract"][contract_names[i]]:
                 if "pattern" in contract_element:
                     # We have to get the real name of the pattern that is inside the pattern.json file
-                    pattern_id = None
+                    pattern_id: str = ""
                     from crome_logic.patterns.robotic_movement import CoreMovement
                     from crome_logic.patterns.robotic_triggers import Trigger
 
@@ -135,7 +135,7 @@ class Modelling:
                                         w.typeset[args[1]["value"]],
                                     }
                                 ),
-                            )
+                            )  # NOQA
                         )
                     else:
                         raise Exception(
@@ -164,7 +164,7 @@ class Modelling:
         if not context.is_satisfiable:
             raise ContextException(context)
 
-        lists_with_and_operators: list[LTL] = []
+        lists_with_and_operators: List[LTL] = []
         for i in range(len(contract_lists)):
             if not contract_lists[i]:
                 lists_with_and_operators.append(LTL("true"))
@@ -205,7 +205,7 @@ class Modelling:
             set_of_goals = set()
             set_of_goals.add(new_goal)
         else:
-            new_set_of_goals: set[crome_cgg_goal.Goal] = {new_goal}
+            new_set_of_goals: Set[crome_cgg_goal.Goal] = {new_goal}
             for goal in set_of_goals:
                 if goal.id != goal_id:
                     new_set_of_goals.add(goal)

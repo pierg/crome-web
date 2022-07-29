@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 // components
 import CustomCardMini from "../Custom/CustomCardMini";
 
-export default function CustomHeader({ cards, color, states, clickable, onSelectCustomHeader}) {
+export default function CustomHeader({
+  cards,
+  color,
+  states,
+  clickable,
+  onSelectCustomHeader,
+}) {
   const bgColors = {
     light: "bg-blueGray-200",
     dark: "bg-blueGray-800",
@@ -29,7 +35,12 @@ export default function CustomHeader({ cards, color, states, clickable, onSelect
               {cards.map((prop, key) => (
                 <div key={key} className="flex-initial w-64 px-3 ">
                   <CustomCardMini
-                      {...prop} clickable={clickable} headerKey={key} state={states[key]} onSelectCustomHeader={onSelectCustomHeader}/>
+                    {...prop}
+                    clickable={clickable}
+                    headerKey={key}
+                    state={states[key]}
+                    onSelectCustomHeader={onSelectCustomHeader}
+                  />
                 </div>
               ))}
             </div>
@@ -43,7 +54,7 @@ export default function CustomHeader({ cards, color, states, clickable, onSelect
 CustomHeader.defaultProps = {
   cards: [],
   color: "blueGray",
-  onSelectCustomHeader:()=>void 0,
+  onSelectCustomHeader: () => void 0,
 };
 
 CustomHeader.propTypes = {

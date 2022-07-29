@@ -1,118 +1,114 @@
 {
-    "edges": [
-        {
-            "arrows": {
-                "to": {
-                    "type": "diamond"
-                }
-            },
-            "from": "default-simple-0003",
-            "id": "b65169bd-cef4-489f-9efe-1cc9873c4464",
-            "to": "default-simple-0003||default-simple-0002"
-        },
-        {
-             "arrows": {
-                "to": {
-                    "type": "diamond"
-                }
-            },
-            "from": "default-simple-0002",
-            "id": "6cf54926-ec49-4792-81fc-07de1a9cc884",
-            "to": "default-simple-0003||default-simple-0002"
-        },
-        {
-             "arrows": {
-                "to": {
-                }
-            },
-            "from": "default-simple-0003||default-simple-0002",
-            "id": "3b2e1d23-59ad-49d8-b416-e408f3739478",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000"
-        },
-        {
-            "arrows": {
-                "to": {
-                }
-            },
-            "from": "default-simple-0000",
-            "id": "a7c9fa64-cd8b-4429-a283-f2c988c12f35",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000"
-        },
-        {
-            "arrows": {
-                "to": {
-                }
-            },
-            "from": "default-simple-0001",
-            "id": "c3765fe1-ef6e-41b6-855c-7f7150d8f445",
-            "to": "default-simple-0001**default-simple-0002"
-        },
-        {
-            "arrows": {
-                "to": {
-                }
-            },
-            "from": "default-simple-0002",
-            "id": "95dda34b-35ba-407c-be16-89e760be39e2",
-            "to": "default-simple-0001**default-simple-0002"
-        },
-        {
-            "arrows": {
-                "to": {
-                    "type": "circle"
-                }
-            },
-            "from": "default-simple-0003||default-simple-0002**default-simple-0000",
-            "id": "f9c6e86e-52f7-4b56-9075-4942f91dfb1b",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
-        },
-        {
-            "arrows": {
-                "to": {
-                    "type": "circle"
-                }
-            },
-            "from": "default-simple-0001**default-simple-0002",
-            "id": "33fc167e-6057-44c0-b0f4-519ed39b1070",
-            "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+  "edges": [
+    {
+      "arrows": {
+        "to": {
+          "type": "diamond"
         }
-    ],
-    "nodes": [
-        {
-            "group": "input",
-            "id": "default-simple-0003",
-            "label": "Register Person"
-        },
-        {
-            "id": "default-simple-0003||default-simple-0002",
-            "label": "goal1"
-        },
-        {
-            "id": "default-simple-0002",
-            "group": "input",
-            "label": "Greet Person"
-        },
-        {
-            "id": "default-simple-0003||default-simple-0002**default-simple-0000",
-            "label": "goal3"
-        },
-        {
-            "id": "default-simple-0000",
-            "group": "input",
-            "label": "Day patrolling"
-        },
-        {
-            "id": "default-simple-0001",
-            "group": "input",
-            "label": "Night Patrolling"
-        },
-        {
-            "id": "default-simple-0001**default-simple-0002",
-            "label": "goal6"
-        },
-        {
-            "id": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002",
-            "label": "goal7"
+      },
+      "from": "default-simple-0003",
+      "id": "b65169bd-cef4-489f-9efe-1cc9873c4464",
+      "to": "default-simple-0003||default-simple-0002"
+    },
+    {
+      "arrows": {
+        "to": {
+          "type": "diamond"
         }
-    ]
+      },
+      "from": "default-simple-0002",
+      "id": "6cf54926-ec49-4792-81fc-07de1a9cc884",
+      "to": "default-simple-0003||default-simple-0002"
+    },
+    {
+      "arrows": {
+        "to": {}
+      },
+      "from": "default-simple-0003||default-simple-0002",
+      "id": "3b2e1d23-59ad-49d8-b416-e408f3739478",
+      "to": "default-simple-0003||default-simple-0002**default-simple-0000"
+    },
+    {
+      "arrows": {
+        "to": {}
+      },
+      "from": "default-simple-0000",
+      "id": "a7c9fa64-cd8b-4429-a283-f2c988c12f35",
+      "to": "default-simple-0003||default-simple-0002**default-simple-0000"
+    },
+    {
+      "arrows": {
+        "to": {}
+      },
+      "from": "default-simple-0001",
+      "id": "c3765fe1-ef6e-41b6-855c-7f7150d8f445",
+      "to": "default-simple-0001**default-simple-0002"
+    },
+    {
+      "arrows": {
+        "to": {}
+      },
+      "from": "default-simple-0002",
+      "id": "95dda34b-35ba-407c-be16-89e760be39e2",
+      "to": "default-simple-0001**default-simple-0002"
+    },
+    {
+      "arrows": {
+        "to": {
+          "type": "circle"
+        }
+      },
+      "from": "default-simple-0003||default-simple-0002**default-simple-0000",
+      "id": "f9c6e86e-52f7-4b56-9075-4942f91dfb1b",
+      "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+    },
+    {
+      "arrows": {
+        "to": {
+          "type": "circle"
+        }
+      },
+      "from": "default-simple-0001**default-simple-0002",
+      "id": "33fc167e-6057-44c0-b0f4-519ed39b1070",
+      "to": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002"
+    }
+  ],
+  "nodes": [
+    {
+      "group": "input",
+      "id": "default-simple-0003",
+      "label": "Register Person"
+    },
+    {
+      "id": "default-simple-0003||default-simple-0002",
+      "label": "goal1"
+    },
+    {
+      "id": "default-simple-0002",
+      "group": "input",
+      "label": "Greet Person"
+    },
+    {
+      "id": "default-simple-0003||default-simple-0002**default-simple-0000",
+      "label": "goal3"
+    },
+    {
+      "id": "default-simple-0000",
+      "group": "input",
+      "label": "Day patrolling"
+    },
+    {
+      "id": "default-simple-0001",
+      "group": "input",
+      "label": "Night Patrolling"
+    },
+    {
+      "id": "default-simple-0001**default-simple-0002",
+      "label": "goal6"
+    },
+    {
+      "id": "default-simple-0003||default-simple-0002**default-simple-0000/\\default-simple-0001**default-simple-0002",
+      "label": "goal7"
+    }
+  ]
 }

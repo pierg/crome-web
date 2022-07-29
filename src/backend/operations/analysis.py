@@ -14,18 +14,18 @@ from src.backend.tools.persistence import dump_cgg, dump_goals, load_cgg, load_g
 
 
 class Analysis:
-    """
-        Class that contains all the useful method to apply the different operation on the goals.
-    """
+    """Class that contains all the useful method to apply the different
+    operation on the goals."""
+
     @staticmethod
     def conjunction(project_folder: str, set_of_goals_id: Set[str]) -> None:
-        """
-            Create a new goal which is the conjunction of the other goals given as parameters.
-            It then saves it in the project folder by modifying the cgg if it exists.
+        """Create a new goal which is the conjunction of the other goals given
+        as parameters. It then saves it in the project folder by modifying the
+        cgg if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                set_of_goals_id: A set of goal ids that will be used.
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            set_of_goals_id: A set of goal ids that will be used.
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -62,13 +62,13 @@ class Analysis:
 
     @staticmethod
     def composition(project_folder: str, set_of_goals_id: Set[str]) -> None:
-        """
-            Create a new goal which is the composition of the other goals given as parameters.
-            It then saves it in the project folder by modifying the cgg if it exists.
+        """Create a new goal which is the composition of the other goals given
+        as parameters. It then saves it in the project folder by modifying the
+        cgg if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                set_of_goals_id: A set of goal ids that will be used.
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            set_of_goals_id: A set of goal ids that will be used.
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -104,13 +104,12 @@ class Analysis:
 
     @staticmethod
     def refinement(project_folder: str, abstract_goal_id: str, refined_goal_id: str) -> None:
-        """
-            Refine a goal using another goal. It modifies the cgg if it exists.
+        """Refine a goal using another goal. It modifies the cgg if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                abstract_goal_id: The id of the abstract goal
-                refined_goal_id: The id of the refined goal
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            abstract_goal_id: The id of the abstract goal
+            refined_goal_id: The id of the refined goal
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -128,14 +127,13 @@ class Analysis:
 
     @staticmethod
     def quotient(project_folder: str, goal_dividend_id: str, goal_divisor_id: str) -> None:
-        """
-            Create a new goal that is the quotient of two goals.
-            It then saves it in the project folder by modifying the cgg if it exists
+        """Create a new goal that is the quotient of two goals. It then saves
+        it in the project folder by modifying the cgg if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                goal_dividend_id: The id of the dividend goal
-                goal_divisor_id: The id of the divisor goal
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            goal_dividend_id: The id of the dividend goal
+            goal_divisor_id: The id of the divisor goal
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -156,13 +154,13 @@ class Analysis:
 
     @staticmethod
     def merging(project_folder: str, set_of_goals_id: Set[str]) -> None:
-        """
-            Create a new goal which is the union of the other goals given as parameters.
-            It then saves it in the project folder by modifying the cgg if it exists.
+        """Create a new goal which is the union of the other goals given as
+        parameters. It then saves it in the project folder by modifying the cgg
+        if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                set_of_goals_id: A set of goal ids that will be used.
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            set_of_goals_id: A set of goal ids that will be used.
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
@@ -181,14 +179,13 @@ class Analysis:
 
     @staticmethod
     def separation(project_folder: str, goal_dividend_id: str, goal_divisor_id: str) -> None:
-        """
-            Create a new goal which is the separation of two goals.
-            It then saves it in the project folder by modifying the cgg if it exists.
+        """Create a new goal which is the separation of two goals. It then
+        saves it in the project folder by modifying the cgg if it exists.
 
-            Arguments:
-                project_folder: The folder containing the goals and the cgg if it exists.
-                goal_dividend_id: The id of the dividend goal
-                goal_divisor_id: The id of the divisor goal
+        Arguments:
+            project_folder: The folder containing the goals and the cgg if it exists.
+            goal_dividend_id: The id of the dividend goal
+            goal_divisor_id: The id of the divisor goal
         """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)

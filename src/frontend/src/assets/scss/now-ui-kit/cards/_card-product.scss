@@ -1,65 +1,64 @@
+.card-product {
+  margin-top: 30px;
 
-.card-product{
-    margin-top: 30px;
+  .price-container {
+    margin-top: 9px;
+  }
 
-    .price-container{
-        margin-top: 9px;
-    }
+  .btn {
+    margin: 0;
+  }
 
-    .btn{
-        margin: 0;
-    }
+  .image {
+    overflow: hidden;
+    border-radius: $border-radius-large;
+  }
 
-    .image{
-        overflow: hidden;
-        border-radius: $border-radius-large;
-    }
-
-    .card-footer{
-        margin-top: 5px;
-        .price{
-            h4{
-                margin-bottom: 0;
-                margin-top: 0;
-            }
-        }
-        .stats{
-            margin-top: 5px;
-
-            .btn{
-                position: relative;
-                top: -3px;
-            }
-        }
-    }
-
-    .card-title,
-    .category,
-    .card-description{
-        text-align: center;
-    }
-    .category{
+  .card-footer {
+    margin-top: 5px;
+    .price {
+      h4 {
         margin-bottom: 0;
-    }
-    .category ~ .card-title{
         margin-top: 0;
+      }
     }
+    .stats {
+      margin-top: 5px;
 
-    .price{
-        font-size: 16px;
-        color: $default-color;
+      .btn {
+        position: relative;
+        top: -3px;
+      }
     }
-    .price-old{
-        text-decoration: line-through;
-        font-size: 16px;
-        color: $default-color;
-    }
+  }
 
-    .price-new{
-        color: $danger-color;
-    }
+  .card-title,
+  .category,
+  .card-description {
+    text-align: center;
+  }
+  .category {
+    margin-bottom: 0;
+  }
+  .category ~ .card-title {
+    margin-top: 0;
+  }
 
-    &:not(.card-plain) .card-image{
-        padding: 15px;
-    }
+  .price {
+    font-size: 16px;
+    color: $default-color;
+  }
+  .price-old {
+    text-decoration: line-through;
+    font-size: 16px;
+    color: $default-color;
+  }
+
+  .price-new {
+    color: $danger-color;
+  }
+
+  &:not(.card-plain) .card-image {
+    padding: 15px;
+  }
 }

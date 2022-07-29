@@ -2,12 +2,12 @@ const textProps = {
   name: "",
   description: "",
   context: {
-      "formula": "",
-      world_values: []
+    formula: "",
+    world_values: [],
   },
   contract: {
-      assumptions: [],
-      guarantees: []
-  }
+    assumptions: [],
+    guarantees: [],
+  },
 };
 export default textProps;

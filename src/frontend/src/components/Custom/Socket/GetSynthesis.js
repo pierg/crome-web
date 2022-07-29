@@ -1,41 +1,42 @@
-import React, {useCallback, useEffect} from 'react'
-import {useSocket} from "../../../contexts/SocketProvider";
+import React, { useCallback, useEffect } from "react";
+import { useSocket } from "../../../contexts/SocketProvider";
 
 function SocketGetSynthesis(props) {
-    const socket = useSocket()
+  const socket = useSocket();
 
-    const setGraph = useCallback((graph) => {
-        if(graph) {
-            props.setGraph(graph);
-        }
-        if (props.strix) {
-            socket.off('controller-created-strix')
-        }
-        else {
-            socket.off('controller-created-crome')
-        }
-    }, [props,socket]) // eslint-disable-next-line
+  const setGraph = useCallback(
+    (graph) => {
+      if (graph) {
+        props.setGraph(graph);
+      }
+      if (props.strix) {
+        socket.off("controller-created-strix");
+      } else {
+        socket.off("controller-created-crome");
+      }
+    },
+    [props, socket]
+  ); // eslint-disable-next-line
 
-    useEffect(() => {
-        if (socket == null) return
+  useEffect(() => {
+    if (socket == null) return;
 
-        if (props.trigger && props.name !== "") {
-            if (props.strix) {
-                socket.emit("controller-strix", props.name)
-                socket.on('controller-created-strix', setGraph)
-            } else {
-                socket.emit("controller-crome", props.name)
-                socket.on('controller-created-crome', setGraph)
-            }
+    if (props.trigger && props.name !== "") {
+      if (props.strix) {
+        socket.emit("controller-strix", props.name);
+        socket.on("controller-created-strix", setGraph);
+      } else {
+        socket.emit("controller-crome", props.name);
+        socket.on("controller-created-crome", setGraph);
+      }
 
-            props.setTrigger(false)
+      props.setTrigger(false);
 
-            return () => socket.off('graph-generated')
-        }
+      return () => socket.off("graph-generated");
+    }
+  }, [socket, props, setGraph]);
 
-    }, [socket, props, setGraph])
-
-    return (<></>);
+  return <></>;
 }
 
 export default SocketGetSynthesis;

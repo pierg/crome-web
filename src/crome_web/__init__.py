@@ -1,5 +1,4 @@
-"""
-crome-web package.
+"""crome-web package.
 
 Web Interface for the Contract-Based Goal Graph package.
 """

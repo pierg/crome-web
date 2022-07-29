@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../assets/styles/textEditorStyle.css"
+import "../../assets/styles/textEditorStyle.css";
 import LTLEdit from "./LTLEdit";
 
 const LTLTextArea = React.forwardRef(
@@ -19,7 +19,6 @@ const LTLTextArea = React.forwardRef(
     },
     ref
   ) => {
-
     let leftAddon = null;
     let rightAddon = null;
     //let wrapperClasses = "mb-3 pt-0";

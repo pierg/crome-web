@@ -1,11 +1,11 @@
 const textProps = {
-    name: "",
-    description: "",
-    inputs: "",
-    outputs: "",
-    contract: {
-      assumptions: [],
-      guarantees: []
-    }
+  name: "",
+  description: "",
+  inputs: "",
+  outputs: "",
+  contract: {
+    assumptions: [],
+    guarantees: [],
+  },
 };
 export default textProps;

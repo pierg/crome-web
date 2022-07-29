@@ -5,6 +5,7 @@ from pathlib import Path
 from time import strftime
 
 import crome_cgg.cgg as crome_cgg
+from __main__ import socketio
 from crome_cgg.context import ContextException
 from docker.errors import DockerException
 from flask import request
@@ -17,16 +18,12 @@ from src.backend.tools.persistence import dump_cgg, load_cgg, load_goals
 from src.backend.utility.goal import GoalUtility
 from src.backend.utility.project import ProjectUtility
 
-try:
-    from __main__ import socketio
-except ImportError:
-    from src.backend.app import socketio
-
 
 @socketio.on("get-projects")
 def get_projects() -> None:
-    """
-    Get the list of all the project created by this session. We gave to the frontend the json content plus the image.
+    """Get the list of all the project created by this session.
+
+    We gave to the frontend the json content plus the image.
     """
     session_id = str(request.args.get("id"))
     list_of_projects = ProjectUtility.get_projects(session_id)
@@ -36,9 +33,10 @@ def get_projects() -> None:
 
 @socketio.on("save-project")
 def save_project(data) -> None:
-    """
-    Save the new World created by the user. If it is a modification of the default project, we make a copy of the
-    default project in the session folder that we then modify.
+    """Save the new World created by the user.
+
+    If it is a modification of the default project, we make a copy of
+    the default project in the session folder that we then modify.
     """
     session_id = str(request.args.get("id"))
     name: str = data["world"]["info"]["name"]
@@ -52,9 +50,10 @@ def save_project(data) -> None:
 
 @socketio.on("save-image")
 def save_image(data) -> None:
-    """
-    We save the screenshot taken of the world project. The frontend send us the binary code of the image.
-    We just have to write it inside the good folder.
+    """We save the screenshot taken of the world project.
+
+    The frontend send us the binary code of the image. We just have to
+    write it inside the good folder.
     """
 
     session_id = str(request.args.get("id"))
@@ -63,9 +62,7 @@ def save_image(data) -> None:
 
 @socketio.on("delete-project")
 def delete_project(project_id) -> None:
-    """
-    Delete the folder corresponding to the project.
-    """
+    """Delete the folder corresponding to the project."""
     session_id = str(request.args.get("id"))
     is_deleted = ProjectUtility.delete_project(project_id, session_id)
 
@@ -78,9 +75,7 @@ def delete_project(project_id) -> None:
 
 @socketio.on("get-goals")
 def get_goals(project_id) -> None:
-    """
-    Send the json content of all goals created inside the project.
-    """
+    """Send the json content of all goals created inside the project."""
     list_of_goals = GoalUtility.get_goals(project_id, request.args.get("id"))
 
     emit("receive-goals", list_of_goals, room=request.sid)
@@ -88,10 +83,12 @@ def get_goals(project_id) -> None:
 
 @socketio.on("add-goal")
 def add_goal(data) -> None:
-    """
-    The front end send us all the information of the goal (a new goal without ID or a modified goal) in the form of a
-    json file. We just put this information in the right file, and then we add the goal in goal.dat file thanks to
-    Modelling. It catches also all the error related to the goal creation and send them to the user.
+    """The front end send us all the information of the goal (a new goal
+    without ID or a modified goal) in the form of a json file.
+
+    We just put this information in the right file, and then we add the
+    goal in goal.dat file thanks to Modelling. It catches also all the
+    error related to the goal creation and send them to the user.
     """
     project_id = str(data["project_id"])
     session_id = str(request.args.get("id"))
@@ -161,8 +158,8 @@ def add_goal(data) -> None:
 
 @socketio.on("delete-goal")
 def delete_goal(data) -> None:
-    """
-    We delete the json file related to the goal id given by the frontend.
+    """We delete the json file related to the goal id given by the frontend.
+
     Moreover, we supress it from the goal.dat file.
     """
     project_id = str(data["project"])
@@ -182,8 +179,9 @@ def delete_goal(data) -> None:
 
 @socketio.on("check-goals")
 def check_goals(project_id) -> None:
-    """
-    Before the user goes to the Analysis page, we check if there are goals in goal.dat.
+    """Before the user goes to the Analysis page, we check if there are goals
+    in goal.dat.
+
     If not, we notify the user of this missing goal.
     """
     session_id = str(request.args.get("id"))
@@ -207,8 +205,9 @@ def check_goals(project_id) -> None:
 
 @socketio.on("get-patterns")
 def get_patterns() -> None:
-    """
-    Send to the frontend the name and the usage of all the pattern used. It gives also a short description of each one.
+    """Send to the frontend the name and the usage of all the pattern used.
+
+    It gives also a short description of each one.
     """
     from crome_logic.patterns.robotic_movement import CoreMovement
     from crome_logic.patterns.robotic_triggers import Trigger
@@ -236,8 +235,9 @@ def get_patterns() -> None:
 
 @socketio.on("process-goals")
 def process_goals(project_id) -> None:
-    """
-    Create the CGG corresponding to the project. It checks all the error and send them to the user.
+    """Create the CGG corresponding to the project.
+
+    It checks all the error and send them to the user.
     """
     now = time.localtime(time.time())
     session_id = str(request.args.get("id"))
@@ -369,8 +369,9 @@ def reset_crome(project_id) -> None:
 
 @socketio.on("random-simulation-crome")
 def random_simulation_crome(data) -> None:
-    """
-    It simulates a controller by randomly choosing the inputs for each state.
+    """It simulates a controller by randomly choosing the inputs for each
+    state.
+
     It differentiates the two ways of simulating the synthesis.
     """
     session_id = request.args.get("id")

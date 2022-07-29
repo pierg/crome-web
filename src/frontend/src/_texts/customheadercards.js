@@ -1,7 +1,7 @@
-
 const textProps = {
   color: "lightBlue",
-  cards: [{
+  cards: [
+    {
       statTitle: "World Modeling",
       statIconName: "fas fa-globe",
       statIconColor: "bg-red-500",

@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+from typing import Set
 
 from crome_cgg.goal import Goal
 
@@ -37,7 +38,6 @@ class GoalUtility:
     def delete_goal(goal_id, session_id, project_id) -> None:
         current_goals_folder = goals_path(session_id, project_id)
         dir_path, dir_names, filenames = next(os.walk(current_goals_folder))
-        i = 0
         for goal_file in filenames:
             with open(current_goals_folder / goal_file) as json_file:
                 json_content = json.load(json_file)
@@ -45,9 +45,9 @@ class GoalUtility:
                     os.remove(current_goals_folder / goal_file)
 
         project_folder: Path = project_path(session_id, project_id)
-        set_of_goals: set[Goal] = load_goals(str(project_folder))
+        set_of_goals: Set[Goal] = load_goals(str(project_folder))
         if set_of_goals is not None:
-            tmp: set[Goal] = set()
+            tmp: Set[Goal] = set()
 
             for goal in set_of_goals:
                 if goal.id != goal_id:

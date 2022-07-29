@@ -6,18 +6,17 @@
 * MIT License: https://github.com/JedWatson/react-select
 */
 
-
 /*
 This file was modified entirely by Creative Tim for React-Select v2.0.0
 */
 
 .react-select {
   margin-bottom: 10px;
-  .react-select__menu{
+  .react-select__menu {
     border: 0;
-    box-shadow: 0 10px 50px 0 rgba(0,0,0,.2);
-    border-radius: .125rem;
-    transition: all .15s linear;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0.125rem;
+    transition: all 0.15s linear;
     font-size: 14px;
     color: #212529;
     text-align: left;
@@ -25,9 +24,9 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
     background-color: #fff;
     background-clip: padding-box;
     margin-top: 0;
-    margin-bottom: .125rem;
-    padding: .5rem 0;
-    margin: .125rem 0 0;
+    margin-bottom: 0.125rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
   }
   .react-select__menu-list {
     max-height: 198px;
@@ -38,8 +37,8 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
   }
   .react-select__option {
     font-size: 0.8571em;
-    padding-top: .6rem;
-    padding-bottom: .6rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
     margin-top: 5px;
     -webkit-transition: all 150ms linear;
     -moz-transition: all 150ms linear;
@@ -51,36 +50,41 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
     display: block;
     outline: none;
     color: #292b2c;
-    &:first-child{
+    &:first-child {
       margin-top: 0;
     }
   }
-  .react-select__menu{
-    .react-select__option{
-      &,&:active{
+  .react-select__menu {
+    .react-select__option {
+      &,
+      &:active {
         background-color: transparent;
       }
-      &.react-select__option--is-selected{
-        &,&.react-select__option--is-focused{
-          &,&:active{
+      &.react-select__option--is-selected {
+        &,
+        &.react-select__option--is-focused {
+          &,
+          &:active {
             background-color: $medium-gray;
           }
         }
       }
       &.react-select__option--is-focused {
-        &,&:active{
+        &,
+        &:active {
           background-color: $smoke-bg;
         }
       }
       &.react-select__option--is-disabled {
-        &,&:active{
+        &,
+        &:active {
           color: #cccccc;
           cursor: default;
         }
       }
     }
   }
-  .react-select__control{
+  .react-select__control {
     border-radius: 30px;
     min-height: 37px;
     height: 37px;
@@ -88,48 +92,50 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
     border-collapse: separate;
     display: table;
     width: 100%;
-    &,&:hover{
+    &,
+    &:hover {
       border: 1px solid $light-gray;
       box-shadow: none;
       background-color: transparent;
     }
-    &.react-select__control--is-focused{
-      .react-select__dropdown-indicator{
-        &:after{
+    &.react-select__control--is-focused {
+      .react-select__dropdown-indicator {
+        &:after {
           transform: rotate(180deg);
           top: -4px;
         }
       }
-      &,&:hover{
+      &,
+      &:hover {
         border: 1px solid $primary-color;
         box-shadow: none;
       }
     }
-    .react-select__value-container--has-value{
-      .react-select__multi-value{
+    .react-select__value-container--has-value {
+      .react-select__multi-value {
         display: inline-flex;
         border-radius: 30px;
         background-color: transparent;
-        & + div:not(.react-select__multi-value){
+        & + div:not(.react-select__multi-value) {
           display: inline-flex;
         }
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           font-size: 0.9em;
         }
       }
-      .react-select__single-value{
+      .react-select__single-value {
         top: 48%;
         color: $black-color;
       }
     }
-    .react-select__placeholder{
+    .react-select__placeholder {
       color: $dark-gray;
       line-height: normal;
       font-size: 0.8571em;
       top: 48%;
     }
     .react-select__value-container,
-    .react-select__indicators{
+    .react-select__indicators {
       display: table-cell;
     }
     .react-select__indicators {
@@ -138,15 +144,15 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
       align-items: flex-end;
       vertical-align: middle;
       text-align: right;
-      .react-select__indicator-separator{
+      .react-select__indicator-separator {
         display: none;
       }
       .react-select__indicator {
         padding: 0;
         display: inline-block;
       }
-      .react-select__dropdown-indicator{
-        &:after{
+      .react-select__dropdown-indicator {
+        &:after {
           transition: all 150ms ease 0s;
           border-color: #999 transparent transparent;
           border-style: solid;
@@ -157,15 +163,15 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
           position: relative;
           content: "";
         }
-        &:hover:after{
+        &:hover:after {
           border-top-color: $link-disabled-color;
         }
         & > * {
           display: none;
         }
       }
-      .react-select__clear-indicator{
-        &:before{
+      .react-select__clear-indicator {
+        &:before {
           content: "\D7";
           display: inline-block;
           font-size: 18px;
@@ -180,130 +186,135 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
       }
     }
   }
-  &.react-select-primary{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-primary {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $primary-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $primary-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $primary-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $light-blue;
         border-left: 1px solid $light-blue;
-        &:hover{
+        &:hover {
           color: $primary-color;
           background-color: transparent;
         }
       }
     }
   }
-  &.react-select-success{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-success {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $success-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $success-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $success-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $light-green;
         border-left: 1px solid $light-green;
-        &:hover{
+        &:hover {
           color: $success-color;
           background-color: transparent;
         }
       }
     }
   }
-  &.react-select-info{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-info {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $info-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $info-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $info-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $light-azure;
         border-left: 1px solid $light-azure;
-        &:hover{
+        &:hover {
           color: $info-color;
           background-color: transparent;
         }
       }
     }
   }
-  &.react-select-warning{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-warning {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $warning-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $warning-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $warning-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $light-orange;
         border-left: 1px solid $light-orange;
-        &:hover{
+        &:hover {
           color: $warning-color;
           background-color: transparent;
         }
       }
     }
   }
-  &.react-select-danger{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-danger {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $danger-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $danger-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $danger-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $light-red;
         border-left: 1px solid $light-red;
-        &:hover{
+        &:hover {
           color: $danger-color;
           background-color: transparent;
         }
@@ -311,26 +322,27 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
     }
   }
 
-  &.react-select-white{
-    .react-select__control{
-      &.react-select__control--is-focused{
-        &,&:hover{
+  &.react-select-white {
+    .react-select__control {
+      &.react-select__control--is-focused {
+        &,
+        &:hover {
           border-color: $white-color;
         }
       }
-      .react-select__value-container--has-value{
+      .react-select__value-container--has-value {
         .react-select__single-value,
-        .react-select__multi-value__label{
+        .react-select__multi-value__label {
           color: $white-color;
         }
       }
     }
-    .react-select__multi-value{
+    .react-select__multi-value {
       border: 1px solid $white-color;
-      .react-select__multi-value__remove{
+      .react-select__multi-value__remove {
         color: $white-color;
         border-left: 1px solid $white-color;
-        &:hover{
+        &:hover {
           color: $white-color;
           background-color: transparent;
         }
@@ -338,29 +350,29 @@ This file was modified entirely by Creative Tim for React-Select v2.0.0
     }
   }
 
-  .react-select__multi-value{
+  .react-select__multi-value {
     border: 1px solid $dark-gray;
-    .react-select__multi-value__remove{
+    .react-select__multi-value__remove {
       position: relative;
-      color: rgba(222,222,222, .8);
-      border-left: 1px solid rgba(222,222,222, .8);
-      &:hover{
+      color: rgba(222, 222, 222, 0.8);
+      border-left: 1px solid rgba(222, 222, 222, 0.8);
+      &:hover {
         color: $dark-gray;
         background-color: transparent;
       }
     }
   }
-  &.react-select--is-disabled{
-    .react-select__multi-value--is-disabled{
+  &.react-select--is-disabled {
+    .react-select__multi-value--is-disabled {
       .react-select__multi-value__remove {
         display: none;
       }
-      &.react-select__multi-value{
+      &.react-select__multi-value {
         background-color: #fcfcfc;
         border: 1px solid #e3e3e3;
       }
     }
-    .react-select__control--is-disabled{
+    .react-select__control--is-disabled {
       background-color: #f9f9f9;
     }
   }

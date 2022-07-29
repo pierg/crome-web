@@ -6,7 +6,7 @@ import threading
 import time
 from os import walk
 from time import strftime
-from typing import Any
+from typing import Any, Dict
 
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
@@ -29,10 +29,10 @@ else:
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
-users: dict[str, Any] = {}
+users: Dict[str, Any] = {}
 # String dictionary associating the id of the request to talk to the user with the session id given by the frontend.
 
-cookies: dict[str, str] = {}
+cookies: Dict[str, str] = {}
 
 
 # String dictionary association the id of the session with that of the cookie that can open it.
@@ -47,10 +47,8 @@ cookies: dict[str, str] = {}
 
 @socketio.on("connect")
 def connected() -> None:
-    """
-        Establish the connection between the front and the back
-        while checking that the session is not already in use.
-    """
+    """Establish the connection between the front and the back while checking
+    that the session is not already in use."""
     print("Connected")
     print(f'ID {request.args.get("id")}')
     lock = threading.Lock()
@@ -76,11 +74,10 @@ def connected() -> None:
 
 @socketio.on("session-existing")
 def check_if_session_exist(session_id) -> None:
-    """
-        Check if a session is free and if the user can enter it.
+    """Check if a session is free and if the user can enter it.
 
-        Arguments:
-            session_id: the id of the wanted session
+    Arguments:
+        session_id: the id of the wanted session
     """
     tab_id = str(request.args.get("tabId"))
     cookie = str(request.args.get("cookie"))
@@ -103,9 +100,7 @@ def check_if_session_exist(session_id) -> None:
 
 @socketio.on("disconnect")
 def disconnected() -> None:
-    """
-        It disconnects the user of the session he was attached to.
-    """
+    """It disconnects the user of the session he was attached to."""
     print("Disconnected")
     print(request.args)
     print(f'ID {request.args.get("id")}')
@@ -129,19 +124,18 @@ def index() -> Response:
 
 
 @app.route("/time")
-def get_current_time() -> dict[str, float]:
+def get_current_time() -> Dict[str, float]:
     return {"time": time.time()}
 
 
 def copy_simple(session_id: str) -> str:
-    """
-        Copy the default session into the desired session.
+    """Copy the default session into the desired session.
 
-        Arguments:
-            session_id: The session id where to copy the project by default
+    Arguments:
+        session_id: The session id where to copy the project by default
 
-        Returns:
-            The project id associated with the copy
+    Returns:
+        The project id associated with the copy
     """
     number_of_copies = 1
     while os.path.isdir(project_path(session_id, f"simple_{number_of_copies}")):
@@ -174,9 +168,7 @@ def copy_simple(session_id: str) -> str:
 
 
 def build_simple_project() -> None:
-    """
-    Build the default project with all the .dat file.
-    """
+    """Build the default project with all the .dat file."""
     project_dir = project_path("default", "simple")
     Modelling.create_environment(project_dir)
     Modelling.add_goal(project_dir, "0000.json")
@@ -186,13 +178,12 @@ def build_simple_project() -> None:
 
 
 def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
-    """
-        Simplified version to send a notification and a message to a user.
+    """Simplified version to send a notification and a message to a user.
 
-        Arguments:
-            content: The content of the message.
-            room_id: Where to send the notification and the message.
-            crometype: The type of notification to send.
+    Arguments:
+        content: The content of the message.
+        room_id: Where to send the notification and the message.
+        crometype: The type of notification to send.
     """
     now = time.localtime(time.time())
     emit("send-notification", {"crometypes": crometype, "content": content}, room=room_id)

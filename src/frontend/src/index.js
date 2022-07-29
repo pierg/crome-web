@@ -1,6 +1,6 @@
 import React from "react";
 
-import {HashRouter, Route, Routes, Navigate} from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 // styles from Now UI template
 import "assets/styles/bootstrap.min.css";
 import "assets/scss/now-ui-kit.css";
@@ -17,13 +17,10 @@ import ReactDOM from "react-dom/client";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <HashRouter>
-        <Routes>
-
-            <Route path="/:id" element={<CustomDashboard/>}/>
-            <Route path="*" element={<Navigate to="index"/>}/>
-
-
-        </Routes>
-    </HashRouter>
+  <HashRouter>
+    <Routes>
+      <Route path="/:id" element={<CustomDashboard />} />
+      <Route path="*" element={<Navigate to="index" />} />
+    </Routes>
+  </HashRouter>
 );

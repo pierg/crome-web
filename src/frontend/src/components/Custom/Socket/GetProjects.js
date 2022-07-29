@@ -1,59 +1,63 @@
-import React, {useEffect, useCallback, useState} from 'react'
-import {useSocket} from "../../../contexts/SocketProvider";
+import React, { useEffect, useCallback, useState } from "react";
+import { useSocket } from "../../../contexts/SocketProvider";
 
 function SocketIoProjects(props) {
+  const socket = useSocket();
 
-    const socket = useSocket()
+  const [message, setMessage] = useState(0);
 
-    const [message, setMessage] = useState(0);
+  const [trigger, setTrigger] = useState(false);
 
-    const [trigger, setTrigger] = useState(false);
+  const setMessageFunction = useCallback(
+    (list_of_projects) => {
+      setMessage(list_of_projects);
+    },
+    [setMessage]
+  );
 
+  useEffect(() => {
+    if (socket == null) return;
 
-    const setMessageFunction = useCallback((list_of_projects) => {
-        setMessage(list_of_projects);
-    }, [setMessage])
+    socket.emit("get-projects");
+    socket.on("receive-projects", setMessageFunction);
 
+    return () => socket.off("receive-projects");
+  }, [socket, setMessageFunction, props.projectAdded, trigger]);
 
-    useEffect(() => {
-        if (socket == null) return
+  useEffect(() => {
+    props.worlds(message);
+  }, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
-        socket.emit('get-projects')
-        socket.on('receive-projects', setMessageFunction)
+  useEffect(() => {
+    if (props.uploadConfirmation) {
+      socket.emit("get-projects");
+      props.uploadChange(false);
+      setTrigger(!trigger);
+      socket.on("receive-projects", setMessageFunction);
+      return () => socket.off("receive-projects");
+    }
+  }, [
+    socket,
+    props.uploadChange,
+    props.uploadConfirmation,
+    setMessageFunction,
+    props.projectAdded,
+    trigger,
+  ]); // eslint-disable-line react-hooks/exhaustive-deps
 
-        return () => socket.off('receive-projects')
-    }, [socket, setMessageFunction, props.projectAdded, trigger])
+  useEffect(() => {
+    if (props.deletionConfirmation) {
+      console.log(props.listOfWorlds);
+      console.log(props.listOfWorlds[props.deletionIndex].project_id);
+      socket.emit("delete-project", props.listOfWorlds[props.deletionIndex].project_id);
+      props.deletionChanger(false);
 
-    useEffect(() => {
-        props.worlds(message)
-    }, [message])  // eslint-disable-line react-hooks/exhaustive-deps
+      socket.on("deletion-complete", setTrigger(!trigger));
+      return () => socket.off("deletion-complete");
+    }
+  }, [props.deletionConfirmation, props.deletionIndex, props.deletionChanger, socket]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    useEffect(() => {
-
-        if (props.uploadConfirmation) {
-            socket.emit('get-projects')
-            props.uploadChange(false)
-            setTrigger(!trigger)
-            socket.on('receive-projects', setMessageFunction)
-            return () => socket.off('receive-projects')
-        }
-
-    }, [socket, props.uploadChange, props.uploadConfirmation, setMessageFunction, props.projectAdded, trigger]) // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        
-        if (props.deletionConfirmation) {
-            console.log(props.listOfWorlds)
-            console.log(props.listOfWorlds[props.deletionIndex].project_id)
-            socket.emit('delete-project', props.listOfWorlds[props.deletionIndex].project_id)
-            props.deletionChanger(false)
-
-            socket.on('deletion-complete', setTrigger(!trigger))
-            return () => socket.off('deletion-complete')
-        }
-    }, [props.deletionConfirmation, props.deletionIndex, props.deletionChanger, socket])  // eslint-disable-line react-hooks/exhaustive-deps
-
-    return (<></>);
+  return <></>;
 }
 
 export default SocketIoProjects;

@@ -16,7 +16,13 @@ export default function CustomCardMini({
 
   return (
     <>
-      <div onClick={() => onSelectCustomHeader(headerKey, clickable, statTitle)} className={"relative flex justify-center break-words bg-white rounded-lg mb-6 shadow-lg text-center " + mouseHover}>
+      <div
+        onClick={() => onSelectCustomHeader(headerKey, clickable, statTitle)}
+        className={
+          "relative flex justify-center break-words bg-white rounded-lg mb-6 shadow-lg text-center " +
+          mouseHover
+        }
+      >
         <div className="p-3 ">
           <div className="flex flex-row ">
             <div className="pr-4 flex justify-center items-center ">

@@ -4,6 +4,6 @@ const textProps = {
   iconNameBack: "fas fa-chevron-left",
   iconNameContinue: "fas fa-chevron-right",
   backText: "Back",
-  continueText: "Continue"
+  continueText: "Continue",
 };
 export default textProps;

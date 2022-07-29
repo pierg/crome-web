@@ -44,7 +44,6 @@ export default function ContractContentEditor({
   listOfWorldVariables,
   setLTLWorldValues,
   infos,
-
 }) {
   const [open, setOpen] = React.useState();
 
@@ -54,15 +53,15 @@ export default function ContractContentEditor({
 
   let changeParameterTmp = (string, key) => {
     let e = {
-      target : {
-        name : "",
-        value : ""
-      }
-    }
-    e.target.name = "ltl_value"
-    e.target.value = string
-    changeParameter(e, contractType, key)
-  }
+      target: {
+        name: "",
+        value: "",
+      },
+    };
+    e.target.name = "ltl_value";
+    e.target.value = string;
+    changeParameter(e, contractType, key);
+  };
 
   return (
     <>
@@ -106,7 +105,7 @@ export default function ContractContentEditor({
                       </UncontrolledDropdown>
                     </td>
                     {prop.pattern === undefined && (
-                    <td className="w-9/12" colSpan={2}>
+                      <td className="w-9/12" colSpan={2}>
                         <LTLTextArea
                           value={prop.ltl_value}
                           placeholder={infos.placeholders.ltl}
@@ -116,10 +115,10 @@ export default function ContractContentEditor({
                             setLTLWorldValues(key, contractType, values)
                           }
                         />
-                    </td>
+                      </td>
                     )}
                     {prop.pattern !== undefined && (
-                    <td className="w-5/12">
+                      <td className="w-5/12">
                         <CustomSelect
                           items={NamesOf(patterns)}
                           placeholder={infos.placeholders.pattern}
@@ -131,11 +130,11 @@ export default function ContractContentEditor({
                             changeParameter(e, contractType, key, value)
                           }
                         />
-                    </td>
+                      </td>
                     )}
 
                     {prop.pattern !== undefined && (
-                    <td className="w-4/12">
+                      <td className="w-4/12">
                         <ContractEditArguments
                           title={infos.details}
                           content={searchPatterns(prop.pattern, patterns)}
@@ -149,7 +148,7 @@ export default function ContractContentEditor({
                           defaultOpened={key === open}
                           presentPattern={prop.pattern}
                         />
-                    </td>
+                      </td>
                     )}
                     <td>
                       <Button

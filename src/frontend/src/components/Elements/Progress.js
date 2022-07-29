@@ -51,21 +51,13 @@ export default function Progress({ value, text, color }) {
               </Badge>
             </div>
             <div className="text-right">
-              <span
-                className={
-                  "text-xs font-semibold inline-block " + percent[color]
-                }
-              >
+              <span className={"text-xs font-semibold inline-block " + percent[color]}>
                 {value}%
               </span>
             </div>
           </div>
         )}
-        <div
-          className={
-            "overflow-hidden h-2 text-xs flex rounded " + wrapper[color]
-          }
-        >
+        <div className={"overflow-hidden h-2 text-xs flex rounded " + wrapper[color]}>
           <div
             style={{ width: value.toString() + "%" }}
             className={

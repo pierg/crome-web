@@ -1,7 +1,7 @@
-
 const textProps = {
   color: "lightBlue",
-  cards: [{
+  cards: [
+    {
       statTitle: "conjunction",
       statIconName: "fas fa-solid fa-plus",
       statIconColor: "bg-orange-500",
@@ -16,17 +16,17 @@ const textProps = {
       statIconName: "fas fa-solid fa-arrow-down-short-wide",
       statIconColor: "bg-lightBlue-500",
     },
-          {
+    {
       statTitle: "quotient",
       statIconName: "fas fa-solid fa-divide",
       statIconColor: "bg-red-500",
     },
-          {
+    {
       statTitle: "merging",
       statIconName: "fas fa-solid fa-code-merge",
       statIconColor: "bg-teal-500",
     },
-      {
+    {
       statTitle: "separation",
       statIconName: "fas fa-solid fa-arrows-left-right-to-line",
       statIconColor: "bg-indigo-700",

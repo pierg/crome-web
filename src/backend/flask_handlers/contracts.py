@@ -3,6 +3,7 @@ import shutil
 import time
 from time import strftime
 
+from __main__ import socketio
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
 from flask import request
@@ -15,19 +16,13 @@ from src.backend.tools.persistence import load_cgg
 from src.backend.utility.goal import GoalUtility
 from src.backend.utility.project import ProjectUtility
 
-try:
-    from __main__ import socketio
-except ImportError:
-    from src.backend.app import socketio
-
 
 @socketio.on("apply-conjunction")
 def conjunction(data: dict) -> None:
-    """
-        Apply the conjunction operation on the given goals.
+    """Apply the conjunction operation on the given goals.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : conjunction")
     session_id = str(request.args.get("id"))
@@ -57,11 +52,10 @@ def conjunction(data: dict) -> None:
 
 @socketio.on("apply-composition")
 def composition(data) -> None:
-    """
-        Apply the composition operation on the given goals.
+    """Apply the composition operation on the given goals.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : composition")
     session_id = str(request.args.get("id"))
@@ -93,11 +87,10 @@ def composition(data) -> None:
 
 @socketio.on("apply-refinement")
 def refinement(data) -> None:
-    """
-        Apply the refinement operation on the given goals.
+    """Apply the refinement operation on the given goals.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : refinement")
 
@@ -129,11 +122,10 @@ def refinement(data) -> None:
 
 @socketio.on("apply-quotient")
 def quotient(data) -> None:
-    """
-        Apply the quotient operation on the two goals given
+    """Apply the quotient operation on the two goals given.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : merging")
     project_id = data["project"]
@@ -164,11 +156,10 @@ def quotient(data) -> None:
 
 @socketio.on("apply-merging")
 def merging(data) -> None:
-    """
-        Apply the merging operation on the two goals given
+    """Apply the merging operation on the two goals given.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : merging")
     project_id = data["project"]
@@ -202,11 +193,10 @@ def merging(data) -> None:
 
 @socketio.on("apply-separation")
 def separation(data) -> None:
-    """
-        Apply the separation operation on the two goals given
+    """Apply the separation operation on the two goals given.
 
-        Arguments:
-            data: All the useful data to make the operation works.
+    Arguments:
+        data: All the useful data to make the operation works.
     """
     print("APPLY OPERATION : separation")
     project_id = data["project"]
@@ -238,11 +228,11 @@ def separation(data) -> None:
 # We redo the function for getting a goals and modify it for this page :
 @socketio.on("get-contracts-goals")
 def get_contracts_goals(project_id):
-    """
-        Get the goals given the operation name from either the default session or the user session.
+    """Get the goals given the operation name from either the default session
+    or the user session.
 
-        Arguments:
-            project_id: The name of the operation.
+    Arguments:
+        project_id: The name of the operation.
     """
     session_id = request.args.get("id")
 
@@ -331,22 +321,20 @@ def process_goals_contracts(project_id):
 
 @socketio.on("get-contracts-project")
 def get_contracts_project():
-    """
-        Get the list of all the project that are inside the contracts page.
-    """
+    """Get the list of all the project that are inside the contracts page."""
 
     list_of_projects = ProjectUtility.get_projects("contracts")
 
     emit("receive-contracts-projects", list_of_projects, room=request.sid)
 
 
-def create_session_contracts(session_id, project_id):
-    """
-        Create the contracts project of an operations inside the session folder of the user.
+def create_session_contracts(session_id, project_id) -> None:
+    """Create the contracts project of an operations inside the session folder
+    of the user.
 
-        Arguments:
-            session_id: The id of the session of the user.
-            project_id: The name of the operation.
+    Arguments:
+        session_id: The id of the session of the user.
+        project_id: The name of the operation.
     """
     project_folder = project_path(session_id, project_id)
     # Check is the project_id correspond to some project of contracts

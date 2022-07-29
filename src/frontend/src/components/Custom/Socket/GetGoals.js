@@ -1,64 +1,73 @@
-import React, {useEffect, useCallback, useState} from 'react'
-import {useSocket} from "../../../contexts/SocketProvider";
+import React, { useEffect, useCallback, useState } from "react";
+import { useSocket } from "../../../contexts/SocketProvider";
 
 function SocketIoGoals(props) {
+  const socket = useSocket();
 
-    const socket = useSocket()
+  const [message, setMessage] = useState(0);
 
-    const [message, setMessage] = useState(0);
+  const [id, setId] = useState(0);
 
-    const [id, setId] = useState(0);
+  const setIdFunction = useCallback(
+    (project_id) => {
+      setId(project_id);
+    },
+    [setId]
+  );
 
-    const setIdFunction = useCallback((project_id) => {
-        setId(project_id);
-    }, [setId])
+  const setMessageFunction = useCallback(
+    (list_of_goals) => {
+      setMessage(list_of_goals);
+    },
+    [setMessage]
+  );
 
-    const setMessageFunction = useCallback((list_of_goals) => {
-        setMessage(list_of_goals);
-    }, [setMessage])
-    
-    
-    useEffect(() => {
+  useEffect(() => {
+    if (socket == null || props.deleteIndex === null) return;
 
-        if (socket == null || props.deleteIndex === null) return
+    socket.emit("delete-goal", {
+      goal_id: props.goals[props.deleteIndex].id,
+      project: props.projectId,
+    });
 
-        socket.emit('delete-goal', {goal_id: props.goals[props.deleteIndex].id, project: props.projectId})
+    props.deleteTrigger();
 
-        props.deleteTrigger()
+    if (props.projectId === "simple") {
+      socket.on("deleting-simple", setIdFunction);
+    }
+  }, [socket, props.deleteIndex, props.deleteTrigger, props.projectId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-        if (props.projectId === "simple") {
-            socket.on('deleting-simple', setIdFunction)
-        }
+  useEffect(() => {
+    if (socket == null) return;
 
-    }, [socket, props.deleteIndex, props.deleteTrigger, props.projectId])  // eslint-disable-line react-hooks/exhaustive-deps
+    if (props.contracts) {
+      socket.emit("get-contracts-goals", props.projectId);
+      socket.on("receive-contracts-goals", setMessageFunction);
+      return () => socket.off("receive-contracts-goals");
+    } else {
+      socket.emit("get-goals", props.projectId);
 
+      socket.on("receive-goals", setMessageFunction);
 
-    useEffect(() => {
-        if (socket == null) return
+      return () => socket.off("receive-goals");
+    }
+  }, [
+    socket,
+    setMessageFunction,
+    props.projectId,
+    props.triggerGoals,
+    props.contracts,
+  ]);
 
-        if(props.contracts) {
-            socket.emit('get-contracts-goals', props.projectId)
-            socket.on('receive-contracts-goals', setMessageFunction)
-            return () => socket.off('receive-contracts-goals')
-        }
-        else{
-            socket.emit('get-goals', props.projectId)
+  useEffect(() => {
+    props.updateGoals(message);
+  }, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
-            socket.on('receive-goals', setMessageFunction)
+  useEffect(() => {
+    props.switchWorld(id);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-            return () => socket.off('receive-goals')
-        }
-    }, [socket, setMessageFunction, props.projectId, props.triggerGoals, props.contracts])
-
-    useEffect(() => {
-        props.updateGoals(message)
-    }, [message])  // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        props.switchWorld(id)
-    }, [id])  // eslint-disable-line react-hooks/exhaustive-deps
-
-    return (<></>);
+  return <></>;
 }
 
 export default SocketIoGoals;

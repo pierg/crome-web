@@ -4,6 +4,7 @@ import os
 import shutil
 from os import walk
 from pathlib import Path
+from typing import Dict, List
 
 from src.backend.operations.modelling import Modelling
 from src.backend.shared.paths import goals_path, project_path, session_path, storage_path
@@ -11,9 +12,9 @@ from src.backend.shared.paths import goals_path, project_path, session_path, sto
 
 class ProjectUtility:
     @staticmethod
-    def get_projects(session_id: str) -> list[list[dict[str, str]]]:
-        list_of_projects: list[list[dict[str, str]]] = []  # array that will be sent containing all projects #$
-        list_of_sessions: list[str] = [f"default", session_id]
+    def get_projects(session_id: str) -> List[List[Dict[str, str]]]:
+        list_of_projects: List[List[Dict[str, str]]] = []  # array that will be sent containing all projects #$
+        list_of_sessions: List[str] = [f"default", session_id]
 
         for session in list_of_sessions:
             session_folder = session_path(session)
@@ -32,7 +33,7 @@ class ProjectUtility:
                         continue
                     project_folder: Path = Path(os.path.join(dir_path, subdir))
                     folder_path, project_directories, project_files = next(walk(project_folder))
-                    default_project: list[dict[str, str]] = []
+                    default_project: List[Dict[str, str]] = []
                     for file in project_files:
                         if os.path.splitext(file)[1] == ".json":
                             with open(Path(os.path.join(folder_path, file))) as json_file:
@@ -102,7 +103,7 @@ class ProjectUtility:
             fh.write(base64.decodebytes(img_data))
 
     @staticmethod
-    def delete_project(data, session_id) -> bool:
+    def delete_project(project_id, session_id) -> bool:
         current_session_folder = session_path(session_id)
         _, dir_names, _ = next(walk(current_session_folder))
         for name in dir_names:

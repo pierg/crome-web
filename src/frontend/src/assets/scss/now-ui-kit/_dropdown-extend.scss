@@ -1,32 +1,32 @@
-.dropdown-menu{
-  i{
+.dropdown-menu {
+  i {
     margin-right: 5px;
     position: relative;
     top: 1px;
   }
 
-  .now-ui-icons{
+  .now-ui-icons {
     margin-right: 10px;
     position: relative;
     top: 4px;
     font-size: 18px;
     margin-top: -5px;
-    opacity: .5;
+    opacity: 0.5;
   }
 
-  .dropdown-item{
+  .dropdown-item {
     &.active,
-    &:active{
+    &:active {
       color: inherit;
     }
   }
 
-  .dropup &{
-    &:before{
+  .dropup & {
+    &:before {
       display: none;
     }
 
-    &:after{
+    &:after {
       display: inline-block;
       position: absolute;
       width: 0;
@@ -38,13 +38,13 @@
       right: auto;
       left: 10px;
       color: $white-color;
-      border-top: .4em solid;
-      border-right: .4em solid transparent;
-      border-left: .4em solid transparent;
+      border-top: 0.4em solid;
+      border-right: 0.4em solid transparent;
+      border-left: 0.4em solid transparent;
     }
 
-    &.dropdown-menu-right{
-      &:after{
+    &.dropdown-menu-right {
+      &:after {
         right: 10px;
         left: auto;
       }
@@ -52,24 +52,24 @@
   }
 
   .dropdown-item,
-  .bootstrap-select &.inner li a{
+  .bootstrap-select &.inner li a {
     font-size: $font-size-small;
-    padding-top: .6rem;
-    padding-bottom: .6rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
     margin-top: 5px;
     @include transition($fast-transition-time, $transition-linear);
 
     &:hover,
-    &:focus{
+    &:focus {
       background-color: $opacity-gray-3;
     }
 
     &.disabled,
-    &:disabled{
+    &:disabled {
       color: $default-color-opacity;
 
       &:hover,
-      &:focus{
+      &:focus {
         background-color: transparent;
       }
     }
@@ -92,7 +92,6 @@
     visibility: visible;
     @include transform-translate-y-dropdown(0px);
   }
-
 
   // Dropup
   .dropup &:not(.inner),
