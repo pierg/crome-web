@@ -1,7 +1,7 @@
 version: "3"
 services:
   backend:
-    image: pmallozzi/crome-web:dev
+    image: pmallozzi/crome-web:latest
     restart: always
     container_name: backend
     volumes:

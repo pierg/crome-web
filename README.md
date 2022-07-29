@@ -80,7 +80,7 @@ The documentation can then be found in a folder named "site" at the root of the 
 
 You can directly run the project by running the docker image on any platform
 
-`docker run -it --platform linux/x86_64 pmallozzi/crome-web:dev`
+`docker run -it --platform linux/x86_64 pmallozzi/crome-web:latest`
 
 ### Building the image
 
