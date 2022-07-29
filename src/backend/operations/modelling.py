@@ -6,7 +6,7 @@ import crome_cgg.goal as crome_cgg_goal
 import crome_synthesis.world as crome_cgg_world
 from crome_cgg.context import Context, ContextException
 from crome_contracts.contract import Contract
-from crome_logic.patterns.robotic_movement import *
+from crome_logic.patterns.robotic_movement import * # NOQA
 from crome_logic.specification.temporal import LTL
 from crome_logic.typeset import Typeset
 
