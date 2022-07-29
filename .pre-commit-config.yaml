@@ -95,7 +95,6 @@ repos:
     hooks:
       - id: eslint
         args: [--fix]
-        #        exclude: ^(src/backend/output/|docs/|example-plugin/|tests/fixtures|scripts/|duties.py|yarn.lock)
         additional_dependencies:
           [
             "eslint@latest",

@@ -13,7 +13,8 @@ from src.backend.shared.paths import goals_path, project_path, session_path, sto
 class ProjectUtility:
     @staticmethod
     def get_projects(session_id: str) -> List[List[Dict[str, str]]]:
-        list_of_projects: List[List[Dict[str, str]]] = []  # array that will be sent containing all projects #$
+        # array that will be sent containing all projects #$
+        list_of_projects: List[List[Dict[str, str]]] = []
         list_of_sessions: List[str] = [f"default", session_id]
 
         for session in list_of_sessions:
