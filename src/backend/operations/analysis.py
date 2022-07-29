@@ -16,7 +16,10 @@ from src.backend.tools.persistence import dump_cgg, dump_goals, load_cgg, load_g
 class Analysis:
     @staticmethod
     def conjunction(project_folder: str, set_of_goals_id: Set[str]):
-
+        """
+            Create a new goal which is the conjunction of the other goals given as parameters.
+            It then saves it in the project folder by modifying the cgg if it exists.
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
 
@@ -52,7 +55,10 @@ class Analysis:
 
     @staticmethod
     def composition(project_folder: str, set_of_goals_id: Set[str]):
-
+        """
+            Create a new goal which is the composition of the other goals given as parameters.
+            It then saves it in the project folder by modifying the cgg if it exists.
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
 
@@ -87,7 +93,9 @@ class Analysis:
 
     @staticmethod
     def refinement(project_folder: str, abstract_goal_id: str, refined_goal_id: str):
-
+        """
+            Refine a goal using another goal. It modifies the cgg if it exists.
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
         abstract_goal = None
@@ -104,7 +112,10 @@ class Analysis:
 
     @staticmethod
     def quotient(project_folder: str, goal_dividend_id: str, goal_divisor_id: str):
-
+        """
+            Create a new goal that is the quotient of two goals.
+            It then saves it in the project folder by modifying the cgg if it exists
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
         goal_divisor = None
@@ -123,14 +134,17 @@ class Analysis:
         dump_cgg(cgg, project_folder)
 
     @staticmethod
-    def merging(project_folder: str, list_goals_id: Set[str]):
-
+    def merging(project_folder: str, set_goals_id: Set[str]):
+        """
+            Create a new goal which is the union of the other goals given as parameters.
+            It then saves it in the project folder by modifying the cgg if it exists.
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
 
         goal_to_merge = set()
         for goal in set_of_goals:
-            if goal.id in list_goals_id:
+            if goal.id in set_goals_id:
                 goal_to_merge.add(goal)
 
         new_goal = g_merging(goal_to_merge, cgg)
@@ -142,6 +156,10 @@ class Analysis:
 
     @staticmethod
     def separation(project_folder: str, goal_dividend_id: str, goal_divisor_id: str):
+        """
+            Create a new goal which is the separation of two goals.
+            It then saves it in the project folder by modifying the cgg if it exists.
+        """
         set_of_goals = load_goals(project_folder)
         cgg = load_cgg(project_folder)
 
