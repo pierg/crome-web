@@ -51,3 +51,25 @@ $(BASIC_DUTIES):
 .PHONY: $(QUALITY_DUTIES)
 $(QUALITY_DUTIES):
 	@bash scripts/multirun.sh duty $@ $(call args,$@)
+
+
+.PHONY: env-create
+env-create:
+	conda-merge ../crome-cgg/environment-cgg.yml ../crome-contracts/environment-contracts.yml ../crome-logic/environment-logic.yml ../crome-synthesis/environment-synthesis.yml environment-web.yml > environment.yml
+
+
+.PHONY: env-install
+env-install:
+	conda env create --force -f environment.yml
+
+
+.PHONY: env-activate
+env-activate:
+	conda activate crome-web
+
+.PHONY: env-all
+env-all: env-create env-install env-activate
+
+.PHONY: pre-commit
+pre-commit:
+	pre-commit run --all-files
