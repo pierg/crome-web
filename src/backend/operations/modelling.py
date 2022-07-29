@@ -14,10 +14,16 @@ from src.backend.tools.persistence import dump_goals, dump_world, load_goals, lo
 
 
 class Modelling:
+    """
+        Class that contains all the useful method to create an environment and the goals.
+    """
     @staticmethod
-    def create_environment(project_folder):
+    def create_environment(project_folder: str) -> None:
         """
-        Create the environment.dat corresponding to the .json file of the project.
+            Create the environment.dat corresponding to the .json file of the project.
+
+            Arguments:
+                project_folder: the folder that will contain the environment.dat
         """
 
         with open(Path(os.path.join(project_folder, "environment.json"))) as json_file:
@@ -55,64 +61,17 @@ class Modelling:
                 adjacency=location["adjacency"],
             )
 
-        # TODO FIX FOR PIER
-        #  mutex_group has to be an array, that's why there is a [0] on each mutex
-        #  todo : change mutex to be arrays
-
         dump_world(w, project_folder)
 
     @staticmethod
-    def add_goal_updated(project_folder):
-        """Load existing list of goals objects and world."""
-        set_of_goals = load_goals(project_folder)
-        w = load_world(project_folder)
-
-        """Create a new goal"""
-
-        """Assumptions (if inserted by the designer"""
-        a1 = LTL(_init_formula="G(F(r1 & r2))", _typeset=Typeset({w["r1"], w["r1"]}))
-        a2 = LTL(
-            _init_formula=Patrolling(locations=[w["r1"], w["r2"]]).__str__(),
-            _typeset=Typeset({w["r1"], w["r2"]}),
-        )
-        # TODO: Fix the rest like above
-        """Guarantees"""
-        g1 = LTL(
-            _init_formula="G(F(r3 & r4))",
-            _typeset=Typeset({w["r3"], w["r4"]}),
-        )
-        g2 = LTL(
-            _init_formula=StrictOrderedPatrolling(locations=[w["r1"], w["r2"]]).__str__(),
-            _typeset=Typeset({w["r1"], w["r2"]}),
-        )
-        # g3 = InstantaneousReaction() // need to import every patterns method ?
-
-        """Context"""
-        context = w["day"]
-
-        contract = Contract(
-            _assumptions=a1 & a2,
-            _guarantees=g1 & g2,
-        )
-
-        """Instanciate the goal"""
-
-        new_goal = crome_cgg_goal.Goal(
-            id="Day patrolling",
-            description="description",
-            contract=contract,
-            context=context,
-            world=w,
-        )
-
-        set_of_goals.add(new_goal)
-
-        dump_goals(set_of_goals, project_folder)
-
-    @staticmethod
-    def add_goal(project_folder, goal_file):
+    def add_goal(project_folder: str, goal_file: dict) -> None:
         """
-        It add the goal to the .dat file. And it checks also if this goal is already in. In that case, it removes it.
+            It adds the goal to the .dat file.
+            And it checks also if this goal is already in. In that case, it removes it.
+
+            Arguments:
+                project_folder: The folder where the goals are.
+                goal_file: the json file of the goal.
         """
         set_of_goals = load_goals(project_folder)
 
