@@ -81,9 +81,7 @@ Check the `examples` folder
 
 ## One magic command
 
-Run `make lint` to run all the typing, linting and formatting tools
-
-Run `make pre-commit` to run all the pre-commit tools
+Run `make pre-commit` to run all the pre-commit tools ([pre-commit](https://pre-commit.com/#install) needs to be installed)
 
 Check all the available commands in `Makefile`
 
