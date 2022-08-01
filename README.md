@@ -75,10 +75,6 @@ To build the image you can run the following command
 
 `docker buildx build --platform linux/x86_64 -t [DOCKERUSERNAME]/[PROJECT]:[TAG] --push .`
 
-## Usage
-
-Check the `examples` folder
-
 ## One magic command
 
 Run `make pre-commit` to run all the pre-commit tools ([pre-commit](https://pre-commit.com/#install) needs to be installed)
