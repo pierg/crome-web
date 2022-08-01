@@ -11,8 +11,20 @@ from src.backend.tools.persistence import dump_goals, load_goals
 
 
 class GoalUtility:
+    """Class that contains all the useful method create, suppress, and retrieve
+    the goals."""
+
     @staticmethod
-    def get_goals(project_id, session_id) -> list:
+    def get_goals(project_id: str, session_id: str) -> list:
+        """Method that get all the json file from a project folder.
+
+        Arguments:
+            project_id: The id of the project.
+            session_id: The id of the session where the project is.
+
+        Returns:
+            A list containing all the json content of the goals that have been found.
+        """
 
         session = "default" if project_id == "simple" else session_id
 
@@ -35,7 +47,15 @@ class GoalUtility:
         return list_of_goals
 
     @staticmethod
-    def delete_goal(goal_id, session_id, project_id) -> None:
+    def delete_goal(goal_id: str, session_id: str, project_id: str) -> None:
+        """Delete a goal inside a project folder. It removes it also from the
+        goals.dat if it's in there.
+
+        Arguments:
+            goal_id: The id of the goal.
+            project_id: The id of the project where the goal is.
+            session_id: The id of the session where the project is.
+        """
         current_goals_folder = goals_path(session_id, project_id)
         dir_path, dir_names, filenames = next(os.walk(current_goals_folder))
         for goal_file in filenames:
@@ -56,7 +76,15 @@ class GoalUtility:
             dump_goals(tmp, str(project_folder))
 
     @staticmethod
-    def add_goal(data, session_id, project_id):
+    def add_goal(data: dict, session_id: str, project_id: str) -> None:
+        """Add a goal to a project. It creates the json file and try to save it
+        inside the goal.dat file.
+
+        Arguments:
+            data: The goal information.
+            session_id: the id of the session where the project is.
+            project_id: the id of the project.
+        """
 
         goals_dir = goals_path(session_id, project_id)
 

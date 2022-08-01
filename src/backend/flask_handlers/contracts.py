@@ -245,6 +245,14 @@ def get_contracts_goals(project_id):
 
 @socketio.on("modify-contracts-goals")
 def modify_contracts_goals(data):
+    """Modify the goals inside the operation project. If this is the first
+    modification made by the use, it copies the default folder of the operation
+    into the session folder of the user.
+
+    Arguments:
+        data: All the information needed by the function to work, in a json format.
+              It contains the name of the operation and the modified or new goal.
+    """
     project_id = data["project"]
     session_id = request.args.get("id")
 
@@ -309,6 +317,12 @@ def modify_contracts_goals(data):
 
 @socketio.on("process-goals-contracts")
 def process_goals_contracts(project_id):
+    """Create the cgg for the operation. It uses the session folder of the user
+    if he has made some modification, or the default session folder.
+
+    Arguments:
+        project_id: The name of the operation.
+    """
     session_id = request.args.get("id")
     project_folder = project_path(session_id, project_id)
     if not os.path.isdir(project_folder):

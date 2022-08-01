@@ -37,6 +37,9 @@ def save_project(data) -> None:
 
     If it is a modification of the default project, we make a copy of
     the default project in the session folder that we then modify.
+
+    Arguments:
+        data: Contain the json file about the world that has been created or modified.
     """
     session_id = str(request.args.get("id"))
     name: str = data["world"]["info"]["name"]

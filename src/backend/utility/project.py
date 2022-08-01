@@ -11,8 +11,21 @@ from src.backend.shared.paths import goals_path, project_path, session_path, sto
 
 
 class ProjectUtility:
+    """Class that contains all the useful method create, suppress, and retrieve
+    the project of a session."""
+
     @staticmethod
     def get_projects(session_id: str) -> List[List[Dict[str, str]]]:
+        """It retrieves the project information of a session. It includes also
+        the project of the default session.
+
+        Arguments:
+            session_id: The id of the session where the projects are.
+
+        Returns:
+            A list containing all the information about the project, it includes the image of the gridworld
+            and the gridworld.
+        """
         # array that will be sent containing all projects #$
         list_of_projects: List[List[Dict[str, str]]] = []
         list_of_sessions: List[str] = [f"default", session_id]
@@ -56,7 +69,14 @@ class ProjectUtility:
         return list_of_projects
 
     @staticmethod
-    def save_project(data, session_id: str) -> None:
+    def save_project(data: Dict, session_id: str) -> None:
+        """It save a new project inside the session folder. It tries also to
+        create the world.dat file.
+
+        Arguments:
+            data: The information about the gridworld.
+            session_id: The id of the session.
+        """
         session_dir = session_path(session_id)
         if not os.path.isdir(session_dir):
             os.makedirs(session_dir)
@@ -90,6 +110,12 @@ class ProjectUtility:
 
     @staticmethod
     def save_image(data, session_id) -> None:
+        """It save the image of the gridworld inside the project folder.
+
+        Arguments:
+            data: The raw image data and the project id.
+            session_id: The id of the session where the project is.
+        """
         img_data = bytes(data["image"], "utf-8")
         project_id = str(data["project"])
 
@@ -105,6 +131,15 @@ class ProjectUtility:
 
     @staticmethod
     def delete_project(project_id, session_id) -> bool:
+        """It deletes a project from a session.
+
+        Arguments:
+            project_id: The id of the project to delete.
+            session_id: The id of the session where the project is.
+
+        Returns:
+            A boolean that indicates if the project has been deleted.
+        """
         current_session_folder = session_path(session_id)
         _, dir_names, _ = next(walk(current_session_folder))
         for name in dir_names:
