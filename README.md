@@ -51,9 +51,9 @@ pip install conda-merge
 
 Once `conda-merge` is installed, you can create the `envioronment.yml` file, create the environment and activate it by runnin the following commands:
 ```bash
-make conda-create
-make conda-install
-make conda-activate
+make env-create
+make env-install
+make env-activate
 ```
 
 Install the other dependencies with pdm (optional):
