@@ -4,8 +4,8 @@ import time
 from time import strftime
 
 from __main__ import socketio
-from crome_cgg.context import ContextException
-from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
+from src.crome_cgg.context import ContextException
+from src.crome_cgg.goal.exceptions import GoalAlgebraOperationFail
 from flask import request
 from flask_socketio import emit
 

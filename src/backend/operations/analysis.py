@@ -3,12 +3,12 @@ import os.path
 from os import walk
 from typing import Set
 
-from crome_cgg.goal.operations.composition import g_composition
-from crome_cgg.goal.operations.conjunction import g_conjunction
-from crome_cgg.goal.operations.merging import g_merging
-from crome_cgg.goal.operations.quotient import g_quotient
-from crome_cgg.goal.operations.refinement import g_refinement
-from crome_cgg.goal.operations.separation import g_separation
+from src.crome_cgg.goal.operations.composition import g_composition
+from src.crome_cgg.goal.operations.conjunction import g_conjunction
+from src.crome_cgg.goal.operations.merging import g_merging
+from src.crome_cgg.goal.operations.quotient import g_quotient
+from src.crome_cgg.goal.operations.refinement import g_refinement
+from src.crome_cgg.goal.operations.separation import g_separation
 
 from src.backend.tools.persistence import dump_cgg, dump_goals, load_cgg, load_goals
 

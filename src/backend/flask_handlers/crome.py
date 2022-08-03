@@ -4,9 +4,9 @@ import time
 from pathlib import Path
 from time import strftime
 
-import crome_cgg.cgg as crome_cgg
+import src.crome_cgg.cgg as crome_cgg
 from __main__ import socketio
-from crome_cgg.context import ContextException
+from src.crome_cgg.context import ContextException
 from docker.errors import DockerException
 from flask import request
 from flask_socketio import emit
