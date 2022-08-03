@@ -6,10 +6,10 @@ from time import strftime
 
 import src.crome_cgg.cgg as crome_cgg
 from __main__ import socketio
-from src.crome_cgg.context import ContextException
 from docker.errors import DockerException
 from flask import request
 from flask_socketio import emit
+from src.crome_cgg.context import ContextException
 
 from src.backend.app import build_simple_project, copy_simple, send_message_to_user
 from src.backend.operations.simulation import Simulation
