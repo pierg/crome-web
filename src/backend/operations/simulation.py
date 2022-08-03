@@ -54,7 +54,7 @@ class Simulation:
             A list that contains all the information about the simulation that has just been done.
         """
         beforeLine = getter_line()
-        lineToSend = min(getter_line() + nb_iteration, len(arrayRunFile))
+        lineToSend = min(getter_line() + int(nb_iteration), len(arrayRunFile))
         setter_line(lineToSend)
         return [arrayRunFile[i] for i in range(beforeLine, lineToSend)]
 
