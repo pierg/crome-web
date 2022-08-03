@@ -10,8 +10,6 @@ import Button from "../../components/Elements/Button";
 import { Modal, PopoverBody, PopoverHeader, UncontrolledPopover } from "reactstrap";
 import ListBlock from "../../components/Custom/ListBlock";
 import Location from "../../components/Custom/Location";
-import FooterAdmin from "../../components/Custom/FooterAdmin";
-import footeradmin from "../../_texts/footeradmin";
 import WorldEdit from "../../components/Crome/WorldEdit";
 import arrayEquals from "../../hooks/arrayEquals";
 import deleteSubArrays from "../../hooks/deleteSubArrays";
@@ -22,6 +20,8 @@ import "react-tippy/dist/tippy.css";
 import { Tooltip } from "react-tippy";
 import CustomHeader from "../../components/Crome/CustomHeader";
 import customheadercards from "../../_texts/customheadercards";
+import customfooter from "../../_texts/customfooter";
+import CustomFooter from "../../components/Custom/CustomFooter";
 
 export default class CreateEnvironment2 extends React.Component {
   state = {
@@ -817,7 +817,7 @@ export default class CreateEnvironment2 extends React.Component {
               </div>
             </div>
           </div>
-          <FooterAdmin {...footeradmin} />
+          <CustomFooter {...customfooter} />
         </div>
         <Modal
           isOpen={this.state.modalLocationId}
