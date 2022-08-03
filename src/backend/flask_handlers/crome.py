@@ -212,8 +212,8 @@ def get_patterns() -> None:
 
     It gives also a short description of each one.
     """
-    from crome_logic.patterns.robotic_movement import CoreMovement
-    from crome_logic.patterns.robotic_triggers import Trigger
+    from src.crome_logic.patterns.robotic_movement import CoreMovement
+    from src.crome_logic.patterns.robotic_triggers import Trigger
 
     robotic_patterns_file = Path(os.path.join(storage_path, "crome/patterns/robotic.json"))
 
@@ -302,7 +302,7 @@ def process_goals(project_id) -> None:
         emit("cgg-saved", cgg.export_to_json(), room=request.sid)
         return
 
-    from crome_cgg.goal.exceptions import GoalException
+    from src.crome_cgg.goal.exceptions import GoalException
 
     error_occurrence = True
 
