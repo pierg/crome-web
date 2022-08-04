@@ -23,7 +23,7 @@ git config pull.rebase true
 git pull
 
 cd /home/crome-web
-git reset --hard dev
+git reset --hard
 git config pull.rebase true
 git pull
 
