@@ -1,13 +1,13 @@
 version: "3"
 services:
   backend:
-    image: pmallozzi/crome-web:latest
+    build: .
     restart: always
     container_name: backend
     volumes:
       - ./src/frontend/build:/home/crome-web/src/frontend/build
-      - ../cert.pem:/home/crome-web/cert.pem
-      - ../privkey.pem:/home/crome-web/privkey.pem
+      - ../cert.pem:/home/cert.pem
+      - ../privkey.pem:/home/privkey.pem
     expose:
       - 5000
     ports:
