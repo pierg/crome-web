@@ -62,6 +62,15 @@ Install the other dependencies with pdm (optional):
 pdm install
 ```
 
+## Documentation
+
+You can generate the documentation of the project by running the following commands:
+
+```bash
+pdm install
+make setup
+make docs
+```
 
 ## Docker
 
