@@ -49,7 +49,7 @@ You need to install `conda-merge` so that we can merge all the dependecies from 
 pip install conda-merge
 ```
 
-Once `conda-merge` is installed, you can create the `envioronment.yml` file, create the environment and activate it by runnin the following commands:
+Once `conda-merge` is installed, you can create the `environment.yml` file, create the environment and activate it by runnin the following commands:
 ```bash
 make env-create
 make env-install
