@@ -88,8 +88,8 @@ class Modelling:
                 if "pattern" in contract_element:
                     # We have to get the real name of the pattern that is inside the pattern.json file
                     pattern_id: str = ""
-                    from crome_logic.patterns.robotic_movement import CoreMovement
-                    from crome_logic.patterns.robotic_triggers import Trigger
+                    from src.crome_logic.patterns.robotic_movement import CoreMovement
+                    from src.crome_logic.patterns.robotic_triggers import Trigger
 
                     for c in CoreMovement.__subclasses__():
                         if c.name == contract_element["pattern"]["name"]:
