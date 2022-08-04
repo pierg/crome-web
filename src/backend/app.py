@@ -201,4 +201,4 @@ if __name__ == "__main__":
         socketio.run(app, host="0.0.0.0")
     else:
         print("Starting the server")
-        socketio.run(app, host="0.0.0.0", ssl_context=("../cert.pem", "../privkey.pem"))
+        socketio.run(app, host="0.0.0.0", ssl_context=("cert.pem", "privkey.pem"))
