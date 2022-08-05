@@ -22,10 +22,6 @@ WORKDIR /home
 
 ENV GIT_SSL_NO_VERIFY=1
 COPY . /home/crome-web
-RUN git clone https://github.com/pierg/crome-cgg.git --branch main --single-branch
-RUN git clone https://github.com/pierg/crome-contracts.git --branch main --single-branch
-RUN git clone https://github.com/pierg/crome-logic.git --branch main --single-branch
-RUN git clone https://github.com/pierg/crome-synthesis.git --branch main --single-branch
 
 WORKDIR /home/crome-web
 
