@@ -4,7 +4,7 @@ site_url: "https://pierg.github.io/crome-web"
 repo_url: "https://github.com/pierg/crome-web"
 repo_name: "pierg/crome-web"
 site_dir: "site"
-watch: [README.md, CONTRIBUTING.md, CHANGELOG.md, src/crome_web]
+watch: [README.md, CONTRIBUTING.md, CHANGELOG.md]
 
 nav:
   - Home:
