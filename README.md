@@ -8,30 +8,10 @@ Web Interface for the Contract-Based Goal Graph package.
 [docker](https://www.docker.com) must be installed and running.
 
 ### Dependencies
-
-Clone crome-logic, crome-contracts, crome-cgg and crome-synthesis from git in the same
-folder where crome-web is located
-
+This project contains submodules.
+To properly download them run :
 ```bash
-git clone https://github.com/pierg/crome-logic.git
-```
-
-```bash
-git clone https://github.com/pierg/crome-contracts.git
-```
-
-```bash
-git clone https://github.com/pierg/crome-cgg.git
-```
-
-```bash
-git clone https://github.com/pierg/crome-synthesis.git
-```
-
-Append it to PYTHONPATH
-
-```bash
-export PYTHONPATH=$PYTHONPATH:../crome-logic/:../crome-contracts/:../crome-cgg/:../crome-synthesis/
+git clone --recursive https://github.com/pierg/crome-web
 ```
 
 ## Installation
@@ -49,46 +29,48 @@ You need to install `conda-merge` so that we can merge all the dependecies from 
 pip install conda-merge
 ```
 
-Once `conda-merge` is installed, you can create the `environment.yml` file, create the environment and activate it by runnin the following commands:
+Once `conda-merge` is installed, you can create the `environment.yml` file, create the environment and activate it by running the following commands:
 ```bash
 make env-create
 make env-install
 make env-activate
 ```
 
-Install the other dependencies with pdm (optional):
+Or alternately `make env-all`
+## Makefile
 
+To discover Makefile commands or generate documentation you need install pdm dependancies ans setup the Makefile :
 ```bash
 pdm install
 ```
-
-## Documentation
-
+```bash
+make setup
+```
+Check basic commands available by running 
+```bash
+make
+```
+### Documentation
 You can generate the documentation of the project by running the following commands:
 
 ```bash
-pdm install
-make setup
 make docs
 ```
 
+
+## Pre-commit tools
+
+Run `make pre-commit` to run all the pre-commit tools
+
+Check all the available commands in `Makefile`
+
 ## Docker
-
-You can directly run the project by running the docker image on any platform
-
-`docker run -it --platform linux/x86_64 pmallozzi/crome-web:dev`
 
 ### Building the image
 
 To build the image you can run the following command
 
 `docker buildx build --platform linux/x86_64 -t [DOCKERUSERNAME]/[PROJECT]:[TAG] --push .`
-
-## One magic command
-
-Run `make pre-commit` to run all the pre-commit tools
-
-Check all the available commands in `Makefile`
 
 ## License
 
