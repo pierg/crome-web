@@ -3,13 +3,13 @@ import os
 from pathlib import Path
 from typing import List, Set
 
-import src.crome_cgg.goal as crome_cgg_goal
-import src.crome_synthesis.world as crome_cgg_world
-from src.crome_cgg.context import Context, ContextException
-from src.crome_contracts.contract import Contract
-from src.crome_logic.patterns.robotic_movement import *  # NOQA
-from src.crome_logic.specification.temporal import LTL
-from src.crome_logic.typeset import Typeset
+import crome_cgg.src.crome_cgg.goal as crome_cgg_goal
+import crome_synthesis.src.crome_synthesis.world as crome_cgg_world
+from crome_cgg.src.crome_cgg.context import Context, ContextException
+from crome_contracts.src.crome_contracts.contract import Contract
+from crome_logic.src.crome_logic.patterns.robotic_movement import *  # NOQA
+from crome_logic.src.crome_logic.specification.temporal import LTL
+from crome_logic.src.crome_logic.typeset import Typeset
 
 from src.backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
 
@@ -88,8 +88,8 @@ class Modelling:
                 if "pattern" in contract_element:
                     # We have to get the real name of the pattern that is inside the pattern.json file
                     pattern_id: str = ""
-                    from src.crome_logic.patterns.robotic_movement import CoreMovement
-                    from src.crome_logic.patterns.robotic_triggers import Trigger
+                    from crome_logic.src.crome_logic.patterns.robotic_movement import CoreMovement
+                    from crome_logic.src.crome_logic.patterns.robotic_triggers import Trigger
 
                     for c in CoreMovement.__subclasses__():
                         if c.name == contract_element["pattern"]["name"]:

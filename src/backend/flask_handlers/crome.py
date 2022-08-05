@@ -4,12 +4,12 @@ import time
 from pathlib import Path
 from time import strftime
 
-import src.crome_cgg.cgg as crome_cgg
+import crome_cgg.src.crome_cgg.cgg as crome_cgg
 from __main__ import socketio
 from docker.errors import DockerException
 from flask import request
 from flask_socketio import emit
-from src.crome_cgg.context import ContextException
+from crome_cgg.src.crome_cgg.context import ContextException
 
 from src.backend.app import build_simple_project, copy_simple, send_message_to_user
 from src.backend.operations.simulation import Simulation
@@ -212,8 +212,8 @@ def get_patterns() -> None:
 
     It gives also a short description of each one.
     """
-    from src.crome_logic.patterns.robotic_movement import CoreMovement
-    from src.crome_logic.patterns.robotic_triggers import Trigger
+    from crome_logic.src.crome_logic.patterns.robotic_movement import CoreMovement
+    from crome_logic.src.crome_logic.patterns.robotic_triggers import Trigger
 
     robotic_patterns_file = Path(os.path.join(storage_path, "crome/patterns/robotic.json"))
 
@@ -302,7 +302,7 @@ def process_goals(project_id) -> None:
         emit("cgg-saved", cgg.export_to_json(), room=request.sid)
         return
 
-    from src.crome_cgg.goal.exceptions import GoalException
+    from crome_cgg.src.crome_cgg.goal.exceptions import GoalException
 
     error_occurrence = True
 
