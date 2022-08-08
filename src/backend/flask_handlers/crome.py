@@ -4,13 +4,13 @@ import time
 from pathlib import Path
 from time import strftime
 
-import crome_cgg.src.crome_cgg.cgg as crome_cgg
 from __main__ import socketio
 from docker.errors import DockerException
 from flask import request
 from flask_socketio import emit
-from crome_cgg.src.crome_cgg.context import ContextException
 
+import crome_cgg.src.crome_cgg.cgg as crome_cgg
+from crome_cgg.src.crome_cgg.context import ContextException
 from src.backend.app import build_simple_project, copy_simple, send_message_to_user
 from src.backend.operations.simulation import Simulation
 from src.backend.shared.paths import project_path, storage_path

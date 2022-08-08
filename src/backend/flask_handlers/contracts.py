@@ -6,9 +6,9 @@ from time import strftime
 from __main__ import socketio
 from flask import request
 from flask_socketio import emit
+
 from crome_cgg.src.crome_cgg.context import ContextException
 from crome_cgg.src.crome_cgg.goal.exceptions import GoalAlgebraOperationFail
-
 from src.backend.app import send_message_to_user
 from src.backend.operations.analysis import Analysis
 from src.backend.shared.paths import project_path

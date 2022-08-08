@@ -1,10 +1,10 @@
 import os
 
 import dill as dill
+
 from crome_cgg.src.crome_cgg.cgg import Cgg
 from crome_cgg.src.crome_cgg.goal import Goal
 from crome_synthesis.src.crome_synthesis.world import World
-
 from src.backend.shared.paths import persistence_path
 
 
