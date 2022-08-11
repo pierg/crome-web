@@ -27,7 +27,7 @@ else:
     app = Flask(__name__)
 
 socketio = SocketIO(app)
-socketio.init_app(app, cors_allowed_origins="*")
+socketio.init_app(app, cors_allowed_origins="*", async_mode="eventlet")
 
 users: Dict[str, Any] = {}
 # String dictionary associating the id of the request to talk to the user with the session id given by the frontend.
