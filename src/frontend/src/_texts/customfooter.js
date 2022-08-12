@@ -26,12 +26,6 @@ const textProps = {
                 details:"International Conference on Formal Methods and Models for System Design, 2020",
                 href: "https://scholar.google.com/scholar?hl=fr&as_sdt=0%2C5&q=CROME%3A+Contract-Based+Robotic+Mission+Specification"
             },
-            {
-                title: "A Framework for Specifying and Realizing Correct–by–Construction Contextual Robotic Missions Using Contracts",
-                authors:"Piergiuseppe Mallozzi, Pierluigi Nuzzo, Nir Piterman, Gerardo Schneider, Patrizio Pelliccione",
-                details:"",
-                href: "https://drive.google.com/file/d/1aHDFx1uFu_MtpWmJFpT75MuKop6osz44/view?usp=sharing"
-            },
 
         ]
 
