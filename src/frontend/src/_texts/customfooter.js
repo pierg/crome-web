@@ -9,19 +9,27 @@ const textProps = {
         title: "Publications",
         papers: [
             {
-                text: "Designing Trustworthy Autonomous Systems",
-                href: "https://research.chalmers.se/publication/523846/file/523846_Fulltext.pdf"
+                title: "Designing Trustworthy Autonomous Systems",
+                authors:"Piergiuseppe Mallozzi",
+                details:"International Conference on Fundamentals of Software Engineering, 2021",
+                href: "https://scholar.google.com/scholar?hl=fr&as_sdt=0%2C5&q=Designing+Trustworthy+Autonomous+Systems+P+Mallozzi"
             },
             {
-                text: "Incremental Refinement of Goal Models with Contracts",
-                href: "https://drive.google.com/file/d/1TXfSsNkm31knkxMMORbuheW-7_tvtlR9/view?usp=sharing"
+                title: "Incremental Refinement of Goal Models with Contracts",
+                authors:"Piergiuseppe Mallozzi, Pierluigi Nuzzo, Patrizio Pelliccione",
+                details:"Incremental refinement of goal models with contracts, 2021",
+                href: "https://scholar.google.com/scholar?hl=fr&as_sdt=0%2C5&q=Incremental+Refinement+of+Goal+Models+with+Contracts"
             },
             {
-                text: "CROME: Contract-Based Robotic Mission Specification",
-                href: "https://drive.google.com/file/d/1kQjsM5N26zQXy3qFL62xJNCPCQraVCcZ/view?usp=sharing"
+                title: "CROME: Contract-Based Robotic Mission Specification",
+                authors:"Piergiuseppe Mallozzi, Pierluigi Nuzzo, Patrizio Pelliccione, Gerardo Schneider",
+                details:"International Conference on Formal Methods and Models for System Design, 2020",
+                href: "https://scholar.google.com/scholar?hl=fr&as_sdt=0%2C5&q=CROME%3A+Contract-Based+Robotic+Mission+Specification"
             },
             {
-                text: "A Framework for Specifying and Realizing Correct–by–Construction Contextual Robotic Missions Using Contracts",
+                title: "A Framework for Specifying and Realizing Correct–by–Construction Contextual Robotic Missions Using Contracts",
+                authors:"Piergiuseppe Mallozzi, Pierluigi Nuzzo, Nir Piterman, Gerardo Schneider, Patrizio Pelliccione",
+                details:"",
                 href: "https://drive.google.com/file/d/1aHDFx1uFu_MtpWmJFpT75MuKop6osz44/view?usp=sharing"
             },
 
