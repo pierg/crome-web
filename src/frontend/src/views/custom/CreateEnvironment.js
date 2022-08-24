@@ -715,7 +715,7 @@ export default class CreateEnvironment2 extends React.Component {
                       </Link>
                     </div>
                     <div className="flex justify-center">
-                      <div className="flex flex-col items-center">
+                      <div className="flex flex-col items-center mb-24">
                         <div className="w-full flex relative h-10">
                           <div className="absolute right-7/100">
                             <Button color="emerald" onClick={this.saveInToJSON}>
@@ -772,7 +772,7 @@ export default class CreateEnvironment2 extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <div className="w-full lg:w-4/12 xl:w-3/12 flex-col mt-4">
+                    <div className="w-full lg:w-4/12 xl:w-3/12 flex-col mt-4 mb-16">
                       <Tooltip
                         html={
                           <div className="flex flex-col text-left">
@@ -817,8 +817,8 @@ export default class CreateEnvironment2 extends React.Component {
               </div>
             </div>
           </div>
-          <CustomFooter {...customfooter} />
         </div>
+
         <Modal
           isOpen={this.state.modalLocationId}
           autoFocus={false}
@@ -871,7 +871,9 @@ export default class CreateEnvironment2 extends React.Component {
             info={createenvironment.modal.saving}
           />
         </Modal>
+                <CustomFooter {...customfooter} />
       </>
+
     );
   }
 }
