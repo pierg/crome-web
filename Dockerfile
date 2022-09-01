@@ -28,7 +28,7 @@ WORKDIR /home/crome-web
 # Copy /venv from the previous stage:
 COPY --from=build /venv ./venv
 
-ENV PYTHONPATH "/home/crome-web:/home/crome-web/crome_cgg:/home/crome-web/crome_contracts:/home/crome-web/crome_logic:/home/crome-web/crome_synthesis"
+ENV PYTHONPATH "/home/crome-web:/home/crome-web/crome_web:/home/crome-web/crome_contracts:/home/crome-web/crome_logic:/home/crome-web/crome_synthesis"
 
 ### Installing NodeJS as in https://github.com/sitespeedio/docker-node/blob/main/Dockerfile
 ARG TARGETPLATFORM
