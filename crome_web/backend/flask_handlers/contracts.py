@@ -9,12 +9,12 @@ from flask_socketio import emit
 
 from crome_cgg.context import ContextException
 from crome_cgg.goal.exceptions import GoalAlgebraOperationFail
-from src.backend.app import send_message_to_user
-from src.backend.operations.analysis import Analysis
-from src.backend.shared.paths import project_path
-from src.backend.tools.persistence import load_cgg
-from src.backend.utility.goal import GoalUtility
-from src.backend.utility.project import ProjectUtility
+from backend.app import send_message_to_user
+from backend.operations.analysis import Analysis
+from backend.shared.paths import project_path
+from backend.tools.persistence import load_cgg
+from backend.utility.goal import GoalUtility
+from backend.utility.project import ProjectUtility
 
 
 @socketio.on("apply-conjunction")

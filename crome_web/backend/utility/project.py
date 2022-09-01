@@ -6,8 +6,8 @@ from os import walk
 from pathlib import Path
 from typing import Dict, List
 
-from src.backend.operations.modelling import Modelling
-from src.backend.shared.paths import goals_path, project_path, session_path, storage_path
+from backend.operations.modelling import Modelling
+from backend.shared.paths import goals_path, project_path, session_path, storage_path
 
 
 class ProjectUtility:

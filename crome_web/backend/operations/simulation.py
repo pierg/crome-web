@@ -1,4 +1,4 @@
-from src.backend.shared.objects import arrayRunFile, getter_line, setter_line
+from backend.shared.objects import arrayRunFile, getter_line, setter_line
 
 
 class Simulation:

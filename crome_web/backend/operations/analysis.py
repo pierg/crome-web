@@ -9,7 +9,7 @@ from crome_cgg.goal.operations.merging import g_merging
 from crome_cgg.goal.operations.quotient import g_quotient
 from crome_cgg.goal.operations.refinement import g_refinement
 from crome_cgg.goal.operations.separation import g_separation
-from src.backend.tools.persistence import dump_cgg, dump_goals, load_cgg, load_goals
+from backend.tools.persistence import dump_cgg, dump_goals, load_cgg, load_goals
 
 
 class Analysis:

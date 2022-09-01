@@ -4,9 +4,9 @@ from pathlib import Path
 from typing import Set
 
 from crome_cgg.goal import Goal
-from src.backend.operations.modelling import Modelling
-from src.backend.shared.paths import goals_path, project_path
-from src.backend.tools.persistence import dump_goals, load_goals
+from backend.operations.modelling import Modelling
+from backend.shared.paths import goals_path, project_path
+from backend.tools.persistence import dump_goals, load_goals
 
 
 class GoalUtility:

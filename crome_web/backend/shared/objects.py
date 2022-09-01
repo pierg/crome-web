@@ -1,4 +1,4 @@
-from src.backend.shared.paths import project_path
+from backend.shared.paths import project_path
 
 fichier = open(project_path("default", "simple") / "run.txt", "r")
 line = 0
