@@ -1,6 +1,6 @@
 [submodule "crome_cgg"]
-	path = crome_cgg
-	url = https://github.com/pierg/crome-cgg
+	path = crome_web
+	url = https://github.com/pierg/crome-web
 [submodule "crome_contracts"]
 	path = crome_contracts
 	url = https://github.com/pierg/crome-contracts
