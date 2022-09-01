@@ -188,7 +188,11 @@ export default function CustomPlayer({
                             />
                           ),
                           simulation: (
-                            <Simulation active={headerStates[3]} project={project} />
+                            <Simulation
+                                world={world}
+                                active={headerStates[3]}
+                                project={project}
+                            />
                           ),
                         }[prop.component]
                       }

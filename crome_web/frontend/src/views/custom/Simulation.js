@@ -2,6 +2,7 @@ import React from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "../../assets/styles/tailwind.css";
 import Button from "../../components/Elements/Button";
+import Canvas from "../../components/Crome/Canvas";
 import SocketGetInputs from "../../components/Custom/Socket/GetInputs";
 import SocketInputClicked from "../../components/Custom/Socket/InputClicked";
 import SocketResetClicked from "../../components/Custom/Socket/ResetClicked";
@@ -77,7 +78,7 @@ export default class Simulation extends React.Component {
   };
 
   render() {
-    let inputDisplay = [];
+    /*let inputDisplay = [];
     if (this.state.inputs.length !== 0) {
       for (let i = 0; i < this.state.inputs.length; i++) {
         inputDisplay.push(
@@ -99,7 +100,7 @@ export default class Simulation extends React.Component {
           </tr>
         );
       }
-    }
+    }*/
 
     let linesDisplay = [];
     if (this.state.lines.length !== 0) {
@@ -174,34 +175,33 @@ export default class Simulation extends React.Component {
                     Random
                   </Button>
                 </span>
+                <span className="text-left inline-block w-auto ml-1">
+                  <Button
+                      color="red"
+                      onClick={() => {
+                          this.setTriggerResetClicked(true);
+                      }}
+                  >
+                    Reset
+                  </Button>
+                </span>
               </div>
             </div>
-            <div className="row mt-2">
-              <div className="col-10 offset-1">
-                <table className="table">
-                  <thead className="mb-2">
-                    <tr className="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">Inputs</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-center">{inputDisplay}</tbody>
-                </table>
-              </div>
-            </div>
-            <div className="row">
-              <div className="text-center">
-                <Button
-                  size="sm"
-                  color="gray"
-                  onClick={() => {
-                    this.setTriggerResetClicked(true);
-                  }}
-                >
-                  RESET
-                </Button>
-              </div>
-            </div>
+            {this.props.world !== null &&
+                <>
+                    <div className="row">
+                        <div className="text-center uppercase fs-5">
+                            {this.props.world.info.name}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <Canvas
+                            world={this.props.world.environment}
+                            lines={this.state.lines}
+                        />
+                    </div>
+                </>
+            }
           </div>
           <div className="col-7">
             <div className="row">

@@ -38,8 +38,7 @@ function SocketIoProjects(props) {
     }
   }, [
     socket,
-    props.uploadChange,
-    props.uploadConfirmation,
+    props,
     setMessageFunction,
     props.projectAdded,
     trigger,
