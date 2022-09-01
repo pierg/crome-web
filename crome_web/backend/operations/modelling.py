@@ -10,7 +10,7 @@ from crome_contracts.contract import Contract
 from crome_logic.patterns.robotic_movement import *  # NOQA
 from crome_logic.specification.temporal import LTL
 from crome_logic.typeset import Typeset
-from src.backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
+from backend.tools.persistence import dump_goals, dump_world, load_goals, load_world
 
 
 class Modelling:

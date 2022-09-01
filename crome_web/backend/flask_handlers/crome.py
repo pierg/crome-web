@@ -11,12 +11,12 @@ from flask_socketio import emit
 
 import crome_cgg.cgg as crome_cgg
 from crome_cgg.context import ContextException
-from src.backend.app import build_simple_project, copy_simple, send_message_to_user
-from src.backend.operations.simulation import Simulation
-from src.backend.shared.paths import project_path, storage_path
-from src.backend.tools.persistence import dump_cgg, load_cgg, load_goals
-from src.backend.utility.goal import GoalUtility
-from src.backend.utility.project import ProjectUtility
+from backend.app import build_simple_project, copy_simple, send_message_to_user
+from backend.operations.simulation import Simulation
+from backend.shared.paths import project_path, storage_path
+from backend.tools.persistence import dump_cgg, load_cgg, load_goals
+from backend.utility.goal import GoalUtility
+from backend.utility.project import ProjectUtility
 
 
 @socketio.on("get-projects")

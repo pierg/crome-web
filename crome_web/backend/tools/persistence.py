@@ -5,7 +5,7 @@ import dill as dill
 from crome_cgg.cgg import Cgg
 from crome_cgg.goal import Goal
 from crome_synthesis.world import World
-from src.backend.shared.paths import persistence_path
+from backend.shared.paths import persistence_path
 
 
 def _make_path(folder_name: str = ""):

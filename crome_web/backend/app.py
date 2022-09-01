@@ -10,9 +10,9 @@ from typing import Any, Dict
 
 from flask import Flask, Response, request
 from flask_socketio import SocketIO, emit
-from operations.modelling import Modelling
+from backend.operations.modelling import Modelling
 
-from src.backend.shared.paths import build_path, project_path, storage_path
+from backend.shared.paths import build_path, project_path, storage_path
 
 parser = argparse.ArgumentParser(description="Launching Flask Backend")
 parser.add_argument("--serve", default=False, type=bool, help="indicate if serving the pages")
@@ -191,8 +191,8 @@ def send_message_to_user(content: str, room_id: str, crometype: str) -> None:
 
 
 # NOQA We import all the signal handler for each page
-import src.backend.flask_handlers.contracts  # NOQA
-import src.backend.flask_handlers.crome  # NOQA
+import backend.flask_handlers.contracts  # NOQA
+import backend.flask_handlers.crome  # NOQA
 
 if __name__ == "__main__":
     if args.dev:
