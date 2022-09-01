@@ -1,5 +1,8 @@
 # crome-web
 
+This is a web-interface for [crome-cgg](https://github.com/pierg/crome-cgg).
+It is built using React, Flask and web-sockets.
+
 **Contract-Based Goal Graph**
 
 The tool helps the designer model and deploy robotic missions using contracts. The designer can model the environment, and the goals that the robot must achieve using LTL or Specification Patterns. The tool analyze the goals, build the CGG (a graph of contracts) and realize the controllers via reactive synthesis and simulate the robotic mission.
